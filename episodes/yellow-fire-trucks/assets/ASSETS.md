@@ -48,3 +48,27 @@ Searched and not taken: "Stylized Fire Truck with Crew Cab" (CC-BY-NC: excluded)
 b895053933 (CC-BY, 15k faces, one material: too plain), "Bristow Fire Engine" 7ac89a7a7a (CC-BY, UK, 750k), "Harbor Freight spray gun" a6e67cbc51 (CC-BY scan, 570k, one material).
 No 1960s-70s American cab-forward pumper (Ward LaFrance P-80, Mack CF, Seagrave, American LaFrance 900/1000) was found free and downloadable under CC-BY/CC0 on Sketchfab.
 BlenderKit fire trucks: shown as paid / plan only; nothing bought.
+
+## TOWN SET (set-builder, 2026-11-20): PLACE A, PINE HOLLOW (sets/town/build_town.sh re-downloads them: sets/town/scripts/fetch_town.py)
+All from Poly Haven (polyhaven.com), licence CC0 (no credit required; credited anyway). Files in `assets/ph_town/models/<id>/` (glTF 1k) and `assets/ph_town/tex/` (1k jpg).
+FINAL CREDIT LINE (YOUTUBE.md): "Town models and textures: Poly Haven (polyhaven.com), CC0."
+| id | kind | author (Poly Haven page) | used as | adapted for the story |
+|---|---|---|---|---|
+| street_lamp_01, street_lamp_02 | model | Poly Haven | downloaded, NOT placed (modern heads); the crossing lamp is coded (post, arm, sodium globe) | - |
+| painted_wooden_bench | model | Poly Haven | station bench by the door, park bench | as is |
+| metal_trash_can (clean variant) | model | Poly Haven | yard bin, park bin | as is |
+| water_manhole_cover | model | Poly Haven | the yard drain | as is |
+| fire_hydrant (clean variant) | model | Poly Haven | hydrant on the station corner | repainted silver-grey (no red, no yellow on the set) |
+| industrial_wall_lamp | model | Poly Haven | the station wall lamp over the door (line 14's source) | scale 1.4, warm emission at dusk |
+| garden_hose_wall_mounted_01 | model | Poly Haven | the hose reel on the station wall | scale 1.7 |
+| wooden_crate_01, oil_tin, wooden_bucket_01, old_tyre, watering_can_metal_01, metal_toolbox, wooden_ladder, barrel_03, cardboard_box_01, rubber_boots, utility_box_01 | models | Poly Haven | yard and bay dressing | as is |
+| BarberShopChair_01 | model | Poly Haven | the eye doctor's exam chair (shop_chair) | as is |
+| desk_lamp_arm_01 | model | Poly Haven | the amber desk lamp | amber point light added |
+| hanging_picture_frame_01, wall_clock | models | Poly Haven | shop wall (framed photo of the red truck, clock) | photo picture painted by tex_town.py |
+| island_tree_02 | model | Poly Haven | every leafy tree (park's big tree x3.1, street clumps x2-2.8) | decimated to 6 % in the GLB only |
+| shrub_02 (b), shrub_03 (a) | models | Poly Haven | bushes, far tree clumps on the hills (x5-9), shop planters | as is |
+| grass_bermuda_01 (medium, seedling clumps) | model | Poly Haven | lawn blades: 260 clumps joined into a 2 m patch, 210 patches | greener (mix to #7bbf5a); patch decimated to 30 % in the GLB |
+| dandelion_01 (c), weed_plant_02 | models | Poly Haven | lawn flowers, weeds in the yard joints | as is |
+| tree_stump_01, jacaranda_tree | models | Poly Haven | downloaded, NOT placed | - |
+| weathered_plank_siding, white_planks_clean, wooden_garage_door, concrete_block_wall, concrete_floor_worn_001, concrete_pavement, asphalt_02, leafy_grass, grey_roof_01, roof_slates_02, painted_plaster_wall, bark_brown_02, plank_flooring, forest_ground_04 | textures | Poly Haven | clapboard (sage, cream, white, blue-grey, green, tan), bay doors, block base, yard, walks, streets, lawn, roofs, poles, floors, far ground | repainted by tex_town.py (paint colour x the texture's own light and dark) |
+Coded (no usable free asset found or needed): the station, hose tower, shop, houses, water tower, picket fence, telephone poles + wires, crossing lamp, blades, bell, flag pole, all lettering and decals.

@@ -121,18 +121,32 @@ def red_truck_photo():
 
 if __name__ == '__main__':
     for s, n, c, k in TINTS: tint(s, n, c, k)
-    board('sign_station', 2048, 300, '#f1ead6', ['PINE HOLLOW FIRE DEPT.'], '#1f2e55', edge='#1f2e55', seed=8, sizes=[150])
+    board('sign_station', 2048, 300, '#f1ead6', ['PINE HOLLOW FIRE DEPT.'], '#1f2e55', edge='#1f2e55', seed=8, sizes=[112])
     board('sign_engine', 1024, 200, '#f1ead6', ['ENGINE No. 1'], '#1f2e55', edge='#1f2e55', seed=9)
     board('sign_eye', 1024, 512, '#2a3a66', ['EYE', 'DOCTOR'], '#f3ecd6', edge='#d9b66a', seed=3, sizes=[200, 150])
-    board('sign_shopfront', 2048, 256, '#2a3a66', ['EYE DOCTOR  -  EXAMS  -  GLASSES'], '#f3ecd6', edge='#d9b66a', seed=4, sizes=[120])
+    board('sign_shopfront', 2048, 256, '#2a3a66', ['EYE DOCTOR  -  EXAMS  -  GLASSES'], '#f3ecd6', edge='#d9b66a', seed=4, sizes=[96])
     board('sign_chief', 512, 160, '#c9a85a', ['CHIEF'], '#2a2216', edge='#7a6230', seed=5)
     board('blade_main', 1024, 160, '#22336a', ['MAIN ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=6, sizes=[104])
     board('blade_elm', 1024, 160, '#22336a', ['ELM ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=7, sizes=[104])
-    board('tower_band', 4096, 512, '#dcdfe1', ['PINE HOLLOW'], '#22336a', seed=10, sizes=[360])
+    board('tower_band', 4096, 512, '#dcdfe1', ['PINE HOLLOW'], '#22336a', seed=10, sizes=[300])
     board('sign_park', 1024, 256, '#3e5a3a', ['PINE HOLLOW PARK'], '#f1ead6', edge='#f1ead6', seed=11, sizes=[110])
     board('door_glass', 512, 256, '#2a2c33', ['OPEN'], '#e9d8a4', seed=12)
     decal('oil', 512, 512, oil, 2); decal('spray', 1024, 512, spray, 3); decal('tracks', 512, 1024, tracks, 4); decal('yardline', 128, 2048, line, 5)
-    decal('boot', 256, 512, boot, 6); decal('stopbar', 1024, 64, stopbar, 7)
+    decal('boot', 256, 512, boot, 6)
+    def puddle(d, rng, w, h, im):
+        for k in range(14):
+            cx, cy = rng.normal(w / 2, w * .12), rng.normal(h / 2, h * .1); r = rng.uniform(w * .08, w * .22); d.ellipse([cx - r, cy - r * .6, cx + r, cy + r * .6], fill=(70, 74, 80, 255))
+        im.paste(im.filter(ImageFilter.GaussianBlur(4)))
+    def cracks(d, rng, w, h, im):
+        for k in range(7):
+            x, y = rng.uniform(0, w), rng.uniform(0, h); a = rng.uniform(0, 6.28)
+            for s in range(60):
+                a += rng.normal(0, .35); nx, ny = x + math.cos(a) * 6, y + math.sin(a) * 6; d.line([(x, y), (nx, ny)], fill=(40, 38, 34, 200), width=2); x, y = nx, ny
+    def keepclear(d, rng, w, h, im):
+        f = ImageFont.truetype(FS, 230); d.text((w / 2, h / 2), 'KEEP CLEAR', font=f, fill=(244, 242, 234, 235), anchor='mm')
+        for k in range(1500):
+            x, y = rng.uniform(0, w), rng.uniform(0, h); r = rng.uniform(1, 4); d.ellipse([x - r, y - r, x + r, y + r], fill=(0, 0, 0, 0))
+    decal('puddle', 512, 512, puddle, 8); decal('cracks', 1024, 1024, cracks, 9); decal('keepclear', 2048, 320, keepclear, 10); decal('stopbar', 1024, 64, stopbar, 7)
     for i, b in enumerate([(250, 196, 120), (255, 214, 150), (246, 180, 104), (255, 226, 170)]): window_lit('win_lit_%d' % i, b, i)
     for i in list(range(4)) + [9]:                                       # by day the same windows: dark glass with a sky sheen, curtains faint
         src = Image.open(os.path.join(OUT, 'win_lit_%d.png' % (i if i < 4 else 0))).convert('RGB'); a = np.asarray(src, float) * (.22 if i < 4 else .08)

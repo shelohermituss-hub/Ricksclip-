@@ -1,0 +1,266 @@
+{
+ "stills": {
+  "blender_am_yard_wide": {
+   "file": "proof/bl/bl_am_yard_wide.png",
+   "edge": 0.2434,
+   "shapes": 668,
+   "brightness": 0.557,
+   "sky_share": 0.352,
+   "sec_per_frame": 21.9,
+   "passes": 3,
+   "of": 7
+  },
+  "blender_am_yard_medium": {
+   "file": "proof/bl/bl_am_yard_medium.png",
+   "edge": 0.2197,
+   "shapes": 1335,
+   "brightness": 0.556,
+   "sky_share": 0.188,
+   "sec_per_frame": 30.8,
+   "passes": 4,
+   "of": 7
+  },
+  "blender_am_yard_low": {
+   "file": "proof/bl/bl_am_yard_low.png",
+   "edge": 0.248,
+   "shapes": 1594,
+   "brightness": 0.565,
+   "sky_share": 0.122,
+   "sec_per_frame": 38.0,
+   "passes": 3,
+   "of": 7
+  },
+  "blender_am_shop_window": {
+   "file": "proof/bl/bl_am_shop_window.png",
+   "edge": 0.2558,
+   "shapes": 1174,
+   "brightness": 0.501,
+   "sky_share": 0.102,
+   "sec_per_frame": 39.9,
+   "passes": 5,
+   "of": 7
+  },
+  "blender_am_crossing": {
+   "file": "proof/bl/bl_am_crossing.png",
+   "edge": 0.1938,
+   "shapes": 792,
+   "brightness": 0.443,
+   "sky_share": 0.392,
+   "sec_per_frame": 29.3,
+   "passes": 6,
+   "of": 7
+  },
+  "blender_am_park": {
+   "file": "proof/bl/bl_am_park.png",
+   "edge": 0.386,
+   "shapes": 809,
+   "brightness": 0.366,
+   "sky_share": 0.219,
+   "sec_per_frame": 32.9,
+   "passes": 5,
+   "of": 7
+  },
+  "kit_am_yard_wide": {
+   "file": "proof/kit/stills/am_yard_wide/f_00000.png",
+   "edge": 0.2498,
+   "shapes": 717,
+   "brightness": 0.364,
+   "sky_share": 0.184,
+   "sec_per_frame": 3.4,
+   "passes": 5,
+   "of": 7
+  },
+  "kit_am_yard_medium": {
+   "file": "proof/kit/stills/am_yard_medium/f_00000.png",
+   "edge": 0.1942,
+   "shapes": 875,
+   "brightness": 0.382,
+   "sky_share": 0.103,
+   "sec_per_frame": 3.6,
+   "passes": 4,
+   "of": 7
+  },
+  "kit_am_yard_low": {
+   "file": "proof/kit/stills/am_yard_low/f_00000.png",
+   "edge": 0.2255,
+   "shapes": 1665,
+   "brightness": 0.393,
+   "sky_share": 0.022,
+   "sec_per_frame": 3.3,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_am_shop_window": {
+   "file": "proof/kit/stills/am_shop_window/f_00000.png",
+   "edge": 0.2032,
+   "shapes": 1006,
+   "brightness": 0.261,
+   "sky_share": 0.104,
+   "sec_per_frame": 4.3,
+   "passes": 6,
+   "of": 7
+  },
+  "kit_am_crossing": {
+   "file": "proof/kit/stills/am_crossing/f_00000.png",
+   "edge": 0.2331,
+   "shapes": 791,
+   "brightness": 0.306,
+   "sky_share": 0.264,
+   "sec_per_frame": 7.1,
+   "passes": 7,
+   "of": 7
+  },
+  "blender_du_yard_wide": {
+   "file": "proof/bl/bl_du_yard_wide.png",
+   "edge": 0.1214,
+   "shapes": 576,
+   "brightness": 0.451,
+   "sky_share": 0.0,
+   "sec_per_frame": 22.8,
+   "passes": 4,
+   "of": 7
+  },
+  "blender_du_yard_medium": {
+   "file": "proof/bl/bl_du_yard_medium.png",
+   "edge": 0.1488,
+   "shapes": 1323,
+   "brightness": 0.439,
+   "sky_share": 0.0,
+   "sec_per_frame": 31.4,
+   "passes": 4,
+   "of": 7
+  },
+  "blender_du_yard_low": {
+   "file": "proof/bl/bl_du_yard_low.png",
+   "edge": 0.1664,
+   "shapes": 1442,
+   "brightness": 0.43,
+   "sky_share": 0.0,
+   "sec_per_frame": 36.5,
+   "passes": 2,
+   "of": 7
+  },
+  "blender_du_shop_window": {
+   "file": "proof/bl/bl_du_shop_window.png",
+   "edge": 0.2368,
+   "shapes": 1177,
+   "brightness": 0.477,
+   "sky_share": 0.0,
+   "sec_per_frame": 42.3,
+   "passes": 5,
+   "of": 7
+  },
+  "blender_du_crossing": {
+   "file": "proof/bl/bl_du_crossing.png",
+   "edge": 0.167,
+   "shapes": 925,
+   "brightness": 0.418,
+   "sky_share": 0.0,
+   "sec_per_frame": 30.4,
+   "passes": 6,
+   "of": 7
+  },
+  "blender_du_park": {
+   "file": "proof/bl/bl_du_park.png",
+   "edge": 0.2377,
+   "shapes": 1014,
+   "brightness": 0.293,
+   "sky_share": 0.0,
+   "sec_per_frame": 33.7,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_du_yard_wide": {
+   "file": "proof/kit/stills/du_yard_wide/f_00000.png",
+   "edge": 0.1186,
+   "shapes": 486,
+   "brightness": 0.253,
+   "sky_share": 0.0,
+   "sec_per_frame": 7.7,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_du_yard_medium": {
+   "file": "proof/kit/stills/du_yard_medium/f_00000.png",
+   "edge": 0.1023,
+   "shapes": 1124,
+   "brightness": 0.253,
+   "sky_share": 0.0,
+   "sec_per_frame": 8.0,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_du_yard_low": {
+   "file": "proof/kit/stills/du_yard_low/f_00000.png",
+   "edge": 0.0984,
+   "shapes": 1400,
+   "brightness": 0.287,
+   "sky_share": 0.0,
+   "sec_per_frame": 7.6,
+   "passes": 4,
+   "of": 7
+  },
+  "kit_du_shop_window": {
+   "file": "proof/kit/stills/du_shop_window/f_00000.png",
+   "edge": 0.1746,
+   "shapes": 1129,
+   "brightness": 0.211,
+   "sky_share": 0.0,
+   "sec_per_frame": 8.6,
+   "passes": 5,
+   "of": 7
+  },
+  "kit_du_crossing": {
+   "file": "proof/kit/stills/du_crossing/f_00000.png",
+   "edge": 0.1329,
+   "shapes": 800,
+   "brightness": 0.302,
+   "sky_share": 0.0,
+   "sec_per_frame": 11.9,
+   "passes": 5,
+   "of": 7
+  }
+ },
+ "gate": {
+  "blender_am": {
+   "edges": [
+    0.2434,
+    0.2197,
+    0.248
+   ],
+   "median": 0.2434,
+   "min": 0.2197,
+   "PASS": true
+  },
+  "blender_du": {
+   "edges": [
+    0.1214,
+    0.1488,
+    0.1664
+   ],
+   "median": 0.1488,
+   "min": 0.1214,
+   "PASS": true
+  },
+  "kit_am": {
+   "edges": [
+    0.2498,
+    0.1942,
+    0.2255
+   ],
+   "median": 0.2255,
+   "min": 0.1942,
+   "PASS": true
+  },
+  "kit_du": {
+   "edges": [
+    0.1186,
+    0.1023,
+    0.0984
+   ],
+   "median": 0.1023,
+   "min": 0.0984,
+   "PASS": false
+  }
+ }
+}

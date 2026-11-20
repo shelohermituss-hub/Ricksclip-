@@ -1,0 +1,111 @@
+{
+ "title": "town proof du shop_window",
+ "fps": 30,
+ "size": [
+  540,
+  960
+ ],
+ "words": "words.json",
+ "end": 2,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "cast": {
+  "fireman": {
+   "puppet": "cast:firefighter",
+   "height": 1.75,
+   "heads_tall": 2.9,
+   "walk_speed": 9999
+  }
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "town": {
+   "set": "town",
+   "kind": "du",
+   "light": "golden",
+   "light_over": {
+    "top": "#5b3f92",
+    "hor": "#f3a86a",
+    "sun": "#f3a86a",
+    "si": 1.9,
+    "amb": "#b8a2e0",
+    "ai": 2.6,
+    "dir": [
+     -8.58,
+     1.39,
+     -4.95
+    ],
+    "tint": "#f4dcd4",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#5a4a66"
+   }
+  }
+ },
+ "props": {
+  "town": {
+   "pos": [
+    -3.2,
+    18.0,
+    2.6
+   ],
+   "kind": "the town"
+  }
+ },
+ "acts": [
+  {
+   "who": "fireman",
+   "at": 0,
+   "pos": [
+    200,
+    200,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "stand",
+   "face": "cool"
+  }
+ ],
+ "takes": [
+  {
+   "id": "du_shop_window",
+   "place": "town",
+   "stations": [
+    {
+     "at": 0,
+     "subject": "town",
+     "framing": "W",
+     "hold": 0,
+     "pos": [
+      -1.2,
+      -10.8,
+      1.55
+     ],
+     "aim": [
+      -3.2,
+      18.0,
+      2.6
+     ],
+     "lens": 24
+    }
+   ]
+  }
+ ]
+}

@@ -54,8 +54,9 @@ bar (milk crate stands on it, row 14); the lawn (ball search, row 42-44); the fe
 ## Continuity constraints
 - Landmarks fixed: station (bays south), shop window facing it, crossing east, park SE, water tower NE, hills ring N and E.
 - Bay 1 = the hero truck (lemon state per shot), bay 2 = the Chief's red pumper (it stays red; at dusk it reads grey-plum).
-- The yard line is always there, straight, white, from the door step (x -9.6, y 20.6) to bay 2's nose (x 4.2, y 12.2) ... it ends where
-  the Chief's truck nose stands, so row 57's line runs INTO the truck.
-- Lights: AM sun low from the east-south-east (screen left in the yard wide looking north), DU sun set behind the west houses; at
+- The yard line is always there, straight, white: bay 2's centre guide line, from the apron front (4.2, 7.9) to the Chief's truck nose
+  (4.2, 18.55); so row 57's line runs INTO the grey truck. The station door is at the east end (9.3, 20.3), beside bay 2.
+- Bay 1: the hero truck stands half out on the apron (nose y 14.0) in the sun; bay 2: the Chief's pumper with its nose at the door line.
+- Lights: AM sun low from the south-west (screen left in the yard wide looking north-west), DU sun set behind the north-west houses; at
   DU the street lamp, the station wall lamp, the shop lamp and about half the house windows are lit.
 - Nothing teal, no red except the trucks (and the story's ball / toy); house paints cream, sage, butter-pale, white, pale blue-grey.

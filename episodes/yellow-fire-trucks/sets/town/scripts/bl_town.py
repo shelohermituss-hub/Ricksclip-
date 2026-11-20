@@ -172,10 +172,12 @@ DECAL = lambda n: mat('decal_' + n, png=n, alpha=True, rough=.6)
 # ================================================================== GROUND: streets, kerbs, walks, yard, lawn, far land
 box('main_st', 300, 10, .02, 10, 0, -.02, M['asphalt'], 4.)
 box('elm_st', 9, 240, .02, 22, 0, -.019, M['asphalt'], 4.)
-for (x0, x1) in ((-140, 17.5), (26.5, 160)):
-    for ys in (1, -1):
-        box('walk', x1 - x0, 2.5, .15, (x0 + x1) / 2, ys * 6.25, 0, M['walk'], 1.5)
-        box('kerb', x1 - x0, .18, .16, (x0 + x1) / 2, ys * 5.09, 0, M['kerb'], .5)
+for (x0, x1, ys) in ((-140, -13.5, 1), (14.5, 17.5, 1), (-140, 17.5, -1), (26.5, 160, 1), (26.5, 160, -1)):
+    box('walk', x1 - x0, 2.5, .15, (x0 + x1) / 2, ys * 6.25, 0, M['walk'], 1.5)
+    box('kerb', x1 - x0, .18, .16, (x0 + x1) / 2, ys * 5.09, 0, M['kerb'], .5)
+bm = bmesh.new(); P_ = [(-13.5, 5.0, 0), (14.5, 5.0, 0), (14.5, 7.5, .14), (-13.5, 7.5, .14), (-13.5, 7.5, -.05), (14.5, 7.5, -.05), (14.5, 5.0, -.05), (-13.5, 5.0, -.05)]
+V_ = [bm.verts.new(p) for p in P_]; bm.faces.new((V_[0], V_[1], V_[2], V_[3])); bm.faces.new((V_[3], V_[2], V_[5], V_[4])); bm.normal_update(); obj_from_bm(bm, 'apron_ramp', M['yard'], 3.)
+for (x0, x1) in ((-13.6, -13.5), (14.5, 14.6)): pass
 for (y0, y1) in ((-120, -5), (5, 120)):
     for xs in (16.25, 27.75):
         if xs == 16.25 and y0 > 0: continue
@@ -258,6 +260,10 @@ box('tower_beam', .2, 1.6, .2, -14.1, 24.4, 14.9, M['shadowpaint'], .5); cyl('to
 for z in range(1, 14): box('tower_rung', .5, .04, .04, -16.25, 26.2, z * 1.0, M['steel'], .5)
 for dx in (-.25, .25): box('tower_rail', .05, .05, 14.2, -16.25 + 0 * dx, 26.2 + dx, .2, M['steel'], .5)
 # yard dressing: the white YARD LINE (bay 2's centre guide, row 57), oil under bay 2, tyre tracks, lemon overspray + boot prints, drain, bins, crates
+quad('keep_clear', 7.0, 1.1, .5, 2.6, .003, 180, DECAL('keepclear'), flat=True)
+pm_ = mat('puddle_wet', png='puddle', alpha=True, rough=.03, coat=1.); quad('puddle', 2.2, 1.6, -1.0, 10.3, .149, 20, pm_, flat=True)
+for (x, y, r) in ((-9, 12, 0), (2, 9, 40), (10, 15, 80), (-5, 19, 10), (12, 9, 120)): quad('cracks', 4., 4., x, y, .148, r, DECAL('cracks'), flat=True)
+for k in range(5): cyl('hose_coil', .42 - k * .035, .07, -11.0 + 0, 13.0, .14 + k * .07, mat('hose_canvas', col='#d9d2bd', rough=.85), 20)
 quad('yard_line', .55, 11.2, 4.2, 13.4, .147, 0, DECAL('yardline'), flat=True); anchor('yard_line_start', 4.2, 7.9, .14); anchor('yard_line_end', 4.2, 18.55, .14)
 quad('oil_bay2', 2.6, 2.6, 4.2, 20.0, .148, 0, DECAL('oil'), flat=True); quad('oil_bay2b', 1.8, 1.8, 3.6, 23.5, .03, 40, DECAL('oil'), flat=True)
 quad('tracks_bay2', 3.0, 11., 4.2, 13.5, .146, 0, DECAL('tracks'), flat=True)
@@ -397,6 +403,11 @@ quad('park_sign', 2.0, .5, 30.0, FY - .5, 1.6, 0, SIGN('sign_park', .5)); [box('
 asset('shrub_02', keep=['shrub_02_b'], name='bush'); asset('dandelion_01', keep=['dandelion_01_c'], name='dandelion')
 # grass: a 2 x 2 m patch of real Poly Haven bermuda clumps (joined once), placed as linked copies over the lawn and verges
 asset('grass_bermuda_01', keep=['medium', 'seedling'], name='grass_clump')
+for s_ in TPLS['grass_clump'].material_slots:
+    b_ = s_.material.node_tree.nodes['Principled BSDF']; lk = b_.inputs['Base Color'].links
+    if lk:
+        mx_ = s_.material.node_tree.nodes.new('ShaderNodeMix'); mx_.data_type = 'RGBA'; mx_.inputs[0].default_value = .55
+        s_.material.node_tree.links.new(lk[0].from_socket, mx_.inputs[6]); mx_.inputs[7].default_value = lin('#7bbf5a'); s_.material.node_tree.links.new(mx_.outputs[2], b_.inputs['Base Color'])
 gm = TPLS['grass_clump'].data; bmp = bmesh.new(); src = bmesh.new(); src.from_mesh(gm)
 for k in range(260):
     s_ = rnd.uniform(1.6, 3.0); R = Matrix.Rotation(rnd.uniform(0, 6.28), 4, 'Z'); T_ = Matrix.Translation((rnd.uniform(-1, 1), rnd.uniform(-1, 1), 0)) @ R @ Matrix.Scale(s_, 4)
@@ -407,7 +418,7 @@ for i in range(170):                                                    # dense 
     x = rnd.uniform(28.5, 62); y = -8.8 - abs(rnd.gauss(0, 9)) - .5
     put('grass_patch', x, y, .08, rnd.uniform(0, 360), rnd.uniform(.9, 1.2))
 for i in range(40): put('grass_patch', rnd.uniform(-60, -16), rnd.choice([rnd.uniform(9, 12), rnd.uniform(-12, -9)]) * (1 if rnd.random() < .5 else 1), .02, rnd.uniform(0, 360), 1.)
-for i in range(60): put('dandelion', rnd.uniform(29, 58), -9 - abs(rnd.gauss(0, 8)), .08, rnd.uniform(0, 360), rnd.uniform(1.5, 2.5))
+for i in range(60): put('dandelion', rnd.uniform(29, 58), -9 - abs(rnd.gauss(0, 8)), .08, rnd.uniform(0, 360), rnd.uniform(.9, 1.2))
 for (x, y, s) in ((29.5, -9.2, 1.6), (60.5, -9.3, 1.9), (45, -40, 2.4), (29.3, -26, 1.8), (55, -30, 2.0)): put('bush', x, y, .08, rnd.uniform(0, 360), s)
 
 # ================================================================== STREET TREES IN CLUMPS, HOUSES, WATER TOWER, HILLS
@@ -451,7 +462,7 @@ for (x, y, face) in ((-32, 16, 0), (-46, 15, 0), (-60, 16, 0), (-74, 15, 0), (36
                      (12, -18, 180), (32, 30, 270), (31, 44, 270), (12, 52, 90), (-4, 46, 0), (-26, 42, 0), (72, -20, 270), (70, -36, 270), (-60, -16, 180), (46, 40, 0)):
     house(x, y, rnd.choice([7, 8.5, 9.5]), rnd.choice([6.5, 7.5]), rnd.choice([3.4, 5.6, 5.8]), face, HOUSE_COLS[k % 8], M['roof'] if k % 3 else M['roof2'], k); k += 1
 # the water tower PINE HOLLOW (NE behind the station): four legs, X braces at three levels, a balcony with rail, tank, cone roof, ladder, the town's name
-WX, WY, WZ = 46.0, 64.0, 22.0
+WX, WY, WZ = -12.0, 78.0, 22.0
 legs = [(WX + dx, WY + dy) for dx, dy in ((-3.6, -3.6), (3.6, -3.6), (3.6, 3.6), (-3.6, 3.6))]
 for (x, y) in legs:
     beam('wt_leg', (x, y, 0), (WX + (x - WX) * .72, WY + (y - WY) * .72, WZ), .2, M['steel'], 8); box('wt_footing', 1.0, 1.0, .5, x, y, 0, M['kerb'], .5)
@@ -515,6 +526,9 @@ for nm, t in TPLS.items():
         print('DECIMATE', nm, len(t.data.polygons), '->', len(me_lo.polygons)); bpy.data.objects.remove(lo)
 for o in TOWN.objects:
     if o.type == 'MESH' and o.data.name in swap: o.data = swap[o.data.name]
+for m in bpy.data.materials:                                 # the GLB must carry the emissive maps: strength 1 at export (the kit sets the level per light kind)
+    b_ = m.node_tree.nodes.get('Principled BSDF') if m.node_tree else None
+    if b_ and (m.name.startswith('win_lit') or m.name.startswith('lamp_')): b_.inputs['Emission Strength'].default_value = 1.
 for o in bpy.context.scene.objects: o.select_set(False)
 for o in TOWN.objects: o.select_set(True)
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'town.glb'), export_format='GLB', use_selection=True, export_apply=True, export_lights=False, export_cameras=False,

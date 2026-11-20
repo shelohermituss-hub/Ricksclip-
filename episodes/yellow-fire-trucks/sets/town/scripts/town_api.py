@@ -26,7 +26,7 @@ def _kit_dir(az, el, d=10.):
     return [round(x, 2), round(z, 2), round(-y, 2)]
 KIT_LIGHT = {
     'am': dict(top='#5c8fea', hor='#d6e2f3', sun='#ffd896', si=3.0, amb='#a2a8e6', ai=1.25, dir=_kit_dir(205., 17.), tint='#fff6ea', card_gain=1.0),
-    'du': dict(top='#5b3f92', hor='#f3a86a', sun='#f3a86a', si=1.5, amb='#9a86c8', ai=1.55, dir=_kit_dir(150., 8.), tint='#f4dcd4', card_gain=1.0),
+    'du': dict(top='#5b3f92', hor='#f3a86a', sun='#f3a86a', si=1.9, amb='#b8a2e0', ai=2.6, dir=_kit_dir(150., 8.), tint='#f4dcd4', card_gain=1.0),
 }
 
 def _world(sc):
@@ -99,10 +99,11 @@ def link_trucks(sc, truck_blend, anchors):
         dst.materials = [m for m in src.materials if m in ('mask_paper', 'mask_kraft')]
     for m in bpy.data.materials:
         if m.name in ('mask_paper', 'mask_kraft'): m.use_fake_user = True
-    for name, an, st in (('HERO_TRUCK', 'bay1_truck', dict(paint='half', edge=.3, masking=True, letters='under', wear=.25)), ('CHIEF_TRUCK', 'bay2_truck', dict(paint='red', masking=False, letters='over', wear=.9))):
+    for name, an, st in (('HERO_TRUCK', 'bay1_truck', dict(paint='half', edge=.3, masking=True, letters='under', wear=.25)), ('CHIEF_TRUCK', 'bay2_truck', dict(paint='red', masking=False, letters='over', wear=.9, ribbon=False))):
         root = T.append_truck(truck_blend, name=name + '_COL'); root.name = name
         p = anchors[an]; root.location = (p[0], p[1], p[2]); root.rotation_euler = (0, 0, math.radians(90))   # front (-X) turned to face south (-Y), the street
         _paint(root, st)
+    for m in bpy.data.materials: m.use_fake_user = True   # masking swaps the truck's own materials out: unused ones must survive the save (KeyError headlight_glass, 2026-11-20)
 
 def set_trucks(sc, hero=None, chief=None):
     for r, st in ((hero_root(), hero), (chief_root(), chief)):
