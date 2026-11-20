@@ -1,0 +1,193 @@
+{
+ "face_shadow": true,
+ "face_shadow_rule": "CB 2026-11-15: the template drawn face shadow STAYS (face_shadow true); only generated shade is removed (card_shade amount 0, rim 0, hat_shadow 0, no far light).",
+ "_note": "character-artist 2026-11-20 (yellow-fire-trucks, phase A, NOT locked by CB). Copy these keys into film.json. puppet_pkg paths are relative to film.json: first episodes/yellow-fire-trucks/cast (holds sheets/firetrucks.mjs), then the kit code. Height = ground to the top of the bare head (helmets stand above it). Puppet names cast:firetrucks/<name>. heads_tall is written by cast/tools/render_cast.mjs. faces_ep = PROPOSED episode faces made only of kit parts: they need the lead's OK before film.json uses them.",
+ "puppet_pkg": [
+  "<relative path to>/episodes/yellow-fire-trucks/cast",
+  "<relative path to>/templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "hero": {
+   "puppet": "cast:firetrucks/hero",
+   "height": 1.88,
+   "heads_tall": 3.1
+  },
+  "heroShop": {
+   "puppet": "cast:firetrucks/heroShop",
+   "height": 1.88,
+   "heads_tall": 3.1
+  },
+  "heroBare": {
+   "puppet": "cast:firetrucks/heroBare",
+   "height": 1.88,
+   "heads_tall": 3.1
+  },
+  "chief": {
+   "puppet": "cast:firetrucks/chief",
+   "height": 1.62,
+   "heads_tall": 2.79
+  },
+  "chiefVisitor": {
+   "puppet": "cast:firetrucks/chiefVisitor",
+   "height": 1.62,
+   "heads_tall": 2.79
+  },
+  "chiefDown": {
+   "puppet": "cast:firetrucks/chiefDown",
+   "height": 1.62,
+   "heads_tall": 2.79
+  },
+  "oldTimer": {
+   "puppet": "cast:firetrucks/oldTimer",
+   "height": 1.76,
+   "heads_tall": 2.93
+  },
+  "rookie": {
+   "puppet": "cast:firetrucks/rookie",
+   "height": 1.64,
+   "heads_tall": 3.1
+  },
+  "rookieDown": {
+   "puppet": "cast:firetrucks/rookieDown",
+   "height": 1.64,
+   "heads_tall": 3.1
+  },
+  "sceptic": {
+   "puppet": "cast:firetrucks/sceptic",
+   "height": 1.88,
+   "heads_tall": 2.93
+  },
+  "crew1": {
+   "puppet": "cast:firetrucks/crew1",
+   "height": 1.74,
+   "heads_tall": 2.79
+  },
+  "crew2": {
+   "puppet": "cast:firetrucks/crew2",
+   "height": 1.8,
+   "heads_tall": 2.93
+  },
+  "crew3": {
+   "puppet": "cast:firetrucks/crew3",
+   "height": 1.78,
+   "heads_tall": 3.1
+  },
+  "milkman": {
+   "puppet": "cast:firetrucks/milkman",
+   "height": 1.62,
+   "heads_tall": 3.1
+  },
+  "kid": {
+   "puppet": "cast:firetrucks/kid",
+   "height": 1.18,
+   "heads_tall": 2.04
+  },
+  "clerk": {
+   "puppet": "cast:firetrucks/clerk",
+   "height": 1.78,
+   "heads_tall": 2.93
+  },
+  "painterThin": {
+   "puppet": "cast:firetrucks/painterThin",
+   "height": 1.86,
+   "heads_tall": 3.1
+  },
+  "painterFat": {
+   "puppet": "cast:firetrucks/painterFat",
+   "height": 1.64,
+   "heads_tall": 2.79
+  }
+ },
+ "faces_ep": {
+  "chiefShout": {
+   "eyes": "angry",
+   "brows": [
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ],
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 30,
+   "teethH": 12
+  },
+  "proudShut": {
+   "eyes": "closed",
+   "brows": [
+    [
+     10,
+     -2,
+     6
+    ],
+    [
+     14,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "peekOne": {
+   "eyes": [
+    "shut",
+    "wideXL"
+   ],
+   "brows": [
+    [
+     -4,
+     6,
+     0
+    ],
+    [
+     16,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "frozenWide": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "card_shade_rule": "CB 2026-11-15: card_shade.amount 0 AND rim_amount 0 in every place, no far light, lights []. Never raise amount.",
+ "_mouth_note": "Red gate: the template's OPEN mouths (smile, smileXL, grinXL, gasp, gaspXL, wail, shout) and the tongue faces (aim, glanceCam, concentrate, tongueCorner) have a pink inside #c94a5f (hue 350). Lead to rule whether a mouth interior counts as 'red on a person'."
+}
