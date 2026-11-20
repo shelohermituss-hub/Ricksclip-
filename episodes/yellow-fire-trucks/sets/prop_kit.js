@@ -6,8 +6,12 @@ export function kit(THREE, ctx = {}) {
   const toonF = typeof ctx.toon === 'function' ? ctx.toon : (c, o = {}) => new THREE.MeshLambertMaterial({ color: c, ...o });
   const pb = ctx.pbr && typeof ctx.pbr.metal === 'function' ? ctx.pbr : null;
   const MC = new Map();
+  // no kit3d ctx (a held prop is built by film.js with { inHand, toon } only): a small painted studio sky as the reflection, so chrome and brass still shine in the fist
+  const studioEnv = () => { if (TEX.has('__studio_env')) return TEX.get('__studio_env'); const c = document.createElement('canvas'); c.width = 256; c.height = 128; const x = c.getContext('2d'), gr = x.createLinearGradient(0, 0, 0, 128);
+    gr.addColorStop(0, '#dfeaf8'); gr.addColorStop(.42, '#9db8d8'); gr.addColorStop(.5, '#e9e2d2'); gr.addColorStop(.56, '#4a443c'); gr.addColorStop(1, '#2a2622'); x.fillStyle = gr; x.fillRect(0, 0, 256, 128); x.fillStyle = '#fffdf2'; x.fillRect(40, 18, 26, 44); x.fillStyle = '#cfe0ff'; x.fillRect(170, 26, 12, 36);
+    const t = new THREE.CanvasTexture(c); t.mapping = THREE.EquirectangularReflectionMapping; t.colorSpace = THREE.SRGBColorSpace; TEX.set('__studio_env', t); return t; };
   const metal = (kind, color, rough = .28, env = 1.15, o = {}) => { const key = [kind, color, rough, env, JSON.stringify(o)].join('|'); if (MC.has(key)) return MC.get(key);
-    const m = pb ? pb.metal(kind, { color, rough, env, toon: color, ...o }) : new THREE.MeshStandardMaterial({ color, metalness: kind === 'wet' ? 0 : .85, roughness: rough }); MC.set(key, m); return m; };
+    const m = pb ? pb.metal(kind, { color, rough, env, toon: color, ...o }) : new THREE.MeshPhysicalMaterial({ color, metalness: kind === 'wet' ? 0 : .92, roughness: Math.max(.08, rough), clearcoat: o.coat || 0, clearcoatRoughness: o.coatRough ?? .1, envMap: studioEnv(), envMapIntensity: env }); MC.set(key, m); return m; };
   const tex = (key, w, h, draw, o = {}) => { if (TEX.has(key)) return TEX.get(key); const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
     const t = new THREE.CanvasTexture(c); t.colorSpace = o.data ? THREE.NoColorSpace : THREE.SRGBColorSpace; t.anisotropy = 8; if (o.repeat) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(o.repeat[0], o.repeat[1]); } t.userData = { canvas: c }; TEX.set(key, t); return t; };
   const std = (color, o = {}) => new THREE.MeshStandardMaterial({ color, roughness: .85, metalness: 0, ...o });
