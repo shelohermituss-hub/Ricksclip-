@@ -15,7 +15,8 @@ const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x), lerp = (a, b, u) 
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 // story positions (plan metres, Z up) shared with make_film.py (keep in step)
-export const S1 = { hero: [-2.0, 15.7, 0], chief: [1.2, 17.6, 0], box: [1.15, 16.9, 0], lemonStop: [1.05, 14.55, 0.03], comp: [-1.05, 17.5, 0], tin: [-1.5, 13.45, 0], stool: [-2.45, 12.85, 0],
+const Z = .14;   // the yard concrete top
+export const S1 = { hero: [-2.0, 15.7, Z], chief: [1.2, 17.6, Z], box: [1.15, 16.9, Z], lemonStop: [1.05, 14.55, Z + .03], comp: [-1.05, 17.5, Z], tin: [-1.5, 13.45, Z], stool: [-2.45, 12.85, Z],
   EXPLODE: 172, RED: 223 };
 export const EDGE = f => f <= 116 ? lerp(-1.55, -2.85, sm(f / 116)) : f < 268 ? -2.85 : lerp(-2.85, -3.15, sm((f - 268) / 20));
 function softTex(THREE, inner = 'rgba(255,255,255,1)') { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
@@ -40,7 +41,7 @@ export async function build(THREE, scene, film, ctx) {
   const boxTop = box.anchors.lid_top ? box.anchors.lid_top.y : .2;
   // ---- air hose: a tube rebuilt every frame (compressor outlet -> ground loop -> up through the left fist -> gun inlet)
   const hoseMat = new THREE.MeshStandardMaterial({ color: '#26262a', roughness: .6 }); let hose = null;
-  const outlet = comp.plan.outlet ? V(comp.plan.outlet) : V([S1.comp[0], S1.comp[1], .47]);
+  const outlet = comp.plan.outlet ? V(comp.plan.outlet) : V([S1.comp[0], S1.comp[1], Z + .47]);
   // ---- mist
   const mistTex = softTex(THREE), mist = [];
   for (let i = 0; i < 70; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: mistTex, color: COLORS.lemon, transparent: true, depthWrite: false, opacity: 0, fog: false })); m.renderOrder = 5; scene.add(m); mist.push(m); }
@@ -54,7 +55,7 @@ export async function build(THREE, scene, film, ctx) {
   imp.visible = false; imp.renderOrder = -1; scene.add(imp);
   let ring = null;
   const rnd = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
-  const chiefHead = V([S1.chief[0], S1.chief[1], 1.78]);
+  const chiefHead = V([S1.chief[0], S1.chief[1], Z + 1.78]);
   function update(f, t, R) {
     // paint edge (the stroke): truck-local x of the lemon front
     hero.setPaint({ edge: EDGE(f) });
@@ -75,17 +76,17 @@ export async function build(THREE, scene, film, ctx) {
         m.material.opacity = on * .42 * Math.sin(Math.PI * Math.min(1, age * 1.1)); }); }
     // ---- lunch box hop and the lemon (sits on the lid; hops on the stamp; rolls to the lens; one wobble)
     const R0 = f - S1.RED, hop = R0 > 0 && R0 < 10 ? .09 * Math.sin(Math.PI * R0 / 10) : 0, rock = R0 > 8 && R0 < 26 ? .06 * Math.exp(-(R0 - 8) / 4) * Math.sin((R0 - 8) * 1.9) : 0;
-    box.group.position.copy(V([S1.box[0], S1.box[1], hop])); box.group.rotation.z = rock;
+    box.group.position.copy(V([S1.box[0], S1.box[1], Z + hop])); box.group.rotation.z = rock;
     const L0 = V([S1.box[0], S1.box[1], boxTop + .03]);
     let lp = L0.clone(), roll = 0, wob = 0;
     if (R0 > 0) { const up = R0 < 12 ? .22 * Math.sin(Math.PI * Math.min(1, R0 / 12)) : 0, side = snap(R0, 12);
-      const land = V([S1.box[0] - .05, S1.box[1] - .3, .03]); lp = L0.clone().lerp(land, side); lp.y += up;
+      const land = V([S1.box[0] - .05, S1.box[1] - .3, Z + .03]); lp = L0.clone().lerp(land, side); lp.y += up;
       if (R0 >= 12) { const u = Math.min(1, (R0 - 12) / 27), e = 1 - (1 - u) * (1 - u); const stop = V(S1.lemonStop); lp = land.clone().lerp(stop, e); roll = e * land.distanceTo(stop) / .03;
         if (u >= 1) { const k = R0 - 39; wob = k < 14 ? .35 * Math.exp(-k / 4) * Math.sin(k * 1.7) : 0; } } }
     lemon.group.position.copy(lp); lemon.group.rotation.set(-roll + wob, Math.PI / 2, 0);
     // ---- POWER 1
     const E = f - S1.EXPLODE;
-    if (R && R.camera) { if (!ring) ring = makeShockwaveRing(THREE, scene, V([S1.chief[0], S1.chief[1], .03]), { orient: 'ground', radius: 3.4, color: '#f6f1e6', shade: '#c4cbe0', ink: '#1d1a2a',
+    if (R && R.camera) { if (!ring) ring = makeShockwaveRing(THREE, scene, V([S1.chief[0], S1.chief[1], Z + .03]), { orient: 'ground', radius: 3.4, color: '#f6f1e6', shade: '#c4cbe0', ink: '#1d1a2a',
         dust: { count: 18, color: '#d9d0bf', ink: '#2a2230', size: .14, lift: .4, life: 1.3 }, debris: { count: 8, color: '#6f6a60', size: .05, speed: 3.2, gravity: 9.8 }, camera: () => R.camera });
       ring.update(E >= -3 && E < 50 ? E / 30 : -1e3);
       // impact frame: f172 light field with navy lines, f173-174 navy field with white lines; behind the Chief, facing the lens, filling the frame
@@ -99,7 +100,7 @@ export async function build(THREE, scene, film, ctx) {
       m.position.set(chiefHead.x + Math.cos(ang) * r, chiefHead.y + .05 + .35 * a * (.5 + rnd(i, 4)) + Math.abs(Math.sin(ang)) * .1, chiefHead.z + Math.sin(ang) * r * .6);
       m.scale.setScalar(.18 + .5 * a); m.material.opacity = on ? .9 * (1 - a) ** 1.3 : 0; });
     dust.forEach((m, i) => { const a = (f - S1.RED) / 20, on = a >= 0 && a < 1, ft = i % 2 ? -.17 : .17, ang = rnd(i, 5) * 6.283;
-      const b = V([S1.chief[0] + ft * .6, S1.chief[1] + ft * .3, .05]); m.position.set(b.x + Math.cos(ang) * .3 * a, b.y + .12 * a, b.z + Math.sin(ang) * .3 * a);
+      const b = V([S1.chief[0] + ft * .6, S1.chief[1] + ft * .3, Z + .05]); m.position.set(b.x + Math.cos(ang) * .3 * a, b.y + .12 * a, b.z + Math.sin(ang) * .3 * a);
       m.scale.setScalar(.1 + .3 * a); m.material.opacity = on ? .7 * (1 - a) : 0; });
   }
   return { anchors: { ...T.anchors }, update };

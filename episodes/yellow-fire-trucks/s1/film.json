@@ -194,7 +194,7 @@
     "edge": -1.55,
     "masking": true,
     "letters": "under",
-    "ribbon": true,
+    "ribbon": false,
     "priceCard": true,
     "sirens": 4,
     "wear": 0.25
@@ -222,7 +222,7 @@
    "pos": [
     1.15,
     16.9,
-    0.1
+    0.24
    ],
    "kind": "the Old-Timer's lunch box"
   },
@@ -230,7 +230,7 @@
    "pos": [
     1.05,
     14.55,
-    0.04
+    0.18
    ],
    "kind": "the lemon"
   }
@@ -242,7 +242,7 @@
    "pos": [
     -2.0,
     15.7,
-    0
+    0.14
    ],
    "view": "side",
    "dir": -1,
@@ -281,7 +281,7 @@
    "pos": [
     2.75,
     19.05,
-    0
+    0.14
    ],
    "view": "34",
    "dir": -1,
@@ -300,7 +300,7 @@
    "pos": [
     1.2,
     17.6,
-    0
+    0.14
    ],
    "move_s": 0.3,
    "note": "the burst: two strides to his spot"
@@ -327,7 +327,7 @@
    "pos": [
     -2.45,
     19.3,
-    0
+    0.14
    ],
    "view": "34",
    "dir": -1,
@@ -346,7 +346,7 @@
    "pos": [
     -2.45,
     19.3,
-    0
+    0.14
    ],
    "view": "34",
    "dir": -1,
@@ -365,7 +365,7 @@
    "pos": [
     -1.55,
     19.6,
-    0
+    0.14
    ],
    "view": "34",
    "dir": -1,
@@ -384,7 +384,7 @@
    "pos": [
     -2.2,
     20.8,
-    0
+    0.14
    ],
    "view": "34",
    "dir": -1,
@@ -458,12 +458,12 @@
      "pos": [
       -1.35,
       13.0,
-      1.0
+      1.14
      ],
      "aim": [
       -2.75,
       16.9,
-      1.7
+      1.84
      ],
      "lens": 24,
      "subject": "hero",
@@ -480,37 +480,37 @@
      "pos": [
       -1.6,
       10.2,
-      1.2
+      1.34
      ],
      "aim": [
       -3.0,
       16.0,
-      1.6
+      1.74
      ],
      "lens": 20,
      "subject": "truck",
      "framing": "W",
-     "purpose": "ROWS 4-5 (SETUP + EXTREME, M04 pull back reveal): over \"brand new firetruck\" the pull back reveals the gift-wrapped truck (ribbon and bow on the nose, price card, scissors on the cushion on the stool); lands as he steps back and judges",
-     "hold": 1.0,
+     "purpose": "ROWS 4-5 (SETUP + EXTREME, M04 pull back reveal): over \"brand new firetruck\" the pull back reveals the gift-wrapped truck (ribbon and bow on the nose, price card, scissors on the cushion on the stool); the camera flows THROUGH this wide (via point) on its way round to bay 2",
+     "hold": 0,
      "creep": 0.0028
     },
     {
-     "at": 205,
+     "at": 165,
      "pos": [
       1.45,
       14.9,
-      0.6
+      0.74
      ],
      "aim": [
       0.5,
       17.6,
-      1.1
+      1.24
      ],
      "lens": 22,
      "subject": "chief",
      "framing": "W",
      "purpose": "ROWS 6-7 (TALK + POWER 1, M11 push + truck arc): the camera swings right and in as the Chief bursts out of bay 2; the push runs through the impact; low on him, boots and lunch box for the stamp on \"RED\"",
-     "hold": 1.0,
+     "hold": 2.2,
      "creep": 0.0028,
      "shows": [
       "lunch_box"
@@ -521,12 +521,12 @@
      "pos": [
       1.13,
       14.28,
-      0.16
+      0.3
      ],
      "aim": [
-      -0.3,
+      0.2,
       17.6,
-      0.95
+      1.24
      ],
      "lens": 22,
      "subject": "chief",
