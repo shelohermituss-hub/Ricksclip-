@@ -22,7 +22,7 @@ installed inside the repo (`.claude/skills/`, `.claude/agents/`), so every new s
 | Fish Audio key in `FISH_API_KEY` | Not needed: the network proxy adds the key on calls to `api.fish.audio` (`tools/fish_tts.py` handles it). A voice take costs credits: the user's OK first, as the rules say. |
 | Sound folders `C:/Users/...` | `templates/sound_kit/sound_config.json` points at `sound_pack/` (the free Sound Pack V1.2, licences in `sound_pack/LICENSES.md`). The index is rebuilt by `cloud_setup.sh`. |
 | "Cloud and PC" link rules (CB_RULES section 9, SKILL.md) | Do not apply: everything runs in this one session. |
-| Blender | Parked by the rules themselves (`rules/parked/BLENDER_PARKED.md`). Not installed by the setup. |
+| Blender | BACK since 2026-11-20 (CB_RULES section 3 "BLENDER IS BACK"): ready-made assets first, staging in three.js, Blender rebuilds from the lock. Install with `bash tools/install_blender.sh` (Blender 5.3, 1.3 GB, about 40 s). Here: one key frame per preview (Cycles CPU about 37 s per full frame). The film render runs on RunPod after the user OKs the cost. |
 
 ## Measured here (2026-11-20, `templates/film_example`)
 - Storyboard: 13 s. Animatic at `--scale 0.5`: about 0.5 s per frame (460 frames in 4 min).

@@ -28,7 +28,7 @@
 - Un outil Python lancé par Blender n'a pas les mêmes modules que le Python du système : le dessin d'images (PIL) se fait hors de Blender.
 
 ## 4. Blender 5 : pièges déjà rencontrés
-> EN ATTENTE (décision de CB, 2026-11-20 : « Pour blender mettons le en attente pour le moment »). Blender n'est pas installé ni utilisé ; l'image finale vient du kit three.js. Ces lignes, et « bonne version de Blender » en section 3, s'appliquent seulement si CB réactive Blender.
+> ACTIF depuis le 2026-11-20 (CB : « à partir de maintenant ... tu vas utiliser des asset blender de préférence ... pour le rendu du film ... on va utiliser une machine runpod »). Aperçus ici : une image clé ; rendu du film sur RunPod.
 - Pas de ciel NISHITA ; le compositeur est `scene.compositing_node_group` avec un nœud de sortie de groupe ; les réglages de plusieurs nœuds (halo, balance des couleurs) sont des entrées, pas des propriétés ; les actions sont en couches.
 - `resolution_percentage` est un entier.
 - Un cylindre entièrement lissé s'ombre comme une boule : marquer les arêtes vives.
