@@ -9,3 +9,5 @@ frames_*/
 render_*/
 out/plan/
 *.blend1
+.puppet_cache/
+templates/vector2d_characters/views_golden/_last_*

@@ -83,7 +83,7 @@ def check():
     line("ffmpeg", (ver(["ffmpeg", "-version"]) or "")[:40] or None, "MISS", "install ffmpeg and put it on the PATH (Windows: winget install Gyan.FFmpeg)")
     pw = any(os.path.isdir(os.path.join(ROOT, d, "node_modules", "playwright")) for d in ("", "templates/threejs_film"))
     pk = os.path.exists(os.path.join(ROOT, "templates", "vector2d_characters", "code", "char2d.mjs"))
-    line("character package", "found" if pk else None, "MISS", "templates/vector2d_characters/code/char2d.mjs is missing (see MISSING_FILES.md): no character can be drawn without it")
+    line("character package", "found" if pk else None, "MISS", "templates/vector2d_characters/code/char2d.mjs is missing: unzip the skill again, no character can be drawn without it")
     line("playwright (film kit)", "installed" if pw else None, "MISS", 'in "%s" run: npm install   then: npx playwright install chromium' % ROOT)
     sc = os.path.join(ROOT, "templates", "sound_kit", "sound_config.json")
     line("sound library config", "set" if os.path.exists(sc) else None, "opt", "copy templates/sound_kit/sound_config.example.json to sound_config.json and add your folders (SOUND_AND_MUSIC.md)")

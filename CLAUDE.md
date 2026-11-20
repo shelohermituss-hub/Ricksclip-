@@ -7,9 +7,7 @@ installed inside the repo (`.claude/skills/`, `.claude/agents/`), so every new s
 ## Start of a session
 1. `python tools/install.py --check` must end with "All needed parts are there." If a line says MISS, run
    `bash tools/cloud_setup.sh` (Python parts, the Playwright link, the sound index) and check again.
-2. If `MISSING_FILES.md` exists, read it first: part of the character package is missing and nothing with a character renders
-   until the user supplies a good copy of the zip.
-3. Then follow SKILL.md (STEP 0: read CB_RULES.md, SKILL.md, HANDOFF.md CURRENT STATE).
+2. Then follow SKILL.md (STEP 0: read CB_RULES.md, SKILL.md, HANDOFF.md CURRENT STATE).
 
 ## What is different from the PC (this wins over PC-only lines in SKILL.md, CB_RULES.md, INSTALL.md)
 | The books say | In the cloud |
@@ -24,6 +22,15 @@ installed inside the repo (`.claude/skills/`, `.claude/agents/`), so every new s
 | Sound folders `C:/Users/...` | `templates/sound_kit/sound_config.json` points at `sound_pack/` (the free Sound Pack V1.2, licences in `sound_pack/LICENSES.md`). The index is rebuilt by `cloud_setup.sh`. |
 | "Cloud and PC" link rules (CB_RULES section 9, SKILL.md) | Do not apply: everything runs in this one session. |
 | Blender | Parked by the rules themselves (`rules/parked/BLENDER_PARKED.md`). Not installed by the setup. |
+
+## Measured here (2026-11-20, `templates/film_example`)
+- Storyboard: 13 s. Animatic at `--scale 0.5`: about 0.5 s per frame (460 frames in 4 min).
+- Full size 1080x1920 (`render_gpu.mjs --scale 1`): about 2 s per frame, so a 70 s film is about 70 min of rendering. Run it
+  in the background, stretch by stretch.
+- Two checks fail in the kit as shipped, on a PC too, because the author's own films are not in the zip. Not a cloud fault:
+  `node templates/pieces/prove.mjs` needs `episodes/armor-s1-hook/`, and `node tools/check_views.mjs` has no approved
+  per-view pictures for some casts ("no approved picture") and skips casts of films that are not included.
+- `node tools/frame_checks/check.mjs` on the example reports 2 FAIL (kid slide f316-332): that is the example's own content.
 
 ## Network
 Allowed: package registries, Google Drive, Fish Audio, Sketchfab, BlenderKit, Poly Haven, ambientCG, Hugging Face (the
