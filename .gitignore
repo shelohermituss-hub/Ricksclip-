@@ -26,3 +26,7 @@ episodes/*/assets_prod/out/
 # cast view pictures (re-made by cast/tools/render_cast.mjs)
 episodes/*/cast/views/
 episodes/*/assets_prod/logs/
+# town build output (re-made by sets/town/build_town.sh)
+episodes/*/sets/town/out/
+episodes/*/sets/town/build/
+episodes/*/sets/town/logs/
