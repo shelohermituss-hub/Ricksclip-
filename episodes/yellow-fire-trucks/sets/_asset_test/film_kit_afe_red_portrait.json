@@ -1,0 +1,124 @@
+{
+ "title": "asset test (test only) kit_afe_red_portrait",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 2,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "cast": {
+  "fireman": {
+   "puppet": "cast:firefighter",
+   "height": 1.75,
+   "heads_tall": 2.9,
+   "walk_speed": 9999
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "face_shadow": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.35
+ },
+ "places": {
+  "yard": {
+   "set": "asset_yard",
+   "light": "day",
+   "time": "day",
+   "light_over": {
+    "top": "#3e7fd2",
+    "hor": "#cfe0f0",
+    "sun": "#fff3dc",
+    "si": 2.9,
+    "amb": "#aebfdb",
+    "ai": 1.2,
+    "dir": [
+     -5,
+     6.5,
+     6
+    ],
+    "tint": "#fffaf0",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#8f8a7e"
+   },
+   "set_key": "kit_afe_red_portrait",
+   "asset": "afe",
+   "paint": "red"
+  }
+ },
+ "props": {
+  "truck": {
+   "pos": [
+    0,
+    0,
+    1.4
+   ],
+   "kind": "the fire truck"
+  }
+ },
+ "acts": [
+  {
+   "who": "fireman",
+   "at": 0,
+   "pos": [
+    30,
+    30,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "hold_out",
+   "face": "cool",
+   "hand": "R",
+   "prop": "spray_gun"
+  }
+ ],
+ "takes": [
+  {
+   "id": "kit_afe_red_portrait",
+   "place": "yard",
+   "stations": [
+    {
+     "at": 0,
+     "subject": "truck",
+     "framing": "W",
+     "hold": 0,
+     "pos": [
+      -6.2,
+      -4.9,
+      1.9
+     ],
+     "aim": [
+      -0.3,
+      0,
+      1.25
+     ],
+     "lens": 24
+    }
+   ]
+  }
+ ]
+}

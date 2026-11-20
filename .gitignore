@@ -12,3 +12,11 @@ out/plan/
 .puppet_cache/
 templates/vector2d_characters/views_golden/_last_*
 episodes/*/sets/_hero_test/stills/
+
+# downloaded 3D assets (re-download from ASSETS.md); only ASSETS.md is committed
+episodes/*/assets/**
+!episodes/*/assets/ASSETS.md
+# asset test render output (re-made by the scripts in sets/_asset_test)
+episodes/*/sets/_asset_test/out/
+episodes/*/sets/_asset_test/stills_*/
+episodes/*/sets/_asset_test/tiles/

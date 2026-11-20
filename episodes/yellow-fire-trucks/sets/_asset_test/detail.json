@@ -1,0 +1,82 @@
+{
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t00.png": {
+  "edge_density": 0.1303,
+  "regions": 1112,
+  "fine_regions": 1019
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t01.png": {
+  "edge_density": 0.1158,
+  "regions": 1258,
+  "fine_regions": 1175
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t02.png": {
+  "edge_density": 0.0669,
+  "regions": 643,
+  "fine_regions": 581
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t03.png": {
+  "edge_density": 0.0646,
+  "regions": 719,
+  "fine_regions": 654
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t04.png": {
+  "edge_density": 0.1228,
+  "regions": 1037,
+  "fine_regions": 954
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t05.png": {
+  "edge_density": 0.1051,
+  "regions": 1382,
+  "fine_regions": 1304
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t06.png": {
+  "edge_density": 0.0592,
+  "regions": 610,
+  "fine_regions": 558
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t07.png": {
+  "edge_density": 0.0572,
+  "regions": 718,
+  "fine_regions": 674
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t08.png": {
+  "edge_density": 0.0716,
+  "regions": 757,
+  "fine_regions": 676
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t09.png": {
+  "edge_density": 0.0883,
+  "regions": 1364,
+  "fine_regions": 1280
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t10.png": {
+  "edge_density": 0.0642,
+  "regions": 768,
+  "fine_regions": 705
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t11.png": {
+  "edge_density": 0.0576,
+  "regions": 658,
+  "fine_regions": 610
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t12.png": {
+  "edge_density": 0.142,
+  "regions": 603,
+  "fine_regions": 506
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t13.png": {
+  "edge_density": 0.1894,
+  "regions": 1108,
+  "fine_regions": 988
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t14.png": {
+  "edge_density": 0.0263,
+  "regions": 754,
+  "fine_regions": 730
+ },
+ "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/_asset_test/tiles/t15.png": {
+  "edge_density": 0.0445,
+  "regions": 687,
+  "fine_regions": 576
+ }
+}

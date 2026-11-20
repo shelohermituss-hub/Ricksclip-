@@ -1,0 +1,98 @@
+{
+ "CODED truck, three.js kit (ours)": {
+  "sec": "s/f 1.7 @1200x900* (tile 600x450)",
+  "tris": "103 k tris, own",
+  "edge": 0.1303,
+  "regions": 1112
+ },
+ "ASSET Pierce, three.js kit": {
+  "sec": "s/f 5.2 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.1158,
+  "regions": 1258
+ },
+ "ASSET Pierce, Blender Cycles 32spp+OIDN": {
+  "sec": "s/f 23.9 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.0669,
+  "regions": 643
+ },
+ "ASSET 1940s ALF, Blender Cycles (as shipped)": {
+  "sec": "s/f 27.0 @1200x900",
+  "tris": "137 k tris, CC-BY",
+  "edge": 0.0646,
+  "regions": 719
+ },
+ "CODED half sprayed (ours)": {
+  "sec": "s/f 1.7 @1200x900* (tile 600x450)",
+  "tris": "103 k tris, own",
+  "edge": 0.1228,
+  "regions": 1037
+ },
+ "ASSET Pierce half, three.js kit": {
+  "sec": "s/f 5.3 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.1051,
+  "regions": 1382
+ },
+ "ASSET Pierce half, Blender Cycles": {
+  "sec": "s/f 24.2 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.0592,
+  "regions": 610
+ },
+ "ASSET Pierce half, Blender EEVEE (CPU GL)": {
+  "sec": "s/f 31.3 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.0572,
+  "regions": 718
+ },
+ "ASSET Pierce half, Blender Cycles DUSK": {
+  "sec": "s/f 25.3 @1200x900",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.0716,
+  "regions": 757
+ },
+ "ASSET 1940s ALF, three.js kit (as shipped)": {
+  "sec": "s/f 1.8 @1200x900",
+  "tris": "137 k tris, CC-BY",
+  "edge": 0.0883,
+  "regions": 1364
+ },
+ "ASSET 1940s ALF half, Blender Cycles": {
+  "sec": "s/f 11.2 @540x960",
+  "tris": "137 k tris, CC-BY",
+  "edge": 0.0642,
+  "regions": 768
+ },
+ "ASSET Pierce 1080x1920 Cycles (crop)": {
+  "sec": "s/f 36.8 @1080x1920",
+  "tris": "1.80 M tris, CC-BY",
+  "edge": 0.0576,
+  "regions": 658
+ },
+ "CODED gun in fist (ours)": {
+  "sec": "s/f 1.7 @1200x900* (tile 600x450)",
+  "tris": "5.8 k tris, own",
+  "edge": 0.142,
+  "regions": 603
+ },
+ "ASSET spray gun in fist, three.js kit": {
+  "sec": "s/f 3.7 @1200x900",
+  "tris": "25 k tris, CC-BY",
+  "edge": 0.1894,
+  "regions": 1108
+ },
+ "ASSET spray gun, Blender Cycles": {
+  "sec": "s/f 10.3 @540x960",
+  "tris": "25 k tris, CC-BY",
+  "edge": 0.0263,
+  "regions": 754
+ },
+ "ASSET compressor, Blender Cycles": {
+  "sec": "s/f 12.2 @540x960",
+  "tris": "18 k tris, CC-BY",
+  "edge": 0.0445,
+  "regions": 687
+ }
+}
