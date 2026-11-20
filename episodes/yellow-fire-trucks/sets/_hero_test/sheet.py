@@ -19,3 +19,15 @@ sheet.save(os.path.join(out, 'HERO_SHEET.jpg'), quality=90); print('sheet', os.p
 tool = os.path.join(here, '..', '..', '..', '..', 'tools', 'measure', 'detail_density.py')
 r = subprocess.run([sys.executable, tool] + [f for _, f in have] + ['--json', os.path.join(here, 'detail.json')], capture_output=True, text=True)
 open(os.path.join(here, 'numbers.txt'), 'w').write(r.stdout + r.stderr); print(r.stdout[-1800:] if r.stdout else r.stderr[-600:])
+
+# full-size close-ups (stills_full, 1200x900): numbers + the three-view grip sheet
+full = os.path.join(here, 'stills_full')
+if os.path.isdir(full):
+    fs = sorted(os.path.join(full, f) for f in os.listdir(full) if f.endswith('.png'))
+    r = subprocess.run([sys.executable, tool] + fs, capture_output=True, text=True); open(os.path.join(here, 'numbers.txt'), 'a').write('\nFULL SIZE CLOSE-UPS (1200x900)\n' + r.stdout); print('FULL', r.stdout)
+g = [os.path.join(here, 'stills', 'f_%05d.png' % (T.index(n) * 2)) for n in ('gun_in_fist', 'gun_front', 'gun_side')]
+if all(os.path.exists(f) for f in g):
+    S = Image.new('RGB', (1200, 450), '#111')
+    for i, (f, lab) in enumerate(zip(g, ('3/4 view', 'front view', 'side view'))):
+        im = Image.open(f).convert('RGB'); w, h = im.size; c = im.crop((int(w * .1), 0, int(w * .9), h)).resize((400, 375), Image.LANCZOS) if i else im.resize((400, 300), Image.LANCZOS); S.paste(c, (i * 400, 40)); ImageDraw.Draw(S).text((i * 400 + 8, 10), 'spray gun in the fist: ' + lab, fill=(255, 240, 200), font=font)
+    S.save(os.path.join(out, 'GUN_GRIP_3VIEWS.jpg'), quality=90); print('grip sheet written')

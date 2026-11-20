@@ -11,3 +11,4 @@ out/plan/
 *.blend1
 .puppet_cache/
 templates/vector2d_characters/views_golden/_last_*
+episodes/*/sets/_hero_test/stills/

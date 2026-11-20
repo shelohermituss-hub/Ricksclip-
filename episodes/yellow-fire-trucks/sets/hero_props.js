@@ -2,21 +2,23 @@
 // Every builder: buildX(THREE, ctx, opts) or buildX(THREE, opts) (the kit's held3d form) -> { group, parts, tris, grip, tip, anchors, ...setters }.
 // Groups: LOCAL METRES, Y UP, real size. In a set: HP.place(THREE, scene, ctx, o, [x, y, z] plan, yawDeg) -> o.plan.<anchor> (plan metres, Z up).
 // Held: film.json "held3d": [{ who, obj: "spray_gun", module: "sets/hero_props.js", builder: "buildSprayGun", grip: "handle", face: "out", hand: "R", anchor: "grip", tip: "tip", when: "always" }]
+// opts.paintColor on the gun, compressor and tin = the wet paint colour (default lemon; line 13 repaint: pass PAINT.red). The tin's printed label stays lemon.
 // The film's yellow is hero_truck.js PAINT.yellow (#e2e31c): tin, drips, the gun's cup and the fan all use it. No red anywhere in this file (the truck is the red).
 import { kit, args, done, place as placeProp, handText } from './prop_kit.js';
 import { PAINT } from './hero_truck.js';
 export const place = placeProp;
 const PI = Math.PI;
-const yellowM = THREE => new THREE.MeshPhysicalMaterial({ color: PAINT.yellow, roughness: .18, clearcoat: 1, clearcoatRoughness: .08 });
+const yellowM = (THREE, col) => new THREE.MeshPhysicalMaterial({ color: col || PAINT.yellow, roughness: .18, clearcoat: 1, clearcoatRoughness: .08 });
 
 // ================================================================ THE SPRAY GUN (line 1; in the hero's fist all through lines 1-2, on the bench in 13)
 // A 1970s siphon-feed cup gun: cast aluminium body, knurled brass air cap with two horns, steel trigger on a pin, fluid and fan knobs at the back, hanging hook,
 // one-quart aluminium cup under the nose with a clamp yoke and cam lever, brass air inlet at the foot of the handle with the hose on it.
+// opts.cup 'glass' (default: a glass jar, the lemon seen inside; setCup(level, tilt) sloshes it) | 'metal' (aluminium quart can).
 // Origin = the middle of the handle (grip). Handle along Y, nose toward +X. opts.hose = length of the hose tail hanging from the handle (0 = none); opts.spray = show the fan.
 export function buildSprayGun(THREE, a, b) {
   const [ctx, opts] = args(a, b), K = kit(THREE, ctx), g = new THREE.Group(); g.name = 'spray_gun';
   const cast = K.metal('steel', '#c4c9d0', .32, 1.15, { finish: 'cast', nscale: .5, scale: .08 }), pol = K.metal('steel', '#eef2f6', .08, 1.5, { finish: 'smooth', nscale: .03, scale: .1 }), brass = K.metal('brass', '#e0b24e', .2, 1.4, { finish: 'smooth', nscale: .1, scale: .08 });
-  const cupM = K.metal('steel', '#d0d4da', .22, 1.3, { finish: 'brushed', nscale: .3, scale: .1 }), hoseM = K.std('#26262a', { roughness: .65 }), Y = yellowM(THREE);
+  const cupM = K.metal('steel', '#d0d4da', .22, 1.3, { finish: 'brushed', nscale: .3, scale: .1 }), hoseM = K.std('#26262a', { roughness: .65 }), Y = yellowM(THREE, opts.paintColor);
   const hd = K.add(g, new THREE.CylinderGeometry(.017, .019, .12, 14), cast, 'gun_handle', 'metal', [-.006, -.005, 0], [0, 0, .16]); hd.scale.z = .72;
   for (let i = 0; i < 5; i++) K.bx(g, -.026 + i * .0015, -.022 + i * .0015, -.04 + i * .018, -.032 + i * .018, -.0135, .0135, cast, 'handle_finger_ridge', 'metal');
   K.cyl(g, .019, .15, 'x', cast, 'gun_body_barrel', 'metal', [.04, .078, 0], 16); K.sphere(g, .024, cast, 'gun_body_shoulder', 'metal', [.0, .07, 0], [1.2, 1, .8]);
@@ -28,7 +30,9 @@ export function buildSprayGun(THREE, a, b) {
   K.box(g, [.007, .1, .012], pol, 'trigger', 'metal', [.034, .018, 0], [0, 0, -.22]); K.cyl(g, .004, .034, 'z', brass, 'trigger_pivot_pin', 'metal', [.024, .066, 0], 8); K.cyl(g, .005, .02, 'x', brass, 'air_valve_stem', 'metal', [.012, .03, 0], 6);
   // the cup: quart can under the nose, lid with clamp yoke + cam lever, siphon tube, vent hole
   const cx = .09, cup = new THREE.Group(); cup.name = 'paint_cup'; g.add(cup);
-  K.lathe(cup, [[0, -.165], [.05, -.165], [.053, -.16], [.053, -.05], [.055, -.046]], cupM, 'cup_can', 'metal', [cx, 0, 0], null, 26); K.cyl(cup, .057, .012, 'y', cast, 'cup_lid', 'metal', [cx, -.04, 0], 26); K.cyl(cup, .012, .06, 'y', cast, 'cup_siphon_neck', 'metal', [cx, -.005, 0], 10); K.cyl(cup, .016, .014, 'y', brass, 'cup_union_nut', 'metal', [cx, .03, 0], 6);
+  const glassCup = opts.cup !== 'metal', jar = glassCup ? new THREE.MeshPhysicalMaterial({ color: '#dfeef2', roughness: .05, metalness: 0, transparent: true, opacity: .32, clearcoat: 1, side: THREE.DoubleSide, depthWrite: false }) : cupM;
+  const can = K.lathe(cup, [[0, -.165], [.05, -.165], [.053, -.16], [.053, -.05], [.055, -.046]], jar, glassCup ? 'cup_glass_jar' : 'cup_can', glassCup ? 'glass' : 'metal', [cx, 0, 0], null, 26); can.renderOrder = 3;
+  const lvl = new THREE.Group(); lvl.position.set(cx, -.163, 0); cup.add(lvl); const liq = K.cyl(lvl, .0495, .1, 'y', Y, 'cup_lemon_paint', 'paint', [0, .05, 0], 24); liq.visible = glassCup; K.torus(cup, .0535, .003, cast, 'cup_jar_thread_ring', 'metal', [cx, -.052, 0], [PI / 2, 0, 0], PI * 2, 5, 26); K.cyl(cup, .057, .012, 'y', cast, 'cup_lid', 'metal', [cx, -.04, 0], 26); K.cyl(cup, .012, .06, 'y', cast, 'cup_siphon_neck', 'metal', [cx, -.005, 0], 10); K.cyl(cup, .016, .014, 'y', brass, 'cup_union_nut', 'metal', [cx, .03, 0], 6);
   K.tube(cup, [[cx - .06, -.07, 0], [cx - .062, -.03, 0], [cx - .03, -.022, 0], [cx + .03, -.022, 0], [cx + .062, -.03, 0], [cx + .06, -.07, 0]], .0035, pol, 'cup_clamp_yoke', 'metal', 24, 6); K.box(cup, [.012, .008, .05], pol, 'cup_cam_lever', 'metal', [cx, -.02, .028], [.3, 0, 0]);
   for (const s of [1, -1]) K.cyl(cup, .005, .008, 'x', pol, 'cup_yoke_ear', 'metal', [cx + s * .058, -.07, 0], 8);
   K.torus(cup, .0535, .0025, cupM, 'cup_bead', 'metal', [cx, -.1, 0], [PI / 2, 0, 0], PI * 2, 5, 26); K.sphere(cup, .0025, K.std('#111'), 'cup_vent_hole', 'metal', [cx + .03, -.033, .02]);
@@ -38,8 +42,8 @@ export function buildSprayGun(THREE, a, b) {
   K.cyl(g, .008, .02, 'y', brass, 'air_inlet_nipple', 'metal', [-.016, -.072, 0], 8); K.cyl(g, .012, .018, 'y', brass, 'hose_coupler_hex', 'metal', [-.018, -.09, 0], 6); K.cyl(g, .0105, .02, 'y', pol, 'hose_ferrule', 'metal', [-.019, -.108, 0], 10);
   const hl = opts.hose ?? .9, end = [-.25 - hl * .25, -.118 - hl * .8, .06];
   if (hl > 0) K.tube(g, [[-.019, -.118, 0], [-.025, -.118 - hl * .3, .0], [-.08, -.118 - hl * .62, .02], [-.2, -.118 - hl * .78, .05], end], .0085, hoseM, 'air_hose_tail', 'rubber', 40, 7);
-  const fan = K.add(g, new THREE.ConeGeometry(.2, .55, 20, 1, true), new THREE.MeshBasicMaterial({ color: PAINT.yellow, transparent: true, opacity: .22, depthWrite: false, side: THREE.DoubleSide }), 'spray_fan', 'fx', [.165 + .275, .078, 0], [0, 0, PI / 2], false); fan.scale.z = .35; fan.visible = !!opts.spray;
-  return done(THREE, g, K, { grip: [0, 0, 0], tip: [.165, .078, 0], anchors: { nozzle: [.165, .078, 0], cup: [cx, -.1, 0], hose_end: end, hook: [.02, .14, 0], fan_end: [.72, .078, 0] }, setSpray: on => { fan.visible = !!on; } });
+  const fan = K.add(g, new THREE.ConeGeometry(.2, .55, 20, 1, true), new THREE.MeshBasicMaterial({ color: opts.paintColor || PAINT.yellow, transparent: true, opacity: .22, depthWrite: false, side: THREE.DoubleSide }), 'spray_fan', 'fx', [.165 + .275, .078, 0], [0, 0, PI / 2], false); fan.scale.z = .35; fan.visible = !!opts.spray;
+  return done(THREE, g, K, { grip: [0, 0, 0], tip: [.165, .078, 0], anchors: { nozzle: [.165, .078, 0], cup: [cx, -.1, 0], hose_end: end, hook: [.02, .14, 0], fan_end: [.72, .078, 0] }, setSpray: on => { fan.visible = !!on; }, setCup: (level = .7, tilt = 0) => { lvl.scale.y = Math.max(.05, level) / .9; lvl.rotation.z = tilt; } });   // setCup(level 0..1, tilt rad): the lemon sloshes in the glass
 }
 
 // ================================================================ THE COMPRESSOR (lines 1-2, 13): a small 1970s wheeled shop compressor, half horsepower
@@ -47,7 +51,7 @@ export function buildSprayGun(THREE, a, b) {
 export function buildCompressor(THREE, a, b) {
   const [ctx, opts] = args(a, b), K = kit(THREE, ctx), g = new THREE.Group(); g.name = 'air_compressor';
   const tankM = K.metal('wet', opts.color || '#3f6f6c', .3, .9, { finish: 'cast', nscale: .35, coat: .6, coatRough: .25, scale: .15 }), iron = K.metal('iron', '#3c3f46', .5, .7, { rust: .12, scale: .2 }), steel = K.metal('steel', '#c2c8cf', .25, 1.2, { scale: .15 }), pol = K.metal('steel', '#eef2f6', .08, 1.5, { finish: 'smooth', nscale: .03, scale: .1 });
-  const brass = K.metal('brass', '#dcae52', .25, 1.3, { scale: .1 }), copper = K.metal('bronze', '#c8743a', .22, 1.3, { finish: 'smooth', patina: .05, nscale: .1, scale: .1 }), rubber = K.std('#1a1a1c', { roughness: .9 }), Y = yellowM(THREE);
+  const brass = K.metal('brass', '#dcae52', .25, 1.3, { scale: .1 }), copper = K.metal('bronze', '#c8743a', .22, 1.3, { finish: 'smooth', patina: .05, nscale: .1, scale: .1 }), rubber = K.std('#1a1a1c', { roughness: .9 }), Y = yellowM(THREE, opts.paintColor);
   K.cyl(g, .15, .56, 'x', tankM, 'air_tank', 'metal', [0, .3, 0], 28); for (const s of [1, -1]) K.sphere(g, .15, tankM, 'tank_dished_end', 'metal', [s * .28, .3, 0], [.45, 1, 1], 24, 12); for (const x of [-.2, .2]) K.torus(g, .151, .004, tankM, 'tank_weld_seam', 'metal', [x, .3, 0], [0, PI / 2, 0], PI * 2, 5, 28);
   K.bar(g, [.22, .1, -.23], [.22, .1, .23], .012, steel, 'wheel_axle', 'metal', 8); for (const s of [1, -1]) { K.bx(g, .2, .24, .09, .2, s * .12, s * .14, iron, 'axle_bracket', 'metal'); const w = new THREE.Group(); w.position.set(.22, .1, s * .21); g.add(w);
     K.lathe(w, [[.055, -.02], [.09, -.022], [.1, -.012], [.1, .012], [.09, .022], [.055, .02]], rubber, 'wheel_tyre_solid', 'rubber', null, [PI / 2, 0, 0], 22); K.cyl(w, .056, .03, 'z', steel, 'wheel_disc', 'metal', null, 16); K.cyl(w, .016, .05, 'z', pol, 'wheel_hub_cap', 'metal', null, 10); K.torus(w, .007, .002, steel, 'axle_cotter_pin', 'metal', [0, 0, s * .028]); }
@@ -82,7 +86,7 @@ const dark = K => K.std('#17181b', { roughness: .8 });
 // Origin = floor under the middle. 0.166 across, 0.19 tall. opts.lid 'off' (lid beside it, wet side up) | 'on'; opts.stick true = the stir stick stands in it.
 export function buildPaintTin(THREE, a, b) {
   const [ctx, opts] = args(a, b), K = kit(THREE, ctx), g = new THREE.Group(); g.name = 'paint_tin';
-  const tin = K.metal('steel', '#cfd3d8', .2, 1.3, { finish: 'brushed', nscale: .25, scale: .12 }), Y = yellowM(THREE), steel = K.metal('steel', '#b6bcc4', .3, 1.1, { scale: .1 }), wood = ctx.relief ? ctx.relief('wood', '#c9a26a', { size: .2 }) : K.toon('#c9a26a');
+  const tin = K.metal('steel', '#cfd3d8', .2, 1.3, { finish: 'brushed', nscale: .25, scale: .12 }), Y = yellowM(THREE, opts.paintColor), steel = K.metal('steel', '#b6bcc4', .3, 1.1, { scale: .1 }), wood = ctx.relief ? ctx.relief('wood', '#c9a26a', { size: .2 }) : K.toon('#c9a26a');
   tin.side = THREE.DoubleSide; K.lathe(g, [[0, 0], [.08, 0], [.083, .004], [.083, .186], [.0855, .19], [.078, .19], [.076, .182]], tin, 'tin_can_body', 'metal', null, null, 32); for (const y of [.004, .186]) K.torus(g, .0835, .0028, tin, 'tin_rolled_seam', 'metal', [0, y, 0], [PI / 2, 0, 0], PI * 2, 5, 32);
   const label = K.tex('tin_label', 1024, 256, (c, w, h) => { c.fillStyle = '#f4efe0'; c.fillRect(0, 0, w, h); c.fillStyle = '#1f3f7a'; c.fillRect(0, 0, w, 36); c.fillRect(0, h - 30, w, 30);
     for (const x0 of [0, 512]) { c.fillStyle = PAINT.yellow; c.beginPath(); c.arc(x0 + 96, 130, 62, 0, 7); c.fill(); c.strokeStyle = '#1f3f7a'; c.lineWidth = 5; c.stroke(); for (let i = 0; i < 12; i++) { const a2 = i / 12 * PI * 2; c.beginPath(); c.moveTo(x0 + 96 + Math.cos(a2) * 70, 130 + Math.sin(a2) * 70); c.lineTo(x0 + 96 + Math.cos(a2) * 86, 130 + Math.sin(a2) * 86); c.stroke(); }

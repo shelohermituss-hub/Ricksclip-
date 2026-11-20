@@ -6,12 +6,13 @@
 //   every frame (or once when the truck never moves): truck.update()                  (keeps the paint edge in the truck's own space)
 //   truck.setPaint({ mode, edge, soft, drain, a, b })   mode red | yellow | half; edge = truck X of the sprayed edge (front of it colour a, behind it colour b);
 //                                                       drain 0..1 = dusk: the paint loses its red the way a dim-adapted eye does (red goes dark grey, lemon stays light)
+//   opts.engine 1 (door number), opts.sirens 1 (4 = the crossing gag, row 17) + opts.horns, opts.ribbon true (mayor's ribbon, bow, price card; truck.setRibbon), setPaint({ letters: 'under' | 'over' })
 //   truck.setMasking(bool) · truck.setWheels(metresRolled) · truck.setSteer(deg) · truck.setBeacon(on, angleRad) · truck.setDoor(deg)   (driver's door on its hinges)
 // LOCAL METRES, Y UP. FRONT = -X, DRIVER'S SIDE (pump panel, hard suction hoses) = +Z toward the lens, OFFICER'S SIDE (ladder) = -Z. Ground = y 0.
 // Real size: 8.02 m long (bumper to tailboard), 2.4 m body (2.6 over mirrors and hoses), 2.89 m to the top of the beacon.
 import { kit, args, done, place as placeProp, handText } from './prop_kit.js';
 export const place = placeProp;
-export const PAINT = { red: '#c4141a', yellow: '#e2e31c', roof: '#f3efe2', gold: '#e8b93c', vinyl: '#5a1f1c', hose: '#d9cfae', hoseOld: '#c2aa74', tape: '#d8c79a', kraft: '#b08a5a' };
+export const PAINT = { red: '#d3141c', yellow: '#e3ea22', ribbon: '#f6f3ea', roof: '#f3efe2', gold: '#e8b93c', vinyl: '#5a1f1c', hose: '#d9cfae', hoseOld: '#c2aa74', tape: '#d8c79a', kraft: '#b08a5a' };
 export const TRUCK = { length: 8.02, width: 2.4, height: 2.89, wheelR: .52, frontAxleX: -2.75, rearAxleX: 1.9, town: 'PINE HOLLOW' };
 const WR = .52, PI = Math.PI;
 
@@ -25,30 +26,35 @@ const gold = (c, s, x, y, px, o = {}) => handText(c, s, x, y, px, { fill: goldFi
 
 export function buildTruck(THREE, a, b) {
   const [ctx, opts] = args(a, b), K = kit(THREE, ctx), g = new THREE.Group(); g.name = 'fire_truck_engine3';
-  const town = opts.town || TRUCK.town, eng = opts.engine ?? 3, wear = opts.wear ?? .35;
+  const town = opts.town || TRUCK.town, eng = opts.engine ?? 1, wear = opts.wear ?? .35;
   // ------------------------------------------------------------------ materials
-  const U = { uTruckInv: { value: new THREE.Matrix4() }, uColA: { value: new THREE.Color(PAINT.red) }, uColB: { value: new THREE.Color(PAINT.red) }, uEdge: { value: 0 }, uSoft: { value: .32 }, uDrain: { value: 0 } };
-  const paintMat = (seed = 11) => { const m = K.pb ? K.pb.metal('wet', { color: '#ffffff', rough: .2, finish: 'smooth', nscale: .06, coat: 1, coatRough: .05, env: .85, toon: PAINT.red, scale: 1.3, seed }) : K.toon('#ffffff');
+  const U = { uTruckInv: { value: new THREE.Matrix4() }, uColA: { value: new THREE.Color(PAINT.red) }, uColB: { value: new THREE.Color(PAINT.red) }, uEdge: { value: 0 }, uSoft: { value: .38 }, uDrain: { value: 0 } };
+  const paintMat = (seed = 11, UU = U) => { const m = K.pb ? K.pb.metal('wet', { color: '#ffffff', rough: .2, finish: 'smooth', nscale: .06, coat: 1, coatRough: .05, env: .85, toon: PAINT.red, scale: 1.3, seed }) : K.toon('#ffffff');
     if (m.color) m.color.set('#ffffff');
-    m.onBeforeCompile = sh => { Object.assign(sh.uniforms, U);
+    m.onBeforeCompile = sh => { Object.assign(sh.uniforms, UU);
       sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform mat4 uTruckInv;\nvarying vec3 vTP;').replace('#include <project_vertex>', '#include <project_vertex>\nvTP = (uTruckInv * modelMatrix * vec4(transformed, 1.0)).xyz;');
       sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform vec3 uColA; uniform vec3 uColB; uniform float uEdge; uniform float uSoft; uniform float uDrain;\nvarying vec3 vTP;')
         .replace('#include <map_fragment>', `#include <map_fragment>
-        { float hs = fract(sin(dot(floor(vTP * 260.0), vec3(12.9898, 78.233, 37.719))) * 43758.5453);                    // spray speckle, 4 mm droplets
-          float wob = sin(vTP.y * 6.3 + vTP.z * 4.1) * .16 + sin(vTP.y * 17.0 - vTP.z * 9.0) * .06;                        // the hand does not hold a straight line
-          float k = smoothstep(0.0, 1.0, (vTP.x - uEdge) / max(uSoft, 1e-3) * .5 + .5 + (hs - .5) * .55 + wob);
+        { vec3 q3 = fract(floor(vTP * 85.0) * .1031); q3 += dot(q3, q3.yzx + 33.33); float hs = fract((q3.x + q3.y) * q3.z);                // spray speckle, 12 mm spatter cells
+          vec3 q4 = fract(floor(vTP * 340.0) * .1031); q4 += dot(q4, q4.yzx + 33.33); float hf = fract((q4.x + q4.y) * q4.z);               // fine mist, 3 mm
+          float wob = sin(vTP.y * 2.6 + vTP.z * 1.3) * .22 + sin(vTP.y * 9.0) * .05;                                                       // the passes of the gun lean a little
+          float ks = (vTP.x - uEdge) / max(uSoft, 1e-3) + wob;                                                                             // -1 .. 1 across the sprayed edge
+          float k = clamp(smoothstep(-1.0, 1.0, ks) * .75 + smoothstep(-.9, .9, ks + (hs - .5) * 1.1) * .15 + step(.5, smoothstep(-1.2, 1.0, ks) + (hf - .5) * .9) * .10, 0.0, 1.0);
+          k = smoothstep(0.0, 1.0, k);
           vec3 pc = mix(uColA, uColB, k);
           float night = dot(pc, vec3(.02, .82, .16));                                                                       // what a dim-adapted eye keeps: almost no red
-          pc = mix(pc, vec3(night * .9, night * .95, night * 1.05), clamp(uDrain, 0.0, 1.0));
+          pc = mix(pc, vec3(.056, .064, .089) * (1.0 - night) + pc * night * 1.2, clamp(uDrain, 0.0, 1.0));                  // the red lands on LOOK_BIBLE grey-plum #4B4753, the lemon stays lemon
           diffuseColor.rgb *= pc; }`); };
-    m.customProgramCacheKey = () => 'truck_paint_v1'; m.userData.truckPaint = true; return m; };
+    m.customProgramCacheKey = () => 'truck_paint_v2'; m.userData.truckPaint = true; return m; };
   const paint = paintMat(11), paintB = paintMat(23);
+  const U2 = { ...U, uColA: { value: new THREE.Color(PAINT.ribbon) }, uColB: { value: new THREE.Color(PAINT.ribbon) } }, ribbonM = paintMat(31, U2); ribbonM.side = THREE.DoubleSide;
+  U.uLetHide = { value: 0 };
   const roofW = K.metal('wet', PAINT.roof, .22, .8, { finish: 'smooth', nscale: .06, coat: 1, coatRough: .06, scale: 1.3 });
   const chrome = K.metal('steel', '#eef2f7', .05, 1.6, { finish: 'smooth', nscale: .03, scale: .5 }), chromeB = K.metal('steel', '#dfe5ec', .16, 1.35, { finish: 'brushed', nscale: .25, scale: .4 });
-  const stainless = K.metal('steel', '#c9ced6', .3, 1.1, { finish: 'brushed', nscale: .5, scale: .5 }), alu = K.metal('steel', '#b9bfc6', .34, 1.05, { finish: 'brushed', nscale: .35, scale: .5 });
+  const stainless = K.metal('steel', '#c9ced6', .3, 1.1, { finish: 'brushed', nscale: .18, scale: .5 }), alu = K.metal('steel', '#b9bfc6', .34, 1.05, { finish: 'brushed', nscale: .35, scale: .5 });
   const brass = K.metal('brass', '#e2b24e', .14, 1.5, { finish: 'smooth', nscale: .08, scale: .3 }), brassOld = K.metal('brass', '#c79a45', .32, 1.2, { scale: .2 });
   const iron = K.metal('iron', '#3a3d44', .5, .7, { rust: .08, scale: .5 }), ironRust = K.metal('iron', '#4a4038', .6, .6, { rust: .35, scale: .4 });
-  const glass = K.metal('wet', '#24323c', .04, 1.3, { finish: 'smooth', nscale: .02, coat: 1, coatRough: .02 }); glass.transparent = true; glass.opacity = .5; glass.depthWrite = false;
+  const glass = K.metal('wet', '#24323c', .04, 1.3, { finish: 'smooth', nscale: .02, coat: 1, coatRough: .02 }); glass.transparent = true; glass.opacity = .62; glass.depthWrite = false;
   const mirrorM = K.metal('steel', '#f4f7fb', .02, 1.9, { finish: 'smooth', nscale: .0, scale: .5 });
   const rubber = K.std('#19191b', { roughness: .88 }), rubberHose = K.std('#222226', { roughness: .7 }), dark = K.std('#16171a', { roughness: .95 }), vinyl = new THREE.MeshPhysicalMaterial({ color: PAINT.vinyl, roughness: .45, clearcoat: .4, clearcoatRoughness: .4 });
   const wood = ctx.relief ? ctx.relief('wood', '#b98a4e', { size: .5 }) : K.toon('#b98a4e'), rope = K.std('#cdb98a', { roughness: 1 }), leather = K.std('#4a2e1c', { roughness: .7 });
@@ -150,22 +156,23 @@ export function buildTruck(THREE, a, b) {
   K.cyl(rf, .15, .07, 'y', chrome, 'beacon_base', 'metal', [-2.85, 2.62, 0], 24, .13); const beam = new THREE.Group(); beam.position.set(-2.85, 2.74, 0); rf.add(beam);
   K.cyl(beam, .05, .1, 'x', mirrorM, 'beacon_reflector', 'metal', [-.03, 0, 0], 14, .02); K.sphere(beam, .025, lensW, 'beacon_bulb', 'glass', [.02, 0, 0]); K.cyl(beam, .05, .1, 'x', mirrorM, 'beacon_reflector', 'metal', [.07, 0, 0], 14).rotation.z = -PI / 2;
   const dome = K.lathe(rf, [[.13, 0], [.132, .1], [.12, .17], [.09, .215], [.04, .24], [0, .245]], lensRed, 'beacon_dome_red', 'glass', [-2.85, 2.655, 0], null, 28); dome.castShadow = false; K.cyl(rf, .035, .02, 'y', chrome, 'beacon_top_cap', 'metal', [-2.85, 2.9, 0], 12);
-  { const sg = new THREE.Group(); sg.name = 'siren'; sg.position.set(-3.42, 2.59, .56); rf.add(sg);
+  const nSir = opts.sirens ?? 1, nHorn = opts.horns ?? 2, sirZ = nSir === 1 ? [.56] : Array.from({ length: nSir }, (_, i) => -.84 + i * 1.68 / (nSir - 1));
+  for (const sz of sirZ) { const sg = new THREE.Group(); sg.name = 'siren'; sg.position.set(-3.42, 2.59, sz); rf.add(sg);
     K.cyl(sg, .1, .26, 'x', chrome, 'siren_stator_housing', 'metal', [0, .15, 0], 24); K.cyl(sg, .1, .14, 'x', chrome, 'siren_horn_bell', 'metal', [-.2, .15, 0], 24, .135); K.cyl(sg, .07, .12, 'x', chromeB, 'siren_motor', 'metal', [.19, .15, 0], 18); K.sphere(sg, .07, chromeB, 'siren_motor_cap', 'metal', [.25, .15, 0], [.5, 1, 1]);
     for (let i = 0; i < 12; i++) { const a = i / 12 * PI * 2; K.box(sg, [.16, .012, .02], dark, 'siren_port_slot', 'metal', [-.02, .15 + Math.sin(a) * .1, Math.cos(a) * .1], [-a, 0, 0]).castShadow = false; }
     for (let i = 0; i < 3; i++) K.torus(sg, .135 - i * .035, .008, chrome, 'siren_grille_ring', 'metal', [-.275, .15, 0], [0, PI / 2, 0]); K.bx(sg, -.28, -.27, .02, .28, -.006, .006, chrome, 'siren_grille_bar', 'metal');
     K.bx(sg, -.08, .08, 0, .06, -.06, .06, chrome, 'siren_pedestal', 'metal'); K.bx(sg, -.12, .12, 0, .012, -.09, .09, chrome, 'siren_foot_plate', 'metal'); for (const [x, z] of [[-.1, -.07], [.1, -.07], [-.1, .07], [.1, .07]]) K.cyl(sg, .008, .01, 'y', iron, 'siren_foot_bolt', 'metal', [x, .016, z], 6); }
-  for (const z of [-.46, -.66]) { K.cyl(rf, .022, .5, 'x', chrome, 'air_horn_trumpet', 'metal', [-3.3, 2.68, z], 16, .06); K.cyl(rf, .035, .08, 'x', chrome, 'air_horn_diaphragm', 'metal', [-3.02, 2.68, z], 14); K.bx(rf, -3.2, -3.16, 2.59, 2.66, z - .015, z + .015, chrome, 'air_horn_bracket', 'metal'); }
+  const hx = nSir === 1 ? 0 : .95; for (const z of (nSir === 1 ? [-.46, -.66] : Array.from({ length: nHorn }, (_, i) => -(nHorn - 1) * .1 + i * .2))) { K.cyl(rf, .022, .5, 'x', chrome, 'air_horn_trumpet', 'metal', [-3.3 + hx, 2.68, z], 16, .06); K.cyl(rf, .035, .08, 'x', chrome, 'air_horn_diaphragm', 'metal', [-3.02 + hx, 2.68, z], 14); K.bx(rf, -3.2 + hx, -3.16 + hx, 2.59, 2.66, z - .015, z + .015, chrome, 'air_horn_bracket', 'metal'); }
   K.bar(rf, [-3.6, 2.44, 1.12], [-3.6, 2.66, 1.12], .012, chrome, 'spotlight_post', 'metal', 8); K.sphere(rf, .075, chrome, 'spotlight_shell', 'metal', [-3.6, 2.72, 1.12], [1.1, 1, 1]); K.cyl(rf, .07, .012, 'x', lensW, 'spotlight_lens', 'glass', [-3.68, 2.72, 1.12], 18);
 
   // ------------------------------------------------------------------ 6. PUMP MODULE with a pump panel on each side (gauges, valve wheels, outlets, intake), hose reel on top
   const pm = new THREE.Group(); pm.name = 'pump_module'; g.add(pm);
   K.bx(pm, -1.88, -.8, .62, 2.06, -1.16, 1.16, paint, 'pump_house', 'metal'); K.bx(pm, -1.9, -.78, 2.06, 2.09, -1.18, 1.18, tread, 'pump_house_top_plate', 'metal');
-  const gaugeTex = (key, label, max, val, redFrom) => K.tex('gauge_' + key, 256, 256, (c, w, h) => { c.clearRect(0, 0, w, h); c.fillStyle = '#f4f0e2'; c.beginPath(); c.arc(128, 128, 124, 0, 7); c.fill(); c.strokeStyle = '#161616'; c.fillStyle = '#161616';
+  const gaugeTex = (key, label, max, val, redFrom) => K.tex('gauge2_' + key, 256, 256, (c, w, h) => { c.clearRect(0, 0, w, h); c.fillStyle = '#f4f0e2'; c.beginPath(); c.arc(128, 128, 124, 0, 7); c.fill(); c.strokeStyle = '#161616'; c.fillStyle = '#161616';
     const A = v => PI * .75 + v / max * PI * 1.5; for (let i = 0; i <= 30; i++) { const a = A(i / 30 * max), r0 = i % 5 ? 104 : 92; c.lineWidth = i % 5 ? 3 : 6; c.beginPath(); c.moveTo(128 + Math.cos(a) * r0, 128 + Math.sin(a) * r0); c.lineTo(128 + Math.cos(a) * 116, 128 + Math.sin(a) * 116); c.stroke();
       if (i % 5 === 0) { c.font = 'bold 22px "DejaVu Sans", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(String(Math.round(i / 30 * max)), 128 + Math.cos(a) * 72, 128 + Math.sin(a) * 72); } }
     if (redFrom) { c.strokeStyle = '#1f6a3a'; c.lineWidth = 7; c.beginPath(); c.arc(128, 128, 120, A(redFrom), A(max)); c.stroke(); }
-    c.font = 'bold 20px "DejaVu Sans", sans-serif'; c.fillStyle = '#161616'; c.fillText(label, 128, 178); c.font = '13px "DejaVu Sans", sans-serif'; c.fillText('P.S.I.', 128, 200);
+    c.font = 'bold 16px "DejaVu Sans", sans-serif'; c.fillStyle = '#161616'; c.fillText(label, 128, 160); c.font = '12px "DejaVu Sans", sans-serif'; c.fillText(/R\.P\.M/.test(label) ? '' : 'P.S.I.', 128, 212);
     const a = A(val); c.strokeStyle = '#0a0a0a'; c.lineWidth = 7; c.lineCap = 'round'; c.beginPath(); c.moveTo(128 - Math.cos(a) * 22, 128 - Math.sin(a) * 22); c.lineTo(128 + Math.cos(a) * 98, 128 + Math.sin(a) * 98); c.stroke(); c.fillStyle = '#b08a3a'; c.beginPath(); c.arc(128, 128, 12, 0, 7); c.fill(); });
   const plateTex = (key, lines, bg = '#1a1a1a', fg = '#e9e2c8') => K.tex('plate_' + key, 256, 96, (c, w, h) => { c.fillStyle = bg; c.fillRect(0, 0, w, h); c.strokeStyle = fg; c.lineWidth = 4; c.strokeRect(6, 6, w - 12, h - 12); c.fillStyle = fg; c.textAlign = 'center'; c.textBaseline = 'middle';
     lines.forEach((t, i) => { c.font = `bold ${lines.length > 1 ? 30 : 44}px "DejaVu Sans", sans-serif`; c.fillText(t, w / 2, h * (i + .5) / lines.length + (lines.length > 1 ? (i ? -4 : 4) : 0)); }); for (const [x, y] of [[14, 14], [w - 14, 14], [14, h - 14], [w - 14, h - 14]]) { c.beginPath(); c.arc(x, y, 4, 0, 7); c.fill(); } });
@@ -179,12 +186,12 @@ export function buildTruck(THREE, a, b) {
     const gauge = (x, y, r, tex, nm) => { K.cyl(P, r * 1.12, .03, 'z', chrome, nm + '_bezel', 'metal', [x, y, zo(.025)], 28); K.decal(P, tex, r * 2, r * 2, nm + '_dial', [x, y, zo(.0415)], R, { rough: .6 }); K.torus(P, r, r * .1, chrome, nm + '_rim', 'metal', [x, y, zo(.042)]); const gl = K.cyl(P, r * .96, .004, 'z', glass, nm + '_glass', 'glass', [x, y, zo(.046)], 24); gl.castShadow = false; };
     gauge(-1.6, 1.76, .095, gaugeTex('master_in', 'INTAKE', 300, 40, 0), 'master_gauge_intake'); gauge(-1.34, 1.76, .095, gaugeTex('master_out', 'PUMP', 600, 150, 400), 'master_gauge_pressure');
     gauge(-1.03, 1.78, .07, gaugeTex('tach', 'R.P.M. x100', 30, 9, 24), 'tachometer');
-    [['L1', 110], ['L2', 0], ['L3', 85], ['TANK', 30]].forEach(([nm, v], i) => gauge(-1.66 + i * .2, 1.5, .058, gaugeTex('line_' + nm, nm, 300, v, 0), 'line_gauge_' + nm));
+    [['L1', 110], ['L2', 0], ['L3', 85], ['TANK', 30]].forEach(([nm, v], i) => gauge(-1.7 + i * .185, 1.5, .058, gaugeTex('line_' + nm, nm, 300, v, 0), 'line_gauge_' + nm));
     // discharge pull handles (chrome T on a rod) with engraved plates
-    ['1', '2', '3', 'TANK FILL'].forEach((nm, i) => { const x = -1.66 + i * .2; K.cyl(P, .012, .11, 'z', chrome, 'valve_pull_rod', 'metal', [x, 1.3, zo(.06)], 8); K.cyl(P, .016, .1, 'x', chrome, 'valve_t_handle', 'metal', [x, 1.3, zo(.12)], 10); K.cyl(P, .025, .012, 'z', brass, 'valve_rod_gland', 'metal', [x, 1.3, zo(.016)], 10);
+    ['1', '2', '3', 'TANK FILL'].forEach((nm, i) => { const x = -1.7 + i * .185; K.cyl(P, .012, .11, 'z', chrome, 'valve_pull_rod', 'metal', [x, 1.3, zo(.06)], 8); K.cyl(P, .016, .1, 'x', chrome, 'valve_t_handle', 'metal', [x, 1.3, zo(.12)], 10); K.cyl(P, .025, .012, 'z', brass, 'valve_rod_gland', 'metal', [x, 1.3, zo(.016)], 10);
       K.decal(P, plateTex('d' + nm, nm.split(' ')), .11, .04, 'valve_name_plate', [x, 1.375, zo(.014)], R); });
-    K.cyl(P, .03, .05, 'z', dark, 'throttle_knob', 'rubber', [-1.0, 1.52, zo(.04)], 14); K.cyl(P, .034, .01, 'z', chrome, 'throttle_collar', 'metal', [-1.0, 1.52, zo(.016)], 14); K.decal(P, plateTex('thr', ['THROTTLE']), .12, .04, 'throttle_plate', [-1.0, 1.59, zo(.014)], R);
-    K.cyl(P, .012, .09, 'z', chrome, 'primer_pull_rod', 'metal', [-1.0, 1.32, zo(.05)], 8); K.sphere(P, .026, dark, 'primer_knob', 'rubber', [-1.0, 1.32, zo(.1)]); K.decal(P, plateTex('prm', ['PRIMER']), .1, .035, 'primer_plate', [-1.0, 1.385, zo(.014)], R);
+    K.cyl(P, .03, .05, 'z', dark, 'throttle_knob', 'rubber', [-.94, 1.5, zo(.04)], 14); K.cyl(P, .034, .01, 'z', chrome, 'throttle_collar', 'metal', [-.94, 1.5, zo(.016)], 14); K.decal(P, plateTex('thr', ['THROTTLE']), .12, .04, 'throttle_plate', [-.94, 1.57, zo(.014)], R);
+    K.cyl(P, .012, .09, 'z', chrome, 'primer_pull_rod', 'metal', [-.94, 1.3, zo(.05)], 8); K.sphere(P, .026, dark, 'primer_knob', 'rubber', [-.94, 1.3, zo(.1)]); K.decal(P, plateTex('prm', ['PRIMER']), .1, .035, 'primer_plate', [-.94, 1.375, zo(.014)], R);
     // two 2 1/2 inch discharges with hand wheels above, caps on chains, and the big steamer intake
     for (const x of [-1.62, -1.38]) { K.cyl(P, .06, .13, 'z', chrome, 'discharge_outlet', 'metal', [x, .98, zo(.07)], 20); K.cyl(P, .072, .05, 'z', chromeB, 'discharge_cap', 'metal', [x, .98, zo(.15)], 20); for (const a of [0, PI / 2]) K.bar(P, [x - Math.cos(a) * .095, .98 - Math.sin(a) * .095, zo(.15)], [x + Math.cos(a) * .095, .98 + Math.sin(a) * .095, zo(.15)], .012, chromeB, 'cap_rocker_lug', 'metal', 6);
       K.tube(P, [[x, .92, zo(.15)], [x + .03, .85, zo(.1)], [x + .02, .88, zo(.02)]], .004, brassOld, 'cap_chain', 'metal', 10, 4);
@@ -193,7 +200,7 @@ export function buildTruck(THREE, a, b) {
     K.cyl(P, .105, .16, 'z', chrome, 'steamer_intake', 'metal', [-1.06, .98, zo(.085)], 24); K.cyl(P, .12, .06, 'z', chromeB, 'steamer_cap', 'metal', [-1.06, .98, zo(.19)], 24); K.bar(P, [-1.23, .98, zo(.19)], [-.89, .98, zo(.19)], .016, chromeB, 'steamer_cap_handle', 'metal', 8); K.sphere(P, .022, chromeB, 'steamer_cap_handle_knob', 'metal', [-1.23, .98, zo(.19)]); K.sphere(P, .022, chromeB, 'steamer_cap_handle_knob', 'metal', [-.89, .98, zo(.19)]);
     K.tube(P, [[-1.06, .87, zo(.19)], [-1.0, .78, zo(.1)], [-1.02, .82, zo(.02)]], .004, brassOld, 'cap_chain', 'metal', 10, 4);
     for (let i = 0; i < 5; i++) { K.cyl(P, .012, .03, 'z', brassOld, 'drain_cock', 'metal', [-1.7 + i * .17, .77, zo(.025)], 8); K.bx(P, -1.7 + i * .17 - .006, -1.7 + i * .17 + .006, .77, .82, zo(.03), zo(.04), brassOld, 'drain_cock_lever', 'metal'); }
-    K.decal(P, K.tex('maker_plate', 256, 128, (c, w, h) => { c.fillStyle = '#c9a24a'; c.fillRect(0, 0, w, h); c.strokeStyle = '#3a2a10'; c.lineWidth = 5; c.strokeRect(7, 7, w - 14, h - 14); c.fillStyle = '#2a1c08'; c.textAlign = 'center'; c.font = 'bold 26px "DejaVu Serif", serif'; c.fillText(town + ' F.D.', w / 2, 40); c.font = 'bold 22px "DejaVu Serif", serif'; c.fillText('ENGINE Co. ' + eng, w / 2, 70); c.font = '16px "DejaVu Sans", sans-serif'; c.fillText('1000 G.P.M.  ·  1974  ·  No. 7403', w / 2, 100); }), .2, .1, 'maker_plate_brass', [-1.0, 1.93, zo(.0135)], R, { rough: .35 });
+    K.decal(P, K.tex('maker_plate2_' + town + eng, 256, 128, (c, w, h) => { c.fillStyle = '#c9a24a'; c.fillRect(0, 0, w, h); c.strokeStyle = '#3a2a10'; c.lineWidth = 5; c.strokeRect(7, 7, w - 14, h - 14); c.fillStyle = '#2a1c08'; c.textAlign = 'center'; c.font = 'bold 21px "DejaVu Serif", serif'; c.fillText(town + ' F.D.', w / 2, 40); c.font = 'bold 22px "DejaVu Serif", serif'; c.fillText('ENGINE Co. ' + eng, w / 2, 70); c.font = '16px "DejaVu Sans", sans-serif'; c.fillText('1000 G.P.M.  ·  1974  ·  No. 7403', w / 2, 100); }), .2, .1, 'maker_plate_brass', [-1.0, 1.93, zo(.0135)], R, { rough: .35 });
     K.bx(P, -1.9, -.78, .56, .6, s * 1.16, s * 1.36, tread, 'pump_operator_step', 'metal');
     panelAnchors[s > 0 ? 'pump_panel' : 'pump_panel_officer'] = [-1.34, 1.4, s * 1.3]; }
   // booster hose reel on the pump house: chrome flanges on an axle in pillow blocks, red-brown rubber hose wound on, nozzle clipped
@@ -251,30 +258,35 @@ export function buildTruck(THREE, a, b) {
     K.box(sd, [.3, .16, .16], wood, 'wheel_chock_oak', 'wood', [2.9, .68, 1.27], [0, 0, 0]); }
 
   // ------------------------------------------------------------------ 9. LETTERING (hand-laid gold leaf, from THIS story) and pin striping
-  const doorTex = K.tex('door_gold_' + town + eng, 1024, 620, (c, w, h) => { c.clearRect(0, 0, w, h);
+  const doorTex = K.tex('door_gold2_' + town + eng, 1024, 620, (c, w, h) => { c.clearRect(0, 0, w, h);
     gold(c, town, w / 2, 150, 104, { arc: 46, seed: 5 }); gold(c, 'FIRE DEPT.', w / 2, 262, 66, { seed: 9 });
     c.strokeStyle = '#e2b53a'; c.lineWidth = 5; for (const s of [-1, 1]) { c.beginPath(); c.moveTo(w / 2 + s * 60, 322); c.bezierCurveTo(w / 2 + s * 200, 300, w / 2 + s * 300, 350, w / 2 + s * 400, 318); c.stroke(); c.beginPath(); c.arc(w / 2 + s * 412, 322, 12, 0, 7); c.stroke(); }
     c.fillStyle = '#e2b53a'; c.beginPath(); c.moveTo(w / 2, 304); c.lineTo(w / 2 + 22, 322); c.lineTo(w / 2, 340); c.lineTo(w / 2 - 22, 322); c.fill();
-    gold(c, 'ENGINE Co.', w / 2 - 110, 452, 112, { seed: 13 }); gold(c, String(eng), w / 2 + 330, 440, 210, { seed: 17 });
+    gold(c, 'ENGINE', w / 2 - 210, 452, 104, { seed: 13 }); gold(c, 'No.', w / 2 + 130, 462, 84, { seed: 14 }); gold(c, String(eng), w / 2 + 340, 440, 230, { seed: 17 });
     c.font = 'italic bold 34px "Caladea", "DejaVu Serif", serif'; c.fillStyle = '#e8c45a'; c.textAlign = 'center'; c.fillText('Est. 1891  ·  Always Ready', w / 2 - 80, 566);
     c.globalCompositeOperation = 'destination-out'; for (let i = 0; i < 40 + wear * 160; i++) { c.fillStyle = `rgba(0,0,0,${.25 + Math.random() * .5})`; c.fillRect(Math.random() * w, Math.random() * h, 1 + Math.random() * 3, 1 + Math.random() * 2); } c.globalCompositeOperation = 'source-over'; });
   const numTex = K.tex('front_no_' + eng, 256, 256, (c, w, h) => { c.clearRect(0, 0, w, h); gold(c, String(eng), w / 2, 138, 220, { seed: 3 }); }), noTex = K.tex('front_No', 256, 256, (c, w, h) => { c.clearRect(0, 0, w, h); gold(c, 'No.', w / 2, 140, 130, { seed: 4 }); });
-  const backTex = K.tex('keep_back', 1024, 256, (c, w, h) => { c.clearRect(0, 0, w, h); gold(c, 'KEEP BACK 300 FEET', w / 2, 90, 88, { seed: 21 }); gold(c, town + ' F.D.', w / 2, 196, 64, { seed: 22 }); });
-  const stripeTex = K.tex('pinstripe', 512, 64, (c, w, h) => { c.clearRect(0, 0, w, h); c.strokeStyle = '#e8b93c'; c.lineWidth = 7; c.strokeRect(8, 8, w - 16, h - 16); c.lineWidth = 2; c.strokeStyle = '#f5dc8a'; c.strokeRect(18, 18, w - 36, h - 36); });
-  const plTex = K.tex('plate_txt', 256, 128, (c, w, h) => { c.fillStyle = '#f2ecd8'; c.fillRect(0, 0, w, h); c.strokeStyle = '#1c3a6a'; c.lineWidth = 6; c.strokeRect(6, 6, w - 12, h - 12); c.fillStyle = '#1c3a6a'; c.textAlign = 'center'; c.font = 'bold 26px "DejaVu Sans", sans-serif'; c.fillText('FIRE DEPT · 1974', w / 2, 36); c.font = 'bold 60px "DejaVu Sans", sans-serif'; c.fillText('PH·F' + eng, w / 2, 100); });
+  const backTex = K.tex('keep_back_' + town, 1024, 256, (c, w, h) => { c.clearRect(0, 0, w, h); gold(c, 'KEEP BACK 300 FEET', w / 2, 90, 88, { seed: 21 }); gold(c, town + ' F.D.', w / 2, 196, 64, { seed: 22 }); });
+  const stripeTex = K.tex('pinstripe', 512, 320, (c, w, h) => { c.clearRect(0, 0, w, h); c.strokeStyle = '#e8b93c'; c.lineWidth = 6; c.lineJoin = 'round'; c.strokeRect(10, 10, w - 20, h - 20); c.lineWidth = 2; c.strokeStyle = '#f5dc8a'; c.strokeRect(24, 24, w - 48, h - 48); for (const [x, y] of [[24, 24], [w - 24, 24], [24, h - 24], [w - 24, h - 24]]) { c.beginPath(); c.arc(x, y, 9, 0, 7); c.stroke(); } });
+  const plTex = K.tex('plate_txt_' + eng, 256, 128, (c, w, h) => { c.fillStyle = '#f2ecd8'; c.fillRect(0, 0, w, h); c.strokeStyle = '#1c3a6a'; c.lineWidth = 6; c.strokeRect(6, 6, w - 12, h - 12); c.fillStyle = '#1c3a6a'; c.textAlign = 'center'; c.font = 'bold 26px "DejaVu Sans", sans-serif'; c.fillText('FIRE DEPT · 1974', w / 2, 36); c.font = 'bold 60px "DejaVu Sans", sans-serif'; c.fillText('PH·F' + eng, w / 2, 100); });
   const lett = new THREE.Group(); lett.name = 'lettering'; g.add(lett);
-  for (const s of S) { const R = zrot(s); K.decal(lett, doorTex, .98, .594, 'door_lettering_gold_leaf', [-2.77, 1.5, s * 1.196], R, { rough: .3, glow: .12 });
-    for (const [x0, x1] of [[-.72, .2], [.26, 1.18], [2.62, 3.54]]) K.decal(lett, stripeTex, x1 - x0 - .12, .56, 'door_pin_stripe', [(x0 + x1) / 2, 1.08, s * 1.1945], R, { rough: .3, glow: .1 });
+  const under = d => { const m = d.material; m.onBeforeCompile = sh => { Object.assign(sh.uniforms, U);
+      sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nuniform mat4 uTruckInv;\nvarying vec3 vTP;').replace('#include <project_vertex>', '#include <project_vertex>\nvTP = (uTruckInv * modelMatrix * vec4(transformed, 1.0)).xyz;');
+      sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uEdge; uniform float uSoft; uniform float uLetHide;\nvarying vec3 vTP;')
+        .replace('#include <map_fragment>', '#include <map_fragment>\n diffuseColor.a *= 1.0 - uLetHide * smoothstep(-.6, .4, (vTP.x - uEdge) / max(uSoft, 1e-3) + sin(vTP.y * 2.6 + vTP.z * 1.3) * .22);')
+        .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\n totalEmissiveRadiance *= diffuseColor.a;'); }; m.customProgramCacheKey = () => 'truck_letter_v1'; return d; };
+  for (const s of S) { const R = zrot(s); under(K.decal(lett, doorTex, .98, .594, 'door_lettering_gold_leaf', [-2.77, 1.5, s * 1.196], R, { rough: .3, glow: .12 }));
+    for (const [x0, x1] of [[-.72, .2], [.26, 1.18], [2.62, 3.54]]) under(K.decal(lett, stripeTex, x1 - x0 - .12, .56, 'door_pin_stripe', [(x0 + x1) / 2, 1.08, s * 1.1945], R, { rough: .3, glow: .1 }));
     K.decal(lett, K.tex('flap_txt', 128, 128, (c, w, h) => { c.clearRect(0, 0, w, h); c.fillStyle = '#e8e2d0'; c.font = 'bold 40px "DejaVu Sans", sans-serif'; c.textAlign = 'center'; c.fillText('P.H.', 64, 56); c.fillText('F.D.', 64, 100); }), .34, .34, 'mud_flap_letters', [2.661, .42, s * .89], [0, PI / 2, 0], { rough: .9 }); }
-  K.decal(lett, noTex, .3, .3, 'front_no_gold', [-3.802, 1.5, .5], [0, -PI / 2, 0], { rough: .3, glow: .12 }); K.decal(lett, numTex, .34, .34, 'front_number_gold', [-3.802, 1.5, -.5], [0, -PI / 2, 0], { rough: .3, glow: .12 });
-  K.decal(lett, backTex, 1.5, .375, 'rear_keep_back_gold', [3.602, 1.14, -.02], [0, PI / 2, 0], { rough: .3, glow: .12 });
+  K.decal(lett, noTex, .3, .3, 'front_no_gold', [-3.802, 1.5, -.5], [0, -PI / 2, 0], { rough: .3, glow: .12 }); K.decal(lett, numTex, .34, .34, 'front_number_gold', [-3.802, 1.5, .5], [0, -PI / 2, 0], { rough: .3, glow: .12 });
+  under(K.decal(lett, backTex, 1.5, .375, 'rear_keep_back_gold', [3.602, 1.14, -.02], [0, PI / 2, 0], { rough: .3, glow: .12 }));
   K.decal(lett, plTex, .4, .16, 'front_plate_text', [-4.0355, .61, 0], [0, -PI / 2, 0], { rough: .5 }); K.decal(lett, plTex, .32, .14, 'rear_plate_text', [3.611, .75, .46], [0, PI / 2, 0], { rough: .5 });
 
   // ------------------------------------------------------------------ 10. WEAR: a NEW truck (line 1 "brand-new") with honest marks: stone chips, road dust, soot at the exhaust, boot scuffs
   const wr = new THREE.Group(); wr.name = 'wear'; g.add(wr); K.reseed(77);
   const blot = (key, col, n, sz) => K.tex(key, 256, 256, (c, w, h) => { c.clearRect(0, 0, w, h); for (let i = 0; i < n; i++) { const x = 128 + (Math.random() - .5) * 150, y = 128 + (Math.random() - .5) * 150, r = sz * (.4 + Math.random()); const gr = c.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, col.replace(/[\d.]+\)$/, '0)')); c.fillStyle = gr; c.fillRect(x - r, y - r, r * 2, r * 2); } });
   const soot = blot('soot', 'rgba(14,12,10,.55)', 26, 46), dust = blot('dust', 'rgba(160,140,105,.30)', 40, 60);
-  const chipTex = K.tex('chips', 256, 64, (c, w, h) => { c.clearRect(0, 0, w, h); for (let i = 0; i < 46; i++) { const x = Math.random() * w, y = Math.random() * h, r = 1 + Math.random() * 3.2; c.fillStyle = Math.random() < .5 ? '#8f8c86' : '#3a2f2a'; c.beginPath(); c.ellipse(x, y, r * (1 + Math.random()), r, Math.random() * 3, 0, 7); c.fill(); } });
+  const chipTex = K.tex('chips', 256, 64, (c, w, h) => { c.clearRect(0, 0, w, h); for (let i = 0; i < 46; i++) { const x = Math.random() * w, y = Math.random() * h, r = .6 + Math.random() * 1.6; c.fillStyle = Math.random() < .5 ? '#77736c' : '#2a2220'; c.beginPath(); c.ellipse(x, y, r * (1 + Math.random()), r, Math.random() * 3, 0, 7); c.fill(); } });
   const scuffTex = K.tex('boot_scuffs', 256, 128, (c, w, h) => { c.clearRect(0, 0, w, h); c.strokeStyle = 'rgba(30,26,22,.5)'; c.lineCap = 'round'; for (let i = 0; i < 26; i++) { c.lineWidth = 2 + Math.random() * 6; const x = Math.random() * w, y = Math.random() * h; c.beginPath(); c.moveTo(x, y); c.lineTo(x + 10 + Math.random() * 40, y + (Math.random() - .5) * 14); c.stroke(); } });
   if (wear > 0) { const op = Math.min(1, .35 + wear);
     K.decal(wr, soot, .7, .5, 'soot_at_exhaust', [1.0, .86, 1.1965], null, { opacity: op, rough: 1 }); K.decal(wr, scuffTex, 1.6, .34, 'boot_scuffs_tailboard', [3.8, .5715, 0], [-PI / 2, 0, PI / 2], { opacity: op, rough: 1 }); K.decal(wr, scuffTex, 1.4, .3, 'boot_scuffs_running_board', [.2, .6015, 1.1], [-PI / 2, 0, 0], { opacity: op, rough: 1 });
@@ -307,19 +319,27 @@ export function buildTruck(THREE, a, b) {
     // a corner of the windscreen paper has come loose and curls down
     const fl = K.add(mk, new THREE.PlaneGeometry(.3, .22, 3, 3), newsM, 'paper_corner_peeling', 'paper', [-3.83, 2.36, -.92], [.5, -PI / 2 - .5, .2]); fl.castShadow = false; }
 
+  // ------------------------------------------------------------------ 12. BRAND NEW (PICTURE_PLAN row 4): the mayor's white ribbon tied round the truck with a bow, the dealer's price card in the windscreen
+  const rb = new THREE.Group(); rb.name = 'ribbon'; g.add(rb);
+  { const y0 = 1.99, y1 = 2.17, zs = 1.328, xf = -3.86, xr = 3.64; for (const s of S) K.bx(rb, xf, xr, y0, y1, s * zs - .002, s * zs + .002, ribbonM, 'mayor_ribbon_side', 'cloth'); K.bx(rb, xf - .002, xf + .002, y0, y1, -zs, zs, ribbonM, 'mayor_ribbon_front', 'cloth'); K.bx(rb, xr - .002, xr + .002, y0, y1, -zs, zs, ribbonM, 'mayor_ribbon_rear', 'cloth');
+    const bw = new THREE.Group(); bw.name = 'ribbon_bow'; bw.position.set(.35, 2.08, zs + .03); rb.add(bw); for (const s of S) { const lp = K.torus(bw, .2, .075, ribbonM, 'bow_loop', 'cloth', [s * .25, .04, 0], [0, 0, s * .35], PI * 2, 8, 24); lp.scale.set(1.25, .8, .22); const tl = K.add(bw, new THREE.PlaneGeometry(.17, .62, 2, 6), ribbonM, 'bow_tail', 'cloth', [s * .13, -.36, .01], [0, 0, s * .22]); const P = tl.geometry.attributes.position; for (let i = 0; i < P.count; i++) P.setZ(i, Math.sin(P.getY(i) * 9) * .02); tl.geometry.computeVertexNormals(); }
+    K.sphere(bw, .075, ribbonM, 'bow_knot', 'cloth', [0, .02, .02], [1, .9, .6]);
+    const card = K.tex('price_card_' + town, 512, 360, (c, w, h) => { c.fillStyle = '#fbf6e4'; c.fillRect(0, 0, w, h); c.strokeStyle = '#1f3f7a'; c.lineWidth = 10; c.strokeRect(8, 8, w - 16, h - 16); handText(c, 'BRAND NEW', w / 2, 62, 62, { fill: '#1f3f7a', seed: 6 }); handText(c, '1000 G.P.M. PUMPER', w / 2, 122, 34, { fill: '#222', seed: 7 }); handText(c, '$41,750', w / 2, 212, 110, { fill: '#111', seed: 8 }); handText(c, 'SOLD TO THE TOWN OF', w / 2, 290, 26, { fill: '#222', seed: 9 }); handText(c, town, w / 2, 326, 34, { fill: '#1f3f7a', seed: 10 }); });
+    K.decal(rb, card, .36, .25, 'dealer_price_card', [-3.75, 2.305, .62], [0, -PI / 2, 0], { rough: .8 }); }
   // ------------------------------------------------------------------ state
   const mode = { paint: 'red', edge: opts.edge ?? .3 };
-  const setPaint = st => { if (typeof st === 'string') st = { mode: st }; if (st.mode) mode.paint = st.mode; if (st.edge !== undefined) mode.edge = st.edge; if (st.soft !== undefined) U.uSoft.value = st.soft; if (st.drain !== undefined) U.uDrain.value = st.drain;
-    const A = st.a || (mode.paint === 'yellow' ? PAINT.yellow : PAINT.red), B = st.b || (mode.paint === 'red' ? PAINT.red : PAINT.yellow); U.uColA.value.set(A); U.uColB.value.set(B); U.uEdge.value = mode.edge; return mode; };
-  const setMasking = on => { mk.visible = !!on; };
+  const setPaint = st => { if (typeof st === 'string') st = { mode: st }; if (st.letters) mode.letters = st.letters; if (st.mode) mode.paint = st.mode; if (st.edge !== undefined) mode.edge = st.edge; if (st.soft !== undefined) U.uSoft.value = st.soft; if (st.drain !== undefined) U.uDrain.value = st.drain;
+    const A = st.a || (mode.paint === 'yellow' ? PAINT.yellow : PAINT.red), B = st.b || (mode.paint === 'red' ? PAINT.red : PAINT.yellow); U.uColA.value.set(A); U.uColB.value.set(B); U.uEdge.value = mode.edge; U2.uColA.value.set(mode.paint === 'yellow' ? B : PAINT.ribbon); U2.uColB.value.set(mode.paint === 'red' ? PAINT.ribbon : B);
+    U.uLetHide.value = (mode.letters || (mode.paint === 'half' ? 'under' : 'over')) === 'under' && mode.paint !== 'red' ? 1 : 0; if (mode.paint === 'yellow' && mode.letters === 'under') U.uEdge.value = -99; return mode; };   // letters: 'under' = the gold is painted over behind the edge (row 3), 'over' = re-lettered on top
+  const setMasking = on => { mk.visible = !!on; }, setRibbon = on => { rb.visible = !!on; };
   const setWheels = m => { for (const [w, s] of spins) w.rotation.z = s * m / WR; };            // metres rolled forward (toward -X)
   const setSteer = deg => { steerG.forEach((h, i) => { h.rotation.y = (i === 0 ? 0 : PI) + deg * PI / 180; }); };
   const setBeacon = (on, ang = 0) => { beam.rotation.y = ang; lensRed.emissiveIntensity = on ? 1.6 : .35; };
   const setDoor = deg => { for (const [d, s] of doors) if (s > 0) d.rotation.y = deg * PI / 180; };
   const update = () => { g.updateWorldMatrix(true, false); U.uTruckInv.value.copy(g.matrixWorld).invert(); };
-  setPaint({ mode: opts.paint || 'red' }); setMasking(opts.masking ?? (opts.paint === 'half')); if (opts.lettering === false) lett.visible = false; if (opts.steer) setSteer(opts.steer); update();
+  setPaint({ mode: opts.paint || 'red' }); setMasking(opts.masking ?? (opts.paint === 'half')); setRibbon(!!opts.ribbon); if (opts.lettering === false) lett.visible = false; if (opts.steer) setSteer(opts.steer); update();
   const names = new Set(K.parts.map(p => p.name));
-  return done(THREE, g, K, { partNames: [...names].sort(), partKinds: names.size, uniforms: U, setPaint, setMasking, setWheels, setSteer, setBeacon, setDoor, update, groups: { chassis: ch, cab, front: fr, roof: rf, pump: pm, body: bd, hoseBed: hb, side: sd, lettering: lett, wear: wr, masking: mk },
+  return done(THREE, g, K, { partNames: [...names].sort(), partKinds: names.size, uniforms: U, setPaint, setMasking, setRibbon, setWheels, setSteer, setBeacon, setDoor, update, groups: { chassis: ch, cab, front: fr, roof: rf, pump: pm, body: bd, hoseBed: hb, side: sd, lettering: lett, wear: wr, masking: mk, ribbon: rb },
     anchors: { ...panelAnchors, door: [-2.77, 1.5, 1.2], door_handle: [-2.37, 1.62, 1.24], spray_edge: [mode.edge, 1.3, 1.2], front: [-4.02, 1.2, 0], bumper: [-4.02, .62, 0], bell: [-3.98, 1.4, 0], beacon: [-2.85, 2.78, 0], siren: [-3.5, 2.74, .56], roof: [-2.85, 2.59, 0],
       driver_seat: [-2.5, 1.6, .56], cab_step: [-2.02, .74, 1.26], tailboard: [3.8, .57, 0], rear: [4.0, 1.2, 0], hose_bed: [1.4, 2.05, 0], ladder: [1.4, 1.8, -1.24], suction_hose: [1.0, 1.8, 1.26], front_wheel: [TRUCK.frontAxleX, WR, 1.17], rear_wheel: [TRUCK.rearAxleX, WR, 1.17], top: [0, 2.89, 0], centre: [0, 1.4, 0] } });
 }
