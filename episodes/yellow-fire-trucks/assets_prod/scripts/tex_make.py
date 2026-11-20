@@ -75,49 +75,143 @@ def letter_line(canvas, text, box, font_path, seed, track=0.04, fit_h=0.78):
         x += w + track * size
 
 
+LETTER_SETS = {   # round 2: one decal per truck of the story (same UV layout); name -> (line 1, line 2, line 3, body side)
+    'truck_letters': ('PINE HOLLOW', 'FIRE DEPT.', 'ENGINE No. 1', 'PINE HOLLOW F.D.'),
+    'truck_letters_e2': ('PINE HOLLOW', 'FIRE DEPT.', 'ENGINE No. 2', 'PINE HOLLOW F.D.'),     # the Chief's older pumper, bay 2
+    'truck_letters_dal14': ('DALLAS', 'FIRE DEPT.', 'ENGINE No. 14', 'DALLAS FIRE DEPT.'),      # Dallas pair, red
+    'truck_letters_dal22': ('DALLAS', 'FIRE DEPT.', 'ENGINE No. 22', 'DALLAS FIRE DEPT.')}      # Dallas pair, lime
+
+
 def make_letters():
-    cv = Image.new('RGBA', (S, S), (0, 0, 0, 0))
-    U = lambda u: int(u * S)
-    letter_line(cv, 'PINE HOLLOW', (U(.17), U(.040), U(.83), U(.162)), SERIF_B, 1, fit_h=.80)
-    letter_line(cv, 'FIRE DEPT.', (U(.22), U(.172), U(.78), U(.292)), SERIF_B, 2, fit_h=.74)
-    letter_line(cv, 'ENGINE No. 1', (U(.20), U(.405), U(.74), U(.570)), SERIF_B, 3, fit_h=.66)
-    letter_line(cv, 'PINE HOLLOW F.D.', (U(.06), U(.775), U(.94), U(.985)), SERIF_B, 4, fit_h=.62, track=.08)
-    cv = cv.transpose(Image.FLIP_TOP_BOTTOM)
-    cv.save(os.path.join(OUT, 'truck_letters.png'))
+    for k, (l1, l2, l3, l4) in LETTER_SETS.items():
+        cv = Image.new('RGBA', (S, S), (0, 0, 0, 0))
+        U = lambda u: int(u * S)
+        letter_line(cv, l1, (U(.17), U(.040), U(.83), U(.162)), SERIF_B, 1, fit_h=.80)
+        letter_line(cv, l2, (U(.22), U(.172), U(.78), U(.292)), SERIF_B, 2, fit_h=.74)
+        letter_line(cv, l3, (U(.20), U(.405), U(.74), U(.570)), SERIF_B, 3, fit_h=.66)
+        letter_line(cv, l4, (U(.06), U(.775), U(.94), U(.985)), SERIF_B, 4, fit_h=.62, track=.08)
+        cv.transpose(Image.FLIP_TOP_BOTTOM).save(os.path.join(OUT, k + '.png'))
 
 
-# ---------------------------------------------------------------- 2. newspaper masking with tape (tile 0.8 m)
+# ---------------------------------------------------------------- 2. newspaper masking with tape (tile 1.2 m; round 2: must READ as a newspaper at a
+# medium shot: black masthead bar, two big headlines, column rules, dense grey text columns, halftone photos), kraft paper for the tyres
 def make_newspaper():
-    N = 1024; rnd = random.Random(7)
-    im = Image.new('RGB', (N, N), (232, 226, 208)); d = ImageDraw.Draw(im)
-    big = ImageFont.truetype(SERIF_B, 64); mid = ImageFont.truetype(SERIF_B, 40); small = ImageFont.truetype(SANS, 11)
-    d.text((60, 40), 'PINE HOLLOW GAZETTE', font=big, fill=(30, 28, 26))
-    d.line((60, 120, 964, 120), fill=(30, 28, 26), width=4); d.line((60, 128, 964, 128), fill=(30, 28, 26), width=1)
-    d.text((60, 140), 'NEW ENGINE ARRIVES', font=mid, fill=(25, 24, 22))
-    d.rectangle((60, 200, 420, 430), fill=(150, 146, 136))            # photo block, halftone
-    for yy in range(200, 430, 6):
-        for xx in range(60, 420, 6):
-            r = rnd.uniform(0.6, 2.6); d.ellipse((xx - r + 3, yy - r + 3, xx + r + 3, yy + r + 3), fill=(70, 68, 64))
-    words = 'town council engine pumper ladder chief station bell parade mayor ribbon brass hose water street crossing'.split()
-    for col, (cx0, cx1) in enumerate(((440, 690), (710, 964), (60, 340), (360, 640), (660, 964))):
-        ytop, ybot = (200, 430) if col < 2 else (450, 1000)
-        for yy in range(ytop, ybot, 15):
-            x = cx0
-            while x < cx1 - 20:
-                w = rnd.choice(words); tw = small.getlength(w)
-                if x + tw > cx1: break
-                d.text((x, yy), w, font=small, fill=(60, 58, 55)); x += tw + 5
-    # a fold crease and yellowing
-    d.line((0, 512, N, 520), fill=(205, 198, 178), width=3)
-    im = im.filter(ImageFilter.GaussianBlur(0.5))
-    # tape strips on two edges (the tile repeats: every sheet is taped to the next)
+    N = 2048; rnd = random.Random(7)
+    im = Image.new('RGB', (N, N), (226, 219, 199)); d = ImageDraw.Draw(im)
+    INKC = (22, 21, 20)
+    mast = ImageFont.truetype(LSERIF_B, 150); h1 = ImageFont.truetype(SANS_B, 132); h2 = ImageFont.truetype(SERIF_B, 84); small = ImageFont.truetype(SANS, 17)
+    dateline = ImageFont.truetype(SANS_B, 26)
+    def page(ox, oy, head, sub, seed):
+        r = random.Random(seed)
+        d.text((ox + 30, oy + 10), 'PINE HOLLOW GAZETTE', font=mast, fill=INKC)
+        d.rectangle((ox + 30, oy + 178, ox + 2000, oy + 214), fill=INKC)
+        d.text((ox + 44, oy + 181), 'VOL. LXXXI  No. 214        FIVE CENTS        PINE HOLLOW\'S OWN DAILY', font=dateline, fill=(226, 219, 199))
+        d.text((ox + 30, oy + 228), head, font=h1, fill=INKC)
+        d.text((ox + 30, oy + 380), sub, font=h2, fill=(35, 33, 31))
+        # photo with halftone + caption
+        px0, py0, px1, py1 = ox + 30, oy + 500, ox + 760, oy + 980
+        for yy in range(py0, py1, 9):
+            for xx in range(px0, px1, 9):
+                v = 0.5 + 0.35 * math.sin(xx / 70.0) * math.cos(yy / 55.0) + r.uniform(-.15, .15)
+                rr = 1 + 3.6 * max(0, min(1, v)); d.ellipse((xx + 4 - rr, yy + 4 - rr, xx + 4 + rr, yy + 4 + rr), fill=(48, 46, 44))
+        d.rectangle((px0, py0, px1, py1), outline=INKC, width=3)
+        # text columns with rules
+        cols = [(790, 1180), (1210, 1600), (1630, 2010)]
+        words = 'the town council voted the new pumper engine arrived from the works on tuesday chief says ladder bell brass hose mayor ribbon parade'.split()
+        for i, (c0, c1) in enumerate(cols):
+            d.line((ox + c0 - 15, oy + 500, ox + c0 - 15, oy + 1990), fill=(60, 58, 55), width=2)
+            yy = oy + 500
+            if i == 0: d.text((ox + c0, yy), 'ENGINE No. 1', font=ImageFont.truetype(SANS_B, 40), fill=INKC); yy += 60
+            while yy < oy + 1980:
+                x = ox + c0
+                while x < ox + c1 - 30:
+                    w = r.choice(words); tw = small.getlength(w)
+                    if x + tw > ox + c1: break
+                    d.text((x, yy), w, font=small, fill=(52, 50, 47)); x += tw + 7
+                yy += 23
+                if r.random() < .03: yy += 23
+        for yy in range(oy + 1010, oy + 1990, 23):     # the photo column's text
+            x = ox + 30
+            while x < ox + 740:
+                w = r.choice(words); tw = small.getlength(w)
+                if x + tw > ox + 760: break
+                d.text((x, yy), w, font=small, fill=(52, 50, 47)); x += tw + 7
+    page(60, 80, 'NEW ENGINE ARRIVES', 'Mayor to cut the ribbon at noon', 7)
+    d.line((0, 1010, N, 1022), fill=(200, 192, 170), width=4)     # the fold
+    im = im.filter(ImageFilter.GaussianBlur(0.6))
+    arr = np.asarray(im, float); yel = fbm(N // 2, 21, 4)
+    yel = np.asarray(Image.fromarray((yel * 255).astype(np.uint8)).resize((N, N), Image.BICUBIC), float)[..., None] / 255
+    arr = arr * (1 - 0.10 * yel) + np.array((210, 190, 140)) * 0.10 * yel
+    im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
     tape = Image.new('RGBA', (N, N), (0, 0, 0, 0)); td = ImageDraw.Draw(tape)
-    for k in range(0, N, 6):
+    for k in range(0, N, 8):
         j = rnd.uniform(-2, 2)
-        td.rectangle((k, int(0 + j), k + 6, int(46 + j)), fill=(214, 196, 148, 235))
-        td.rectangle((int(0 + j), k, int(46 + j), k + 6), fill=(214, 196, 148, 235))
+        td.rectangle((k, int(0 + j), k + 8, int(70 + j)), fill=(214, 196, 148, 235))
+        td.rectangle((int(0 + j), k, int(70 + j), k + 8), fill=(214, 196, 148, 235))
     im.paste(tape, (0, 0), tape)
     im.save(os.path.join(OUT, 'newspaper.png'))
+
+
+def make_kraft():   # brown kraft masking paper for the tyres (round 2: white newspaper on tyres read as white-walls)
+    N = 1024; rnd = random.Random(9)
+    base = np.array((150, 112, 70), float)
+    f = fbm(N, 31, 5)[..., None]
+    fib = np.random.default_rng(3).normal(0, 7, (N, N, 1))
+    arr = base * (0.86 + 0.22 * f) + fib
+    im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)); d = ImageDraw.Draw(im)
+    for _ in range(26):   # creases
+        x0, y0 = rnd.randrange(N), rnd.randrange(N); a = rnd.uniform(0, math.pi); L = rnd.randrange(120, 420)
+        x1, y1 = x0 + L * math.cos(a), y0 + L * math.sin(a)
+        d.line((x0, y0, x1, y1), fill=(118, 86, 52), width=2); d.line((x0 + 2, y0 + 2, x1 + 2, y1 + 2), fill=(176, 138, 92), width=1)
+    for k in range(0, N, 6):   # tape bands across (masking tape, cream)
+        for band in (0, 512):
+            j = rnd.uniform(-2, 2); d.rectangle((k, band + int(j), k + 6, band + 64 + int(j)), fill=(222, 206, 160))
+    im.filter(ImageFilter.GaussianBlur(0.5)).save(os.path.join(OUT, 'kraft.png'))
+
+
+def make_price_card():   # the dealer's price card in the windscreen (plan row 4), 40 x 28 cm, drawn 1000 x 700
+    W_, H_ = 1000, 700; im = Image.new('RGB', (W_, H_), (246, 242, 228)); d = ImageDraw.Draw(im)
+    RED_ = (200, 22, 30); NAVY = (24, 34, 70)
+    d.rectangle((14, 14, W_ - 14, H_ - 14), outline=RED_, width=22); d.rectangle((44, 44, W_ - 44, H_ - 44), outline=NAVY, width=4)
+    def ctext(t, f, y, col):
+        w = f.getlength(t); d.text(((W_ - w) / 2, y), t, font=f, fill=col)
+    ctext('BAXTER FIRE APPARATUS CO.', ImageFont.truetype(SANS_B, 40), 70, NAVY)
+    ctext('DELIVERED PRICE', ImageFont.truetype(SANS_B, 46), 140, NAVY)
+    ctext('$41,750', ImageFont.truetype(LSERIF_B, 250), 185, RED_)
+    ctext('SOLD TO THE TOWN OF', ImageFont.truetype(SANS_B, 50), 465, NAVY)
+    ctext('PINE HOLLOW', ImageFont.truetype(LSERIF_B, 96), 525, NAVY)
+    im.save(os.path.join(OUT, 'price_card.png'))
+
+
+def make_van_decal():   # the milk van's side lettering (alpha), 2048 x 768 for a 3.0 x 1.1 m panel
+    W_, H_ = 2048, 768; cv = Image.new('RGBA', (W_, H_), (0, 0, 0, 0)); d = ImageDraw.Draw(cv)
+    NAVY = (30, 52, 120, 255); CORN = (100, 149, 237, 255)
+    f1 = ImageFont.truetype(LSERIF_B, 250); f2 = ImageFont.truetype(SANS_B, 92); f3 = ImageFont.truetype(SANS_B, 64)
+    def ctext(t, f, y, col):
+        w = f.getlength(t); d.text(((W_ - w) / 2, y), t, font=f, fill=col)
+    ctext('Meadowbrook', f1, 20, NAVY)
+    ctext('DAIRY', f2, 300, NAVY)
+    ctext('GRADE A MILK  \u00b7  PINE HOLLOW  \u00b7  ELM ST.', f3, 430, NAVY)
+    # a milk-bottle emblem each side
+    for cx in (170, W_ - 170):
+        d.rounded_rectangle((cx - 55, 120, cx + 55, 330), 30, fill=(250, 248, 240, 255), outline=NAVY, width=8)
+        d.rectangle((cx - 30, 70, cx + 30, 125), fill=(250, 248, 240, 255), outline=NAVY, width=8)
+    cv.save(os.path.join(OUT, 'van_decal.png'))
+
+
+def make_can_label(text, col_hex, fname):   # 1-gallon paint tin label (wraps 0.52 m x 0.12 m), drawn 2080 x 480
+    W_, H_ = 2080, 480; c = tuple(int(col_hex[i:i + 2], 16) for i in (1, 3, 5))
+    im = Image.new('RGB', (W_, H_), (238, 232, 214)); d = ImageDraw.Draw(im)
+    NAVY = (24, 34, 70)
+    for x0 in (0, W_ // 2):
+        d.rectangle((x0, 0, x0 + W_ // 2, 90), fill=NAVY)
+        f = ImageFont.truetype(SANS_B, 60); d.text((x0 + 40, 14), 'SUNBEAM ENAMEL', font=f, fill=(240, 230, 200))
+        d.rectangle((x0 + 40, 120, x0 + 300, 380), fill=c, outline=NAVY, width=6)
+        sz = 150
+        while ImageFont.truetype(LSERIF_B, sz).getlength(text) > 680: sz -= 4
+        d.text((x0 + 330, 140 + (150 - sz) // 2), text, font=ImageFont.truetype(LSERIF_B, sz), fill=NAVY)
+        d.text((x0 + 330, 330), 'No. 12  ONE U.S. GALLON  FIRE APPARATUS', font=ImageFont.truetype(SANS_B, 30), fill=NAVY)
+    im.save(os.path.join(OUT, fname))
 
 
 # ---------------------------------------------------------------- 3. wear mask, tiles every 2 m: R soot, G water stains, B stone chips
@@ -190,5 +284,7 @@ def make_comp_label(orient):
 
 
 if __name__ == '__main__':
-    make_letters(); make_newspaper(); make_wear(); make_comp_label(os.environ.get('COMP_LABEL_ORIENT', 'cwf'))
+    make_letters(); make_newspaper(); make_kraft(); make_price_card(); make_van_decal()
+    make_can_label('LEMON YELLOW', '#E3EA22', 'can_lemon.png'); make_can_label('LIME', '#E3EA22', 'can_lime.png'); make_can_label('RED', '#D3141C', 'can_red.png')
+    make_wear(); make_comp_label(os.environ.get('COMP_LABEL_ORIENT', 'cwf'))
     print('TEX_DONE', sorted(os.listdir(OUT)))

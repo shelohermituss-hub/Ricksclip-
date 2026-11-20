@@ -1,0 +1,98 @@
+{
+ "HERO half state, plan row 4 framing": {
+  "sec": "16.8 s/frame",
+  "edge_density": 0.0736,
+  "regions": 529,
+  "fine_regions": 484
+ },
+ "2.7x crop: card, Gazette, sirens, kraft": {
+  "sec": "16.8 s/frame (crop)",
+  "edge_density": 0.1599,
+  "regions": 1054,
+  "fine_regions": 952
+ },
+ "windscreen: price card + Gazette pane": {
+  "sec": "21.5 s/frame",
+  "edge_density": 0.1751,
+  "regions": 672,
+  "fine_regions": 590
+ },
+ "HERO side: lemon runs, kraft tyre": {
+  "sec": "31.0 s/frame",
+  "edge_density": 0.1172,
+  "regions": 599,
+  "fine_regions": 520
+ },
+ "dusk roof: 4 sirens + beacon row (wave)": {
+  "sec": "21.8 s/frame",
+  "edge_density": 0.0924,
+  "regions": 606,
+  "fine_regions": 541
+ },
+ "Chief's ENGINE No. 2, aged, bay 2": {
+  "sec": "11.9 s/frame",
+  "edge_density": 0.0466,
+  "regions": 580,
+  "fine_regions": 539
+ },
+ "ENGINE No. 2 door: old chrome, soot": {
+  "sec": "27.4 s/frame",
+  "edge_density": 0.1852,
+  "regions": 1112,
+  "fine_regions": 999
+ },
+ "LIGHT 35k (back) beside FULL 182k (front)": {
+  "sec": "16.4 s/frame",
+  "edge_density": 0.0541,
+  "regions": 640,
+  "fine_regions": 586
+ },
+ "DALLAS pair: No. 14 red 3 plasters, No. 22 lime": {
+  "sec": "20.0 s/frame",
+  "edge_density": 0.0639,
+  "regions": 598,
+  "fine_regions": 555
+ },
+ "TOY: light truck at 18 cm, worn": {
+  "sec": "18.5 s/frame",
+  "edge_density": 0.0555,
+  "regions": 1184,
+  "fine_regions": 1107
+ },
+ "MILK VAN Meadowbrook Dairy + hubcap, crate": {
+  "sec": "10.4 s/frame",
+  "edge_density": 0.0426,
+  "regions": 445,
+  "fine_regions": 402
+ },
+ "hubcap, milk bottles, crate": {
+  "sec": "15.4 s/frame",
+  "edge_density": 0.0259,
+  "regions": 1577,
+  "fine_regions": 1551
+ },
+ "scissors on velvet cushion on stool": {
+  "sec": "12.5 s/frame",
+  "edge_density": 0.0206,
+  "regions": 1268,
+  "fine_regions": 1240
+ },
+ "lunch box + lemon": {
+  "sec": "13.6 s/frame",
+  "edge_density": 0.0221,
+  "regions": 1646,
+  "fine_regions": 1586
+ },
+ "paint tins LEMON YELLOW / LIME / RED + mug": {
+  "sec": "19.0 s/frame",
+  "edge_density": 0.0568,
+  "regions": 1668,
+  "fine_regions": 1635
+ },
+ "2x crop: lemon runs over the red": {
+  "sec": "31.0 s/frame (crop)",
+  "edge_density": 0.1353,
+  "regions": 888,
+  "fine_regions": 778
+ }
+}

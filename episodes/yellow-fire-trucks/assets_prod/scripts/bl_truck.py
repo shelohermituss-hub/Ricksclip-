@@ -219,13 +219,118 @@ bpy.ops.mesh.primitive_uv_sphere_add(radius=0.045, segments=16, ring_count=10); 
 for c in kn.users_collection: c.objects.unlink(kn)
 col.objects.link(kn); kn.parent = root; kn.location = (bx - 0.01, 0, RZ + 0.01); kn.scale = (0.6, 1.0, 1.0); kn.data.materials.append(RIB); kn['phfd_part'] = 'ribbon'
 
+
+# ---------------------------------------------------------------- 5b. ROUND 2 (props-hero 2026-11-20): beacon ROW + four chrome sirens (plan rows 17-18),
+# the dealer's price card behind the passenger half of the windscreen (row 4; that half is NOT papered so the card reads in the half state)
+def r2(o, part):
+    o['r2'] = 1; o['phfd_part'] = part; return o
+def lathe_at(name, prof, mat, parent, loc, rot=(0, 0, 0), steps=32):
+    o = lathe(name, prof, mat, steps); o.parent = parent; o.location = loc; o.rotation_euler = rot; o['r2'] = 1; return o
+def box(name, size, mat, loc, parent, rot=(0, 0, 0)):
+    bm = bmesh.new(); bmesh.ops.create_cube(bm, size=1.0); bmesh.ops.scale(bm, vec=size, verts=bm.verts)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); o = bpy.data.objects.new(name, me); me.materials.append(mat)
+    col.objects.link(o); o.parent = parent; o.location = loc; o.rotation_euler = rot; o['r2'] = 1; return o
+def torus(name, R, r, mat, loc, parent, rot=(0, 0, 0)):
+    bm = bmesh.new(); segs, rs = 40, 10; rings = []
+    for i in range(segs):
+        a = 2 * math.pi * i / segs; rings.append([bm.verts.new(((R + r * math.cos(b)) * math.cos(a), (R + r * math.cos(b)) * math.sin(a), r * math.sin(b)))
+                                                   for b in [2 * math.pi * j / rs for j in range(rs)]])
+    for i in range(segs):
+        for j in range(rs): bm.faces.new((rings[i][j], rings[(i + 1) % segs][j], rings[(i + 1) % segs][(j + 1) % rs], rings[i][(j + 1) % rs]))
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    for pg in me.polygons: pg.use_smooth = True
+    o = bpy.data.objects.new(name, me); me.materials.append(mat); col.objects.link(o); o.parent = parent; o.location = loc; o.rotation_euler = rot; o['r2'] = 1; return o
+DARK = new_mat('siren_slot_dark', '#0b0b0c', 0.0, 0.8)
+CHR2 = new_mat('chrome_bright', '#f2f2f4', 1.0, 0.06)
+RUBBER = new_mat('rubber_black', '#141414', 0.0, 0.7)
+ROOF_TOP = 2.42
+# four mechanical sirens on the front edge of the flat cab roof, mouths forward (-X): stator drum with 16 port slots, three grille rings, hub,
+# motor can behind with cooling ribs, cast foot with four bolts on a rubber pad. Each its own pivot 'siren_<k>' (for sound-ring anchors).
+SIREN_Y = (-0.78, -0.27, 0.27, 0.78); SX, SZ = -2.40, ROOF_TOP + 0.125; RS = 0.088
+dg0 = bpy.context.evaluated_depsgraph_get()
+def roof_at(x, y):
+    hit, loc, *_ = sc.ray_cast(dg0, Vector((x, y, 5.0)), Vector((0, 0, -1))); return loc.z if hit else ROOF_TOP
+for k, yy in enumerate(SIREN_Y):
+    rz = min(roof_at(SX + dx, yy + dy) for dx in (-0.06, 0.12) for dy in (-0.07, 0.07))
+    sp = empty('siren_%d' % (k + 1), Vector((SX, yy, rz + RS + 0.072)), part='siren'); sp['r2'] = 1
+    X90 = (0, math.pi / 2, 0)
+    lathe_at('siren_drum', [(RS, -0.11), (RS + 0.006, -0.1), (RS + 0.006, 0.02), (RS, 0.03), (RS * 0.86, 0.035), (0.0, 0.035)], CHR2, sp, (0, 0, 0), X90, 40)
+    for j in range(16):   # port slots round the stator
+        a = 2 * math.pi * j / 16
+        box('siren_port', (0.05, 0.018, 0.008), DARK, (-0.075, (RS + 0.004) * math.cos(a), (RS + 0.004) * math.sin(a)), sp, (a, 0, 0))
+    for rr in (0.074, 0.05, 0.026): torus('siren_grille_ring', rr, 0.0045, CHR2, (-0.112, 0, 0), sp, X90)
+    for j in range(4):
+        a = math.pi / 4 + math.pi / 2 * j
+        box('siren_grille_bar', (0.006, 0.006, 0.16), CHR2, (-0.112, 0, 0), sp, (a, 0, 0))
+    cyl('siren_hub', 0.018, 0.02, CHR2, (-0.118, 0, 0), rot=X90, parent=sp, verts=20)['r2'] = 1
+    box('siren_mouth_dark', (0.004, 0.15, 0.15), DARK, (-0.104, 0, 0), sp)
+    lathe_at('siren_motor', [(0.0, 0.03), (0.072, 0.03), (0.075, 0.05), (0.075, 0.15), (0.06, 0.175), (0.03, 0.185), (0.0, 0.186)], CHR2, sp, (0, 0, 0), X90, 32)
+    for j in range(5): torus('siren_motor_rib', 0.077, 0.003, CHR2, (0.065 + 0.018 * j, 0, 0), sp, X90)
+    box('siren_foot', (0.16, 0.12, 0.06), CHR2, (0.03, 0, -RS - 0.03), sp)
+    box('siren_pad', (0.2, 0.15, 0.012), RUBBER, (0.03, 0, -RS - 0.066), sp)
+    for bx_ in (-0.05, 0.11):
+        for by_ in (-0.055, 0.055): cyl('siren_bolt', 0.008, 0.012, CHR2, (bx_, by_, -RS - 0.054), parent=sp, verts=6)['r2'] = 1
+    cyl('siren_cable', 0.006, 0.12, RUBBER, (0.12, 0, -RS - 0.02), rot=(0, 0.7, 0), parent=sp, verts=8)['r2'] = 1
+for o in list(col.objects):
+    if o.get('r2') and o.parent and o.parent.name.startswith('siren_'): o['phfd_part'] = o.get('phfd_part', 'siren_part')
+# the beacon ROW: a chrome light bar on two stanchions behind the old beacon, five rotating beacons (chrome base, mirror reflector + bulb inside a
+# ribbed red dome). Each beacon has its own pivot (beacon_row_<k>) and its own dome material (running wave, set_beacon(wave=...)).
+BXR, BY = -1.42, (-0.76, -0.38, 0.0, 0.38, 0.76)
+barp = empty('beacon_bar', Vector((BXR, 0, ROOF_TOP)), part='beacon_bar'); barp['r2'] = 1
+cyl('beacon_bar_tube', 0.022, 1.86, CHR2, (0, 0, 0.13), rot=(math.pi / 2, 0, 0), parent=barp, verts=20)['r2'] = 1
+for s_ in (-0.62, 0.62):
+    cyl('beacon_bar_post', 0.016, 0.12, CHR2, (0, s_, 0.06), parent=barp, verts=12)['r2'] = 1
+    box('beacon_bar_foot', (0.1, 0.06, 0.012), CHR2, (0, s_, 0.006), barp)
+    for bx_ in (-0.035, 0.035): cyl('beacon_bar_bolt', 0.007, 0.01, CHR2, (bx_, s_, 0.016), parent=barp, verts=6)['r2'] = 1
+for s_ in (-0.93, 0.93): cyl('beacon_bar_cap', 0.024, 0.02, CHR2, (0, s_, 0.13), rot=(math.pi / 2, 0, 0), parent=barp, verts=20)['r2'] = 1
+for k, yy in enumerate(BY):
+    bpk = empty('beacon_row_%d' % (k + 1), Vector((0, yy, 0.155)), parent=barp, part='beacon_row'); bpk['r2'] = 1; bpk.rotation_mode = 'XYZ'
+    lathe_at('beacon_row_base', [(0.0, 0.0), (0.075, 0.0), (0.078, 0.012), (0.074, 0.045), (0.066, 0.05), (0.0, 0.05)], CHR2, bpk, (0, 0, 0))
+    dm = dome.copy(); dm.name = 'beacon_row_dome_%d' % (k + 1); dm['phfd_role'] = 'beacon_row'
+    prof = [(0.066 + 0.003 * math.cos(i * 1.7), 0.05 + 0.012 * i) for i in range(11)] + [(0.06, 0.18), (0.045, 0.2), (0.02, 0.21), (0.0, 0.212)]
+    d_ = lathe_at('beacon_row_dome', prof, dm, bpk, (0, 0, 0), steps=36); d_['phfd_part'] = 'beacon_row_dome'
+    refl = lathe_at('beacon_row_reflector', [(0.0, 0.0), (0.02, 0.003), (0.04, 0.015), (0.052, 0.04), (0.056, 0.06)], CHR2, bpk, (0.0, 0, 0.115), (0, math.pi / 2, 0), 24)
+    cyl('beacon_row_bulb', 0.012, 0.03, new_mat('bulb_glass_%d' % k, '#fff6e0', 0.0, 0.1), (0, 0, 0.115), parent=bpk, verts=12)['r2'] = 1
+    cyl('beacon_row_motor', 0.02, 0.05, CHR2, (0, 0, 0.075), parent=bpk, verts=12)['r2'] = 1
+# the dealer's price card: on the dash, leaning on the inside of the passenger windscreen pane (+Y), 40 x 28 cm
+ws = bpy.data.objects.get('Object_82')
+ws_me = ws.data; dg0 = bpy.context.evaluated_depsgraph_get()
+def wsx(y, z):
+    best = None
+    for pg in ws_me.polygons:
+        c = pg.center
+        if abs(c.y - y) < 0.06 and abs(c.z - z) < 0.06 and (best is None or c.x < best.x): best = c.copy()
+    return best
+p0, p1 = wsx(0.38, 1.82), wsx(0.38, 2.12)
+up = (p1 - p0); up.y = 0; up.normalize(); inward = Vector((up.z, 0, -up.x)).normalized()
+if inward.x < 0: inward = -inward
+CW, CH = 0.56, 0.39
+cm = new_mat('price_card', (1, 1, 1, 1), 0.0, 0.55); cnt = cm.node_tree; cimg = cnt.nodes.new('ShaderNodeTexImage')
+cimg.image = bpy.data.images.load(os.path.join(TEX, 'price_card.png')); cimg.image.name = 'price_card'; cnt.links.new(cimg.outputs['Color'], bsdf(cm).inputs['Base Color'])
+base_c = p0 + inward * 0.04 - up * 0.01; base_c.y = 0.40
+bm = bmesh.new(); uvl = bm.loops.layers.uv.new()
+corn = [base_c + Vector((0, -CW / 2, 0)), base_c + Vector((0, CW / 2, 0)), base_c + Vector((0, CW / 2, 0)) + up * CH, base_c + Vector((0, -CW / 2, 0)) + up * CH]
+vs = [bm.verts.new(c) for c in corn]; f = bm.faces.new(vs)
+for lp, uv in zip(f.loops, ((1, 0), (0, 0), (0, 1), (1, 1))): lp[uvl].uv = uv     # read from the front (-X): +Y is the reader's left
+me = bpy.data.meshes.new('price_card'); bm.to_mesh(me); bm.free(); pc = bpy.data.objects.new('price_card', me); me.materials.append(cm)
+col.objects.link(pc); pc.parent = root; pc['r2'] = 1; pc['phfd_part'] = 'price_card'
+pc.modifiers.new('thick', 'SOLIDIFY').thickness = 0.003
+# split the windscreen: driver pane (-Y) gets the newspaper in the half state, passenger pane (+Y) stays clear for the card
+wsP = ws.copy(); wsP.data = ws.data.copy(); col.objects.link(wsP); wsP.name = 'windscreen_passenger'; ws.name = 'windscreen_driver'
+for ob, keep_neg in ((ws, True), (wsP, False)):
+    bm = bmesh.new(); bm.from_mesh(ob.data)
+    kill = [fc for fc in bm.faces if (fc.calc_center_median().y > 0) == keep_neg]
+    bmesh.ops.delete(bm, geom=kill, context='FACES'); bm.to_mesh(ob.data); bm.free()
+wsP['nomask'] = 1
+print('R2 sirens', len(SIREN_Y), 'beacon row', len(BY), 'card at', [round(v, 3) for v in base_c], 'up', [round(v, 2) for v in up])
+
 # ---------------------------------------------------------------- 6. masking roles (half state: paper + tape on glass, lamps, chrome nose, tyres)
 mask_n = 0
 for o in [o for o in col.objects if o.type == 'MESH']:
     ms = mats(o)
-    if o.get('phfd_part') == 'beacon_dome' or o.name.startswith(('bell', 'ribbon')): continue
+    if o.get('phfd_part') == 'beacon_dome' or o.name.startswith(('bell', 'ribbon')) or o.get('r2') or o.get('nomask'): continue
     if any(m in ('Glass', 'headlight_glass', 'orange_light', 'tail_light', 'tyre_black') for m in ms) or (o['orig_parent'].split('_')[0] in ('Cube.268', 'Cube.290') and 'Metallic' in ms):
-        o['mask'] = 1; mask_n += 1
+        o['mask'] = 2 if 'tyre_black' in ms else 1; mask_n += 1   # 2 = brown kraft paper on the tyres (round 2: newspaper read as white-walls)
 print('MASKED parts', mask_n)
 
 # ---------------------------------------------------------------- 7. anchors (named empties, read by assets.js and the final scene)
@@ -241,7 +346,15 @@ AN = {'anchor_cab_door': (dpiv.location.x + 0.45, dpiv.location.y - 0.05, 1.15),
       'anchor_bell': tuple(bell_base + Vector((0, 0, AX - 0.15))),
       'anchor_beacon': tuple(bpiv.location + Vector((0, 0, 0.12))),
       'anchor_nose': (mn.x, 0.0, 1.0),
-      'anchor_ribbon_bow': (bx - 0.05, 0.0, RZ)}
+      'anchor_ribbon_bow': (bx - 0.05, 0.0, RZ),
+      'anchor_price_card': tuple(base_c + up * (CH / 2)),
+      'anchor_siren_row': (SX - 0.13, 0.0, SZ),
+      'anchor_beacon_row': (BXR, 0.0, ROOF_TOP + 0.3)}
+# cross plasters (plan rows 31-34, Dallas): three spots on the driver's side, found by a ray from the side onto the body
+dg1 = bpy.context.evaluated_depsgraph_get(); PL = {}
+for k, (px, pz) in enumerate(((-1.25, 1.02), (2.45, 1.05), (-2.55, 0.95), (0.9, 0.95))):
+    hit, loc, nrm, *_ = sc.ray_cast(dg1, Vector((px, -3.0, pz)), Vector((0, 1, 0)))
+    if hit: AN['anchor_plaster_%d' % (k + 1)] = tuple(loc); PL['plaster_%d' % (k + 1)] = [round(v, 3) for v in nrm]
 for k, v in AN.items(): empty(k, Vector(v), part='anchor')
 
 # ---------------------------------------------------------------- 8. apply modifiers, export the GLB (simple materials), then the Blender-only shading
@@ -278,14 +391,21 @@ def hook(m, role):
 hook(body, 'paint'); hook(let, 'letters')
 paper = new_mat('mask_paper', (1, 1, 1, 1), 0.0, 0.85, role='mask'); nt = paper.node_tree; p = bsdf(paper)
 tc = nt.nodes.new('ShaderNodeTexCoord'); tc.object = root
-mp = nt.nodes.new('ShaderNodeVectorMath'); mp.operation = 'SCALE'; mp.inputs['Scale'].default_value = 1 / 0.8; nt.links.new(tc.outputs['Object'], mp.inputs[0])
+mp = nt.nodes.new('ShaderNodeVectorMath'); mp.operation = 'SCALE'; mp.inputs['Scale'].default_value = 1 / 1.2; nt.links.new(tc.outputs['Object'], mp.inputs[0])
 ti = nt.nodes.new('ShaderNodeTexImage'); ti.image = bpy.data.images.load(os.path.join(TEX, 'newspaper.png')); ti.projection = 'BOX'; ti.projection_blend = 0.2
 nt.links.new(mp.outputs[0], ti.inputs['Vector']); nt.links.new(ti.outputs['Color'], p.inputs['Base Color'])
+kraft = paper.copy(); kraft.name = 'mask_kraft'
+for n in kraft.node_tree.nodes:
+    if n.type == 'TEX_IMAGE': n.image = bpy.data.images.load(os.path.join(TEX, 'kraft.png'))
+    if n.type == 'VECTOR_MATH': n.inputs['Scale'].default_value = 1 / 0.6
+paper.use_fake_user = True; kraft.use_fake_user = True   # round 2 FIX: with no user they were not saved in truck.blend, so set_masking put NO material (plain white) on the masked parts
+for lt in ('truck_letters_e2', 'truck_letters_dal14', 'truck_letters_dal22'):   # letter decals of the other trucks, packed for truck_api.set_letters
+    im_ = bpy.data.images.load(os.path.join(TEX, lt + '.png')); im_.name = lt; im_.use_fake_user = True
 T.set_paint(root, 'red')
 bpy.ops.file.pack_all()
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'truck.blend'), compress=True)
 json.dump(dict(size=[round(v, 3) for v in SIZE], tris=tris, wheels={k: dict(c=[round(x, 3) for x in v[1]], r=round(v[2], 3)) for k, v in wheels.items()},
                door_hinge=[round(x, 3) for x in dpiv.location], beacon=[round(x, 3) for x in bpiv.location], bell=[round(x, 3) for x in bell_base],
-               anchors={k: [round(x, 3) for x in v] for k, v in AN.items()}, masked=mask_n, ribbon_z=RZ, roof_z=paint_nodes.ROOF_Z, cab_x=paint_nodes.CAB_X),
+               anchors={k: [round(x, 3) for x in v] for k, v in AN.items()}, plaster_normals=PL, sirens=list(SIREN_Y), beacon_row=list(BY), masked=mask_n, ribbon_z=RZ, roof_z=paint_nodes.ROOF_Z, cab_x=paint_nodes.CAB_X),
           open(os.path.join(OUT, 'truck_meta.json'), 'w'), indent=1)
 print('TRUCK_DONE')

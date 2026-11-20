@@ -10,7 +10,8 @@ SOOT = (0.024, 0.019, 0.016, 1)       # #2b2521 linear
 PRIMER = (0.20, 0.19, 0.175, 1)       # #7d7a74 linear
 ROOF = (0.888, 0.863, 0.761, 1)       # #F3EFE2 linear
 ROOF_Z, CAB_X = 2.12, -0.80           # white roof: above ROOF_Z and in front of CAB_X (the cab's rear wall)
-EDGE_W, RUN_COLS = 0.38, 28.0
+EDGE_W, RUN_COLS = 0.38, 9.0          # round 2: 9 run columns per metre (was 28: runs 3 mm wide, invisible at a medium shot)
+RUN_P, RUN_W, RUN_BEAD, RUN_L0, RUN_L1, RUN_NEAR, RUN_GAP, RUN_Z0, RUN_Z1 = 0.35, 0.16, 0.18, 0.3, 0.6, 1.1, 0.2, 0.8, 0.8
 
 
 class NB:
@@ -44,7 +45,7 @@ def build_group(wear_img):
     I = g.interface
     for nm, t, d in (('colA', 'NodeSocketColor', (0.65, 0.007, 0.011, 1)), ('colB', 'NodeSocketColor', (0.65, 0.007, 0.011, 1)), ('edge', 'NodeSocketFloat', 0.3),
                      ('drain', 'NodeSocketFloat', 0.0), ('drainA', 'NodeSocketFloat', 1.0), ('drainB', 'NodeSocketFloat', 1.0), ('wear', 'NodeSocketFloat', 0.6),
-                     ('roofOn', 'NodeSocketFloat', 1.0), ('P', 'NodeSocketVector', (0, 0, 0))):
+                     ('roofOn', 'NodeSocketFloat', 1.0), ('wscale', 'NodeSocketFloat', 1.0), ('chipZ', 'NodeSocketFloat', 0.9), ('P', 'NodeSocketVector', (0, 0, 0))):
         s = I.new_socket(nm, in_out='INPUT', socket_type=t)
         if t != 'NodeSocketVector': s.default_value = d
     for nm, t in (('Color', 'NodeSocketColor'), ('Rough', 'NodeSocketFloat'), ('CoverB', 'NodeSocketFloat')):
@@ -65,12 +66,12 @@ def build_group(wear_img):
     colx = b.m('FLOOR', b.m('MULTIPLY', x, RUN_COLS)); side = b.m('SIGN', y)
     wn = g.nodes.new('ShaderNodeTexWhiteNoise'); wn.noise_dimensions = '3D'; b.link(b.vec(colx, side, 0.0), wn.inputs['Vector'])
     h = b.sep(wn.outputs['Color'])
-    on = b.m('GREATER_THAN', wn.outputs['Value'], 0.78)
+    on = b.m('GREATER_THAN', wn.outputs['Value'], RUN_P)
     fx = b.m('ABSOLUTE', b.m('SUBTRACT', b.m('FRACT', b.m('MULTIPLY', x, RUN_COLS)), 0.5))
-    zs = b.m('ADD', 0.75, b.m('MULTIPLY', h[0], 1.05)); ln = b.m('ADD', 0.12, b.m('MULTIPLY', h[1], 0.38)); ze = b.m('SUBTRACT', zs, ln)
-    bead = b.m('SUBTRACT', 1.0, b.m('DIVIDE', b.m('ABSOLUTE', b.m('SUBTRACT', z, ze)), 0.03), clamp=True)
-    width = b.m('ADD', 0.10, b.m('MULTIPLY', bead, 0.16))
-    near = b.m('MULTIPLY', b.m('LESS_THAN', x, gi.outputs['edge']), b.m('GREATER_THAN', x, b.m('SUBTRACT', gi.outputs['edge'], 0.45)))
+    zs = b.m('ADD', RUN_Z0, b.m('MULTIPLY', h[0], RUN_Z1)); ln = b.m('ADD', RUN_L0, b.m('MULTIPLY', h[1], RUN_L1)); ze = b.m('SUBTRACT', zs, ln)
+    bead = b.m('SUBTRACT', 1.0, b.m('DIVIDE', b.m('ABSOLUTE', b.m('SUBTRACT', z, ze)), 0.035), clamp=True)
+    width = b.m('ADD', RUN_W, b.m('MULTIPLY', bead, RUN_BEAD))
+    near = b.m('MULTIPLY', b.m('LESS_THAN', x, b.m('SUBTRACT', gi.outputs['edge'], RUN_GAP)), b.m('GREATER_THAN', x, b.m('SUBTRACT', gi.outputs['edge'], RUN_NEAR)))
     inz = b.m('MULTIPLY', b.m('LESS_THAN', z, zs), b.m('GREATER_THAN', z, b.m('SUBTRACT', ze, 0.02)))
     run = b.m('MULTIPLY', b.m('MULTIPLY', on, b.m('LESS_THAN', fx, width)), b.m('MULTIPLY', near, inz))
     cover = b.m('MAXIMUM', t, b.m('MAXIMUM', dots, run))
@@ -82,13 +83,13 @@ def build_group(wear_img):
     c = b.mix(c, ROOF, roof)
     # --- wear (wear.png, box projection, tile 2 m): R soot low on the body, G water stains, B stone chips below 0.9 m
     tc = b.m  # noqa
-    sc = g.nodes.new('ShaderNodeVectorMath'); sc.operation = 'SCALE'; b.link(P, sc.inputs[0]); sc.inputs['Scale'].default_value = 0.5
+    sc = g.nodes.new('ShaderNodeVectorMath'); sc.operation = 'SCALE'; b.link(P, sc.inputs[0]); b.link(b.m('MULTIPLY', gi.outputs['wscale'], 0.5), sc.inputs['Scale'])
     im = g.nodes.new('ShaderNodeTexImage'); im.image = wear_img; im.projection = 'BOX'; im.projection_blend = 0.3; im.image.colorspace_settings.name = 'Non-Color'
     b.link(sc.outputs[0], im.inputs['Vector']); R, G, Bc = b.sep(im.outputs['Color'])
     wear = gi.outputs['wear']
     soot = b.m('MULTIPLY', b.m('MULTIPLY', R, b.m('SUBTRACT', 1.0, b.sstep(0.25, 1.0, z))), b.m('MULTIPLY', wear, 0.7))
     stain = b.m('MULTIPLY', b.m('MULTIPLY', G, b.m('LESS_THAN', z, 1.9)), b.m('MULTIPLY', wear, 0.55))
-    chips = b.m('MULTIPLY', b.m('MULTIPLY', b.m('GREATER_THAN', Bc, 0.5), b.m('LESS_THAN', z, 0.9)), b.m('MULTIPLY', wear, 0.8))
+    chips = b.m('MULTIPLY', b.m('MULTIPLY', b.m('GREATER_THAN', Bc, 0.5), b.m('LESS_THAN', z, gi.outputs['chipZ'])), b.m('MULTIPLY', wear, 0.8))
     lighter = g.nodes.new('ShaderNodeMix'); lighter.data_type = 'RGBA'; lighter.blend_type = 'SCREEN'; lighter.inputs['Factor'].default_value = 0.35
     b.link(c, lighter.inputs[6]); lighter.inputs[7].default_value = (0.55, 0.53, 0.5, 1)
     c = b.mix(c, lighter.outputs[2], stain)

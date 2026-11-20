@@ -16,6 +16,16 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-20 — Masking paper rendered plain white: the paper material was never saved in truck.blend (yellow-fire-trucks, bl_truck.py) — FERMÉ
+- Problem: round 1 sheet (props/ASSET_PACK.jpg) showed the masking as blank white paper and white-wall tyres; the newspaper print never appeared.
+- Cause: `mask_paper` had no user when truck.blend was saved (it is only put on parts by truck_api.set_masking at render time), so Blender dropped it; set_masking then assigned `None` = no material = plain white.
+- Fix: `paper.use_fake_user = True` (and `mask_kraft`) in bl_truck.py; set_masking asserts the material exists.
+- Guard: the assert in truck_api.set_masking (a render with masking fails loudly if the material is missing).
+- Proof: assets_prod/proof/tiles_r2/r2_hero_card_close.png: the Pine Hollow Gazette page and the brown kraft tyres show.
+## 2026-11-20 — Sketchfab downloads came back empty (build_assets.sh fetch_sketchfab) — FERMÉ
+- Problem: 9 new assets "downloaded" as missing files. Cause 1: `file "$tmp/m.zip" | grep -qi zip` matched the FILE NAME, so a plain .glb was sent to unzip and lost. Cause 2: after ~4 downloads the API answers 429 "Too many requests".
+- Fix: `file -b ... | grep -qi "zip archive"`; fetch_sketchfab retries up to 8 times with a 60 s wait. Guard: the retry loop prints each wait; `file -b` never prints the name. Proof: all 9 GLBs fetched (logs in the session), sizes in assets/ASSETS.md.
+
 ## 2026-11-20 — The held-prop fist read dark maroon, not ink (yellow-fire-trucks, kit held3d) — FERMÉ
 - Problem: the round fist on the asset gun measured (31, 2, 7) beside the card arm (42, 26, 29) (sets/_asset_test kit_gun_fist).
 - Cause: film.js h3Fist draws ink #2a1a1f with toneMapped:false, but the final post pass tone-maps every pixel OUTSIDE the card mask with neutral(); for dark colours it subtracts x - 6.25x^2 (x = min channel) from all channels: linear (.0232,.0103,.0137) -> (.0136,.0007,.0041) = sRGB (31,2,8). The fist is not in the card mask.

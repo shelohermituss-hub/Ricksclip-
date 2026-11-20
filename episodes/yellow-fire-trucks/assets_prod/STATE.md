@@ -1,40 +1,29 @@
-# STATE: production asset pack (props-hero, round 1, 2026-11-20). Proof sheet: `props/ASSET_PACK.jpg` (looked at).
+# STATE: production asset pack (props-hero, round 2, 2026-11-20). Proof sheets: `props/ASSET_PACK.jpg` (round 1), `props/PROPS_R2.jpg` (round 2, looked at).
 
-## NOT done / weak (seen in the sheet)
-- Era: the truck is the 1940s ALF (long-nose closed cab), not the plan's 1970s cab-forward. No dealer's price card, no four sirens, no beacon ROW (plan rows 4, 17, 18): the asset has ONE roof beacon, one bumper siren, roof lamps. Not added this round.
-- Sprayed edge: reads as a soft speckled gradient; the lemon RUNS are in the shader but hardly visible at tile size (4x crop shows none clearly). Newspaper print on the masking is not legible at tile size (reads as white paper; tyres read like white-walls).
-- Dusk tiles use the Poly Haven industrial-sunset HDRI: pale evening, NOT the LOOK_BIBLE plum/apricot (light is the look dept's). The paint drain itself works (red -> grey-plum, lemon stays light).
-- Compressor is still a modern 12 V mini compressor (shape); gun alone tile floats 16 cm above the concrete (product shot, shadow below). Gun reads dark grey in the kit fist tile (aluminium with prop_kit's studio env).
-- Speckle/run noise differs between Blender (Blender noise) and three.js (own GLSL hash): same rules and constants, not pixel-equal.
-- No phone-size (360 px) check, no Rick frame (none in repo). Sheet labels overrun into the next tile in two places.
-- Blender tiles have no yard set (concrete + HDRI only); the kit tile has the asset-test yard.
+## NOT done / weak (seen in the round-2 tiles)
+- PRIORITY 3 not started (head mirror, trial-lens case, chalk, slate boards RED/LIME + tallies + "UP TO 3x", 4-leaf calendar, ladder sections, red ball + five lost things, order sheet REPAINT: RED).
+- three.js side: assets.js extended (kraft tyres, runs, beacon wave, setExtras/setLetters/setAge, light truck, buildProp2, buildMilkBottle, buildMug) and passes `node --check`, but NO kit still was rendered this round: unverified in a picture. Toy truck not wired in three.js (needs uniforms wscale/chipZ).
+- Chief's ENGINE No. 2 reads almost as new at a wide shot: older chrome + wear 1.0 are subtle; soot is not visible. Needs stronger soot / faded paint.
+- Toy truck: geometry is a true 18 cm miniature, but on the yard concrete it reads full-size (no scale cue, no depth of field) and the tin wear is not visible.
+- Lunch box (built, 880 tris): the dome has OPEN ENDS (no end caps), reads glossy plastic, a latch reads as a white square; the lemon sits against the handle. Lunch box and milk bottle (built) replace downloads that were modern (plastic food box, plastic jug). Lunch box is plain: no initials, no dents.
+- Missing story marks: lemon sticker, MAYOR engraving + cut-ribbon end on the scissors, mug chip/crest/lemon print, bottle crack, van dented wing + bare hub (asset wheel keeps its cap), air horns in a row (row 17), plaster pop.
+- Paint runs widened (3.5 cm, bead 7.5 cm); water-stain streaks (wear G) on the red also read as pale drips: possible confusion with the runs.
+- Dusk light still the Poly Haven HDRI (look dept owns plum/apricot). No Rick frame in repo; no phone-size check done.
 
-## Files (sources committed; out/, build/, logs/, proof tiles git-ignored and rebuilt)
-- `build_assets.sh` (re-runnable: re-downloads missing files, extracts textures, PIL edits, builds GLB + .blend; `--proof` adds tiles + sheet). Ends BUILD_ASSETS_END / PROOF_END. Whole run here: about 4 min.
-- `scripts/bl_extract.py` (textures + object list), `tex_make.py` (PIL, outside Blender: truck_letters.png, newspaper.png, wear.png, comp_label.png), `paint_nodes.py` (node group PHFD_paint), `bl_truck.py`, `bl_props.py`, `truck_api.py` + `props_api.py` (Blender controls for the final: append, set_paint, set_wheels, set_beacon, set_door, set_bell, air_hose), `bl_proof.py`, `sheet.py`.
-- `out/truck.glb` 27.5 MB 142,792 tris; `out/truck.blend` (packed); `out/gun.glb/.blend` 31,096 tris; `out/compressor.glb/.blend` 24,612 tris; `out/truck_meta.json`, `props_meta.json` (pivots, anchors, sizes).
-- three.js: `sets/assets.js` (buildTruck async, setPaint/setWheels/setBeacon/setDoor/setBell, anchors; buildSprayGun (held3d, sync: GLBs preloaded by top-level await), buildCompressor, buildAirHose, hosePoints). `sets/assets_proof_yard.js` = PROOF set only. `vendor/` = GLTFLoader (three r165, imports /kit).
-- Proof: `proof/run_kit.sh`, `proof/kit/build_kit.py` (symlinks sets, assets_prod), `proof/numbers.json`.
+## Files (sources committed by the lead; out/, build/, logs/, proof tiles git-ignored and rebuilt)
+- `build_assets.sh` now also: 9 new Sketchfab fetches (retry on 429), `scripts/bl_light.py` (light truck), `scripts/bl_props2.py` (van, hubcap, bottle, crate, lunch box, lemon, 3 paint tins, mug, ribbon set, plaster), `--proof` adds `scripts/bl_proof2.py` (groups hero, fleet, props) + `scripts/sheet2.py` -> props/PROPS_R2.jpg.
+- `bl_truck.py` section 5b: 4 sirens, beacon bar + 5 beacons, price card, split windscreen (driver pane papered, passenger pane clear), plaster anchors; masking 2 = kraft on tyres; `mask_paper`/`mask_kraft` fake users (LECONS).
+- `paint_nodes.py`: RUN_* constants (runs visible at medium), inputs `wscale`, `chipZ` (toy). GLSL twin in `sets/assets.js` uses the same constants.
+- `truck_api.py`: set_beacon(wave=), set_extras, set_letters, set_age (call AFTER set_paint: set_paint resets wear), kraft masking. `tex_make.py`: newspaper 2048 (masthead, headlines, ruled columns), kraft, price_card, 4 letter decals (e1, e2, dal14, dal22), van_decal, 3 can labels.
+- out/: truck.glb 28.3 MB 181,840 tris; truck_light.glb/.blend 35,042 tris; milk_van 18,572; hubcap 1,536; milk_bottle 1,712; milk_crate 2,280; lunch_box 880; lemon 7,492; paint_tin_* 31,784; mug 12,288; ribbon_set 67,488; plaster 140 (props2_meta.json).
 
 ## Frames
-Truck: metres, front -X, driver side -Y (three: +Z), Z up, origin on the ground, 7.59 x 2.51 x 2.66 m, wheel r 0.502 at x -1.68 / 2.02. Gun: nozzle +X, origin = grip. Compressor: origin on the ground. Plan coords = Blender coords.
+Truck as round 1 (front -X, driver -Y, Z up, origin on the ground, 7.59 m). Sirens at x -2.40 (y +-0.27, +-0.78), beacon bar x -1.42 (5 beacons y 0, +-0.38, +-0.76). Card on the dash behind the +Y pane. Milk van: front -X, 5.40 m. Props: origin on the ground, Z up.
 
-## Numbers (measured here, 4 CPU, no GPU; proof/numbers.json)
-- Blender Cycles 32 spp + OIDN, 800x600: truck tiles 10.7-12.4 s, door close-up 20.7 s, gun 10.2 s, compressor+hose 10.6 s (open .blend once per process; truck build 4 s).
-- three.js kit 800x600: truck 1.0 s/frame, gun in fist 1.2 s (second frame); GLB load 0.5-0.6 s.
-- Edge density (detail_density.py on 400x300 tiles): Blender truck wide 0.046-0.061 (empty sky + ground), kit truck same camera 0.094, door close-up 0.182, lettering crop 0.160, fist 0.153, bell+bow crop 0.089, gun alone 0.032, compressor+hose 0.023.
-
-## LECONS (for LECONS_TECHNIQUES.md, the lead copies) 
-### 2026-11-20 — The held-prop fist read dark maroon, not ink (yellow-fire-trucks, kit held3d) — FERMÉ
-- Problem: the round fist on the asset gun measured (31, 2, 7) beside the card arm (42, 26, 29) (sets/_asset_test kit_gun_fist).
-- Cause: film.js h3Fist draws ink #2a1a1f with toneMapped:false, but the final post pass tone-maps every pixel OUTSIDE the card mask with neutral(); for dark colours it subtracts x - 6.25x^2 (x = min channel) from all channels: linear (.0232,.0103,.0137) -> (.0136,.0007,.0041) = sRGB (31,2,8). The fist is not in the card mask.
-- Fix: sets/assets.js inkFist(): an onBeforeRender on each fist mesh pre-compensates c = t + (sqrt(t_min/6.25) - t_min) (flat .04 above .08), once per colour set. Proper fix for the kit owner: draw held3d_fist meshes white in the mask pass (film.js swaps loop) so they skip neutral().
-- Guard: the compensation is in the prop module every held3d asset uses; numbers check: fist pixel == arm pixel.
-- Proof: proof/kit/stills/kit_gun_fist/f_00000.png: fist (42,25,28) x294 px = arm (42,25,28).
-### 2026-11-20 — A '#' or '//' comment pasted mid-line ate the statements after it (bl_truck.py, assets.js) — FERMÉ
-- Problem: pivots did not hold their meshes (door and beacon stayed on the root, data shifted); the fist fix did nothing. Cause: a sed/replace appended a comment in the middle of a multi-statement line (REGLES 4 already warns). Fix: comment on its own line. Guard: print parent names after the build (DOOR/BEACON lines in logs/truck.log); grep for '; *#' and '; *//' lines before a render. Proof: door_driver now parents 6 meshes (dbg in logs), sheet shows the door.
-### 2026-11-20 — Still rendered before the GLB's helper textures loaded: black masking paper (assets.js) — FERMÉ
-- Cause: TextureLoader.load is async, the kit renders frame 0 at once. Fix: await loadAsync before buildTruck returns. Proof: kit tile shows the papered glass and tyres.
+## Numbers (4 CPU, Cycles 32 spp + OIDN, 800x600; proof/numbers_r2.json has every tile)
+- s/frame: hero 16.8-31.0, Chief 11.9/27.4, light-vs-full 16.4, Dallas 20.0, toy 18.5, van 10.4, hubcap+bottles 15.4, ribbon set 12.5, lunch box 13.6, tins+mug 19.0.
+- Edge density (400x300 tiles): hero medium 0.074, card crop 0.160, windscreen 0.175, runs side 0.117, roof dusk 0.092, Chief wide 0.047, Chief door 0.185, Dallas 0.064, van 0.043, small props 0.021-0.057.
 
 ## Open for the lead
-- Kit owner: put held3d fists in the character mask (film.js) and drop inkFist. Look dept: dusk light for Blender (plum/apricot), yard set in Blender. Plan: accept the 1940s cab or ask for the missing gags (price card, sirens x4, beacon row) as additions on the asset.
+- three.js kit tile of round 2 (assets.js changes unverified in a picture). Look dept: dusk light. Set-builder: the station needs bay 2 for ENGINE No. 2.
+- Chief's truck aging and toy scale cue need one more round. Accept the built lunch box / bottle (downloads were modern) or ask for another search.

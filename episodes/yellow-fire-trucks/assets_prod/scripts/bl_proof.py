@@ -8,9 +8,10 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.append(HERE)
 import truck_api as T, props_api as PA
 
 mode, AP, OUTD = sys.argv[sys.argv.index('--') + 1:][:3]
-rest = sys.argv[sys.argv.index('--') + 4:]; W, H = (int(rest[0]), int(rest[1])) if len(rest) >= 2 else (800, 600)
+rest = sys.argv[sys.argv.index('--') + 4:]; W, H = (int(rest[0]), int(rest[1])) if len(rest) >= 2 and rest[0].isdigit() else (800, 600)
 PH = os.path.join(AP, '..', 'assets', 'polyhaven') + '/'
 os.makedirs(OUTD, exist_ok=True)
+# round 2: bl_proof2.py imports the helpers below (yard, light, camera, setup_render, shot); the stills of round 1 run only as the main script
 
 
 def yard(size, tile):
@@ -61,7 +62,9 @@ def shot(name):
 
 
 times = {}
-if mode == 'truck':
+if __name__ != '__main__': mode = 'none'
+if mode == 'none': pass
+elif mode == 'truck':
     bpy.ops.wm.open_mainfile(filepath=os.path.join(AP, 'out', 'truck.blend'))
     setup_render(); yard(80, 4.0)
     root = bpy.data.objects['TRUCK']; meta = json.load(open(os.path.join(AP, 'out', 'truck_meta.json')))
@@ -92,5 +95,6 @@ else:
     A = bpy.data.objects['anchor_outlet'].matrix_world.translation.copy(); B = bpy.data.objects['anchor_air_inlet'].matrix_world.translation.copy()
     PA.air_hose(A, B)
     camera((1.2, -2.3, 1.05), (0.45, -0.2, 0.25), 32); times['bl_comp_hose'] = shot('bl_comp_hose')
-json.dump(times, open(os.path.join(OUTD, 'times_%s.json' % mode), 'w'), indent=1)
-print('PROOF_END', mode)
+if mode != 'none':
+    json.dump(times, open(os.path.join(OUTD, 'times_%s.json' % mode), 'w'), indent=1)
+    print('PROOF_END', mode)

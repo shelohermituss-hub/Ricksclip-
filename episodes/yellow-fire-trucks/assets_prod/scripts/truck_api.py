@@ -77,12 +77,13 @@ def set_paint(root, paint='red', edge=0.3, drain=0.0, masking=None, letters='ove
 
 
 def set_masking(root, on):
-    paper = bpy.data.materials.get('mask_paper')
+    paper = bpy.data.materials.get('mask_paper'); kraft = bpy.data.materials.get('mask_kraft') or paper
+    assert paper is not None, 'mask_paper missing from the .blend (needs use_fake_user, LECONS 2026-11-20)'
     for o in _objs(root):
         if o.type != 'MESH' or not o.get('mask'): continue
         if on:
             if 'mask_orig' not in o: o['mask_orig'] = o.material_slots[0].material.name
-            for sl in o.material_slots: sl.material = paper
+            for sl in o.material_slots: sl.material = kraft if o.get('mask') == 2 else paper
         elif 'mask_orig' in o:
             for sl in o.material_slots: sl.material = bpy.data.materials[o['mask_orig']]
 
@@ -97,9 +98,17 @@ def set_wheels(root, metres):
             o.rotation_euler.y = -metres / o['radius']   # rolls forward (-X) for positive metres (axle along Y)
 
 
-def set_beacon(root, on=True, angle_deg=0.0):
+def set_beacon(root, on=True, angle_deg=0.0, wave=None):
+    """wave: None = every beacon of the row steady on/off; a number (radians) = the running pulse of plan row 18 (beacon k peaks at wave = k * 0.9)."""
     b = _find(root, 'beacon')
     if b: b.rotation_euler.z = math.radians(angle_deg)
+    for o in _objs(root):
+        if o.get('phfd_part') == 'beacon_row':
+            k = int(o.name.split('.')[0].split('_')[-1]); o.rotation_euler.z = math.radians(angle_deg + 47 * k)
+        if o.type == 'MESH' and o.get('phfd_part') == 'beacon_row_dome':
+            k = int(o.parent.name.split('.')[0].split('_')[-1]); lvl = (1.0 if wave is None else max(0.0, math.cos(wave - 0.9 * k)) ** 2) if on else 0.0
+            bs = next((n for n in o.material_slots[0].material.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None)
+            if bs: bs.inputs['Emission Strength'].default_value = 8.0 * lvl
     m = bpy.data.materials.get('beacon_dome')
     for o in _objs(root):
         if o.type == 'MESH' and o.get('phfd_part') == 'beacon_dome':
@@ -116,3 +125,44 @@ def set_door(root, deg):
 def set_bell(root, deg):
     b = _find(root, 'bell_swing')
     if b: b.rotation_euler.y = math.radians(deg)
+
+
+def set_extras(root, sirens=4, beacon_row=True, price_card=None):
+    """The gag gear of plan rows 17-18 (the hero truck only): sirens 0..4, the beacon row on/off, the dealer's card."""
+    for o in _objs(root):
+        nm = o.name.split('.')[0]
+        if nm.startswith('siren_') and o.type == 'EMPTY':
+            hide = int(nm.split('_')[1]) > sirens
+            for c in _objs(o): c.hide_render = c.hide_viewport = hide
+        if nm == 'beacon_bar':
+            for c in _objs(o): c.hide_render = c.hide_viewport = not beacon_row
+        if nm == 'price_card' and price_card is not None: o.hide_render = o.hide_viewport = not price_card
+
+
+def set_letters(root, which='truck_letters'):
+    """'truck_letters' (ENGINE No. 1), 'truck_letters_e2' (the Chief's ENGINE No. 2), 'truck_letters_dal14' / 'truck_letters_dal22' (Dallas pair)."""
+    img = bpy.data.images[which]
+    for o in _objs(root):
+        for sl in getattr(o, 'material_slots', []):
+            m = sl.material
+            if m and m.get('phfd_role') == 'letters':
+                for n in m.node_tree.nodes:
+                    if n.type == 'TEX_IMAGE': n.image = img
+
+
+def set_age(root, age=1.0):
+    """The Chief's older pumper: duller, yellowed chrome and brass (own copies), more soot, older paint (wear up)."""
+    done = {}
+    for o in _objs(root):
+        for sl in getattr(o, 'material_slots', []):
+            m = sl.material
+            if not m or m.get('phfd_role') or m.name.startswith('mask_'): continue
+            bs = next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None) if m.node_tree else None
+            if not bs or bs.inputs['Metallic'].default_value < 0.5 or bs.inputs['Metallic'].links: continue
+            if m.name not in done:
+                k = m.copy(); k.name = m.name + '_old'; kb = next(n for n in k.node_tree.nodes if n.type == 'BSDF_PRINCIPLED')
+                kb.inputs['Roughness'].default_value = min(0.6, kb.inputs['Roughness'].default_value + 0.22 * age)
+                c = kb.inputs['Base Color'].default_value; kb.inputs['Base Color'].default_value = (c[0] * (1 - .25 * age), c[1] * (1 - .3 * age), c[2] * (1 - .42 * age), 1)
+                done[m.name] = k
+            sl.material = done[m.name]
+    for m, n in _paint_groups(root): n.inputs['wear'].default_value = 0.6 + 0.4 * age

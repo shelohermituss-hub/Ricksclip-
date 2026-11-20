@@ -27,10 +27,11 @@ void phfdPaint(vec3 P, vec3 N, out vec3 col, out float rough, out float cover){
   float t = smoothstep(-1., 1., ks);
   vec3 c = floor(P * 110.); vec3 o = vec3(h31(c), h31(c + 17.1), h31(c + 3.7)); float vd = length(fract(P * 110.) - o) ;
   float band = clamp(1. - max(-ks, 0.) / 2.2, 0., 1.); float dots = step(vd, band * .34);
-  float colx = floor(P.x * 28.), side = sign(P.y); float hv = h31(vec3(colx, side, 0.)), h0 = h31(vec3(colx, side, 1.)), h1 = h31(vec3(colx, side, 2.));
-  float on = step(.78, hv), fx = abs(fract(P.x * 28.) - .5);
-  float zs = .75 + h0 * 1.05, ze = zs - (.12 + h1 * .38), bead = clamp(1. - abs(P.z - ze) / .03, 0., 1.), width = .10 + bead * .16;
-  float nearE = step(P.x, uEdge) * step(uEdge - .45, P.x), inz = step(P.z, zs) * step(ze - .02, P.z);
+  // runs (round 2, same constants as paint_nodes.py RUN_*): 9 columns per metre, 65 % carry a run 30-90 cm long, 3.5 cm wide with a 7.5 cm bead, 0.2-1.1 m ahead of the edge
+  float colx = floor(P.x * 9.), side = sign(P.y); float hv = h31(vec3(colx, side, 0.)), h0 = h31(vec3(colx, side, 1.)), h1 = h31(vec3(colx, side, 2.));
+  float on = step(.35, hv), fx = abs(fract(P.x * 9.) - .5);
+  float zs = .8 + h0 * .8, ze = zs - (.3 + h1 * .6), bead = clamp(1. - abs(P.z - ze) / .035, 0., 1.), width = .16 + bead * .18;
+  float nearE = step(P.x, uEdge - .2) * step(uEdge - 1.1, P.x), inz = step(P.z, zs) * step(ze - .02, P.z);
   float run = on * step(fx, width) * nearE * inz;
   cover = max(t, max(dots, run));
   vec3 A = mix(uColA, ${'DUSKV'}, uDrain * uDrainA), B = mix(uColB, ${'DUSKV'}, uDrain * uDrainB);
@@ -67,15 +68,17 @@ function triplanarPatch(mat, U, scale) {
   mat.customProgramCacheKey = () => 'phfd_paper';
 }
 const loader = () => new GLTFLoader();
-let TRUCK_GLTF = null;
-async function truckGltf() { return TRUCK_GLTF ||= await loader().loadAsync(DIR + 'truck.glb'); }
+const TRUCK_GLTF = {};
+async function truckGltf(light) { const f = light ? 'truck_light.glb' : 'truck.glb'; return TRUCK_GLTF[f] ||= await loader().loadAsync(DIR + f); }
+const TEXC = {}; const tex = (THREE, f, srgb) => TEXC[f] ||= new THREE.TextureLoader().loadAsync(DIR + f).then(t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace; return t; });
 const PART = o => (o.userData && o.userData.phfd_part) || '';
 
 export async function buildTruck(THREE, ctx = {}, opts = {}) {
-  const gl = await truckGltf(), group = new THREE.Group(); group.name = 'phfd_truck';
+  // round 2 opts: light (the ~35 k tris truck_light.glb: rows of trucks, Dallas, toy), letters ('truck_letters' | '_e2' | '_dal14' | '_dal22'), age (0..1),
+  // sirens (0..4), beaconRow, priceCard (hero only; absent from the light file)
+  const gl = await truckGltf(!!opts.light), group = new THREE.Group(); group.name = 'phfd_truck';
   const s = gl.scene.clone(true); group.add(s);
-  const tl = new THREE.TextureLoader(), [wearMap, paper] = await Promise.all([tl.loadAsync(DIR + 'wear.png'), tl.loadAsync(DIR + 'newspaper.png')]);   // awaited: a still rendered before the load showed black paper
-  for (const t of [wearMap, paper]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = t === paper ? THREE.SRGBColorSpace : THREE.NoColorSpace; }
+  const [wearMap, paper, kraft] = await Promise.all([tex(THREE, 'wear.png', false), tex(THREE, 'newspaper.png', true), tex(THREE, 'kraft.png', true)]);   // awaited: a still rendered before the load showed black paper
   const U = { uColA: { value: new THREE.Color(COLORS.red) }, uColB: { value: new THREE.Color(COLORS.red) }, uEdge: { value: 99 }, uDrain: { value: 0 }, uDrainA: { value: 1 }, uDrainB: { value: 1 },
     uWear: { value: opts.wear ?? .6 }, uRoofOn: { value: 1 }, uUnder: { value: 0 }, uWearMap: { value: wearMap }, uInvRoot: { value: new THREE.Matrix4() }, uPaper: { value: paper } };
   const mats = {}, masked = [], ribbon = [], nodes = {}, anchors = {}; let tris = 0;
@@ -89,7 +92,9 @@ export async function buildTruck(THREE, ctx = {}, opts = {}) {
     if (o.userData.mask || (o.parent && o.parent.userData && o.parent.userData.mask)) masked.push([o, o.material]);
     let p = o; while (p && p !== s) { if (PART(p) === 'ribbon') { ribbon.push(o); break; } p = p.parent; }
   });
-  const paperMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: .85 }); triplanarPatch(paperMat, U, .8);
+  const paperMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: .85 }); triplanarPatch(paperMat, U, 1.2);   // newspaper tile 1.2 m (round 2)
+  const kraftMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: .9 }); triplanarPatch(kraftMat, { ...U, uPaper: { value: kraft } }, .6);   // mask 2 = tyres
+  kraftMat.customProgramCacheKey = () => 'phfd_paper_k';
   const glbMats = []; s.traverse(o => { if (o.isMesh && !Object.values(mats).includes(o.material)) glbMats.push(o.material); });
   // the kit hands its studio reflection to its own pbr materials only: share it with the GLB's on the first frame (else chrome reads black, asset test)
   let envDone = false; const giveEnv = scene => { if (envDone || !scene) return; let env = null; scene.traverse(o => { if (!env && o.isMesh && o.material && o.material.envMap && !glbMats.includes(o.material)) env = o.material.envMap; });
@@ -102,19 +107,31 @@ export async function buildTruck(THREE, ctx = {}, opts = {}) {
     U.uColA.value.set(A); U.uColB.value.set(B); U.uEdge.value = st === 'half' ? (state.edge ?? .3) : (st === 'lemon' ? -99 : 99);
     U.uDrain.value = state.drain ?? 0; U.uDrainA.value = A.toUpperCase() === COLORS.red ? 1 : 0; U.uDrainB.value = B.toUpperCase() === COLORS.red ? 1 : 0;
     U.uWear.value = state.wear ?? .6; U.uUnder.value = state.letters === 'under' ? 1 : 0; U.uRoofOn.value = state.roof === false ? 0 : 1;
-    for (const [m, orig] of masked) m.material = state.masking ? paperMat : orig;
+    for (const [m, orig] of masked) m.material = state.masking ? ((m.userData.mask || (m.parent && m.parent.userData.mask)) === 2 ? kraftMat : paperMat) : orig;
     for (const r of ribbon) r.visible = !!state.ribbon;
   }
   const wheels = ['wheel_FL', 'wheel_FR', 'wheel_RL', 'wheel_RR'].map(n => nodes[n]).filter(Boolean);
   const setWheels = m => { for (const w of wheels) w.rotation.z = m / (w.userData.radius || .5); };          // rolls toward -X for positive metres
-  const domes = []; s.traverse(o => { if (o.isMesh && PART(o) === 'beacon_dome') { o.material = o.material.clone(); domes.push(o.material); } });
-  const setBeacon = (on = true, deg = 0) => { if (nodes.beacon) nodes.beacon.rotation.y = deg * Math.PI / 180; for (const m of domes) { m.emissive = new THREE.Color('#ff1a10'); m.emissiveIntensity = on ? 3 : 0; } };
+  const domes = [], row = []; s.traverse(o => { if (!o.isMesh) return; if (PART(o) === 'beacon_dome') { o.material = o.material.clone(); domes.push(o.material); }
+    if (PART(o) === 'beacon_row_dome') { o.material = o.material.clone(); row.push([o.material, +((o.parent && o.parent.name.match(/(\d+)/) || [0, 0])[1])]); } });
+  // wave: null = the whole row steady; a number (radians) = the running pulse of plan row 18 (beacon k peaks at wave = .9 k), as truck_api.set_beacon
+  const setBeacon = (on = true, deg = 0, wave = null) => { if (nodes.beacon) nodes.beacon.rotation.y = deg * Math.PI / 180; for (const m of domes) { m.emissive = new THREE.Color('#ff1a10'); m.emissiveIntensity = on ? 3 : 0; }
+    for (const [m, k] of row) { m.emissive = new THREE.Color('#ff1a10'); m.emissiveIntensity = on ? 4 * (wave == null ? 1 : Math.max(0, Math.cos(wave - .9 * k)) ** 2) : 0; }
+    for (let k = 1; k <= 5; k++) if (nodes['beacon_row_' + k]) nodes['beacon_row_' + k].rotation.y = (deg + 47 * k) * Math.PI / 180; };
+  const setExtras = ({ sirens = 4, beaconRow = true, priceCard } = {}) => { for (let k = 1; k <= 4; k++) if (nodes['siren_' + k]) nodes['siren_' + k].visible = k <= sirens;
+    if (nodes.beacon_bar) nodes.beacon_bar.visible = !!beaconRow; if (nodes.price_card && priceCard != null) nodes.price_card.visible = !!priceCard; };
+  const letterMats = Object.values(mats).filter(m => m.name !== 'body_paint');
+  const setLetters = async (which = 'truck_letters') => { const t = await tex(THREE, which + '.png', true); t.flipY = false; for (const m of letterMats) { m.map = t; m.needsUpdate = true; } };
+  const setAge = (age = 1) => { s.traverse(o => { if (!o.isMesh || Object.values(mats).includes(o.material) || o.material.metalness < .5 || o.userData.phfdOld) return;
+    o.material = o.material.clone(); o.userData.phfdOld = 1; o.material.roughness = Math.min(.6, o.material.roughness + .22 * age); o.material.color.multiply(new THREE.Color(1 - .25 * age, 1 - .3 * age, 1 - .42 * age)); }); U.uWear.value = .6 + .4 * age; };
   const setDoor = deg => { if (nodes.door_driver) nodes.door_driver.rotation.y = -deg * Math.PI / 180; };  // opens outward (+Z, the driver's side)
   const setBell = deg => { if (nodes.bell_swing) nodes.bell_swing.rotation.z = -deg * Math.PI / 180; };
   setPaint({ paint: 'red', masking: false, letters: 'over', ribbon: false, ...opts }); setBeacon(!!opts.beacon, 0);
+  setExtras({ sirens: opts.sirens ?? 4, beaconRow: opts.beaconRow ?? true, priceCard: opts.priceCard ?? true });
+  if (opts.letters_set) await setLetters(opts.letters_set); if (opts.age) setAge(opts.age);
   group.updateMatrixWorld(true);
   const an = {}; for (const [k, o] of Object.entries(anchors)) an[k] = group.worldToLocal(o.getWorldPosition(new THREE.Vector3()));
-  return { group, setPaint, setWheels, setBeacon, setDoor, setBell, anchors: an, nodes, tris: Math.round(tris), parts: [], state };
+  return { group, setPaint, setWheels, setBeacon, setDoor, setBell, setExtras, setLetters, setAge, anchors: an, nodes, tris: Math.round(tris), parts: [], state };
 }
 
 // ---------------------------------------------------------------- props: loaded once at import (held3d builders are called synchronously)
@@ -165,4 +182,20 @@ export function buildAirHose(THREE, a = {}, b) {
   for (const [p, q] of [[pts[0], pts[1]], [pts[pts.length - 1], pts[pts.length - 2]]]) { const c = new THREE.Mesh(new THREE.CylinderGeometry(.013, .013, .05, 14), brass); c.name = 'hose_coupler'; c.position.copy(p); c.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p.clone().sub(q).normalize()); g.add(c); }
   return { group: g, anchors: { from: A, to: B }, parts: [], tris: 160 * 8 * 2 };
 }
-export const BUILDERS = { buildTruck, buildSprayGun, buildCompressor, buildAirHose };
+// ---------------------------------------------------------------- round 2 props (assets_prod/scripts/bl_props2.py; credits assets/ASSETS.md). Loaded on first use (async).
+// name: 'milk_van' | 'hubcap' | 'milk_bottle' | 'milk_crate' | 'lunch_box' | 'lemon' | 'paint_tin_lemon' | 'paint_tin_lime' | 'paint_tin_red' | 'mug' | 'ribbon_set' | 'plaster'
+const PROP2 = {};
+export async function buildProp2(THREE, name, opts = {}) {
+  const gl = await (PROP2[name] ||= loader().loadAsync(DIR + name + '.glb')); const g = new THREE.Group(); g.name = 'phfd_' + name; const s = gl.scene.clone(true); g.add(s); let tris = 0;
+  s.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; const ge = o.geometry; tris += (ge.index ? ge.index.count : ge.attributes.position.count) / 3; } });
+  const an = nodeAnchors(THREE, g); propEnv(THREE, g); return { group: g, anchors: an, parts: [], tris: Math.round(tris) };
+}
+// the held props of the cast: sync builders for film.json held3d (GLBs preloaded here)
+const [BOTTLE, MUGG] = await Promise.all([loader().loadAsync(DIR + 'milk_bottle.glb'), loader().loadAsync(DIR + 'mug.glb')]);
+function held(THREE, gl, name, opts) { const g = new THREE.Group(); g.name = 'phfd_' + name; const s = gl.scene.clone(true); g.add(s);
+  s.traverse(o => { if (o.isMesh) { o.castShadow = !opts.inHand; o.receiveShadow = true; } }); const an = nodeAnchors(THREE, g); propEnv(THREE, g);
+  const first = s.getObjectByProperty('isMesh', true); first.onBeforeRender = (r, scene) => { inkFist(THREE, scene); };
+  return { group: g, grip: an.grip || an.handle || new THREE.Vector3(), anchors: an, parts: [] }; }
+export const buildMilkBottle = (THREE, opts = {}) => held(THREE, BOTTLE, 'milk_bottle', opts);
+export const buildMug = (THREE, opts = {}) => held(THREE, MUGG, 'mug', opts);
+export const BUILDERS = { buildTruck, buildSprayGun, buildCompressor, buildAirHose, buildProp2, buildMilkBottle, buildMug };
