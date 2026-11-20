@@ -28,3 +28,7 @@
 - Line 5 is the fullest line (careful gag, P2, X3 on three different clauses); watch it on the board.
 - Not written yet: LOOK_BIBLE.md, refs/, CAST_TRAITS.md, PROPS.md, crew/writer_check.md (nothing drawn to check).
 - Glasses on the hero: the kit's support for face gear over the eyes is not checked.
+
+## User decisions 2026-11-20 (lead)
+- "Oui reste sur les 3": town name PINE HOLLOW (door: PINE HOLLOW FIRE DEPT. ENGINE No. 1); line 13 = our Chief visits Dallas (VISITOR tag); the eye chart keeps the hidden joke "R / ED / GOES / FIRST".
+- Hero truck = the 1940s American LaFrance asset (user's choice 2026-11-20, era kept as a cartoon licence); spray gun and compressor = the downloaded assets; final render in Blender on RunPod (CB_RULES section 3 "BLENDER IS BACK").
