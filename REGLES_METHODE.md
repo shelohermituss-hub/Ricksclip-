@@ -7,7 +7,7 @@
 ## 1. La règle mère : chaque problème résolu devient une règle
 - Un problème résolu se documente dans la même séance : ce qui s'est passé, la cause réelle, la correction, et un garde-fou (contrôle automatique, test, ligne dans un modèle) qui empêche qu'il revienne. Une leçon sans garde-fou revient.
 - Chaque correction de CB devient une règle écrite, avec sa phrase d'origine entre guillemets, la date, et le fichier de code qui l'applique. Les corrections reviennent par familles : relire la liste avant chaque plan.
-- Deux fichiers, deux rôles : un journal des corrections de CB (ce qu'il veut) et un registre des leçons techniques (problème → cause → correction → test → preuve). Les deux sont dans le dépôt, pas seulement dans la mémoire de la session.
+- Deux fichiers, deux rôles : un journal des corrections de CB (ce qu'il veut) et un registre des leçons techniques (problème → cause → correction → test → preuve). Les deux sont dans le dépôt, pas seulement dans la mémoire de la session. Ici : le journal des corrections est `CB_RULES.md`, le registre est `LECONS_TECHNIQUES.md`.
 - Commit et push après chaque étape : le conteneur cloud est effacé après inactivité ; tout ce qui n'est pas poussé est perdu.
 
 ## 2. Rendu : ce qui fait gagner le plus de temps
