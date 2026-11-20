@@ -1,0 +1,339 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "he_spray",
+   "view": "side",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 4,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "judged, dead still",
+     "frames": [
+      152,
+      175
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "listens, dead still",
+     "frames": [
+      198,
+      261
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "back at work, dead still",
+     "frames": [
+      284,
+      288
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "grab \"grabbed\" f19",
+     "f0": 19,
+     "ch": "h0y",
+     "to": "min",
+     "end": 106,
+     "share": [
+      16,
+      45,
+      70,
+      83,
+      87
+     ]
+    },
+    {
+     "name": "judge \"lemon\" f130",
+     "f0": 130,
+     "ch": "h0y",
+     "to": "min",
+     "end": 137,
+     "share": [
+      14,
+      40,
+      69,
+      87,
+      95
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 14.06,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 25
+  },
+  {
+   "move": "ch_burst",
+   "view": "34",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 5,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "puffed up",
+     "frames": [
+      285,
+      288
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "jump \"exploded\" f172",
+     "f0": 172,
+     "ch": "y",
+     "to": "min",
+     "end": 180,
+     "share": [
+      19,
+      45,
+      67,
+      84,
+      93
+     ]
+    },
+    {
+     "name": "point \"giant\" f262",
+     "f0": 262,
+     "ch": "h1x",
+     "to": "max",
+     "end": 268,
+     "share": [
+      16,
+      48,
+      79,
+      93,
+      98
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 15.69,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 24.4
+  },
+  {
+   "move": "rk_frozen",
+   "view": "34",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "frozen, helmet over the eyes",
+     "frames": [
+      0,
+      151
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 27.3
+  },
+  {
+   "move": "rk_jump",
+   "view": "34",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 6,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "brim up",
+     "frames": [
+      30,
+      35
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "to the Chief",
+     "frames": [
+      62,
+      71
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 14
+  },
+  {
+   "move": "ot_frozen",
+   "view": "34",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 3,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "frozen",
+     "frames": [
+      0,
+      173
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "still",
+     "frames": [
+      195,
+      224
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "still",
+     "frames": [
+      253,
+      288
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 15.4
+  },
+  {
+   "move": "sc_crossed",
+   "view": "34",
+   "frames": 289,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 2,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "stone",
+     "frames": [
+      0,
+      174
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "stone",
+     "frames": [
+      203,
+      288
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 24.8
+  }
+ ]
+}
