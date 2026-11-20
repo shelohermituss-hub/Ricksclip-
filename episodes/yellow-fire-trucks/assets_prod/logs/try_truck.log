@@ -1,6 +1,0 @@
-00:00.308  blend            | Read blend: "/home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/truck.blend"
-00:00.417  cycles           | WARNING CUEW initialization failed: Error opening the library
-/home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/scripts/bl_proof.py:17: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
-  gm = bpy.data.materials.new('concrete_yard'); gm.use_nodes = True; nt = gm.node_tree; N = nt.nodes; L = nt.links; b = N['Principled BSDF']
-/home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/scripts/bl_proof.py:27: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
-  sc = bpy.context.scene; wd = sc.world or bpy.data.worlds.new('W'); sc.world = wd; wd.use_nodes = True; wn = wd.node_tree

@@ -25,3 +25,4 @@ episodes/*/assets_prod/build/
 episodes/*/assets_prod/out/
 # cast view pictures (re-made by cast/tools/render_cast.mjs)
 episodes/*/cast/views/
+episodes/*/assets_prod/logs/
