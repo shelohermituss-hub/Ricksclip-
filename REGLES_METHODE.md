@@ -12,6 +12,7 @@
 
 ## 2. Rendu : ce qui fait gagner le plus de temps
 - Jamais le film entier pour corriger. On corrige sur 2 à 4 images clés par plan. Le plan en mouvement ne se calcule qu'une fois les images clés validées, et le film entier une seule fois, à la fin. (Problème : 64 minutes de calcul pour 3,2 s de film, puis tout à refaire.)
+- Aperçus Blender légers (CB 2026-11-20 : « Oui applique les aperçus légers ») : 540x960 en portrait (640x480 pour une vignette paysage), Cycles 16 échantillons + débruitage OIDN, vue Standard ; une planche d'essai a 8 vignettes au plus ; on ne recalcule que les vignettes qu'une correction change. La pleine qualité est réservée à l'image clé montrée comme rendu final et au film (RunPod).
 - Une seule image quand on règle un seul point (cadrage, couleur d'un sol) : 4–5 minutes au lieu de 20.
 - Processeur = images clés et aperçus rapides. GPU loué = vrais rendus, uniquement avec l'accord de CB et un plafond de dépense. Mesurer le temps GPU sur une image avant d'annoncer un coût. (CB 2026-11-20 : « pour le GPU je prévois de les rendre sur runpod si ça prend trop de temps » : le rendu par défaut est le rendu logiciel du cloud ; RunPod seulement quand la durée mesurée est trop longue, après l'accord de CB sur le plafond.)
 - Ne recalculer que ce qui a changé : un aperçu saute les images déjà calculées ; on supprime seulement les images du plan modifié.
