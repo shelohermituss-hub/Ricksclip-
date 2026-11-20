@@ -13,7 +13,7 @@
 ## 2. Rendu : ce qui fait gagner le plus de temps
 - Jamais le film entier pour corriger. On corrige sur 2 à 4 images clés par plan. Le plan en mouvement ne se calcule qu'une fois les images clés validées, et le film entier une seule fois, à la fin. (Problème : 64 minutes de calcul pour 3,2 s de film, puis tout à refaire.)
 - Une seule image quand on règle un seul point (cadrage, couleur d'un sol) : 4–5 minutes au lieu de 20.
-- Processeur = images clés et aperçus rapides. GPU loué = vrais rendus, uniquement avec l'accord de CB et un plafond de dépense. Mesurer le temps GPU sur une image avant d'annoncer un coût.
+- Processeur = images clés et aperçus rapides. GPU loué = vrais rendus, uniquement avec l'accord de CB et un plafond de dépense. Mesurer le temps GPU sur une image avant d'annoncer un coût. (CB 2026-11-20 : « pour le GPU je prévois de les rendre sur runpod si ça prend trop de temps » : le rendu par défaut est le rendu logiciel du cloud ; RunPod seulement quand la durée mesurée est trop longue, après l'accord de CB sur le plafond.)
 - Ne recalculer que ce qui a changé : un aperçu saute les images déjà calculées ; on supprime seulement les images du plan modifié.
 - Vérifier que la reconstruction a réussi avant de lancer un rendu : chercher Traceback et SyntaxError dans le journal, et regarder l'heure du fichier de scène. (Problème : une heure de rendu sur d'anciennes scènes parce qu'une faute de frappe avait fait échouer la construction sans bruit.)
 - Annoncer les durées à partir d'une mesure, pas d'une impression. Mes estimations à l'œil ont été fausses plusieurs fois.
@@ -28,6 +28,7 @@
 - Un outil Python lancé par Blender n'a pas les mêmes modules que le Python du système : le dessin d'images (PIL) se fait hors de Blender.
 
 ## 4. Blender 5 : pièges déjà rencontrés
+> EN ATTENTE (décision de CB, 2026-11-20 : « Pour blender mettons le en attente pour le moment »). Blender n'est pas installé ni utilisé ; l'image finale vient du kit three.js. Ces lignes, et « bonne version de Blender » en section 3, s'appliquent seulement si CB réactive Blender.
 - Pas de ciel NISHITA ; le compositeur est `scene.compositing_node_group` avec un nœud de sortie de groupe ; les réglages de plusieurs nœuds (halo, balance des couleurs) sont des entrées, pas des propriétés ; les actions sont en couches.
 - `resolution_percentage` est un entier.
 - Un cylindre entièrement lissé s'ombre comme une boule : marquer les arêtes vives.
