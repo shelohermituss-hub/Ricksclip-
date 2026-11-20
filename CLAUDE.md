@@ -7,7 +7,8 @@ installed inside the repo (`.claude/skills/`, `.claude/agents/`), so every new s
 ## Start of a session
 1. `python tools/install.py --check` must end with "All needed parts are there." If a line says MISS, run
    `bash tools/cloud_setup.sh` (Python parts, the Playwright link, the sound index) and check again.
-2. Then follow SKILL.md (STEP 0: read CB_RULES.md, SKILL.md, HANDOFF.md CURRENT STATE).
+2. Read `REGLES_METHODE.md` in full (the user's method rules: how to work, render cheaply, report honestly), before any code.
+3. Then follow SKILL.md (STEP 0: read CB_RULES.md, SKILL.md, HANDOFF.md CURRENT STATE).
 
 ## What is different from the PC (this wins over PC-only lines in SKILL.md, CB_RULES.md, INSTALL.md)
 | The books say | In the cloud |
