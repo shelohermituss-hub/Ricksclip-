@@ -1,4 +1,4 @@
-# bl_town_proof.py: the DETAIL GATE stills of the PINE HOLLOW set in Blender (Cycles CPU 32 spp + OIDN, Standard view; single frames only).
+# bl_town_proof.py: the DETAIL GATE stills of the PINE HOLLOW set in Blender (Cycles CPU 16 spp (light preview rule; the first gate set was 32 spp) + OIDN, Standard view; single frames only).
 # blender -b out/town.blend --python bl_town_proof.py -- <out png dir> <kind am|du> [w h] [cams comma list]
 # The cameras are the SAME numbers as proof/kit (CAMS in town_cams.json): plan frame, lens on a 36 mm tall sensor (LOOK_BIBLE 24 mm).
 import bpy, sys, os, json, math, time
@@ -11,7 +11,7 @@ TA.set_light(sc, KIND)
 TA.set_trucks(sc, hero=dict(paint='half', edge=.3, masking=True, letters='under') if KIND == 'am' else dict(paint='lemon', masking=False, letters='over'))
 r = sc.render; r.resolution_x, r.resolution_y, r.resolution_percentage = W, H, 100; r.image_settings.file_format = 'PNG'
 sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'; r.engine = 'CYCLES'; sc.cycles.device = 'CPU'
-sc.cycles.samples = 32; sc.cycles.use_denoising = True; sc.cycles.denoiser = 'OPENIMAGEDENOISE'; sc.cycles.use_adaptive_sampling = True
+sc.cycles.samples = 16;   # light previews (user 2026-11-20 "Oui applique les aperçus légers"): 16 spp + OIDN at 540x960 sc.cycles.use_denoising = True; sc.cycles.denoiser = 'OPENIMAGEDENOISE'; sc.cycles.use_adaptive_sampling = True
 sc.cycles.max_bounces = 5; sc.cycles.transparent_max_bounces = 12
 def card(png, pos, height, cam):
     im = bpy.data.images.load(png); w, h = im.size; px = [im.pixels[i * 4 + 3] for i in range(0, w * h, 7)]

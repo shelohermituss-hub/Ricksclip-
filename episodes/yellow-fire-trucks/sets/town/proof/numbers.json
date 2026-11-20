@@ -172,52 +172,52 @@
   },
   "kit_du_yard_wide": {
    "file": "proof/kit/stills/du_yard_wide/f_00000.png",
-   "edge": 0.1186,
-   "shapes": 486,
-   "brightness": 0.253,
-   "sky_share": 0.0,
-   "sec_per_frame": 7.7,
-   "passes": 3,
-   "of": 7
-  },
-  "kit_du_yard_medium": {
-   "file": "proof/kit/stills/du_yard_medium/f_00000.png",
-   "edge": 0.1023,
-   "shapes": 1124,
-   "brightness": 0.253,
-   "sky_share": 0.0,
-   "sec_per_frame": 8.0,
-   "passes": 3,
-   "of": 7
-  },
-  "kit_du_yard_low": {
-   "file": "proof/kit/stills/du_yard_low/f_00000.png",
-   "edge": 0.0984,
-   "shapes": 1400,
-   "brightness": 0.287,
+   "edge": 0.2196,
+   "shapes": 682,
+   "brightness": 0.344,
    "sky_share": 0.0,
    "sec_per_frame": 7.6,
    "passes": 4,
    "of": 7
   },
+  "kit_du_yard_medium": {
+   "file": "proof/kit/stills/du_yard_medium/f_00000.png",
+   "edge": 0.1658,
+   "shapes": 1110,
+   "brightness": 0.371,
+   "sky_share": 0.0,
+   "sec_per_frame": 7.2,
+   "passes": 4,
+   "of": 7
+  },
+  "kit_du_yard_low": {
+   "file": "proof/kit/stills/du_yard_low/f_00000.png",
+   "edge": 0.1638,
+   "shapes": 1399,
+   "brightness": 0.414,
+   "sky_share": 0.0,
+   "sec_per_frame": 8.1,
+   "passes": 3,
+   "of": 7
+  },
   "kit_du_shop_window": {
    "file": "proof/kit/stills/du_shop_window/f_00000.png",
-   "edge": 0.1746,
-   "shapes": 1129,
-   "brightness": 0.211,
+   "edge": 0.1956,
+   "shapes": 1221,
+   "brightness": 0.543,
    "sky_share": 0.0,
-   "sec_per_frame": 8.6,
+   "sec_per_frame": 7.9,
    "passes": 5,
    "of": 7
   },
   "kit_du_crossing": {
    "file": "proof/kit/stills/du_crossing/f_00000.png",
-   "edge": 0.1329,
-   "shapes": 800,
-   "brightness": 0.302,
+   "edge": 0.182,
+   "shapes": 786,
+   "brightness": 0.344,
    "sky_share": 0.0,
-   "sec_per_frame": 11.9,
-   "passes": 5,
+   "sec_per_frame": 13.5,
+   "passes": 6,
    "of": 7
   }
  },
@@ -254,13 +254,13 @@
   },
   "kit_du": {
    "edges": [
-    0.1186,
-    0.1023,
-    0.0984
+    0.2196,
+    0.1658,
+    0.1638
    ],
-   "median": 0.1023,
-   "min": 0.0984,
-   "PASS": false
+   "median": 0.1658,
+   "min": 0.1638,
+   "PASS": true
   }
  }
 }

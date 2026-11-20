@@ -16,6 +16,21 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-20 — Poly Haven answered 403 to every download (yellow-fire-trucks, décor de la ville) — FERMÉ
+- Poly Haven answered 403 to every download. Cause: it refuses the default "Python-urllib" User-Agent. Fix: fetch_town.py sends a browser-like UA. Guard: build_town.sh stops if logs/fetch.log has a FAIL. Proof: 46 files ok. FERMÉ
+
+## 2026-11-20 — The decimated kit tree was not decimated (GLB 148 MB) (yellow-fire-trucks, décor de la ville) — FERMÉ
+- The decimated kit tree was not decimated (GLB 148 MB). Cause: a modifier on an object in an EXCLUDED collection is never evaluated. Fix: decimate a temporary object linked to the scene. Guard: log line DECIMATE n -> m. Proof: 1,072,212 -> 64,332. FERMÉ
+
+## 2026-11-20 — DU stills failed with KeyError 'headlight_glass' (yellow-fire-trucks, décor de la ville) — FERMÉ
+- DU stills failed with KeyError 'headlight_glass'. Cause: masking swaps a truck's own materials out; with 0 users they are dropped on save, set_masking(False) then cannot restore. Fix: town_api.link_trucks sets use_fake_user on all materials. Guard: the DU proof runs set_trucks(masking False) after reopening. Proof: 6 DU tiles. FERMÉ
+
+## 2026-11-20 — build_town (yellow-fire-trucks, décor de la ville) — FERMÉ
+- build_town.sh stopped silently after the AM tiles. Cause: `set -e` + a grep with no match. Fix: `|| true` on report greps. Guard: TOWN_PROOF_END line. FERMÉ
+
+## 2026-11-20 — glTF loses emission set to 0 (yellow-fire-trucks, décor de la ville) — FERMÉ
+- glTF loses emission set to 0. Cause: the exporter drops an emissive of strength 0. Fix: strength 1 at export, the kit sets the level per kind. FERMÉ (DU kit windows lit).
+
 ## 2026-11-20 — Masking paper rendered plain white: the paper material was never saved in truck.blend (yellow-fire-trucks, bl_truck.py) — FERMÉ
 - Problem: round 1 sheet (props/ASSET_PACK.jpg) showed the masking as blank white paper and white-wall tyres; the newspaper print never appeared.
 - Cause: `mask_paper` had no user when truck.blend was saved (it is only put on parts by truck_api.set_masking at render time), so Blender dropped it; set_masking then assigned `None` = no material = plain white.

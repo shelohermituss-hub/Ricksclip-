@@ -38,8 +38,13 @@ for rend in ('blender', 'kit'):
         med = float(np.median(e)); ok = med >= .14 and min(e) >= .08; gate['%s_%s' % (rend, kind)] = dict(edges=e, median=round(med, 4), min=min(e), PASS=ok)
         print('GATE %-7s %s edges %s median %.3f min %.3f -> %s' % (rend, kind, e, med, min(e), 'PASS' if ok else 'FAIL'))
 json.dump(dict(stills=nums, gate=gate), open(os.path.join(T, 'proof', 'numbers.json'), 'w'), indent=1)
-# sheet: 6 columns x 4 rows, tile 266 x 473 + 46 px label
-TW, TH, LH = 266, 473, 46; cols = len(CAMS); W = TW * cols + 4; H = (TH + LH) * len(rows) + 4
+# sheet: at most 8 tiles (user 2026-11-20, light previews): the picked tiles below, 4 columns x 2 rows; every still's numbers stay in proof/numbers.json
+PICK = [('am', 'blender', 'yard_medium'), ('am', 'kit', 'yard_medium'), ('du', 'blender', 'yard_wide'), ('du', 'kit', 'yard_wide'),
+        ('am', 'blender', 'shop_window'), ('du', 'blender', 'crossing'), ('am', 'blender', 'park'), ('du', 'kit', 'yard_low')]
+allt = {(it[2], it[3], it[4]): it for row in rows for it in row if it}
+rows = [[allt.get(k) for k in PICK[:4]], [allt.get(k) for k in PICK[4:]]]; CAMS = [0, 0, 0, 0]
+TW, TH, LH = 398, 708, 46
+cols = len(CAMS); W = TW * cols + 4; H = (TH + LH) * len(rows) + 4
 sh = Image.new('RGB', (W, H), '#1b1b20'); d = ImageDraw.Draw(sh)
 f1 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 13); f2 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 12)
 for ri, row in enumerate(rows):

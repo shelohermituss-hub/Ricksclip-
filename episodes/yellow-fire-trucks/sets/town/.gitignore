@@ -1,0 +1,7 @@
+out/
+build/
+logs/
+proof/bl/
+proof/kit/stills/
+proof/kit/out/
+proof/kit/film_*.json
