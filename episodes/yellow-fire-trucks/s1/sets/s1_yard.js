@@ -16,7 +16,7 @@ const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 // story positions (plan metres, Z up) shared with make_film.py (keep in step)
 const Z = .14;   // the yard concrete top
-export const S1 = { hero: [-2.0, 15.7, Z], chief: [1.2, 17.6, Z], box: [1.15, 16.9, Z], lemonStop: [1.05, 14.55, Z + .03], comp: [-1.05, 17.5, Z], tin: [-1.5, 13.45, Z], stool: [-2.45, 12.85, Z],
+export const S1 = { hero: [-2.0, 15.7, Z], chief: [1.2, 17.6, Z], box: [1.15, 16.9, Z], lemonStop: [2.02, 14.32, Z + .03], comp: [-1.05, 17.5, Z], tin: [-1.5, 13.45, Z], stool: [-2.45, 12.85, Z],
   EXPLODE: 172, RED: 223 };
 export const EDGE = f => f <= 116 ? lerp(-1.55, -2.85, sm(f / 116)) : f < 268 ? -2.85 : lerp(-2.85, -3.15, sm((f - 268) / 20));
 function softTex(THREE, inner = 'rgba(255,255,255,1)') { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
@@ -59,6 +59,9 @@ export async function build(THREE, scene, film, ctx) {
   function update(f, t, R) {
     // paint edge (the stroke): truck-local x of the lemon front
     hero.setPaint({ edge: EDGE(f) });
+    // WORKAROUND (assets.js, not edited): a truck's paint frame (uInvRoot) is only set in its FIRST mesh's onBeforeRender; when that mesh is culled
+    // (off screen) the paint is computed in world space (the lemon rear rendered aged red at f272). Call it every frame for both trucks.
+    for (const tk of [hero, T.chief]) { if (!tk) continue; const m0 = tk.group.getObjectByProperty('isMesh', true); if (m0 && m0.onBeforeRender) m0.onBeforeRender(null, scene); }
     // gun from the kit's held3d (placed before this update): tip, inlet, nozzle direction
     let gun = null; scene.traverse(o => { if (!gun && o.name === 'phfd_spray_gun' && o.visible) gun = o; });
     const spraying = f < 114 || f >= 270;
