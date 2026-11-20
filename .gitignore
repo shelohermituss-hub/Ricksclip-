@@ -35,3 +35,5 @@ episodes/*/sets/town/proof/kit/
 episodes/*/s[0-9]*/out/
 episodes/*/s[0-9]*/stills*/
 episodes/*/s[0-9]*/_raw.mp4
+episodes/*/s[0-9]*/key/
+episodes/*/s[0-9]*/plan_check.txt
