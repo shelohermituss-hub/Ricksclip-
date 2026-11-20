@@ -67,3 +67,12 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Preuve : tuiles de `props/ASSET_TEST.jpg` en Standard, citron conforme à l'œil.
 
 (aucune pour l'instant ; les problèmes cités entre parenthèses dans REGLES_METHODE.md viennent de sessions antérieures et y restent comme origine des règles)
+
+- 2026-11-20 (yellow-fire-trucks S1) The hero truck's lemon rear rendered aged red in a single-frame render (f272). Cause: sets/assets.js sets the paint's
+  truck frame (uInvRoot) only in the FIRST mesh's onBeforeRender; when that mesh is off screen (culled) the uniform stays identity and the paint is
+  computed in world space. Fix (stretch side, builder not edited): s1/sets/s1_yard.js calls that onBeforeRender for both trucks in update() every frame.
+  Guard: the comment in s1_yard.js + request to the props-hero to set it in buildTruck itself (STATE.md). Proof: s1/key/f_00272.png lemon after the fix.
+- 2026-11-20 (S1) Cards and props sank 14 cm: the town yard top is z 0.14 (town_meta anchors), not 0. Fix: Z = 0.14 on every S1 position and camera.
+  Guard: make_film.py and s1_yard.js both read one Z constant. Proof: key frames f0/f272 feet on the concrete.
+- 2026-11-20 (S1) render_gpu.mjs on CPU: --scale 0.5 costs the same ~11-14 s per frame as --scale 1 (the screenshot grab dominates). Measured on 1-4 frames.
+  So a half-size timing pass saves nothing in this cloud; go to full size after the key frames.

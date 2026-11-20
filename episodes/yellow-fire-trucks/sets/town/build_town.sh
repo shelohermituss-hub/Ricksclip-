@@ -7,11 +7,18 @@
 set -euo pipefail
 T="$(cd "$(dirname "$0")" && pwd)"; EP="$(cd "$T/../.." && pwd)"; cd "$T"; mkdir -p logs out build/tex proof/bl
 [ -s "$EP/assets_prod/out/truck.blend" ] || { echo "assets_prod/out/truck.blend missing: run assets_prod/build_assets.sh first"; exit 1; }
+if [ "${1:-}" != "--lite" ]; then
 python3 scripts/fetch_town.py "$EP/assets" > logs/fetch.log 2>&1; grep -c " ok" logs/fetch.log; ! grep FAIL logs/fetch.log
 python3 scripts/tex_town.py "$EP/assets/ph_town/tex" build/tex > logs/tex.log 2>&1; grep -q TEX_END logs/tex.log
 blender -b --factory-startup --python scripts/bl_town.py -- "$EP/assets/ph_town" build/tex "$EP/assets_prod" out > logs/town.log 2>&1
 grep -q TOWN_DONE logs/town.log && ! grep -q Traceback logs/town.log || { echo "town FAILED (logs/town.log)"; exit 1; }
 grep -E "^MERGED|^TOWN_TRIS|^GLB_" logs/town.log | cut -c1-160
+fi
+# LITE staging copy for the kit (re-runnable alone: bash build_town.sh --lite): town_lite.glb from the saved out/town.blend
+if true; then
+  blender -b out/town.blend --python scripts/bl_town_lite.py -- out > logs/lite.log 2>&1
+  grep -q LITE_DONE logs/lite.log || { echo "lite FAILED (logs/lite.log)"; exit 1; }; grep -E "^LITE_TRIS|^LITE_GRASS" logs/lite.log
+fi
 echo TOWN_BUILD_END
 if [ "${1:-}" = "--proof" ]; then
   W=${W:-540}; H=${H:-960}
