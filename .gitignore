@@ -20,3 +20,6 @@ episodes/*/assets/**
 episodes/*/sets/_asset_test/out/
 episodes/*/sets/_asset_test/stills_*/
 episodes/*/sets/_asset_test/tiles/
+# asset pack build output (re-made by assets_prod/build_assets.sh from the downloads)
+episodes/*/assets_prod/build/
+episodes/*/assets_prod/out/
