@@ -30,3 +30,5 @@ episodes/*/assets_prod/logs/
 episodes/*/sets/town/out/
 episodes/*/sets/town/build/
 episodes/*/sets/town/logs/
+episodes/*/sets/town/proof/bl/
+episodes/*/sets/town/proof/kit/
