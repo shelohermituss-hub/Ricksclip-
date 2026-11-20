@@ -1,0 +1,21 @@
+frame_checks: s3/film.json  1122 of 1302 frames (rests f0-780 f904-926 f927-953 f1005-1022 f1100-1140 f1210-1226 f1228-1244 f1290-1301)  cast surgeonOff, surgeon, nurse, patient, g1, g2, patientR
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   patientR       f1100-1140   body_side     28 %      f1100     41/41      cut by the left edge                                      
+FAIL   surgeon        f1100-1140   body_side     78 %      f1140     24/30      cut by the left edge                                      
+FAIL   surgeonOff     f904-926     body_in_mesh  3 %       f904      19/23      inside office_set/desk_pedestal: torso-hips-thighs 3 %, l~
+FAIL   g1             f1005-1022   seat          none      f1007     16/18      sitting pose with no seat under the hips within 60 cm     
+FAIL   nurse          f1290-1301   body_side     69 %      f1290     12/12      cut by the right edge                                     
+FAIL   nurse          f1290-1301   head_cut      80 %      f1290     12/12      cut by the right edge                                     
+FAIL   nurse          f1290-1301   face_covered  2 rays    f1290     12/12      behind saline_bag (15 cm in front of the face)            
+FAIL   patient        f1023-1099 ~ body_in_mesh  1 %       f1045     11/14      inside corridor_set/bay_window_sill: torso-hips-thighs 1 ~
+FAIL   surgeonOff     f781-903 mo~ body_in_mesh  1 %       f881      8/62       inside office_set/locker_3/locker_body: torso-hips-thighs~
+FAIL   g1             f954-1004 m~ body_in_mesh  48 %      f988      6/26       inside corridor_set/side_table_cabinet: torso-hips-thighs~
+FAIL   g2             f954-1004 m~ body_in_mesh  17 %      f984      4/16       inside corridor_set/bay_window_wall_dado: torso-hips-thig~
+FAIL   surgeon        f1100-1140   slide         81.9 %    f1112     4/29       the planted foot slides 81.9 cm per frame across the pict~
+WARN   nurse          f1100-1140   face_covered  1 rays    f1100     41/41      behind saline_bag (23 cm in front of the face)            
+WARN   surgeonOff     f781-903 mo~ slide         2.4 %     f837      27/53      the planted foot slides 2.4 cm per frame across the pictu~
+WARN   nurse          f1210-1226   face_covered  1 rays    f1210     17/17      behind saline_bag (20 cm in front of the face)            
+WARN   nurse          f1228-1244   face_covered  1 rays    f1228     17/17      behind saline_bag (20 cm in front of the face)            
+WARN   patientR       f1290-1301   body_in_mesh  3 %       f1300     3/12       inside patient_leg_drape_tent: torso-hips-thighs 1 %, leg~
+WARN   surgeon        f1141-1209 ~ slide         5.6 %     f1195     1/35       the planted foot slides 5.6 cm per frame across the pictu~
+12 FAIL, 6 WARN, 152 PASS (118.8 s, scan 85.8 s)  ->  <skill folder>\episodes\fake-surgery\s3\out\frame_checks.md, 12 crops in <skill folder>\episodes\fake-surgery\s3\out\frame_checks

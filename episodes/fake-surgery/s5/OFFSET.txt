@@ -1,0 +1,2 @@
+S5 = film 56.10-73.62 s = frames 1683-2209; plain FILM frames, no offset. Plan rows 40-50, script lines 13-16.
+Takes: orrp 1683-1765 (rows 40-41, OR) | wait 1766-1925 (42-44, AF) | off 1926-2062 (45-47, GR office y2004) | ore 2063-2155 (48-49, EV_or) | st 2156-2209 (50, EV stairwell).

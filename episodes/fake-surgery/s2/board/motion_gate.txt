@@ -1,0 +1,8 @@
+sg_s2 [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 13.7  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":137.37,"leg_stretch_px":1.47,"off_built_ground_px":0}
+   snap wave up "all"                  f502-508  17 / 51 / 80 / 94 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold gone to the office               f540-789  max 0 px/f
+so_s2 [34]  twos 0   linear 0  stops 7 no_settle 0  creep 0  dps 18.5  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":122.4,"leg_stretch_px":2.47,"off_built_ground_px":0}
+   snap jolt "HEADS" (power)           f650-665  48 / 93 / 100 / 97 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap lift "takes"                   f680-702  8 / 22 / 41 / 61 / 77 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold cup at lips, coffee rising       f634-649  max 0 px/f
+gw_s2 [34]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":null,"leg_stretch_px":null,"off_built_ground_px":0}

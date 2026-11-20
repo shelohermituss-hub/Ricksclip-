@@ -1,0 +1,7 @@
+frame_checks: s1/film.json  387 of 387 frames (rests f0-386)  cast surgeon, nurse, patient
+result who            rest         check         number    worst at  bad frames what                                                      
+WARN   surgeon        f0-386       body_side     61 %      f363      3/366      cut by the left edge (only 3 frames: WARN)                
+WARN   surgeon        f0-386       head_cut      16 %      f364      2/365      cut by the left edge (only 2 frames: WARN)                
+WARN   nurse          f0-386       body_side     30 %      f366      2/367      cut by the left edge (only 2 frames: WARN)                
+WARN   nurse          f0-386       head_cut      33 %      f366      1/367      cut by the left edge (only 1 frames: WARN)                
+0 FAIL, 4 WARN, 8 PASS (38.2 s, scan 28.9 s)  ->  <skill folder>\episodes\fake-surgery\s1\out\frame_checks.md

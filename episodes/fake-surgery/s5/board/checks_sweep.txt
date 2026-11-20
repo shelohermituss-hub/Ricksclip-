@@ -1,0 +1,13 @@
+frame_checks: s5/film.json  2046 of 2230 frames (rests f0-1674 f1856-1925 f1926-1977 f1980-2005 f2195-2229)  cast sg_r, pt_r, boy, nr_k, sg_o, nr_e, sg_e, sgoff_e, sg_s, vet, kid, nr_s, c_climber1, c_climber2, c_g1s, c_climber3, c_g2s, c_g4s, c_g5s, c_boy, c_g3s
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   nr_k           f1856-1925   body_in_mesh  11 %      f1856     70/70      inside waiting_room/chair_gang_a/chair_shell_teal: torso-~
+FAIL   nr_e           f2006-2194 ~ body_in_mesh  8 %       f2104     46/46      inside table_frame: torso-hips-thighs 9 %, legs 0 %, 10 c~
+FAIL   nr_k           f1675-1855 ~ body_in_mesh  15 %      f1767     45/45      inside waiting_room/chair_gang_a/chair_shell_teal: torso-~
+FAIL   kid            f2195-2229   feet          168 cm    f2195     35/35      2 of 2 feet float, nearest stairwell/ground_terrazzo      
+FAIL   sg_o           f1980-2005   face_covered  2 rays    f1996     7/26       behind s5_paper (127 cm in front of the face)             
+FAIL   boy            f1856-1925   head_cut      97 %      f1925     6/70       cut by the left edge                                      
+WARN   boy            f1856-1925   body_in_mesh  3 %       f1867     70/70      inside waiting_room/chair_gang_a/chair_shell_orange: tors~
+WARN   boy            f1675-1855 ~ body_in_mesh  3 %       f1831     18/45      inside waiting_room/chair_gang_a/chair_shell_orange: tors~
+WARN   pt_r           f1675-1855 ~ body_in_mesh  4 %       f1763     13/46      inside patient_leg_drape_tent: torso-hips-thighs 1 %, leg~
+WARN   sg_o           f1926-1977   face_covered  3 rays    f1954     2/52       behind s5_buildStamp/stamp_mount_block (85 cm in front of~
+6 FAIL, 4 WARN, 154 PASS (98.4 s, scan 60 s)  ->  <skill folder>\episodes\fake-surgery\s5\out\frame_checks.md, 6 crops in <skill folder>\episodes\fake-surgery\s5\out\frame_checks

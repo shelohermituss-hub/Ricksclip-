@@ -1,0 +1,15 @@
+{
+ "voice": {
+  "duration_s": 68.4,
+  "words_heard": 233,
+  "words_script": 232,
+  "words_per_s_overall": 3.41,
+  "words_per_s_talking": 3.79,
+  "sentence_gap_median": 0.25,
+  "longest_gap": 0.4,
+  "gaps_over_0_5": 0,
+  "pause_share_pct": 9.7,
+  "lead_in_s": 0.0,
+  "tail_s": 0.2
+ }
+}

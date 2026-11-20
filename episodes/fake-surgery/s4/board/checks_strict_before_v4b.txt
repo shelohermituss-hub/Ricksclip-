@@ -1,0 +1,16 @@
+frame_checks: s4/film.json  418 of 1696 frames (rests f0-1695)  cast patientShorts, climber1, climber2, climber3, surgeonOff
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   patientShorts  f0-1695      body_side     52 %      f1316     15/187     cut by the right edge                                     
+FAIL   patientShorts  f0-1695      head_cut      3 %       f1311     14/179     cut by the right+top edge                                 
+FAIL   patientShorts  f0-1695      slide         5.5 %     f1362     13/168     the planted foot slides 5.5 cm per frame across the pictu~
+FAIL   surgeonOff     f0-1695      head_cut      96 %      f1490     9/206      cut by the right edge                                     
+FAIL   climber1       f0-1695      face_covered  2 rays    f1448     6/45       head centre INSIDE stairwell/wall_right_block; in front: ~
+FAIL   climber1       f0-1695      head_cut      21 %      f1445     4/45       cut by the right edge                                     
+FAIL   climber1       f0-1695      body_side     45 %      f1446     4/46       cut by the right edge                                     
+WARN   climber3       f0-1695      head_cut      21 %      f1446     3/44       cut by the right edge (only 3 frames: WARN)               
+WARN   climber3       f0-1695      face_covered  0 rays    f1446     3/44       head centre INSIDE stairwell/wall_right_block (only 3 fra~
+WARN   climber3       f0-1695      body_side     57 %      f1447     3/45       cut by the right edge (only 3 frames: WARN)               
+WARN   climber2       f0-1695      body_side     69 %      f1443     1/48       cut by the right edge (only 1 frames: WARN)               
+WARN   climber2       f0-1695      head_cut      65 %      f1443     1/47       cut by the right+bottom edge (only 1 frames: WARN)        
+WARN   surgeonOff     f0-1695      slide         1.9 %     f1585     1/205      the planted foot slides 1.9 cm per frame across the pictu~
+7 FAIL, 6 WARN, 15 PASS (35.1 s, scan 17.8 s)  ->  <skill folder>\episodes\fake-surgery\s4\out\frame_checks.md, 7 crops in <skill folder>\episodes\fake-surgery\s4\out\frame_checks

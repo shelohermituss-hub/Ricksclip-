@@ -1,0 +1,165 @@
+{
+ "title": "PITCH 1 hook frame (rough): the young mason nails an iron spear to the top of the church tower, dusk before a storm, 1765",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "mason": {
+   "puppet": "cast:tower/mason",
+   "height": 1.75,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40
+ },
+ "faces_ep": {
+  "nailIt": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     -5,
+     8,
+     0,
+     1.1
+    ],
+    [
+     -1,
+     6,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "tongueCorner",
+   "side": 1
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.5
+ },
+ "places": {
+  "tower_top": {
+   "set": "tower_top",
+   "light": "morning",
+   "time": "dusk",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#3a2473",
+    "hor": "#f0a070",
+    "sun": "#ffb46e",
+    "si": 3.1,
+    "amb": "#9a86ea",
+    "ai": 1.9,
+    "dir": [
+     -7,
+     3.0,
+     7.5
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.55,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.5
+   },
+   "fist": [
+    0.0,
+    0.0,
+    1.405
+   ],
+   "fist_r": 0.04
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "mason",
+   "at": 0,
+   "pos": [
+    -0.387,
+    0.07,
+    0.262
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_tower/tower_nail",
+   "face": "k:nailIt",
+   "note": "wind-up hold over the bracket nail; far fist on the spear shaft"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "mason",
+   "obj": "hammer",
+   "module": "sets/tower_props.js",
+   "builder": "buildHammer",
+   "opts": {},
+   "grip": "raise",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -116,
+   "scale": 1.5,
+   "when": "always",
+   "level": 1.6
+  }
+ ],
+ "takes": [
+  {
+   "id": "hookA",
+   "place": "tower_top",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.15,
+      -3.86,
+      1.4
+     ],
+     "aim": [
+      -0.15,
+      0,
+      0.85
+     ],
+     "lens": 35,
+     "subject": "mason",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the mason, the spear and the storm in one picture"
+    }
+   ]
+  }
+ ]
+}

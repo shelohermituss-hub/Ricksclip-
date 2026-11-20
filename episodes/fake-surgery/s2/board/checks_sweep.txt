@@ -1,0 +1,5 @@
+frame_checks: s2/film.json  605 of 790 frames (rests f0-362 f522-539 f597-606 f764-789)  cast surgeon, surgeonOff, g1, g2, g3
+result who            rest         check         number    worst at  bad frames what                                                      
+WARN   g2             f363-521 mo~ body_in_mesh  25 %      f473      1/25       inside corridor_set/env_handrail: torso-hips-thighs 100 %~
+WARN   g3             f363-521 mo~ body_in_mesh  5 %       f477      1/24       inside queue_gurney_4/gurney_drape/drape_sheet: torso-hip~
+0 FAIL, 2 WARN, 39 PASS (55 s, scan 42.1 s)  ->  <skill folder>\episodes\fake-surgery\s2\out\frame_checks.md

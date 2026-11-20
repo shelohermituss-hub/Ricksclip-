@@ -1,0 +1,404 @@
+{
+ "title": "PITCH 1 board, first 5 s: a road worker hauls the ripped-out traffic light off the busiest crossing of Drachten while bus, cars and bikes stream past; the drugstore keeper carries out a crate of bandages, about 2003",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 150,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "worker": {
+   "puppet": "cast:drachten/worker",
+   "height": 1.85,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "drogist": {
+   "puppet": "cast:drachten/drogist",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "oldman": {
+   "puppet": "cast:drachten/oldman",
+   "height": 1.72,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "lady": {
+   "puppet": "cast:drachten/lady",
+   "height": 1.64,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "cyclist1": {
+   "puppet": "cast:drachten/cyclist1",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "cyclist2": {
+   "puppet": "cast:drachten/cyclist2",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": true
+ },
+ "faces_ep": {
+  "heave": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     -7,
+     9,
+     -1,
+     1.25
+    ],
+    [
+     -6,
+     10,
+     -1,
+     1.25
+    ]
+   ],
+   "mouth": "flatXL"
+  },
+  "proud": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     2,
+     8,
+     0,
+     1.1
+    ],
+    [
+     2,
+     8,
+     0,
+     1.1
+    ]
+   ],
+   "mouth": "sideways"
+  },
+  "yell": {
+   "eyes": "dot",
+   "brows": [
+    [
+     -8,
+     10,
+     -1,
+     1.3
+    ],
+    [
+     -7,
+     10,
+     -1,
+     1.3
+    ]
+   ],
+   "mouth": "frownXL"
+  },
+  "fright": {
+   "eyes": "dot",
+   "brows": [
+    [
+     0,
+     10,
+     0,
+     1.2
+    ],
+    [
+     0,
+     10,
+     0,
+     1.2
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 18
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.4
+ },
+ "places": {
+  "crossing": {
+   "set": "crossing",
+   "light": "day",
+   "time": "day",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#3f86dc",
+    "hor": "#d6e6f4",
+    "sun": "#ffe6c0",
+    "si": 1.3,
+    "amb": "#b4c6e6",
+    "ai": 0.85,
+    "dir": [
+     -8,
+     6,
+     -4
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.0,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.4
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "worker",
+   "at": 0,
+   "pos": [
+    0,
+    0,
+    0.12
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_crossing/haul",
+   "face": "k:heave",
+   "note": "leans back hauling the ripped-out light over himself"
+  },
+  {
+   "who": "drogist",
+   "at": 0,
+   "pos": [
+    -1.59,
+    13.14,
+    0.12
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_crossing/crate",
+   "face": "k:proud",
+   "note": "carries the bandage crate out to the corner"
+  },
+  {
+   "who": "oldman",
+   "at": 0,
+   "pos": [
+    -2.56,
+    12.13,
+    0.12
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_crossing/point",
+   "face": "k:yell",
+   "note": "points at the worker"
+  },
+  {
+   "who": "lady",
+   "at": 0,
+   "pos": [
+    -2.68,
+    10.68,
+    0.005
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_crossing/gasp",
+   "face": "k:fright",
+   "note": "fists to cheeks"
+  },
+  {
+   "who": "cyclist1",
+   "at": 0,
+   "pos": [
+    -3.4,
+    3.75,
+    0.005
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:bike/A",
+   "note": "rides past on the red lane"
+  },
+  {
+   "who": "cyclist2",
+   "at": 0,
+   "pos": [
+    3.4,
+    4.0,
+    0.005
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:bike/A",
+   "note": "rides past the other way"
+  },
+  {
+   "who": "oldman",
+   "at": 100,
+   "pos": [
+    -2.56,
+    12.13,
+    0.12
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_crossing/point",
+   "face": "k:yell",
+   "note": "P3: from behind the doubters the worker is to his left"
+  },
+  {
+   "who": "cyclist1",
+   "at": 100,
+   "pos": [
+    1.0,
+    3.8,
+    0.005
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:bike/A",
+   "note": "P3: back in view between the doubters and the worker"
+  },
+  {
+   "who": "cyclist2",
+   "at": 100,
+   "pos": [
+    -2.2,
+    4.0,
+    0.005
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:bike/A",
+   "note": "P3: back in view"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "worker",
+   "obj": "traffic_light",
+   "module": "sets/drachten_props.js",
+   "builder": "buildTrafficLight",
+   "opts": {},
+   "grip": "pole",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -108,
+   "scale": 1.0,
+   "when": "always"
+  },
+  {
+   "who": "drogist",
+   "obj": "crate",
+   "module": "sets/drachten_props.js",
+   "builder": "buildBandageCrate",
+   "opts": {},
+   "grip": "box",
+   "when": "always",
+   "scale": 1.3
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "crossing",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.9,
+      -2.7,
+      1.0
+     ],
+     "aim": [
+      -0.35,
+      1.5,
+      1.9
+     ],
+     "lens": 26,
+     "subject": "worker",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "P1 frame 0: the worker hauls the ripped-out traffic light, traffic streams behind, the doubters small at the far corner"
+    },
+    {
+     "at": 62,
+     "pos": [
+      -3.6,
+      -5.2,
+      2.4
+     ],
+     "aim": [
+      1.2,
+      7.5,
+      3.2
+     ],
+     "lens": 20,
+     "subject": "worker",
+     "framing": "W",
+     "hold": 0.8,
+     "creep": 0,
+     "purpose": "P2 'its busiest crossing': rise and pull back, the whole crossing, bus, cars, bikes, canal"
+    },
+    {
+     "at": 112,
+     "pos": [
+      -2.6,
+      16.2,
+      1.45
+     ],
+     "aim": [
+      0.6,
+      0.0,
+      1.3
+     ],
+     "lens": 36,
+     "subject": "drogist",
+     "framing": "M",
+     "hold": 1.2,
+     "creep": 0,
+     "purpose": "P3 'somebody dies by Friday': over the doubters' shoulders, the bandage crate big, the worker and his pole across the traffic"
+    }
+   ]
+  }
+ ]
+}

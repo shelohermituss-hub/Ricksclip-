@@ -1,0 +1,7 @@
+{
+  "_help": "Cloud setup: the free Ricks Clips Sound Pack V1.2 lives in sound_pack/ of this repo. Relative folders are read from the repo root. Add your own folders to the lists.",
+  "sfx_dirs": ["sound_pack/sfx"],
+  "music_dirs": ["sound_pack/music"],
+  "target_lufs": -16.0,
+  "true_peak_max": -1.0
+}

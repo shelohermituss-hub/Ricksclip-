@@ -1,0 +1,6 @@
+frame_checks: s4/film.json  1371 of 1696 frames (rests f0-928 f1278-1289 f1418-1441 f1548-1560 f1562-1571 f1645-1695)  cast patientShorts, climber1, climber2, climber3, surgeonOff
+result who            rest         check         number    worst at  bad frames what                                                      
+WARN   patientShorts  f1442-1547 ~ slide         1.8 %     f1444     8/24       the planted foot slides 1.8 cm per frame across the pictu~
+WARN   patientShorts  f1418-1441   slide         1.9 %     f1431     6/24       the planted foot slides 1.9 cm per frame across the pictu~
+WARN   patientShorts  f1290-1417 ~ slide         2.5 %     f1362     2/47       the planted foot slides 2.5 cm per frame across the pictu~
+0 FAIL, 3 WARN, 33 PASS (31.5 s, scan 19.6 s)  ->  <skill folder>\episodes\fake-surgery\s4\out\frame_checks.md

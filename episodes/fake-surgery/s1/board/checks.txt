@@ -1,0 +1,12 @@
+frame_checks: s1/film.json  333 of 387 frames (rests f0-43 f62-70 f86-115 f126-155 f184-206 f222-232 f248-311 f330-386)  cast surgeon, nurse, patient
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   surgeon        f126-155     head_cut      21 %      f154      30/30      cut by the right+top edge                                 
+FAIL   surgeon        f126-155     body_side     79 %      f154      14/30      cut by the right edge                                     
+WARN   surgeon        f184-206     body_in_mesh  2 %       f201      23/23      inside drape_hip_fold: torso-hips-thighs 2 %, legs 0 %, 6~
+WARN   surgeon        f207-221 mo~ body_in_mesh  2 %       f207      4/8        inside drape_hip_fold: torso-hips-thighs 2 %, legs 0 %, 6~
+WARN   surgeon        f156-183 mo~ body_in_mesh  2 %       f182      3/15       inside drape_hip_fold: torso-hips-thighs 2 %, legs 0 %, 9~
+WARN   patient        f207-221 mo~ body_in_mesh  4 %       f211      3/6        inside patient_body_drape_v4: torso-hips-thighs 1 %, legs~
+WARN   patient        f71-85 move  body_in_mesh  2 %       f73       2/8        inside table_head_section/table_back_pad: torso-hips-thig~
+WARN   patient        f233-247 mo~ body_in_mesh  2 %       f247      1/8        inside table_head_section/pillow: torso-hips-thighs 0 %, ~
+WARN   patient        f248-311     body_in_mesh  2 %       f248      1/64       inside table_head_section/pillow: torso-hips-thighs 0 %, ~
+2 FAIL, 7 WARN, 141 PASS (73 s, scan 40.9 s)  ->  <skill folder>\episodes\fake-surgery\s1\out\frame_checks.md, 2 crops in <skill folder>\episodes\fake-surgery\s1\out\frame_checks

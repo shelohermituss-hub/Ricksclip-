@@ -1,0 +1,53 @@
+{
+ "The Science Behind Slot Machin": {
+  "as census": {
+   "hold": 31.2,
+   "move": 38.7,
+   "p90": 30.9
+  },
+  "caption masked": {
+   "hold": 14.0,
+   "move": 66.2,
+   "p90": 38.0
+  },
+  "caption masked + 30 fps x2": {
+   "hold": 10.9,
+   "move": 66.0,
+   "p90": 37.7
+  }
+ },
+ "Why the Second Draw Always Win": {
+  "as census": {
+   "hold": 50.7,
+   "move": 20.1,
+   "p90": 11.3
+  },
+  "caption masked": {
+   "hold": 15.6,
+   "move": 64.5,
+   "p90": 34.2
+  },
+  "caption masked + 30 fps x2": {
+   "hold": 12.8,
+   "move": 62.6,
+   "p90": 43.6
+  }
+ },
+ "He Could Spot Winning Tickets ": {
+  "as census": {
+   "hold": 34.4,
+   "move": 14.4,
+   "p90": 3.4
+  },
+  "caption masked": {
+   "hold": 17.4,
+   "move": 39.8,
+   "p90": 14.5
+  },
+  "caption masked + 30 fps x2": {
+   "hold": 13.7,
+   "move": 41.3,
+   "p90": 22.9
+  }
+ }
+}

@@ -1,0 +1,18 @@
+pt_bound [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 23.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":28.8,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap stride 1 lift                  f6-9  48 / 93 / 100 / 100 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold proud, dead still                f54-199  max 0 px/f
+pt_dial [side]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 18.2  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":15,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap look up "pain"                 f11-21  7 / 22 / 41 / 62 / 79 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold relieved, dead still             f58-199  max 0 px/f
+pt_step [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 26.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":13.736,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold stopped                          f88-199  max 0 px/f
+cl_step [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 26.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":13.736,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold stopped                          f88-199  max 0 px/f
+cl_march [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 26.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold stopped                          f88-199  max 0 px/f
+sg_ruler [34]  twos 0   linear 0  stops 6 no_settle 0  creep 0  dps 20.3  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap ruler up f50                   f50-58  10 / 31 / 57 / 79 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap look "see" f94                 f94-108  4 / 13 / 25 / 38 / 53 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold hover HOLD 8 f                   f59-66  max 0 px/f
+   hold FREEZE                           f84-92  max 0 px/f
+   hold humble, dead still               f162-199  max 0 px/f

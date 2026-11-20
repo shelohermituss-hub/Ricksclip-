@@ -1,0 +1,17 @@
+so_s3 [34]  twos 0 no_settle@791-829 (peak 31.5, last 2.31/3.03/9.90)  linear 17 (ft0@791 ft0@799 ft0@807 ft0@815 ft0@823 ft0@833)  stops 3 no_settle 1  creep 0  dps 26.8  contact {"knee_off_spot_px":0,"planted_foot_slide_px":68.52,"arm_over_reach_px":104.3,"leg_stretch_px":6.47,"off_built_ground_px":0}
+   snap point "60" (1)                 f793-801  10 / 31 / 57 / 79 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap reach the note "60" (3)        f879-887  11 / 31 / 57 / 79 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold before the stretch               f0-790  max 0 px/f
+sg_s3 [34]  twos 0   linear 0  stops 9 no_settle 0  creep 0  dps 16.6  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":213.44,"leg_stretch_px":6.14,"off_built_ground_px":0}
+   snap jug up "splashes"              f1194-1204  7 / 22 / 41 / 62 / 79 %   (Rick 5 / 16 / 31 / 48 / 66)
+nr_s3 [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 28.4  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":1.74,"off_built_ground_px":0}
+   snap jolt "loudly"                  f1226-1230  31 / 79 / 96 / 100 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold arms folded, dry                 f0-1225  max 0 px/f
+pt_s3 [34]  twos 0   linear 0  stops 5 no_settle 0  creep 0  dps 20.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":13.69,"leg_stretch_px":2.6,"off_built_ground_px":0}
+   snap peek "told"                    f1046-1054  11 / 31 / 57 / 79 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold before the stretch               f0-931  max 0 px/f
+ex_s3a [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 4.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":11.44,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold before the flip                  f0-949  max 0 px/f
+ex_s3b [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 4.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold before the flip                  f0-977  max 0 px/f
+ptr_s3 [34]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":null,"leg_stretch_px":null,"off_built_ground_px":0}

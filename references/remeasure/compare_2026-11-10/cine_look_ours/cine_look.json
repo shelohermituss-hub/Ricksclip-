@@ -1,0 +1,106 @@
+{
+ "source": [
+  "<skill folder>\\episodes\\baboon-signalman\\out\\final\\v1\\baboon_signalman_v1.mp4"
+ ],
+ "frames": 78,
+ "values": {
+  "vignette": 0.873,
+  "shadow_b": -0.8,
+  "Ymean": 0.445,
+  "haze": -0.55,
+  "top_bot": 0.996,
+  "hf": 0.389,
+  "spec": 0.004,
+  "litC": 41.75,
+  "clip": 1.27,
+  "sharp": 0.645,
+  "L_spread": 8.6,
+  "dark_p90": 0.274
+ },
+ "gates": [
+  {
+   "name": "vignette, corner / centre brightness",
+   "value": 0.873,
+   "status": "FAIL",
+   "target": "0.65-0.75 (Rick 0.49-0.76; MAIN LOOK 0.67)",
+   "fix": "raise the vignette in the grade until the measured value is in range; fit per shot"
+  },
+  {
+   "name": "shadow tint b* (minus = blue)",
+   "value": -0.8,
+   "status": "WARN",
+   "target": "-4 to -12 (four of his five films; MAIN LOOK -8)",
+   "fix": "blue the fill light and the shadow side of the grade; shadows are never neutral grey or brown"
+  },
+  {
+   "name": "haze lift of the distance",
+   "value": -0.55,
+   "status": "FAIL",
+   "target": "6-14 (Rick 6.1-14.2)",
+   "fix": "pale the sky at the horizon, shorten the haze range so far things lift toward the horizon colour, add mist cards"
+  },
+  {
+   "name": "top third / bottom brightness (sky against ground)",
+   "value": 0.996,
+   "status": "WARN",
+   "target": ">= 1.1 outdoors (his outdoor films 1.14-1.49)",
+   "fix": "the sky is too dark: lighter sky stops toward the horizon, sun glare in frame"
+  },
+  {
+   "name": "fine surface detail",
+   "value": 0.389,
+   "status": "WARN",
+   "target": ">= 0.5 (his outdoor 3D films 0.51-0.65)",
+   "fix": "denser ground cover near the lens (ballast, pebbles, grass), grain on big planes, less blur outdoors"
+  },
+  {
+   "name": "small glints, share of frame",
+   "value": 0.004,
+   "status": "FAIL",
+   "target": "0.01-0.03 (Rick 0.006-0.028)",
+   "fix": "gloss and a bright edge on the hero materials (rails, metal, glass, wet ground); a low sun makes them fire"
+  },
+  {
+   "name": "colour strength of lit surfaces (C*)",
+   "value": 41.75,
+   "status": "WARN",
+   "target": "20-30 on the big surfaces, one loud accent (Rick 16-30 in four of five films)",
+   "fix": "calm the big planes (ground, walls, sky) and keep the saturation for one accent colour"
+  },
+  {
+   "name": "sharpness of detailed areas",
+   "value": 0.645,
+   "status": "WARN",
+   "target": ">= 0.8 (Rick 0.80-1.44)",
+   "fix": "outdoors keep deep focus (depth comes from haze and light); blur only behind close-ups; check motion blur is on travels only"
+  },
+  {
+   "name": "how much the light changes across the film (spread of L)",
+   "value": 8.6,
+   "status": "FAIL",
+   "target": ">= 10 (Rick 9.2-12.8)",
+   "fix": "the film sits in one light: render the planned moods as real light and grade keys, and give the turn of the story its own light (dusk, night, shade, interior)"
+  },
+  {
+   "name": "deep shade in the darkest tenth of the film, share of frame",
+   "value": 0.274,
+   "status": "WARN",
+   "target": ">= 0.40 (four of his five films 0.44-0.55)",
+   "fix": "let one stretch of the film go dark: night, a shadowed canyon, an interior with one window"
+  },
+  {
+   "name": "brightness, mean",
+   "value": 0.445,
+   "status": "PASS",
+   "target": "0.40-0.51 (Rick)",
+   "fix": ""
+  },
+  {
+   "name": "clipped highlights, %",
+   "value": 1.27,
+   "status": "PASS",
+   "target": "<= 2.5 (MAIN LOOK)",
+   "fix": ""
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+frame_checks: s2/film.json  68 of 790 frames (rests f0-789)  cast surgeon, surgeonOff, g1, g2, g3
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   g1             f0-789       body_side     47 %      f376      8/68       cut by the left edge                                      
+FAIL   g2             f0-789       body_side     44 %      f377      4/56       cut by the left edge                                      
+FAIL   g1             f0-789       head_cut      9 %       f377      4/54       cut by the left edge                                      
+WARN   g3             f0-789       body_side     47 %      f376      3/57       cut by the left edge (only 3 frames: WARN)                
+WARN   g2             f0-789       head_cut      29 %      f378      2/53       cut by the left edge (only 2 frames: WARN)                
+3 FAIL, 2 WARN, 7 PASS (25.4 s, scan 7.6 s)  ->  <skill folder>\episodes\fake-surgery\s2\out\frame_checks.md, 3 crops in <skill folder>\episodes\fake-surgery\s2\out\frame_checks

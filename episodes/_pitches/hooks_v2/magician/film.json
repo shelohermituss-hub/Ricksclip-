@@ -1,0 +1,326 @@
+{
+ "title": "hooks_v2 pitch 1 hook frame: the strongman strains at the tiny box, Robert-Houdin waves, the square laughs (Algeria 1856, golden hour)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "kit3d": true,
+ "face_shadow": true,
+ "auto_view": false,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "strongman": {
+   "puppet": "cast:magic/strongman",
+   "height": 2.4,
+   "heads_tall": 2.8
+  },
+  "magician": {
+   "puppet": "cast:magic/magician",
+   "height": 1.76,
+   "heads_tall": 3.1
+  },
+  "oldman": {
+   "puppet": "cast:magic/oldman",
+   "height": 1.66,
+   "heads_tall": 3.1
+  },
+  "youngman": {
+   "puppet": "cast:magic/youngman",
+   "height": 1.74,
+   "heads_tall": 2.93
+  },
+  "officer": {
+   "puppet": "cast:magic/officer",
+   "height": 1.78,
+   "heads_tall": 2.93
+  },
+  "boy": {
+   "puppet": "cast:magic/boy",
+   "height": 1.22,
+   "heads_tall": 2.4
+  },
+  "merchant": {
+   "puppet": "cast:magic/merchant",
+   "height": 1.72,
+   "heads_tall": 2.8
+  },
+  "woman": {
+   "puppet": "cast:magic/woman",
+   "height": 1.6,
+   "heads_tall": 2.8
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "faces_ep": {
+  "strain": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     -8,
+     15,
+     -2,
+     1.35
+    ],
+    [
+     -8,
+     15,
+     -2,
+     1.35
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 34,
+   "teethH": 12,
+   "fx": [
+    "vein",
+    "redMarks",
+    "sweats"
+   ]
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.35
+ },
+ "places": {
+  "square": {
+   "set": "square",
+   "light": "day",
+   "backdrop": 80,
+   "light_over": {
+    "top": "#4f86d6",
+    "hor": "#ffd9a0",
+    "sun": "#ffc070",
+    "si": 3.0,
+    "amb": "#c8b0c8",
+    "ai": 2.3,
+    "dir": [
+     -7,
+     -9,
+     4.5
+    ],
+    "tint": "#fff4e6",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.35
+   },
+   "stageTop": 0.67,
+   "box": [
+    -0.607,
+    -0.76
+   ],
+   "fg": [
+    0.55,
+    -1.9
+   ],
+   "sweat": [
+    [
+     -1.5,
+     -0.55,
+     2.05,
+     1
+    ],
+    [
+     -1.62,
+     -0.55,
+     1.8,
+     0.8
+    ],
+    [
+     -0.55,
+     -0.55,
+     2.25,
+     0.9
+    ],
+    [
+     -0.42,
+     -0.55,
+     2.0,
+     0.7
+    ]
+   ],
+   "boxZ": 0.695,
+   "boxShadowY": -0.33,
+   "bannerZ": 3.6
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "strongman",
+   "pos": [
+    -0.95,
+    -0.52,
+    0.0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_magic/strain",
+   "face": "k:strain",
+   "note": "both fists on the tiny box handle, thrown back",
+   "at": 0
+  },
+  {
+   "who": "magician",
+   "pos": [
+    0.75,
+    0.75,
+    0.67
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_magic/wave",
+   "face": "k:smug",
+   "note": "smug lazy wave at the giant",
+   "at": 0
+  },
+  {
+   "who": "oldman",
+   "pos": [
+    -2.0,
+    3.4,
+    0.0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_magic/laughR",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  },
+  {
+   "who": "youngman",
+   "pos": [
+    -1.15,
+    4.3,
+    0.0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_magic/bellyA",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  },
+  {
+   "who": "woman",
+   "pos": [
+    -2.7,
+    5.2,
+    0.0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_magic/laughR",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  },
+  {
+   "who": "officer",
+   "pos": [
+    1.55,
+    3.7,
+    0.0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_magic/laughL",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  },
+  {
+   "who": "merchant",
+   "pos": [
+    2.05,
+    5.3,
+    0.0
+   ],
+   "view": "front",
+   "dir": -1,
+   "pose": "m:../../ep_magic/bellyB",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  },
+  {
+   "who": "boy",
+   "pos": [
+    1.2,
+    3.4,
+    0.0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_magic/boyhop",
+   "face": "k:laugh",
+   "note": "crowd",
+   "at": 0
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "square",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.5,
+      -4.9,
+      1.0
+     ],
+     "aim": [
+      -0.5,
+      0,
+      1.32
+     ],
+     "lens": 28,
+     "subject": "strongman",
+     "framing": "W",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the giant strains at the tiny box, the smug magician waves, the square laughs"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "source": [
+  "<skill folder>\\references\\remeasure\\compare_2026-11-10\\frames\\railroads"
+ ],
+ "frames": 65,
+ "values": {
+  "vignette": 0.755,
+  "shadow_b": -0.9,
+  "Ymean": 0.437,
+  "haze": 8.15,
+  "top_bot": 1.348,
+  "hf": 0.51,
+  "spec": 0.011,
+  "litC": 30.1,
+  "clip": 0.75,
+  "sharp": 0.804,
+  "L_spread": 10.64,
+  "dark_p90": 0.456
+ },
+ "gates": [
+  {
+   "name": "vignette, corner / centre brightness",
+   "value": 0.755,
+   "status": "PASS",
+   "target": "0.65-0.75 (Rick 0.49-0.76; MAIN LOOK 0.67)",
+   "fix": ""
+  },
+  {
+   "name": "shadow tint b* (minus = blue)",
+   "value": -0.9,
+   "status": "WARN",
+   "target": "-4 to -12 (four of his five films; MAIN LOOK -8)",
+   "fix": "blue the fill light and the shadow side of the grade; shadows are never neutral grey or brown"
+  },
+  {
+   "name": "haze lift of the distance",
+   "value": 8.15,
+   "status": "PASS",
+   "target": "6-14 (Rick 6.1-14.2)",
+   "fix": ""
+  },
+  {
+   "name": "top third / bottom brightness (sky against ground)",
+   "value": 1.348,
+   "status": "PASS",
+   "target": ">= 1.1 outdoors (his outdoor films 1.14-1.49)",
+   "fix": ""
+  },
+  {
+   "name": "fine surface detail",
+   "value": 0.51,
+   "status": "PASS",
+   "target": ">= 0.5 (his outdoor 3D films 0.51-0.65)",
+   "fix": ""
+  },
+  {
+   "name": "small glints, share of frame",
+   "value": 0.011,
+   "status": "PASS",
+   "target": "0.01-0.03 (Rick 0.006-0.028)",
+   "fix": ""
+  },
+  {
+   "name": "colour strength of lit surfaces (C*)",
+   "value": 30.1,
+   "status": "PASS",
+   "target": "20-30 on the big surfaces, one loud accent (Rick 16-30 in four of five films)",
+   "fix": ""
+  },
+  {
+   "name": "sharpness of detailed areas",
+   "value": 0.804,
+   "status": "PASS",
+   "target": ">= 0.8 (Rick 0.80-1.44)",
+   "fix": ""
+  },
+  {
+   "name": "how much the light changes across the film (spread of L)",
+   "value": 10.64,
+   "status": "PASS",
+   "target": ">= 10 (Rick 9.2-12.8)",
+   "fix": ""
+  },
+  {
+   "name": "deep shade in the darkest tenth of the film, share of frame",
+   "value": 0.456,
+   "status": "PASS",
+   "target": ">= 0.40 (four of his five films 0.44-0.55)",
+   "fix": ""
+  },
+  {
+   "name": "brightness, mean",
+   "value": 0.437,
+   "status": "PASS",
+   "target": "0.40-0.51 (Rick)",
+   "fix": ""
+  },
+  {
+   "name": "clipped highlights, %",
+   "value": 0.75,
+   "status": "PASS",
+   "target": "<= 2.5 (MAIN LOOK)",
+   "fix": ""
+  }
+ ]
+}

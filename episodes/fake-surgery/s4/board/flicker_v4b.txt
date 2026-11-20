@@ -1,0 +1,8 @@
+flicker.py final/frames  frames 1279-1694  region floor  FAIL frame: pop > 1.0 and pop > 0.25 x shim;  WARN frame: aba > 1.5 with shim < 8.0
+  pop  median 0.018  p95 0.378  max 29.003
+  shim median 3.109  p95 11.621  max 72.593
+  aba  median 0.463  p95 2.365  max 8.961
+  score median 0.017  p95 0.161  max 29.003  FAIL frames (score > 1): 8 [1513, 1514, 1559, 1560, 1561, 1562, 1622, 1623]
+  WARN frames (local one-frame flips, camera followed): 48 [1302, 1304, 1305, 1306, 1307, 1308, 1309, 1310, 1311, 1312, 1313, 1315]
+  worst: f1562 29.003 (pop 29.003 shim 2.95 aba 1.536)  f1560 20.989 (pop 20.989 shim 0.31 aba 0.219)  f1514 4.194 (pop 4.194 shim 2.371 aba 0.917)  f1623 3.777 (pop 3.777 shim 3.081 aba 1.207)  f1559 1.55 (pop 28.137 shim 72.593 aba 0.996)  f1561 1.474 (pop 21.315 shim 57.86 aba 0.1)  f1513 1.304 (pop 4.309 shim 13.217 aba 1.146)  f1622 1.112 (pop 3.34 shim 12.019 aba 0.976)
+FAIL

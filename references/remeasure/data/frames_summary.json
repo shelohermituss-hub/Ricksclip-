@@ -1,0 +1,613 @@
+{
+ "n_frames": 3864,
+ "labels": {
+  "D": 692,
+  "O": 2406,
+  "G": 765,
+  "X": 1
+ },
+ "clusters": {
+  "all": {
+   "frames": 3863,
+   "Yp1": 0.101,
+   "Yp5": 0.152,
+   "Yp25": 0.291,
+   "Yp50": 0.451,
+   "Yp75": 0.616,
+   "Yp95": 0.858,
+   "Yp99": 0.948,
+   "Ymean": 0.475,
+   "noink_p5": 0.167,
+   "noink_p50": 0.462,
+   "sat_mean": 0.463,
+   "sat_p50": 0.467,
+   "litC_p50": 31.9,
+   "litC_p90": 54.8,
+   "corner_over_centre": 0.702,
+   "dark_bstar_mean": -1.5,
+   "ink_pct": 2.34,
+   "black_point": [
+    27.8,
+    12.6,
+    19.5
+   ],
+   "edge_ink_coverage_pct": 40.6,
+   "dark_stroke_pct": 2.76,
+   "sh_share": 0.269,
+   "sh_ab_mean": [
+    15.3,
+    -4.1
+   ],
+   "sh_hue_pct": [
+    26,
+    22,
+    1,
+    1,
+    0,
+    0,
+    2,
+    12,
+    20,
+    5,
+    4,
+    6
+   ],
+   "mid_share": 0.454,
+   "mid_ab_mean": [
+    12.4,
+    4.8
+   ],
+   "mid_hue_pct": [
+    15,
+    39,
+    3,
+    2,
+    1,
+    1,
+    5,
+    16,
+    11,
+    3,
+    1,
+    2
+   ],
+   "hi_share": 0.158,
+   "hi_ab_mean": [
+    4.1,
+    11.4
+   ],
+   "hi_hue_pct": [
+    6,
+    55,
+    10,
+    1,
+    0,
+    1,
+    3,
+    15,
+    5,
+    2,
+    1,
+    2
+   ],
+   "sky_frames": 1820,
+   "sky_low_over_upper": 1.135,
+   "sky_low_over_upper_IQR": [
+    1.043,
+    1.31
+   ],
+   "sky_upper_rgb": [
+    157,
+    158,
+    189
+   ],
+   "sky_low_rgb": [
+    192,
+    188,
+    197
+   ],
+   "skyline_y": 0.194
+  },
+  "D": {
+   "frames": 692,
+   "Yp1": 0.118,
+   "Yp5": 0.195,
+   "Yp25": 0.39,
+   "Yp50": 0.554,
+   "Yp75": 0.688,
+   "Yp95": 0.89,
+   "Yp99": 0.959,
+   "Ymean": 0.542,
+   "noink_p5": 0.229,
+   "noink_p50": 0.565,
+   "sat_mean": 0.452,
+   "sat_p50": 0.451,
+   "litC_p50": 32.95,
+   "litC_p90": 50.7,
+   "corner_over_centre": 0.806,
+   "dark_bstar_mean": -5.4,
+   "ink_pct": 2.64,
+   "black_point": [
+    29.1,
+    16.8,
+    24.5
+   ],
+   "edge_ink_coverage_pct": 44.25,
+   "dark_stroke_pct": 3.115,
+   "sh_share": 0.136,
+   "sh_ab_mean": [
+    12.1,
+    -4.7
+   ],
+   "sh_hue_pct": [
+    20,
+    22,
+    1,
+    1,
+    1,
+    1,
+    4,
+    19,
+    19,
+    4,
+    3,
+    6
+   ],
+   "mid_share": 0.556,
+   "mid_ab_mean": [
+    6.4,
+    -4.4
+   ],
+   "mid_hue_pct": [
+    8,
+    28,
+    3,
+    3,
+    1,
+    1,
+    8,
+    35,
+    9,
+    1,
+    1,
+    1
+   ],
+   "hi_share": 0.235,
+   "hi_ab_mean": [
+    1.0,
+    0.0
+   ],
+   "hi_hue_pct": [
+    3,
+    35,
+    7,
+    1,
+    0,
+    1,
+    4,
+    39,
+    6,
+    2,
+    1,
+    1
+   ],
+   "sky_frames": 692,
+   "sky_low_over_upper": 1.238,
+   "sky_low_over_upper_IQR": [
+    1.11,
+    1.372
+   ],
+   "sky_upper_rgb": [
+    91,
+    150,
+    211
+   ],
+   "sky_low_rgb": [
+    133,
+    183,
+    231
+   ],
+   "skyline_y": 0.219
+  },
+  "G": {
+   "frames": 765,
+   "Yp1": 0.128,
+   "Yp5": 0.194,
+   "Yp25": 0.425,
+   "Yp50": 0.608,
+   "Yp75": 0.764,
+   "Yp95": 0.891,
+   "Yp99": 0.955,
+   "Ymean": 0.578,
+   "noink_p5": 0.231,
+   "noink_p50": 0.624,
+   "sat_mean": 0.433,
+   "sat_p50": 0.417,
+   "litC_p50": 30.4,
+   "litC_p90": 50.4,
+   "corner_over_centre": 0.759,
+   "dark_bstar_mean": 9.3,
+   "ink_pct": 2.31,
+   "black_point": [
+    42.5,
+    16.0,
+    13.5
+   ],
+   "edge_ink_coverage_pct": 42.5,
+   "dark_stroke_pct": 2.86,
+   "sh_share": 0.116,
+   "sh_ab_mean": [
+    16.0,
+    8.0
+   ],
+   "sh_hue_pct": [
+    34,
+    37,
+    2,
+    1,
+    1,
+    0,
+    0,
+    5,
+    7,
+    3,
+    3,
+    6
+   ],
+   "mid_share": 0.457,
+   "mid_ab_mean": [
+    13.6,
+    20.6
+   ],
+   "mid_hue_pct": [
+    19,
+    55,
+    7,
+    3,
+    1,
+    1,
+    3,
+    4,
+    4,
+    1,
+    1,
+    2
+   ],
+   "hi_share": 0.369,
+   "hi_ab_mean": [
+    5.7,
+    21.4
+   ],
+   "hi_hue_pct": [
+    6,
+    76,
+    10,
+    1,
+    0,
+    0,
+    1,
+    3,
+    0,
+    0,
+    0,
+    1
+   ],
+   "sky_frames": 765,
+   "sky_low_over_upper": 1.127,
+   "sky_low_over_upper_IQR": [
+    1.03,
+    1.294
+   ],
+   "sky_upper_rgb": [
+    191,
+    155,
+    137
+   ],
+   "sky_low_rgb": [
+    223,
+    184,
+    144
+   ],
+   "skyline_y": 0.223
+  },
+  "N": {
+   "frames": 0,
+   "Yp1": null,
+   "Yp5": null,
+   "Yp25": null,
+   "Yp50": null,
+   "Yp75": null,
+   "Yp95": null,
+   "Yp99": null,
+   "Ymean": null,
+   "noink_p5": null,
+   "noink_p50": null,
+   "sat_mean": null,
+   "sat_p50": null,
+   "litC_p50": null,
+   "litC_p90": null,
+   "corner_over_centre": null,
+   "dark_bstar_mean": null,
+   "ink_pct": null,
+   "black_point": [
+    NaN,
+    NaN,
+    NaN
+   ],
+   "edge_ink_coverage_pct": null,
+   "dark_stroke_pct": null,
+   "sh_share": null,
+   "sh_ab_mean": null,
+   "sh_hue_pct": null,
+   "mid_share": null,
+   "mid_ab_mean": null,
+   "mid_hue_pct": null,
+   "hi_share": null,
+   "hi_ab_mean": null,
+   "hi_hue_pct": null
+  },
+  "O": {
+   "frames": 2406,
+   "Yp1": 0.088,
+   "Yp5": 0.127,
+   "Yp25": 0.237,
+   "Yp50": 0.346,
+   "Yp75": 0.52,
+   "Yp95": 0.81,
+   "Yp99": 0.932,
+   "Ymean": 0.385,
+   "noink_p5": 0.134,
+   "noink_p50": 0.352,
+   "sat_mean": 0.489,
+   "sat_p50": 0.5,
+   "litC_p50": 32.0,
+   "litC_p90": 57.9,
+   "corner_over_centre": 0.605,
+   "dark_bstar_mean": -5.1,
+   "ink_pct": 2.28,
+   "black_point": [
+    22.9,
+    10.8,
+    20.9
+   ],
+   "edge_ink_coverage_pct": 38.8,
+   "dark_stroke_pct": 2.62,
+   "sh_share": 0.396,
+   "sh_ab_mean": [
+    16.1,
+    -7.7
+   ],
+   "sh_hue_pct": [
+    25,
+    18,
+    1,
+    0,
+    0,
+    0,
+    1,
+    13,
+    25,
+    7,
+    4,
+    6
+   ],
+   "mid_share": 0.413,
+   "mid_ab_mean": [
+    13.8,
+    2.5
+   ],
+   "mid_hue_pct": [
+    16,
+    37,
+    2,
+    2,
+    2,
+    1,
+    4,
+    15,
+    14,
+    3,
+    2,
+    3
+   ],
+   "hi_share": 0.105,
+   "hi_ab_mean": [
+    4.5,
+    11.4
+   ],
+   "hi_hue_pct": [
+    6,
+    54,
+    11,
+    1,
+    0,
+    1,
+    3,
+    11,
+    6,
+    2,
+    1,
+    2
+   ],
+   "sky_frames": 363,
+   "sky_low_over_upper": 1.072,
+   "sky_low_over_upper_IQR": [
+    1.031,
+    1.108
+   ],
+   "sky_upper_rgb": [
+    199,
+    196,
+    215
+   ],
+   "sky_low_rgb": [
+    218,
+    218,
+    226
+   ],
+   "skyline_y": 0.116
+  }
+ },
+ "per_video": {
+  "An Unstoppable Spear vs an Unbreakable Shield - Ricks Clips (1080p, h264)": {
+   "frames": 225,
+   "Ymean": 0.546,
+   "sat_mean": 0.399,
+   "Yp2_proxy_p1": 0.164,
+   "Yp99": 0.972,
+   "edge_ink": 31.5
+  },
+  "Every Memory Has a Price - Ricks Clips (1080p, h264)": {
+   "frames": 155,
+   "Ymean": 0.326,
+   "sat_mean": 0.524,
+   "Yp2_proxy_p1": 0.059,
+   "Yp99": 0.893,
+   "edge_ink": 30.2
+  },
+  "How Painkillers Actually Work - Ricks Clips (1080p, h264)": {
+   "frames": 172,
+   "Ymean": 0.402,
+   "sat_mean": 0.53,
+   "Yp2_proxy_p1": 0.119,
+   "Yp99": 0.962,
+   "edge_ink": 34.85
+  },
+  "How a Mirror Rigged a Horse Race - Ricks Clips (1080p, h264)": {
+   "frames": 128,
+   "Ymean": 0.485,
+   "sat_mean": 0.408,
+   "Yp2_proxy_p1": 0.092,
+   "Yp99": 0.95,
+   "edge_ink": 36.1
+  },
+  "Levels of Pirate Cannonballs - Ricks Clips (1080p, h264)": {
+   "frames": 317,
+   "Ymean": 0.519,
+   "sat_mean": 0.482,
+   "Yp2_proxy_p1": 0.121,
+   "Yp99": 0.917,
+   "edge_ink": 44.7
+  },
+  "The Ancient Jar That Warned an Empire": {
+   "frames": 324,
+   "Ymean": 0.398,
+   "sat_mean": 0.412,
+   "Yp2_proxy_p1": 0.102,
+   "Yp99": 0.94,
+   "edge_ink": 51.75
+  },
+  "The Burglar Who Only Moved Furniture": {
+   "frames": 292,
+   "Ymean": 0.598,
+   "sat_mean": 0.404,
+   "Yp2_proxy_p1": 0.091,
+   "Yp99": 0.966,
+   "edge_ink": 50.95
+  },
+  "The Job Nobody Wants in Japan - Ricks Clips (1080p, h264)": {
+   "frames": 302,
+   "Ymean": 0.565,
+   "sat_mean": 0.411,
+   "Yp2_proxy_p1": 0.079,
+   "Yp99": 0.869,
+   "edge_ink": 47.9
+  },
+  "The Science Behind Slot Machines - Ricks Clips (1080p, h264)": {
+   "frames": 155,
+   "Ymean": 0.38,
+   "sat_mean": 0.613,
+   "Yp2_proxy_p1": 0.027,
+   "Yp99": 0.992,
+   "edge_ink": 33.9
+  },
+  "The Scientist's Insane Time Test - Ricks Clips (720p, h264)": {
+   "frames": 200,
+   "Ymean": 0.576,
+   "sat_mean": 0.43,
+   "Yp2_proxy_p1": 0.118,
+   "Yp99": 0.989,
+   "edge_ink": 50.85
+  },
+  "The Town Built Around a Button - Ricks Clips (1080p, h264)": {
+   "frames": 131,
+   "Ymean": 0.505,
+   "sat_mean": 0.467,
+   "Yp2_proxy_p1": 0.101,
+   "Yp99": 0.913,
+   "edge_ink": 32.8
+  },
+  "The Window That Breaks Japan's Gambling Law - Ricks Clips (720p, h264)": {
+   "frames": 225,
+   "Ymean": 0.287,
+   "sat_mean": 0.494,
+   "Yp2_proxy_p1": 0.045,
+   "Yp99": 0.971,
+   "edge_ink": 38.6
+  },
+  "This Knight Found the Ultimate Loophole - Ricks Clips (720p, h264)": {
+   "frames": 203,
+   "Ymean": 0.539,
+   "sat_mean": 0.479,
+   "Yp2_proxy_p1": 0.145,
+   "Yp99": 0.969,
+   "edge_ink": 57.9
+  },
+  "What the Grave Bell Really Meant - Ricks Clips (1080p, h264)": {
+   "frames": 119,
+   "Ymean": 0.376,
+   "sat_mean": 0.53,
+   "Yp2_proxy_p1": 0.085,
+   "Yp99": 0.882,
+   "edge_ink": 35.9
+  },
+  "Why Cashiers Keep Winning The Lottery - Ricks Clips (1080p, h264)": {
+   "frames": 115,
+   "Ymean": 0.506,
+   "sat_mean": 0.421,
+   "Yp2_proxy_p1": 0.091,
+   "Yp99": 0.953,
+   "edge_ink": 36.7
+  },
+  "Why Humans Can't Pick Random Numbers - Ricks Clips (1080p, h264)": {
+   "frames": 235,
+   "Ymean": 0.625,
+   "sat_mean": 0.382,
+   "Yp2_proxy_p1": 0.154,
+   "Yp99": 0.954,
+   "edge_ink": 39.8
+  },
+  "Why Perfect Railroads Don't Work": {
+   "frames": 129,
+   "Ymean": 0.463,
+   "sat_mean": 0.485,
+   "Yp2_proxy_p1": 0.119,
+   "Yp99": 0.964,
+   "edge_ink": 28.9
+  },
+  "Why Sailors Carried Storm Oil - Ricks Clips (1080p, h264)": {
+   "frames": 129,
+   "Ymean": 0.393,
+   "sat_mean": 0.6,
+   "Yp2_proxy_p1": 0.051,
+   "Yp99": 1.0,
+   "edge_ink": 49.9
+  },
+  "Why the Second Draw Always Wins - Ricks Clips (1080p, h264)": {
+   "frames": 112,
+   "Ymean": 0.441,
+   "sat_mean": 0.462,
+   "Yp2_proxy_p1": 0.118,
+   "Yp99": 0.908,
+   "edge_ink": 29.1
+  },
+  "Your Brain's Secret Idea Zone - Ricks Clips (1080p, h264)": {
+   "frames": 195,
+   "Ymean": 0.234,
+   "sat_mean": 0.504,
+   "Yp2_proxy_p1": 0.023,
+   "Yp99": 0.873,
+   "edge_ink": 21.3
+  }
+ }
+}

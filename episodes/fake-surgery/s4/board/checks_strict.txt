@@ -1,0 +1,11 @@
+frame_checks: s4/film.json  418 of 1696 frames (rests f0-1695)  cast patientShorts, climber1, climber2, climber3, surgeonOff
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   patientShorts  f0-1695      slide         5.5 %     f1362     17/134     the planted foot slides 5.5 cm per frame across the pictu~
+WARN   climber1       f0-1695      head_cut      36 %      f1448     2/42       cut by the right+bottom edge (only 2 frames: WARN)        
+WARN   climber2       f0-1695      head_cut      66 %      f1448     2/42       cut by the bottom edge (only 2 frames: WARN)              
+WARN   climber1       f0-1695      body_side     61 %      f1449     2/42       cut by the right edge (only 2 frames: WARN)               
+WARN   climber3       f0-1695      body_side     43 %      f1446     1/44       cut by the right edge (only 1 frames: WARN)               
+WARN   climber3       f0-1695      head_cut      60 %      f1446     1/44       cut by the right+bottom edge (only 1 frames: WARN)        
+WARN   climber2       f0-1695      face_covered  3 rays    f1448     1/42       head centre INSIDE stairwell/step_mass; in front: stairwe~
+WARN   surgeonOff     f0-1695      slide         1.9 %     f1585     1/205      the planted foot slides 1.9 cm per frame across the pictu~
+1 FAIL, 7 WARN, 20 PASS (32.5 s, scan 18.3 s)  ->  <skill folder>\episodes\fake-surgery\s4\out\frame_checks.md, 1 crops in <skill folder>\episodes\fake-surgery\s4\out\frame_checks

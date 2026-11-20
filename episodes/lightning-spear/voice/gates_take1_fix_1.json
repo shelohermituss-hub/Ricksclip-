@@ -1,0 +1,14 @@
+{
+ "duration_s": 1.36,
+ "words_heard": 4,
+ "words_script": 232,
+ "words_per_s_overall": 2.94,
+ "words_per_s_talking": 3.51,
+ "sentence_gap_median": null,
+ "longest_gap": 0.0,
+ "gaps_over_0_5": 0,
+ "pause_share_pct": 0.0,
+ "lead_in_s": 0.0,
+ "tail_s": 0.22,
+ "text": "Even the chicken coop!"
+}

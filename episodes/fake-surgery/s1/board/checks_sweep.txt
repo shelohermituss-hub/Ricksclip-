@@ -1,0 +1,11 @@
+frame_checks: s1/film.json  272 of 387 frames (rests f0-39 f142-149 f161-185 f228-257 f300-344)  cast surgeon, nurse, patient
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   nurse          f161-185     body_side     50 %      f170      25/25      cut by the right edge                                     
+FAIL   nurse          f161-185     head_cut      45 %      f185      25/25      cut by the right edge                                     
+FAIL   patient        f161-185     body_side     51 %      f185      25/25      cut by the left edge                                      
+FAIL   patient        f300-344     body_side     20 %      f300      13/45      cut by the left edge                                      
+FAIL   patient        f142-149     body_side     67 %      f149      8/8        cut by the left edge                                      
+WARN   patient        f0-39        body_in_mesh  2 %       f2        2/40       inside table_head_section/table_back_pad: torso-hips-thig~
+WARN   patient        f186-227 mo~ body_in_mesh  3 %       f192      2/22       inside table_head_section/pillow: torso-hips-thighs 0 %, ~
+WARN   patient        f40-141 move body_in_mesh  2 %       f60       1/52       inside table_head_section/table_back_pad: torso-hips-thig~
+5 FAIL, 3 WARN, 94 PASS (38.2 s, scan 25.8 s)  ->  <skill folder>\episodes\fake-surgery\s1\out\frame_checks.md, 5 crops in <skill folder>\episodes\fake-surgery\s1\out\frame_checks

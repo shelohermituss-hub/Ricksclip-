@@ -1,0 +1,1258 @@
+{
+ "title": "fake-surgery S2 BUILD-OUT: rows 11-20, film 375-777 (render 363-789)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words_s2.json",
+ "end": 790,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "surgeon": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "surgeonOff": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "g1": {
+   "puppet": "cast:surgery/g1",
+   "height": 1.74,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "g2": {
+   "puppet": "cast:surgery/g2",
+   "height": 1.62,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "g3": {
+   "puppet": "cast:surgery/g3",
+   "height": 1.8,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "face_shadow": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "faces_ep": {
+  "drowsy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     5,
+     0
+    ],
+    [
+     -4,
+     5,
+     0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "wince": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ],
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 24
+  },
+  "thumbsSmile": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     4,
+     -2,
+     4
+    ],
+    [
+     6,
+     -3,
+     5
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "springGrin": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -3,
+     7
+    ],
+    [
+     12,
+     -3,
+     7
+    ]
+   ],
+   "mouth": "teeth"
+  },
+  "smileEyes": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -2,
+     5
+    ],
+    [
+     8,
+     -2,
+     6
+    ]
+   ],
+   "mouth": "lens"
+  },
+  "wail": {
+   "eyes": "cry",
+   "brows": [
+    [
+     8,
+     -11,
+     2
+    ],
+    [
+     8,
+     -11,
+     2
+    ]
+   ],
+   "mouth": "frownXL",
+   "fx": [
+    "tears"
+   ]
+  },
+  "maskCalm": {
+   "eyes": "happy",
+   "brows": [
+    [
+     4,
+     -1,
+     3
+    ],
+    [
+     6,
+     -1,
+     4
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "maskCheer": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     10,
+     -3,
+     6
+    ],
+    [
+     10,
+     -3,
+     6
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "sipCalm": {
+   "eyes": "lid",
+   "brows": [
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     3,
+     1,
+     2
+    ]
+   ],
+   "mouth": "flat"
+  },
+  "sipSide": {
+   "eyes": "lookSide",
+   "brows": [
+    [
+     6,
+     -3,
+     4
+    ],
+    [
+     -2,
+     4,
+     0
+    ]
+   ],
+   "mouth": "flat",
+   "side": 1
+  },
+  "caught": {
+   "eyes": "oval",
+   "brows": [
+    [
+     14,
+     -9,
+     7,
+     1.2
+    ],
+    [
+     14,
+     -9,
+     7,
+     1.2
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 20
+  },
+  "thinking": {
+   "eyes": "lookSide",
+   "brows": [
+    [
+     -4,
+     6,
+     0,
+     1.15
+    ],
+    [
+     10,
+     -5,
+     6,
+     1.15
+    ]
+   ],
+   "mouth": "sideways",
+   "side": 1
+  },
+  "determined": {
+   "eyes": "squint",
+   "brows": [
+    [
+     -6,
+     8,
+     0,
+     1.1
+    ],
+    [
+     -6,
+     8,
+     0,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  },
+  "playful": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -3,
+     5
+    ],
+    [
+     8,
+     -3,
+     6
+    ]
+   ],
+   "mouth": "smirkXL"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.45
+ },
+ "places": {
+  "co": {
+   "set": "corridor",
+   "light": "day",
+   "time": "day",
+   "backdrop": 30,
+   "light_over": {
+    "top": "#fff6e0",
+    "hor": "#f3e2a6",
+    "sun": "#fff2c0",
+    "si": 1.0,
+    "amb": "#ffe8b0",
+    "ai": 0.64,
+    "dir": [
+     0.5,
+     8,
+     -1.5
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#bfe0d8",
+    "fill_i": 0.35,
+    "veil_color": "#e8c878",
+    "shadow_color": "#4a4030",
+    "rich": 1.0
+   },
+   "post": {
+    "vignette": 0.4
+   },
+   "fog": [
+    10,
+    40
+   ],
+   "linen_cart_off": true,
+   "queue_side": [
+    [
+     0.15,
+     5.0,
+     0
+    ],
+    [
+     1.05,
+     9.7,
+     90
+    ],
+    [
+     0.0,
+     6.45,
+     180
+    ],
+    [
+     -1.05,
+     9.9,
+     90
+    ],
+    [
+     0.55,
+     8.1,
+     0
+    ]
+   ],
+   "queue_lie": [
+    0,
+    2,
+    4
+   ],
+   "hang_sign_off": true,
+   "env_v3": true,
+   "rail_queue_off": true,
+   "plant_at": [
+    -1.0,
+    -2.2
+   ],
+   "ph_scale": 0.82,
+   "ph_tool": 1.4,
+   "ph_dy": -42,
+   "ph_clear": true,
+   "clock_hang": [
+    1.0,
+    6.2,
+    2.2
+   ],
+   "period_right": {
+    "crt_y": 2.0,
+    "cal_y": 2.1,
+    "text": "HOUSTON TX"
+   },
+   "co_v2": true,
+   "out_v2": true,
+   "co_v3": true,
+   "out_v3": true,
+   "troff_nohalo": true,
+   "clock": [
+    [
+     375,
+     "8:00"
+    ],
+    [
+     505,
+     "11:00"
+    ],
+    [
+     522,
+     "2:00"
+    ]
+   ],
+   "clock_spin": [
+    [
+     500,
+     0
+    ],
+    [
+     522,
+     5
+    ],
+    [
+     540,
+     5
+    ]
+   ],
+   "window": [
+    [
+     375,
+     "morning"
+    ],
+    [
+     505,
+     "noon"
+    ]
+   ],
+   "portholes": "work",
+   "ph_front": true,
+   "ph_big": true,
+   "rhythm": 1.1,
+   "queue": [
+    [
+     375,
+     6
+    ],
+    [
+     440,
+     12
+    ]
+   ],
+   "queue_out": 160,
+   "honk": true,
+   "flicker": [
+    440
+   ],
+   "fog_out": [
+    40,
+    520
+   ]
+  },
+  "of": {
+   "set": "office",
+   "light": "night",
+   "time": "night",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#0e1e5a",
+    "hor": "#1e3a8a",
+    "sun": "#4a6ad8",
+    "si": 0.8,
+    "amb": "#3a4a8a",
+    "ai": 3.6,
+    "dir": [
+     -1.5,
+     3,
+     -6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#2a3a7a",
+    "fill_i": 1.15,
+    "veil_color": "#1e3a8a",
+    "shadow_color": "#141a3a",
+    "rich": 0.75
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "dress": "night",
+   "fog": [
+    8,
+    30
+   ],
+   "env_v3": true,
+   "dust": 30,
+   "lamp_nohalo": true,
+   "troff_nohalo": true,
+   "ni_v2": true,
+   "chair": false,
+   "note": "locker",
+   "clock": "9:40",
+   "clock_spin": [
+    [
+     533,
+     5
+    ],
+    [
+     547,
+     5
+    ],
+    [
+     575,
+     0
+    ]
+   ],
+   "clock_spin_int": true,
+   "trays": true,
+   "tray_fill": 0.15,
+   "impact": [
+    [
+     650,
+     "#ffffff"
+    ],
+    [
+     651,
+     "#fff2a0"
+    ]
+   ],
+   "qfield": [
+    [
+     640,
+     0
+    ],
+    [
+     650,
+     0
+    ],
+    [
+     652,
+     1
+    ],
+    [
+     664,
+     1
+    ],
+    [
+     670,
+     0
+    ]
+   ],
+   "qfield_at": [
+    0.05,
+    1.45,
+    1.5
+   ],
+   "focus": [
+    [
+     650,
+     0
+    ],
+    [
+     651,
+     1
+    ],
+    [
+     664,
+     1
+    ],
+    [
+     668,
+     0
+    ]
+   ],
+   "sweat": [
+    [
+     652,
+     0
+    ],
+    [
+     656,
+     1
+    ],
+    [
+     668,
+     1
+    ],
+    [
+     671,
+     0
+    ]
+   ],
+   "sweat_at": [
+    0.3,
+    1.42,
+    1.66
+   ],
+   "glint": [
+    [
+     647,
+     0
+    ],
+    [
+     650,
+     1
+    ],
+    [
+     655,
+     0.25
+    ],
+    [
+     660,
+     0
+    ]
+   ],
+   "glint_at": [
+    0.14,
+    1.36,
+    1.56
+   ],
+   "tower_grow": [
+    [
+     667,
+     0
+    ],
+    [
+     676,
+     1
+    ]
+   ],
+   "tower": [
+    [
+     667,
+     0
+    ],
+    [
+     668,
+     1
+    ],
+    [
+     724,
+     1
+    ],
+    [
+     725,
+     0
+    ]
+   ],
+   "tower_at": [
+    0.5,
+    1.3
+   ],
+   "tower_h": 2.0,
+   "tower_w": 3.0,
+   "tower_lift": [
+    [
+     674,
+     0
+    ],
+    [
+     686,
+     0.14
+    ]
+   ],
+   "lamp_duck": [
+    [
+     676,
+     0
+    ],
+    [
+     686,
+     1
+    ],
+    [
+     726,
+     1
+    ],
+    [
+     734,
+     0
+    ]
+   ],
+   "deal": {
+    "from": [
+     0.12,
+     1.2,
+     1.1
+    ],
+    "frames": [
+     736,
+     742,
+     748,
+     754,
+     760,
+     766
+    ],
+    "fly": 6
+   },
+   "tray_fill_k": [
+    [
+     700,
+     [
+      0.15,
+      0.15,
+      0.15
+     ]
+    ],
+    [
+     742,
+     [
+      0.3,
+      0.22,
+      0.15
+     ]
+    ],
+    [
+     754,
+     [
+      0.45,
+      0.42,
+      0.35
+     ]
+    ],
+    [
+     768,
+     [
+      0.6,
+      0.6,
+      0.6
+     ]
+    ]
+   ],
+   "ask_bubble": {
+    "at": [
+     1.55,
+     0.25,
+     2.05
+    ],
+    "f0": 562,
+    "f1": 612,
+    "size": 0.6,
+    "qcolor": "#6a3cc0"
+   }
+  }
+ },
+ "props": {
+  "crt": {
+   "pos": [
+    61.0,
+    2.0,
+    1.13
+   ],
+   "kind": "the CRT on its cart"
+  },
+  "calendar": {
+   "pos": [
+    61.39,
+    2.1,
+    1.75
+   ],
+   "kind": "calendar 1994"
+  },
+  "window": {
+   "pos": [
+    60,
+    12,
+    1.6
+   ],
+   "kind": "the Houston window"
+  },
+  "portholes": {
+   "pos": [
+    61.4,
+    3.2,
+    1.55
+   ],
+   "kind": "the OR portholes"
+  },
+  "clock": {
+   "pos": [
+    61.0,
+    6.2,
+    2.2
+   ],
+   "kind": "the corridor clock (hung)"
+  },
+  "note": {
+   "pos": [
+    121.72,
+    0.4,
+    1.42
+   ],
+   "kind": "the sticky note"
+  },
+  "trays": {
+   "pos": [
+    120,
+    0.62,
+    0.78
+   ],
+   "kind": "the three trays"
+  },
+  "queue": {
+   "pos": [
+    60.78,
+    7.4,
+    0.9
+   ],
+   "kind": "the gurney queue with wincing patients"
+  },
+  "tower": {
+   "pos": [
+    120.05,
+    1.1,
+    2.0
+   ],
+   "kind": "the 180-card tower"
+  }
+ },
+ "acts": [
+  {
+   "who": "surgeon",
+   "at": 0,
+   "pos": [
+    59.25,
+    6.2,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s2/sg_s2",
+   "face": "k:maskCalm",
+   "visible": false,
+   "note": "v2: he is inside OR 3 (the porthole silhouettes); not in the corridor flight"
+  },
+  {
+   "who": "surgeon",
+   "at": 534,
+   "visible": false,
+   "note": "to the office"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 0,
+   "pos": [
+    120.05,
+    1.45,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s2/so_s2",
+   "face": "k:sipCalm",
+   "visible": false
+  },
+  {
+   "who": "surgeonOff",
+   "at": 534,
+   "visible": true,
+   "note": "ROW 16 mid-sip by the lockers"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 566,
+   "face": "k:sipSide",
+   "note": "\"asks\": eyes slide to the note"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 622,
+   "face": "k:thinking",
+   "note": "\"what if\": thinking"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 650,
+   "face": "k:caught",
+   "note": "\"HEADS\": caught out"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 674,
+   "face": "k:determined",
+   "note": "\"takes\": determined"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 733,
+   "face": "k:playful",
+   "note": "\"splits\": quick, playful dealer"
+  },
+  {
+   "who": "g1",
+   "at": 0,
+   "pos": [
+    60.21,
+    5.0,
+    0.87
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "lie_back",
+   "face": "k:wince",
+   "visible": true,
+   "note": "v6: lies on his back on gurney 1 (bed test, film.js lie path), wincing",
+   "lie_yaw": 0
+  },
+  {
+   "who": "g1",
+   "at": 534,
+   "visible": false,
+   "note": "office"
+  },
+  {
+   "who": "g2",
+   "at": 0,
+   "pos": [
+    59.94,
+    6.45,
+    0.87
+   ],
+   "view": "front",
+   "dir": -1,
+   "pose": "lie_back",
+   "face": "k:wince",
+   "visible": true,
+   "note": "v6: lies on his back on gurney 2 (bed test, film.js lie path), wincing",
+   "lie_yaw": 180
+  },
+  {
+   "who": "g2",
+   "at": 534,
+   "visible": false,
+   "note": "office"
+  },
+  {
+   "who": "g3",
+   "at": 0,
+   "pos": [
+    60.61,
+    8.1,
+    0.87
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "lie_back",
+   "face": "k:wince",
+   "visible": true,
+   "note": "v6: lies on his back on gurney 3 (bed test, film.js lie path), wincing",
+   "lie_yaw": 0
+  },
+  {
+   "who": "g3",
+   "at": 534,
+   "visible": false,
+   "note": "office"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 650,
+   "amp": 1.0
+  }
+ ],
+ "held3d": [
+  {
+   "who": "surgeonOff",
+   "obj": "cup",
+   "module": "sets/hero_props.js",
+   "builder": "buildCoffeeCup",
+   "opts": {
+    "fill": 0.85
+   },
+   "grip": "handle",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 540,
+   "f1": 651
+  },
+  {
+   "who": "surgeonOff",
+   "obj": "cup_over",
+   "module": "sets/hero_props.js",
+   "builder": "buildCoffeeCup",
+   "opts": {
+    "fill": 1,
+    "overflow": 1
+   },
+   "grip": "handle",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 652,
+   "f1": 669
+  },
+  {
+   "who": "surgeonOff",
+   "obj": "card",
+   "module": "sets/hero_props.js",
+   "builder": "buildFileCard",
+   "opts": {
+    "n": 7,
+    "doodle": true
+   },
+   "grip": "point",
+   "hand": "L",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -30,
+   "scale": 1.0,
+   "when": "always",
+   "f0": 728,
+   "f1": 789
+  }
+ ],
+ "takes": [
+  {
+   "id": "co",
+   "place": "co",
+   "stations": [
+    {
+     "at": 363,
+     "pos": [
+      60.3,
+      1.4,
+      1.8
+     ],
+     "aim": [
+      60.4,
+      4.9,
+      1.4
+     ],
+     "lens": 24,
+     "subject": "portholes",
+     "framing": "M",
+     "purpose": "JOIN S1->S2 (18 f dissolve): 1 m off the porthole L glass, both portholes + the corridor wall in view, already easing back",
+     "hold": 0,
+     "creep": 0
+    },
+    {
+     "at": 418,
+     "pos": [
+      59.1,
+      -0.8,
+      2.6
+     ],
+     "aim": [
+      60.6,
+      4.2,
+      0.95
+     ],
+     "lens": 22.0,
+     "subject": "portholes",
+     "framing": "W",
+     "purpose": "ROWS 11-12 \"BACK in the 1990s in HOUSTON\": OR 3 doors, calendar 1994 HOUSTON TX + CRT beside the doors, slow creep in",
+     "travel": 1.8333333333333333,
+     "hold": 0.2,
+     "via": [
+      [
+       59.4,
+       0.6,
+       1.6
+      ]
+     ],
+     "aim_via": [
+      [
+       60.8,
+       6.5,
+       1.4
+      ]
+     ]
+    },
+    {
+     "at": 522,
+     "pos": [
+      60.0,
+      2.6,
+      2.6
+     ],
+     "aim": [
+      60.1,
+      6.4,
+      0.8
+     ],
+     "lens": 20.0,
+     "subject": "queue",
+     "framing": "W",
+     "purpose": "ROWS 14-15 \"SORE KNEES ... ALL DAY LONG\" (C3): the same move cranes up and pans onto the gurney queue, three different wincing patients, hung clock spinning, window + queue out (via + aim_via: the aim holds on the portholes for \"scrape and rinse\" while the camera rises, one eased travel)",
+     "travel": 3.2666666666666666,
+     "hold": 0,
+     "creep": 0.0015,
+     "via": [
+      [
+       59.4,
+       0.9,
+       2.5
+      ]
+     ],
+     "aim_via": [
+      [
+       60.4,
+       4.8,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "of",
+   "place": "of",
+   "stations": [
+    {
+     "at": 534,
+     "pos": [
+      119.6,
+      -0.6,
+      2.0
+     ],
+     "aim": [
+      121.0,
+      2.56,
+      2.15
+     ],
+     "lens": 26.0,
+     "subject": "clock",
+     "framing": "M",
+     "purpose": "JOIN (12 f dissolve 534-545): the office wall clock at night, opened wider (26 mm, 3.1 m) so the pull to the wide is a shorter zoom, hands spinning down",
+     "hold": 0,
+     "creep": 0
+    },
+    {
+     "at": 597,
+     "pos": [
+      118.6,
+      -2.2,
+      1.6
+     ],
+     "aim": [
+      120.9,
+      1.0,
+      1.4
+     ],
+     "lens": 24,
+     "subject": "surgeonOff",
+     "framing": "W",
+     "purpose": "ROWS 16-17 \"ANOTHER DOCTOR ASKS him a NASTY QUESTION\" (C2, B4): wide, surgeon WHOLE behind the desk mid-sip, the \"?\" bubble by the lockers, the \"?\" note on locker 2",
+     "travel": 1.9,
+     "hold": 0.3333333333333333
+    },
+    {
+     "at": 643,
+     "pos": [
+      120.12,
+      -0.75,
+      1.52
+     ],
+     "aim": [
+      120.05,
+      1.45,
+      1.47
+     ],
+     "lens": 24,
+     "subject": "surgeonOff",
+     "framing": "M",
+     "purpose": "ROW 18 \"what if it is all in their heads\": slow push in on him, cup at his lips (flows into the crash zoom)",
+     "travel": 1.2,
+     "hold": 0
+    },
+    {
+     "at": 652,
+     "pos": [
+      120.12,
+      0.2,
+      1.55
+     ],
+     "aim": [
+      120.05,
+      1.45,
+      1.5
+     ],
+     "lens": 30,
+     "subject": "surgeonOff",
+     "framing": "C",
+     "purpose": "ROW 18 POWER \"HEADS\": crash zoom, impact frame, \"?\" field, focus lines, sweat, glint",
+     "travel": 0.12,
+     "hold": 0.3
+    },
+    {
+     "at": 764,
+     "pos": [
+      120.1,
+      -0.8,
+      1.4
+     ],
+     "aim": [
+      120,
+      0.95,
+      0.95
+     ],
+     "lens": 26,
+     "subject": "trays",
+     "framing": "M",
+     "purpose": "ROW 20 \"SPLITS them into THREE GROUPS\": the same move tilts down with the falling cards into the three trays L-M-R (S3 starts here); via + aim_via = the tower framing on the way (surgeon WHOLE beside the 180-card tower, f~700), one eased travel",
+     "travel": 3.433333333333333,
+     "hold": 0.6,
+     "via": [
+      [
+       120.1,
+       -0.95,
+       1.47
+      ]
+     ],
+     "aim_via": [
+      [
+       120.3,
+       1.3,
+       1.72
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+S2 = film 12.50-25.90 s = frames 375-777 (+12 handle frames to 789); stretch frame = FILM frame (offset 0). Plan rows 11-20 (script lines 4-6). Takes: co f375-539 (rows 11-15), of f540-789 (rows 16-20), joined on the clock face at 540.

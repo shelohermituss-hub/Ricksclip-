@@ -1,0 +1,5 @@
+# ONE shared sets folder (CB_RULES 11a.3). Never copy it into a stretch folder.
+- `tower_top.js` + `tower_props.js`: the hook builder's world v0 (hero tower roof, spear, wire, town of about 400 houses, piazza zone, hills, rival white tower with gold angel, sky dome). Constants exported: APEX, SPEAR, RIVAL, TOWN_Z, roofZ, CAM0. Z is up. Origin = the hero tower's roof peak. Town ground z = -31. Rival tower at x 59, y 300.
+- OWNERS: only the hook builder (S1) edits `tower_top.js`. Every other builder ADDS its own file (`church.js`, `marble.js`, `square.js`, `vineyard.js`, `night.js`, `yard.js`) and may import the constants above so the landmarks stay in the same place from every side.
+- A change to a file another builder owns is asked for in `../SET_CHANGES.md`, switched on by a new film.json key, never done silently.
+- Files by stretch: S1 `tower_top.js`, `tower_props.js` | S2 `church.js` | S3 `marble.js` | S4 `square.js`, `vineyard.js` | S5 `night.js` (imports tower_top.js for the town and both towers; adds night light, bolts, the wire glow) | S6 `yard.js`.

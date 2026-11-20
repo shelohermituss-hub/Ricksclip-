@@ -1,0 +1,27 @@
+[
+ {
+  "t": 0.867,
+  "name": "clock_stop_click",
+  "gain": 0
+ },
+ {
+  "t": 3.467,
+  "name": "train_crash_far",
+  "gain": 0
+ },
+ {
+  "t": 6.533,
+  "name": "bell_big",
+  "gain": 0
+ },
+ {
+  "t": 10.667,
+  "name": "crowd_laugh_small",
+  "gain": 0
+ },
+ {
+  "t": 14.467,
+  "name": "tick_loop",
+  "gain": 0
+ }
+]

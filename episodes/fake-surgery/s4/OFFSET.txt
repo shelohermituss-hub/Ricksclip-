@@ -1,0 +1,1 @@
+S4 = film 42.70-56.10 s = frames 1281-1683, plan rows 31-39 (script lines 10-12). film.json frames are plain FILM frames (no offset). Takes: st 1281-1489 (stairwell AF, rows 31-35; 1281-1289 handle, HARD CUT on "Two" f1290), off 1490-1683 (office stripes AF, rows 36-39; plain cut at 1490 on the gate, match dissolve dial->chart in the build-out).

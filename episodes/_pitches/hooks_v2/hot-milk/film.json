@@ -1,0 +1,323 @@
+{
+ "title": "PITCH 2 hook frame: the schoolboy shoves a steaming mug of hot milk into the freezer while his class laughs and the master shakes his head (Tanganyika 1963)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "kit3d": true,
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "boy": {
+   "puppet": "cast:milk/boy",
+   "height": 1.32,
+   "heads_tall": 2.0,
+   "walk_speed": 99
+  },
+  "kid1": {
+   "puppet": "cast:milk/kid1",
+   "height": 1.22,
+   "heads_tall": 2.0,
+   "walk_speed": 99
+  },
+  "kid2": {
+   "puppet": "cast:milk/kid2",
+   "height": 1.18,
+   "heads_tall": 2.0,
+   "walk_speed": 99
+  },
+  "kid3": {
+   "puppet": "cast:milk/kid3",
+   "height": 1.3,
+   "heads_tall": 2.0,
+   "walk_speed": 99
+  },
+  "master": {
+   "puppet": "cast:milk/master",
+   "height": 1.8,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.4,
+  "start": 0.35,
+  "cool": 0.18,
+  "smooth": 40
+ },
+ "faces_ep": {
+  "sneakyGrin": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     6,
+     -3,
+     5
+    ],
+    [
+     8,
+     -3,
+     6
+    ]
+   ],
+   "mouth": "grinXL"
+  },
+  "bellyLaugh": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     12,
+     -4,
+     6
+    ],
+    [
+     12,
+     -4,
+     6
+    ]
+   ],
+   "mouth": "grinXL"
+  },
+  "laughOpen": {
+   "eyes": "happy",
+   "brows": [
+    [
+     9,
+     -3,
+     6
+    ],
+    [
+     10,
+     -3,
+     6
+    ]
+   ],
+   "mouth": "grinXL"
+  },
+  "stern": {
+   "eyes": "lid",
+   "brows": [
+    [
+     -4,
+     8,
+     0
+    ],
+    [
+     -3,
+     7,
+     1
+    ]
+   ],
+   "mouth": "frown",
+   "lidTilt": 3
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.45
+ },
+ "places": {
+  "kitchen": {
+   "set": "kitchen",
+   "light": "golden",
+   "time": "day",
+   "backdrop": 30,
+   "light_over": {
+    "top": "#5aa0e8",
+    "hor": "#ffd9a0",
+    "sun": "#ffc888",
+    "si": 2.7,
+    "amb": "#b9b4ff",
+    "ai": 1.7,
+    "dir": [
+     -5,
+     6,
+     6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.0,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "shadow": {
+    "centre": [
+     0,
+     1.2
+    ],
+    "half": 5
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "boy",
+   "at": 0,
+   "pos": [
+    0.14,
+    0.12,
+    0.32
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_milk/boy_shove",
+   "face": "k:sneakyGrin",
+   "note": "on the TANGA TEA crate, near fist pushes the steaming mug into the freezer box"
+  },
+  {
+   "who": "kid1",
+   "at": 0,
+   "pos": [
+    -0.78,
+    1.35,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_milk/kid_point",
+   "face": "k:laughOpen"
+  },
+  {
+   "who": "kid2",
+   "at": 0,
+   "pos": [
+    -0.12,
+    1.95,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_milk/kid_fold",
+   "face": "k:bellyLaugh"
+  },
+  {
+   "who": "kid3",
+   "at": 0,
+   "pos": [
+    -1.6,
+    3.45,
+    0.525
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_milk/kid_hold",
+   "face": "k:bellyLaugh"
+  },
+  {
+   "who": "master",
+   "at": 0,
+   "pos": [
+    -0.45,
+    3.3,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_milk/master_fold",
+   "face": "k:stern"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "boy",
+   "obj": "mug",
+   "module": "sets/milk_props.js",
+   "builder": "buildMug",
+   "opts": {
+    "steam": true
+   },
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "scale": 1.8
+  },
+  {
+   "who": "kid1",
+   "obj": "mug",
+   "module": "sets/milk_props.js",
+   "builder": "buildMug",
+   "opts": {
+    "chips": 1
+   },
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "scale": 1.8
+  },
+  {
+   "who": "kid2",
+   "obj": "mug",
+   "module": "sets/milk_props.js",
+   "builder": "buildMug",
+   "opts": {
+    "rim": "#2f8a4a"
+   },
+   "grip": "handle",
+   "hand": "L",
+   "when": "always",
+   "scale": 1.8
+  },
+  {
+   "who": "kid3",
+   "obj": "mug",
+   "module": "sets/milk_props.js",
+   "builder": "buildMug",
+   "opts": {
+    "chips": 2
+   },
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "scale": 1.8
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "kitchen",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      0.0,
+      -2.15,
+      1.2
+     ],
+     "aim": [
+      0.02,
+      0.6,
+      1.12
+     ],
+     "lens": 24,
+     "subject": "boy",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the boy, the steaming mug, the open freezer, the laughing class and the master in one picture"
+    }
+   ]
+  }
+ ]
+}

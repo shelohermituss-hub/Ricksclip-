@@ -1,0 +1,305 @@
+{
+ "_note": "copy-paste blocks for film.json places (look helper phase A 2026-11-16, from LOOK_BIBLE 'Light per place'; tuned in sets/_test, numbers in sets/_test/numbers.txt). 'set' names the place set; keys of each set at the top of its file. Faces: card_shade amount 0, no rim (LOOK_BIBLE Cast). 'dir' is three.js (x, up, -plan y). Practical lights (OR lamp, desk lamp, CRT, porthole sun) live in the set files and are switched by their keys.",
+ "OR": {
+  "set": "or_room",
+  "light": "morning",
+  "time": "day",
+  "backdrop": 4,
+  "light_over": {
+   "top": "#123a36",
+   "hor": "#2f6a62",
+   "sun": "#e8fff8",
+   "si": 0.9,
+   "amb": "#9fd8cc",
+   "ai": 1.25,
+   "dir": [
+    0.2,
+    6,
+    3
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#9fd8cc",
+   "fill_i": 0.25,
+   "veil_color": "#2f6a62",
+   "shadow_color": "#0e2e2a",
+   "rich": 0.7
+  },
+  "post": {
+   "vignette": 0.5
+  },
+  "knee": {
+   "dots": 3,
+   "plasters": 0
+  },
+  "monitor": "nosignal",
+  "fog": [
+   9,
+   30
+  ]
+ },
+ "CO": {
+  "set": "corridor",
+  "light": "day",
+  "time": "day",
+  "backdrop": 30,
+  "light_over": {
+   "top": "#fff6e0",
+   "hor": "#f3e2a6",
+   "sun": "#fff2c0",
+   "si": 1.5,
+   "amb": "#ffe8b0",
+   "ai": 1.7,
+   "dir": [
+    0.5,
+    8,
+    -1.5
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#bfe0d8",
+   "fill_i": 0.35,
+   "veil_color": "#f6ead0",
+   "shadow_color": "#4a4030",
+   "rich": 0.65
+  },
+  "post": {
+   "vignette": 0.4
+  },
+  "fog": [
+   10,
+   40
+  ]
+ },
+ "NI": {
+  "set": "office",
+  "light": "night",
+  "time": "night",
+  "backdrop": 20,
+  "light_over": {
+   "top": "#0e1e5a",
+   "hor": "#1e3a8a",
+   "sun": "#4a6ad8",
+   "si": 0.8,
+   "amb": "#3a4a8a",
+   "ai": 3.0,
+   "dir": [
+    -1.5,
+    3,
+    -6
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#2a3a7a",
+   "fill_i": 0.9,
+   "veil_color": "#1e3a8a",
+   "shadow_color": "#141a3a",
+   "rich": 0.75
+  },
+  "post": {
+   "vignette": 0.45
+  },
+  "dress": "night",
+  "fog": [
+   8,
+   30
+  ]
+ },
+ "AF": {
+  "set": "office",
+  "light": "day",
+  "time": "day",
+  "backdrop": 20,
+  "light_over": {
+   "top": "#8ab0e0",
+   "hor": "#ffd8a0",
+   "sun": "#ffcf7a",
+   "si": 2.4,
+   "amb": "#ffe6a8",
+   "ai": 1.5,
+   "dir": [
+    -1.5,
+    2.2,
+    -6
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#8a90c8",
+   "fill_i": 0.45,
+   "veil_color": "#f0d8b0",
+   "shadow_color": "#3a3a6a",
+   "rich": 0.7
+  },
+  "post": {
+   "vignette": 0.45
+  },
+  "dress": "stripes",
+  "fog": [
+   8,
+   30
+  ]
+ },
+ "GR": {
+  "set": "office",
+  "light": "day",
+  "time": "day",
+  "backdrop": 20,
+  "light_over": {
+   "top": "#9aa4c8",
+   "hor": "#b8bcd0",
+   "sun": "#c8d0e8",
+   "si": 1.1,
+   "amb": "#a8b0d0",
+   "ai": 1.8,
+   "dir": [
+    1,
+    5,
+    -4
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#7a9aa8",
+   "fill_i": 0.5,
+   "veil_color": "#b8bcd0",
+   "shadow_color": "#2a3048",
+   "rich": 0.6
+  },
+  "post": {
+   "vignette": 0.45
+  },
+  "dress": "y2004",
+  "fog": [
+   8,
+   30
+  ]
+ },
+ "EV": {
+  "set": "stairwell",
+  "light": "day",
+  "time": "dusk",
+  "backdrop": 20,
+  "light_over": {
+   "top": "#b07ad0",
+   "hor": "#e8b0a0",
+   "sun": "#ff9a48",
+   "si": 2.0,
+   "amb": "#e0a0b0",
+   "ai": 1.25,
+   "dir": [
+    -1,
+    1.5,
+    -6
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#3a8a88",
+   "fill_i": 0.6,
+   "veil_color": "#e8b0a0",
+   "shadow_color": "#2a1a3a",
+   "rich": 0.75
+  },
+  "post": {
+   "vignette": 0.45
+  },
+  "light_kind": "evening",
+  "fog": [
+   8,
+   30
+  ]
+ },
+ "EV_or": {
+  "set": "or_room",
+  "light": "day",
+  "time": "dusk",
+  "backdrop": 4,
+  "light_over": {
+   "top": "#b07ad0",
+   "hor": "#e8b0a0",
+   "sun": "#ff9a48",
+   "si": 0.5,
+   "amb": "#e0a0b0",
+   "ai": 1.7,
+   "dir": [
+    1.2,
+    1.2,
+    -4
+   ],
+   "tint": "#ffffff",
+   "card_gain": 1.0,
+   "card_shade": {
+    "style": "rick",
+    "amount": 0.0,
+    "rim_amount": 0.0,
+    "rim_width": 0.9,
+    "hat_shadow": 0,
+    "lights": []
+   },
+   "fill_color": "#3a8a88",
+   "fill_i": 0.7,
+   "veil_color": "#8a6a90",
+   "shadow_color": "#2a1a3a",
+   "rich": 0.75
+  },
+  "post": {
+   "vignette": 0.5
+  },
+  "evening": true,
+  "knee": {
+   "dots": 3,
+   "plasters": 3
+  },
+  "monitor": "off",
+  "fog": [
+   9,
+   30
+  ]
+ }
+}

@@ -1,0 +1,1211 @@
+{
+ "_how": "Copy a move's stations into a take's stations[]. Replace <word> with the narration word (or seconds), move pos/aim onto your set's anchors, keep the shape (distances, heights, travel, hold). z is up. Top-level items (kicks, ep_dissolves) go at film.json top level.",
+ "story_job_menu": {
+  "HOOK (0-4 s)": "M02 or M03 on the strange act, then M05 or M04 to reveal the big thing. First flight by 1 s.",
+  "SET UP THE WORLD": "M09 along a set line, or M17 top-down then drop; M11 to arrive at the hero.",
+  "TALK / MOCKER": "M01 creep, M02 on the angry or smug word, M16 orbit only at the peak.",
+  "ACT / BUILD": "M10 attention chain (face, hand, part, result, reaction); M03 into the insert.",
+  "EXPLANATION": "M07 into the object, then M06 down the list or M13 along the row; M00 rests only where the picture changes.",
+  "ANALOGY": "In with M21 or M20, then M08 one long push; the payoff repeats the same path. M25 to compare two.",
+  "TURN / REVEAL": "M04, M05 or M12.",
+  "CHANGE OF PLACE / TIME": "M20 dissolve while flying, M21 match dissolve, M22 wipe, M07 fly-through.",
+  "CLIMAX": "M14 ride with the thing (the film's longest flight), M15 alongside, M23 kick on the hit.",
+  "END": "M26 pull back to the calm hero in front of the result, creep in, loop to frame 0."
+ },
+ "moves": {
+  "M00": {
+   "name": "LIVING REST",
+   "when": "Lip sync lines, a reaction, a counter or calendar ticking, the end of every flight.",
+   "numbers": "Rest 20-48 % of a film (most 20-28 %). One rest 0.6-3.3 s. Never dead still.",
+   "rick_example": "Railroads 38.6-41.9: a 3.3 s rest while the rail turns red and the calendar flips.",
+   "build": "One station with a long hold and a small creep. The change comes from the set (material, counter, decal), not the camera.",
+   "camsafe": "Character height, within 10 degrees down.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -4.2,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.3
+     ],
+     "lens": 32,
+     "framing": "M",
+     "hold": 2.4,
+     "creep": 0.02
+    }
+   ]
+  },
+  "M01": {
+   "name": "CREEP IN ON TALK",
+   "when": "TALK and MOCKER lines, the hero explaining calmly, the smug face at the end.",
+   "numbers": "Glide speed 0.08-0.25 frame widths per second; 1.2-2.8 s; zoom x1.1-1.25.",
+   "rick_example": "Town 0.6-1.8: creep in on the two at the button while the line sets the rule.",
+   "build": "Station with framing M and creep 0.04-0.06. The next station is a small push in on the angry or smug word (M02).",
+   "camsafe": "Eye level. Two-shot: both faces at least 3/4 to the lens (validate.mjs VIEW_MISMATCH).",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -3.2,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.45
+     ],
+     "lens": 35,
+     "framing": "M",
+     "hold": 2.0,
+     "creep": 0.05
+    }
+   ]
+  },
+  "M02": {
+   "name": "PUSH IN TO LAND",
+   "when": "The noun the voice names, the clue, the angry word. His most common move: in all 26 films.",
+   "numbers": "89 pure push flights in 25 of 26 films; median 0.6 s, up to 2.9 s; zoom x1.2-2.4.",
+   "rick_example": "Humans random 32.2-34.5: push in x2 on the coin board to the row of six.",
+   "build": "Two stations on one line; travel 0.6-1.2 s; the second lands on the word.",
+   "camsafe": "Stay at head height on the way in; never end with the head cut by the caption band.",
+   "stations": [
+    {
+     "at": "<before>",
+     "pos": [
+      0,
+      -5,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.3
+     ],
+     "lens": 28,
+     "framing": "W",
+     "hold": 0.8
+    },
+    {
+     "at": "<named word>",
+     "pos": [
+      0,
+      -2.0,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.45
+     ],
+     "lens": 35,
+     "framing": "C",
+     "travel": 0.8,
+     "hold": 1.0
+    }
+   ]
+  },
+  "M03": {
+   "name": "WHIP PUSH (SNAP IN)",
+   "when": "ACT: the hero grabs, pours, presses. A punch word. Into an insert.",
+   "numbers": "0.6-1.5 s; zoom x3-9; peak speed 2-3x a normal flight.",
+   "rick_example": "Pink cell 5.3-6.4: whip push x3 down into the paint bowl.",
+   "build": "Short travel (0.6-0.8 s) with a big distance change; turn on motion blur; follow with a rest. Use kicks only if it hits something.",
+   "camsafe": "Ends top-down on the prop, so no face in frame: the 10-degree limit does not apply to a P framing without a character.",
+   "stations": [
+    {
+     "at": "<before>",
+     "pos": [
+      0,
+      -4,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.0
+     ],
+     "lens": 28,
+     "framing": "M",
+     "hold": 0.6
+    },
+    {
+     "at": "<act word>",
+     "pos": [
+      0,
+      -0.9,
+      1.6
+     ],
+     "aim": [
+      0,
+      -0.1,
+      0.9
+     ],
+     "lens": 40,
+     "framing": "P",
+     "travel": 0.7,
+     "hold": 1.0
+    }
+   ]
+  },
+  "M04": {
+   "name": "PULL BACK REVEAL",
+   "when": "TURN ('but...'), the joke, how big the thing is.",
+   "numbers": "38 pure pull flights in 18 films; median 0.5 s, up to 2.2 s; zoom x0.3-0.9.",
+   "rick_example": "Window 2.3-4.4: pull back x0.34 from the detail to the whole scene.",
+   "build": "Close station, then a wide one on the same line behind it. Put a foreground object between them so the pull has parallax.",
+   "camsafe": "Keep the hero at the frame's lower third so his feet stay in (frame_checks).",
+   "stations": [
+    {
+     "at": "<detail word>",
+     "pos": [
+      0,
+      -1.2,
+      1.4
+     ],
+     "aim": [
+      0,
+      0,
+      1.3
+     ],
+     "lens": 40,
+     "framing": "C",
+     "hold": 0.7
+    },
+    {
+     "at": "<but word>",
+     "pos": [
+      0,
+      -7,
+      2.0
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 1.6,
+     "hold": 1.2
+    }
+   ]
+  },
+  "M05": {
+   "name": "PULL BACK + CRANE UP (BIG REVEAL)",
+   "when": "HOOK reveal, TURN, the danger, the scale of the world. Nearly every film.",
+   "numbers": "23 flights in 16 films; median 1.2 s, up to 4.1 s; zoom x0.5-0.6.",
+   "rick_example": "Sailors 34.3-38.5: 4.1 s pull back + crane up from the deck to the ship in the storm.",
+   "build": "Second station further back and higher; aim moves UP to the big thing, not down to the hero. Set travel (over 3 s needs an explicit travel).",
+   "camsafe": "High end has no close face, so the camera may look down; the first station stays at character height.",
+   "stations": [
+    {
+     "at": "<act>",
+     "pos": [
+      0,
+      -2.5,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.4
+     ],
+     "lens": 32,
+     "framing": "M",
+     "hold": 0.8
+    },
+    {
+     "at": "<reveal word>",
+     "pos": [
+      0,
+      -9,
+      5.5
+     ],
+     "aim": [
+      0,
+      2,
+      3.0
+     ],
+     "lens": 24,
+     "framing": "W",
+     "travel": 2.5,
+     "hold": 1.2
+    }
+   ]
+  },
+  "M06": {
+   "name": "CRANE DOWN THE LIST (READING)",
+   "when": "EXPLANATION: a list of rules, steps, prices, a mechanism from top to bottom.",
+   "numbers": "Crane-only flights in 8 films; 1-2.7 s per stretch; zoom about x1.",
+   "rick_example": "Slots 22.5-25.1: crane down the list of outcomes inside the machine.",
+   "build": "pos and aim both drop by the same amount (a truck, not a tilt), so the list stays flat to the lens. Highlight the key line when the camera lands.",
+   "camsafe": "No character in frame; keep the caption band clear of the key line.",
+   "stations": [
+    {
+     "at": "<list word>",
+     "pos": [
+      0,
+      -1.8,
+      2.6
+     ],
+     "aim": [
+      0,
+      0,
+      2.6
+     ],
+     "lens": 35,
+     "framing": "P",
+     "hold": 0.5
+    },
+    {
+     "at": "<key line word>",
+     "pos": [
+      0,
+      -1.8,
+      0.9
+     ],
+     "aim": [
+      0,
+      0,
+      0.9
+     ],
+     "lens": 35,
+     "framing": "P",
+     "travel": 2.0,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M07": {
+   "name": "FLY INTO THE OBJECT",
+   "when": "EXPLANATION start ('crack it open', 'inside your brain'), PLACE CHANGE into the inside world.",
+   "numbers": "Slots 4.3 s, zoom x8.9; painkillers 8.7 s, zoom x58.",
+   "rick_example": "Slots 17.1-21.4: push into the machine and down inside it.",
+   "build": "Three stations: outside, the opening (hold 0), inside. The opening must be a real hole in the model; or put a 6-10 frame ep_dissolve at the middle station.",
+   "camsafe": "Do not pass through a character card (FACE_BEHIND).",
+   "stations": [
+    {
+     "at": "<open word>",
+     "pos": [
+      0,
+      -3.5,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.4
+     ],
+     "lens": 28,
+     "framing": "M",
+     "hold": 0.6
+    },
+    {
+     "pos": [
+      0,
+      -0.2,
+      1.4
+     ],
+     "aim": [
+      0,
+      1,
+      1.3
+     ],
+     "lens": 28,
+     "framing": "O",
+     "travel": 1.6,
+     "hold": 0.0
+    },
+    {
+     "at": "<inside word>",
+     "pos": [
+      0,
+      2.5,
+      1.2
+     ],
+     "aim": [
+      0,
+      4,
+      1.0
+     ],
+     "lens": 24,
+     "framing": "W",
+     "travel": 1.4,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M08": {
+   "name": "ANALOGY CORRIDOR (ONE-POINT PUSH)",
+   "when": "ANALOGY ('picture your body as a house'), and its payoff.",
+   "numbers": "Painkillers 15.0-23.7 (8.7 s) and 25-34 (9.3 s, the same path again). His longest flights.",
+   "rick_example": "Painkillers 15-23.7: through the front door and down the corridor to the HEAD room, 8.7 s.",
+   "build": "Straight line, centred vanishing point, doors on both sides. Save the stations; the payoff copies them with the changed set. ep_dissolves at the start.",
+   "camsafe": "Corridor at eye height; walls must not clip the near plane.",
+   "stations": [
+    {
+     "at": "<like word>",
+     "pos": [
+      0,
+      -6,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.6
+     ],
+     "lens": 24,
+     "framing": "W",
+     "hold": 0.4
+    },
+    {
+     "pos": [
+      0,
+      0,
+      1.6
+     ],
+     "aim": [
+      0,
+      6,
+      1.6
+     ],
+     "lens": 24,
+     "framing": "O",
+     "travel": 2.5,
+     "hold": 0
+    },
+    {
+     "at": "<target word>",
+     "pos": [
+      0,
+      12,
+      1.6
+     ],
+     "aim": [
+      0,
+      16,
+      1.5
+     ],
+     "lens": 28,
+     "framing": "M",
+     "travel": 5.0,
+     "hold": 1.0
+    }
+   ]
+  },
+  "M09": {
+   "name": "TRAVEL ALONG A SET LINE",
+   "when": "SET UP THE WORLD (who, where, stakes); moving between places that are connected.",
+   "numbers": "Railroads 3.7-11.5: one 7.8 s flight, 4 places, 0 cuts.",
+   "rick_example": "Railroads 3.7-11.5: canyon rim, over the edge, across the desert, into the hall, all one flight.",
+   "build": "Pass-point stations (hold 0) every 2-3 s along the line; build the line as ONE connected set. Needs follow for set lines to make it easy (tool gap).",
+   "camsafe": "Land at character height when the hero comes into frame.",
+   "stations": [
+    {
+     "at": "<place 1 word>",
+     "pos": [
+      0,
+      -6,
+      3
+     ],
+     "aim": [
+      0,
+      0,
+      1
+     ],
+     "lens": 24,
+     "framing": "W",
+     "hold": 0.4
+    },
+    {
+     "pos": [
+      0,
+      12,
+      4
+     ],
+     "aim": [
+      0,
+      20,
+      1
+     ],
+     "lens": 24,
+     "framing": "W",
+     "travel": 2.6,
+     "hold": 0
+    },
+    {
+     "pos": [
+      0,
+      30,
+      3
+     ],
+     "aim": [
+      0,
+      38,
+      1
+     ],
+     "lens": 24,
+     "framing": "W",
+     "travel": 2.6,
+     "hold": 0
+    },
+    {
+     "at": "<place 4 word>",
+     "pos": [
+      0,
+      44,
+      1.6
+     ],
+     "aim": [
+      0,
+      48,
+      1.5
+     ],
+     "lens": 28,
+     "framing": "M",
+     "travel": 2.4,
+     "hold": 1.0
+    }
+   ]
+  },
+  "M10": {
+   "name": "ATTENTION CHAIN",
+   "when": "ACT / BUILD: the hero makes or uses the thing.",
+   "numbers": "Cart 17.5-22.7: one 5.3 s flight round the board, the tubes, the strings, his hands, the crowd.",
+   "rick_example": "Cart 17.5-22.7: board, tubes, strings, hands, crowd in one flight.",
+   "build": "Short holds (0.3-0.5 s) so it reads as one move. The hand landing is where the props touch (hands on objects rule).",
+   "camsafe": "Each landing with a face: 3/4 to the lens, eye level; check the middle of each travel too.",
+   "stations": [
+    {
+     "at": "<face word>",
+     "pos": [
+      0,
+      -2.2,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "M",
+     "hold": 0.5
+    },
+    {
+     "at": "<hand word>",
+     "pos": [
+      0.4,
+      -1.2,
+      1.3
+     ],
+     "aim": [
+      0.3,
+      0,
+      1.0
+     ],
+     "lens": 40,
+     "framing": "C",
+     "travel": 0.9,
+     "hold": 0.3
+    },
+    {
+     "at": "<part word>",
+     "pos": [
+      1.2,
+      -1.0,
+      1.2
+     ],
+     "aim": [
+      1.2,
+      0.3,
+      0.9
+     ],
+     "lens": 40,
+     "framing": "P",
+     "travel": 0.9,
+     "hold": 0.3
+    },
+    {
+     "at": "<result word>",
+     "pos": [
+      2.0,
+      -3.0,
+      1.8
+     ],
+     "aim": [
+      2.0,
+      1.0,
+      1.2
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 1.0,
+     "hold": 0.4
+    },
+    {
+     "at": "<reaction word>",
+     "pos": [
+      -1.5,
+      -2.5,
+      1.5
+     ],
+     "aim": [
+      -1.5,
+      0.5,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "M",
+     "travel": 1.1,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M11": {
+   "name": "PUSH + TRUCK ARC (ARRIVE BESIDE)",
+   "when": "Arriving at a new character or place inside the same set; the most common combined move.",
+   "numbers": "78 push + truck flights in 18 films; median 1.1-1.2 s, up to 5.2 s; zoom x1.3-5.",
+   "rick_example": "Cart 6.0-7.9: push + truck past the front soldiers to the two in the corner.",
+   "build": "Travel is straight between stations, so an arc needs a middle pass-point (hold 0). Put a foreground object near the first half.",
+   "camsafe": "The arc changes the view angle of the hero: views come from apply_looks; validate.mjs at 0/25/50/75/100 %.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      -3,
+      -5,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.4
+     ],
+     "lens": 28,
+     "framing": "W",
+     "hold": 0.5
+    },
+    {
+     "pos": [
+      -0.5,
+      -3.5,
+      1.6
+     ],
+     "aim": [
+      0.5,
+      0,
+      1.4
+     ],
+     "lens": 30,
+     "framing": "O",
+     "travel": 1.2,
+     "hold": 0
+    },
+    {
+     "at": "<subject word>",
+     "pos": [
+      1.5,
+      -2.2,
+      1.5
+     ],
+     "aim": [
+      0.3,
+      0,
+      1.45
+     ],
+     "lens": 35,
+     "framing": "M",
+     "travel": 1.2,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M12": {
+   "name": "PULL + TRUCK (STEP BACK TO SHOW TWO)",
+   "when": "Comparison, the rival enters, 'everyone else', after a close moment to show the room.",
+   "numbers": "50 flights in 16 films; median 1.3 s, up to 3.9 s; zoom x0.3-0.9.",
+   "rick_example": "Job Japan 34.1-37.7: pull back + truck from the man at his desk out through the window to the whole building.",
+   "build": "Two stations; aim also moves toward the second subject so both end in frame.",
+   "camsafe": "Keep both figures inside the frame edges at the end (frame_checks).",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -2,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.45
+     ],
+     "lens": 35,
+     "framing": "C",
+     "hold": 0.6
+    },
+    {
+     "at": "<rival word>",
+     "pos": [
+      -2.5,
+      -6,
+      1.8
+     ],
+     "aim": [
+      -1.2,
+      0,
+      1.4
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 1.6,
+     "hold": 1.0
+    }
+   ]
+  },
+  "M13": {
+   "name": "LATERAL TRUCK ALONG A ROW",
+   "when": "Listing items, a crowd of the same people, 'one after another'.",
+   "numbers": "27 flights in 12 films; median 1.0-1.2 s, up to 2.9 s; zoom about x1.",
+   "rick_example": "Second draw 21.9-24.7: truck right beside the cowboy along the row of saloon fronts.",
+   "build": "pos and aim move by the same vector. Or use drift on a rest for a slow slide.",
+   "camsafe": "Do not truck behind a character standing in the row (FACE_BEHIND).",
+   "stations": [
+    {
+     "at": "<first item>",
+     "pos": [
+      -3,
+      -2.5,
+      1.4
+     ],
+     "aim": [
+      -3,
+      0,
+      1.2
+     ],
+     "lens": 35,
+     "framing": "M",
+     "hold": 0.4
+    },
+    {
+     "at": "<last item>",
+     "pos": [
+      3,
+      -2.5,
+      1.4
+     ],
+     "aim": [
+      3,
+      0,
+      1.2
+     ],
+     "lens": 35,
+     "framing": "M",
+     "travel": 2.4,
+     "hold": 0.6
+    }
+   ]
+  },
+  "M14": {
+   "name": "RIDE WITH THE MOVING THING",
+   "when": "CLIMAX (the idea works), any 'it flies, it races, it falls'.",
+   "numbers": "Cart 51.7-55.5 crane up with the spark 3.9 s; coaster 52.3-59.9 up the loop; pirate cannonball 30-31; second draw 0.8-3.5 rides with the bullet; painkillers 6.9-9.5 rides with the pill down the tube.",
+   "rick_example": "Cart 51.7-55.5: crane up WITH the spark as it splits into 82 flames.",
+   "build": "Today follow works for characters only. For a prop or effect, key pass-points every 0.5 s along its path (same offset each time), until film_plan.py gets follow for props.",
+   "camsafe": "Long follows stay at character height, within 10 degrees down.",
+   "stations": [
+    {
+     "at": "<launch word>",
+     "pos": [
+      0,
+      -3,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 30,
+     "framing": "M",
+     "hold": 0.3,
+     "follow": "<character or (tool gap) prop>",
+     "follow_k": 1.0,
+     "travel": 4.0
+    }
+   ]
+  },
+  "M15": {
+   "name": "TRACK ALONGSIDE",
+   "when": "A race, a chase, two speeds compared, the march.",
+   "numbers": "Mirror 27.5-32.2 beside the horses; coaster 41.4-46.2 slow car then fast car (same move, two speeds).",
+   "rick_example": "Mirror 27.5-32.2: tracking beside the racing horses.",
+   "build": "follow with follow_k 1.0 and a side offset; for 'two speeds', copy the same station with the faster runner.",
+   "camsafe": "Side view needs the side drawing: camsafe gives it; check MEME_SIDE faces.",
+   "stations": [
+    {
+     "at": "<race word>",
+     "pos": [
+      0,
+      -4,
+      1.3
+     ],
+     "aim": [
+      0,
+      0,
+      1.2
+     ],
+     "lens": 32,
+     "framing": "M",
+     "hold": 0.2,
+     "follow": "<runner>",
+     "follow_k": 1.0,
+     "travel": 3.0
+    }
+   ]
+  },
+  "M16": {
+   "name": "ORBIT ROUND THE SPEAKER",
+   "when": "MOCKER at its peak, the villain's line, the hero's decision. Never just to decorate.",
+   "numbers": "Railroads 13.7-19.6: push in, then 3.1 s orbit + crane down while the face goes purple.",
+   "rick_example": "Railroads 13.6-19.6: push in, then orbit + crane down round the angry boss.",
+   "build": "Three or more stations on a circle round the face (radius kept). Say the reason in CAMERA_NOTE.md.",
+   "camsafe": "Max 60-70 degrees round a card; never past side view (camsafe views, VIEW_MISMATCH).",
+   "stations": [
+    {
+     "at": "<line start>",
+     "pos": [
+      -1.6,
+      -2.4,
+      1.7
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "C",
+     "hold": 0.4
+    },
+    {
+     "pos": [
+      0,
+      -2.9,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "O",
+     "travel": 1.5,
+     "hold": 0
+    },
+    {
+     "at": "<angry word>",
+     "pos": [
+      1.6,
+      -2.4,
+      1.4
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "C",
+     "travel": 1.5,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M17": {
+   "name": "TOP-DOWN GOD VIEW + DROP",
+   "when": "SET UP a place that is a pattern (round town, maze, army), a crowd forming a shape.",
+   "numbers": "Town 4.5-9.5: top-down over the round town, then down to the centre; 53-55 the crowd from above.",
+   "rick_example": "Town 4.5-9.5: top-down over the round town, then down to the button.",
+   "build": "Top-down station needs up [0,1,0] so the heading cannot spin.",
+   "camsafe": "Characters are tiny from above, fine; the landing is back at character height.",
+   "stations": [
+    {
+     "at": "<plan word>",
+     "pos": [
+      0,
+      -0.01,
+      40
+     ],
+     "aim": [
+      0,
+      0,
+      0
+     ],
+     "lens": 28,
+     "framing": "W",
+     "up": [
+      0,
+      1,
+      0
+     ],
+     "hold": 1.0,
+     "creep": 0.03
+    },
+    {
+     "at": "<centre word>",
+     "pos": [
+      0,
+      -5,
+      2.0
+     ],
+     "aim": [
+      0,
+      0,
+      1.0
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 2.2,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M18": {
+   "name": "HUGE-TINY VERTICAL TILT",
+   "when": "Scale, effort, 'so tall nobody...', the hero's climb.",
+   "numbers": "Town 13-15.5 (the ladder); spear 'taller tower'; push + crane up 32 flights in 16 films.",
+   "rick_example": "Town 13-15.5: the tall ladder with the tiny climber.",
+   "build": "Crane (move pos up), not only tilt, so the climber stays readable.",
+   "camsafe": "Low angle on a figure: STEEP/LOW flags in validate.mjs; keep the hero's face visible.",
+   "stations": [
+    {
+     "at": "<base word>",
+     "pos": [
+      0,
+      -6,
+      1.0
+     ],
+     "aim": [
+      0,
+      0,
+      2.0
+     ],
+     "lens": 24,
+     "framing": "W",
+     "hold": 0.4
+    },
+    {
+     "at": "<top word>",
+     "pos": [
+      0,
+      -6,
+      6.0
+     ],
+     "aim": [
+      0,
+      0,
+      8.0
+     ],
+     "lens": 24,
+     "framing": "W",
+     "travel": 2.0,
+     "hold": 0.8
+    }
+   ]
+  },
+  "M19": {
+   "name": "POV THROUGH THE OBJECT",
+   "when": "Aiming, spying, 'he spots', the target.",
+   "numbers": "Pirate 25-27 down the cannon; mirror 18 through the telescope ring.",
+   "rick_example": "Pirate 24.5-27: from the furnace to over the cannon barrel, the gun's view of the gunners.",
+   "build": "Camera inside or right behind the object; the object's rim is the foreground. A round mask is a 2D overlay.",
+   "camsafe": "No face close to the lens; check FACE_HIDDEN on the subject.",
+   "stations": [
+    {
+     "at": "<aim word>",
+     "pos": [
+      0,
+      -0.6,
+      1.2
+     ],
+     "aim": [
+      0,
+      4,
+      1.2
+     ],
+     "lens": 30,
+     "framing": "W",
+     "hold": 1.0,
+     "creep": 0.04
+    }
+   ]
+  },
+  "M20": {
+   "name": "DISSOLVE WHILE FLYING",
+   "when": "CHANGE OF PLACE or TIME when the places are not connected.",
+   "numbers": "Coaster 25.9-30.6; mirror 2.5-3.5, 14.5-15.5, 26.8-27.8. Dissolve 6-14 frames.",
+   "rick_example": "Coaster 25.9-30.6: push, dissolve while flying, the same push on up the red carpet.",
+   "build": "End the old take mid-travel; start the new take mid-travel the same way; ep_dissolves [{at, frames: 8-12}] at the joint.",
+   "camsafe": "Both takes: character height at the joint.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -5,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 28,
+     "framing": "W",
+     "hold": 0.3
+    },
+    {
+     "at": "<new place word>",
+     "pos": [
+      0,
+      -2.5,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 30,
+     "framing": "M",
+     "travel": 1.5,
+     "hold": 0.6,
+     "_note": "next take starts with the same direction of motion"
+    }
+   ]
+  },
+  "M21": {
+   "name": "MATCH DISSOLVE (SHAPE TO SHAPE)",
+   "when": "Analogy start, 'just like...', jump from small to big.",
+   "numbers": "Sailors 50-53: oil on the soup turns into the calm sea.",
+   "rick_example": "Sailors 50-53: oil on the soup dissolves into the ocean.",
+   "build": "Shape centred at the same place in both takes; ep_dissolves 10-14 frames; keep a slow push through the joint.",
+   "camsafe": "No face in the macro.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -0.01,
+      1.4
+     ],
+     "aim": [
+      0,
+      0,
+      0.9
+     ],
+     "up": [
+      0,
+      1,
+      0
+     ],
+     "lens": 40,
+     "framing": "P",
+     "hold": 0.6,
+     "creep": 0.05
+    }
+   ]
+  },
+  "M22": {
+   "name": "FOREGROUND WIPE",
+   "when": "Place change in a busy scene, a quick time jump.",
+   "numbers": "Pirate 48.5-50.6 (the hull passes); railroads train wipe.",
+   "rick_example": "Pirate 48.3-50.6: the hull passes close and wipes to the next shot.",
+   "build": "An object moves across close to the lens; cut the take when it fills the frame.",
+   "camsafe": "The wiping object never passes through a character.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -6,
+      1.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 28,
+     "framing": "W",
+     "hold": 1.2,
+     "drift": [
+      0.6,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  "M23": {
+   "name": "IMPACT KICK",
+   "when": "The smash, the explosion, the bell, the fall.",
+   "numbers": "Pirate 6-8 (smash), cart 64 (blast), short and rare.",
+   "rick_example": "Pirate 6.2-8.7: the smash with a kick, then pull back + truck to the wreck.",
+   "build": "Top-level kicks [{at, amp}]; only on a real hit.",
+   "camsafe": "Shake never moves a character.",
+   "stations": [
+    {
+     "_top_level": "kicks",
+     "at": "<hit word>",
+     "amp": 0.6
+    }
+   ]
+  },
+  "M24": {
+   "name": "TIPPED SWING (DUTCH IN THE MOVE)",
+   "when": "Danger, a storm, chaos, falling.",
+   "numbers": "Sailors 31-34 on the rolling deck; roll up to about 15 degrees; level at every rest.",
+   "rick_example": "Sailors 31-34: tipped high angle on the rolling deck.",
+   "build": "Use travel_roll on the move, never roll on a rest (gate: tilt while resting <= 0.5).",
+   "camsafe": "Roll rate <= 1.1 deg per frame.",
+   "stations": [
+    {
+     "at": "<word>",
+     "pos": [
+      0,
+      -3,
+      2.4
+     ],
+     "aim": [
+      0,
+      0,
+      1.2
+     ],
+     "lens": 28,
+     "framing": "W",
+     "hold": 0.4
+    },
+    {
+     "at": "<danger word>",
+     "pos": [
+      1.5,
+      -2.5,
+      2.6
+     ],
+     "aim": [
+      0,
+      0,
+      1.0
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 1.6,
+     "travel_roll": 12,
+     "hold": 0.6
+    }
+   ]
+  },
+  "M25": {
+   "name": "SAME MOVE, TWO SPEEDS",
+   "when": "Comparing two options, before and after.",
+   "numbers": "Coaster 41.4-46.2: slow truck with the slow car, then fast push with the fast car that flips.",
+   "rick_example": "Coaster 41.4-46.2: slow truck with the slow car, fast push with the fast one.",
+   "build": "Copy the station block; change only the subject and the travel time.",
+   "camsafe": "As M15.",
+   "stations": [
+    {
+     "at": "<slow word>",
+     "pos": [
+      -2,
+      -4,
+      1.3
+     ],
+     "aim": [
+      -2,
+      0,
+      1.0
+     ],
+     "lens": 30,
+     "framing": "M",
+     "hold": 0.2,
+     "travel": 3.0
+    },
+    {
+     "at": "<fast word>",
+     "pos": [
+      2,
+      -4,
+      1.3
+     ],
+     "aim": [
+      2,
+      0,
+      1.0
+     ],
+     "lens": 30,
+     "framing": "M",
+     "hold": 0.2,
+     "travel": 1.0
+    }
+   ]
+  },
+  "M26": {
+   "name": "END PULL BACK",
+   "when": "PUNCHLINE / last frame.",
+   "numbers": "Cart 64.4-66.8, coaster 61-63, railroads 64.3-65.",
+   "rick_example": "Cart 64.4-66.8: pull back to the hero in front of the mushroom cloud.",
+   "build": "Last station loop: true ends on frame 0 (the hook picture).",
+   "camsafe": "Hero at character height, result behind him, both in frame.",
+   "stations": [
+    {
+     "at": "<result word>",
+     "pos": [
+      0,
+      -2,
+      1.5
+     ],
+     "aim": [
+      0,
+      0,
+      1.5
+     ],
+     "lens": 35,
+     "framing": "C",
+     "hold": 0.4
+    },
+    {
+     "at": "<last line>",
+     "pos": [
+      0,
+      -5.5,
+      1.6
+     ],
+     "aim": [
+      0,
+      2,
+      2.2
+     ],
+     "lens": 28,
+     "framing": "W",
+     "travel": 1.8,
+     "hold": 0.6
+    },
+    {
+     "loop": true,
+     "travel": 1.2
+    }
+   ]
+  }
+ }
+}

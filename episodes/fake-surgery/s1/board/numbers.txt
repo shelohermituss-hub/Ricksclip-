@@ -1,0 +1,25 @@
+S1 panels, ungraded, with captions. sat = mean HSV S (target >= 0.36 evening, 0.30 day), mean = mean luminance (evening >= 0.31), red_px = signal-red #e4141e +-30 (target 0 in S1; mouth interiors exempt)
+r1_a_f0.png          sat 0.600  mean 0.345  p1 0.042  p99.9 1.000  red_px 0
+r1_b_f12.png         sat 0.600  mean 0.344  p1 0.042  p99.9 1.000  red_px 0
+r2_a_f26.png         sat 0.601  mean 0.344  p1 0.042  p99.9 1.000  red_px 0
+r2_b_f38.png         sat 0.603  mean 0.343  p1 0.045  p99.9 1.000  red_px 0
+r2_c_f48.png         sat 0.603  mean 0.341  p1 0.044  p99.9 1.000  red_px 0
+r3_a_f68.png         sat 0.568  mean 0.332  p1 0.042  p99.9 1.000  red_px 0
+r3_b_f78.png         sat 0.501  mean 0.370  p1 0.049  p99.9 1.000  red_px 0
+r4_a_f92.png         sat 0.502  mean 0.374  p1 0.029  p99.9 1.000  red_px 0
+r4_b_f106.png        sat 0.513  mean 0.362  p1 0.029  p99.9 1.000  red_px 0
+r5_a_f136.png        sat 0.577  mean 0.358  p1 0.028  p99.9 1.000  red_px 0
+r5_b_f152.png        sat 0.569  mean 0.377  p1 0.028  p99.9 1.000  red_px 0
+r5_c_f156.png        sat 0.297  mean 0.684  p1 0.109  p99.9 1.000  red_px 0
+r5_d_f166.png        sat 0.377  mean 0.518  p1 0.032  p99.9 1.000  red_px 0
+r6_a_f196.png        sat 0.290  mean 0.459  p1 0.052  p99.9 1.000  red_px 0
+r6_b_f214.png        sat 0.524  mean 0.341  p1 0.040  p99.9 1.000  red_px 0
+r7_a_f232.png        sat 0.541  mean 0.348  p1 0.021  p99.9 1.000  red_px 0
+r7_b_f242.png        sat 0.500  mean 0.372  p1 0.028  p99.9 1.000  red_px 0
+r8_a_f252.png        sat 0.494  mean 0.381  p1 0.036  p99.9 1.000  red_px 0
+r8_b_f268.png        sat 0.494  mean 0.384  p1 0.042  p99.9 1.000  red_px 0
+r9_a_f286.png        sat 0.497  mean 0.385  p1 0.042  p99.9 1.000  red_px 0
+r9_b_f298.png        sat 0.519  mean 0.373  p1 0.042  p99.9 1.000  red_px 0
+r10_a_f310.png       sat 0.542  mean 0.360  p1 0.039  p99.9 1.000  red_px 0
+r10_b_f342.png       sat 0.505  mean 0.371  p1 0.028  p99.9 1.000  red_px 0
+r10_c_f362.png       sat 0.529  mean 0.349  p1 0.025  p99.9 1.000  red_px 0

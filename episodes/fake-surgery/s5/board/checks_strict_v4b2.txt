@@ -1,0 +1,5 @@
+frame_checks: s5/film.json  558 of 2230 frames (rests f0-2229)  cast sg_r, pt_r, boy, nr_k, sg_o, nr_e, sg_e, sgoff_e, sg_s, vet, kid, nr_s, c_climber1, c_climber2, c_g1s, c_climber3, c_g2s, c_g4s, c_g5s, c_boy, c_g3s
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   kid            f0-2229      feet          168 cm    f2156     74/74      2 of 2 feet float, nearest stairwell/ground_terrazzo      
+FAIL   boy            f0-2229      seat          25.8 %    f1820     55/160     hips hover above waiting_room/chair_gang_a/chair_shell_or~
+2 FAIL, 0 WARN, 104 PASS (87.9 s, scan 61.2 s)  ->  <skill folder>\episodes\fake-surgery\s5\out\frame_checks.md, 2 crops in <skill folder>\episodes\fake-surgery\s5\out\frame_checks

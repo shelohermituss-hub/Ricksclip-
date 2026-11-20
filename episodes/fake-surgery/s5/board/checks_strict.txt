@@ -1,0 +1,21 @@
+frame_checks: s5/film.json  558 of 2230 frames (rests f0-2229)  cast sg_r, pt_r, boy, nr_k, sg_o, nr_e, sg_e, sgoff_e, sg_s, vet, kid, nr_s, c_climber1, c_climber2, c_g1s, c_climber3, c_g2s, c_g4s, c_g5s, c_boy, c_g3s
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   kid            f0-2229      feet          168 cm    f2156     74/74      2 of 2 feet float, nearest stairwell/ground_terrazzo      
+FAIL   boy            f0-2229      seat          25.8 %    f1820     55/160     hips hover above waiting_room/chair_gang_a/chair_shell_or~
+FAIL   sg_o           f0-2229      body_side     49 %      f2054     17/137     cut by the left edge                                      
+FAIL   sg_o           f0-2229      head_cut      2 %       f2043     13/118     cut by the left+top edge                                  
+FAIL   sgoff_e        f0-2229      body_side     78 %      f2146     12/31      cut by the right edge                                     
+FAIL   sg_s           f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (228 cm in front of~
+FAIL   vet            f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (318 cm in front of~
+FAIL   kid            f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (286 cm in front of~
+FAIL   nr_s           f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (370 cm in front of~
+FAIL   c_climber1     f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (637 cm in front of~
+FAIL   c_climber2     f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (679 cm in front of~
+FAIL   c_g1s          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (750 cm in front of~
+FAIL   c_climber3     f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (828 cm in front of~
+FAIL   c_g2s          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (874 cm in front of~
+FAIL   c_g4s          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (846 cm in front of~
+FAIL   c_g5s          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (591 cm in front of~
+FAIL   c_boy          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (553 cm in front of~
+FAIL   c_g3s          f0-2229      face_covered  3 rays    f2156     11/74      behind stairwell/wall_front_block_4th (515 cm in front of~
+18 FAIL, 0 WARN, 89 PASS (85.8 s, scan 54.6 s)  ->  <skill folder>\episodes\fake-surgery\s5\out\frame_checks.md, 12 crops in <skill folder>\episodes\fake-surgery\s5\out\frame_checks

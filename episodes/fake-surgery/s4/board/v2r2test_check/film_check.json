@@ -1,0 +1,130 @@
+{
+ "gates": [
+  {
+   "group": "camera",
+   "name": "camera at rest (< 2 px/f), % of frames",
+   "value": 11.49,
+   "status": "FAIL",
+   "target": ">= 30 (Rick median 32) [Rick 5.65-58.02]",
+   "fix": "longer or more station holds"
+  },
+  {
+   "group": "camera",
+   "name": "rests per 10 s",
+   "value": 2.16,
+   "status": "WARN",
+   "target": "2.2-3.8, aim 3 (Rick median 3.1; Railroads 2.5, Roller Coasters 2.7) [Rick 0.87-4.74]",
+   "fix": "too few: break long travels with a resting station; too many: station hopping, merge stations and let one move flow through them"
+  },
+  {
+   "group": "camera",
+   "name": "rest length median, s",
+   "value": 0.33,
+   "status": "FAIL",
+   "target": ">= 0.6 (Rick 0.62) [Rick 0.37-1.28]",
+   "fix": "raise hold on short stations"
+  },
+  {
+   "group": "camera",
+   "name": "travel length p90, s",
+   "value": 2.19,
+   "status": "PASS",
+   "target": "2.1-6.3 (Rick median 3.0; Railroads and Roller Coasters 4.7). CB 2026-11-10: the scene decides, but some moves must flow [Rick 1.73-9.52]",
+   "fix": ""
+  },
+  {
+   "group": "camera",
+   "name": "speed median, px/f",
+   "value": 10.24,
+   "status": "FAIL",
+   "target": "about 4 (Rick 4.1) [Rick 1.55-14.11]",
+   "fix": "too high: slow down, rest more; too low: add creep to the rests"
+  },
+  {
+   "group": "camera",
+   "name": "speed p90, px/f",
+   "value": 22.92,
+   "status": "PASS",
+   "target": "<= 25 (Rick 23) [Rick 9.80-33.84]",
+   "fix": ""
+  },
+  {
+   "group": "camera",
+   "name": "cuts per 10 s",
+   "value": 2.16,
+   "status": "FAIL",
+   "target": "<= 0.9, aim 0.4 [Rick 0.00-2.50]",
+   "fix": "merge takes; cut only on place or time jumps"
+  },
+  {
+   "group": "camera",
+   "name": "roll rate p99, deg/f",
+   "value": 0.34,
+   "status": "PASS",
+   "target": "<= 1.1 (Rick 1.08) [Rick 0.26-3.02]",
+   "fix": ""
+  },
+  {
+   "group": "camera",
+   "name": "whips per minute",
+   "value": 0.0,
+   "status": "PASS",
+   "target": "<= 10 (Rick 5.8) [Rick 0.00-11.77]",
+   "fix": ""
+  },
+  {
+   "group": "camera",
+   "name": "camera dead still (< 0.3 px/f), % of frames",
+   "value": 0.73,
+   "status": "PASS",
+   "target": "<= 21, aim 9 (Rick 9.3) [Rick 1.16-28.76]",
+   "fix": ""
+  },
+  {
+   "group": "scan",
+   "name": "frozen spans (camera and picture still 12+ f)",
+   "value": 0,
+   "status": "PASS",
+   "target": "0: every long hold has a creep or something moving",
+   "fix": ""
+  },
+  {
+   "group": "scan",
+   "name": "travels longer than 7 s",
+   "value": 0,
+   "status": "PASS",
+   "target": "0 (a flowing move of 3-7 s is wanted since 2026-11-10; Rick's long travels reach 4.8-9.5 s)",
+   "fix": ""
+  },
+  {
+   "group": "scan",
+   "name": "one-frame flashes or A-B-A flickers",
+   "value": 0,
+   "status": "PASS",
+   "target": "0 unplanned (planned flashes and washes are fine: confirm each)",
+   "fix": ""
+  }
+ ],
+ "numbers": {
+  "dur": 13.9,
+  "cuts_10s": 2.158273381294964,
+  "p50": 10.240345297021378,
+  "p90": 22.920417932533258,
+  "peak": 27.473254251104866,
+  "pct_hold03": 0.7334963325183375,
+  "pct_settled": 11.491442542787286,
+  "holds_10s": 2.158273381294964,
+  "hold_p50": 0.3333333333333333,
+  "hold_p90": 0.41333333333333333,
+  "hold_max": 0.43333333333333335,
+  "travel_p50": 1.6333333333333333,
+  "travel_p90": 2.1866666666666665,
+  "travel_max": 2.2333333333333334,
+  "travels_over_3s": [],
+  "frozen_over_12f": [],
+  "roll_rate_p99": 0.3397611612069188,
+  "roll_drift_deg": 18.677257164726754,
+  "whips_min": 0.0,
+  "zoom_peak_p90": 2.887565574448382
+ }
+}

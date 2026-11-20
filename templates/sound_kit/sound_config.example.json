@@ -1,0 +1,7 @@
+{
+  "_help": "Copy this file to sound_config.json in the same folder and put YOUR folders in it. Use only sounds and music you have a licence for. Forward slashes work on Windows too.",
+  "sfx_dirs": ["C:/Users/<you>/Music/SOUND EFFECTS"],
+  "music_dirs": ["C:/Users/<you>/Music/BACKGROUND MUSIC"],
+  "target_lufs": -16.0,
+  "true_peak_max": -1.0
+}

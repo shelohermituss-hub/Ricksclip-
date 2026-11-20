@@ -1,0 +1,339 @@
+{
+ "title": "PITCH 3 first 5 s: the student keeps filling in his questionnaire while white smoke pours from the wall vent; the two calm men beside him do the same. Columbia University, 1968",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 150,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "student": {
+   "puppet": "cast:smoke/student",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "calmA": {
+   "puppet": "cast:smoke/calmA",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "calmB": {
+   "puppet": "cast:smoke/calmB",
+   "height": 1.78,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "faces_ep": {
+  "focus": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     -5,
+     8,
+     0,
+     1.1
+    ],
+    [
+     -1,
+     6,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "tongueCorner",
+   "side": 1
+  },
+  "glance": {
+   "eyes": "lid",
+   "brows": [
+    [
+     6,
+     -3,
+     4,
+     1.1
+    ],
+    [
+     8,
+     -4,
+     4,
+     1.1
+    ]
+   ],
+   "mouth": "flat",
+   "side": -1
+  },
+  "calm": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     0,
+     1,
+     0,
+     1.0
+    ],
+    [
+     0,
+     1,
+     0,
+     1.0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "calmShrug": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     6,
+     -2,
+     2,
+     1.0
+    ],
+    [
+     6,
+     -2,
+     2,
+     1.0
+    ]
+   ],
+   "mouth": "flat"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 0.6,
+  "vignette": 0.55
+ },
+ "places": {
+  "room": {
+   "set": "waiting_room",
+   "light": "morning",
+   "time": "day",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#2c4a46",
+    "hor": "#a8d0c4",
+    "sun": "#e8f4ff",
+    "si": 0.9,
+    "amb": "#bfe0d6",
+    "ai": 1.5,
+    "dir": [
+     -6,
+     -1.5,
+     5
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.0,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.55
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "student",
+   "at": 0,
+   "pos": [
+    0.0,
+    0.12,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_smoke/st_write",
+   "face": "k:focus",
+   "note": "writes fast, head down, smoke behind him"
+  },
+  {
+   "who": "student",
+   "at": 96,
+   "face": "k:glance",
+   "note": "a glance at the calm man: is this fine?"
+  },
+  {
+   "who": "calmA",
+   "at": 0,
+   "pos": [
+    -0.85,
+    1.42,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_smoke/ca_pipe",
+   "face": "k:calm",
+   "note": "pipe in his mouth, slow writing"
+  },
+  {
+   "who": "calmA",
+   "at": 100,
+   "face": "k:calmShrug",
+   "note": "the shrug"
+  },
+  {
+   "who": "calmB",
+   "at": 0,
+   "pos": [
+    0.85,
+    1.46,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_smoke/cb_write",
+   "face": "k:calm",
+   "note": "writes, turns a page at f70"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "student",
+   "obj": "pencil",
+   "module": "sets/props.js",
+   "builder": "buildPencil",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -35,
+   "scale": 1.5,
+   "when": "always"
+  },
+  {
+   "who": "calmA",
+   "obj": "pencilA",
+   "module": "sets/props.js",
+   "builder": "buildPencil",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -35,
+   "scale": 1.5,
+   "when": "always"
+  },
+  {
+   "who": "calmB",
+   "obj": "pencilB",
+   "module": "sets/props.js",
+   "builder": "buildPencil",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -35,
+   "scale": 1.5,
+   "when": "always"
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "room",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      0.1,
+      -1.75,
+      1.0
+     ],
+     "aim": [
+      0.08,
+      0.9,
+      1.33
+     ],
+     "lens": 22,
+     "subject": "student",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0.002,
+     "purpose": "P1 FRAME 0 'Smoke is pouring into the room': the student big at his table writing under the lamp pool, the vent pouring smoke over his shoulder, the two calm men small at their tables behind"
+    },
+    {
+     "at": 60,
+     "pos": [
+      -0.55,
+      -1.45,
+      0.88
+     ],
+     "aim": [
+      -0.2,
+      0.5,
+      1.4
+     ],
+     "lens": 22,
+     "subject": "student",
+     "framing": "C",
+     "travel": 0.9,
+     "hold": 1.0,
+     "creep": 0.002,
+     "purpose": "P2 'and he just keeps writing': low and close from his left, the vent pouring smoke behind his shoulder, the cloud rolling over the lamp, pencil on the questionnaire, tongue out"
+    },
+    {
+     "at": 120,
+     "pos": [
+      -0.4,
+      -2.75,
+      0.98
+     ],
+     "aim": [
+      0.0,
+      1.0,
+      1.42
+     ],
+     "lens": 22,
+     "subject": "student",
+     "framing": "W",
+     "travel": 1.0,
+     "hold": 1.0,
+     "creep": 0.002,
+     "purpose": "P3 'So do the two men beside him': pull back low-left to all three in a row writing under the sinking smoke layer: the pipe man shrugs, the blazer man writes on, the student glances at them"
+    }
+   ]
+  }
+ ]
+}

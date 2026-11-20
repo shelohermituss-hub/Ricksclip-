@@ -1,0 +1,292 @@
+{
+ "face_shadow": true,
+ "face_shadow_rule": "CB 2026-11-15: the template drawn face shadow STAYS (face_shadow true); only generated shade is removed (card_shade amount 0, rim 0, hat_shadow 0, no far light).",
+ "_note": "character-artist 2026-11-16 (fake-surgery, phase A). Copy these keys into every film.json that uses this cast. puppet_pkg paths are relative to the film.json: first episodes/fake-surgery/cast (holds sheets/surgery.mjs), then the kit code. Height = ground to the top of the bare head; caps stand above it. Puppet names cast:surgery/<name>. faces_ep goes into film.json as \"faces_ep\" (kit episode faces, used as face 'k:<name>'). heads_tall is written by cast/tools/render_cast.mjs.",
+ "puppet_pkg": [
+  "<relative path to>/episodes/fake-surgery/cast",
+  "<relative path to>/templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "surgeon": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.79
+  },
+  "surgeonOff": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79
+  },
+  "nurse": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.66,
+   "heads_tall": 2.93
+  },
+  "patient": {
+   "puppet": "cast:surgery/patient",
+   "height": 1.78,
+   "heads_tall": 3.1
+  },
+  "patientShorts": {
+   "puppet": "cast:surgery/patientShorts",
+   "height": 1.78,
+   "heads_tall": 3.1
+  },
+  "boy": {
+   "puppet": "cast:surgery/boy",
+   "height": 1.15,
+   "heads_tall": 2.04
+  },
+  "grandkid": {
+   "puppet": "cast:surgery/grandkid",
+   "height": 1.06,
+   "heads_tall": 2.04
+  },
+  "climber1": {
+   "puppet": "cast:surgery/climber1",
+   "height": 1.76,
+   "heads_tall": 2.79
+  },
+  "climber2": {
+   "puppet": "cast:surgery/climber2",
+   "height": 1.64,
+   "heads_tall": 2.93
+  },
+  "climber3": {
+   "puppet": "cast:surgery/climber3",
+   "height": 1.74,
+   "heads_tall": 3.1
+  },
+  "g1": {
+   "puppet": "cast:surgery/g1",
+   "height": 1.74,
+   "heads_tall": 2.79
+  },
+  "g2": {
+   "puppet": "cast:surgery/g2",
+   "height": 1.62,
+   "heads_tall": 2.93
+  },
+  "g3": {
+   "puppet": "cast:surgery/g3",
+   "height": 1.8,
+   "heads_tall": 3.1
+  },
+  "g4": {
+   "puppet": "cast:surgery/g4",
+   "height": 1.58,
+   "heads_tall": 2.93
+  },
+  "g5": {
+   "puppet": "cast:surgery/g5",
+   "height": 1.78,
+   "heads_tall": 2.79
+  },
+  "g1s": {
+   "puppet": "cast:surgery/g1s",
+   "height": 1.74,
+   "heads_tall": 2.79
+  },
+  "g2s": {
+   "puppet": "cast:surgery/g2s",
+   "height": 1.62,
+   "heads_tall": 2.93
+  },
+  "g3s": {
+   "puppet": "cast:surgery/g3s",
+   "height": 1.8,
+   "heads_tall": 3.1
+  },
+  "g4s": {
+   "puppet": "cast:surgery/g4s",
+   "height": 1.58,
+   "heads_tall": 2.93
+  },
+  "g5s": {
+   "puppet": "cast:surgery/g5s",
+   "height": 1.78,
+   "heads_tall": 2.79
+  }
+ },
+ "faces_ep": {
+  "drowsy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     5,
+     0
+    ],
+    [
+     -4,
+     5,
+     0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "wince": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ],
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 24
+  },
+  "thumbsSmile": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     4,
+     -2,
+     4
+    ],
+    [
+     6,
+     -3,
+     5
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "springGrin": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -3,
+     7
+    ],
+    [
+     12,
+     -3,
+     7
+    ]
+   ],
+   "mouth": "teeth"
+  },
+  "smileEyes": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -2,
+     5
+    ],
+    [
+     8,
+     -2,
+     6
+    ]
+   ],
+   "mouth": "lens"
+  },
+  "wail": {
+   "eyes": "cry",
+   "brows": [
+    [
+     8,
+     -11,
+     2
+    ],
+    [
+     8,
+     -11,
+     2
+    ]
+   ],
+   "mouth": "frownXL",
+   "fx": [
+    "tears"
+   ]
+  }
+ },
+ "face_presets": {
+  "surgeon": "masked: k:smileEyes (eyes smile over the mask; brows act), k:concentrate on the cut; never a mouth face while masked",
+  "surgeonOff": "k:proud (sheepish-proud grin, rows 49-50), k:think (office), standard",
+  "nurse": "k:browUp (one eyebrow up, the mocker), k:skeptical; arms folded",
+  "patient": "k:drowsy (OR, half lids), k:thumbsSmile (row 10), k:wince (pre-op / gurney), standard pre-op",
+  "patientShorts": "k:springGrin (stairs, last frame), k:proud",
+  "boy": "k:wail (eyes cry + tears + big frown; the kit's open wail mouth has a pink-red inside #c94a5f that fails the red gate), k:cheer (row 44)",
+  "grandkid": "k:cheer (arms up on the shoulders, row 50)",
+  "climber1": "k:springGrin",
+  "climber2": "k:happy",
+  "climber3": "k:proud",
+  "g1": "k:wince",
+  "g2": "k:worried",
+  "g3": "k:wince",
+  "g4": "k:sad",
+  "g5": "k:wince",
+  "g1s": "k:springGrin",
+  "g2s": "k:happy",
+  "g3s": "k:cheer",
+  "g4s": "k:proud",
+  "g5s": "k:springGrin"
+ },
+ "held_props": {
+  "surgeon": {
+   "scalpel": "small 3D prop (sets/hero_props.js), RIGHT fist (grips kind tool), tip ON the knee's near side via held3d tip_at; never a close-up",
+   "bulb": "grey-blue rubber bulb #6a86a0, RIGHT fist (kind small), nozzle aimed at the knee; water fan from the props pack",
+   "plaster": "cream plaster, RIGHT fist pinched as a round fist on the strip end; pats with the fist",
+   "jug": "steel jug, RIGHT fist on the handle (kind handles), pour toward the bowl",
+   "envelope": "sealed envelope, RIGHT fist (kind edge), goes into the chest pocket",
+   "coffee_cup": "office mug, RIGHT fist (kind handles), settable fill",
+   "pen": "the drawn pen in the chest pocket stays drawn; a 3D pen only when he writes (RIGHT fist, kind tool)",
+   "file_cards": "card stack in both fists (kind two-hand/edge) or one card in the RIGHT fist",
+   "ruler": "steel ruler, RIGHT fist (kind tool) laid on the chart"
+  },
+  "nurse": {
+   "tray": "clean instrument tray flat on her LEFT fist (kind tray) or both fists at the edges (kind edge)",
+   "clipboard": "consent clipboard, LEFT fist (kind edge), pen in the RIGHT"
+  },
+  "patient": {
+   "cane": "wooden cane, RIGHT fist on the crook (kind pole, fist on top of the shaft), tip on the floor; gone from row 33 (cobweb + spider version in the props pack)",
+   "pen": "signs the form with the RIGHT fist (kind tool), clipboard on the LEFT forearm",
+   "clipboard": "consent clipboard on the LEFT fist (kind edge)"
+  },
+  "climber1": {
+   "wristband": "steel-blue #5a7a9a 3D ring on the RIGHT wrist (limbs stay one colour; the band is a prop, the scraper-tray colour)"
+  },
+  "climber2": {
+   "wristband": "aqua #3fc2c8 3D ring on the RIGHT wrist (rinse-tray colour)"
+  },
+  "climber3": {
+   "wristband": "purple #7a4aa8 3D ring on the RIGHT wrist (trick-tray colour)"
+  },
+  "colleague": "NO PUPPET: row 16 is a hand only, a set-drawn arm from the frame edge with sets/soft_arm.js (one slight curve, round black fist), green scrub sleeve colour #2f7d55 not needed (limbs are ink)"
+ },
+ "recline": {
+  "move": "m:../../ep_surgery/pt_recline | pt_thumbs | pt_smile (episode moves; card turned back 55 deg about the hip = 35 deg above the pad)",
+  "act": "pos [x, y, PAD_TOP_Z] on the table pad under his hips; dir so the head is toward the raised head section; view comes from the move (3/4)",
+  "faces": "k:drowsy at rest, k:thumbsSmile on row 10, k:wince never on the table (sedated, calm)"
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "card_shade_rule": "CB 2026-11-15: card_shade.amount 0 AND rim_amount 0 in every place, no far light, lights []. Never raise amount.",
+ "_face_note": "Faces clean white; the OR lamp, the amber desk lamp and the coral evening sun show on costume, props and set, never as a band on a face. No red in any costume (the pain dial and bars are the ONE red).",
+ "_mouth_note": "Red gate: the template's OPEN mouths smile, smileXL, grinXL, gasp, gaspXL, wail, shout have a pink-red inside #c94a5f (hue 350, within 12 deg of the film's red). Use red-free mouths (lens, smileSmall, teeth, proud, frownXL, wavy, flatXL, smirkXL) or ask the lead for a mouth-interior exemption. Lip-sync visemes: check per take with the red count."
+}

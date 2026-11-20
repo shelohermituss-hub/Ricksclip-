@@ -1,0 +1,8 @@
+frame_checks: s3/film.json  1122 of 1302 frames (rests f0-780 f904-926 f927-953 f1005-1022 f1100-1140 f1210-1226 f1228-1244 f1290-1301)  cast surgeonOff, surgeon, nurse, patient, g1, g2, patientR
+result who            rest         check         number    worst at  bad frames what                                                      
+WARN   surgeonOff     f781-903 mo~ slide         2.4 %     f837      27/53      the planted foot slides 2.4 cm per frame across the pictu~
+WARN   surgeonOff     f904-926     body_in_mesh  1 %       f915      23/23      inside office_set/desk_top: torso-hips-thighs 1 %, legs 0~
+WARN   patientR       f1290-1301   body_in_mesh  3 %       f1300     4/12       inside patient_leg_drape_tent: torso-hips-thighs 1 %, leg~
+WARN   surgeonOff     f781-903 mo~ body_in_mesh  0 %       f881      3/62       inside office_set/locker_2/locker_body: torso-hips-thighs~
+WARN   surgeon        f1141-1209 ~ slide         5.6 %     f1195     1/35       the planted foot slides 5.6 cm per frame across the pictu~
+0 FAIL, 5 WARN, 161 PASS (80 s, scan 66.7 s)  ->  <skill folder>\episodes\fake-surgery\s3\out\frame_checks.md

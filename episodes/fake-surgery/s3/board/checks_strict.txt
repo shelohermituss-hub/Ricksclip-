@@ -1,0 +1,15 @@
+frame_checks: s3/film.json  537 of 1302 frames (rests f0-1301)  cast surgeonOff, surgeon, nurse, patient, g1, g2, patientR
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   surgeon        f0-1301      body_side     63 %      f979      32/325     cut by the left edge                                      
+FAIL   surgeon        f0-1301      head_cut      74 %      f979      30/325     cut by the left edge                                      
+FAIL   patient        f0-1301      head_cut      82 %      f1046     25/123     cut by the right edge                                     
+FAIL   patient        f0-1301      body_side     79 %      f1046     16/123     cut by the right edge                                     
+FAIL   g1             f0-1301      head_cut      2 %       f980      12/70      cut by the left edge                                      
+FAIL   g1             f0-1301      body_side     48 %      f986      11/123     cut by the left edge                                      
+FAIL   surgeonOff     f0-1301      body_side     79 %      f882      7/162      cut by the right edge                                     
+FAIL   g2             f0-1301      head_cut      3 %       f984      7/58       cut by the right edge                                     
+FAIL   g2             f0-1301      body_side     53 %      f980      6/59       cut by the right edge                                     
+FAIL   g2             f0-1301      face_covered  1 rays    f980      5/58       head centre INSIDE corridor_set/bay_window_wall_side; in ~
+WARN   surgeonOff     f0-1301      slide         2.9 %     f848      65/161     the planted foot slides 2.9 cm per frame across the pictu~
+WARN   surgeon        f0-1301      slide         11.1 %    f1194     1/323      the planted foot slides 11.1 cm per frame across the pict~
+10 FAIL, 2 WARN, 25 PASS (69.7 s, scan 49.8 s)  ->  <skill folder>\episodes\fake-surgery\s3\out\frame_checks.md, 10 crops in <skill folder>\episodes\fake-surgery\s3\out\frame_checks

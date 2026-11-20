@@ -1,0 +1,273 @@
+== An_Unstoppable_Spear_vs_an_Unbreakable_Shield ==
+    Threshold: -25.1 LUFS
+
+  Loudness range:
+    LRA:         2.3 LU
+    Threshold: -35.1 LUFS
+    LRA low:   -16.1 LUFS
+    LRA high:  -13.8 LUFS
+
+  True peak:
+    Peak:       -3.1 dBFS
+[out#0/null @ 0000017712235b00] video:0KiB audio:7764KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:45.10 bitrate=N/A speed= 182x elapsed=0:00:00.24    
+== Every_Memory_Has_a_Price ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         1.9 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.0 LUFS
+    LRA high:  -13.0 LUFS
+
+  True peak:
+    Peak:       -2.0 dBFS
+[out#0/null @ 0000028bf80178c0] video:0KiB audio:13412KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:17.88 bitrate=N/A speed= 194x elapsed=0:00:00.40    
+== He_Could_Spot_Winning_Tickets_Just_by_Looking ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.1 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.1 LUFS
+    LRA high:  -13.0 LUFS
+
+  True peak:
+    Peak:       -2.0 dBFS
+[out#0/null @ 000001cc49209680] video:0KiB audio:10908KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:03.35 bitrate=N/A speed= 199x elapsed=0:00:00.31    
+== How_Painkillers_Actually_Work ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         1.8 LU
+    Threshold: -34.0 LUFS
+    LRA low:   -14.8 LUFS
+    LRA high:  -13.0 LUFS
+
+  True peak:
+    Peak:       -2.0 dBFS
+[out#0/null @ 0000021a03266080] video:0KiB audio:5944KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:34.53 bitrate=N/A speed= 221x elapsed=0:00:00.15    
+== How_a_Mirror_Rigged_a_Horse_Race ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.6 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.2 LUFS
+    LRA high:  -12.6 LUFS
+
+  True peak:
+    Peak:       -2.1 dBFS
+[out#0/null @ 00000140d8736500] video:0KiB audio:11048KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:04.16 bitrate=N/A speed= 198x elapsed=0:00:00.32    
+== Levels_of_Pirate_Cannonballs ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.1 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.2 LUFS
+    LRA high:  -13.1 LUFS
+
+  True peak:
+    Peak:       -1.9 dBFS
+[out#0/null @ 0000026d0f8b7a80] video:0KiB audio:10948KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:03.58 bitrate=N/A speed= 244x elapsed=0:00:00.26    
+== The_Ancient_Jar_That_Warned_an_Empire ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.1 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -14.9 LUFS
+    LRA high:  -12.8 LUFS
+
+  True peak:
+    Peak:       -2.2 dBFS
+[out#0/null @ 000001520dcb9200] video:0KiB audio:11180KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:04.93 bitrate=N/A speed= 234x elapsed=0:00:00.27    
+== The_Burglar_Who_Only_Moved_Furniture ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         1.7 LU
+    Threshold: -34.2 LUFS
+    LRA low:   -14.8 LUFS
+    LRA high:  -13.2 LUFS
+
+  True peak:
+    Peak:       -2.1 dBFS
+[out#0/null @ 000001a854ac84c0] video:0KiB audio:10064KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:58.45 bitrate=N/A speed= 197x elapsed=0:00:00.29    
+== The_Job_Nobody_Wants_in_Japan ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         1.8 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -14.8 LUFS
+    LRA high:  -13.0 LUFS
+
+  True peak:
+    Peak:       -2.1 dBFS
+[out#0/null @ 000001b034967100] video:0KiB audio:10432KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:00.59 bitrate=N/A speed= 226x elapsed=0:00:00.26    
+== The_Science_Behind_Slot_Machines ==
+    Threshold: -25.1 LUFS
+
+  Loudness range:
+    LRA:         2.5 LU
+    Threshold: -35.0 LUFS
+    LRA low:   -16.5 LUFS
+    LRA high:  -14.1 LUFS
+
+  True peak:
+    Peak:       -2.7 dBFS
+[out#0/null @ 00000285992e6880] video:0KiB audio:5336KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:31.00 bitrate=N/A speed= 183x elapsed=0:00:00.16    
+== The_Scientist_s_Insane_Time_Test ==
+    Threshold: -25.2 LUFS
+
+  Loudness range:
+    LRA:         1.6 LU
+    Threshold: -35.1 LUFS
+    LRA low:   -16.0 LUFS
+    LRA high:  -14.4 LUFS
+
+  True peak:
+    Peak:       -3.6 dBFS
+[out#0/null @ 00000206f8e66180] video:0KiB audio:6900KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:40.08 bitrate=N/A speed= 222x elapsed=0:00:00.18    
+== The_Town_Built_Around_a_Button ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         1.8 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.1 LUFS
+    LRA high:  -13.3 LUFS
+
+  True peak:
+    Peak:       -2.2 dBFS
+[out#0/null @ 00000282c5675800] video:0KiB audio:11296KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:05.60 bitrate=N/A speed= 192x elapsed=0:00:00.34    
+== The_Window_That_Breaks_Japan_s_Gambling_Law ==
+    Threshold: -24.3 LUFS
+
+  Loudness range:
+    LRA:         2.4 LU
+    Threshold: -34.3 LUFS
+    LRA low:   -15.6 LUFS
+    LRA high:  -13.2 LUFS
+
+  True peak:
+    Peak:       -1.3 dBFS
+[out#0/null @ 0000023932d56a80] video:0KiB audio:7768KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:45.12 bitrate=N/A speed= 231x elapsed=0:00:00.19    
+== This_Knight_Found_the_Ultimate_Loophole ==
+    Threshold: -25.0 LUFS
+
+  Loudness range:
+    LRA:         2.4 LU
+    Threshold: -35.2 LUFS
+    LRA low:   -16.4 LUFS
+    LRA high:  -13.9 LUFS
+
+  True peak:
+    Peak:       -3.0 dBFS
+[out#0/null @ 000001e774035040] video:0KiB audio:7008KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:40.71 bitrate=N/A speed= 193x elapsed=0:00:00.21    
+== What_the_Grave_Bell_Really_Meant ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.3 LU
+    Threshold: -34.0 LUFS
+    LRA low:   -15.2 LUFS
+    LRA high:  -13.0 LUFS
+
+  True peak:
+    Peak:       -1.9 dBFS
+[out#0/null @ 00000224e5076b80] video:0KiB audio:10260KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:59.59 bitrate=N/A speed= 192x elapsed=0:00:00.31    
+== Why_Cashiers_Keep_Winning_The_Lottery ==
+    Threshold: -25.1 LUFS
+
+  Loudness range:
+    LRA:         2.0 LU
+    Threshold: -35.1 LUFS
+    LRA low:   -16.0 LUFS
+    LRA high:  -14.0 LUFS
+
+  True peak:
+    Peak:       -3.5 dBFS
+[out#0/null @ 000001925b5e4700] video:0KiB audio:9956KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:57.82 bitrate=N/A speed= 199x elapsed=0:00:00.29    
+== Why_Humans_Can_t_Pick_Random_Numbers ==
+    Threshold: -25.1 LUFS
+
+  Loudness range:
+    LRA:         2.6 LU
+    Threshold: -35.1 LUFS
+    LRA low:   -16.1 LUFS
+    LRA high:  -13.5 LUFS
+
+  True peak:
+    Peak:       -2.7 dBFS
+[out#0/null @ 000001a80f7f6c40] video:0KiB audio:8124KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:47.19 bitrate=N/A speed= 206x elapsed=0:00:00.22    
+== Why_Perfect_Railroads_Don_t_Work ==
+    Threshold: -24.1 LUFS
+
+  Loudness range:
+    LRA:         3.2 LU
+    Threshold: -34.1 LUFS
+    LRA low:   -15.8 LUFS
+    LRA high:  -12.6 LUFS
+
+  True peak:
+    Peak:       -2.2 dBFS
+[out#0/null @ 0000020ff7a99280] video:0KiB audio:11236KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:05.25 bitrate=N/A speed= 196x elapsed=0:00:00.33    
+== Why_Sailors_Carried_Storm_Oil ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         2.4 LU
+    Threshold: -34.0 LUFS
+    LRA low:   -15.3 LUFS
+    LRA high:  -12.8 LUFS
+
+  True peak:
+    Peak:       -2.1 dBFS
+[out#0/null @ 0000020cca6d7000] video:0KiB audio:11132KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:04.65 bitrate=N/A speed= 192x elapsed=0:00:00.33    
+== Why_the_Second_Draw_Always_Wins ==
+    Threshold: -24.0 LUFS
+
+  Loudness range:
+    LRA:         1.7 LU
+    Threshold: -34.0 LUFS
+    LRA low:   -15.0 LUFS
+    LRA high:  -13.2 LUFS
+
+  True peak:
+    Peak:       -2.4 dBFS
+[out#0/null @ 0000020903476c00] video:0KiB audio:9668KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:56.15 bitrate=N/A speed= 210x elapsed=0:00:00.26    
+== Your_Brain_s_Secret_Idea_Zone ==
+    Threshold: -25.6 LUFS
+
+  Loudness range:
+    LRA:         3.5 LU
+    Threshold: -35.6 LUFS
+    LRA low:   -17.1 LUFS
+    LRA high:  -13.6 LUFS
+
+  True peak:
+    Peak:       -3.1 dBFS
+[out#0/null @ 000001e520809d80] video:0KiB audio:6740KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:39.15 bitrate=N/A speed= 215x elapsed=0:00:00.18    

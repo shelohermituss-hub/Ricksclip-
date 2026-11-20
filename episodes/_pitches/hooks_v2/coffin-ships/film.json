@@ -1,0 +1,238 @@
+{
+ "title": "PITCH 4 hook frame: the ship owner orders one more crate onto the overloaded coffin ship, English harbour, grey dawn, 1872",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "owner": {
+   "puppet": "cast:coffin/owner",
+   "height": 1.78,
+   "heads_tall": 2.9,
+   "walk_speed": 99
+  },
+  "sailor": {
+   "puppet": "cast:coffin/sailor",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "deckhand": {
+   "puppet": "cast:coffin/deckhand",
+   "height": 1.7,
+   "heads_tall": 3.0,
+   "walk_speed": 99
+  },
+  "docker": {
+   "puppet": "cast:coffin/docker",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "face_shadow": true,
+ "kit3d": true,
+ "faces_ep": {
+  "smug": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -4,
+     6,
+     0,
+     1.1
+    ],
+    [
+     -2,
+     8,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "grinXL",
+   "side": 1
+  },
+  "fear": {
+   "eyes": "wideXL",
+   "mouth": "gaspXL"
+  },
+  "fear2": {
+   "eyes": "wide",
+   "mouth": "nervous"
+  },
+  "strain": {
+   "eyes": "squeeze",
+   "mouth": "nervous"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.35
+ },
+ "places": {
+  "quay": {
+   "set": "harbour",
+   "light": "morning",
+   "time": "dawn",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#4a6aa8",
+    "hor": "#f4c6a0",
+    "sun": "#ffd6ac",
+    "si": 2.5,
+    "amb": "#a4b4e4",
+    "ai": 2.3,
+    "dir": [
+     7,
+     -5,
+     6
+    ],
+    "tint": "#f4f2ff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "kit3d": {
+    "envGround": "#3a4252"
+   },
+   "post": {
+    "vignette": 0.35
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "owner",
+   "at": 0,
+   "pos": [
+    -0.1,
+    -4.45,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_coffin/owner_point",
+   "face": "k:smug",
+   "note": "smug lean, points at the crate"
+  },
+  {
+   "who": "sailor",
+   "at": 0,
+   "pos": [
+    2.4,
+    -1.8,
+    -0.25
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_coffin/sailor_buoy",
+   "face": "k:fear",
+   "note": "clutches the lifebuoy"
+  },
+  {
+   "who": "deckhand",
+   "at": 0,
+   "pos": [
+    3.8,
+    -0.9,
+    -0.25
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_coffin/deck_panic",
+   "face": "k:fear2",
+   "note": "fists up, pulls back from the sea"
+  },
+  {
+   "who": "docker",
+   "at": 0,
+   "pos": [
+    0.55,
+    2.2,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_coffin/docker_haul",
+   "face": "k:strain",
+   "note": "hauls the tag line"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "sailor",
+   "obj": "lifebuoy",
+   "module": "sets/props.js",
+   "builder": "buildLifebuoy",
+   "opts": {},
+   "grip": "box",
+   "when": "always",
+   "scale": 1.0
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "quay",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.4,
+      -7.6,
+      1.25
+     ],
+     "aim": [
+      2.6,
+      3.0,
+      1.5
+     ],
+     "lens": 24,
+     "subject": "owner",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the owner points, the crate swings over the sinking ship, the crew in terror"
+    }
+   ]
+  }
+ ]
+}

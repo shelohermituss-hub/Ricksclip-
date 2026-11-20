@@ -1,0 +1,2189 @@
+{
+ "camera": {
+  "v2": true
+ },
+ "title": "fake-surgery S5 build-out: rows 40-50, film 1684-2229 (render 1672-2229)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "end": 2230,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "sg_r": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "pt_r": {
+   "puppet": "cast:surgery/patient",
+   "height": 1.78,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "boy": {
+   "puppet": "cast:surgery/boy",
+   "height": 1.15,
+   "heads_tall": 2.04,
+   "walk_speed": 99
+  },
+  "nr_k": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "sg_o": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "nr_e": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "sg_e": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "sgoff_e": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "sg_s": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "vet": {
+   "puppet": "cast:surgery/patientShorts",
+   "height": 1.78,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "kid": {
+   "puppet": "cast:surgery/grandkid",
+   "height": 1.06,
+   "heads_tall": 2.04,
+   "walk_speed": 99
+  },
+  "nr_s": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "c_climber1": {
+   "puppet": "cast:surgery/climber1",
+   "height": 1.76,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "c_climber2": {
+   "puppet": "cast:surgery/climber2",
+   "height": 1.64,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "c_g1s": {
+   "puppet": "cast:surgery/g1s",
+   "height": 1.74,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "c_climber3": {
+   "puppet": "cast:surgery/climber3",
+   "height": 1.74,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "c_g2s": {
+   "puppet": "cast:surgery/g2s",
+   "height": 1.62,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "c_g4s": {
+   "puppet": "cast:surgery/g4s",
+   "height": 1.58,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "c_g5s": {
+   "puppet": "cast:surgery/g5s",
+   "height": 1.78,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "c_boy": {
+   "puppet": "cast:surgery/boy",
+   "height": 1.15,
+   "heads_tall": 2.04,
+   "walk_speed": 99
+  },
+  "c_g3s": {
+   "puppet": "cast:surgery/g3s",
+   "height": 1.8,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "face_shadow": true,
+ "faces_ep": {
+  "drowsy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     5,
+     0
+    ],
+    [
+     -4,
+     5,
+     0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "wince": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ],
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 24
+  },
+  "thumbsSmile": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     4,
+     -2,
+     4
+    ],
+    [
+     6,
+     -3,
+     5
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "springGrin": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -3,
+     7
+    ],
+    [
+     12,
+     -3,
+     7
+    ]
+   ],
+   "mouth": "teeth"
+  },
+  "smileEyes": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -2,
+     5
+    ],
+    [
+     8,
+     -2,
+     6
+    ]
+   ],
+   "mouth": "lens"
+  },
+  "wail": {
+   "eyes": "cry",
+   "brows": [
+    [
+     8,
+     -11,
+     2
+    ],
+    [
+     8,
+     -11,
+     2
+    ]
+   ],
+   "mouth": "frownXL",
+   "fx": [
+    "tears"
+   ]
+  },
+  "focus": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     7,
+     0,
+     1.15
+    ],
+    [
+     -4,
+     7,
+     0,
+     1.15
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "kind": {
+   "eyes": "lid",
+   "brows": [
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     2,
+     0,
+     1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "drowsyFrown": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -6,
+     8,
+     -1,
+     1.2
+    ],
+    [
+     -6,
+     8,
+     -1,
+     1.2
+    ]
+   ],
+   "mouth": "flat"
+  },
+  "frozen": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     12,
+     -6,
+     7,
+     1.2
+    ],
+    [
+     12,
+     -6,
+     7,
+     1.2
+    ]
+   ],
+   "mouth": "o"
+  },
+  "cheer": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -4,
+     7,
+     1.1
+    ],
+    [
+     12,
+     -4,
+     7,
+     1.1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "watch": {
+   "eyes": "oval",
+   "brows": [
+    [
+     4,
+     -2,
+     2
+    ],
+    [
+     6,
+     -3,
+     3
+    ]
+   ],
+   "mouth": "flat"
+  },
+  "stern": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -7,
+     9,
+     -1,
+     1.25
+    ],
+    [
+     -6,
+     10,
+     -1,
+     1.25
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "dryUp": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -2,
+     3,
+     0,
+     1.1
+    ],
+    [
+     16,
+     -7,
+     9,
+     1.25
+    ]
+   ],
+   "mouth": "smirk"
+  },
+  "sheepish": {
+   "eyes": "happy",
+   "brows": [
+    [
+     8,
+     -2,
+     5,
+     1.1
+    ],
+    [
+     10,
+     -3,
+     6,
+     1.1
+    ]
+   ],
+   "mouth": "smirk"
+  },
+  "calmGrin": {
+   "eyes": "lid",
+   "brows": [
+    [
+     2,
+     -1,
+     1
+    ],
+    [
+     4,
+     -2,
+     2
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "proudGrin": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -3,
+     4,
+     1.1
+    ],
+    [
+     8,
+     -3,
+     5,
+     1.1
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "ride": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     14,
+     -4,
+     8,
+     1.1
+    ],
+    [
+     14,
+     -4,
+     8,
+     1.1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "climbOK": {
+   "eyes": "lid",
+   "brows": [
+    [
+     3,
+     -1,
+     2
+    ],
+    [
+     3,
+     -1,
+     2
+    ]
+   ],
+   "mouth": "smileSmall"
+  }
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.42
+ },
+ "places": {
+  "orrp": {
+   "set": "waiting",
+   "light": "morning",
+   "time": "day",
+   "backdrop": 4,
+   "light_over": {
+    "top": "#123a36",
+    "hor": "#2f6a62",
+    "sun": "#e8fff8",
+    "si": 0.9,
+    "amb": "#9fd8cc",
+    "ai": 1.25,
+    "dir": [
+     0.2,
+     6,
+     3
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#9fd8cc",
+    "fill_i": 0.25,
+    "veil_color": "#2f6a62",
+    "shadow_color": "#0e2e2a",
+    "rich": 0.7
+   },
+   "post": {
+    "vignette": 0.5
+   },
+   "knee": {
+    "dots": 3,
+    "plasters": 0
+   },
+   "monitor": "nosignal",
+   "fog": [
+    9,
+    30
+   ],
+   "env_v3": true,
+   "wrap": "or_room",
+   "knee_v2": true,
+   "knee_track": [
+    [
+     0,
+     3,
+     2
+    ],
+    [
+     1709,
+     3,
+     3
+    ]
+   ],
+   "lamp_angle": 0.42,
+   "drape_soft": true,
+   "knee_v3": {
+    "at": [
+     -0.04,
+     0.47,
+     1.31
+    ],
+    "hip": [
+     -0.32,
+     0.47,
+     0.93
+    ],
+    "foot": [
+     0.25,
+     0.47,
+     0.9
+    ],
+    "face": [
+     0.0,
+     -0.7,
+     0.72
+    ],
+    "win": 0.13,
+    "ball": 0.092,
+    "dx": 0.04,
+    "dot": 0.0135,
+    "dome": 0.022,
+    "pw": [
+     0.039,
+     0.08,
+     0.035,
+     0.076,
+     0.023,
+     0.023
+    ],
+    "w": 0.11
+   },
+   "knee_crisp": {
+    "back": "#24488a"
+   },
+   "leg_drape": {
+    "color": "#5f8fd0",
+    "fold": "#3e6aa8",
+    "far_y": 0.76
+   },
+   "knee_win": "thin",
+   "lie_body": {
+    "r": 0.13,
+    "zs": 0.5
+   },
+   "knee_tone": "#857b72",
+   "knee_tapes": "strips",
+   "steps": [
+    [
+     -0.08,
+     1.08,
+     0.36
+    ]
+   ],
+   "thought": {
+    "f0": 1717,
+    "f1": 1790,
+    "at": [
+     -0.8,
+     0.8,
+     1.47
+    ],
+    "h": 0.8
+   },
+   "zzz": {
+    "head": [
+     -0.95,
+     0.6,
+     1.8
+    ],
+    "f0": 1640,
+    "f1": 1766,
+    "side": -1,
+    "size": 0.16,
+    "lift": 0.08,
+    "rise": 0.3
+   }
+  },
+  "wait": {
+   "set": "waiting",
+   "light": "day",
+   "time": "day",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#8ab0e0",
+    "hor": "#ffd8a0",
+    "sun": "#ffcf7a",
+    "si": 2.4,
+    "amb": "#ffe6a8",
+    "ai": 1.5,
+    "dir": [
+     -1.5,
+     2.2,
+     -6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#8a90c8",
+    "fill_i": 0.45,
+    "veil_color": "#f0d8b0",
+    "shadow_color": "#3a3a6a",
+    "rich": 0.7
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "fog": [
+    8,
+    30
+   ],
+   "env_v3": true,
+   "light_kind": "afternoon",
+   "troffer_flat": "#fff4dc",
+   "fish_stare_at": [
+    [
+     0,
+     0
+    ],
+    [
+     1790,
+     0
+    ],
+    [
+     1800,
+     1
+    ]
+   ],
+   "stickers": [
+    {
+     "kind": "scuff",
+     "card": "boy",
+     "px": [
+      530,
+      1080
+     ],
+     "f0": 1826,
+     "f1": 1925,
+     "w": 0.13,
+     "rot": -10,
+     "lift": 0.012
+    },
+    {
+     "kind": "plaster",
+     "card": "boy",
+     "px": [
+      530,
+      1080
+     ],
+     "f0": 1844,
+     "f1": 1925,
+     "w": 0.16,
+     "rot": -14,
+     "pop": true,
+     "lift": 0.016
+    }
+   ],
+   "hide_pre": [
+    "table_d_"
+   ],
+   "gang_drop": {
+    "a": [
+     1
+    ]
+   },
+   "gang_y": {
+    "a": 0.58
+   },
+   "drops": [
+    {
+     "kind": "tear",
+     "at": [
+      238.67,
+      0.22,
+      1.03
+     ],
+     "f0": 1896,
+     "f1": 1925
+    },
+    {
+     "kind": "bubble",
+     "at": [
+      238.55,
+      0.2,
+      0.95
+     ],
+     "f0": 1896,
+     "f1": 1925,
+     "pop": 1904,
+     "r": 0.045
+    }
+   ]
+  },
+  "off": {
+   "set": "waiting",
+   "light": "day",
+   "time": "day",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#9aa4c8",
+    "hor": "#b8bcd0",
+    "sun": "#c8d0e8",
+    "si": 1.1,
+    "amb": "#a8b0d0",
+    "ai": 1.8,
+    "dir": [
+     1,
+     5,
+     -4
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#7a9aa8",
+    "fill_i": 0.5,
+    "veil_color": "#b8bcd0",
+    "shadow_color": "#2a3048",
+    "rich": 0.6
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "dress": "y2004",
+   "fog": [
+    8,
+    30
+   ],
+   "env_v3": true,
+   "wrap": "office",
+   "door": 1,
+   "props": [
+    {
+     "b": "buildStamp",
+     "o": {
+      "size": "tin"
+     },
+     "glide": true,
+     "path": [
+      [
+       1926,
+       [
+        120.3,
+        1.05,
+        0.772
+       ],
+       0
+      ],
+      [
+       1950,
+       [
+        120.3,
+        1.05,
+        0.772
+       ],
+       0
+      ],
+      [
+       1955,
+       [
+        120.3,
+        1.05,
+        1.6
+       ],
+       0
+      ],
+      [
+       1960,
+       [
+        119.95,
+        1.0,
+        1.6
+       ],
+       0
+      ],
+      [
+       1974,
+       [
+        119.95,
+        1.0,
+        1.6
+       ],
+       0
+      ],
+      [
+       1977,
+       [
+        119.95,
+        0.9,
+        0.772
+       ],
+       0
+      ],
+      [
+       2010,
+       [
+        119.95,
+        0.9,
+        0.772
+       ],
+       0
+      ],
+      [
+       2016,
+       [
+        120.35,
+        1.1,
+        0.772
+       ],
+       0
+      ]
+     ]
+    },
+    {
+     "b": "buildLetter",
+     "o": {},
+     "glide": true,
+     "path": [
+      [
+       1926,
+       [
+        119.35,
+        0.55,
+        0.772
+       ],
+       25
+      ],
+      [
+       1952,
+       [
+        119.95,
+        0.9,
+        0.772
+       ],
+       0
+      ]
+     ],
+     "set": [
+      [
+       1978,
+       "setStamped",
+       1
+      ]
+     ]
+    }
+   ],
+   "sag": {
+    "match": "desk",
+    "f": 1977,
+    "amp": 0.07,
+    "n": 16
+   },
+   "blizzard": {
+    "f": 1978,
+    "f1": 2016,
+    "fade": 6,
+    "ramp_in": 5,
+    "near": 1.3,
+    "clear": {
+     "at": [
+      119.9,
+      1.42,
+      1.35
+     ],
+     "r": 0.4
+    },
+    "at": [
+     120.75,
+     0.9,
+     0.82
+    ],
+    "n": 12,
+    "h": 1.6,
+    "spread": 0.8,
+    "ceil": 2.3
+   },
+   "pens": {
+    "f": 1978,
+    "at": [
+     120.5,
+     0.8,
+     0.78
+    ]
+   },
+   "dim": {
+    "f0": 2011,
+    "f1": 2090,
+    "op": 0.32,
+    "ramp": 9
+   },
+   "impact": [
+    [
+     1977,
+     "#ffffff"
+    ],
+    [
+     1978,
+     "#ffe08a"
+    ]
+   ]
+  },
+  "ore": {
+   "set": "waiting",
+   "light": "day",
+   "time": "dusk",
+   "backdrop": 4,
+   "light_over": {
+    "top": "#b07ad0",
+    "hor": "#e8b0a0",
+    "sun": "#ff9a48",
+    "si": 0.5,
+    "amb": "#e0a0b0",
+    "ai": 1.7,
+    "dir": [
+     1.2,
+     1.2,
+     -4
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#3a8a88",
+    "fill_i": 0.7,
+    "veil_color": "#8a6a90",
+    "shadow_color": "#2a1a3a",
+    "rich": 0.75
+   },
+   "post": {
+    "vignette": 0.5
+   },
+   "evening": true,
+   "knee": {
+    "dots": 0,
+    "plasters": 0
+   },
+   "monitor": "off",
+   "fog": [
+    9,
+    30
+   ],
+   "env_v3": true,
+   "wrap": "or_room",
+   "hide_pre": [
+    "table_frame",
+    "drape_hang_foot",
+    "stockinette_foot",
+    "env_cabinet_right"
+   ],
+   "glow": [
+    {
+     "at": [
+      1.85,
+      2.6,
+      1.7
+     ],
+     "color": "#ffb070",
+     "i": 5,
+     "dist": 5
+    },
+    {
+     "at": [
+      0.3,
+      0.6,
+      2.4
+     ],
+     "color": "#ffd0a0",
+     "i": 2.5,
+     "dist": 6
+    }
+   ],
+   "sparkle": [
+    {
+     "f0": 2097,
+     "f1": 2104,
+     "at": [
+      1.05,
+      0.65,
+      1.62
+     ],
+     "r": 0.05,
+     "n": 3,
+     "color": "#ffffff",
+     "size": 0.08
+    }
+   ]
+  },
+  "st": {
+   "set": "waiting",
+   "light": "day",
+   "time": "dusk",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#b07ad0",
+    "hor": "#e8b0a0",
+    "sun": "#ff9a48",
+    "si": 2.0,
+    "amb": "#e0a0b0",
+    "ai": 1.25,
+    "dir": [
+     -1,
+     1.5,
+     -6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#3a8a88",
+    "fill_i": 0.6,
+    "veil_color": "#e8b0a0",
+    "shadow_color": "#2a1a3a",
+    "rich": 0.75
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "light_kind": "evening",
+   "fog": [
+    8,
+    30
+   ],
+   "env_v3": true,
+   "wrap": "stairwell",
+   "door": 1,
+   "cane": false,
+   "cobweb": 0,
+   "hide": [
+    "storey2_slab",
+    "storey2_terrazzo",
+    "storey2_edge_angle",
+    "storey2_guard",
+    "cupboard_end_wall"
+   ],
+   "hide_pre": [
+    "storey2_guard",
+    "end_dado",
+    "end_cove",
+    "cupboard_end"
+   ],
+   "impact": [
+    [
+     2194,
+     "#ffc878"
+    ],
+    [
+     2195,
+     "#ffe4b8"
+    ]
+   ],
+   "impact_warm": true,
+   "recolor": [
+    {
+     "match": [
+      "nosing_abrasive"
+     ],
+     "color": "#3a3634"
+    },
+    {
+     "match": [
+      "tread_nosing",
+      "nosing_lip",
+      "storey2_edge"
+     ],
+     "color": "#b89a74"
+    }
+   ],
+   "glow": [
+    {
+     "at": [
+      180.6,
+      -2.9,
+      2.1
+     ],
+     "color": "#fff2e0",
+     "i": 2.5,
+     "dist": 3.5
+    },
+    {
+     "at": [
+      180.1,
+      -3.8,
+      2.3
+     ],
+     "color": "#ffd8b8",
+     "i": 4,
+     "dist": 8
+    },
+    {
+     "at": [
+      180.2,
+      1.6,
+      3.0
+     ],
+     "color": "#ffb878",
+     "i": 4,
+     "dist": 7
+    },
+    {
+     "at": [
+      179.2,
+      -1.2,
+      2.2
+     ],
+     "color": "#fff4e8",
+     "i": 1.0,
+     "dist": 5
+    }
+   ],
+   "power": [
+    {
+     "kind": "ray_burst",
+     "at": [
+      180,
+      4.5,
+      4.1
+     ],
+     "f": 2194,
+     "opts": {
+      "count": 30,
+      "length": 4.8,
+      "innerRadius": 0.3,
+      "width": 0.22,
+      "color": "#ffd27a",
+      "core": "#fff6dc",
+      "dur": 1.2,
+      "spin": 4,
+      "flash": {
+       "size": 1.4,
+       "life": 0.12
+      }
+     }
+    }
+   ],
+   "sparkle": [
+    {
+     "f0": 2194,
+     "f1": 2229,
+     "at": [
+      180.07,
+      -2.95,
+      1.6
+     ],
+     "r": 0.12,
+     "n": 5,
+     "color": "#ffffff",
+     "size": 0.1
+    }
+   ]
+  }
+ },
+ "props": {
+  "knee": {
+   "pos": [
+    0.36,
+    0.44,
+    1.3
+   ],
+   "kind": "the plastered knee (row 40)"
+  },
+  "kidknee": {
+   "pos": [
+    238.6,
+    -0.01,
+    0.5
+   ],
+   "kind": "the boy knee"
+  },
+  "letter": {
+   "pos": [
+    119.95,
+    0.9,
+    0.77
+   ],
+   "kind": "the letter + stamp"
+  },
+  "tray": {
+   "pos": [
+    0.15,
+    1.3,
+    1.2
+   ],
+   "kind": "the clean tray"
+  },
+  "window": {
+   "pos": [
+    180,
+    4.6,
+    4.1
+   ],
+   "kind": "the stair window"
+  }
+ },
+ "acts": [
+  {
+   "who": "sg_r",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -0.08,
+    1.08,
+    0.36
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/sg_slap3",
+   "face": "k:focus"
+  },
+  {
+   "who": "sg_r",
+   "at": 1672,
+   "visible": true
+  },
+  {
+   "who": "sg_r",
+   "at": 1766,
+   "visible": false
+  },
+  {
+   "who": "sg_r",
+   "at": 1717,
+   "face": "k:kind",
+   "note": "\"fixed\": calm, pleased"
+  },
+  {
+   "who": "pt_r",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -0.6,
+    0.78,
+    0.9
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/pt_smile5",
+   "face": "koSleep"
+  },
+  {
+   "who": "pt_r",
+   "at": 1672,
+   "visible": true
+  },
+  {
+   "who": "pt_r",
+   "at": 1766,
+   "visible": false
+  },
+  {
+   "who": "pt_r",
+   "at": 1745,
+   "face": "koMelt",
+   "note": "v2 ROW 41 \"knee\": the tongue-out ko face melts"
+  },
+  {
+   "who": "pt_r",
+   "at": 1750,
+   "face": "koBliss",
+   "note": "v2: blissful smile, hearts, happy zZ"
+  },
+  {
+   "who": "boy",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    238.6,
+    0.12,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_s5/boy_sit",
+   "face": "k:wail"
+  },
+  {
+   "who": "boy",
+   "at": 1766,
+   "visible": true
+  },
+  {
+   "who": "boy",
+   "at": 1926,
+   "visible": false
+  },
+  {
+   "who": "boy",
+   "at": 1896,
+   "face": "k:frozen",
+   "note": "\"STOPS\": frozen mid-wail"
+  },
+  {
+   "who": "boy",
+   "at": 1906,
+   "face": "k:cheer",
+   "note": "v2 \"hurting\": the frozen wail turns into a grin (no run-off slide)"
+  },
+  {
+   "who": "nr_k",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    239.2,
+    0.6,
+    0
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s5/nr_kneel",
+   "face": "k:kind"
+  },
+  {
+   "who": "nr_k",
+   "at": 1766,
+   "visible": true
+  },
+  {
+   "who": "nr_k",
+   "at": 1926,
+   "visible": false
+  },
+  {
+   "who": "sg_o",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    119.9,
+    1.42,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_s5/sg_stamp",
+   "face": "k:stern"
+  },
+  {
+   "who": "sg_o",
+   "at": 1926,
+   "visible": true
+  },
+  {
+   "who": "sg_o",
+   "at": 2063,
+   "visible": false
+  },
+  {
+   "who": "sg_o",
+   "at": 1977,
+   "face": "k:stern"
+  },
+  {
+   "who": "sg_o",
+   "at": 2020,
+   "face": "k:watch"
+  },
+  {
+   "who": "nr_e",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    0.88,
+    0.22,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/nr_tray",
+   "face": "k:kind"
+  },
+  {
+   "who": "nr_e",
+   "at": 2063,
+   "visible": true
+  },
+  {
+   "who": "nr_e",
+   "at": 2156,
+   "visible": false
+  },
+  {
+   "who": "nr_e",
+   "at": 2095,
+   "face": "k:dryUp",
+   "note": "\"right\": eyebrow ting"
+  },
+  {
+   "who": "sg_e",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    2.1,
+    1.5,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/sg_mask",
+   "face": "k:watch"
+  },
+  {
+   "who": "sg_e",
+   "at": 2063,
+   "visible": true
+  },
+  {
+   "who": "sg_e",
+   "at": 2125,
+   "visible": false
+  },
+  {
+   "who": "sgoff_e",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    2.1,
+    1.5,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/sg_shrug",
+   "face": "k:sheepish"
+  },
+  {
+   "who": "sgoff_e",
+   "at": 2125,
+   "visible": true
+  },
+  {
+   "who": "sgoff_e",
+   "at": 2156,
+   "visible": false
+  },
+  {
+   "who": "sg_s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.05,
+    -2.85,
+    0
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_s5/sg_fold",
+   "face": "k:calmGrin"
+  },
+  {
+   "who": "sg_s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "sg_s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "sg_s",
+   "at": 2194,
+   "face": "k:proudGrin",
+   "note": "\"missed\": the grin"
+  },
+  {
+   "who": "vet",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.72,
+    -2.0,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_s5/vet_bound",
+   "face": "k:springGrin"
+  },
+  {
+   "who": "vet",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "vet",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "kid",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.7,
+    -2.05,
+    1.68
+   ],
+   "view": "front",
+   "dir": 1,
+   "pose": "m:../../ep_s5/kid_ride",
+   "face": "k:ride"
+  },
+  {
+   "who": "kid",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "kid",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "nr_s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    179.55,
+    -1.3,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/nr_door",
+   "face": "k:dryUp"
+  },
+  {
+   "who": "nr_s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "nr_s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "nr_s",
+   "at": 2194,
+   "face": "k:kind"
+  },
+  {
+   "who": "c_climber1",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    181.5,
+    1.35,
+    0.8
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_climber1",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_climber1",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_climber2",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.75,
+    1.95,
+    1.12
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_climber2",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_climber2",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_g1s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    181.45,
+    2.55,
+    1.44
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_g1s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_g1s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_climber3",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    181.1,
+    3.4,
+    1.6
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_climber3",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_climber3",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_g2s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.25,
+    3.95,
+    1.6
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_g2s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_g2s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_g4s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.55,
+    3.65,
+    1.6
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_g4s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_g4s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_g5s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    179.3,
+    1.05,
+    2.56
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_g5s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_g5s",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_boy",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    178.5,
+    0.45,
+    2.88
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_boy",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_boy",
+   "at": 2230,
+   "visible": false
+  },
+  {
+   "who": "c_g3s",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    179.3,
+    0.15,
+    3.04
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s5/climb",
+   "face": "k:climbOK"
+  },
+  {
+   "who": "c_g3s",
+   "at": 2156,
+   "visible": true
+  },
+  {
+   "who": "c_g3s",
+   "at": 2230,
+   "visible": false
+  }
+ ],
+ "held3d": [
+  {
+   "who": "sg_r",
+   "obj": "plaster",
+   "module": "sets/hero_props.js",
+   "builder": "buildPlaster",
+   "opts": {},
+   "grip": "point",
+   "hand": "L",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": 80,
+   "scale": 1.0,
+   "toward": 0.45,
+   "when": "always",
+   "f0": 1672,
+   "f1": 1708
+  },
+  {
+   "who": "nr_e",
+   "obj": "tray",
+   "module": "sets/hero_props.js",
+   "builder": "buildInstrumentTray",
+   "opts": {},
+   "grip": "point",
+   "hand": "L",
+   "anchor": "centre",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 2063,
+   "f1": 2155
+  },
+  {
+   "who": "nr_s",
+   "obj": "tray_s",
+   "module": "sets/hero_props.js",
+   "builder": "buildInstrumentTray",
+   "opts": {},
+   "grip": "point",
+   "hand": "L",
+   "anchor": "centre",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 2156,
+   "f1": 2229
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "nr_k",
+   "f0": 1826,
+   "f1": 1925,
+   "at": [
+    238.845,
+    0.12,
+    0.7300000000000001
+   ]
+  }
+ ],
+ "kicks": [
+  {
+   "at": 1977,
+   "amp": 1.2
+  },
+  {
+   "at": 2194,
+   "amp": 0.5
+  },
+  {
+   "at": 1709,
+   "amp": 0.5
+  }
+ ],
+ "takes": [
+  {
+   "id": "orrp",
+   "place": "orrp",
+   "stations": [
+    {
+     "at": 1672,
+     "pos": [
+      -0.55,
+      -1.6,
+      1.35
+     ],
+     "aim": [
+      -0.6,
+      0.9,
+      1.3
+     ],
+     "lens": 26,
+     "subject": "pt_r",
+     "framing": "M",
+     "purpose": "ROW 40 side view low on the knee (frame-0 rhyme), already moving out of the S4 dissolve: the third plaster lands",
+     "hold": 0.03,
+     "drift": [
+      0.03,
+      0,
+      0
+     ],
+     "creep": 0.001,
+     "ends": true
+    },
+    {
+     "at": 1765,
+     "pos": [
+      -1.62,
+      -1.05,
+      1.85
+     ],
+     "aim": [
+      -0.84,
+      0.8,
+      1.5
+     ],
+     "lens": 24,
+     "subject": "pt_r",
+     "framing": "M",
+     "purpose": "ROW 40-41: ONE eased 3.0 s arc up round from the knee to his ko face + the thought bubble (knee, green tick, sun) popping on \"fixed\"; lands on \"less\" = the bliss melt",
+     "travel": 3.0,
+     "hold": 0.0,
+     "drift": [
+      0.06,
+      0,
+      0
+     ],
+     "creep": 0.002
+    }
+   ]
+  },
+  {
+   "id": "wait",
+   "place": "wait",
+   "stations": [
+    {
+     "at": 1766,
+     "pos": [
+      239.7,
+      -2.6,
+      1.2
+     ],
+     "aim": [
+      238.55,
+      0.9,
+      0.88
+     ],
+     "lens": 26,
+     "subject": "boy",
+     "framing": "W",
+     "purpose": "ROW 42 wide, moving out of the dissolve: the boy wailing on the orange chair, the nurse kneeling beside him, fish tank",
+     "hold": 0.0
+    },
+    {
+     "at": 1856,
+     "pos": [
+      239.6,
+      -1.15,
+      0.8
+     ],
+     "aim": [
+      238.95,
+      0.2,
+      0.8
+     ],
+     "lens": 22,
+     "subject": "boy",
+     "framing": "M",
+     "purpose": "ROW 43 SIGNATURE (v2 r3): ONE eased 2.85 s travel down and round to the boy front-left, low and level: his raised knee with the scuff in the front-low third, the nurse kneeling to the right (not between the lens and the knee), her round fist slaps the plaster on \"plasters\" and lifts off; both faces whole above; ROW 44 he freezes, tear, sob bubble, grin (slow drift)",
+     "travel": 2.97,
+     "hold": 2.3,
+     "drift": [
+      0.03,
+      0,
+      0
+     ],
+     "creep": 0.0015
+    }
+   ]
+  },
+  {
+   "id": "off",
+   "place": "off",
+   "stations": [
+    {
+     "at": 1926,
+     "pos": [
+      120.15,
+      -1.25,
+      1.5
+     ],
+     "aim": [
+      119.98,
+      0.95,
+      1.12
+     ],
+     "lens": 22,
+     "subject": "stamp",
+     "framing": "M",
+     "purpose": "ROW 45-46 office 2004, moving out of the dissolve: the letter slides to him, the paint-tin stamp rises (slow rising drift with it), SLAM on \"stopped\", desk sag, paper blizzard",
+     "hold": 0.05,
+     "drift": [
+      0.0,
+      0.02,
+      0.07
+     ],
+     "creep": 0.001
+    },
+    {
+     "at": 2060,
+     "pos": [
+      119.95,
+      0.2,
+      1.45
+     ],
+     "aim": [
+      119.93,
+      1.1,
+      1.05
+     ],
+     "lens": 22,
+     "subject": "letter",
+     "framing": "C",
+     "purpose": "ROW 47: ONE eased 2.77 s travel down through the falling papers onto NOT PAID: ARTHRITIS KNEE (v3 B10: starts 2006, so at 1:07 the surgeon is still whole)",
+     "travel": 1.8,
+     "hold": 0.0,
+     "drift": [
+      0.02,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ore",
+   "place": "ore",
+   "stations": [
+    {
+     "at": 2063,
+     "pos": [
+      1.25,
+      -2.2,
+      1.35
+     ],
+     "aim": [
+      1.45,
+      1.7,
+      1.3
+     ],
+     "lens": 22,
+     "subject": "nr_e",
+     "framing": "M",
+     "purpose": "ROW 48 OR 3 evening 7:15: the nurse lifts the clean unused tray, eyebrow ting; coral portholes behind",
+     "hold": 0.05
+    },
+    {
+     "at": 2153,
+     "pos": [
+      0.75,
+      -0.9,
+      1.5
+     ],
+     "aim": [
+      1.62,
+      2.5,
+      1.4
+     ],
+     "lens": 21,
+     "subject": "sgoff_e",
+     "framing": "M",
+     "purpose": "ROW 48-49: ONE eased 2.9 s follow from the nurse tray over to the surgeon: mask down, shrug, his fist pushes the OR door (JOIN to the stairwell)",
+     "travel": 2.9,
+     "hold": 0.0,
+     "drift": [
+      0.03,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "st",
+   "place": "st",
+   "stations": [
+    {
+     "at": 2156,
+     "pos": [
+      179.8,
+      -4.45,
+      1.42
+     ],
+     "aim": [
+      180.6,
+      3.0,
+      2.45
+     ],
+     "lens": 18,
+     "subject": "sg_s",
+     "framing": "W",
+     "purpose": "ROW 50 opens moving out of the dissolve, pulled back and left of the approved last frame",
+     "hold": 0.03
+    },
+    {
+     "at": 2195,
+     "pos": [
+      180.18,
+      -4.3,
+      1.5
+     ],
+     "aim": [
+      180.75,
+      3.0,
+      2.5
+     ],
+     "lens": 18,
+     "subject": "sg_s",
+     "framing": "W",
+     "purpose": "ROW 50: ONE eased 1.27 s glide into the APPROVED last frame (last_low: surgeon BIG and calm in front, the stream up both flights to the window); POWER impact on \"missed\", rays, FREEZE + slow push = the last frame",
+     "travel": 1.27,
+     "hold": 0.0,
+     "drift": [
+      0,
+      0,
+      0
+     ],
+     "creep": 0.0012
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,228 @@
+{
+ "title": "PITCH 3 hook frame: the widow drills her kitchen table and stands champagne bottles in it upside down, Reims 1816, morning",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "widow": {
+   "puppet": "cast:champ/widow",
+   "height": 1.6,
+   "heads_tall": 2.93
+  },
+  "cellar": {
+   "puppet": "cast:champ/cellar",
+   "height": 1.72,
+   "heads_tall": 2.93
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "faces_ep": {
+  "bore": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     -5,
+     8,
+     0,
+     1.1
+    ],
+    [
+     -1,
+     6,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "tongueCorner",
+   "side": 1
+  },
+  "undone": {
+   "eyes": "shock",
+   "brows": [
+    [
+     18,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "gasp"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.4
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true
+ },
+ "face_shadow": true,
+ "places": {
+  "kitchen": {
+   "set": "kitchen",
+   "light": "morning",
+   "time": "morning",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#7fb2e6",
+    "hor": "#ffe2b8",
+    "sun": "#ffe0a8",
+    "si": 2.6,
+    "amb": "#ffd8b4",
+    "ai": 1.7,
+    "dir": [
+     -6,
+     7,
+     -3
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.4
+   },
+   "brace": {
+    "pad": [
+     -0.419,
+     0.1,
+     1.045
+    ],
+    "crank": [
+     -0.525,
+     0.1,
+     0.851
+    ],
+    "tip": [
+     -0.419,
+     0.1,
+     0.64
+    ]
+   }
+  }
+ },
+ "props": {
+  "bottles": {
+   "pos": [
+    0.5,
+    -0.1,
+    0.98
+   ],
+   "kind": "the upside-down bottles"
+  },
+  "drill": {
+   "pos": [
+    -0.3,
+    0.03,
+    0.95
+   ],
+   "kind": "the brace and bit"
+  }
+ },
+ "acts": [
+  {
+   "who": "widow",
+   "at": 0,
+   "pos": [
+    -0.8,
+    0.0,
+    0.0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_champ/widow_drill",
+   "face": "k:bore",
+   "lit": true,
+   "note": "leans on the brace, near fist on the crank"
+  },
+  {
+   "who": "cellar",
+   "at": 0,
+   "pos": [
+    1.05,
+    1.35,
+    0.0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_champ/cellar_shock",
+   "face": "k:undone",
+   "note": "throws his hands up behind her"
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "kitchen",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -1.5,
+      -2.8,
+      1.12
+     ],
+     "aim": [
+      0.05,
+      0.8,
+      1.0
+     ],
+     "lens": 35,
+     "subject": "widow",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the widow drilling, the upside-down bottles, the shocked cellar master, the kitchen behind"
+    }
+   ]
+  }
+ ]
+}

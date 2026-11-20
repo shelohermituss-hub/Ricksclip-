@@ -1,0 +1,27 @@
+S4 panels with captions, ungraded. sat = mean HSV S (target >= 0.36; day >= 0.30), mean = mean luminance, p1 = darkest 1 %, red_px = RED GATE (hue within 12 deg of #e01e2a, S > .5, V > .55); allowed only rows 34 and 36-38
+r31_a_f1292.png      sat 0.533  mean 0.407  p1 0.078  red_px 0
+r31_b_f1305.png      sat 0.602  mean 0.330  p1 0.076  red_px 0
+r31_c_f1318.png      sat 0.529  mean 0.353  p1 0.050  red_px 0
+r32_a_f1326.png      sat 0.527  mean 0.412  p1 0.035  red_px 0
+r32_b_f1340.png      sat 0.523  mean 0.416  p1 0.034  red_px 0
+r33_a_f1354.png      sat 0.462  mean 0.525  p1 0.066  red_px 0
+r33_b_f1362.png      sat 0.443  mean 0.537  p1 0.070  red_px 0
+r33_c_f1372.png      sat 0.403  mean 0.568  p1 0.187  red_px 0
+r34_a_f1390.png      sat 0.429  mean 0.536  p1 0.144  red_px 0
+r34_b_f1402.png      sat 0.427  mean 0.536  p1 0.151  red_px 0
+r34_c_f1414.png      sat 0.427  mean 0.535  p1 0.156  red_px 0
+r35_a_f1434.png      sat 0.444  mean 0.545  p1 0.085  red_px 0
+r35_b_f1458.png      sat 0.453  mean 0.546  p1 0.085  red_px 0
+r35_c_f1470.png      sat 0.456  mean 0.548  p1 0.086  red_px 0
+r36_a_f1506.png      sat 0.385  mean 0.508  p1 0.163  red_px 132
+r36_b_f1512.png      sat 0.386  mean 0.507  p1 0.163  red_px 3594
+r36_c_f1530.png      sat 0.388  mean 0.504  p1 0.163  red_px 10517
+r37_a_f1552.png      sat 0.726  mean 0.430  p1 0.031  red_px 17391
+r37_b_f1560.png      sat 0.905  mean 0.088  p1 0.003  red_px 0
+r37_c_f1572.png      sat 0.722  mean 0.425  p1 0.022  red_px 16684
+r38_a_f1586.png      sat 0.524  mean 0.411  p1 0.018  red_px 0
+r38_b_f1598.png      sat 0.515  mean 0.410  p1 0.005  red_px 7005
+r38_c_f1612.png      sat 0.506  mean 0.427  p1 0.005  red_px 12153
+r39_a_f1636.png      sat 0.562  mean 0.448  p1 0.095  red_px 0
+r39_b_f1640.png      sat 0.577  mean 0.421  p1 0.087  red_px 0
+r39_c_f1648.png      sat 0.657  mean 0.386  p1 0.102  red_px 0

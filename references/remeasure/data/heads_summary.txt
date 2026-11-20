@@ -1,0 +1,18 @@
+detections kept 1523 of 2458; tracks 651 from 20 episodes
+H_over_W 0.761 (IQR 0.684-0.835, n=651)
+outline_w_over_W 0.069 (IQR 0.051-0.082, n=651)
+thick_thin_p90_p10 5.000 (IQR 3.550-6.750, n=651)
+thickest_angle_deg 196.300 (IQR 86.250-269.150, n=651)
+fill_luma 0.955 (IQR 0.895-0.976, n=651)
+grad_lr -0.038 (IQR -0.072-0.006, n=651)
+grad_tb -0.050 (IQR -0.091--0.015, n=651)
+eye_spacing_over_W 0.265 (IQR 0.235-0.281, n=296)
+eye_y_over_W -0.102 (IQR -0.136--0.068, n=296)
+eye_shift_over_W 0.008 (IQR -0.029-0.045, n=296)
+H/W bare-top only 0.769 (IQR 0.696-0.836, n=410)
+ink median [35. 18. 24.] IQR [24.  9. 13.] [54. 36. 40.]
+ink hex median #231218
+ink on bright-lit heads (fill luma>0.85) [34. 19. 24.] 565 #221318
+ink on big heads (W>=150) [36. 19. 26.] 276 #24131a
+fill median [252. 242. 241.]
+|lr| median 0.055

@@ -1,0 +1,3 @@
+frame_checks: s2/film.json  605 of 790 frames (rests f0-362 f522-539 f597-606 f764-789)  cast surgeon, surgeonOff, g1, g2, g3
+result who            rest         check         number    worst at  bad frames what                                                      
+0 FAIL, 0 WARN, 56 PASS (164.7 s, scan 142.8 s)  ->  <skill folder>\episodes\fake-surgery\s2\out\frame_checks.md

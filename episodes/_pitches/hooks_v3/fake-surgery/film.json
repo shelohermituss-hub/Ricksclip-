@@ -1,0 +1,371 @@
+{
+ "title": "PITCH 4 first 5 s: the surgeon makes three tiny cuts in the knee, splashes water, sews it up; the scrub nurse stares. Houston operating room, 2002",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 150,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "surgeon": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "nurse": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.64,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "faces_ep": {
+  "focus": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     7,
+     0,
+     1.15
+    ],
+    [
+     -4,
+     7,
+     0,
+     1.15
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "pleased": {
+   "eyes": "happy",
+   "brows": [
+    [
+     2,
+     -2,
+     0,
+     1.1
+    ],
+    [
+     2,
+     -2,
+     0,
+     1.1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "stare": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     10,
+     -4,
+     6,
+     1.15
+    ],
+    [
+     12,
+     -4,
+     7,
+     1.15
+    ]
+   ],
+   "mouth": "o"
+  },
+  "gasp": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     12,
+     -6,
+     7,
+     1.2
+    ],
+    [
+     14,
+     -6,
+     8,
+     1.2
+    ]
+   ],
+   "mouth": "gaspXL"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.5
+ },
+ "places": {
+  "or": {
+   "set": "or_room",
+   "light": "morning",
+   "time": "day",
+   "backdrop": 4,
+   "light_over": {
+    "top": "#123a36",
+    "hor": "#2f6a62",
+    "sun": "#fff4dc",
+    "si": 1.1,
+    "amb": "#9fd8cc",
+    "ai": 1.25,
+    "dir": [
+     0.2,
+     -0.3,
+     8
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.0,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.5
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "surgeon",
+   "at": 0,
+   "pos": [
+    0.8,
+    0.04,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_surgery/sg_work",
+   "face": "k:focus",
+   "note": "bent over the knee, scalpel on the first tiny cut"
+  },
+  {
+   "who": "surgeon",
+   "at": 126,
+   "pos": [
+    0.8,
+    0.04,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_surgery/sg_work",
+   "face": "k:pleased",
+   "note": "the stitch pulled up: done, pleased"
+  },
+  {
+   "who": "nurse",
+   "at": 0,
+   "pos": [
+    -1.0,
+    1.95,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_surgery/nr_stare",
+   "face": "k:stare",
+   "note": "stopped dead, hand half up"
+  },
+  {
+   "who": "nurse",
+   "at": 118,
+   "pos": [
+    -1.0,
+    1.95,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_surgery/nr_stare",
+   "face": "k:gasp",
+   "note": "hand jerks higher: you forgot the operation"
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "surgeon",
+   "f0": 0,
+   "f1": 150,
+   "at": [
+    0.5,
+    0.2,
+    1.2
+   ]
+  }
+ ],
+ "held3d": [
+  {
+   "who": "surgeon",
+   "obj": "scalpel",
+   "module": "sets/or_props.js",
+   "builder": "buildScalpel",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": 80,
+   "scale": 1.5,
+   "when": "always",
+   "f0": 0,
+   "f1": 77,
+   "tip_at": [
+    {
+     "f0": 0,
+     "f1": 77,
+     "at": [
+      0.33,
+      0.22,
+      1.31
+     ]
+    }
+   ]
+  },
+  {
+   "who": "surgeon",
+   "obj": "bulb",
+   "module": "sets/or_props.js",
+   "builder": "buildBulb",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": 60,
+   "scale": 1.5,
+   "when": "always",
+   "f0": 78,
+   "f1": 122,
+   "tip_at": [
+    {
+     "f0": 78,
+     "f1": 122,
+     "at": [
+      0.42,
+      0.2,
+      1.44
+     ]
+    }
+   ]
+  },
+  {
+   "who": "surgeon",
+   "obj": "needle",
+   "module": "sets/or_props.js",
+   "builder": "buildNeedleHolder",
+   "opts": {
+    "drop": 0.5
+   },
+   "grip": "raise",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -70,
+   "scale": 1.4,
+   "when": "always",
+   "f0": 123,
+   "f1": 150
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "or",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      0.38,
+      -2.45,
+      1.45
+     ],
+     "aim": [
+      0.25,
+      0.6,
+      1.2
+     ],
+     "lens": 26,
+     "subject": "surgeon",
+     "framing": "M",
+     "hold": 1.6,
+     "creep": 0.0015,
+     "purpose": "frame 0: the surgeon bent over the knee with the scalpel under the lamp; the nurse behind, hand half up; NO SIGNAL monitor"
+    },
+    {
+     "at": 78,
+     "travel": 1.0,
+     "pos": [
+      -1.15,
+      -1.5,
+      1.3
+     ],
+     "aim": [
+      0.5,
+      0.55,
+      1.25
+     ],
+     "lens": 24,
+     "subject": "surgeon",
+     "framing": "M",
+     "hold": 0.6,
+     "creep": 0.002,
+     "purpose": "'splashed': low from the patient's side, the bulb squirts water over the knee, the surgeon's face behind it"
+    },
+    {
+     "at": 123,
+     "travel": 0.8,
+     "pos": [
+      1.35,
+      -2.15,
+      1.55
+     ],
+     "aim": [
+      0.0,
+      0.95,
+      1.2
+     ],
+     "lens": 24,
+     "subject": "surgeon",
+     "framing": "M",
+     "creep": 0.0015,
+     "purpose": "'sewed him up': the stitch pulled up high, the nurse gasping with her hand up, the monitor NO SIGNAL between them"
+    }
+   ]
+  }
+ ]
+}

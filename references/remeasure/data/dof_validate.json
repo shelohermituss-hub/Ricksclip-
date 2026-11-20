@@ -1,0 +1,26 @@
+{
+ "0": {
+  "median_edge_sigma": 0.54,
+  "expected_sqrt(base^2+true^2)": 0.54
+ },
+ "1.5": {
+  "median_edge_sigma": 2.16,
+  "expected_sqrt(base^2+true^2)": 1.59
+ },
+ "3.0": {
+  "median_edge_sigma": 3.43,
+  "expected_sqrt(base^2+true^2)": 3.05
+ },
+ "6.0": {
+  "median_edge_sigma": 6.35,
+  "expected_sqrt(base^2+true^2)": 6.02
+ },
+ "top blurred 2.0": {
+  "upper_band_median": 2.52,
+  "sharp_part_median": 0.51
+ },
+ "top blurred 4.0": {
+  "upper_band_median": 4.67,
+  "sharp_part_median": 0.54
+ }
+}

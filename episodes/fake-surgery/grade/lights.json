@@ -1,0 +1,71 @@
+{
+ "_note": "Light kind per FILM frame (inclusive), from LOOK_BIBLE kinds + PICTURE_PLAN rows + stretch STATE.md. Kind changes blend B-6..B+5 in the grade unless listed in hard_cuts. Last 12 frames blend into the first kind (loop).",
+ "hard_cuts": [
+  927,
+  1290
+ ],
+ "blend_half": 6,
+ "loop_tail": 12,
+ "spans": [
+  {
+   "kind": "OR",
+   "first": 0,
+   "last": 374,
+   "rows": "rows 1-10 OR 3 morning (S1)"
+  },
+  {
+   "kind": "CO",
+   "first": 375,
+   "last": 539,
+   "rows": "rows 11-15 corridor noon (S2 take co)"
+  },
+  {
+   "kind": "NI",
+   "first": 540,
+   "last": 926,
+   "rows": "rows 16-23 office night (S2 off + S3 office)"
+  },
+  {
+   "kind": "CO",
+   "first": 927,
+   "last": 1099,
+   "rows": "rows 24-26 pre-op bay + door vestibule (hard cut 1 at 927; v3 J2 dissolve 1094-1105)"
+  },
+  {
+   "kind": "OR",
+   "first": 1100,
+   "last": 1289,
+   "rows": "rows 27-30 OR 3 morning (S3)"
+  },
+  {
+   "kind": "AF",
+   "first": 1290,
+   "last": 1683,
+   "rows": "rows 31-39 stairwell + office stripes (hard cut 2 at 1290; dissolve 1482-1497 stays AF)"
+  },
+  {
+   "kind": "OR",
+   "first": 1684,
+   "last": 1765,
+   "rows": "rows 40-41 OR replay (opens from black)"
+  },
+  {
+   "kind": "AF",
+   "first": 1766,
+   "last": 1925,
+   "rows": "rows 42-44 waiting room"
+  },
+  {
+   "kind": "GR",
+   "first": 1926,
+   "last": 2062,
+   "rows": "rows 45-47 office 2004 grey evening"
+  },
+  {
+   "kind": "EV",
+   "first": 2063,
+   "last": 2229,
+   "rows": "rows 48-50 OR 3 evening + stairwell evening"
+  }
+ ]
+}

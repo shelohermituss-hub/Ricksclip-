@@ -1,0 +1,7 @@
+sg_s1 [34]  twos 0   linear 0  stops 8 no_settle 0  creep 0  dps 13.6  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":192.14,"leg_stretch_px":5.23,"off_built_ground_px":0}
+   snap slap 3 "PLASTERS" (power)      f154-164  79 / 100 / 98 / 94 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap nod "forgot"                   f338-347  9 / 26 / 48 / 70 / 85 %   (Rick 5 / 16 / 31 / 48 / 66)
+nr_s1 [34]  twos 0   linear 0  stops 3 no_settle 0  creep 0  dps 13.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":64.8,"leg_stretch_px":2.44,"off_built_ground_px":0}
+   snap lean "leans"                   f256-266  14 / 31 / 50 / 68 / 82 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap cup "whispers"                 f279-287  10 / 31 / 57 / 79 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+pt_s1 [34]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":null,"leg_stretch_px":null,"off_built_ground_px":0}

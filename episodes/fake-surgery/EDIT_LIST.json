@@ -1,0 +1,216 @@
+{
+ "title": "The Surgery Where the Surgeon Did Nothing",
+ "fps": 30,
+ "total_frames": 2230,
+ "voice_end_s": 73.62,
+ "note": "v6 (S2 363-545 re-rendered; deflicker 360-560 re-detected) / v5 (2026-11-17; S1 hard cut 279 added, deflicker list re-detected). Film frames 0..2229 (74.33 s). Frames of stretch N are at sN/final/frames/f_<film frame>.png. Segment end exclusive. Soft join B is a cross blend of frames B-len/2..B+len/2-1 (S1 and S2 both have handles 363-386); hard cuts at 927 (in s3) and 1290. Missing source frames are held.",
+ "segments": [
+  {
+   "seg": 1,
+   "stretch": "s1",
+   "start": 0,
+   "end": 375,
+   "frames": "0-386"
+  },
+  {
+   "seg": 2,
+   "stretch": "s2",
+   "start": 375,
+   "end": 777,
+   "frames": "363-789"
+  },
+  {
+   "seg": 3,
+   "stretch": "s3",
+   "start": 777,
+   "end": 1290,
+   "frames": "765-1301"
+  },
+  {
+   "seg": 4,
+   "stretch": "s4",
+   "start": 1290,
+   "end": 1684,
+   "frames": "1278-1695"
+  },
+  {
+   "seg": 5,
+   "stretch": "s5",
+   "start": 1684,
+   "end": 2230,
+   "frames": "1672-2229"
+  }
+ ],
+ "joins": [
+  {
+   "B": 375,
+   "len": 18,
+   "word": "Back (onset f385; 'operation.' f353)",
+   "from": "s1",
+   "to": "s2",
+   "kind": "18 f dissolve 366-383: S1 end flight (v3: nurse two-shot 300-345, door flight past the team) into S2 which starts 1 m off the porthole glass and pulls back"
+  },
+  {
+   "B": 777,
+   "len": 12,
+   "word": "groups. (onset f764, ends f776)",
+   "from": "s2",
+   "to": "s3",
+   "kind": "12 f cross blend: same office, held last station -> low trays"
+  },
+  {
+   "B": 1290,
+   "len": 0,
+   "word": "Two (onset f1290)",
+   "from": "s3",
+   "to": "s4",
+   "kind": "HARD CUT: 'Two years later' (hard cut 2)"
+  },
+  {
+   "B": 1684,
+   "len": 12,
+   "word": "Being (onset f1695; 'better.' f1663)",
+   "from": "s4",
+   "to": "s5",
+   "kind": "cross blend: dark lid -> dark open (OR replay)"
+  }
+ ],
+ "loop": {
+  "len": 12,
+  "into": "s1 f0",
+  "weights": "(i+1)/13"
+ },
+ "hard_cuts_in_stretches": [
+  279,
+  927,
+  1290
+ ],
+ "inside_stretch_joins_not_blended_here": {
+  "534-545": "s2 clock dissolve (corridor clock -> office clock), 12 f, BAKED in s2 frames; NO join blend at 540",
+  "1044-1055": "s3 J1: 12 f dissolve pre-op drift -> door push, BAKED in s3 frames (v3; replaces the v2 in-take replacements 974->986, 991->997, 1056->1076, REMOVED)",
+  "1094-1105": "s3 J2: 12 f dissolve door push -> OR slow push, BAKED in s3 frames (v3)",
+  "1486-1493": "s4 8 f dissolve wide stairwell -> chart close, BAKED in the frames (v3; was 1482-1497 16 f)",
+  "1040-1122": "s3 gurney rolls through the OR doors, 2 s (doors swing 1060-1082), no join blend",
+  "1766-1773,1926-1933,2063-2070,2156-2163": "s5 8 f place dissolves (B..B+7) at 1766/1926/2063/2156, BAKED in the frames (v3; were 12 f)"
+ },
+ "impact_frames_not_cuts": [
+  [
+   156,
+   157
+  ],
+  [
+   279,
+   279
+  ],
+  [
+   366,
+   383
+  ],
+  [
+   534,
+   545
+  ],
+  [
+   650,
+   651
+  ],
+  [
+   927,
+   927
+  ],
+  [
+   1044,
+   1055
+  ],
+  [
+   1094,
+   1105
+  ],
+  [
+   1226,
+   1227
+  ],
+  [
+   1290,
+   1290
+  ],
+  [
+   1486,
+   1493
+  ],
+  [
+   1559,
+   1562
+  ],
+  [
+   1709,
+   1709
+  ],
+  [
+   1766,
+   1773
+  ],
+  [
+   1844,
+   1844
+  ],
+  [
+   1926,
+   1933
+  ],
+  [
+   1977,
+   1978
+  ],
+  [
+   2063,
+   2070
+  ],
+  [
+   2156,
+   2163
+  ],
+  [
+   2194,
+   2195
+  ]
+ ],
+ "impact_frames_source": "s1 156-157, S1->S2 dissolve 366-383; s2 clock dissolve 534-545, 650-651; s3 927 hard cut 1, J1 1044-1055, J2 1094-1105, 1226-1227; s4 1290 hard cut 2, 1486-1493 dissolve, 1559-1562; s5 1709 kick, 8 f place dissolves 1766-1773/1926-1933/2063-2070/2156-2163 (measured), 1844 slap, 1977-1978, 2194-2195.; v5: s1 279 hard cut 0 (tray rest -> nurse two-shot).",
+ "hard_cut_budget": "at most 1 per 10 s (CB_RULES 11f)",
+ "replacements": [],
+ "deflicker": {
+  "window": 15,
+  "max_factor": 0.15,
+  "ranges": [
+   [
+    361,
+    364
+   ],
+   [
+    385,
+    386
+   ],
+   [
+    672,
+    672
+   ],
+   [
+    1335,
+    1335
+   ],
+   [
+    2011,
+    2011
+   ],
+   [
+    2019,
+    2021
+   ],
+   [
+    2031,
+    2035
+   ]
+  ],
+  "note": "v4: from join/steps_v4.txt. kept 361-363, 672, 1317-1318, 2011(-2012), 2018-2024; dropped 989-990 (gone). Not deflickered, content: ceiling-light sweeps 389-392 and 480-483 (smooth bump, camera passes lights), plus all v3 content list (splash 111-113, impact 159-163, nurse move 276-285, door push 1057-1059/1083-1088, flood 1221-1224, chart pops 1511-1514, thought bubble 1715-1722). v6: range 360-560 re-detected (join/steps_v6.txt): 361-364 kept, 385 -> 385-386, 480-483 ceiling sweep gone, 391-393 smooth content (not deflickered); rest of list as v5."
+ }
+}

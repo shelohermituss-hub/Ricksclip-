@@ -1,0 +1,1212 @@
+{
+ "title": "fake-surgery S1: rows 1-10, film 0-374 (the hook)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words_s1.json",
+ "end": 387,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "surgeon": {
+   "puppet": "cast:surgery/surgeon",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "nurse": {
+   "puppet": "cast:surgery/nurse",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "patient": {
+   "puppet": "cast:surgery/patient",
+   "height": 1.78,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "face_shadow": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "faces_ep": {
+  "drowsy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     5,
+     0
+    ],
+    [
+     -4,
+     5,
+     0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "wince": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ],
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 24
+  },
+  "thumbsSmile": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     4,
+     -2,
+     4
+    ],
+    [
+     6,
+     -3,
+     5
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "springGrin": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -3,
+     7
+    ],
+    [
+     12,
+     -3,
+     7
+    ]
+   ],
+   "mouth": "teeth"
+  },
+  "smileEyes": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -2,
+     5
+    ],
+    [
+     8,
+     -2,
+     6
+    ]
+   ],
+   "mouth": "lens"
+  },
+  "wail": {
+   "eyes": "cry",
+   "brows": [
+    [
+     8,
+     -11,
+     2
+    ],
+    [
+     8,
+     -11,
+     2
+    ]
+   ],
+   "mouth": "frownXL",
+   "fx": [
+    "tears"
+   ]
+  },
+  "focus": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     7,
+     0,
+     1.15
+    ],
+    [
+     -4,
+     7,
+     0,
+     1.15
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "narrow": {
+   "eyes": "squint",
+   "brows": [
+    [
+     -8,
+     9,
+     0,
+     1.2
+    ],
+    [
+     -7,
+     9,
+     0,
+     1.2
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "calm": {
+   "eyes": "lid",
+   "brows": [
+    [
+     2,
+     0,
+     1,
+     1.1
+    ],
+    [
+     2,
+     0,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "twitch": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -3,
+     5,
+     0
+    ],
+    [
+     -2,
+     5,
+     0
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 20
+  },
+  "nrDry": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -3,
+     3,
+     0,
+     1.15
+    ],
+    [
+     10,
+     -4,
+     6,
+     1.15
+    ]
+   ],
+   "mouth": "flat"
+  },
+  "nrStop": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     10,
+     -4,
+     6,
+     1.15
+    ],
+    [
+     12,
+     -4,
+     7,
+     1.15
+    ]
+   ],
+   "mouth": "flat"
+  },
+  "nrSly": {
+   "eyes": "lid",
+   "brows": [
+    [
+     -2,
+     2,
+     1,
+     1.15
+    ],
+    [
+     14,
+     -6,
+     8,
+     1.2
+    ]
+   ],
+   "mouth": "smirkXL"
+  },
+  "nrDown": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     2,
+     0,
+     2,
+     1.15
+    ],
+    [
+     12,
+     -5,
+     7,
+     1.15
+    ]
+   ],
+   "mouth": "smirkXL"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.45
+ },
+ "places": {
+  "orm": {
+   "set": "or_room",
+   "light": "morning",
+   "time": "day",
+   "backdrop": 4,
+   "light_over": {
+    "top": "#123a36",
+    "hor": "#2f6a62",
+    "sun": "#e8fff8",
+    "si": 0.9,
+    "amb": "#9fd8cc",
+    "ai": 1.25,
+    "dir": [
+     0.2,
+     6,
+     3
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#9fd8cc",
+    "fill_i": 0.25,
+    "veil_color": "#2f6a62",
+    "shadow_color": "#0e2e2a",
+    "rich": 0.7
+   },
+   "post": {
+    "vignette": 0.5
+   },
+   "knee": {
+    "dots": 3,
+    "plasters": 0
+   },
+   "monitor": "nosignal",
+   "fog": [
+    9,
+    30
+   ],
+   "knee_v2": true,
+   "knee_v3": {
+    "at": [
+     -0.04,
+     0.47,
+     1.31
+    ],
+    "hip": [
+     -0.32,
+     0.47,
+     0.93
+    ],
+    "foot": [
+     0.25,
+     0.47,
+     0.9
+    ],
+    "face": [
+     0.0,
+     -0.7,
+     0.72
+    ],
+    "win": 0.13,
+    "ball": 0.092,
+    "dx": 0.04,
+    "dot": 0.0135,
+    "dome": 0.022,
+    "pw": [
+     0.039,
+     0.08,
+     0.035,
+     0.076,
+     0.023,
+     0.023
+    ],
+    "w": 0.11
+   },
+   "knee_crisp": {
+    "back": "#24488a"
+   },
+   "leg_drape": {
+    "color": "#5f8fd0",
+    "fold": "#3e6aa8",
+    "far_y": 0.76
+   },
+   "knee_win": "thin",
+   "lie_body": {
+    "r": 0.13,
+    "zs": 0.5
+   },
+   "steps": [
+    [
+     -0.08,
+     1.08,
+     0.36
+    ],
+    [
+     0.32,
+     1.45,
+     0.32
+    ]
+   ],
+   "tray_at": [
+    0.72,
+    -0.12,
+    0.95
+   ],
+   "hand3d": {
+    "shoulder": [
+     -0.08,
+     1.08,
+     1.5299999999999998
+    ],
+    "dx": -0.2,
+    "keys": [
+     [
+      0,
+      "knee_dot_1",
+      0.004,
+      "scalpel"
+     ],
+     [
+      14,
+      "knee_dot_1",
+      0.05,
+      "scalpel"
+     ],
+     [
+      22,
+      "knee_dot_1",
+      0.055,
+      "scalpel"
+     ],
+     [
+      25,
+      "knee_dot_1",
+      0.003,
+      "scalpel"
+     ],
+     [
+      30,
+      "knee_dot_1",
+      0.04,
+      "scalpel"
+     ],
+     [
+      34,
+      "knee_dot_2",
+      0.055,
+      "scalpel"
+     ],
+     [
+      37,
+      "knee_dot_2",
+      0.003,
+      "scalpel"
+     ],
+     [
+      41,
+      "knee_dot_2",
+      0.04,
+      "scalpel"
+     ],
+     [
+      43,
+      "knee_dot_3",
+      0.055,
+      "scalpel"
+     ],
+     [
+      46,
+      "knee_dot_3",
+      0.003,
+      "scalpel"
+     ],
+     [
+      53,
+      "knee_dot_3",
+      0.035,
+      "scalpel"
+     ],
+     [
+      70,
+      "knee_dot_3",
+      0.03,
+      "scalpel"
+     ],
+     [
+      82,
+      "knee_dot_2",
+      0.2,
+      "bulb"
+     ],
+     [
+      88,
+      "knee_dot_2",
+      0.2,
+      "bulb"
+     ],
+     [
+      90,
+      "knee_dot_2",
+      0.16,
+      "bulb"
+     ],
+     [
+      96,
+      "knee_dot_2",
+      0.2,
+      "bulb"
+     ],
+     [
+      102,
+      "knee_dot_2",
+      0.2,
+      "bulb"
+     ],
+     [
+      104,
+      "knee_dot_2",
+      0.16,
+      "bulb"
+     ],
+     [
+      110,
+      "knee_dot_2",
+      0.2,
+      "bulb"
+     ],
+     [
+      122,
+      "knee_dot_2",
+      0.21,
+      "bulb"
+     ],
+     [
+      126,
+      "knee_dot_1",
+      0.16,
+      "plaster"
+     ],
+     [
+      130,
+      "knee_dot_1",
+      0.17,
+      "plaster"
+     ],
+     [
+      133,
+      "knee_dot_1",
+      0.0,
+      "plaster"
+     ],
+     [
+      134,
+      "knee_dot_1",
+      0.005,
+      null
+     ],
+     [
+      137,
+      "knee_dot_1",
+      0.06,
+      "plaster"
+     ],
+     [
+      142,
+      "knee_dot_2",
+      0.17,
+      "plaster"
+     ],
+     [
+      147,
+      "knee_dot_2",
+      0.0,
+      "plaster"
+     ],
+     [
+      148,
+      "knee_dot_2",
+      0.005,
+      null
+     ],
+     [
+      149,
+      "knee_dot_3",
+      0.08,
+      "plaster"
+     ],
+     [
+      152,
+      "knee_dot_3",
+      0.24,
+      "plaster"
+     ],
+     [
+      155,
+      "knee_dot_3",
+      0.25,
+      "plaster"
+     ],
+     [
+      156,
+      "knee_dot_3",
+      0.0,
+      "plaster"
+     ],
+     [
+      157,
+      "knee_dot_3",
+      0.004,
+      null
+     ],
+     [
+      161,
+      "knee_dot_3",
+      0.035,
+      null
+     ],
+     [
+      163,
+      "knee_dot_3",
+      0.04,
+      null
+     ],
+     [
+      166,
+      "knee_dot_3",
+      0.004,
+      null
+     ],
+     [
+      171,
+      "knee_dot_3",
+      0.03,
+      null
+     ],
+     [
+      182,
+      "knee_top",
+      0.02,
+      null
+     ],
+     [
+      340,
+      "knee_top",
+      0.02,
+      null
+     ],
+     [
+      346,
+      "knee_plaster_3",
+      0.05,
+      null
+     ],
+     [
+      350,
+      "knee_plaster_3",
+      0.004,
+      null
+     ],
+     [
+      355,
+      "knee_plaster_3",
+      0.04,
+      null
+     ],
+     [
+      359,
+      "knee_plaster_3",
+      0.004,
+      null
+     ],
+     [
+      366,
+      "knee_plaster_3",
+      0.03,
+      null
+     ]
+    ]
+   },
+   "knee_track": [
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     38,
+     2,
+     0
+    ],
+    [
+     47,
+     3,
+     0
+    ],
+    [
+     134,
+     3,
+     1
+    ],
+    [
+     148,
+     3,
+     2
+    ],
+    [
+     156,
+     3,
+     3
+    ]
+   ],
+   "lamp_angle": 0.34,
+   "lamp_i": 14,
+   "knee_tone": "#857b72",
+   "knee_tapes": "strips",
+   "drape_soft": true,
+   "lamp_pos": [
+    0.55,
+    -0.15,
+    2.35
+   ],
+   "lamp_at": [
+    -0.05,
+    0.6,
+    1.5
+   ],
+   "tiks": [
+    [
+     25,
+     0
+    ],
+    [
+     37,
+     1
+    ],
+    [
+     46,
+     2
+    ]
+   ],
+   "ko_face": false,
+   "ko_clean": true,
+   "env_v3": true,
+   "zzz_v3": {
+    "head": [
+     -0.92,
+     0.78,
+     2.02
+    ],
+    "toLens": 0.6,
+    "f0": -30,
+    "f1": 400
+   },
+   "water_v3": {
+    "bursts": [
+     89,
+     103
+    ],
+    "size": 2.2,
+    "drops": 12
+   },
+   "scope_tray": {
+    "at": [
+     -0.04,
+     0.0
+    ]
+   },
+   "porthole_view": true,
+   "impact": [
+    [
+     156,
+     "#bff0e0"
+    ],
+    [
+     157,
+     "#ffffff"
+    ]
+   ],
+   "power": [
+    {
+     "kind": "ray_burst",
+     "at": [
+      -0.010000000000000002,
+      0.38,
+      1.3900000000000001
+     ],
+     "f": 156,
+     "opts": {
+      "count": 28,
+      "length": 0.45,
+      "innerRadius": 0.2,
+      "width": 0.05,
+      "color": "#f4fbff",
+      "core": "#ffffff",
+      "dur": 0.5,
+      "spin": 0,
+      "flash": {
+       "size": 0.25,
+       "life": 0.08
+      }
+     }
+    },
+    {
+     "kind": "shockwave_ring",
+     "at": [
+      0.010000000000000002,
+      0.35,
+      1.4000000000000001
+     ],
+     "f": 156,
+     "opts": {
+      "orient": "camera",
+      "radius": 0.22,
+      "startRadius": 0.03,
+      "thickness": 0.25,
+      "dur": 0.45,
+      "color": "#f2e6c8",
+      "shade": "#c9a56a",
+      "inkWidth": 0.006,
+      "ring2": {
+       "color": "#ffffff",
+       "delay": -0.03,
+       "scale": 1.35,
+       "width": 0.01,
+       "dur": 0.4
+      },
+      "flash": {
+       "color": "#fff4d6",
+       "size": 0.15,
+       "life": 0.08
+      },
+      "dust": {
+       "count": 0
+      },
+      "debris": {
+       "count": 0
+      }
+     }
+    }
+   ]
+  }
+ },
+ "props": {
+  "knee": {
+   "pos": [
+    -0.04,
+    0.41,
+    1.37
+   ],
+   "kind": "the knee"
+  },
+  "tray": {
+   "pos": [
+    0.72,
+    -0.12,
+    0.95
+   ],
+   "kind": "the clean tray"
+  },
+  "scope": {
+   "pos": [
+    0.74,
+    -0.13999999999999999,
+    1.02
+   ],
+   "kind": "the sealed scope in its bag on the tray"
+  }
+ },
+ "acts": [
+  {
+   "who": "surgeon",
+   "at": 0,
+   "pos": [
+    -0.08,
+    1.08,
+    0.36
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/sg_s1",
+   "face": "k:focus",
+   "note": "FRAME 0: bent over the knee from BEHIND it, scalpel tip on dot 1"
+  },
+  {
+   "who": "surgeon",
+   "at": 86,
+   "face": "k:calm",
+   "note": "\"splashed\": casual, almost playful"
+  },
+  {
+   "who": "surgeon",
+   "at": 140,
+   "face": "k:focus"
+  },
+  {
+   "who": "surgeon",
+   "at": 148,
+   "face": "k:narrow",
+   "note": "POWER hold: eyes narrow over the mask"
+  },
+  {
+   "who": "surgeon",
+   "at": 160,
+   "face": "k:smileEyes",
+   "note": "tidy satisfaction"
+  },
+  {
+   "who": "surgeon",
+   "at": 330,
+   "face": "k:smileEyes",
+   "note": "amused: eyes smile over the mask"
+  },
+  {
+   "who": "nurse",
+   "at": 0,
+   "pos": [
+    0.32,
+    1.45,
+    0.32
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/nr_s1",
+   "face": "k:nrDry",
+   "note": "arms folded, dry"
+  },
+  {
+   "who": "nurse",
+   "at": 250,
+   "face": "k:nrStop",
+   "note": "\"nurse\": stops dead"
+  },
+  {
+   "who": "nurse",
+   "at": 262,
+   "face": "k:nrSly",
+   "say": [
+    32,
+    36
+   ],
+   "note": "leans in; \"Doctor, you forgot the operation.\" lip-sync"
+  },
+  {
+   "who": "nurse",
+   "at": 338,
+   "face": "k:nrDown",
+   "note": "\"forgot\": eyes down to the clean tray"
+  },
+  {
+   "who": "nurse",
+   "at": 350,
+   "face": "k:nrSly",
+   "note": "\"operation\": eyebrow up at him"
+  },
+  {
+   "who": "patient",
+   "at": 0,
+   "pos": [
+    -0.6,
+    0.78,
+    0.9
+   ],
+   "dir": 1,
+   "pose": "m:../../ep_s1/pt_s1",
+   "face": "koClean",
+   "note": "v2 (CB: the patient should be sleeping, a fainted meme): KNOCKED-OUT meme (spiral + X eyes, tongue, birdies) + zZ bubble all stretch; the thumbs-up on operation rises from under the drape while he stays out cold"
+  },
+  {
+   "who": "patient",
+   "at": 279,
+   "visible": false,
+   "note": "v4b: off from the hard cut f279 (out of the two-shot and the door flight; his drape sliver at the left edge failed body_side)"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 156,
+   "amp": 1.0
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "surgeon",
+   "f0": 0,
+   "f1": 387,
+   "at": [
+    -0.04,
+    0.62,
+    1.44
+   ]
+  }
+ ],
+ "takes": [
+  {
+   "id": "or",
+   "place": "orm",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.55,
+      -1.95,
+      1.32
+     ],
+     "aim": [
+      -0.48,
+      1.2,
+      1.4
+     ],
+     "lens": 24,
+     "subject": "surgeon",
+     "framing": "M",
+     "purpose": "ROWS 1-3 FRAME 0: from the NEAR SIDE, eye level with the knee: the bent leg V, the kneecap window with the 3 dots, the surgeon behind on his step, the nurse behind his right, the knocked-out patient WHOLE on the head section at frame left with his Zs floating up. Slow pull-back.",
+     "hold": 1.33,
+     "creep": 0.007,
+     "drift": [
+      -0.03,
+      -0.12,
+      0.0
+     ],
+     "drift_aim": 1.0
+    },
+    {
+     "at": 142,
+     "pos": [
+      0.42,
+      -0.85,
+      1.8
+     ],
+     "aim": [
+      -0.12,
+      0.62,
+      1.7
+     ],
+     "lens": 19,
+     "subject": "knee",
+     "framing": "M",
+     "purpose": "ROWS 3-5 one 3.4 s eased move round the table end to the front-right past the SPLASH (bulb, see-through water crown, foam, spray; the patient out cold WHOLE at the left) to a MEDIUM knee view: drape window + plasters read, the surgeon WHOLE above it",
+     "travel": 3.4,
+     "via": [
+      [
+       0.6,
+       -1.7,
+       1.62
+      ]
+     ],
+     "aim_via": [
+      [
+       -0.45,
+       0.78,
+       1.5
+      ]
+     ],
+     "hold": 0.27,
+     "creep": 0.0015,
+     "drift": [
+      0.06,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "at": 156,
+     "pos": [
+      0.41,
+      -0.83,
+      1.79
+     ],
+     "aim": [
+      -0.16999999999999998,
+      0.62,
+      1.7
+     ],
+     "lens": 19.6,
+     "subject": "knee",
+     "framing": "C",
+     "purpose": "ROW 5 POWER: the planned crash zoom (6 f) on \"plasters\", landing on the IMPACT frame f156 (kick); held peak, the surgeon head stays whole",
+     "travel": 0.2,
+     "whip": true,
+     "hold": 0.87,
+     "creep": 0.0,
+     "drift": [
+      0.0,
+      0.0,
+      -0.14
+     ]
+    },
+    {
+     "at": 228,
+     "pos": [
+      1.3,
+      -0.95,
+      1.6
+     ],
+     "aim": [
+      -0.15,
+      0.95,
+      1.42
+     ],
+     "lens": 16,
+     "subject": "tray",
+     "framing": "M",
+     "purpose": "ROWS 6-7: an eased pull-back off the knee (never once went INSIDE the knee) that opens the clean Mayo tray (the scope coiled in its SEALED bag, STERILE tag) in the foreground with the whole team behind",
+     "travel": 1.4,
+     "hold": 0.9,
+     "creep": 0.003,
+     "drift": [
+      0.02,
+      0.02,
+      0.0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "or2",
+   "place": "orm",
+   "stations": [
+    {
+     "at": 279,
+     "pos": [
+      0.42,
+      0.05,
+      1.9
+     ],
+     "aim": [
+      0.11,
+      1.3,
+      1.72
+     ],
+     "lens": 18,
+     "subject": "nurse",
+     "framing": "M",
+     "purpose": "ROWS 8-10 (A4): following her lean, the camera rises to a MEDIUM TWO-SHOT: the nurse big, whispering at the surgeon ear, mouth moving on \"Doctor, you forgot the operation\"; slow drift onto the surgeon smiling eyes for \"operation\"",
+     "hold": 2.196666666666666,
+     "creep": 0.001,
+     "drift": [
+      -0.01,
+      -0.03,
+      0.0
+     ]
+    },
+    {
+     "at": 386,
+     "pos": [
+      1.43,
+      2.79,
+      1.6
+     ],
+     "aim": [
+      1.43,
+      3.6,
+      1.6
+     ],
+     "lens": 24,
+     "subject": "door",
+     "framing": "C",
+     "purpose": "JOIN S1 -> S2 (B3): from the two-shot the camera flies on PAST the team (nurse and surgeon slide by at the left) to the OR 3 door; the LEFT porthole fills the frame at f386",
+     "travel": 1.37,
+     "hold": 0,
+     "via": [
+      [
+       0.95,
+       -0.15,
+       1.95
+      ],
+      [
+       1.3,
+       1.5,
+       1.75
+      ]
+     ],
+     "aim_via": [
+      [
+       0.25,
+       1.3,
+       1.7
+      ],
+      [
+       1.0,
+       2.6,
+       1.68
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

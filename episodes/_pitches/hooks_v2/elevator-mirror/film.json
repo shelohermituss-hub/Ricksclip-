@@ -1,0 +1,309 @@
+{
+ "title": "PITCH 5 hook frame: the janitor screws a mirror into the slow brass elevator while the owner holds the bill for a new one, grand hotel lobby, about 1955",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words.json",
+ "end": 30,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "cast",
+  "../../../../templates/vector2d_characters/code",
+  "moves"
+ ],
+ "cast": {
+  "janitor": {
+   "puppet": "cast:hotel/janitor",
+   "height": 1.72,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "owner": {
+   "puppet": "cast:hotel/owner",
+   "height": 1.78,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "watchman": {
+   "puppet": "cast:hotel/watchman",
+   "height": 1.8,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "lady": {
+   "puppet": "cast:hotel/lady",
+   "height": 1.64,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "faces_ep": {
+  "screwIt": {
+   "eyes": [
+    "squint",
+    "lid"
+   ],
+   "brows": [
+    [
+     -5,
+     8,
+     0,
+     1.1
+    ],
+    [
+     -1,
+     6,
+     1,
+     1.1
+    ]
+   ],
+   "mouth": "tongueCorner",
+   "side": 1
+  },
+  "glare": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -7,
+     9,
+     -1,
+     1.25
+    ],
+    [
+     -6,
+     10,
+     -1,
+     1.25
+    ]
+   ],
+   "mouth": "flatXL"
+  },
+  "impatient": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -6,
+     6,
+     0,
+     1.15
+    ],
+    [
+     -5,
+     7,
+     0,
+     1.15
+    ]
+   ],
+   "mouth": "sideways"
+  },
+  "huff": {
+   "eyes": "dot",
+   "brows": [
+    [
+     0,
+     9,
+     0,
+     1.15
+    ],
+    [
+     0,
+     9,
+     0,
+     1.15
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 18
+  },
+  "fedUp": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -4,
+     7,
+     0,
+     1.2
+    ],
+    [
+     -4,
+     7,
+     0,
+     1.2
+    ]
+   ],
+   "mouth": "frownXL"
+  }
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.45
+ },
+ "places": {
+  "lobby": {
+   "set": "lobby",
+   "light": "morning",
+   "time": "evening",
+   "backdrop": 60,
+   "light_over": {
+    "top": "#3a2418",
+    "hor": "#c99a6a",
+    "sun": "#ffd9a0",
+    "si": 2.3,
+    "amb": "#ffd2a4",
+    "ai": 1.9,
+    "dir": [
+     -3.5,
+     7,
+     6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0.0,
+     "rim_amount": 0.0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    }
+   },
+   "post": {
+    "vignette": 0.45
+   }
+  }
+ },
+ "props": {},
+ "acts": [
+  {
+   "who": "janitor",
+   "at": 0,
+   "pos": [
+    0.22,
+    0.55,
+    0.05
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_hotel/jan_screw",
+   "face": "k:screwIt",
+   "note": "up on his toes at the mirror's top-left screw"
+  },
+  {
+   "who": "owner",
+   "at": 0,
+   "pos": [
+    -0.66,
+    -0.3,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_hotel/own_bill",
+   "face": "k:glare",
+   "note": "fist on hip, the thick bill held out"
+  },
+  {
+   "who": "watchman",
+   "at": 0,
+   "pos": [
+    -1.4,
+    1.0,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_hotel/g_watch",
+   "face": "k:impatient",
+   "note": "taps his watch"
+  },
+  {
+   "who": "lady",
+   "at": 0,
+   "pos": [
+    -0.3,
+    3.4,
+    0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_hotel/g_cross",
+   "face": "k:huff",
+   "note": "arms crossed"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "janitor",
+   "obj": "screwdriver",
+   "module": "sets/hotel_props.js",
+   "builder": "buildScrewdriver",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "angle": -40,
+   "scale": 1.6,
+   "when": "always"
+  },
+  {
+   "who": "owner",
+   "obj": "bill",
+   "module": "sets/hotel_props.js",
+   "builder": "buildBill",
+   "opts": {},
+   "grip": "hang",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.1,
+   "when": "always"
+  }
+ ],
+ "takes": [
+  {
+   "id": "hook",
+   "place": "lobby",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -0.3,
+      -3.0,
+      1.75
+     ],
+     "aim": [
+      -0.22,
+      0.5,
+      1.3
+     ],
+     "lens": 26,
+     "subject": "janitor",
+     "framing": "M",
+     "hold": 1.0,
+     "creep": 0,
+     "purpose": "frame 0: the janitor screws the mirror into the brass car, the owner with the bill, the queue behind"
+    }
+   ]
+  }
+ ]
+}

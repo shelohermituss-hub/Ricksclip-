@@ -1,0 +1,2121 @@
+{
+ "title": "fake-surgery S4 THE BOARD: rows 31-39 (film 1281-1683)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "words_s4.json",
+ "start": 1278,
+ "end": 1696,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "camera": {
+  "v2": true
+ },
+ "cast": {
+  "patientShorts": {
+   "puppet": "cast:surgery/patientShorts",
+   "height": 1.78,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "climber1": {
+   "puppet": "cast:surgery/climber1",
+   "height": 1.76,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "climber2": {
+   "puppet": "cast:surgery/climber2",
+   "height": 1.64,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "climber3": {
+   "puppet": "cast:surgery/climber3",
+   "height": 1.74,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "surgeonOff": {
+   "puppet": "cast:surgery/surgeonOff",
+   "height": 1.8,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  }
+ },
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "face_shadow": true,
+ "faces_ep": {
+  "relief": {
+   "eyes": "lid",
+   "brows": [
+    [
+     8,
+     -6,
+     3,
+     1.1
+    ],
+    [
+     9,
+     -6,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "happy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     8,
+     -8,
+     3
+    ],
+    [
+     10,
+     -8,
+     3
+    ]
+   ],
+   "mouth": "smirk"
+  },
+  "proud": {
+   "eyes": "lid",
+   "brows": [
+    [
+     4,
+     -2,
+     2
+    ],
+    [
+     6,
+     -3,
+     3
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "think": {
+   "eyes": "lookSide",
+   "brows": [
+    [
+     -4,
+     6,
+     0,
+     1.15
+    ],
+    [
+     8,
+     -3,
+     5,
+     1.15
+    ]
+   ],
+   "mouth": "sideways",
+   "side": -1
+  },
+  "stunned": {
+   "eyes": "oval",
+   "brows": [
+    [
+     14,
+     -4,
+     7,
+     1.15
+    ],
+    [
+     16,
+     -4,
+     8,
+     1.15
+    ]
+   ],
+   "mouth": "flatXL"
+  },
+  "humble": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     6,
+     4,
+     2,
+     1.1
+    ],
+    [
+     7,
+     4,
+     2,
+     1.1
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "drowsy": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     -5,
+     5,
+     0
+    ],
+    [
+     -4,
+     5,
+     0
+    ]
+   ],
+   "mouth": "smileSmall"
+  },
+  "wince": {
+   "eyes": "squeeze",
+   "brows": [
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ],
+    [
+     10,
+     -11,
+     3,
+     1.1
+    ]
+   ],
+   "mouth": "wavy",
+   "wavyW": 24
+  },
+  "thumbsSmile": {
+   "eyes": "lidHalf",
+   "brows": [
+    [
+     4,
+     -2,
+     4
+    ],
+    [
+     6,
+     -3,
+     5
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "springGrin": {
+   "eyes": "happyXL",
+   "brows": [
+    [
+     12,
+     -3,
+     7
+    ],
+    [
+     12,
+     -3,
+     7
+    ]
+   ],
+   "mouth": "teeth"
+  },
+  "smileEyes": {
+   "eyes": "happy",
+   "brows": [
+    [
+     6,
+     -2,
+     5
+    ],
+    [
+     8,
+     -2,
+     6
+    ]
+   ],
+   "mouth": "lens"
+  },
+  "wail": {
+   "eyes": "cry",
+   "brows": [
+    [
+     8,
+     -11,
+     2
+    ],
+    [
+     8,
+     -11,
+     2
+    ]
+   ],
+   "mouth": "frownXL",
+   "fx": [
+    "tears"
+   ]
+  }
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0.45
+ },
+ "places": {
+  "st": {
+   "set": "stairwell",
+   "light": "day",
+   "time": "day",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#8ab0e0",
+    "hor": "#ffd8a0",
+    "sun": "#ffcf7a",
+    "si": 2.4,
+    "amb": "#ffe6a8",
+    "ai": 1.5,
+    "dir": [
+     -1.5,
+     2.2,
+     -6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#8a90c8",
+    "fill_i": 0.45,
+    "veil_color": "#f0d8b0",
+    "shadow_color": "#3a3a6a",
+    "rich": 0.7
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "fog": [
+    8,
+    30
+   ],
+   "light_kind": "afternoon",
+   "env_v3": true,
+   "cobweb_xl": 1,
+   "cobweb": 0,
+   "cane": true,
+   "dial_xyz": [
+    1.98,
+    2.6,
+    2.62
+   ],
+   "knee_plasters": {
+    "at": [
+     181.27,
+     -0.457,
+     0.36
+    ],
+    "f": [
+     1336,
+     1352
+    ],
+    "s": 0.095,
+    "toward": 0.14,
+    "stack": 1,
+    "top": 1
+   },
+   "dial_red_at": [
+    [
+     0,
+     0
+    ],
+    [
+     1384,
+     0
+    ],
+    [
+     1392,
+     1
+    ],
+    [
+     1422,
+     1
+    ],
+    [
+     1431,
+     0
+    ]
+   ],
+   "dial_at": [
+    [
+     0,
+     0.92
+    ],
+    [
+     1396,
+     0.92
+    ],
+    [
+     1399,
+     0.88
+    ],
+    [
+     1408,
+     0.1
+    ],
+    [
+     1411,
+     0.04
+    ],
+    [
+     1414,
+     0.13
+    ],
+    [
+     1418,
+     0.09
+    ],
+    [
+     1480,
+     0.09
+    ],
+    [
+     1488,
+     0.42
+    ],
+    [
+     1493,
+     0.6
+    ],
+    [
+     1497,
+     0.55
+    ]
+   ],
+   "sign_spin_at": [
+    [
+     0,
+     0.02
+    ],
+    [
+     1352,
+     0.02
+    ],
+    [
+     1366,
+     2.6
+    ],
+    [
+     1380,
+     4.1
+    ],
+    [
+     1394,
+     4.45
+    ],
+    [
+     1402,
+     4.5
+    ]
+   ],
+   "speed_lines": [
+    {
+     "f0": 1352,
+     "f1": 1364,
+     "from": [
+      181.25,
+      -0.6,
+      0.95
+     ],
+     "to": [
+      181.25,
+      0.6,
+      1.45
+     ]
+    },
+    {
+     "f0": 1361,
+     "f1": 1373,
+     "from": [
+      181.25,
+      0.3,
+      1.4
+     ],
+     "to": [
+      181.25,
+      1.5,
+      1.95
+     ]
+    },
+    {
+     "f0": 1370,
+     "f1": 1384,
+     "from": [
+      181.25,
+      1.2,
+      1.85
+     ],
+     "to": [
+      181.25,
+      2.45,
+      2.35
+     ]
+    }
+   ]
+  },
+  "off": {
+   "set": "s4_office",
+   "light": "day",
+   "time": "day",
+   "backdrop": 20,
+   "light_over": {
+    "top": "#8ab0e0",
+    "hor": "#ffd8a0",
+    "sun": "#ffcf7a",
+    "si": 2.4,
+    "amb": "#ffe6a8",
+    "ai": 1.5,
+    "dir": [
+     -1.5,
+     2.2,
+     -6
+    ],
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_shade": {
+     "style": "rick",
+     "amount": 0,
+     "rim_amount": 0,
+     "rim_width": 0.9,
+     "hat_shadow": 0,
+     "lights": []
+    },
+    "fill_color": "#8a90c8",
+    "fill_i": 0.45,
+    "veil_color": "#f0d8b0",
+    "shadow_color": "#3a3a6a",
+    "rich": 0.7
+   },
+   "post": {
+    "vignette": 0.45
+   },
+   "dress": "stripes",
+   "fog": [
+    8,
+    30
+   ],
+   "env_v3": true,
+   "charts": [
+    0.55,
+    0.55,
+    0.55
+   ],
+   "lid": 1,
+   "blinds": 0.62,
+   "s4o": {
+    "pops": [
+     1508,
+     1516,
+     1525
+    ],
+    "hover": [
+     [
+      0,
+      0.18
+     ],
+     [
+      1544,
+      0.18
+     ],
+     [
+      1552,
+      0.075
+     ],
+     [
+      1557,
+      0.07
+     ],
+     [
+      1560,
+      0
+     ]
+    ],
+    "band": [
+     1561,
+     1572
+    ],
+    "flash": [
+     1561,
+     1567
+    ],
+    "lid_at": [
+     [
+      0,
+      1
+     ],
+     [
+      1636,
+      1
+     ],
+     [
+      1639,
+      0.55
+     ],
+     [
+      1642,
+      0.06
+     ],
+     [
+      1643,
+      0
+     ]
+    ],
+    "puff": [
+     1643,
+     22
+    ],
+    "dust": {
+     "f0": 1643,
+     "n": 30,
+     "col": "#7a7d84",
+     "op": 1.0
+    },
+    "case_col": {
+     "shell": "#aab1ba",
+     "cap": "#949ba5",
+     "handle": "#6c727c",
+     "foam": "#8a909a"
+    },
+    "impact": [
+     1560,
+     1561
+    ],
+    "case_fill": {
+     "at": [
+      118.7,
+      1.85,
+      2.05
+     ],
+     "i": 3
+    },
+    "stripes": {
+     "at": [
+      116.4,
+      1.0,
+      3.1
+     ],
+     "aim": [
+      120.0,
+      2.4,
+      1.2
+     ],
+     "i": 14,
+     "col": "#fff2e2"
+    },
+    "fill": {
+     "i": 1.3,
+     "col": "#fff4e4"
+    },
+    "hide": [
+     "desk_lamp",
+     "env_mini_fridge",
+     "env_fridge_*",
+     "env_microwave*",
+     "env_styrofoam_cup"
+    ],
+    "case_dx": [
+     2.1,
+     -1.36,
+     -0.676
+    ]
+   }
+  }
+ },
+ "props": {
+  "cane": {
+   "pos": [
+    180.23,
+    0.02,
+    1.0
+   ],
+   "kind": "the old cane + cobweb"
+  },
+  "knee": {
+   "pos": [
+    181.25,
+    -0.62,
+    0.55
+   ],
+   "kind": "the healed knee"
+  },
+  "sign": {
+   "pos": [
+    181.99,
+    -0.45,
+    1.78
+   ],
+   "kind": "USE HANDRAIL sign"
+  },
+  "dial": {
+   "pos": [
+    181.98,
+    2.05,
+    2.35
+   ],
+   "kind": "the pain dial"
+  },
+  "charts": {
+   "pos": [
+    119.65,
+    2.55,
+    1.5
+   ],
+   "kind": "three pain charts"
+  },
+  "ruler": {
+   "pos": [
+    119.67,
+    2.54,
+    1.52
+   ],
+   "kind": "the ruler on the bars"
+  },
+  "case": {
+   "pos": [
+    118.5,
+    2.43,
+    1.45
+   ],
+   "kind": "the scope case"
+  }
+ },
+ "acts": [
+  {
+   "who": "patientShorts",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    179.5,
+    -0.45,
+    0
+   ],
+   "view": "side",
+   "dir": 1,
+   "pose": "m:../../ep_s4/pt_step",
+   "face": "k:springGrin"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1324,
+   "visible": true,
+   "pos": [
+    179.5,
+    -0.45,
+    0
+   ],
+   "dir": 1,
+   "pose": "m:../../ep_s4/pt_bound",
+   "face": "k:springGrin",
+   "note": "S4 v4b: off frame left (the camera rests), bounds in on \"man\""
+  },
+  {
+   "who": "patientShorts",
+   "at": 1332,
+   "pos": [
+    181.25,
+    -0.45,
+    0
+   ],
+   "linear": true,
+   "move_s": 0.1,
+   "note": "S4 v4b: ONE leap into the frame in the bound air phase (crosses the edge in <= 2 f)"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1336,
+   "pos": [
+    181.25,
+    -0.45,
+    0
+   ],
+   "dir": -1,
+   "pose": "m:../../ep_s4/pt_bound@=0",
+   "face": "k:springGrin",
+   "note": "S4 v2 ROW 32: lands at the foot, turns to the stairs (stance held), plasters on his knee"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1345,
+   "pos": [
+    181.25,
+    -0.45,
+    0
+   ],
+   "pose": "m:../../ep_s4/pt_bound",
+   "face": "k:springGrin",
+   "note": "ROW 33: at the foot, then three strides"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1353,
+   "pos": [
+    181.25,
+    0.75,
+    0.48
+   ],
+   "linear": true,
+   "move_s": 0.1,
+   "note": "stride to tread 3"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1362,
+   "pos": [
+    181.25,
+    1.65,
+    0.96
+   ],
+   "linear": true,
+   "move_s": 0.1,
+   "note": "stride to tread 6"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1371,
+   "pos": [
+    181.25,
+    2.55,
+    1.44
+   ],
+   "linear": true,
+   "move_s": 0.1,
+   "note": "stride to tread 9"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1380,
+   "pos": [
+    181.25,
+    2.55,
+    1.44
+   ],
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:springGrin",
+   "note": "ROW 34 beside the dial, fist on the rail"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1406,
+   "face": "k:relief",
+   "note": "\"down\": relief"
+  },
+  {
+   "who": "climber1",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    181.0,
+    0.15,
+    0.16
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:springGrin"
+  },
+  {
+   "who": "climber1",
+   "at": 1420,
+   "visible": true,
+   "pos": [
+    181.0,
+    0.15,
+    0.16
+   ],
+   "pose": "m:../../ep_s4/cl_march@=0"
+  },
+  {
+   "who": "climber1",
+   "at": 1426,
+   "pose": "m:../../ep_s4/cl_march"
+  },
+  {
+   "who": "climber2",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.55,
+    0.15,
+    0.16
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:happy"
+  },
+  {
+   "who": "climber2",
+   "at": 1420,
+   "visible": true,
+   "pos": [
+    180.55,
+    0.15,
+    0.16
+   ],
+   "pose": "m:../../ep_s4/cl_march@=0"
+  },
+  {
+   "who": "climber2",
+   "at": 1426,
+   "pose": "m:../../ep_s4/cl_march"
+  },
+  {
+   "who": "climber3",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    180.8,
+    0.45,
+    0.32
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:proud"
+  },
+  {
+   "who": "climber3",
+   "at": 1420,
+   "visible": true,
+   "pos": [
+    180.8,
+    0.45,
+    0.32
+   ],
+   "pose": "m:../../ep_s4/cl_march@=0"
+  },
+  {
+   "who": "climber3",
+   "at": 1426,
+   "pose": "m:../../ep_s4/cl_march"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1426,
+   "pos": [
+    181.25,
+    2.55,
+    1.44
+   ],
+   "pose": "m:../../ep_s4/pt_step",
+   "face": "k:springGrin",
+   "note": "ROW 35: climbs on, the climbers in step behind him"
+  },
+  {
+   "who": "patientShorts",
+   "at": 1429,
+   "pos": [
+    181.25,
+    2.85,
+    1.6
+   ],
+   "linear": true,
+   "move_s": 0.2
+  },
+  {
+   "who": "patientShorts",
+   "at": 1441,
+   "pos": [
+    181.25,
+    3.15,
+    1.6
+   ],
+   "linear": true,
+   "move_s": 0.2
+  },
+  {
+   "who": "patientShorts",
+   "at": 1453,
+   "pos": [
+    181.25,
+    3.45,
+    1.6
+   ],
+   "linear": true,
+   "move_s": 0.2
+  },
+  {
+   "who": "patientShorts",
+   "at": 1465,
+   "pos": [
+    181.25,
+    3.75,
+    1.6
+   ],
+   "linear": true,
+   "move_s": 0.2
+  },
+  {
+   "who": "patientShorts",
+   "at": 1477,
+   "pos": [
+    181.25,
+    4.05,
+    1.6
+   ],
+   "linear": true,
+   "move_s": 0.2
+  },
+  {
+   "who": "patientShorts",
+   "at": 1490,
+   "visible": false
+  },
+  {
+   "who": "climber1",
+   "at": 1490,
+   "visible": false
+  },
+  {
+   "who": "climber2",
+   "at": 1490,
+   "visible": false
+  },
+  {
+   "who": "climber3",
+   "at": 1490,
+   "visible": false
+  },
+  {
+   "who": "surgeonOff",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    120.62,
+    2.12,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:think"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 1482,
+   "visible": true,
+   "pos": [
+    120.62,
+    2.12,
+    0
+   ],
+   "pose": "m:../../ep_s4/sg_ruler",
+   "face": "k:think",
+   "note": "ROW 36: beside the light box, the ruler ready"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 1558,
+   "face": "k:stunned",
+   "note": "ROW 37 \"height\": quietly stunned"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 1584,
+   "pose": "m:../../ep_s4/pt_dial",
+   "face": "k:think",
+   "note": "ROW 38 \"SEE\": he turns to the scope case beside him (S4 v3 C6)"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 1629,
+   "face": "k:stunned",
+   "note": "ROW 39 \"wasn't\": turns back to the bars, the penny drops (S4 v3 C6)"
+  },
+  {
+   "who": "surgeonOff",
+   "at": 1650,
+   "face": "k:humble"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "climber1",
+   "obj": "wristband",
+   "module": "props_s4.js",
+   "builder": "buildWristband",
+   "opts": {
+    "color": "#5a7a9a"
+   },
+   "grip": "point",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 1420,
+   "f1": 1489
+  },
+  {
+   "who": "climber2",
+   "obj": "wristband",
+   "module": "props_s4.js",
+   "builder": "buildWristband",
+   "opts": {
+    "color": "#3fc2c8"
+   },
+   "grip": "point",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 1420,
+   "f1": 1489
+  },
+  {
+   "who": "climber3",
+   "obj": "wristband",
+   "module": "props_s4.js",
+   "builder": "buildWristband",
+   "opts": {
+    "color": "#7a4aa8"
+   },
+   "grip": "point",
+   "hand": "L",
+   "anchor": "grip",
+   "scale": 1.0,
+   "when": "always",
+   "f0": 1420,
+   "f1": 1489
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "surgeonOff",
+   "f0": 1482,
+   "f1": 1482,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1483,
+   "f1": 1483,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1484,
+   "f1": 1484,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1485,
+   "f1": 1485,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1486,
+   "f1": 1486,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1487,
+   "f1": 1487,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1488,
+   "f1": 1488,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1489,
+   "f1": 1489,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1490,
+   "f1": 1490,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1491,
+   "f1": 1491,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1492,
+   "f1": 1492,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1493,
+   "f1": 1493,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1494,
+   "f1": 1494,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1495,
+   "f1": 1495,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1496,
+   "f1": 1496,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1497,
+   "f1": 1497,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1498,
+   "f1": 1498,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1499,
+   "f1": 1499,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1500,
+   "f1": 1500,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1501,
+   "f1": 1501,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1502,
+   "f1": 1502,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1503,
+   "f1": 1503,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1504,
+   "f1": 1504,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1505,
+   "f1": 1505,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1506,
+   "f1": 1506,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1507,
+   "f1": 1507,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1508,
+   "f1": 1508,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1509,
+   "f1": 1509,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1510,
+   "f1": 1510,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1511,
+   "f1": 1511,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1512,
+   "f1": 1512,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1513,
+   "f1": 1513,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1514,
+   "f1": 1514,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1515,
+   "f1": 1515,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1516,
+   "f1": 1516,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1517,
+   "f1": 1517,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1518,
+   "f1": 1518,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1519,
+   "f1": 1519,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1520,
+   "f1": 1520,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1521,
+   "f1": 1521,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1522,
+   "f1": 1522,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1523,
+   "f1": 1523,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1524,
+   "f1": 1524,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1525,
+   "f1": 1525,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1526,
+   "f1": 1526,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1527,
+   "f1": 1527,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1528,
+   "f1": 1528,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1529,
+   "f1": 1529,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1530,
+   "f1": 1530,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1531,
+   "f1": 1531,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1532,
+   "f1": 1532,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1533,
+   "f1": 1533,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1534,
+   "f1": 1534,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1535,
+   "f1": 1535,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1536,
+   "f1": 1536,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1537,
+   "f1": 1537,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1538,
+   "f1": 1538,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1539,
+   "f1": 1539,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1540,
+   "f1": 1540,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1541,
+   "f1": 1541,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1542,
+   "f1": 1542,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1543,
+   "f1": 1543,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1544,
+   "f1": 1544,
+   "at": [
+    120.17,
+    2.536,
+    1.737
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1545,
+   "f1": 1545,
+   "at": [
+    120.17,
+    2.536,
+    1.7325
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1546,
+   "f1": 1546,
+   "at": [
+    120.17,
+    2.536,
+    1.7206
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1547,
+   "f1": 1547,
+   "at": [
+    120.17,
+    2.536,
+    1.7038
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1548,
+   "f1": 1548,
+   "at": [
+    120.17,
+    2.536,
+    1.6845
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1549,
+   "f1": 1549,
+   "at": [
+    120.17,
+    2.536,
+    1.6652
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1550,
+   "f1": 1550,
+   "at": [
+    120.17,
+    2.536,
+    1.6484
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1551,
+   "f1": 1551,
+   "at": [
+    120.17,
+    2.536,
+    1.6365
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1552,
+   "f1": 1552,
+   "at": [
+    120.17,
+    2.536,
+    1.632
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1553,
+   "f1": 1553,
+   "at": [
+    120.17,
+    2.536,
+    1.6315
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1554,
+   "f1": 1554,
+   "at": [
+    120.17,
+    2.536,
+    1.6302
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1555,
+   "f1": 1555,
+   "at": [
+    120.17,
+    2.536,
+    1.6288
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1556,
+   "f1": 1556,
+   "at": [
+    120.17,
+    2.536,
+    1.6275
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1557,
+   "f1": 1557,
+   "at": [
+    120.17,
+    2.536,
+    1.627
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1558,
+   "f1": 1558,
+   "at": [
+    120.17,
+    2.536,
+    1.6089
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1559,
+   "f1": 1559,
+   "at": [
+    120.17,
+    2.536,
+    1.5751
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1560,
+   "f1": 1560,
+   "at": [
+    120.17,
+    2.536,
+    1.557
+   ]
+  },
+  {
+   "who": "surgeonOff",
+   "f0": 1561,
+   "f1": 1583,
+   "at": [
+    120.17,
+    2.536,
+    1.557
+   ]
+  }
+ ],
+ "kicks": [
+  {
+   "at": 1560,
+   "amp": 1.0
+  }
+ ],
+ "takes": [
+  {
+   "id": "st",
+   "place": "st",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      180.85,
+      -1.05,
+      1.06
+     ],
+     "aim": [
+      180.24,
+      0.02,
+      0.97
+     ],
+     "lens": 34,
+     "subject": "cane",
+     "framing": "C",
+     "purpose": "ROW 31 HARD CUT on \"Two\" (f1290; 1278-89 = handle): the old cane on the newel post, cobweb thick as a hammock",
+     "hold": 0.05
+    },
+    {
+     "at": 1278,
+     "pos": [
+      180.85,
+      -1.05,
+      1.06
+     ],
+     "aim": [
+      180.24,
+      0.02,
+      0.97
+     ],
+     "lens": 34,
+     "subject": "cane",
+     "framing": "C",
+     "purpose": "ROW 31 HARD CUT on \"Two\" (f1290; 1278-89 = handle): the old cane on the newel post, cobweb thick as a hammock",
+     "hold": 0.05
+    },
+    {
+     "at": 1324,
+     "pos": [
+      181.05,
+      -2.55,
+      0.5
+     ],
+     "aim": [
+      181.25,
+      -0.45,
+      0.9
+     ],
+     "lens": 24,
+     "subject": "knee",
+     "framing": "F",
+     "purpose": "ROW 32 the MAN from the TABLE (S4 v3 B7/C7: NO waist-down crop): low camera, the patient WHOLE head to feet at the foot of the stair, three big cartoon plasters on his line knee (S4 v4b: the camera STOPS on the empty stair foot at 1324, he BOUNDS in from the left in one leap 1327-1330: no edge slice during the move)",
+     "travel": 1.1,
+     "hold": 0.35,
+     "creep": 0.0015
+    },
+    {
+     "at": 1418,
+     "pos": [
+      180.42,
+      0.38,
+      2.05
+     ],
+     "aim": [
+      181.4,
+      2.5,
+      2.42
+     ],
+     "lens": 20,
+     "subject": "dial",
+     "framing": "M",
+     "purpose": "ROW 33-34: one long eased rise FOLLOWING him up the flight (three springy strides), rest WIDE on him beside the pain dial: the needle swings red -> green",
+     "travel": 2.35,
+     "hold": 0.55,
+     "creep": 0.0015,
+     "via": [
+      [
+       180.85,
+       -0.75,
+       1.3
+      ]
+     ],
+     "aim_via": [
+      [
+       181.3,
+       1.3,
+       1.5
+      ]
+     ]
+    },
+    {
+     "at": 1468,
+     "pos": [
+      180.55,
+      -3.6,
+      2.35
+     ],
+     "aim": [
+      181.25,
+      0.5,
+      1.2
+     ],
+     "lens": 20,
+     "subject": "climbers",
+     "framing": "W",
+     "purpose": "ROW 35 TWIST (S4 v3 B8): the pull back starts on \"groups\" and lands EARLY (1468) on the wide: him on top, the three climbers whole in step below; a slow creep through the short dissolve (S4 v4b: travel .9 s, lanes 1.0/.55/.8: each climber crosses the frame edge in <= 3 f)",
+     "travel": 0.9,
+     "hold": 0.6,
+     "creep": 0.0015
+    }
+   ]
+  },
+  {
+   "id": "off",
+   "place": "off",
+   "stations": [
+    {
+     "at": 1482,
+     "pos": [
+      120.18,
+      0.35,
+      1.45
+     ],
+     "aim": [
+      120.15,
+      2.4,
+      1.32
+     ],
+     "lens": 22,
+     "subject": "charts",
+     "framing": "M",
+     "purpose": "ROW 36 out of the dissolve: the light-box chart with HIM whole beside it; a slow pull back starts at once",
+     "hold": 0.27,
+     "creep": 0,
+     "drift": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "at": 1548,
+     "pos": [
+      120.18,
+      -0.3,
+      1.45
+     ],
+     "aim": [
+      120.14,
+      2.4,
+      1.25
+     ],
+     "lens": 20,
+     "subject": "ruler",
+     "framing": "M",
+     "purpose": "ROW 36-37: slow eased pull back as the three red bars pop; rest on HIM, the light box and the ruler in his round fist: it lands, IMPACT f1560-61, light band",
+     "travel": 1.9,
+     "hold": 0.8,
+     "creep": 0.0015
+    },
+    {
+     "at": 1640,
+     "pos": [
+      120.42,
+      0.15,
+      1.3
+     ],
+     "aim": [
+      120.5,
+      2.0,
+      1.12
+     ],
+     "lens": 22,
+     "subject": "case",
+     "framing": "M",
+     "purpose": "ROW 38-39: slow truck left with his look to the light grey scope case BESIDE him; he turns back to the bars on \"wasn't\", the lid shuts, grey dust puff (bright, S5 dissolves in)",
+     "travel": 2.4,
+     "hold": 1.0,
+     "creep": 0.0015
+    }
+   ]
+  }
+ ]
+}

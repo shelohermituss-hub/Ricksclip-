@@ -1,0 +1,15 @@
+line  start   end   starts at
+ 1    0.00    4.42  He nailed
+ 2    4.76    8.86  Then he ran
+ 3    9.10   13.70  The fat priest
+ 4   14.02   15.28  But he wouldn't
+ 5   15.46   21.94  On the other hill
+ 6   22.12   25.68  The whole market
+ 7   25.96   31.00  Then the storms
+ 8   31.32   36.12  The big bell
+ 9   36.32   42.18  In summer
+10   42.50   46.46  One autumn
+11   46.76   51.42  You see
+12   51.74   58.06  One bolt
+13   58.32   63.48  The other found
+14   63.74   68.20  And the priest

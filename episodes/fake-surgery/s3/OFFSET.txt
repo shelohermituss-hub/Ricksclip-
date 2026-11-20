@@ -1,0 +1,1 @@
+S3 = film 25.90-42.70 s = frames 777-1281; stretch frame = FILM frame (no offset). Plan rows 21-30 (script lines 7-9). Takes: off f765-926 (rows 21-23, NI), pre f927-1086 (rows 24-26, CO; HARD CUT at 927 = 30.9 s), orin f1087-1123 + crt f1124-1225 (rows 27-29, OR), flood f1226-1293 (rows 29-30, OR flooded).

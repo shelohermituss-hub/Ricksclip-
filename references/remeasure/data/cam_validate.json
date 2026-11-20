@@ -1,0 +1,50 @@
+{
+ "static": {
+  "A_median_px_f": 0.018,
+  "B_median_px_f": 0.013,
+  "C_median": 0.035,
+  "zoom_measured_pct_f": -0.0,
+  "A_band": "hold",
+  "B_band": "hold"
+ },
+ "static + moving character": {
+  "A_median_px_f": 0.02,
+  "B_median_px_f": 0.012,
+  "C_median": 0.038,
+  "zoom_measured_pct_f": 0.0003,
+  "A_band": "hold",
+  "B_band": "hold"
+ },
+ "pan 0.5 px/f (= 1.0 @720)": {
+  "A_median_px_f": 0.996,
+  "B_median_px_f": 0.995,
+  "C_median": 2.993,
+  "zoom_measured_pct_f": -0.0015,
+  "A_band": "drift",
+  "B_band": "drift"
+ },
+ "pan 2 px/f (= 4 @720)": {
+  "A_median_px_f": 3.97,
+  "B_median_px_f": 3.966,
+  "C_median": 11.886,
+  "zoom_measured_pct_f": 0.0064,
+  "A_band": "move",
+  "B_band": "move"
+ },
+ "push-in 0.14 %/f (motion.md quiet median)": {
+  "A_median_px_f": 0.712,
+  "B_median_px_f": 0.052,
+  "C_median": 0.156,
+  "zoom_measured_pct_f": 0.0954,
+  "A_band": "drift",
+  "B_band": "hold"
+ },
+ "push-in 0.05 %/f (activity floor)": {
+  "A_median_px_f": 0.215,
+  "B_median_px_f": 0.018,
+  "C_median": 0.055,
+  "zoom_measured_pct_f": 0.0279,
+  "A_band": "hold",
+  "B_band": "hold"
+ }
+}

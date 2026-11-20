@@ -1,0 +1,22 @@
+frame_checks: s3/film.json  439 of 1294 frames (rests f0-862 f879-889 f902-926 f927-973 f992-1020 f1030-1053 f1100-1112 f1124-1183 f1208-1225 f1226-1243 f1254-1293)  cast surgeonOff, surgeon, nurse, patient, g1, g2, patientR
+result who            rest         check         number    worst at  bad frames what                                                      
+WARN   patientR       f1124-1183   body_in_mesh  2 %       f1156     60/60      inside drape_chest_fold: torso-hips-thighs 1 %, legs 5 %,~
+WARN   surgeon        f1124-1183   body_in_mesh  5 %       f1183     60/60      inside CylinderGeometry: torso-hips-thighs 5 %, legs 0 %,~
+WARN   g1             f927-973     body_in_mesh  2 %       f958      47/47      inside corridor_set/bay_far_wall_bumper_rail: torso-hips-~
+WARN   surgeonOff     f0-862       slide         2.9 %     f834      28/85      the planted foot slides 2.9 cm per frame across the pictu~
+WARN   surgeonOff     f902-926     body_in_mesh  1 %       f903      21/25      inside office_set/desk_top: torso-hips-thighs 1 %, legs 0~
+WARN   patientR       f1208-1225   body_in_mesh  0 %       f1208     18/18      inside drape_chest_fold: torso-hips-thighs 0 %, legs 0 %,~
+WARN   patientR       f1226-1243   body_in_mesh  0 %       f1241     18/18      inside drape_chest_fold: torso-hips-thighs 0 %, legs 0 %,~
+WARN   surgeonOff     f890-901 mo~ slide         1.9 %     f901      5/7        the planted foot slides 1.9 cm per frame across the pictu~
+WARN   patientR       f1244-1253 ~ body_in_mesh  0 %       f1253     5/6        inside drape_chest_fold: torso-hips-thighs 0 %, legs 0 %,~
+WARN   surgeonOff     f863-878 mo~ slide         1.4 %     f865      3/9        the planted foot slides 1.4 cm per frame across the pictu~
+WARN   surgeonOff     f879-889     body_in_mesh  2 %       f882      3/11       inside office_set/locker_3/locker_body: torso-hips-thighs~
+WARN   surgeonOff     f890-901 mo~ body_in_mesh  1 %       f900      3/7        inside office_set/desk_top: torso-hips-thighs 1 %, legs 0~
+WARN   surgeon        f1184-1207 ~ body_in_mesh  47 %      f1188     3/9        inside table_frame: torso-hips-thighs 47 %, legs 0 %, 14 ~
+WARN   patientR       f1254-1293   body_in_mesh  0 %       f1254     3/28       inside drape_chest_fold: torso-hips-thighs 0 %, legs 0 %,~
+WARN   surgeonOff     f879-889     slide         11.3 %    f880      2/11       the planted foot slides 11.3 cm per frame across the pict~
+WARN   surgeonOff     f902-926     slide         1.9 %     f902      2/25       the planted foot slides 1.9 cm per frame across the pictu~
+WARN   patientR       f1184-1207 ~ body_in_mesh  1 %       f1184     2/13       inside drape_chest_fold: torso-hips-thighs 1 %, legs 5 %,~
+WARN   g1             f974-991 mo~ body_in_mesh  2 %       f974      1/1        inside corridor_set/bay_far_wall_bumper_rail: torso-hips-~
+WARN   surgeon        f1184-1207 ~ slide         1.3 %     f1198     1/11       the planted foot slides 1.3 cm per frame across the pictu~
+0 FAIL, 19 WARN, 132 PASS (50.7 s, scan 35.1 s)  ->  <skill folder>\episodes\fake-surgery\s3\out\frame_checks.md

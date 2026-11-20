@@ -1,0 +1,14 @@
+{
+ "duration_s": 2.56,
+ "words_heard": 7,
+ "words_script": 232,
+ "words_per_s_overall": 2.73,
+ "words_per_s_talking": 3.65,
+ "sentence_gap_median": 0.34,
+ "longest_gap": 0.34,
+ "gaps_over_0_5": 0,
+ "pause_share_pct": 13.3,
+ "lead_in_s": 0.0,
+ "tail_s": 0.3,
+ "text": "One autumn night, they got to one."
+}

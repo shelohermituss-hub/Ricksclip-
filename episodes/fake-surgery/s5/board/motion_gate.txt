@@ -1,0 +1,36 @@
+sg_slap3 [34]  twos 0   linear 0  stops 3 no_settle 0  creep 0  dps 12.8  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":205.03,"leg_stretch_px":4.77,"off_built_ground_px":0}
+   snap slap 3 "fixed" replay          f1708-1720  47 / 92 / 99 / 100 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold dead still after the pat         f1745-2209  max 0 px/f
+pt_recline5 [34]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":null,"leg_stretch_px":null,"off_built_ground_px":0}
+pt_smile5 [34]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":null,"leg_stretch_px":null,"off_built_ground_px":0}
+boy_sit [side]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":0,"leg_stretch_px":null,"off_built_ground_px":0}
+   hold FROZEN mid-wail                  f1897-2209  max NaN px/f
+boy_run [side]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 30  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":1.85,"off_built_ground_px":0}
+   hold before the run (hidden)          f0-1904  max 0 px/f
+nr_kneel [side]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":0,"leg_stretch_px":null,"off_built_ground_px":0}
+   snap slap "plasters"                f1841-1857  47 / 92 / 99 / 100 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold kind, still                      f1880-2209  max NaN px/f
+nr_watch [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 4.7  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0.3,"off_built_ground_px":0}
+   hold still                            f1807-2209  max 0 px/f
+sg_stamp [front]  twos 0   linear 0  stops 3 no_settle 0  creep 0  dps 6.2  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":22.99,"leg_stretch_px":2.84,"off_built_ground_px":0}
+   snap SLAM "stopped"                 f1975-1978  48 / 93 / 100 / 100 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold still                            f2030-2209  max 0 px/f
+nr_tray [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 5.2  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":1.01,"off_built_ground_px":0}
+   snap tray up "right"                f2093-2108  16 / 47 / 78 / 92 / 97 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold still                            f2112-2209  max 0 px/f
+sg_mask [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 3.9  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0.06,"off_built_ground_px":0}
+   hold hidden                           f2124-2209  max 0 px/f
+sg_shrug [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 26.6  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":4.53,"off_built_ground_px":0}
+   snap shrug "operation"              f2133-2139  16 / 48 / 79 / 93 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold at the door                      f2170-2209  max 0 px/f
+sg_fold [front]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 4.5  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":16.41,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold CALM hold                        f0-2191  max 0 px/f
+   hold last frame                       f2206-2209  max 0 px/f
+vet_bound [side]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 11.3  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0.77,"arm_over_reach_px":0,"leg_stretch_px":14.68,"off_built_ground_px":0}
+   snap foot slams "missed"            f2191-2202  29 / 56 / 60 / 89 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold last                             f2208-2209  max 0 px/f
+kid_ride [front]  twos 0   linear 0  stops 0 no_settle 0  creep 0  dps 0  contact {"knee_off_spot_px":0,"planted_foot_slide_px":null,"arm_over_reach_px":60.4,"leg_stretch_px":null,"off_built_ground_px":0}
+climb [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 8.5  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":11.76,"off_built_ground_px":0}
+   hold last                             f2208-2209  max 0 px/f
+nr_door [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 4.5  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0.3,"off_built_ground_px":0}
+   hold still                            f2203-2209  max 0 px/f

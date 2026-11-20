@@ -1,0 +1,233 @@
+{
+ "Rick Pink Cell": {
+  "frames": 1957,
+  "cut_frames": 0,
+  "hold_pct": 10.9,
+  "drift_pct": 37.9,
+  "move_pct": 51.3,
+  "speed_median": 2.11,
+  "speed_p90": 28.13,
+  "moves_per_10s": 5.98,
+  "move_peak_median": 29.8,
+  "move_peak_p25_p75": [
+   14.1,
+   48.6
+  ],
+  "attack_median_f": 5.0,
+  "release_median_f": 7.0,
+  "quiet_zoom_active_pct": 73.9,
+  "quiet_zoom_pushin_pct": 77.1,
+  "quiet_zoom_rate_median": 0.18,
+  "hf_residual_median_px": 0.151
+ },
+ "Rick Crash Tree": {
+  "frames": 1783,
+  "cut_frames": 0,
+  "hold_pct": 8.3,
+  "drift_pct": 29.6,
+  "move_pct": 62.1,
+  "speed_median": 3.06,
+  "speed_p90": 24.38,
+  "moves_per_10s": 9.76,
+  "move_peak_median": 19.3,
+  "move_peak_p25_p75": [
+   13.5,
+   33.3
+  ],
+  "attack_median_f": 5.0,
+  "release_median_f": 5.5,
+  "quiet_zoom_active_pct": 68.8,
+  "quiet_zoom_pushin_pct": 77.1,
+  "quiet_zoom_rate_median": 0.197,
+  "hf_residual_median_px": 0.412
+ },
+ "Rick Cart Army": {
+  "frames": 2005,
+  "cut_frames": 0,
+  "hold_pct": 8.7,
+  "drift_pct": 20.5,
+  "move_pct": 70.8,
+  "speed_median": 5.62,
+  "speed_p90": 23.47,
+  "moves_per_10s": 9.88,
+  "move_peak_median": 17.6,
+  "move_peak_p25_p75": [
+   10.5,
+   27.9
+  ],
+  "attack_median_f": 6.5,
+  "release_median_f": 6.0,
+  "quiet_zoom_active_pct": 66.7,
+  "quiet_zoom_pushin_pct": 78.1,
+  "quiet_zoom_rate_median": 0.204,
+  "hf_residual_median_px": 0.29
+ },
+ "Rick Ancient Jar": {
+  "frames": 1945,
+  "cut_frames": 0,
+  "hold_pct": 9.5,
+  "drift_pct": 23.2,
+  "move_pct": 67.2,
+  "speed_median": 4.15,
+  "speed_p90": 19.78,
+  "moves_per_10s": 7.4,
+  "move_peak_median": 14.9,
+  "move_peak_p25_p75": [
+   8.8,
+   29.1
+  ],
+  "attack_median_f": 7.5,
+  "release_median_f": 7.0,
+  "quiet_zoom_active_pct": 76.3,
+  "quiet_zoom_pushin_pct": 56.2,
+  "quiet_zoom_rate_median": 0.298,
+  "hf_residual_median_px": 0.175
+ },
+ "Rick Railroads": {
+  "frames": 1955,
+  "cut_frames": 0,
+  "hold_pct": 3.0,
+  "drift_pct": 16.9,
+  "move_pct": 80.2,
+  "speed_median": 7.13,
+  "speed_p90": 27.53,
+  "moves_per_10s": 10.9,
+  "move_peak_median": 20.5,
+  "move_peak_p25_p75": [
+   11.8,
+   30.9
+  ],
+  "attack_median_f": 7.0,
+  "release_median_f": 8.0,
+  "quiet_zoom_active_pct": 76.2,
+  "quiet_zoom_pushin_pct": 81.7,
+  "quiet_zoom_rate_median": 0.25,
+  "hf_residual_median_px": 0.723
+ },
+ "Rick Roller Coasters": {
+  "frames": 1895,
+  "cut_frames": 0,
+  "hold_pct": 7.5,
+  "drift_pct": 12.9,
+  "move_pct": 79.6,
+  "speed_median": 8.13,
+  "speed_p90": 22.7,
+  "moves_per_10s": 9.97,
+  "move_peak_median": 16.8,
+  "move_peak_p25_p75": [
+   11.6,
+   25.8
+  ],
+  "attack_median_f": 8.0,
+  "release_median_f": 7.0,
+  "quiet_zoom_active_pct": 66.1,
+  "quiet_zoom_pushin_pct": 68.4,
+  "quiet_zoom_rate_median": 0.369,
+  "hf_residual_median_px": 0.378
+ },
+ "OURS Lightning spear v2 (approved)": {
+  "frames": 2139,
+  "cut_frames": 0,
+  "hold_pct": 27.1,
+  "drift_pct": 25.6,
+  "move_pct": 47.3,
+  "speed_median": 1.67,
+  "speed_p90": 20.46,
+  "moves_per_10s": 10.24,
+  "move_peak_median": 24.7,
+  "move_peak_p25_p75": [
+   14.6,
+   33.3
+  ],
+  "attack_median_f": 4.0,
+  "release_median_f": 5.0,
+  "quiet_zoom_active_pct": 45.2,
+  "quiet_zoom_pushin_pct": 69.5,
+  "quiet_zoom_rate_median": 0.111,
+  "hf_residual_median_px": 0.289
+ },
+ "OURS Monopoly v1": {
+  "frames": 2345,
+  "cut_frames": 1,
+  "hold_pct": 5.8,
+  "drift_pct": 46.7,
+  "move_pct": 47.5,
+  "speed_median": 1.93,
+  "speed_p90": 26.35,
+  "moves_per_10s": 7.43,
+  "move_peak_median": 32.1,
+  "move_peak_p25_p75": [
+   20.6,
+   53.3
+  ],
+  "attack_median_f": 5.0,
+  "release_median_f": 5.5,
+  "quiet_zoom_active_pct": 79.2,
+  "quiet_zoom_pushin_pct": 94.0,
+  "quiet_zoom_rate_median": 0.139,
+  "hf_residual_median_px": 0.089
+ },
+ "OURS Elevator v2": {
+  "frames": 2190,
+  "cut_frames": 0,
+  "hold_pct": 18.3,
+  "drift_pct": 31.9,
+  "move_pct": 49.8,
+  "speed_median": 1.99,
+  "speed_p90": 27.87,
+  "moves_per_10s": 9.86,
+  "move_peak_median": 29.5,
+  "move_peak_p25_p75": [
+   18.0,
+   45.4
+  ],
+  "attack_median_f": 5.0,
+  "release_median_f": 5.0,
+  "quiet_zoom_active_pct": 58.8,
+  "quiet_zoom_pushin_pct": 82.9,
+  "quiet_zoom_rate_median": 0.183,
+  "hf_residual_median_px": 0.135
+ },
+ "OURS Fake surgery v1": {
+  "frames": 2229,
+  "cut_frames": 1,
+  "hold_pct": 17.1,
+  "drift_pct": 38.6,
+  "move_pct": 44.3,
+  "speed_median": 1.4,
+  "speed_p90": 22.78,
+  "moves_per_10s": 9.3,
+  "move_peak_median": 27.9,
+  "move_peak_p25_p75": [
+   17.3,
+   39.6
+  ],
+  "attack_median_f": 4.0,
+  "release_median_f": 4.0,
+  "quiet_zoom_active_pct": 67.6,
+  "quiet_zoom_pushin_pct": 90.3,
+  "quiet_zoom_rate_median": 0.146,
+  "hf_residual_median_px": 0.102
+ },
+ "OURS Braking lines v2": {
+  "frames": 2244,
+  "cut_frames": 1,
+  "hold_pct": 26.0,
+  "drift_pct": 20.7,
+  "move_pct": 53.4,
+  "speed_median": 2.65,
+  "speed_p90": 22.89,
+  "moves_per_10s": 11.51,
+  "move_peak_median": 26.3,
+  "move_peak_p25_p75": [
+   20.6,
+   33.1
+  ],
+  "attack_median_f": 4.0,
+  "release_median_f": 5.0,
+  "quiet_zoom_active_pct": 45.5,
+  "quiet_zoom_pushin_pct": 87.6,
+  "quiet_zoom_rate_median": 0.161,
+  "hf_residual_median_px": 0.43
+ }
+}

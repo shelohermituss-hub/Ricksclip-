@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+*.pyc
+# rebuilt by tools/cloud_setup.sh (absolute paths inside)
+templates/sound_kit/library_index.csv
+# rebuilt from film.json in minutes (FILE_GUIDE.md): frame folders and plan bakes
+frames/
+frames_*/
+render_*/
+out/plan/
+*.blend1
