@@ -3,7 +3,13 @@
 The files are NOT in git (`.gitignore`: `episodes/*/assets/**`, this file excepted). Download again from the URL
 (Sketchfab: `GET https://api.sketchfab.com/v3/models/<uid>/download` -> `glb.url`, through the proxy, no key; Poly Haven: `https://api.polyhaven.com/files/<id>`).
 Licence rule: CC0, CC-BY or Sketchfab Free Standard only; no NonCommercial, no ShareAlike. Nothing was bought.
-Used so far ONLY in test stills (`sets/_asset_test/`, `props/ASSET_TEST.jpg`), not in the film.
+USED IN THE FILM (CB 2026-11-20): alf_1940s (the hero truck), spray_gun, air_compressor and the three Poly Haven files, rebuilt for the story by `assets_prod/build_assets.sh` (see PROPS.md). The Pierce and Ward files stay test-only.
+
+FINAL CREDIT LINES (YOUTUBE.md):
+- "FREE 1940s US Fire Truck (American LaFrance)" by robinmikart (sketchfab.com/3d-models/9548e406e29e49e18a7ea39a4de1111d), CC BY 4.0 (creativecommons.org/licenses/by/4.0/), repainted and re-lettered
+- "Spray Gun" by Oleksii.Rozumnyi (sketchfab.com/3d-models/bbeebeb544e44045aa721f652ba2033a), CC BY 4.0, recoloured
+- "Air compressor" by TheAlex (sketchfab.com/3d-models/e0401b9109d9480dabedcefba5d7c1f2), CC BY 4.0, relabelled
+- HDRIs and concrete texture: Poly Haven (polyhaven.com), CC0
 
 | file | name / url | author | licence | size | what it is / used for | YOUTUBE.md credit line (only if it goes into the film) |
 |---|---|---|---|---|---|---|

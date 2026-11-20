@@ -47,7 +47,8 @@ def empty(name, loc, parent=root, part=None):
     if part: e['phfd_part'] = part
     return e
 def adopt(child, piv):   # move the mesh's origin to the pivot and hang it there (no parent-inverse: clean glTF nodes)
-    child.data.transform(Matrix.Translation(-piv.matrix_world.translation)); child.parent = piv; child.location = (0, 0, 0)
+    # piv hangs on root (identity): use piv.location, matrix_world is stale until a depsgraph update
+    child.data.transform(Matrix.Translation(-piv.location)); child.parent = piv; child.location = (0, 0, 0)
 
 # ---------------------------------------------------------------- 2. moving parts: wheels, driver's door, beacon
 WHEEL_PARENTS = ('Cylinder.158', 'Cylinder.164', 'Cylinder.159', 'Cylinder.172')
@@ -89,6 +90,9 @@ body = M['van_paint_2']; body.name = 'body_paint'; body['phfd_role'] = 'paint'
 B = bsdf(body); B.inputs['Base Color'].default_value = T.lin(T.RED); B.inputs['Metallic'].default_value = 0.0
 for l in list(B.inputs['Roughness'].links) + list(B.inputs['Metallic'].links): body.node_tree.links.remove(l)
 B.inputs['Roughness'].default_value = 0.3; B.inputs['Coat Weight'].default_value = 1.0; B.inputs['Coat Roughness'].default_value = 0.05
+for o in meshes:   # the asset's yellow tool box (taxi_paint) would put lemon on a red truck: it takes the body paint
+    for i, m in enumerate(o.data.materials):
+        if m and m.name == 'taxi_paint': o.data.materials[i] = body
 let = M['firetruck_writing']; let.name = 'letters_gold'; let['phfd_role'] = 'letters'
 L = bsdf(let); img = next(n for n in let.node_tree.nodes if n.type == 'TEX_IMAGE')
 img.image = bpy.data.images.load(os.path.join(TEX, 'truck_letters.png')); img.image.name = 'truck_letters'

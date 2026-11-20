@@ -88,13 +88,22 @@ for inp in ('Base Color', 'Metallic', 'Roughness'):
     for l in list(p.inputs[inp].links): alu.node_tree.links.remove(l)
 p.inputs['Base Color'].default_value = (0.80, 0.81, 0.83, 1); p.inputs['Metallic'].default_value = 1.0; p.inputs['Roughness'].default_value = 0.16
 blk = M['Plastic_black']; blk.name = 'gun_grip_black'
+grip_mat = M.new('gun_grip_rubber'); grip_mat.use_nodes = True; gp = bsdf(grip_mat)
+gp.inputs['Base Color'].default_value = (0.012, 0.012, 0.013, 1); gp.inputs['Roughness'].default_value = 0.5
+for o in ms:   # the handle below the body becomes a black grip (faces whose centre is under the body line and behind the trigger)
+    if not any(m.name in ('gun_aluminium', 'Metal') for m in o.data.materials): continue
+    o.data.materials.append(grip_mat); k = len(o.data.materials) - 1; n = 0
+    for f in o.data.polygons:
+        c = f.center
+        if c.z < 0.028 and c.x < 0.012 and c.z > mn.z + 0.012: f.material_index = k; n += 1
+    print('GRIP faces', o.name, n)
 tipv = [o.matrix_world @ v.co for o in ms for v in o.data.vertices if (o.matrix_world @ v.co).x > mx.x - 0.004]
 tip = sum(tipv, Vector()) / len(tipv)
 brass = next(o for o in ms if 'Metal_Brass' in [m.name for m in o.data.materials])
 inlet = min((v.co for v in brass.data.vertices), key=lambda v: v.z).copy()
 root = bpy.data.objects.new('SPRAY_GUN', None); sc.collection.objects.link(root)
 for o in ms: o.parent = root
-fl = flecks('lemon_flecks', ms, 140, 3, 0.0007, 0.0022, lambda c, n: c.x > -0.02 and (n.z > 0.2 or n.x > 0.3)); fl.parent = root
+fl = flecks('lemon_flecks', ms, 200, 3, 0.0005, 0.0013, lambda c, n: c.x > -0.02 and (n.z > 0.2 or n.x > 0.3)); fl.parent = root
 # the drip: a run down the nozzle's underside ending in a hanging drop
 bm = bmesh.new()
 for k in range(9):

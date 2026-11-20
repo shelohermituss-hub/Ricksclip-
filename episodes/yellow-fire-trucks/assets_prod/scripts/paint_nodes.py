@@ -88,7 +88,7 @@ def build_group(wear_img):
     wear = gi.outputs['wear']
     soot = b.m('MULTIPLY', b.m('MULTIPLY', R, b.m('SUBTRACT', 1.0, b.sstep(0.25, 1.0, z))), b.m('MULTIPLY', wear, 0.7))
     stain = b.m('MULTIPLY', b.m('MULTIPLY', G, b.m('LESS_THAN', z, 1.9)), b.m('MULTIPLY', wear, 0.55))
-    chips = b.m('MULTIPLY', b.m('MULTIPLY', b.m('GREATER_THAN', Bc, 0.5), b.m('LESS_THAN', z, 0.9)), b.m('GREATER_THAN', wear, 0.05))
+    chips = b.m('MULTIPLY', b.m('MULTIPLY', b.m('GREATER_THAN', Bc, 0.5), b.m('LESS_THAN', z, 0.9)), b.m('MULTIPLY', wear, 0.8))
     lighter = g.nodes.new('ShaderNodeMix'); lighter.data_type = 'RGBA'; lighter.blend_type = 'SCREEN'; lighter.inputs['Factor'].default_value = 0.35
     b.link(c, lighter.inputs[6]); lighter.inputs[7].default_value = (0.55, 0.53, 0.5, 1)
     c = b.mix(c, lighter.outputs[2], stain)

@@ -1,0 +1,11 @@
+# big binaries: rebuilt by build_assets.sh from the downloads (assets/ASSETS.md)
+out/*.glb
+out/*.blend
+out/*.blend1
+out/*.png
+build/
+logs/
+proof/tiles/
+proof/kit/stills/
+proof/kit/out/
+proof/kit/film_*.json

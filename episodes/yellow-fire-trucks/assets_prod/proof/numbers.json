@@ -1,0 +1,98 @@
+{
+ "BLENDER Cycles 32spp+OIDN: red, front 3/4": {
+  "sec": "11.7 s/frame (800x600 CPU)",
+  "edge_density": 0.0463,
+  "regions": 576,
+  "fine_regions": 535
+ },
+ "BLENDER Cycles 32spp+OIDN: half sprayed + masking + ribbon": {
+  "sec": "11.4 s/frame (800x600 CPU)",
+  "edge_density": 0.0556,
+  "regions": 558,
+  "fine_regions": 513
+ },
+ "BLENDER Cycles 32spp+OIDN: lemon": {
+  "sec": "11.5 s/frame (800x600 CPU)",
+  "edge_density": 0.0538,
+  "regions": 603,
+  "fine_regions": 557
+ },
+ "BLENDER Cycles 32spp+OIDN: dusk drain=1 (half)": {
+  "sec": "12.4 s/frame (800x600 CPU)",
+  "edge_density": 0.0548,
+  "regions": 552,
+  "fine_regions": 498
+ },
+ "BLENDER Cycles 32spp+OIDN: red, side": {
+  "sec": "10.9 s/frame (800x600 CPU)",
+  "edge_density": 0.0504,
+  "regions": 686,
+  "fine_regions": 633
+ },
+ "BLENDER Cycles 32spp+OIDN: half, side": {
+  "sec": "11.1 s/frame (800x600 CPU)",
+  "edge_density": 0.0614,
+  "regions": 630,
+  "fine_regions": 576
+ },
+ "BLENDER Cycles 32spp+OIDN: lemon, side": {
+  "sec": "10.7 s/frame (800x600 CPU)",
+  "edge_density": 0.0614,
+  "regions": 538,
+  "fine_regions": 485
+ },
+ "BLENDER Cycles 32spp+OIDN: dusk drain=1, side": {
+  "sec": "11.8 s/frame (800x600 CPU)",
+  "edge_density": 0.0489,
+  "regions": 684,
+  "fine_regions": 615
+ },
+ "BLENDER Cycles 32spp+OIDN: door lettering close-up": {
+  "sec": "20.7 s/frame (800x600 CPU)",
+  "edge_density": 0.1824,
+  "regions": 1152,
+  "fine_regions": 1040
+ },
+ "BLENDER Cycles 32spp+OIDN: spray gun alone": {
+  "sec": "10.2 s/frame (800x600 CPU)",
+  "edge_density": 0.0318,
+  "regions": 1155,
+  "fine_regions": 1124
+ },
+ "BLENDER Cycles 32spp+OIDN: compressor + air hose + gun": {
+  "sec": "10.6 s/frame (800x600 CPU)",
+  "edge_density": 0.0229,
+  "regions": 959,
+  "fine_regions": 932
+ },
+ "three.js KIT: SAME truck, same camera (half)": {
+  "sec": "1.0 s/frame (800x600, 2nd frame)",
+  "edge_density": 0.0944,
+  "regions": 1026,
+  "fine_regions": 945
+ },
+ "three.js KIT: gun in the cast's round fist": {
+  "sec": "1.2 s/frame (800x600, 2nd frame)",
+  "edge_density": 0.1529,
+  "regions": 673,
+  "fine_regions": 589
+ },
+ "BLENDER: lettering, 1:1 crop of the close-up": {
+  "sec": "20.7 s/frame (800x600 CPU)",
+  "edge_density": 0.1603,
+  "regions": 1074,
+  "fine_regions": 984
+ },
+ "BLENDER: sprayed edge, 4x crop of the side tile": {
+  "sec": "11.1 s/frame (800x600 CPU)",
+  "edge_density": 0.075,
+  "regions": 647,
+  "fine_regions": 551
+ },
+ "BLENDER: bell + bow, 4x crop of the half tile": {
+  "sec": "11.4 s/frame (800x600 CPU)",
+  "edge_density": 0.0893,
+  "regions": 936,
+  "fine_regions": 843
+ }
+}
