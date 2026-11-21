@@ -117,3 +117,26 @@ for y in range(512):
 for k in range(14):
     y = R.randint(20, 490); d.line([(0, y), (1024, y)], fill=(90, 170, 225), width=R.randint(1, 3))
 im = im.filter(ImageFilter.GaussianBlur(2)); im.save(os.path.join(OUT, 'xworld_bg.png')); print('TEX xworld_bg')
+
+# FIX 1 (2026-11-21): quilted mattress tile (1 UV = 0.34 m): mid-blue cushion, cyan diamond seams, white tuft buttons at the seam crossings
+im = Image.new('RGB', (256, 256), (63, 134, 200)); d = ImageDraw.Draw(im)
+for k in range(256):
+    for q in range(0, 256, 4):
+        pass
+for (a0, b0, a1, b1) in [(0, 0, 256, 256), (0, 256, 256, 0)]:
+    d.line([(a0, b0), (a1, b1)], fill=(127, 233, 255), width=7); d.line([(a0, b0), (a1, b1)], fill=(36, 92, 160), width=2)
+for (x, y) in [(0, 0), (256, 0), (0, 256), (256, 256), (128, 128)]:
+    d.ellipse([x - 15, y - 15, x + 15, y + 15], fill=(30, 80, 150)); d.ellipse([x - 9, y - 9, x + 9, y + 9], fill=(235, 252, 255))
+for k in range(60):   # stitch dashes along the seams
+    t = R.random(); x = int(t * 256); d.point((x, x), fill=(230, 252, 255)); d.point((x, 255 - x), fill=(230, 252, 255))
+im.filter(ImageFilter.GaussianBlur(.8)).save(os.path.join(OUT, 'quilt.png')); print('TEX quilt')
+# FIX 1: poster "BALANCED DIET" (food pyramid) for the wall left of the light box: the gag for the man who eats planes
+im = Image.new('RGB', (340, 480), (250, 247, 232)); d = ImageDraw.Draw(im)
+d.rectangle([0, 0, 340, 70], fill=(60, 130, 110)); f = font(34); w = d.textlength('BALANCED', font=f); d.text(((340 - w) / 2, 2), 'BALANCED', font=f, fill=(255, 255, 255))
+f2 = font(30); w = d.textlength('DIET', font=f2); d.text(((340 - w) / 2, 36), 'DIET', font=f2, fill=(255, 245, 200))
+rows = [((120, 180, 70), 4), ((240, 190, 60), 3), ((230, 150, 90), 2), ((200, 170, 120), 1)]
+for i, (c, n) in enumerate(rows):
+    y0 = 400 - i * 75; hw = 150 - i * 34; d.polygon([(170 - hw, y0 + 70), (170 + hw, y0 + 70), (170 + hw - 34, y0), (170 - hw + 34, y0)], fill=c, outline=(80, 80, 80))
+    for k in range(n): x = 170 - (n - 1) * 30 + k * 60; d.ellipse([x - 18, y0 + 18, x + 18, y0 + 54], fill=tuple(int(v * .7) for v in c), outline=(60, 60, 60), width=2)
+d.text((14, 455), 'Grenoble hospital health board', font=font(15), fill=(90, 90, 90))
+im.save(os.path.join(OUT, 'poster_diet.png')); print('TEX poster')

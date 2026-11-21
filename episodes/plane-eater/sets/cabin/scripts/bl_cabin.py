@@ -16,11 +16,12 @@ M = dict(
   meal=B.pmat('meal_tray_greybeige', '#b9b3a3', .55), foil=B.pmat('meal_foil', '#c8cbcf', .25, metal=.85, bump=.6), stew=B.pmat('meal_stew_grey', '#8f8a7c', .6, bump=.5),
   pea=B.pmat('meal_pea_olive', '#9a9e7e', .5), roll=B.pmat('meal_roll_pale', '#d8c9a4', .7, bump=.4), cup=B.pmat('cup_clear', '#e8eef2', .1, alpha=.45), napkin=B.pmat('napkin_white', '#eeeeea', .9),
   carpet=B.pmat('carpet_blue', '#ffffff', .95, img=T('carpet.png'), bump=.5), wall=B.pmat('sidewall_cream', '#ecebe4', .45, coat=.2), bezel=B.pmat('window_bezel', '#f3f2ec', .35, coat=.3),
-  shade=B.pmat('window_shade', '#f5f4ef', .4), bin=B.pmat('bin_door_cream', '#efeee7', .4, coat=.3), seam=B.pmat('seam_grey', '#9a9a98', .5), cove=B.pmat('cove_light', '#ffffff', .5, emit='#fff6e8', es=5.),
+  shade=B.pmat('window_shade', '#f5f4ef', .4), bin=B.pmat('bin_door_cream', '#efeee7', .4, coat=.3), seam=B.pmat('seam_grey', '#9a9a98', .5), cove=B.pmat('cove_light', '#ffffff', .5, emit='#fff6e8', es=2.),
   psu=B.pmat('psu_grey', '#dad9d3', .4), lamp=B.pmat('reading_lamp', '#ffffff', .2, emit='#fff3dc', es=2.), sign=B.pmat('sign_lit_amber', '#ffe7a8', .3, emit='#ffd98a', es=2.5),
   ink=B.pmat('ink_dark', '#24242a', .5), glass=B.pmat('window_glass', '#e0f0ff', .03, alpha=.1), card=B.pmat('safety_card', '#ffffff', .6, img=T('card.png')),
   wing=B.pmat('wing_paint_white', '#e6e9ee', .3, metal=.35, coat=.6), wing_dark=B.pmat('wing_walkway_grey', '#9aa2ad', .5, metal=.3), alu=B.pmat('bite_alu_cut', '#c8ccd0', .28, metal=1.),
-  navlight=B.pmat('nav_light_green', '#3cf08a', .2, emit='#3cf08a', es=6.), cloud=B.pmat('cloud_white', '#ffffff', .9, emit='#ffffff', es=.25), sky=B.pmat('sky_above_clouds', '#ffffff', 1., emit='#ffffff', es=1., img=T('sky.png')),
+  navlight=B.pmat('nav_light_green', '#3cf08a', .2, emit='#3cf08a', es=6.), cloud=B.pmat('cloud_white', '#ffffff', .9, emit='#dfeaff', es=.12), sky=B.pmat('sky_above_clouds', '#ffffff', 1., emit='#ffffff', es=1., img=T('sky.png')),
+  navy=B.pmat('cover_letters_navy', '#1d3461', .5),
   ceiling=B.pmat('ceiling_panel', '#f4f3ee', .5), engine=B.pmat('nacelle_white', '#eef0f3', .25, metal=.4, coat=.6), intake=B.pmat('intake_chrome', '#d0d5da', .15, metal=1.),
 )
 X0, X1, PITCH = -2.4, 3.2, .8
@@ -98,6 +99,7 @@ def seat(tag, x, y, facing=1, tray_down=False):
     g.append(B.box(tag + '_back', (.13, .44, .66), (x - .25, y, .84), M['fabric'], bev=.05, seg=4, rot=(0, math.radians(-12), 0)))
     g.append(B.box(tag + '_headrest', (.13, .40, .22), (x - .32, y, 1.24), M['fabric'], bev=.05, seg=4, rot=(0, math.radians(-12), 0)))
     g.append(B.box(tag + '_cover', (.02, .38, .2), (x - .245, y, 1.24), M['cover'], bev=.008, rot=(0, math.radians(-12), 0)))      # white headrest cover (front)
+    g.append(B.text(tag + '_cover_txt', 'AIR VILLEBRUNE', (x - .232, y, 1.27), .026, M['navy'], rot=(math.pi / 2, math.radians(-12), math.pi / 2), depth=.002))
     g.append(B.box(tag + '_cover_top', (.15, .38, .02), (x - .31, y, 1.35), M['cover'], bev=.008, rot=(0, math.radians(-12), 0)))
     g.append(B.box(tag + '_shell', (.05, .46, .8), (x - .33, y, .78), M['shell'], bev=.02, rot=(0, math.radians(-12), 0)))           # rear plastic shell
     g.append(B.box(tag + '_pocket', (.025, .36, .2), (x - .37, y, .45), M['shell'], bev=.01, rot=(0, math.radians(-12), 0)))
@@ -122,19 +124,19 @@ for r in ROWS:
     for y in (1.46, .94, .42): armrest('arm_%d_%d' % (int(r * 10), int(y * 100)), r, y)
     for y in (-.19, -.71, -1.23, -1.75 + .02): armrest('arm_%d_%d' % (int(r * 10), int(y * 100)), r, y)
 # ---------------------------------------------------------------- Michel's tray table (on the back of seat 8A in front): whole + bitten
-TX, TY, TZ = .8 - .48, 1.2, .74
+TX, TY, TZ = .8 - .52, 1.2, .76
 def tray_table(name):
     t = B.box(name, (.30, .42, .025), (TX, TY, TZ), M['tray'], bev=.01, seg=3)
     B.box(name + '_recess', (.22, .32, .002), (TX, TY, TZ + .0125), B.pmat('tray_recess', '#cfccc1', .5), bev=0).parent = None
     return t
 tt = tray_table('tray_table')
 tb = B.box('tray_table_bitten', (.30, .42, .025), (TX, TY, TZ), M['tray'], bev=.0, seg=3)
-B.apply_mods(tb); B.bite(tb, (TX - .16, TY - .05, TZ), .07, axis='Z', teeth=5, depth=.2)
+B.apply_mods(tb); B.bite(tb, (TX - .16, TY - .22, TZ), .09, axis='Z', teeth=5, depth=.2)
 B.finish(tb, None, bev=.006, seg=2); tb.hide_render = True; tb.hide_set(True)
 for s in (-1, 1):
     B.box('tray_arm_%d' % s, (.34, .02, .03), (TX + .17, TY + s * .2, TZ - .01), M['frame'], bev=.008)
 # ---------------------------------------------------------------- THE GREY MEAL (the one dull colour, on purpose)
-MX, MY, MZ = TX - .01, TY + .02, TZ + .0125
+MX, MY, MZ = TX + .02, TY + .05, TZ + .0125
 B.box('meal_tray', (.24, .34, .02), (MX, MY, MZ + .01), M['meal'], bev=.008)
 B.box('meal_dish_main', (.13, .17, .035), (MX + .03, MY + .07, MZ + .035), M['foil'], bev=.012)
 B.box('meal_stew', (.115, .155, .01), (MX + .03, MY + .07, MZ + .05), M['stew'], bev=.004)
@@ -170,8 +172,12 @@ for i in range(NS):
     for k in range(rowlen - 1): a_ = i * rowlen + k; fs.append((a_, a_ + 1, a_ + rowlen + 1, a_ + rowlen))
 fs.append(tuple(range(rowlen))); fs.append(tuple(NS * rowlen + k for k in range(rowlen))[::-1])
 wing = B.mesh('wing_left', vs, fs, M['wing'])
-BITE_Y = 6.4; ble = RX_LE - (BITE_Y - ROOT_Y) * math.tan(SWEEP)
-B.bite(wing, (ble + .25, BITE_Y, Z_ROOT + (BITE_Y - ROOT_Y) * math.tan(DIH)), .75, axis='Z', teeth=6, depth=1.2)
+CW = Vector((-.12, .42, 1.03)); WC = Vector((win_x(0), wall_y(WIN_Z), WIN_Z - .04)); DV = (WC - CW)
+def _ray_x(y): return CW.x + DV.x * (y - CW.y) / DV.y
+BITE_Y = min((y / 20 for y in range(40, 200)), key=lambda y: abs(_ray_x(y) - (RX_LE - (y - ROOT_Y) * math.tan(SWEEP))))
+print('BITE_Y', round(BITE_Y, 2), 'ray z', round(CW.z + DV.z * (BITE_Y - CW.y) / DV.y, 2), 'wing z', round(Z_ROOT + (BITE_Y - ROOT_Y) * math.tan(DIH), 2))
+ble = RX_LE - (BITE_Y - ROOT_Y) * math.tan(SWEEP)
+B.bite(wing, (ble + .3, BITE_Y, Z_ROOT + (BITE_Y - ROOT_Y) * math.tan(DIH)), .75, axis='Z', teeth=6, depth=1.2)
 for k, y in enumerate((3.2, 5.0, 7.8, 10.5, 13.0)):     # flap-track fairings (canoes) under the trailing edge
     p = wing_pt(y, .85, 0); B.box('flap_canoe_%d' % k, (1.0, .14, .16), (p[0] - .25, y, p[2] - .07), M['wing'], bev=.06, seg=3)
 for k in range(7):                                    # flap / aileron seam lines and walkway on top
@@ -196,14 +202,14 @@ for k in range(70):                                   # the cloud deck below: st
         r = R.uniform(5, 14); c = B.sphere('cloud_%d_%d' % (k, q), r, (cx + R.uniform(-12, 12), cy + R.uniform(-8, 8), -45 + R.uniform(0, r * .5)), M['cloud'], seg=12, rings=8, scale=(1.4, 1, .7))
         c.visible_shadow = False
 # ---------------------------------------------------------------- light: hard white sun above the clouds, sky fill, cove fill inside
-B.world(sc, '#1a86f2', '#cfe0ff', .9)
-B.light('sun', 'SUN', (0, 10, 10), '#fff6e8', 5.5, rot=B.aim_rot((-3, 10, 7), (0, 0, 0)), angle=1.2)
-for s in (1, -1): B.light('cove_fill_%d' % s, 'AREA', ((X0 + X1) / 2, s * .8, 2.15), '#fff6ec', 140, size=5., size_y=.4)
-B.light('window_fill', 'AREA', (win_x(0), 1.6, WIN_Z), '#f2f7ff', 25, rot=(math.radians(90), 0, math.radians(180)), size=.5, size_y=.6)
+B.world(sc, '#1a86f2', '#cfe0ff', .3)
+B.light('sun', 'SUN', (0, 10, 10), '#fff6e8', 4.0, rot=B.aim_rot((-3, 10, 7), (0, 0, 0)), angle=1.2)
+for s in (1, -1): B.light('cove_fill_%d' % s, 'AREA', ((X0 + X1) / 2, s * .8, 2.15), '#fff6ec', 28, size=5., size_y=.4)
+B.light('window_fill', 'AREA', (win_x(0), 1.6, WIN_Z), '#f2f7ff', 8, rot=(math.radians(90), 0, math.radians(180)), size=.5, size_y=.6)
 CAMS = {
- 'CAM_TWO': dict(pos=(.55, -.6, 1.22), aim=(-.05, 1.3, .92), lens=18),
- 'CAM_TRAY': dict(pos=(.05, .62, 1.18), aim=(MX + .02, MY + .02, MZ), lens=24),
- 'CAM_WINDOW': dict(pos=(-.15, .3, 1.08), aim=(win_x(0) + .15, 1.9, .86), lens=20),
+ 'CAM_TWO': dict(pos=(.5, .12, 1.3), aim=(-.05, 1.05, .92), lens=18),
+ 'CAM_TRAY': dict(pos=(.02, .78, 1.12), aim=(MX + .02, MY - .08, MZ), lens=26),
+ 'CAM_WINDOW': dict(pos=tuple(CW), aim=tuple(WC + (WC - CW).normalized() * 1.5), lens=24),
 }
 for k, v in CAMS.items(): B.cam(k, v['pos'], v['aim'], v['lens'])
 B.render_setup(sc)

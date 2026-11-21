@@ -10,22 +10,23 @@
 ## Layout (metres, X east, Y north): Cessna spot origin, nose south. Hangar 20 x 16 m (y 9..25, eave 6.0, ridge 8.2), doors 4 x 3.85 m half open (gap 7.4 m).
   Table (3.6, -.55) under the left wing; chair south of it; hazard plaque (8.75, 8.94, 1.81) on the east pier behind the table in V3; poster west pier; deck chair (-6.4, 5.4)
   facing SE; AVGAS pump (-11, 2); drums (11.3, 8); windsock (-15.5, -7); near tree (8.2, -5.2); strip y -26..-48; fence y -56 and x 34 (gate at y -6); far fields, 14 hills.
-## Numbers (proof/numbers.json, 540x960, 16 spp + OIDN, outline on, NO grade). Sec per still: 44 / 49 / 43 / 26.
+## FIX 2 (lead round, 2026-11-21): concrete #a7a6a3 (float-blurred mottling + warm/cool drift; joint bed under the slabs), exposure -0.3 (sky lifted 2**.3),
+  grade_rick DAY on the proofs (apron_sheet.py), table moved to (3.4, -.32) = cloth top fully in the wing shade (ray-cast to the sun, 9/9 points), near tree to (7, -4.9)
+  (dapple on the concrete beside the table), cumulus low in the camera sky (style-test world nodes, apron_api._world), contact discs under legs/wheels/drums/chairs
+  (contact_*, Blender only; kit hides them), far trees lod mid with irregular clumps + a 40-blob tree line at 160-230 m before softer, lower hills.
+## Triangles now: total 997,733 (< 1.5 M) = NEAR 115,126 / MID 127,816 / FAR 696,004 / GRASS 57,347 / AIR 1,440.
+## Numbers (proof/numbers.json, 540x960, 16 spp + OIDN, graded, outline). about 30 s per still.
 | still | edge | regions | colours>1% | mean | p1 | p99 | density_check --day |
 |---|---|---|---|---|---|---|---|
-| V1 hook row 1 | .095 | 819 | 38 | .52 | .24 | 1.0 | 2/7 (edge, empty 54 %, layers 1, haze) |
-| V2 wide row 8 | .360 | 1062 | 45 | .54 | .13 | 1.0 | 4/7 (lens-band grass overdoes the edge number) |
-| V3 table row 10 | .127 | 831 | 46 | .61 | .21 | .995 | 3/7 |
-| V4 reverse row 27 | .090 | 380 | 28 | .67 | .20 | 1.0 | 1/7 (sky + concrete empty 62 %) |
-## WEAK / still below Rick (honest)
-- Means .52-.67 vs DAY .48 and p1 .13-.24 vs .06: too bright and flat; shadows lack the deep contact darks. Grade not applied (lead decided no grade for props);
-  needs a light pass: darker concrete still, or exposure -0.3, and AO/contact under table, drums, wheels.
-- The table is NOT clearly in the wing's shade in V3 (the shade lands behind it): move the table ~0.8 m north (y +.25) or turn the sun more south; check in one still.
-- V1 and V4 have big empty concrete foregrounds (G3 empty 54 % / 62 %); the stretch builder's own lens props (shaker, wing tip) must fill them; V4 needs the trolley.
-- Near tree crown reads round / topiary (library known fault); far trees are lollipops. Slab tops show faint diagonal shading (low spp + OIDN?): check at 64 spp.
-- GLB: lawn, blades and tree crowns are procedural in Blender: the kit gets base colours only. 21 MB GLB with about 2,000 objects: join per material if the kit is slow.
-- No sky clouds (background-painter); hills/fields are place-holders. No air-life seen at proof size. Phone check (360 px) not done on these stills.
+| V1 hook | .106 | 723 | 48 | .463 | .073 | .964 | 4/7 (edge, empty 35 %, layers) |
+| V2 wide | .400 | 1081 | 44 | .497 | .051 | .947 | 5/7 (lens-band grass inflates edge) |
+| V3 table | .136 | 849 | 48 | .480 | .058 | .963 | 4/7 (edge, chroma 75.6, layers) |
+| V4 reverse | .120 | 805 | 44 | .484 | .052 | .963 | 4/7 (edge, empty 19 %, haze) |
+## WEAK / still below Rick
+- V4: white blotches on the hangar floor in the foreground (not the texture, not gloss: still there with roughness .92); likely 16-spp OIDN noise from the
+  2 area fills, amplified by the grade. Try 64 spp or lower the area fills. OPEN.
+- Leaf dapple reads on the concrete around the table, not on the cloth (the cloth is in the wing shade, as asked). Near crown still round (library fault).
+- V1/V4 foregrounds empty until the stretch builders' near props, trolley and lens bands arrive. Kit apron.js not yet run in the kit. Phone check not done.
 ## Open for other departments
 - Stretch builders: own cameras + lens bands (G.tufts_lens_band), frame-0 wing tip framing (V1 is a set proof, not the hook shot).
-- Background-painter: sky, cumulus, far haze; sight lines kept south (strip/fence/hills) and NE (poplar row).
-- Lead: OK on the airfield name "AÉRODROME DE VILLEBRUNE" (invented) and the windsock/cones in safety ORANGE (not red).
+- Lead decided 2026-11-21: Villebrune OK, safety orange OK, sky built here (no separate painter).

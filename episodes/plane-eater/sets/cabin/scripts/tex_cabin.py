@@ -24,7 +24,7 @@ im = Image.new('RGB', (64, 512)); d = ImageDraw.Draw(im)
 def mix(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
 for y in range(512):
     t = y / 511
-    c = mix((15, 121, 232), (26, 134, 242), min(1, t / .45)) if t < .45 else mix((26, 134, 242), (205, 228, 250), min(1, (t - .45) / .1)) if t < .55 else (230, 240, 252)
+    c = mix((15, 121, 232), (26, 134, 242), min(1, t / .45)) if t < .45 else mix((26, 134, 242), (120, 175, 235), min(1, (t - .45) / .1)) if t < .55 else (110, 160, 220)
     d.line([(0, y), (64, y)], fill=c)
 im.save(os.path.join(OUT, 'sky.png'))
 im = Image.new('RGB', (300, 440), (245, 243, 232)); d = ImageDraw.Draw(im)

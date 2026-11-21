@@ -162,12 +162,12 @@ B.box('stool_tread', (.42, .3, .03), (SX, SY, .24), M['rubber'], bev=.01); B.box
 for sx in (-1, 1):
     for sy in (-1, 1): B.tube('stool_leg_%d_%d' % (sx, sy), [(SX + sx * .19, SY + sy * .13, .22), (SX + sx * .22, SY + sy * .15, .0)], .011, M['chrome'])
 # ---------------------------------------------------------------- the chart, lead apron, clock, sink corner
-B.plane('eye_chart', .45, .75, (-.8, D1 - .003, 1.55), M['chart'])
-B.box('eye_chart_backing', (.48, .008, .78), (-.8, D1 - .001, 1.55), M['trim'], bev=.003)
-B.cyl('chart_pointer', .006, .7, (-.5, D1 - .02, 1.28), M['wood'], rot=(0, math.radians(8), 0))
-B.cyl('apron_hook', .01, .06, (-1.62, D1 - .03, 1.75), M['chrome'], rot=(math.pi / 2, 0, 0))
-ap = B.box('lead_apron', (.48, .04, .85), (-1.62, D1 - .05, 1.3), M['apron'], bev=.03, seg=4)
-B.box('lead_apron_collar', (.22, .045, .08), (-1.62, D1 - .055, 1.71), M['apron'], bev=.02)
+B.plane('eye_chart', .45, .75, (-1.05, D1 - .003, 1.55), M['chart'])
+B.box('eye_chart_backing', (.48, .008, .78), (-1.05, D1 - .001, 1.55), M['trim'], bev=.003)
+B.cyl('chart_pointer', .006, .7, (-.8, D1 - .02, 1.28), M['wood'], rot=(0, math.radians(8), 0))
+B.cyl('apron_hook', .01, .06, (-1.75, D1 - .03, 1.75), M['chrome'], rot=(math.pi / 2, 0, 0))
+ap = B.box('lead_apron', (.48, .04, .85), (-1.75, D1 - .05, 1.3), M['apron'], bev=.03, seg=4)
+B.box('lead_apron_collar', (.22, .045, .08), (-1.75, D1 - .055, 1.71), M['apron'], bev=.02)
 B.cyl('clock_body', .15, .04, (-1.6, D1 - .03, 2.3), M['enamel'], rot=(math.pi / 2, 0, 0), bev=.01, seg=32); B.torus('clock_rim', .15, .012, (-1.6, D1 - .05, 2.3), M['chrome'], rot=(math.pi / 2, 0, 0))
 for k in range(12):
     a_ = 2 * math.pi * k / 12; B.box('clock_tick_%d' % k, (.008, .004, .025), (-1.6 + math.sin(a_) * .125, D1 - .052, 2.3 + math.cos(a_) * .125), M['ink'], bev=0, rot=(0, -a_, 0))
@@ -180,6 +180,18 @@ B.box('door_panel', (.05, .86, 2.08), (W1 - .03, -1.45, 1.04), M['wood'], bev=.0
 B.box('door_window', (.02, .3, .4), (W1 - .06, -1.45, 1.55), M['glass'], bev=.004)
 B.box('coat_hooks_board', (.6, .03, .08), (-.2, D0 + .02, 1.7), M['wood'], bev=.008)
 for k in range(3): B.tube('coat_hook_%d' % k, [(-.4 + k * .2, D0 + .03, 1.7), (-.4 + k * .2, D0 + .09, 1.66), (-.4 + k * .2, D0 + .09, 1.72)], .006, M['chrome'])
+
+# FIX 1: the wall left of the light box: BALANCED DIET poster (pinned), coat hook with stethoscope, light switch, wall thermometer, notice slips
+B.plane('poster_balanced_diet', .34, .48, (-.5, D1 - .004, 1.6), B.pmat('poster_diet', '#ffffff', .6, img=T('poster_diet.png')))
+for k, (dx, dz) in enumerate([(-.16, .23), (.16, .23), (-.16, -.23), (.16, -.23)]): B.sphere('poster_pin_%d' % k, .008, (-.5 + dx, D1 - .01, 1.6 + dz), M['amber'] if k % 2 else M['mug'], seg=8, rings=5)
+for k, (dx, dz, c) in enumerate([(-.12, -.42, '#f6e7a0'), (.06, -.4, '#cfe8f6'), (.2, -.36, '#f4d3c0')]):
+    B.box('notice_slip_%d' % k, (.12, .003, .09), (-.5 + dx, D1 - .004, 1.6 + dz), B.pmat('slip_%d' % k, c, .8), bev=0, rot=(0, math.radians(R.uniform(-8, 8)), 0))
+B.box('coat_hook_plate', (.06, .015, .1), (-.24, D1 - .008, 1.78), M['chrome'], bev=.005)
+B.tube('coat_hook', [(-.24, D1 - .015, 1.76), (-.24, D1 - .07, 1.74), (-.24, D1 - .07, 1.79)], .007, M['chrome'])
+B.tube('stethoscope_tube', [(-.24, D1 - .07, 1.75), (-.29, D1 - .06, 1.6), (-.3, D1 - .05, 1.45), (-.25, D1 - .05, 1.4), (-.2, D1 - .05, 1.47), (-.19, D1 - .06, 1.62), (-.24, D1 - .07, 1.75)], .006, M['ink'])
+B.cyl('stethoscope_chest', .022, .012, (-.25, D1 - .05, 1.39), M['chrome'], rot=(math.pi / 2, 0, 0))
+B.box('light_switch', (.08, .012, .12), (-.25, D1 - .006, 1.2), M['enamel'], bev=.006); B.box('light_switch_toggle', (.012, .02, .03), (-.25, D1 - .016, 1.21), M['enamel'], bev=.004)
+B.box('thermometer_board', (.05, .012, .26), (-.85, D1 - .006, 1.12), M['wood'], bev=.004); B.cyl('thermometer_glass', .005, .2, (-.85, D1 - .016, 1.13), M['glass'])
 
 # ---------------------------------------------------------------- more equipment: column scale, doctor's stool on castors, pedal bin, folding screen
 CSx, CSy = 1.75, .45
@@ -202,7 +214,7 @@ for k in range(3):
 # ================================================================= THE X-RAY WORLD (rows 20-22): cyan bands on mid-blue, never black
 B.use(XW); X0 = Vector((30, 0, 0))
 band = B.pmat('xw_band_cyan', '#7fe9ff', .3, emit='#7fe9ff', es=3.2); band_soft = B.pmat('xw_band_soft', '#5fc6ee', .4, emit='#5fc6ee', es=1.4)
-bgm = B.pmat('xw_backdrop', '#2f6fb3', 1., emit='#ffffff', es=1.0, img=T('xworld_bg.png'))
+bgm = B.pmat('xw_backdrop', '#2f6fb3', 1., emit='#ffffff', es=.7, img=T('xworld_bg.png'))
 bd = B.sphere('xw_backdrop', 16, tuple(X0), bgm, seg=48, rings=24)
 for p in bd.data.polygons: p.use_smooth = True
 bd.data.flip_normals(); bd['fixed_uv'] = True
@@ -226,13 +238,13 @@ for v in bean.data.vertices:
     v.co = Vector((p.x * SA.x, (p.y - dent) * SA.y, p.z * SA.z + .25 * p.x * p.x * (p.z > 0)))
 sw = bpy.data.materials.new('xw_stomach_glass'); sw.use_nodes = True; N = sw.node_tree.nodes; Lk = sw.node_tree.links
 bsdf = N['Principled BSDF']; bsdf.inputs['Base Color'].default_value = B.lin('#7fe9ff'); bsdf.inputs['Alpha'].default_value = .28; bsdf.inputs['Emission Color'].default_value = B.lin('#7fe9ff'); bsdf.inputs['Emission Strength'].default_value = 1.
-lw_ = N.new('ShaderNodeLayerWeight'); lw_.inputs['Blend'].default_value = .35; tr = N.new('ShaderNodeBsdfTransparent'); em = N.new('ShaderNodeEmission'); em.inputs['Color'].default_value = B.lin('#7fe9ff'); em.inputs['Strength'].default_value = 2.2
+lw_ = N.new('ShaderNodeLayerWeight'); lw_.inputs['Blend'].default_value = .35; tr = N.new('ShaderNodeBsdfTransparent'); em = N.new('ShaderNodeEmission'); em.inputs['Color'].default_value = B.lin('#7fe9ff'); em.inputs['Strength'].default_value = .9
 mx = N.new('ShaderNodeMixShader'); Lk.new(lw_.outputs['Facing'], mx.inputs[0]); Lk.new(tr.outputs[0], mx.inputs[1]); Lk.new(em.outputs[0], mx.inputs[2])
 mo = N['Material Output']; mo.target = 'CYCLES'; Lk.new(mx.outputs[0], mo.inputs['Surface'])
 mo2 = N.new('ShaderNodeOutputMaterial'); mo2.target = 'EEVEE'; Lk.new(bsdf.outputs[0], mo2.inputs['Surface'])
 bean.data.materials.append(sw); bean.visible_shadow = False
 # the LINING / MATTRESS: one grid with a shape key 'puff' (quilted pillows + button dimples), runway dashes as a second mesh sharing the key
-NU, NV, LU, LV = 90, 36, 4.4, 1.7
+NU, NV, LU, LV = 150, 60, 4.4, 1.7
 def floor_z(x, y):
     """the stomach floor under (x, y) in stomach-local units, lifted 6 cm; slopes down from -x (the parked end) to +x."""
     q = 1 - (x / SA.x) ** 2 - (y / SA.y) ** 2
@@ -243,8 +255,8 @@ def lining_pts(puff, lift=0.):
         for j in range(NV + 1):
             u, v = i / NU, j / NV; x = (u - .5) * LU; y = (v - .5) * LV; z = floor_z(x, y) + lift
             if puff:
-                cu, cv = (u * LU / .34) % 1, (v * LV / .34) % 1
-                pillow = (math.sin(math.pi * cu) * math.sin(math.pi * cv)) ** .6
+                p_, q_ = (x + y) / .34, (x - y) / .34                                # diamond button tufting: grooves on the diagonals, dips at buttons
+                pillow = (abs(math.sin(math.pi * p_)) * abs(math.sin(math.pi * q_))) ** .45
                 edge = min(1, min(u, 1 - u) * 14, min(v, 1 - v) * 10)
                 z += (.05 + .17 * pillow) * edge
             else:
@@ -261,18 +273,18 @@ def grid(name, mat, lift=0., sel=None):
     ul = o.data.uv_layers.new(name='UVMap')
     for poly in o.data.polygons:
         for li in poly.loop_indices:
-            vi = o.data.loops[li].vertex_index; ul.data[li].uv = ((vi // (NV + 1)) / NU * 6, (vi % (NV + 1)) / NV * 2)
+            vi = o.data.loops[li].vertex_index; ul.data[li].uv = (((vi // (NV + 1)) / NU - .5) * LU / .34 + .5, ((vi % (NV + 1)) / NV - .5) * LV / .34 + .5)
     o.shape_key_add(name='Basis'); k = o.shape_key_add(name='puff'); P = lining_pts(True, lift)
     for vi, p in enumerate(P): k.data[vi].co = p
     if lift < 0:                          # dashes: hidden under the thin lining at 0, riding 8 mm over the mattress at 1
         P2 = lining_pts(True, .008)
         for vi, p in enumerate(P2): k.data[vi].co = p
     k.value = 0.; return o
-lin_mat = B.pmat('xw_lining', '#9fdcf2', .35, emit='#7fe9ff', es=.45, coat=.5)
+lin_mat = B.pmat('xw_lining', '#ffffff', .4, emit='#ffffff', es=.22, coat=.4, img=T('quilt.png'))
 lining = grid('xw_lining_mattress', lin_mat)
-dash_mat = B.pmat('xw_runway_dash', '#f4ffff', .3, emit='#e8ffff', es=3.)
+dash_mat = B.pmat('xw_runway_dash', '#f4ffff', .3, emit='#e8ffff', es=1.6)
 mid = NV // 2
-dashes = grid('xw_runway_dashes', dash_mat, lift=-.03, sel=lambda i, j: (mid - 1 <= j <= mid) and (i % 8) < 4 and 4 <= i <= NU - 4)
+dashes = grid('xw_runway_dashes', dash_mat, lift=-.03, sel=lambda i, j: (mid - 1 <= j <= mid) and (i % 12) < 6 and 4 <= i <= NU - 4)
 edge = grid('xw_runway_edges', band_soft, lift=-.03, sel=lambda i, j: (j in (3, NV - 4)) and 4 <= i <= NU - 4)
 # slide path: down the runway centre line in the puffed state, then out through the far end (exits frame)
 PATH = []
@@ -313,22 +325,22 @@ B.light('sun_window', 'SUN', (-5, .9, 4), '#f2f6ff', 2.2, rot=B.aim_rot((-5, .9,
 B.light('troffer_area', 'AREA', (-.1, .9, H - .09), '#f4fbff', 35, size=1.1, size_y=.5)
 B.light('lightbox_glow', 'AREA', (LB.x, D1 - .2, LB.z), '#bff4ff', 10, rot=(math.pi / 2, 0, 0), size=.9, size_y=.55)
 B.light('desklamp_pool', 'SPOT', (DX + .2, DY, 1.0), '#ffd9a0', 18, rot=(math.radians(10), 0, 0), size=.03).data.spot_size = math.radians(80)
-B.light('xw_key', 'AREA', (X0.x - 1.5, X0.y - 2.5, X0.z + 2.2), '#d8fbff', 160, rot=B.aim_rot((X0.x - 1.5, X0.y - 2.5, X0.z + 2.2), tuple(SC)), size=2.)
+B.light('xw_key', 'AREA', (X0.x - 1.5, X0.y - 2.5, X0.z + 2.2), '#d8fbff', 45, rot=B.aim_rot((X0.x - 1.5, X0.y - 2.5, X0.z + 2.2), tuple(SC)), size=2.)
 B.light('xw_fill', 'POINT', (X0.x + 2., X0.y + 1., X0.z - .2), '#7fe9ff', 60, size=.6)
 CAMS = {
  'CAM_SHOULDER': dict(pos=(-.42, .85, 1.58), aim=(PAN[0].x + .02, D1, PAN[0].z - .02), lens=32),
  'CAM_WIDE': dict(pos=(1.6, -1.2, 2.05), aim=(-.5, 1.4, .9), lens=18),
  'CAM_FILM': dict(pos=(PAN[0].x, D1 - .5, PAN[0].z - .01), aim=(PAN[0].x, D1, PAN[0].z - .01), lens=26),
- 'CAM_INSIDE': dict(pos=(X0.x - 2.6, X0.y - 4.6, X0.z + 2.4), aim=tuple(SC + Vector((.3, 0, -.6))), lens=20),
+ 'CAM_INSIDE': dict(pos=(X0.x - 1.2, X0.y - 3.3, X0.z + .9), aim=tuple(SC + Vector((.2, 0, -.5))), lens=20),
  'CAM_LINING': dict(pos=(SC.x - .2, SC.y - 1.05, SC.z - .75), aim=(SC.x + .5, SC.y + .1, SC.z - 1.45), lens=22),
- 'CAM_RIDE': dict(pos=(PATH[1][0] - .7, PATH[1][1] - .35, PATH[1][2] + .25), aim=(PATH[4][0], PATH[4][1], PATH[4][2] - .1), lens=20),
+ 'CAM_RIDE': dict(pos=(PATH[1][0] - .45, PATH[1][1] - .22, PATH[1][2] + .14), aim=(PATH[4][0], PATH[4][1], PATH[4][2] - .1), lens=20),
 }
 for k, v in CAMS.items(): B.cam(k, v['pos'], v['aim'], v['lens'])
 B.render_setup(sc)
 try:
     ng = bpy.data.node_groups.new('xray_comp', 'CompositorNodeTree'); ng.interface.new_socket('Image', in_out='OUTPUT', socket_type='NodeSocketColor')
     rl = ng.nodes.new('CompositorNodeRLayers'); gl = ng.nodes.new('CompositorNodeGlare'); go = ng.nodes.new('NodeGroupOutput')
-    gl.inputs['Type'].default_value = 'Fog Glow'; gl.inputs['Threshold'].default_value = 1.0; gl.inputs['Size'].default_value = .5; gl.inputs['Strength'].default_value = .5; gl.inputs['Quality'].default_value = 'Medium'
+    gl.inputs['Type'].default_value = 'Fog Glow'; gl.inputs['Threshold'].default_value = 1.0; gl.inputs['Size'].default_value = .5; gl.inputs['Strength'].default_value = .22; gl.inputs['Quality'].default_value = 'Medium'
     ng.links.new(rl.outputs['Image'], gl.inputs['Image']); ng.links.new(gl.outputs['Image'], go.inputs[0]); sc.compositing_node_group = ng; print('GLOW ok')
 except Exception as e: print('GLOW FAIL', repr(e))
 B.bake_all(sc)
