@@ -3,7 +3,7 @@ Run (props/build_props.sh does it):  blender -b --factory-startup --python bl_ce
 Source: "FREE Cessna 172SP" by NLM-Group, Sketchfab c9cadc2f026946da8cf9715a683739e9, CC BY 4.0 (props/ASSETS.md).
 Adapted to a 1970s Cessna 150: scaled to the 150's span (10.17 m), rear bench removed (2 seats), tie-down ropes / blocks / tags
 removed, missing right wing strut mirrored from the left one, glass-cockpit screens switched off, grime + navy livery + the
-baked registration replaced by clean white (#f3f4f1) and the film's one red (#d62828), new registration F-MIAM on both fin sides.
+baked registration replaced by clean white (#f3f4f1) and the film's one red (#d62828), new registration F-MIAM on both rear-fuselage sides.
 Axes: nose -Y, up +Z, span X; pilot's LEFT wing = +X (suffix _L). Ground z = 0 under the tyres. Units metres.
 Writes: cessna150.{blend,glb} (intact, parts split L/R), cessna150_wingoff.{blend,glb} (left wing sawn off at the root in square
 bites, outer panel on the ground), cessna150_sliced.{blend,glb} (whole plane in 9 even slices like a loaf, gaps 0.22 m, sawhorses
@@ -122,42 +122,32 @@ rp.inputs['Base Color'].default_value = lin(RED); rp.inputs['Roughness'].default
 wood = bpy.data.materials.new('sawhorse_wood'); wood.use_nodes = True; wp = P(wood)
 wp.inputs['Base Color'].default_value = lin('#b88a55'); wp.inputs['Roughness'].default_value = .6
 
-# ------------------------------------------------------------------ registration F-MIAM on both fin sides (red, painted on)
-fin = bpy.data.objects['fin']
+# ------------------------------------------------------------------ registration F-MIAM on both sides of the rear fuselage, ahead of the tail
+# (1970s French practice; the fin keeps its red stripes, so the letters go where they read clean, big, in red, above the cheat line)
+fus = bpy.data.objects['fuselage']
 sc = bpy.context.scene
 bpy.context.view_layer.update()
-dg = bpy.context.evaluated_depsgraph_get()
-
-
-def fin_hit(y, z, side):
-    ok, loc, nrm, idx, ob, _ = sc.ray_cast(dg, Vector((side * 3, y, z)), Vector((-side, 0, 0)))
-    return loc if ok and ob is not None and ob.name in ('fin', 'rudder') else None
-
-
-fb = [Vector(c) for c in fin.bound_box]
-fz0, fz1 = min(v.z for v in fb), max(v.z for v in fb)
-zc = fz0 + .42 * (fz1 - fz0)
-ys = [y for y in np.linspace(min(v.y for v in fb), max(v.y for v in fb), 200) if fin_hit(y, zc, 1)]
-y0, y1 = min(ys), max(ys)
-LH = min(.30, (fz1 - fz0) * .16)
+YC = 1.05                                                  # letter-block centre, metres behind the wing (wing trailing edge ~ -0.28)
+ok_t, top, *_ = fus.ray_cast(Vector((0, YC, 9)), Vector((0, 0, -1)))
+ok_b, bot, *_ = fus.ray_cast(Vector((0, YC, -9)), Vector((0, 0, 1)))
+zt, zb = top.z, bot.z
+LH = min(.30, .30 * (zt - zb)); zc = zb + .60 * (zt - zb)
 reg_objs = []
 for side in (1, -1):
+    ok, hit, *_ = fus.ray_cast(Vector((side * 5, YC, zc)), Vector((-side, 0, 0)))
     cu = bpy.data.curves.new('reg', 'FONT'); cu.body = REG; cu.size = LH * 1.38; cu.extrude = .0015
     cu.align_x = 'CENTER'; cu.align_y = 'CENTER'; cu.space_character = 1.05
-    t = bpy.data.objects.new('reg_' + ('L' if side > 0 else 'R'), cu); sc.collection.objects.link(t)
-    bpy.context.view_layer.update()
-    me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get()))
-    bpy.data.objects.remove(t); t = bpy.data.objects.new('reg_' + ('L' if side > 0 else 'R'), me); sc.collection.objects.link(t)
-    yc = (y0 + y1) / 2 + .04 * (y1 - y0)
+    t = bpy.data.objects.new('tmp', cu); sc.collection.objects.link(t); bpy.context.view_layer.update()
+    me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get())); bpy.data.objects.remove(t)
+    me.name = 'reg_' + ('L' if side > 0 else 'R'); t = bpy.data.objects.new(me.name, me); sc.collection.objects.link(t)
     R = Matrix(((0, 0, 1), (1, 0, 0), (0, 1, 0))) if side > 0 else Matrix(((0, 0, -1), (-1, 0, 0), (0, 1, 0)))
-    me.transform(Matrix.Translation((side * .2, yc, zc)) @ R.to_4x4())
+    me.transform(Matrix.Translation((hit.x + side * .01, YC, zc)) @ R.to_4x4())
     me.materials.append(red)
-    sw = t.modifiers.new('wrap', 'SHRINKWRAP'); sw.target = fin; sw.wrap_method = 'PROJECT'; sw.use_project_x = True
-    sw.use_negative_direction = True; sw.use_positive_direction = True; sw.offset = .0025; sw.wrap_mode = 'OUTSIDE_SURFACE'
-    bpy.context.view_layer.objects.active = t; t.select_set(True)
-    bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
+    sw = t.modifiers.new('wrap', 'SHRINKWRAP'); sw.target = fus; sw.wrap_method = 'NEAREST_SURFACEPOINT'; sw.offset = .003
+    sw.wrap_mode = 'OUTSIDE_SURFACE'
+    bpy.context.view_layer.objects.active = t; t.select_set(True); bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
     reg_objs.append(t)
-reg_len = (y1 - y0)
+reg_len = len(REG) * LH * .8
 
 # ------------------------------------------------------------------ helpers: bisect with a filled cut face
 def bisect(ob, co, no, keep_pos, fill=True):
@@ -212,7 +202,7 @@ for o in base:
 meta = dict(source='Sketchfab c9cadc2f026946da8cf9715a683739e9 (NLM-Group, CC BY 4.0)', scale_k=round(K, 4),
             size_m=dict(span=round(hi_all.x - lo_all.x, 2), length=round(hi_all.y - lo_all.y, 2), height=round(hi_all.z, 2)),
             axes='nose -Y, up +Z, pilot left wing +X (_L)', registration=REG, colours=dict(white=WHITE, red=RED),
-            red_share_of_paint_texture=round(paint_px_red, 4), reg_letter_h_m=round(LH, 3), fin_chord_at_letters_m=round(reg_len, 2))
+            red_share_of_paint_texture=round(paint_px_red, 4), reg_letter_h_m=round(LH, 3), reg_block_len_m=round(reg_len, 2), fuselage_h_at_letters_m=round(zt - zb, 2))
 
 
 def save(name, objs):

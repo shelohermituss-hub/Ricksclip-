@@ -13,8 +13,9 @@
   "red": "#d62828"
  },
  "red_share_of_paint_texture": 0.2376,
- "reg_letter_h_m": 0.195,
- "fin_chord_at_letters_m": 1.02,
+ "reg_letter_h_m": 0.189,
+ "reg_block_len_m": 0.91,
+ "fuselage_h_at_letters_m": 0.63,
  "intact": {
   "objects": 73,
   "tris": 172684,
@@ -169,8 +170,8 @@
     "slice": 5,
     "y0": 1.601,
     "y1": 2.448,
-    "parts": 3,
-    "tris": 3314,
+    "parts": 5,
+    "tris": 3682,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.467
    },
@@ -178,8 +179,8 @@
     "slice": 6,
     "y0": 2.668,
     "y1": 3.516,
-    "parts": 3,
-    "tris": 2612,
+    "parts": 5,
+    "tris": 2688,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.684
    },
@@ -187,8 +188,8 @@
     "slice": 7,
     "y0": 3.736,
     "y1": 4.584,
-    "parts": 10,
-    "tris": 4166,
+    "parts": 8,
+    "tris": 3950,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.871
    },
@@ -196,8 +197,8 @@
     "slice": 8,
     "y0": 4.804,
     "y1": 5.651,
-    "parts": 9,
-    "tris": 6808,
+    "parts": 7,
+    "tris": 6580,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.825
    }

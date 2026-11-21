@@ -12,15 +12,16 @@ sys.path.insert(0, os.path.join(ROOT, 'library', 'grass')); sys.path.insert(0, o
 LT = json.load(open(os.path.join(ROOT, 'templates', 'blender_look', 'rick_light.json')))['day']
 
 SHOTS = {   # tile: (blend, camera, look-at, lens, hide-rule)
-    'A_hero34': ('cessna150', (8.5, -9.0, 1.0), (0.3, -0.6, 1.35), 24, None),
-    'B_side': ('cessna150', (17.0, 0.4, 1.5), (0, 0.4, 1.25), 26, None),
-    'C_front': ('cessna150', (0.0, -17.0, 1.4), (0, 0, 1.25), 26, None),
-    'D_top_rear': ('cessna150', (-7.5, 10.5, 7.0), (0, 0.3, 0.7), 24, None),
-    'E_wingoff': ('cessna150_wingoff', (9.0, -8.0, 1.6), (1.5, -0.6, 0.9), 24, None),
-    'F_sliced': ('cessna150_sliced', (12.0, -6.5, 3.4), (0, 0.9, 0.9), 24, None),
-    'G_sliced_half': ('cessna150_sliced', (10.0, -7.0, 3.0), (0, -0.8, 0.9), 24, [4, 5, 6, 7, 8]),
-    'H_nose_only': ('cessna150_sliced', (3.2, -6.2, 1.3), (0, -3.2, 0.85), 30, [1, 2, 3, 4, 5, 6, 7, 8]),
-    'I_stub_macro': ('cessna150_wingoff', (2.6, -2.3, 2.6), (1.3, -0.4, 1.95), 30, None),
+    'A_hero34': ('cessna150', (6.2, -6.6, 0.55), (0.2, -0.4, 1.45), 20, None),
+    'B_side': ('cessna150', (10.6, 0.5, 1.3), (0, 0.5, 1.2), 26, None),
+    'C_front': ('cessna150', (0.0, -13.5, 1.3), (0, 0, 1.25), 26, None),
+    'D_top_rear': ('cessna150', (-5.6, 8.0, 5.4), (0, 0.2, 0.8), 22, None),
+    'E_wingoff': ('cessna150_wingoff', (6.8, -6.4, 1.3), (1.3, -0.4, 1.05), 22, None),
+    'F_sliced': ('cessna150_sliced', (9.0, -4.2, 2.6), (0, 0.9, 0.9), 22, None),
+    'G_sliced_half': ('cessna150_sliced', (6.8, -6.4, 2.2), (0, -1.0, 0.9), 22, None if False else [4, 5, 6, 7, 8]),
+    'H_nose_only': ('cessna150_sliced', (2.6, -5.8, 1.1), (0, -3.3, 0.85), 26, [1, 2, 3, 4, 5, 6, 7, 8]),
+    'I_stub_macro': ('cessna150_wingoff', (3.3, -2.4, 2.25), (0.95, -0.9, 1.8), 32, None),
+    'J_reg_macro': ('cessna150', (3.6, -0.6, 1.5), (0.4, 1.1, 1.35), 30, None),
 }
 
 

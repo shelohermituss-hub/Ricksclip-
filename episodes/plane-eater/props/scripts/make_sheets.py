@@ -8,12 +8,12 @@ T, P = sys.argv[1], sys.argv[2]
 ROOT = os.path.abspath(os.path.join(P, '..', '..', '..'))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); sys.path.insert(0, os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline'))
 import grade_rick as GR, composite as CO
-TG = json.load(open(os.path.join(ROOT, 'templates', 'blender_look', 'rick_light.json')))['targets_after_grade']['DAY']
+TG = json.load(open(GR.DEF))['DAY']
 LAB = {'A_hero34': 'HERO 3/4', 'B_side': 'SIDE (left, F-MIAM)', 'C_front': 'FRONT', 'D_top_rear': 'TOP REAR 3/4', 'E_wingoff': 'EATEN: LEFT WING',
-       'F_sliced': 'SLICED LIKE A LOAF', 'G_sliced_half': 'EATEN: TAIL HALF', 'H_nose_only': 'EATEN: NOSE LEFT', 'I_stub_macro': 'MACRO: BITTEN STUB'}
+       'F_sliced': 'SLICED LIKE A LOAF', 'G_sliced_half': 'EATEN: TAIL HALF', 'H_nose_only': 'EATEN: NOSE LEFT', 'I_stub_macro': 'MACRO: BITTEN STUB', 'J_reg_macro': 'MACRO: F-MIAM'}
 nums = {}
 for t in LAB:
-    a = GR.load(os.path.join(T, t + '.png')); g = GR.grade(a, TG)
+    a = GR.load(os.path.join(T, t + '.png')); g = GR.grade(a, TG, None, .35)   # light grade: a prop tile is half flat sky + lawn, full strength over-shoots
     im, al = CO.key_composite(g * 255, os.path.join(T, t + '_lines_id.png'))
     Image.fromarray(im.clip(0, 255).round().astype(np.uint8)).save(os.path.join(T, t + '_final.png'))
     lum = (im / 255) @ np.array([.2126, .7152, .0722])
@@ -27,5 +27,5 @@ def sheet(tiles, out):
         S.paste(Image.open(os.path.join(T, t + '_final.png')).resize((w, h), Image.LANCZOS), (i * w, 30)); d.text((i * w + 8, 6), LAB[t], fill=(240, 240, 240), font=F)
     S.save(out, quality=90)
 sheet(['A_hero34', 'B_side', 'C_front', 'D_top_rear', 'E_wingoff'], os.path.join(P, 'HERO_SHEET.jpg'))
-sheet(['F_sliced', 'G_sliced_half', 'H_nose_only', 'I_stub_macro'], os.path.join(P, 'STATES_SHEET.jpg'))
+sheet(['F_sliced', 'G_sliced_half', 'H_nose_only', 'I_stub_macro', 'J_reg_macro'], os.path.join(P, 'STATES_SHEET.jpg'))
 json.dump(nums, open(os.path.join(T, 'numbers.json'), 'w'), indent=1); print('SHEETS_DONE', json.dumps(nums))
