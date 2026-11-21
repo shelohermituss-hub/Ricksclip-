@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — L'image clé B a été rendue sur le processeur du serveur RunPod au lieu de la carte RTX 4090 (yellow-fire-trucks, cine B) — FERMÉ
+- Problème : « DEVICE CPU fallback » dans le log ; 1 063 s de rendu au lieu d'environ 2 à 4 min sur la carte (l'image A, même machine, avait pris 50 s avec OptiX). Payé environ 18 min de machine pour rien.
+- Cause réelle : pour éviter un message « enum METAL not found », le script B lisait la liste des types d'appareil (`enum_items`) avant que Blender la remplisse : en mode batch, cette liste est dynamique et ne contient pas encore OPTIX ni CUDA, donc aucun type GPU n'était essayé.
+- Correction : retour à la boucle de A qui essaie OPTIX, CUDA, HIP, ONEAPI un par un (METAL retiré : Linux) dans cine/runpod/B/render.sh.
+- Garde-fou : avant de lancer un rendu long sur RunPod, rendre d'abord une image à 1 % de la résolution sur le pod et exiger « DEVICE OPTIX » ou « DEVICE CUDA » dans le log ; sinon arrêter.
+- Preuve : log A « DEVICE OPTIX ['NVIDIA GeForce RTX 4090'] » contre log B « DEVICE CPU fallback ».
+
 ## 2026-11-21 — An OFF red lamp still read lit in Blender (yellow-fire-trucks, cine key B) — FERMÉ (cine), OUVERT (set API)
 - Problème : key frame B (wave 4, all red off): every red bulb read bright red in the Blender preview; the kit shows dark red rings.
 - Cause réelle : lamproom_api.set_state sets only the emission to 0; the glass keeps base colour (.65, .01, .01) rough .15, lit by the lemon/blue lamps and fills.

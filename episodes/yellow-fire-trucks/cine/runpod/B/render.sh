@@ -4,8 +4,7 @@
 set -e; cd "$(dirname "$0")"; mkdir -p out
 DEV='import bpy
 p = bpy.context.preferences.addons["cycles"].preferences
-have = p.bl_rna.properties["compute_device_type"].enum_items.keys()
-for t in [t for t in ("OPTIX", "CUDA", "HIP", "METAL", "ONEAPI") if t in have]:
+for t in ("OPTIX", "CUDA", "HIP", "ONEAPI"):
     try:
         p.compute_device_type = t; p.get_devices(); ok = [d for d in p.devices if d.type == t]
         if ok:
