@@ -1,3 +1,10 @@
 00:00.605  blend            | Read blend: "/home/user/Ricksclip-/episodes/_style_test/set/set.blend"
 /home/user/Ricksclip-/episodes/_style_test/set/build_set.py:1916: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
   w.use_nodes = True
+01:04.336  render           | Saved: '/home/user/Ricksclip-/episodes/_style_test/set/sheet/key.png'
+01:50.620  render           | Saved: '/home/user/Ricksclip-/episodes/_style_test/set/sheet/overview.png'
+SET_RENDERED key 57.6 s
+SET_RENDERED overview 46.3 s
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit

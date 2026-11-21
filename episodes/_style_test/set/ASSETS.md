@@ -7,7 +7,7 @@ FINAL CREDIT LINE (YOUTUBE.md): "Tree, plants, garden gnome and sprinkler models
 
 | id | page | got | tris | used as | changed for this set |
 |---|---|---|---|---|---|
-| island_tree_02 | polyhaven.com/a/island_tree_02 | local copy (yft) | 1,072,212 | hero tree (9.5 m) + 13 far trees (same mesh, instanced) | leaves: saturation 1.4, value 1.15, yellow-green multiply, dark-underside gradient (object Z), sheen 0; branches greened 25 % |
+| island_tree_02 | polyhaven.com/a/island_tree_02 | local copy (yft) | 1,072,212 | hero tree (9.5 m) + 13 far trees; every tree = 2 instances of the same mesh (2nd turned 137 deg, 0.93 size) for a full crown | leaves: saturation 1.4, value 1.15, yellow-green multiply, dark-underside gradient (object Z), sheen 0; branches greened 25 % |
 | garden_gnome | polyhaven.com/a/garden_gnome | downloaded | 28,858 | the gnome by the stepping stones | saturation 1.35, value 1.1 |
 | garden_sprinkler_01 | polyhaven.com/a/garden_sprinkler_01 | downloaded | 8,192 | oscillating sprinkler on the right lawn | scale 1.2, saturation 1.2 |
 | flower_gazania | polyhaven.com/a/flower_gazania | downloaded | 14,340 (6 plants) | bed flowers, window-box flowers | scale 1.3-2.0, saturation 1.3 |
@@ -15,7 +15,7 @@ FINAL CREDIT LINE (YOUTUBE.md): "Tree, plants, garden gnome and sprinkler models
 | periwinkle_plant | polyhaven.com/a/periwinkle_plant | downloaded | 34,350 (6) | bed flowers, tree-ring flowers | scale 1.2-1.6, saturation 1.3 |
 | shrub_02 | polyhaven.com/a/shrub_02 | local copy (yft) | 27,254 (4) | foundation shrubs, hedge behind the right fence | scale .42-.7, saturation 1.25, green multiply 15 % |
 | shrub_03 | polyhaven.com/a/shrub_03 | local copy (yft) | 8,287 (4) | plants in the two porch pots | scale 1.3-1.5 |
-| grass_bermuda_01 | polyhaven.com/a/grass_bermuda_01 | local copy (yft) | 941 (21 clumps) | grass tufts along both drive edges | scale 1.6-2.2, saturation 1.3 |
+| grass_bermuda_01 | polyhaven.com/a/grass_bermuda_01 | local copy (yft) | 941 (21 clumps) | NOT USED (read as dark spikes at 1.6-2.2x; removed round 1) | - |
 | concrete_pavement (texture) | polyhaven.com/a/concrete_pavement | downloaded | - | NORMAL map only (strength .25) on drive, walks, steps, kerbs; colour stays ours | - |
 
 Built by code in `set/build_set.py` (no clean free asset in the house style, or the layout needed exact sizes): house, garage, porch,
