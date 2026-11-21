@@ -1,0 +1,50 @@
+{
+ "BL hero: ribbon hugs body, bow, plate F.D. 1": {
+  "render": "Blender Cycles 16spp+OIDN 5.3 s",
+  "edge_density": 0.0763,
+  "regions": 519,
+  "fine_regions": 474
+ },
+ "KIT hero: same camera, ribbon + plate": {
+  "render": "kit three.js run 8.2 s (load incl.)",
+  "edge_density": 0.0761,
+  "regions": 698,
+  "fine_regions": 619
+ },
+ "KIT rear, first mesh off screen, NO workaround: lemon ok": {
+  "render": "kit three.js run 8.6 s (load incl.)",
+  "edge_density": 0.079,
+  "regions": 514,
+  "fine_regions": 425
+ },
+ "BL light 43k: 4 sirens, beacon row, drain wipe .5": {
+  "render": "Blender Cycles 16spp+OIDN 4.8 s",
+  "edge_density": 0.0349,
+  "regions": 678,
+  "fine_regions": 629
+ },
+ "KIT light: sirens + row, drainWipe .5": {
+  "render": "kit three.js run 7.6 s (load incl.)",
+  "edge_density": 0.0331,
+  "regions": 931,
+  "fine_regions": 865
+ },
+ "BL milk van: cream, stripe, Meadowbrook DAIRY": {
+  "render": "Blender Cycles 16spp+OIDN 8.3 s",
+  "edge_density": 0.0382,
+  "regions": 463,
+  "fine_regions": 422
+ },
+ "KIT lawn: van, 5 lost things GREY, balls, box, toys": {
+  "render": "kit three.js run 19.9 s (load incl.)",
+  "edge_density": 0.0568,
+  "regions": 540,
+  "fine_regions": 481
+ },
+ "BL close: navy box, lemon-lime, toy (tabs)": {
+  "render": "Blender Cycles 16spp+OIDN 12.8 s",
+  "edge_density": 0.0521,
+  "regions": 1483,
+  "fine_regions": 1444
+ }
+}

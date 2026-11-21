@@ -29,14 +29,14 @@ rows.append(('FIX 4 kid plaster, LEFT knee: 3/4 L and side L, before (mirrored t
 # rows 5-6: drivers in the kit
 S = os.path.join(C, 'cabtest', 'out', 'stills'); names = ['Sceptic side (door)', 'Sceptic 3/4 windscreen', 'Sceptic high front', 'Rookie side', 'Rookie 3/4', 'Rookie high front', 'Milkman side (van door open)', 'Milkman 3/4', 'Milkman high front']
 fr = [7, 17, 27, 37, 47, 57, 67, 77, 87]
-tiles = [(n, Image.open(os.path.join(S, f'f_{f:05d}.png')).convert('RGB').crop((40, 300, 500, 760)).resize((172, 172))) for n, f in zip(names, fr) if os.path.exists(os.path.join(S, f'f_{f:05d}.png'))]
+tiles = [(n, Image.open(os.path.join(S, f'f_{f:05d}.png')).convert('RGB').crop((40, 300, 500, 760)).resize((170, 170))) for n, f in zip(names, fr) if os.path.exists(os.path.join(S, f'f_{f:05d}.png'))]
 rows.append(('FIX 3 seated drivers in the kit (render_gpu, real truck_light.glb / milk_van.glb, cast/cabtest): card cut at the seat, pose drive, in_vehicle', tiles))
 W = 1600; H = sum(28 + max(t[1].height for t in r[1]) + 18 for r in rows) + 10
 sheet = Image.new('RGB', (W, H), (228, 226, 221)); g = ImageDraw.Draw(sheet); y = 6
 for tag, tiles in rows:
     g.text((8, y + 6), tag, fill=(30, 28, 36), font=F); y += 26; x = 8; hh = max(t[1].height for t in tiles)
     for n, im in tiles:
-        if x + im.width > W: break
+        if x + im.width > W + 6: break
         sheet.paste(im, (x, y)); g.text((x + 2, y + hh + 2), n, fill=(60, 56, 66), font=F); x += im.width + 6
     y += hh + 18
 out = os.path.join(C, 'sheets', 'CAST_FIX.jpg'); sheet.save(out, quality=90); print(out, sheet.size)

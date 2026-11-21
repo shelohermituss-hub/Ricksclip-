@@ -68,7 +68,10 @@ export async function build(THREE, scene, film, ctx) {
         const im = new THREE.InstancedMesh(o.geometry, o.material, F.length); im.name = 'map_field_' + o.name; im.castShadow = im.receiveShadow = true;
         F.forEach((p, j) => im.setMatrixAt(j, M.copy(base(p, p[3])).multiply(o.matrixWorld))); im.instanceMatrix.needsUpdate = true; scene.add(im); tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3 * F.length;
       }
-      fdoors = doors0.map(o => { const im = new THREE.InstancedMesh(o.geometry, o.material, F.length); im.castShadow = true; scene.add(im); return { im, o }; });
+      fdoors = doors0.map(o => {                // the door's rest matrix with its height scale reset to 1 (the wave scales it per field station)
+        const im = new THREE.InstancedMesh(o.geometry, o.material, F.length), P = new THREE.Vector3(), Qd = new THREE.Quaternion(), Sd = new THREE.Vector3();
+        o.matrixWorld.decompose(P, Qd, Sd); Sd.y = Sd.x; im.castShadow = true; scene.add(im); return { im, W0: new THREE.Matrix4().compose(P, Qd, Sd) };
+      });
       F.forEach(p => FD.push({ pos: p, s: p[3], M0: base(p, p[3]).clone() }));
       TINY.scene.traverse(o => {
         if (!o.isMesh) return; const g = o.geometry.clone().applyMatrix4(o.matrixWorld), paint = /paint/.test(o.material.name), m = o.material.clone();
@@ -94,7 +97,7 @@ export async function build(THREE, scene, film, ctx) {
       const Dm = new THREE.Matrix4(), mode = pl.paint || 'lime';
       FD.forEach((f, j) => {
         const k = open({ pos: f.pos }, t);
-        for (const { im, o } of fdoors) { Dm.copy(f.M0).multiply(o.matrixWorld).multiply(new THREE.Matrix4().makeScale(1, Math.max(.03, 1 - k), 1)); im.setMatrixAt(j, Dm); }
+        for (const { im, W0 } of fdoors) { Dm.copy(f.M0).multiply(W0).multiply(new THREE.Matrix4().makeScale(1, Math.max(.03, 1 - k), 1)); im.setMatrixAt(j, Dm); }
         if (mode !== 'lime') { const c = mode === 'wave' && open({ pos: f.pos }, t - (pl.lime_delay ?? .3)) >= 1 ? cLime : cRed; for (const im of ftrucks) { im.setColorAt(2 * j, c); im.setColorAt(2 * j + 1, c); } }
       });
       for (const { im } of fdoors) im.instanceMatrix.needsUpdate = true;
