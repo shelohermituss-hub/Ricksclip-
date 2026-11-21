@@ -15,7 +15,7 @@ for tag, d in [('BEFORE (film draws dir -1: head layers mirrored, badge read bac
     for w in who:
         for v in (['34L'] if w not in ('chief',) else ['34L', 'front']):
             p = os.path.join(C, d, f'{w}_{v}.png')
-            if os.path.exists(p): tiles.append((f'{w} {v}', head(p, (170, 80, 430, 400), 150)))
+            if os.path.exists(p): tiles.append((f'{w} {v}', head(p, (150, 190, 450, 560), 150)))
     rows.append((tag, tiles))
 # row 3: mirror down
 tiles = [(f'heroShopEye {v}', head(os.path.join(C, 'views', f'heroShopEye_{v}.png'), (150, 230, 450, 560), 170)) for v in ['front', '34', '34L', 'side', 'sideL', '34_concentrate']]

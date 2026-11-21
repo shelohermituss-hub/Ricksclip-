@@ -7,6 +7,8 @@
 //      "sand": 0..1  or  { "at": 32.3, "dur": 0.6 } } }          the paper round DALLAS turns to sand (S4 -> S5 join)
 // FIX 2: setStation(i | 'CITY', { paint: 'lime' | 'red' | '#hex' | [noseA, noseB], door: 0..1 | [d0, d1] }) overrides that station on every later update;
 //   setStation(i, null) clears it; stations() lists { i, city, pos }. Instance j of a station's trucks = 2 * i + k (k 0 west, 1 east).
+//   field: true | n   FIX 2 the dense pop-up field (out/map_field.json, 260 small stations on land between the cities, with doors and lime trucks, door +
+//     paint wave like the cities): the S4 EXTREME on "cities" then shows dozens of stations (camera B as planned: 26; (3.0,-0.3,4)->(2.85,1.9,.05) lens 24: 35, no table edge)
 //   metals: every metal material without an env map gets a small painted studio sky (brass read black in the kit); places.<name>.env: false = off.
 // Returns { anchors, update, setStation, stations }. Anchors (plan metres, Z up, the kit maps them with ctx.B2T): map_centre, pine_hollow_station, dallas_label, dallas_station, door_row
 // ([x, y, z, city] west -> east), highway_path (Pine Hollow -> Little Rock -> Texarkana -> DALLAS, on the paper), title_block, compass, cities{}.
@@ -51,6 +53,32 @@ export async function build(THREE, scene, film, ctx) {
     list.forEach((it, j) => { M.compose(ctx.B2T(it.p), Q, SC); im.setMatrixAt(j, M); if (paint) im.setColorAt(j, new THREE.Color(LIME)); });
     im.instanceMatrix.needsUpdate = true; scene.add(im); tris += (g.index ? g.index.count : g.attributes.position.count) / 3 * list.length; if (paint) parts.push(im);
   });
+  // FIX 2: the dense pop-up field (instanced copies of st_00's own primitives, its two doors and the tiny trucks)
+  const FD = []; let fdoors = [], ftrucks = [];
+  if (pl.field) {
+    let F = []; try { F = (await (await fetch(DIR + 'map_field.json')).json()).field; } catch (e) { console.warn('PHFD_MAP no map_field.json'); }
+    if (typeof pl.field === 'number') F = F.slice(0, pl.field);
+    const st0 = roots.st_00; root.updateMatrixWorld(true);
+    if (st0 && F.length) {
+      const inv0 = new THREE.Matrix4().makeTranslation(new THREE.Vector3().setFromMatrixPosition(st0.matrixWorld).negate()), T = new THREE.Matrix4(), Sm = new THREE.Matrix4();
+      const base = (p, s) => T.makeTranslation(ctx.B2T([p[0], p[1], p[2]])).multiply(Sm.makeScale(s, s, s)).multiply(inv0);
+      const parts0 = [], doors0 = [];
+      st0.traverse(o => { if (!o.isMesh) return; if (/^door_/.test(o.name) || /^door_/.test(o.parent && o.parent.name || '')) doors0.push(o); else if (!/^sign_/.test(o.name) && !/^sign_/.test(o.parent && o.parent.name || '')) parts0.push(o); });
+      for (const o of parts0) {
+        const im = new THREE.InstancedMesh(o.geometry, o.material, F.length); im.name = 'map_field_' + o.name; im.castShadow = im.receiveShadow = true;
+        F.forEach((p, j) => im.setMatrixAt(j, M.copy(base(p, p[3])).multiply(o.matrixWorld))); im.instanceMatrix.needsUpdate = true; scene.add(im); tris += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3 * F.length;
+      }
+      fdoors = doors0.map(o => { const im = new THREE.InstancedMesh(o.geometry, o.material, F.length); im.castShadow = true; scene.add(im); return { im, o }; });
+      F.forEach(p => FD.push({ pos: p, s: p[3], M0: base(p, p[3]).clone() }));
+      TINY.scene.traverse(o => {
+        if (!o.isMesh) return; const g = o.geometry.clone().applyMatrix4(o.matrixWorld), paint = /paint/.test(o.material.name), m = o.material.clone();
+        if (paint) { m.color.set('#ffffff'); m.roughness = .3; m.metalness = 0; }
+        const im = new THREE.InstancedMesh(g, m, F.length * 2); im.castShadow = true;
+        FD.forEach((f, j) => [-.19, .19].forEach((cx, k) => { M.compose(ctx.B2T([f.pos[0] + cx * f.s, f.pos[1] - .02 * f.s, f.pos[2] + .008 * f.s]), Q, new THREE.Vector3(S * f.s, S * f.s, S * f.s)); im.setMatrixAt(2 * j + k, M); if (paint) im.setColorAt(2 * j + k, new THREE.Color(LIME)); }));
+        im.instanceMatrix.needsUpdate = true; scene.add(im); if (paint) ftrucks.push(im);
+      });
+    }
+  }
   const xs = META.stations.map(s => s.pos[0]), x0 = Math.min(...xs), x1 = Math.max(...xs);
   const D = pl.doors || null, wave = D ? (D.wave ?? 2.4) : 0, dur = D ? (D.dur ?? .5) : 1;
   const open = (s, t) => !D ? 1 : Math.max(0, Math.min(1, (t - D.at - wave * (s.pos[0] - x0) / (x1 - x0)) / dur));
@@ -62,6 +90,16 @@ export async function build(THREE, scene, film, ctx) {
     META.stations.forEach((s, i) => { const k = open(s, t); for (const d of [0, 1]) { const o = doors['door_' + String(i).padStart(2, '0') + '_' + d]; if (o) o.scale.y = Math.max(.03, 1 - (s.city === STUCK && d === 1 ? Math.min(k, .5) : k)); } });
     const mode = pl.paint || 'lime';
     if (parts.length && mode !== 'lime') list.forEach((it, j) => { const lime = mode === 'wave' ? open(it.s, t - (pl.lime_delay ?? .3)) >= 1 : false; for (const im of parts) im.setColorAt(j, lime ? cLime : cRed); });
+    if (FD.length) {                            // FIX 2: field doors and paint follow the same wave
+      const Dm = new THREE.Matrix4(), mode = pl.paint || 'lime';
+      FD.forEach((f, j) => {
+        const k = open({ pos: f.pos }, t);
+        for (const { im, o } of fdoors) { Dm.copy(f.M0).multiply(o.matrixWorld).multiply(new THREE.Matrix4().makeScale(1, Math.max(.03, 1 - k), 1)); im.setMatrixAt(j, Dm); }
+        if (mode !== 'lime') { const c = mode === 'wave' && open({ pos: f.pos }, t - (pl.lime_delay ?? .3)) >= 1 ? cLime : cRed; for (const im of ftrucks) { im.setColorAt(2 * j, c); im.setColorAt(2 * j + 1, c); } }
+      });
+      for (const { im } of fdoors) im.instanceMatrix.needsUpdate = true;
+      for (const im of ftrucks) if (im.instanceColor) im.instanceColor.needsUpdate = true;
+    }
     for (const [i, o] of OV) {                 // FIX 2: per-station overrides (setStation)
       if (o.door !== undefined) for (const d of [0, 1]) { const dd = doors['door_' + String(i).padStart(2, '0') + '_' + d], v = Array.isArray(o.door) ? o.door[d] : o.door; if (dd) dd.scale.y = Math.max(.03, 1 - v); }
       if (o.paint !== undefined) for (const k of [0, 1]) { const v = Array.isArray(o.paint) ? o.paint[k] : o.paint, c = v === 'lime' ? cLime : v === 'red' ? cRed : new THREE.Color(v); for (const im of parts) im.setColorAt(2 * i + k, c); }
@@ -70,6 +108,6 @@ export async function build(THREE, scene, film, ctx) {
     if (sand) { const v = typeof pl.sand === 'object' && pl.sand ? Math.max(0, Math.min(1, (t - pl.sand.at) / (pl.sand.dur || .6))) : (pl.sand || 0); sand.visible = v > 0; sand.material.opacity = v; }
   }
   update(0, 0);
-  console.warn('PHFD_MAP ' + JSON.stringify({ meshes, stations: META.stations.length, trucks: list.length, tris: Math.round(tris), load_ms: Math.round(performance.now() - t0) }));
+  console.warn('PHFD_MAP ' + JSON.stringify({ meshes, stations: META.stations.length, trucks: list.length, field: FD.length, tris: Math.round(tris), load_ms: Math.round(performance.now() - t0) }));
   return { anchors: ANCHORS, update, setStation, stations };
 }

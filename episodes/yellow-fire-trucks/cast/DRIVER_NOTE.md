@@ -18,10 +18,13 @@ Known: body_check FAILs "in_vehicle without a body rig" (templates/body_rig is n
 ## Position: card pos z = seat_z - hip_up_m (CAST_KEYS.json: hip_up_m, seated_head_m)
 | driver | hip_up_m | head top above the seat | proof pos z |
 |---|---|---|---|
-| scepticDriver | 0.683 | 1.197 m | 0.27 in the truck (bare head top 2.15 m) |
-| rookieDriver | 0.670 | 0.970 m | 0.45 in the truck (bare head top 2.09 m) |
+| scepticDriver | 0.683 | 1.197 m | 0.42 in the truck (bare head top 2.30 m: face in the side window, mouth at the sill) |
+| rookieDriver | 0.670 | 0.970 m | 0.58 in the truck (bare head top 2.22 m) |
 | milkmanDriver | 0.662 | 0.958 m | 0.29 in the van (seat 0.95, head top 1.91 m) |
-Rule: set z so that the BARE head top sits about 0.1 m under the cab roof line. The face then fills the side window / windscreen, as in Rick's cab shots.
+Rule: eyes and mouth inside the window opening (truck side window about 1.80-2.20 m, windscreen 1.76-2.21 m; van window 1.30-1.88 m).
+CONFLICT (truck): the locked cartoon head (~0.6 m) is taller than the cab window (~0.4 m); with the face in the window the helmet comb reaches the cab roof
+(~2.35 m) and its tip can show above it (proof z 0.42); at z 0.27 the helmet clears but only the eyes show. Fix belongs to the set-builder or lead:
+build the truck about 1.15x around the riders (templates/body_rig finding: never shrink the rider), or drivers without helmets in the cab.
 
 ## Anchors (truck local: front -X, driver side +Z, Y up; GLB windscreen_driver x -3.25..-2.78, y 1.76..2.21, z 0.06..0.75)
 - Truck driver seat (plan, yaw 0): truck origin + (x -2.30, driver side 0.42 m), i.e. with yaw 0 plan [X0 - 2.30, Y0 - 0.42, z]. With another yaw, rotate (-2.30, +0.42 local Z) by the truck yaw (local +Z = plan -Y at yaw 0).
