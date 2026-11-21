@@ -21,12 +21,12 @@ import bpy
 from mathutils import Vector
 
 COLOURS = {
-    "lawn": "#8cbf36",      # flat lawn, bright yellow-green
-    "lawn_var": "#6fa52c",  # soft darker patches
-    "lawn_hi": "#a6cc48",   # soft lighter patches
-    "root": "#3c6a1a",      # blade root
-    "tip": "#b4d84c",       # blade tip
-    "var": "#7fb02e",       # per-blade random mix
+    "lawn": "#5e9a28",      # flat lawn, bright yellow-green
+    "lawn_var": "#4e8820",  # soft darker patches
+    "lawn_hi": "#6faa2e",   # soft lighter patches
+    "root": "#2f5a14",      # blade root
+    "tip": "#94c63a",       # blade tip
+    "var": "#6a9e28",       # per-blade random mix
 }
 
 
@@ -247,6 +247,7 @@ def tufts_around(obj, r_in=.15, r_out=1.2, density=8.0, height=.45, lod="near", 
     """a ring of tufts around an object's foot (trunk, post, prop): r_in/r_out measured from its footprint edge;
     denser close to the object"""
     rnd = random.Random(seed)
+    bpy.context.view_layer.update()
     objs = [obj] + [c for c in obj.children_recursive if c.type == "MESH"]
     xs, ys = [], []
     for o in objs:
@@ -274,6 +275,7 @@ def tufts_around(obj, r_in=.15, r_out=1.2, density=8.0, height=.45, lod="near", 
 def tufts_lens_band(cam, d0=.4, d1=2.5, density=14.0, height=.5, lod="near", colours=None, seed=7, name="tufts_lens"):
     """a band of tufts on the ground in front of the camera, from d0 to d1 m ahead, as wide as the view there"""
     rnd = random.Random(seed)
+    bpy.context.view_layer.update()  # a camera placed in the same run has a stale matrix_world otherwise
     m = cam.matrix_world
     fwd = (m.to_3x3() @ Vector((0, 0, -1)))
     fwd.z = 0

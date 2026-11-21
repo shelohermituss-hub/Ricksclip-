@@ -26,18 +26,18 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TEX = os.path.join(HERE, "tex")
 
 COLOURS = {
-    "lit": "#9cc23c",       # sunlit tops of clumps (yellow-green)
-    "mid": "#5a8a26",       # body of the crown
-    "dark": "#1f3a14",      # undersides and inside
+    "lit": "#a5cf3a",       # sunlit tops of clumps (yellow-green)
+    "mid": "#4c8622",       # body of the crown
+    "dark": "#163212",      # undersides and inside
     "card_lit": "#b2d24a",  # big leaf cards, light end
     "card_dark": "#4d7d22", # big leaf cards, dark end
     "bark": "#5a4a3c",      # bark tint (multiplied with the bark photo)
 }
 
-LOD = {  # clump ico subdivisions, cards per clump, branch detail, secondary branches
+LOD = {  # clump icosphere level (bmesh: 3 = 320, 4 = 1280, 5 = 5120 faces), cards per clump, branch detail, secondary branches
     "near": dict(ico=None, cards=70, res_u=8, bev=4, sec=True, roots=5, tri_budget=105000),
     "mid": dict(ico=3, cards=22, res_u=4, bev=2, sec=True, roots=3, tri_budget=30000),
-    "far": dict(ico=2, cards=0, res_u=2, bev=1, sec=False, roots=0, tri_budget=3200),
+    "far": dict(ico=3, cards=0, res_u=2, bev=1, sec=False, roots=0, tri_budget=3200),
 }
 
 
@@ -83,7 +83,7 @@ def bark_material(col=None):
         mx.data_type = "RGBA"
         mx.blend_type = "MULTIPLY"
         mx.inputs["Factor"].default_value = 1.0
-        mx.inputs["B"].default_value = tuple(min(1.0, c * 2.4) for c in lin(col)[:3]) + (1,)
+        mx.inputs["B"].default_value = tuple(c / max(lin(col)[:3]) * 1.1 for c in lin(col)[:3]) + (1,)  # hue of the tint, photo keeps its own light/dark
         L.new(im["diff"].outputs["Color"], mx.inputs["A"])
         L.new(mx.outputs["Result"], b.inputs["Base Color"])
         rr = N.new("ShaderNodeMapRange")
@@ -123,8 +123,8 @@ def _shade_factor(N, L, rnd_amount):
     sep = N.new("ShaderNodeSeparateXYZ")
     L.new(geo.outputs["Normal"], sep.inputs[0])
     up = N.new("ShaderNodeMapRange")
-    up.inputs["From Min"].default_value = -.55
-    up.inputs["From Max"].default_value = .9
+    up.inputs["From Min"].default_value = -.8
+    up.inputs["From Max"].default_value = .55
     L.new(sep.outputs["Z"], up.inputs["Value"])
     sh = N.new("ShaderNodeAttribute")
     sh.attribute_name = "shade"
@@ -147,7 +147,7 @@ def _shade_factor(N, L, rnd_amount):
     return add
 
 
-def crown_material(cols, leaf_size=.2):
+def crown_material(cols, leaf_size=.14):
     """clump surface: a mosaic of leaf cells (voronoi), each cell its own green, dark gaps between them, leaf bump;
     dark -> mid -> lit by normal and depth in the crown"""
     name = "rt_crown_%s_%s_%.2f" % (cols["lit"].lstrip("#"), cols["dark"].lstrip("#"), leaf_size)
@@ -172,8 +172,8 @@ def crown_material(cols, leaf_size=.2):
     # each leaf cell pushes the factor up or down a little (the spotted lit look)
     cj = N.new("ShaderNodeMath")
     cj.operation = "MULTIPLY_ADD"
-    cj.inputs[1].default_value = .42
-    cj.inputs[2].default_value = -.2
+    cj.inputs[1].default_value = .55
+    cj.inputs[2].default_value = -.25
     L.new(cell.outputs["Red"], cj.inputs[0])
     fac = N.new("ShaderNodeMath")
     fac.operation = "ADD"
@@ -183,8 +183,8 @@ def crown_material(cols, leaf_size=.2):
     ramp = N.new("ShaderNodeValToRGB")
     cr = ramp.color_ramp
     cr.elements[0].position, cr.elements[0].color = .08, lin(cols["dark"])
-    cr.elements[1].position, cr.elements[1].color = .88, lin(cols["lit"])
-    e = cr.elements.new(.5)
+    cr.elements[1].position, cr.elements[1].color = .8, lin(cols["lit"])
+    e = cr.elements.new(.42)
     e.color = lin(cols["mid"])
     L.new(fac.outputs[0], ramp.inputs[0])
     # dark gaps between the leaf cells
@@ -229,7 +229,7 @@ def card_material(cols):
     cr.elements[0].position, cr.elements[0].color = .1, lin(cols["dark"])
     e = cr.elements.new(.45)
     e.color = lin(cols["card_dark"])
-    cr.elements[1].position, cr.elements[1].color = .9, lin(cols["card_lit"])
+    cr.elements[1].position, cr.elements[1].color = .78, lin(cols["card_lit"])
     L.new(f.outputs[0], ramp.inputs[0])
     uv = N.new("ShaderNodeUVMap")
     sp = N.new("ShaderNodeSeparateXYZ")
@@ -253,8 +253,8 @@ def card_material(cols):
     L.new(ramp.outputs[0], mx.inputs["A"])
     L.new(rr.outputs[0], mx.inputs["B"])
     L.new(mx.outputs["Result"], b.inputs["Base Color"])
-    b.inputs["Roughness"].default_value = .5
-    b.inputs["Specular IOR Level"].default_value = .4
+    b.inputs["Roughness"].default_value = .8
+    b.inputs["Specular IOR Level"].default_value = .1
     tl = N.new("ShaderNodeBsdfTranslucent")
     tl.inputs["Color"].default_value = lin(cols["card_lit"])
     ms = N.new("ShaderNodeMixShader")
@@ -296,7 +296,7 @@ def _clump_centres(rnd, n, c, ax):
         tries += 1
         a = rnd.uniform(0, 2 * math.pi)
         e = math.asin(rnd.uniform(-.55, 1.0))
-        r = rnd.uniform(.5, .82)
+        r = rnd.uniform(.55, .88)
         q = Vector((math.cos(a) * math.cos(e) * r, math.sin(a) * math.cos(e) * r, math.sin(e) * r))
         mind = 1.25 / max(n, 1) ** (1 / 3)
         if all((q - o).length > mind for o in pts):
@@ -309,9 +309,9 @@ def _clumps(name, rnd, centres, c, ax, ico, parent, mat, seed):
     bm = bmesh.new()
     sh_layer = bm.verts.layers.float.new("shade")
     rnd_layer = bm.faces.layers.float.new("rnd")
-    base_r = min(ax.x, ax.z) * 1.15 / max(len(centres), 1) ** (1 / 3)
+    base_r = min(ax.x, ax.z) * 1.02 / max(len(centres), 1) ** (1 / 3)
     off = Vector((seed * 7.31, seed * 3.17, seed * 1.93))
-    blobs = [(c - Vector((0, 0, ax.z * .1)), min(ax.x, ax.z) * .62, True)] + [(p, base_r * rnd.uniform(.85, 1.25), False) for p in centres]
+    blobs = [(c - Vector((0, 0, ax.z * .1)), min(ax.x, ax.z) * .5, True)] + [(p, base_r * rnd.uniform(.85, 1.25), False) for p in centres]
     for p, rr, core in blobs:
         tmp = bmesh.new()
         bmesh.ops.create_icosphere(tmp, subdivisions=ico, radius=rr)
@@ -343,7 +343,7 @@ def _clumps(name, rnd, centres, c, ax, ico, parent, mat, seed):
     return _mesh_object(name + "_crown", bm, mat, parent)
 
 
-LEAF_OUTLINE = [(0, 0), (.3, .16), (.46, .42), (.4, .72), (.2, .92), (0, 1.0), (-.2, .92), (-.4, .72), (-.46, .42), (-.3, .16)]
+LEAF_OUTLINE = [(0, 0), (.22, .12), (.37, .35), (.36, .6), (.22, .82), (0, 1.05), (-.22, .82), (-.36, .6), (-.37, .35), (-.22, .12)]
 
 
 def _cards(name, rnd, crown, c, ax, count, size, parent, mat):
@@ -399,7 +399,7 @@ def _cards(name, rnd, crown, c, ax, count, size, parent, mat):
                     lp[uvl].uv = (.5, .45)
                 else:
                     j = vs.index(lp.vert)
-                    lp[uvl].uv = (LEAF_OUTLINE[j][0] / .92 + .5, LEAF_OUTLINE[j][1])
+                    lp[uvl].uv = (LEAF_OUTLINE[j][0] / .74 + .5, LEAF_OUTLINE[j][1])
     bm.normal_update()
     return _mesh_object(name + "_leaves", bm, mat, parent)
 
@@ -491,25 +491,25 @@ def _branches(name, rnd, height, fork_h, r0, centres, c, ax, cfg, parent, mat):
 
 # ---------------------------------------------------------------- public
 def make_tree(name, height=8.0, crown_width=8.0, n_clumps=24, seed=0, lod="near", colours=None,
-              crown_height=None, trunk_radius=None, leaf_card_size=None, leaf_cell=.2):
+              crown_height=None, trunk_radius=None, leaf_card_size=None, leaf_cell=.14):
     """Build a tree at the origin (trunk foot at z=0), return its root Empty.
     height: total metres; crown_width: crown diameter; n_clumps: 10-40 (far keeps at most 7);
     lod: near (full) | mid (simpler clumps, 1/3 of the cards) | far (few blobs, trunk only, no cards);
     colours: dict overriding COLOURS (lit, mid, dark, card_lit, card_dark, bark);
-    crown_height: default 0.62*height; trunk_radius: default 0.028*height; leaf_card_size: default 0.045*height (big);
+    crown_height: default 0.62*height; trunk_radius: default 0.034*height; leaf_card_size: default 0.045*height (big);
     leaf_cell: size of a leaf cell in the clump surface pattern (m)."""
     cols = dict(COLOURS, **(colours or {}))
     cfg = LOD[lod]
     rnd = random.Random(seed)
     ch = crown_height or height * .62
-    r0 = trunk_radius or height * .028
+    r0 = trunk_radius or height * .034
     card = leaf_card_size or height * .045
     c, ax = _crown_frame(height, crown_width, ch)
     n = max(4, min(int(n_clumps), 7)) if lod == "far" else max(6, int(n_clumps))
     centres = _clump_centres(rnd, n, c, ax)
     ico = cfg["ico"]
     if ico is None:  # near: the finest icosphere that keeps the crown inside the triangle budget
-        ico = 4 if (len(centres) + 1) * 5120 <= cfg["tri_budget"] else 3
+        ico = 5 if (len(centres) + 1) * 5120 <= cfg["tri_budget"] else 4  # bmesh levels: 4 = 1280, 5 = 5120 faces per blob
     root = bpy.data.objects.new(name, None)
     root.empty_display_type = "PLAIN_AXES"
     bpy.context.scene.collection.objects.link(root)

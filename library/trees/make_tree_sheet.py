@@ -66,7 +66,7 @@ G.flat_lawn(size=(520, 420), location=(110, 150, 0))
 road_m = bpy.data.materials.new("road")
 road_m.use_nodes = True
 rb = road_m.node_tree.nodes["Principled BSDF"]
-rb.inputs["Base Color"].default_value = lin("#6d7177")
+rb.inputs["Base Color"].default_value = lin("#55585c")
 rb.inputs["Roughness"].default_value = .8
 me = bpy.data.meshes.new("road")
 me.from_pydata([(196.5, -20, .01), (203.5, -20, .01), (203.5, 360, .01), (196.5, 360, .01)], [], [(0, 1, 2, 3)])
@@ -95,7 +95,7 @@ near = {}
 for i, s in enumerate(SHAPES):
     near[s] = tree(s, "near", i * 40.0, 0.0)
     bpy.context.view_layer.update()
-    G.tufts_around(near[s], r_in=.05, r_out=1.3, density=7, seed=i + 1)
+    G.tufts_around(near[s], r_in=.05, r_out=1.6, density=10, seed=i + 1)
 # road panel: one near tree, then mid, then far
 tree("round", "near", 193.0, 14.0)
 for k, (s, x, y) in enumerate([("spread", 191.0, 42.0), ("tall", 210.0, 55.0), ("round", 213.5, 34.0)]):
@@ -106,9 +106,9 @@ bpy.context.view_layer.update()
 tn = 0
 for side in (-1, 1):
     x = 200 + side * 4.3
-    o = G.tufts_along([(x, -4), (x, 30)], width=1.1, density=5, seed=10 + side, name="edge_near_%d" % side)
+    o = G.tufts_along([(x, -4), (x, 30)], width=1.1, density=9, seed=10 + side, name="edge_near_%d" % side)
     tn += len(o.data.polygons)
-    G.tufts_along([(x, 30), (x, 80)], width=1.1, density=3, lod="mid", seed=20 + side, name="edge_mid_%d" % side)
+    G.tufts_along([(x, 30), (x, 80)], width=1.1, density=6, lod="mid", seed=20 + side, name="edge_mid_%d" % side)
 
 
 # ---------------------------------------------------------------- cameras and render
@@ -125,14 +125,14 @@ def cam(name, loc, look, lens=22):
 
 
 shots = [
-    ("A_spread_near", cam("camA", (-3.5, -12.5, 1.5), (0.5, 0, 4.4)), True),
-    ("B_round_near", cam("camB", (41.5, -10.5, 1.5), (40, 0, 3.6)), False),
-    ("C_tall_near", cam("camC", (79, -12.5, 1.6), (80, 0, 5.6)), False),
+    ("A_spread_near", cam("camA", (-2.5, -10.5, 0.8), (0.5, 0, 4.6)), True),
+    ("B_round_near", cam("camB", (41.5, -8.5, 1.4), (40, 0, 3.9)), False),
+    ("C_tall_near", cam("camC", (79, -11, 1.4), (80, 0, 6.0)), False),
     ("D_road_mid_far", cam("camD", (198.2, -6, 1.7), (200.5, 60, 3.2), 24), False),
 ]
 for nm, c, band in shots:
     if band:
-        G.tufts_lens_band(c, d0=.5, d1=2.6, density=10, height=.55, name="lens_" + nm)
+        G.tufts_lens_band(c, d0=.4, d1=3.0, density=12, height=.55, name="lens_" + nm)
 
 sc.render.engine = "CYCLES"
 sc.cycles.device = "CPU"
