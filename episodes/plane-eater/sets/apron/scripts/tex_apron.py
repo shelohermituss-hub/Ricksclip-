@@ -8,13 +8,15 @@ FD = '/usr/share/fonts/truetype/dejavu/'
 SERIF, SANS = FD + 'DejaVuSerif-Bold.ttf', FD + 'DejaVuSans-Bold.ttf'
 def hx(h): h = h.lstrip('#'); return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 def blur_noise(n, s, sig):
-    a = NP.random((s, s)).astype(np.float32); im = Image.fromarray((a * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(sig)); return np.asarray(im).astype(np.float32) / 255
+    # FIX 2: blur in float, wrap-around (tiles), rescaled 0..1. The old uint8 blur left 1-2 grey levels that the normalising turned into hard camouflage blotches
+    from scipy.ndimage import gaussian_filter
+    a = gaussian_filter(NP.random((s, s)).astype(np.float32), sig, mode='wrap'); return (a - a.min()) / (a.max() - a.min() + 1e-9)
 
 # concrete: pale warm grey, soft clouding, fine speckle, two hairline cracks per tile (2 m tile, 1024 px)
 S = 1024; base = np.array(hx('#a7a6a3'), np.float32)   # FIX 2: style-test concrete (was #c9c6bd, clipped white)
 cl = blur_noise(0, S, 40); cl = (cl - cl.mean()) / (cl.std() + 1e-6); sp = NP.random((S, S)).astype(np.float32)
 tw = blur_noise(0, S, 90); tw = (tw - tw.mean()) / (tw.std() + 1e-6)   # FIX 2: soft warm/cool drift between patches
-img = base[None, None, :] * (1 + .06 * cl[..., None]) + tw[..., None] * np.array([3.5, 1.0, -3.0], np.float32) + (sp[..., None] - .5) * 14
+img = base[None, None, :] * (1 + .045 * cl[..., None]) + tw[..., None] * np.array([3.5, 1.0, -3.0], np.float32) + (sp[..., None] - .5) * 14
 img = np.clip(img, 0, 255).astype(np.uint8); im = Image.fromarray(img); d = ImageDraw.Draw(im)
 for _ in range(2):
     x, y = R.uniform(100, 900), R.uniform(100, 900); a = R.uniform(0, 6.28)

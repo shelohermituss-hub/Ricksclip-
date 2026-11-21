@@ -32,8 +32,8 @@ def _world(sc):
     nb = N.new('ShaderNodeTexNoise'); nb.noise_dimensions = '2D'; nb.inputs['Scale'].default_value = 1.3; nb.inputs['Detail'].default_value = 7.; nb.inputs['Roughness'].default_value = .55
     L.new(dv.outputs[0], nb.inputs['Vector'])
     cr = N.new('ShaderNodeMapRange'); cr.inputs[1].default_value = .52; cr.inputs[2].default_value = .62; L.new(nb.outputs['Fac'], cr.inputs[0])
-    b1 = N.new('ShaderNodeMapRange'); b1.interpolation_type = 'SMOOTHSTEP'; L.new(sp_.outputs[2], b1.inputs[0]); b1.inputs[1].default_value = .03; b1.inputs[2].default_value = .09
-    b2 = N.new('ShaderNodeMapRange'); b2.interpolation_type = 'SMOOTHSTEP'; L.new(sp_.outputs[2], b2.inputs[0]); b2.inputs[1].default_value = .28; b2.inputs[2].default_value = .45
+    b1 = N.new('ShaderNodeMapRange'); b1.interpolation_type = 'SMOOTHSTEP'; L.new(sp_.outputs[2], b1.inputs[0]); b1.inputs[1].default_value = .1; b1.inputs[2].default_value = .16
+    b2 = N.new('ShaderNodeMapRange'); b2.interpolation_type = 'SMOOTHSTEP'; L.new(sp_.outputs[2], b2.inputs[0]); b2.inputs[1].default_value = .36; b2.inputs[2].default_value = .52
     b2.inputs[3].default_value = 1.; b2.inputs[4].default_value = 0.
     cm = N.new('ShaderNodeMath'); cm.operation = 'MULTIPLY'; L.new(b1.outputs[0], cm.inputs[0]); L.new(b2.outputs[0], cm.inputs[1])
     cm2 = N.new('ShaderNodeMath'); cm2.operation = 'MULTIPLY'; cm2.use_clamp = True; L.new(cr.outputs[0], cm2.inputs[0]); L.new(cm.outputs[0], cm2.inputs[1])
