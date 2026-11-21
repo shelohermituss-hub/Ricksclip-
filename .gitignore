@@ -60,3 +60,4 @@ episodes/*/cast/cabtest/out/
 episodes/*/moves/out/
 episodes/*/draft/*.mp4
 !episodes/*/draft/FILM_DRAFT_v1.mp4
+episodes/*/s[0-9]*/key*/
