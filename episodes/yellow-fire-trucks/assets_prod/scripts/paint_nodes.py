@@ -11,6 +11,7 @@ PRIMER = (0.20, 0.19, 0.175, 1)       # #7d7a74 linear
 ROOF = (0.888, 0.863, 0.761, 1)       # #F3EFE2 linear
 ROOF_Z, CAB_X = 2.12, -0.80           # white roof: above ROOF_Z and in front of CAB_X (the cab's rear wall)
 EDGE_W, RUN_COLS = 0.38, 9.0          # round 2: 9 run columns per metre (was 28: runs 3 mm wide, invisible at a medium shot)
+DRAIN_SOFT = 0.4                      # round 3: half width of the drain wipe's soft front (m)
 RUN_P, RUN_W, RUN_BEAD, RUN_L0, RUN_L1, RUN_NEAR, RUN_GAP, RUN_Z0, RUN_Z1 = 0.35, 0.16, 0.18, 0.3, 0.6, 1.1, 0.2, 0.8, 0.8
 
 
@@ -45,7 +46,7 @@ def build_group(wear_img):
     I = g.interface
     for nm, t, d in (('colA', 'NodeSocketColor', (0.65, 0.007, 0.011, 1)), ('colB', 'NodeSocketColor', (0.65, 0.007, 0.011, 1)), ('edge', 'NodeSocketFloat', 0.3),
                      ('drain', 'NodeSocketFloat', 0.0), ('drainA', 'NodeSocketFloat', 1.0), ('drainB', 'NodeSocketFloat', 1.0), ('wear', 'NodeSocketFloat', 0.6),
-                     ('roofOn', 'NodeSocketFloat', 1.0), ('wscale', 'NodeSocketFloat', 1.0), ('chipZ', 'NodeSocketFloat', 0.9), ('P', 'NodeSocketVector', (0, 0, 0))):
+                     ('roofOn', 'NodeSocketFloat', 1.0), ('wscale', 'NodeSocketFloat', 1.0), ('chipZ', 'NodeSocketFloat', 0.9), ('drainEdge', 'NodeSocketFloat', 99.0), ('P', 'NodeSocketVector', (0, 0, 0))):
         s = I.new_socket(nm, in_out='INPUT', socket_type=t)
         if t != 'NodeSocketVector': s.default_value = d
     for nm, t in (('Color', 'NodeSocketColor'), ('Rough', 'NodeSocketFloat'), ('CoverB', 'NodeSocketFloat')):
@@ -76,8 +77,10 @@ def build_group(wear_img):
     run = b.m('MULTIPLY', b.m('MULTIPLY', on, b.m('LESS_THAN', fx, width)), b.m('MULTIPLY', near, inz))
     cover = b.m('MAXIMUM', t, b.m('MAXIMUM', dots, run))
     # --- colours: each coat drains to the dusk grey-plum only if it is red (drainA / drainB)
-    A = b.mix(gi.outputs['colA'], DUSK, b.m('MULTIPLY', gi.outputs['drain'], gi.outputs['drainA']))
-    B = b.mix(gi.outputs['colB'], DUSK, b.m('MULTIPLY', gi.outputs['drain'], gi.outputs['drainB']))
+    # round 3: the drain WIPES nose to tail: full where x < drainEdge - DRAIN_SOFT, none beyond drainEdge + DRAIN_SOFT (99 = the whole truck at once)
+    dr = b.m('MULTIPLY', gi.outputs['drain'], b.m('SUBTRACT', 1.0, b.sstep(-DRAIN_SOFT, DRAIN_SOFT, b.m('SUBTRACT', x, gi.outputs['drainEdge']))))
+    A = b.mix(gi.outputs['colA'], DUSK, b.m('MULTIPLY', dr, gi.outputs['drainA']))
+    B = b.mix(gi.outputs['colB'], DUSK, b.m('MULTIPLY', dr, gi.outputs['drainB']))
     c = b.mix(A, B, cover)
     roof = b.m('MULTIPLY', b.m('MULTIPLY', b.m('GREATER_THAN', z, ROOF_Z), b.m('LESS_THAN', x, CAB_X)), gi.outputs['roofOn'])
     c = b.mix(c, ROOF, roof)

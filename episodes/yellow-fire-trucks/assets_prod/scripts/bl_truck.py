@@ -108,6 +108,17 @@ for o in bea:
 D = bsdf(dome); D.inputs['Base Color'].default_value = (0.8, 0.02, 0.02, 1); D.inputs['Emission Color'].default_value = (1, 0.05, 0.03, 1)
 D.inputs['Emission Strength'].default_value = 0.0; D.inputs['Roughness'].default_value = 0.1; D.inputs['Alpha'].default_value = 0.6
 
+# ROUND 3: the downloaded model's modern plate "LIBAU / LAND OF LINCOLN" (packardplatesand_badges) -> a 1940s porcelain plate PINE HOLLOW F.D. 1
+# (tex_r3.py). badges_dallas is packed too (fake user): truck_api.set_letters('truck_letters_dal14' / '_dal22') swaps it with the letters.
+pk = M.get('packardplatesand_badges')
+if pk:
+    for n in pk.node_tree.nodes:
+        if n.type == 'TEX_IMAGE' and n.outputs['Color'].links and n.outputs['Color'].links[0].to_socket.name == 'Base Color':
+            n.image = bpy.data.images.load(os.path.join(TEX, 'badges_pine.png')); n.image.name = 'badges_pine'
+    pk['phfd_role_plate'] = 1
+bd = bpy.data.images.load(os.path.join(TEX, 'badges_dallas.png')); bd.name = 'badges_dallas'; bd.use_fake_user = True
+print('R3 plate', 'swapped' if pk else 'MATERIAL MISSING')
+
 def new_mat(name, col, metal=0.0, rough=0.4, coat=0.0, role=None):
     m = M.new(name); m.use_nodes = True; p = bsdf(m)
     p.inputs['Base Color'].default_value = T.lin(col) if isinstance(col, str) else col
@@ -157,33 +168,32 @@ cyl('bell_pull_ring', 0.018, 0.006, BRASS, (0.04, 0, -0.03), rot=(0, math.pi / 2
 
 # ---------------------------------------------------------------- 5. the mayor's white ribbon round the body + a bow on the nose (plan row 4)
 RZ, RH = 0.86, 0.12
+# ROUND 3 (props-hero 2026-11-21): the band HUGS the body. Round 2 took the convex hull of every body_paint vertex at band height: the wheel fenders
+# (|y| 1.26 m) pushed it 0.2-0.4 m off the doors and the pump panel (0.87-1.05 m), and it read standing off the side in the kit. Now: every mesh but
+# the wheels, points with |y| <= 1.10 m (fenders and running boards out), per side an outer profile y(x) every 5 cm (window +-0.2 m: the ribbon bridges
+# small gaps only), smoothed over +-0.1 m, 1.2 cm proud of the paint. Over the fenders it tucks in behind them (hidden), as a ribbon tied under the flares.
 pts = []
+wheel_meshes = {o.name for o in meshes if o.parent and o.parent.get('phfd_part') == 'wheel'}
 for o in meshes:
-    if 'body_paint' not in mats(o): continue
+    if o.name in wheel_meshes or 'tyre_black' in mats(o): continue
     for v in o.data.vertices:
         w = o.matrix_world @ v.co
-        if abs(w.z - RZ) < 0.06: pts.append((w.x, w.y))
-def hull(P):
-    P = sorted(set((round(x, 3), round(y, 3)) for x, y in P))
-    def cr(o, a, b): return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-    lo, up = [], []
-    for p in P:
-        while len(lo) >= 2 and cr(lo[-2], lo[-1], p) <= 0: lo.pop()
-        lo.append(p)
-    for p in reversed(P):
-        while len(up) >= 2 and cr(up[-2], up[-1], p) <= 0: up.pop()
-        up.append(p)
-    return lo[:-1] + up[:-1]
-H = hull(pts); cx = sum(p[0] for p in H) / len(H); cy = sum(p[1] for p in H) / len(H)
-ring = []
-for i in range(len(H)):   # resample + push out 2 cm along the averaged edge normals
-    p0, p1 = Vector(H[i]), Vector(H[(i + 1) % len(H)]); n = int(max(1, (p1 - p0).length / 0.08))
-    for k in range(n): ring.append(p0.lerp(p1, k / n))
-out = []
-for i, p in enumerate(ring):
-    t = (ring[(i + 1) % len(ring)] - ring[i - 1]).normalized(); nrm = Vector((t.y, -t.x))
-    if nrm.dot(p - Vector((cx, cy))) < 0: nrm = -nrm
-    out.append(p + nrm * 0.02)
+        if abs(w.z - RZ) < 0.05 and abs(w.y) <= 1.10: pts.append((w.x, w.y))
+XA, XB = min(p[0] for p in pts) + 0.02, max(p[0] for p in pts) - 0.02
+xs = [XA + k * 0.05 for k in range(int((XB - XA) / 0.05) + 1)]
+def profile(sgn):
+    raw = []
+    for x in xs:
+        cand = [abs(py) for px, py in pts if abs(px - x) < 0.2 and py * sgn > 0]
+        raw.append(max(cand) if cand else None)
+    for i, r in enumerate(raw):   # fill holes from the neighbours
+        if r is None:
+            l = next((raw[j] for j in range(i, -1, -1) if raw[j] is not None), None); rr = next((raw[j] for j in range(i, len(raw)) if raw[j] is not None), None)
+            raw[i] = l if rr is None else (rr if l is None else (l + rr) / 2)
+    return [sum(raw[max(0, i - 2):i + 3]) / len(raw[max(0, i - 2):i + 3]) + 0.012 for i in range(len(raw))]
+yn, yp = profile(-1), profile(1)
+out = [Vector((x, -y)) for x, y in zip(xs, yn)] + [Vector((x, y)) for x, y in reversed(list(zip(xs, yp)))]
+print('R3 ribbon profile y(-) min/max', round(min(yn), 3), round(max(yn), 3), 'x', round(XA, 2), round(XB, 2))
 bm = bmesh.new(); vs = [(bm.verts.new((p.x, p.y, RZ - RH / 2)), bm.verts.new((p.x, p.y, RZ + RH / 2))) for p in out]
 for i in range(len(vs)):
     a_, b_ = vs[i], vs[(i + 1) % len(vs)]; bm.faces.new((a_[0], b_[0], b_[1], a_[1]))

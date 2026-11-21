@@ -83,7 +83,9 @@ const recolour = (s, shell, shield, gsat = .3) => s.replace(/#[0-9a-fA-F]{6}\b/g
   if (shell && (h <= 22 || h >= 338)) return remap(m, shell, L_RED); if (h >= 28 && h <= 62 && sat >= gsat) return remap(m, shield, L_GOLD); return m; });
 // fireHelmet({ shell, shield, num, numCol, size }): num '' = plain shield
 const fireHelmet = ({ shell, shield, num = '', numCol = INK, size = 30, label }) => Object.assign(PP => HELMETS.fire(PP).map(s => {
-  let t = recolour(s, shell, shield); if (/<text/.test(t)) t = num ? t.replace(/>7<\/text>/, `>${num}</text>`).replace(/fill="#2a1a1f"/, `fill="${numCol}"`).replace(/font-size="30"/, `font-size="${size}"`) : t.replace(/<text[\s\S]*?<\/text>/, ''); return t; }),
+  let t = recolour(s, shell, shield); if (/<text/.test(t)) t = num ? t.replace(/>7<\/text>/, `>${num}</text>`).replace(/fill="#2a1a1f"/, `fill="${numCol}"`).replace(/font-size="30"/, `font-size="${size}"`) : t.replace(/<text[\s\S]*?<\/text>/, '');
+  if (/<text/.test(t) && (PP.dir || 1) < 0) t = `<g transform="scale(-1,1)">${t}</g>`;   // FIX 1 (2026-11-21): hair_lib mirrors the head layers for dir < 0 (left views), so the front number read backwards: counter-flip it about the shield centre (x 0)
+  return t; }),
   { label: label || 'Traditional US fire helmet (kit shape, recoloured)', era: '1900s-1980s' });
 const HELM_HERO = fireHelmet({ shell: '#34333a', shield: '#3e3d45', label: 'Black fire helmet, plain black front' });
 const HELM_CO3 = fireHelmet({ shell: '#34333a', shield: '#e9ecf0', num: '3', label: 'Black fire helmet, silver-white front, company 3' });
@@ -101,6 +103,15 @@ const headMirror = Object.assign(PP => { const v = PP.view, y = PP.brimY + 6, w 
   if (v === 'back') return [band];
   const disc = (x, rx) => `<ellipse cx="${f(x)}" cy="${f(y - 34)}" rx="${f(rx)}" ry="30" fill="#d9dde4" stroke="${INK}" stroke-width="5"/><ellipse cx="${f(x - rx * .25)}" cy="${f(y - 42)}" rx="${f(rx * .35)}" ry="9" fill="#ffffff" opacity=".8"/><ellipse cx="${f(x)}" cy="${f(y - 34)}" rx="${f(rx * .2)}" ry="6" fill="${INK}"/><rect x="${f(x - 5)}" y="${f(y - 8)}" width="10" height="10" fill="#8a8f9a" stroke="${INK}" stroke-width="3"/>`;
   return v === 'side' ? [band, disc(w * .55, 12)] : [band, disc(PP.v34 ? 18 : 0, 30)]; }, { label: 'Head mirror on a band (ENT / eye doctor)', era: '1900s-1980s' });
+// FIX 2 (2026-11-21, S2 row 11 "eye"): the same head mirror swung DOWN on its knuckle over his RIGHT eye (screen left in front): a short steel stalk from the
+// band to the disc, the disc tipped (narrower than wide) so its centre hole sits on the eye; the LEFT lens of the round glasses stays fully clear (signature).
+// Head space: eyes at about x +-40, y -19 (char2d front; 3/4 slides them by +18 toward the turn); side: the near eye at about x 52.
+const headMirrorDown = Object.assign(PP => { const v = PP.view, y = PP.brimY + 6, w = PP.widthAt(y) + 2, band = `<path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="${INK}" stroke-width="16" stroke-linecap="round"/><path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="#3a3940" stroke-width="9" stroke-linecap="round"/>`;
+  if (v === 'back') return [band];
+  const [ex, ey, rx, ry] = v === 'side' ? [56, -22, 13, 33] : PP.v34 ? [-40 * .9 + 18, -20, 30, 36] : [-40, -20, 34, 36], kx = v === 'side' ? 6 : ex * .55;
+  const stalk = `<path d="M${f(kx)},${f(y - 4)} L${f(ex + (v === 'side' ? -2 : 6))},${f(ey - ry + 6)}" stroke="${INK}" stroke-width="13" stroke-linecap="round"/><path d="M${f(kx)},${f(y - 4)} L${f(ex + (v === 'side' ? -2 : 6))},${f(ey - ry + 6)}" stroke="#8a8f9a" stroke-width="6" stroke-linecap="round"/><circle cx="${f(kx)}" cy="${f(y - 4)}" r="9" fill="#8a8f9a" stroke="${INK}" stroke-width="4"/>`;
+  const disc = `<ellipse cx="${f(ex)}" cy="${f(ey)}" rx="${f(rx)}" ry="${f(ry)}" fill="#d9dde4" stroke="${INK}" stroke-width="5"/><ellipse cx="${f(ex - rx * .3)}" cy="${f(ey - ry * .4)}" rx="${f(rx * .34)}" ry="${f(ry * .22)}" fill="#ffffff" opacity=".85"/><ellipse cx="${f(ex + rx * .12)}" cy="${f(ey + 2)}" rx="${f(Math.max(4, rx * .2))}" ry="7" fill="${INK}"/>`;
+  return [band, stalk, disc]; }, { label: 'Head mirror on a band, swung DOWN over the right eye', era: '1900s-1980s' });
 // the THIN painter's brush behind the ear = the kit's ear pencil piece in brush colours (wood handle, grey bristle tip)
 const BRUSH_EAR = 'earPencil';
 // library hats with their gold badge / star turned silver (no yellow on any person); shape and main colour untouched
@@ -132,6 +143,7 @@ export const CAST = [
   // THE HERO (thin, tall): big round wire glasses = fixed signature; teal turtleneck = the film's signature colour
   person({ name: 'hero', label: 'The Fireman-Eye-Doctor (yard)', size: 'thin', outfit: 'ytHeroYard', outfitPal: { a: TEAL, b: BLK, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, hat: HELM_HERO, hatDrop: -14 }),
   person({ name: 'heroShop', label: 'The Fireman-Eye-Doctor (eye shop)', size: 'thin', outfit: 'ytHeroShop', outfitPal: { a: WHITE, b: TEAL, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, pieces: [headMirror] }),
+  person({ name: 'heroShopEye', label: 'The Fireman-Eye-Doctor (eye shop, head mirror DOWN over the right eye: S2 row 11)', size: 'thin', outfit: 'ytHeroShop', outfitPal: { a: WHITE, b: TEAL, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, pieces: [headMirrorDown] }),
   person({ name: 'heroBare', label: 'The Fireman-Eye-Doctor (no helmet, last picture option)', size: 'thin', outfit: 'ytHeroYard', outfitPal: { a: TEAL, b: BLK, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE }),
   // THE CHIEF (fat, short): white helmet + grey walrus moustache
   person({ name: 'chief', label: 'The Chief', size: 'fat', outfit: 'ytChief', outfitPal: { a: NAVY, b: BLKD, c: NAVYD } }, 'buzz', H_CHIEF, { face: CHIEF_FACE, hat: HELM_CHIEF, hatDrop: -10 }),
@@ -156,3 +168,26 @@ export const CAST = [
   person({ name: 'painterThin', label: 'Painter (thin, brush behind the ear)', size: 'thin', outfit: 'ytPainter', outfitPal: { a: CREAM, b: WHITE, c: SILV } }, 'buzz', H_P1, { hat: PAINTER_CAP, hatCol: '#f4f3ef', hatDrop: -12, pieces: [BRUSH_EAR], pieceCol: '#9b6b3e', pieceAccent: '#d6d7db' }),
   person({ name: 'painterFat', label: 'Painter (fat, rag in the back pocket)', size: 'fat', outfit: 'ytPainterB', outfitPal: { a: '#b8bcc4', b: WHITE, c: SILV }, backOver: ragBack, behind: ragSide }, 'curlyCrop', H_P2, { face: { stache: 'chevron' }, hat: PAINTER_CAP, hatCol: '#f4f3ef', hatDrop: -12 }),
 ];
+
+// ---------- FIX 3 (2026-11-21): SEATED DRIVERS (S3, S6: standing cards stood through the cab and van bodies, 73-100 % body_in_mesh) ----------
+// The kit has no seated driver card (templates/body_rig solveSit is NOT wired into film.js; frame_checks only knows cast "in_vehicle": true, which hands
+// the driver to body_check / scale_check). So each driver is the SAME puppet (same spec: body, costume, hair, face, moves, held3d hands) drawn through the
+// kit's own svgFor and CUT at the seat line just under the hips (kit_patch customCard: spec.card = { svg(st, CARD), metrics }): no legs and no lower body
+// on the card, so nothing of him can poke under the cab floor or out through a door. Metrics = the standing puppet's, so cast height scales him exactly.
+// Place him with his HIPS ON THE SEAT: card pos z = seat_z - hip_up_m (hip_up_m = DRIVER_HIP below, metres, for the cast height); hands on the wheel rim
+// = pose 'push' (both fists forward at the rim) or the stretch's own cab move (feet are cut off, so the move's legs never show). Note: DRIVER_NOTE.md.
+import { buildChar } from '../castkit.mjs';
+let PUP = null;   // the kit's live puppets module (the same instance film.js initialised): /kit/puppets.mjs in the film, ../puppets.mjs in render_cast
+for (const u of ['../../kit/puppets.mjs', '../puppets.mjs']) { try { const m = await import(new URL(u, import.meta.url).href); if (m && m.svgFor && m.metrics) { PUP = m; break; } } catch (e) { /* not this layout */ } }
+const CUT_PAD = 14;   // rig px below the hip line: the coat hem lying on the lap
+const hipUpPx = spec => { const S = buildChar({ ...spec, face: 'standard' }, 400); return (S.ground ?? 900) - (S.bodyBot ?? 640) + 30; };   // = puppets.mjs chOf hipY (bodyBot - 30), measured up from the feet
+const cutSvg = (svg, y, id) => svg.includes('</defs>') ? svg.replace('</defs>', `<clipPath id="${id}"><rect x="-400" y="-400" width="1600" height="${f(y + 400)}"/></clipPath></defs><g clip-path="url(#${id})">`).replace(/<\/svg>\s*$/, '</g></svg>')
+  : svg.replace(/(<svg[^>]*>)/, `$1<defs><clipPath id="${id}"><rect x="-400" y="-400" width="1600" height="${f(y + 400)}"/></clipPath></defs><g clip-path="url(#${id})">`).replace(/<\/svg>\s*$/, '</g></svg>');
+const driver = (name, base, label) => { const src = CAST.find(c => c.name === base), ref = { puppet: 'cast:firetrucks/' + base }, up = hipUpPx(src);
+  const spec = { ...src, name, label, driverOf: base, hipUpPx: up };
+  if (PUP) spec.card = { svg: (st, CARD) => cutSvg(PUP.svgFor(ref, st), CARD.GY - up + CUT_PAD, 'drvcut_' + name), get metrics() { return PUP.metrics(ref); } };
+  return spec; };
+CAST.push(driver('scepticDriver', 'sceptic', 'The Sceptic at the wheel (seated: cut at the seat, S3 red truck cab, S6 pumper)'),
+  driver('rookieDriver', 'rookie', 'The Rookie at the wheel (seated: cut at the seat, S6 lemon truck cab)'),
+  driver('milkmanDriver', 'milkman', 'The Milkman at the wheel (seated: cut at the seat, S3/S6 milk van)'));
+export const DRIVER_HIP = Object.fromEntries(CAST.filter(c => c.driverOf).map(c => [c.name, c.hipUpPx]));   // rig px; metres = px * height / metrics.px

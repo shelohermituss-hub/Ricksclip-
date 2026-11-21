@@ -3,7 +3,7 @@
 //   node episodes/yellow-fire-trucks/cast/tools/render_cast.mjs
 //   -> cast/sheets/CAST_SHEET.jpg (1600 wide), cast/sheets/CAST_FACES.jpg, cast/sheets/LINEUP.jpg + LINEUP_phone360.jpg, cast/out/numbers.json, cast/views/<name>_<view>.png
 // Cards are drawn through the film kit's own puppet adapter (puppets.mjs svgFor) and shaded with the port of film.js costumeShadedTexture
-// (CAST_KEYS costume_shade; faces and whites untouched), so the sheet shows what the film shows. LEFT views = the right card mirrored (the film's way).
+// (CAST_KEYS costume_shade; faces and whites untouched), so the sheet shows what the film shows. LEFT views = svgFor with dir -1 (the film's way, FIX 1 2026-11-21).
 import fs from 'fs'; import path from 'path'; import os from 'os'; import { fileURLToPath, pathToFileURL } from 'url'; import { createRequire } from 'module';
 const HERE = path.dirname(fileURLToPath(import.meta.url)), CAST = path.resolve(HERE, '..'), ROOT = path.resolve(CAST, '../../..'), require = createRequire(import.meta.url);
 const PKG = path.join(ROOT, 'templates/vector2d_characters/code'), KIT = path.join(ROOT, 'templates/threejs_film'), OUT = path.join(CAST, 'out'), VIEWS = path.join(CAST, 'views'), SHEETS = path.join(CAST, 'sheets');
@@ -11,21 +11,24 @@ const imp = f => import(pathToFileURL(f).href);
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'firetrucks_')); fs.mkdirSync(path.join(TMP, 'sheets'));
 for (const f of fs.readdirSync(PKG)) if (f.endsWith('.mjs')) fs.copyFileSync(path.join(PKG, f), path.join(TMP, f));
 for (const f of ['puppets.mjs', 'poses.mjs']) fs.copyFileSync(path.join(KIT, f), path.join(TMP, f));
-fs.copyFileSync(path.join(SHEETS, 'firetrucks.mjs'), path.join(TMP, 'sheets/firetrucks.mjs'));
+const BEFORE = process.env.CAST_BEFORE || '';   // FIX 1 proof: CAST_BEFORE=<old sheet file> -> only out/before/<id>.png, left views mirrored the old way (canvas), nothing else written
+fs.copyFileSync(BEFORE || path.join(SHEETS, 'firetrucks.mjs'), path.join(TMP, 'sheets/firetrucks.mjs'));
 const [char2d, memes, memes2, memes3, bodies, cast, castkit, grips] = await Promise.all(['char2d', 'memes', 'memes2', 'memes3', 'bodies', 'cast', 'castkit', 'grips'].map(n => imp(path.join(TMP, n + '.mjs'))));
 const P = await imp(path.join(TMP, 'puppets.mjs')), sheet = await imp(path.join(TMP, 'sheets/firetrucks.mjs')), castIndex = {};
 for (const c of sheet.CAST) { castIndex[c.name] = c; castIndex['firetrucks/' + c.name] = c; }
 const KEYS = JSON.parse(fs.readFileSync(path.join(CAST, 'CAST_KEYS.json'), 'utf8')), CS = KEYS.costume_shade;
 P.initPuppets({ char2d, memes, memes2, memes3, bodies, cast, castkit, castIndex, grips, motion: { LIB: [], mods: {}, cloth: null }, epFaces: KEYS.faces_ep, faceShadow: KEYS.face_shadow });
-const V6 = ['front', '34', '34L', 'side', 'sideL', 'back'], ALL = Object.keys(KEYS.cast), HERO = new Set(['hero', 'heroShop', 'heroBare']);
+const V6 = ['front', '34', '34L', 'side', 'sideL', 'back'], DRV = Object.keys(KEYS.cast).filter(w => KEYS.cast[w].in_vehicle), ALL = Object.keys(KEYS.cast).filter(w => !DRV.includes(w) && (!BEFORE || castIndex[w])), HERO = new Set(['hero', 'heroShop', 'heroBare', 'heroShopEye']);
 const tiles = [], T = (who, st = {}) => { const E = KEYS.cast[who], m = P.metrics(E), v = st.view || 'front', mir = /L$/.test(v), vw = mir ? v.slice(0, -1) : v;
-  const svg = P.svgFor(E, { view: vw, dir: 1, pose: 'stand', face: 'standard', prop: null, hand: null, mouth: null, blink: null, ...st, view: vw });
-  const id = `${who}_${v}${st.tag ? '_' + st.tag : ''}`; tiles.push({ id, who, view: v, mir, hy: m.hy, headPx: m.headPx, px: m.px, height: E.height, hero: HERO.has(who), svg: 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64') }); return id; };
+  const svg = P.svgFor(E, { view: vw, dir: 1, pose: 'stand', face: 'standard', prop: null, hand: null, mouth: null, blink: null, ...st, view: vw, ...(mir && !BEFORE ? { dir: -1 } : {}) });   // FIX 1 (2026-11-21): LEFT views drawn with dir -1 as film.js does (svgFor), no longer a canvas mirror of the right card
+  const id = `${who}_${v}${st.tag ? '_' + st.tag : ''}`; tiles.push({ id, who, view: v, mir, flip: mir && !!BEFORE, hy: m.hy, headPx: m.headPx, px: m.px, height: E.height, hero: HERO.has(who), svg: 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64') }); return id; };
 for (const w of ALL) for (const v of ['front', '34', '34L', 'side', 'sideL', 'back']) T(w, { view: v });
 const six = w => V6.map(v => `${w}_${v}`);
 const FX = [['hero', 'k:aim', 'front'], ['hero', 'k:glanceCam', '34'], ['hero', 'k:proud', '34'], ['heroShop', 'k:think', '34'], ['chief', 'k:chiefShout', 'front'], ['chief', 'k:chiefShout', '34'], ['chief', 'k:proudShut', '34'],
   ['rookie', 'k:peekOne', 'front'], ['rookie', 'k:lipBite', '34'], ['rookie', 'k:browUp', '34'], ['milkman', 'k:frozenWide', 'front'], ['sceptic', 'k:browUp', '34'], ['oldTimer', 'k:sleepy', '34'], ['kid', 'k:confused', '34'], ['clerk', 'k:concentrate', '34']];
 const fxIds = FX.map(([w, fc, v]) => T(w, { view: v, face: fc, tag: fc.slice(2) }));
+const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'push', face: 'k:concentrate', tag: 'push' })));   // FIX 3: seated drivers, fists forward on the rim
+if (!BEFORE) T('heroShopEye', { view: '34', face: 'k:concentrate', tag: 'concentrate' });
 const rows = [
   { h: 330, label: 'HERO (thin, tall; teal #12A5A0 ONLY on him; signature: big round wire glasses): yard, six views  |  eye shop: open white coat + head mirror, six views', ids: [...six('hero'), ...six('heroShop')] },
   { h: 330, label: 'THE CHIEF (fat, short; signature: grey walrus moustache under the ONLY white helmet): six views  |  VISITOR tag (Dallas) front + 3/4  |  helmet over the eyes + bent moustache  |  hero without helmet  |  black fill', ids: [...six('chief'), 'chiefVisitor_front', 'chiefVisitor_34', 'chiefDown_front', 'heroBare_front', 'SIL:hero_front', 'SIL:chief_front'] },
@@ -33,6 +36,8 @@ const rows = [
   { h: 330, label: 'THE SCEPTIC (standard, tall; horseshoe moustache, long sideburns; signature arms-crossed = pose)  |  Rookie helmet down front + 3/4  |  CROWD firemen 1-3 (never clones) + black fill', ids: [...six('sceptic'), 'rookieDown_front', 'rookieDown_34', 'crew1_front', 'crew2_front', 'crew3_front', 'SIL:rookie_front'] },
   { h: 330, label: 'THE MILKMAN (thin, short; white cap, pencil moustache; bottle = prop, LEFT fist)  |  THE KID (child form; signature: plaster on the LEFT knee)', ids: [...six('milkman'), ...six('kid')] },
   { h: 330, label: 'THE DALLAS CLERK (standard; signature: tan cowboy hat; pencil behind the ear)  |  PAINTER thin (signature: brush behind the ear)', ids: [...six('clerk'), ...six('painterThin')] },
+  { h: 330, label: 'FIX 2 heroShopEye: head mirror DOWN over the right eye (S2 row 11), six views  |  FIX 1 badge in the LEFT views: Chief, Old-Timer, Rookie, Sceptic 3/4 L + side L', ids: [...six('heroShopEye'), 'chief_34L', 'chief_sideL', 'oldTimer_34L', 'rookie_34L', 'sceptic_34L', 'crew1_34L'] },
+  { h: 330, label: 'FIX 3 SEATED DRIVERS (cut at the seat line, fists forward on the rim = pose push): Sceptic, Rookie, Milkman: front, 3/4 R, 3/4 L, side R', ids: [] },
   { h: 330, label: 'PAINTER fat (signature: rag out of the back pocket: side + back)  |  crowd firemen 3/4 and back  |  black fill', ids: [...six('painterFat'), 'crew1_34', 'crew2_back', 'crew3_34', 'SIL:milkman_front', 'SIL:kid_front', 'SIL:clerk_front'] },
 ];
 const faces = [{ h: 300, ids: ['hero_front', 'hero_34', 'hero_side', 'hero_back', 'heroShop_front', 'heroShop_34'] }, { h: 300, ids: ['hero_front_aim', 'hero_34_glanceCam', 'hero_34_proud', 'heroShop_34_think', 'chief_front_chiefShout', 'chief_34_proudShut'] },
@@ -53,7 +58,7 @@ const hueOf = (r, g, b) => { const mx = Math.max(r, g, b), mn = Math.min(r, g, b
 const dh = (a, b) => Math.min(Math.abs(a - b), 360 - Math.abs(a - b));
 window.run = async () => { const C = {}, NUM = {}, PNG = {};
   for (const t of TILES) { const im = new Image(); await new Promise(ok => { im.onload = ok; im.src = t.svg; }); const c = document.createElement('canvas'); c.width = CW; c.height = CH; const g = c.getContext('2d', { willReadFrequently: true });
-    if (t.mir) { g.translate(CW, 0); g.scale(-1, 1); } g.drawImage(im, 0, 0, CW, CH); g.setTransform(1, 0, 0, 1, 0, 0);
+    if (t.flip) { g.translate(CW, 0); g.scale(-1, 1); } g.drawImage(im, 0, 0, CW, CH); g.setTransform(1, 0, 0, 1, 0, 0); g.setTransform(1, 0, 0, 1, 0, 0);
     const W = CW, H = CH, base = g.getImageData(0, 0, W, H).data, v0 = t.view.replace('L', ''), side = (v0 === '34' || v0 === 'side') ? (t.mir ? 1 : -1) : 1;   // light from screen left: the shade falls on the side away from it
     const sh = shade(base, W, H, side, CS.smooth);
     let x0 = W, x1 = 0, y0 = H, y1 = 0; for (let y = 0; y < H; y += 2) for (let x = 0; x < W; x += 2) if (base[(y * W + x) * 4 + 3] > 40) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }

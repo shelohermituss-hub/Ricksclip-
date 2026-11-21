@@ -49,3 +49,8 @@ episodes/*/sets/*/proof/fix/
 episodes/*/s[0-9]*/frame_checks.txt
 episodes/*/s[0-9]*/checks.txt
 episodes/*/s[0-9]*/_win/out/
+episodes/*/sets/*/out_tmp/
+episodes/*/sets/*/proof/fix*/
+episodes/*/assets_prod/out_tmp/
+*.blend
+*.glb

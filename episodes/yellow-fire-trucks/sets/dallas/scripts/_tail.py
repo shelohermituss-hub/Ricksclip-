@@ -1,10 +1,11 @@
 # ================================================================== ANCHORS (plan metres; the kit reads them from out/dallas_meta.json)
+LADDER_SIDE_DX = TA.LADDER_SIDE_DX
 anchor('truck_red', -3.2, 12.0, .12); anchor('truck_lime', 3.2, 12.0, .12)
 anchor('clerk_spot', 0.0, NOSE - .75, .12); anchor('board_red_foot', BRX, BY - .3, .12); anchor('board_lime_foot', BLX, BY - .3, .12)
 anchor('board_red_top_1', BRX, BY - .03, BZ + BH_); anchor('board_red_top_2', BRX, BY - .03, z2 + BH_); anchor('board_red_top_3', BRX, BY - .03, z3 + BH_)
 anchor('up_to_3x', BRX, BY - .03, z3 + BH_ - .55); anchor('board_lime_top', BLX, BY - .03, BZ + BH_); anchor('calendar', 0, BY - .03, 2.0)
-anchor('ladder_foot', LF[0], LF[1], .12); anchor('ladder_top', BRX, BY - .12, LZ); anchor('stool', BRX - .1, NOSE - .55, .12); anchor('chalk_table', 2.1, NOSE - .6, .66)
-anchor('station_door', DX, SY - .6, .12); anchor('bay_red', BAYS[0], SY, .12); anchor('bay_lime', BAYS[1], SY, .12); anchor('sign_front', 0, SY - .05, BH + 1.17)
+anchor('ladder_foot', LF[0], LF[1], .12); anchor('ladder_side_foot', LF[0] + LADDER_SIDE_DX, LF[1], .12); anchor('ladder_side_top', BRX + LADDER_SIDE_DX, BY - .12, LZ); anchor('ladder_top', BRX, BY - .12, LZ); anchor('stool', BRX - .1, NOSE - .55, .12); anchor('chalk_table', 2.1, NOSE - .6, .66)
+anchor('station_door', DX, SY - .6, .12); anchor('bay_red', BAYS[0], SY, .12); anchor('bay_lime', BAYS[1], SY, .12); anchor('sign_front', 0, SGY - .08, SGZ)
 anchor('station_plate', DX + 1.95, SY - .05, 3.15); anchor('cooler', GX, GY, .93); anchor('yard_centre', 0, 6.0, .12)
 # ================================================================== merge the coded parts by (material, story group): fewer draw calls, switches kept as nodes
 groups = {}
@@ -19,9 +20,10 @@ print('MERGED', len(groups), 'groups; objects now', len(TOWN.objects))
 TA.build_lights(SC, ANCH)
 spots = TA.link_trucks(SC, os.path.join(AP, 'out', 'truck.blend'), ANCH, NOSE - .02)
 for k, v in spots.items(): ANCH[k] = v
-TA.set_light(SC); TA.set_boards(SC, n=3, ladder=True, stool=False, painters=True, leaves=0)
+TA.set_light(SC)
+TA.set_boards(SC, n=3, ladder=True, stool=False, painters=True, leaves=0, ground=3)
 meta = dict(anchors=ANCH, frame='metres, X east, Y north, Z up (plan frame)', light=TA.KIT_LIGHT,
-            groups=dict(stack2='red board 2', stack3='red board 3 + UP TO 3x', ladder='sectioned ladder', stool='step stool', painters="painters' gear (line 13)", cal1='YEAR 1 leaf', cal2='YEAR 2', cal3='YEAR 3', cal4='YEAR 4'))
+            groups=dict(stack2='red board 2', stack3='red board 3 + UP TO 3x', ladder='sectioned ladder', stool='step stool', painters="painters' gear (line 13)", cal1='YEAR 1 leaf', cal2='YEAR 2', cal3='YEAR 3', cal4='YEAR 4', gl1='YEAR 1 leaf on the ground', gl2='YEAR 2 on the ground', gl3='YEAR 3 on the ground', gl4='YEAR 4 by the red nose', ladder_side_dx=LADDER_SIDE_DX))
 tot = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in TOWN.objects if o.type == 'MESH')
 print('DALLAS_TRIS_BLEND', tot, 'OBJECTS', len(TOWN.objects))
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'dallas.blend'), relative_remap=True)

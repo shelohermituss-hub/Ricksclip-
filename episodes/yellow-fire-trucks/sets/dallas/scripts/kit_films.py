@@ -7,6 +7,7 @@ W, H = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (540, 960)
 names = []
 for cam, c in CAMS.items():
     place = dict(set='dallas', kind='no', light='day', light_over=META['light']['no'], lite=LITE, kit3d=dict(envGround='#cdb690'))
+    if c.get('boards'): place['boards'] = c['boards']
     if c.get('card'): place['card'] = dict(c['card'], face=c['pos'][:2])
     st = dict(at=0, subject='dallas', framing='W', hold=0, pos=c['pos'], aim=c['aim'], lens=c['lens'])
     film = dict(title='dallas proof %s' % cam, fps=30, size=[W, H], words='words.json', end=2, tween=dict(frames=0, face_frames=0, ones=True), auto_view=False,

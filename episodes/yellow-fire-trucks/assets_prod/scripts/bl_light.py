@@ -1,17 +1,21 @@
 # bl_light.py: the LIGHT truck (about 35 k triangles) for rows of trucks (map, Dallas pair, toy), made from out/truck.blend so names, pivots,
 # paint group and controls stay the same (truck_api works on it). The gag gear (sirens, beacon row, price card) and the ribbon are removed.
-# blender -b --factory-startup --python bl_light.py -- <out dir> [target tris]
+# blender -b --factory-startup --python bl_light.py -- <out dir> [target tris] [src dir]
 import bpy, sys, os, json
-a = sys.argv[sys.argv.index('--') + 1:]; OUT = a[0]; TARGET = int(a[1]) if len(a) > 1 else 35000
-bpy.ops.wm.open_mainfile(filepath=os.path.join(OUT, 'truck.blend'))
+a = sys.argv[sys.argv.index('--') + 1:]; OUT = a[0]; TARGET = int(a[1]) if len(a) > 1 else 35000; SRC = a[2] if len(a) > 2 else OUT
+bpy.ops.wm.open_mainfile(filepath=os.path.join(SRC, 'truck.blend'))
 col = bpy.data.collections['TRUCK']
 def walk(o):
     yield o
     for c in o.children: yield from walk(c)
+# ROUND 3 (props-hero 2026-11-21): the light truck KEEPS its four sirens and the beacon row (they read in S3 and S6 at medium distance); only the price
+# card, the ribbon and the small inner parts (motor ribs, bolts, cables, bulbs, reflectors, beacon motors) go. assets.js hides them unless asked
+# (light: sirens 0, beaconRow false by default), so the rows of plain trucks stay plain.
+SMALL = ('siren_motor_rib', 'siren_bolt', 'siren_cable', 'siren_hub', 'beacon_bar_bolt', 'beacon_row_bulb', 'beacon_row_reflector', 'beacon_row_motor', 'beacon_bar_cap')
 kill = set()
 for o in col.objects:
     nm = o.name.split('.')[0]
-    if o.get('r2') or nm.startswith(('siren_', 'beacon_bar', 'ribbon', 'price_card')) or o.get('phfd_part') == 'ribbon':
+    if nm.startswith(('ribbon', 'price_card')) or o.get('phfd_part') == 'ribbon' or nm.startswith(SMALL):
         for c in walk(o): kill.add(c)
 for o in kill: bpy.data.objects.remove(o)
 ms = [o for o in col.objects if o.type == 'MESH']

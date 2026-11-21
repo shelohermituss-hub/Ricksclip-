@@ -96,6 +96,25 @@
    "puppet": "cast:firetrucks/painterFat",
    "height": 1.64,
    "heads_tall": 2.79
+  },
+  "heroShopEye": {
+   "puppet": "cast:firetrucks/heroShopEye",
+   "height": 1.88
+  },
+  "scepticDriver": {
+   "puppet": "cast:firetrucks/scepticDriver",
+   "height": 1.88,
+   "in_vehicle": true
+  },
+  "rookieDriver": {
+   "puppet": "cast:firetrucks/rookieDriver",
+   "height": 1.64,
+   "in_vehicle": true
+  },
+  "milkmanDriver": {
+   "puppet": "cast:firetrucks/milkmanDriver",
+   "height": 1.62,
+   "in_vehicle": true
   }
  },
  "faces_ep": {

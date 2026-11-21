@@ -1,7 +1,7 @@
 # dallas_api.py: the controls of PLACE B (Dallas station yard, hot noon) INSIDE Blender (final render), twins of sets/dallas.js in three.js.
 #   import sys; sys.path.append('<sets/dallas/scripts>'); import dallas_api as DA
 #   DA.set_light(scene)                         the one LOOK_BIBLE light of Dallas: NO noon (high white-hot sun, short hard shadows, pale sky bounce)
-#   DA.set_boards(scene, n=3, ladder=True, stool=False, painters=True, leaves=0)   story states: red stack 1-3 boards, ladder up, the painters' gear, calendar leaves torn
+#   DA.set_boards(scene, n=3, ladder=True, stool=False, painters=True, leaves=0, ground=3)   story states: red stack 1-3 boards, ladder up ('side' = off the face), gear, leaves torn, leaves on the ground
 #   DA.set_trucks(scene, red=dict(paint='red'), lime=dict(paint='lemon'))         truck_api.set_paint keys; DA.red_root(), DA.lime_root()
 import bpy, math, os, sys
 from mathutils import Vector
@@ -43,20 +43,27 @@ def set_light(sc):
     s = bpy.data.objects['dal_sun']; s.data.energy = P['sun_e']; s.data.color = lin(P['sun_col'])[:3]
     a, e = math.radians(P['sun_az']), math.radians(P['sun_el']); d = -Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a), math.sin(e)))
     s.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler(); sc['phfd_light'] = 'no'
-def set_boards(sc, n=3, ladder=True, stool=False, painters=True, leaves=0):
-    """story states of the tally: n red boards (1-3), the sectioned ladder, the step stool, the painters' gear (line 13), calendar leaves torn off (0-3)."""
+# FIX 2: ladder='side' leans the sectioned ladder on the stack's WEST edge (dx -0.9 m), so UP TO 3x and RED read in the wide; ground = torn leaves on the concrete (0-4)
+LADDER_SIDE_DX = -.9
+def set_boards(sc, n=3, ladder=True, stool=False, painters=True, leaves=0, ground=3):
+    """story states of the tally: n red boards (1-3), the sectioned ladder (True = on the stack's face, 'side' = on its west edge, False = gone),
+    the step stool, the painters' gear (line 13), calendar leaves torn off (0-4), torn leaves lying on the concrete (0-4: gl1..gl4)."""
     for o in sc.objects:
         g = o.get('grp', '')
         if not g: continue
         hide = None
         if g == 'stack2': hide = n < 2
         elif g == 'stack3': hide = n < 3
-        elif g == 'ladder': hide = not ladder
+        elif g == 'ladder':
+            hide = not ladder
+            if 'base_x' not in o: o['base_x'] = o.location.x
+            o.location.x = o['base_x'] + (LADDER_SIDE_DX if ladder == 'side' else 0.)
         elif g == 'stool': hide = not stool
         elif g == 'painters': hide = not painters
         elif g.startswith('cal') and g[3:].isdigit(): hide = int(g[3:]) <= leaves
+        elif g.startswith('gl') and g[2:].isdigit(): hide = int(g[2:]) > ground
         if hide is not None: o.hide_render = o.hide_viewport = hide
-    sc['dal_boards'] = str(dict(n=n, ladder=ladder, stool=stool, painters=painters, leaves=leaves))
+    sc['dal_boards'] = str(dict(n=n, ladder=ladder, stool=stool, painters=painters, leaves=leaves, ground=ground))
 def _paint(root, st):
     import truck_api as T
     keys = ('paint', 'edge', 'drain', 'masking', 'letters', 'wear', 'ribbon', 'a', 'b'); T.set_paint(root, **{k: st[k] for k in keys if k in st}); root['dal_state'] = st

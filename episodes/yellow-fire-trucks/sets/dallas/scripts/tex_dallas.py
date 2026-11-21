@@ -14,7 +14,7 @@ def tint(src, name, col, keep=.25, gain=1.0):
     out = hexc(col)[None, None, :] * rel * gain; out = out * (1 - keep) + im * keep * (hexc(col).mean() / max(im.mean(), 1))
     Image.fromarray(np.clip(out, 0, 255).astype('uint8')).save(os.path.join(OUT, name + '_diff.jpg'), quality=90)
     for k in ('nor_gl', 'rough'): Image.open(os.path.join(SRC, '%s_%s_1k.jpg' % (src, k))).save(os.path.join(OUT, '%s_%s.jpg' % (name, k)), quality=92)
-TINTS = [('white_stucco', 'stucco', '#ece3cf', .25), ('smooth_concrete_floor', 'yard', '#d9d3c5', .5), ('concrete_floor_worn_001', 'bay_floor', '#b5aea2', .55),
+TINTS = [('white_stucco', 'stucco', '#ece3cf', .25), ('smooth_concrete_floor', 'yard', '#c8cbcc', .4), ('concrete_floor_worn_001', 'bay_floor', '#b5aea2', .55),
          ('dry_ground_01', 'sand', '#d9b98c', .45), ('withered_grass', 'drygrass', '#b8a46c', .5), ('painted_metal_shutter', 'shutter', '#ebe8de', .25),
          ('concrete_pavement', 'walk', '#d2cbbd', .5), ('asphalt_02', 'asphalt', '#8e8a85', .45), ('rusty_metal', 'rust', '#8a6a52', .5),
          ('wood_table_worn', 'wood', '#a5875f', .5), ('concrete_block_wall', 'block', '#d6cdb8', .4), ('sandy_gravel', 'gravel', '#cdb690', .5),
@@ -68,7 +68,10 @@ def slate(name, head=None, ticks=0, top=None, smear=3, seed=1, w=600, h=1200):
     im = Image.fromarray(np.clip(a, 0, 255).astype('uint8')); d = ImageDraw.Draw(im, 'RGBA')
     y0 = 40
     if head: chalk_text(im, head, w / 2, 110, 150); d.line([(60, 200), (w - 60, 196)], fill=(236, 234, 226, 200), width=7); y0 = 240
-    if top: chalk_text(im, top[0], w / 2, 110, 92); chalk_text(im, top[1], w / 2, 300, 260); y0 = 470
+    if top:
+        # FIX 2: UP TO 3x painted large (it must read in the S5 wide): UP TO 150 px, 3x 400 px, a chalk box round the number
+        chalk_text(im, top[0], w / 2, 125, 150); chalk_text(im, top[1], w / 2, 440, 400); y0 = 720
+        for (p0, p1) in [((40, 235), (w - 40, 228)), ((w - 40, 228), (w - 34, 680)), ((w - 34, 680), (44, 690)), ((44, 690), (40, 235))]: chalk_line(d, p0, p1, 13)
     gx, gy = 112, 96; cols = (w - 80) // gx; x, y = 52, y0; done = 0
     while done < ticks and y < h - 110:                       # one group of five per cell
         k = min(5, ticks - done)

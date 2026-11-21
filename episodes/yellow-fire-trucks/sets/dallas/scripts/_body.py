@@ -59,7 +59,21 @@ for (sx, sy, x, y) in [(X1 - X0 + .3, .3, 0, SY + .0), (X1 - X0 + .3, .3, 0, SY 
     box('parapet', sx, sy, PAR, x, y, H, M['stucco'], 2.); box('coping', sx + .12, sy + .12, .08, x, y, H + PAR, M['galv'], 1.)
 box('plinth', X1 - X0 + .1, .08, .45, 0, SY - .02, 0, M['block'], 1.)                # a pale block plinth along the base, scuffed
 SIGNM = SIGN('sign_front', .55)
-quad('sign_front', 12.0, 1.5, 0, SY - .04, BH + .62 + .55, 0, SIGNM)                  # DALLAS FIRE DEPT. painted on the band over the bays
+# FIX 2: DALLAS FIRE DEPT. is a ROOF sign on a steel frame over the front parapet (the boards and the calendar hid the painted band in the S5 wide).
+# Panel 10.4 x 1.3 m, centre z 9.7: from the S5 camera its bottom (23 deg up) clears the LIME board and the calendar, its west end clears the RED stack.
+SGZ, SGY = 9.7, SY + .45
+quad('sign_front', 10.4, 1.3, 0, SGY - .07, SGZ, 0, SIGNM)
+box('sign_back', 10.6, .1, 1.46, 0, SGY + .02, SGZ - .73, M['navy'], 1.)
+for zz in (SGZ - .73, SGZ + .65): box('sign_rim', 10.7, .14, .08, 0, SGY - .04, zz, M['galv'], 1.)
+for k in range(6):
+    px = -5.0 + k * 2.0
+    beam('sign_post', (px, SGY + .12, H - .25), (px, SGY + .12, SGZ + .7), .05, M['steel'])
+    beam('sign_brace', (px, SGY + .12, SGZ - .2), (px, SGY + 2.6, H), .035, M['steel'])
+    if k < 5: beam('sign_x', (px, SGY + .12, H + .2), (px + 2.0, SGY + .12, SGZ - .75), .02, M['steel']); beam('sign_x', (px + 2.0, SGY + .12, H + .2), (px, SGY + .12, SGZ - .75), .02, M['steel'])
+for k in range(5):
+    lx = -4.2 + k * 2.1
+    beam('sign_lamp_arm', (lx, SGY + .05, SGZ + .72), (lx, SGY - .55, SGZ + 1.0), .018, M['ink']); cyl('sign_lamp_hood', .16, .12, lx, SGY - .6, SGZ + .92, M['ink'], seg=10, r2=.06)
+beam('sign_rail', (-5.3, SGY + .12, SGZ - .2), (5.3, SGY + .12, SGZ - .2), .03, M['steel'])
 box('sign_band_trim_t', 12.4, .08, .07, 0, SY - .05, BH + 1.92, M['navy']); box('sign_band_trim_b', 12.4, .08, .07, 0, SY - .05, BH + .5, M['navy'])
 for bx in BAYS:
     box('bay_floor', BW, 11.5, .02, bx, SY + 6, .1, M['bayfloor'], 3.)
@@ -157,8 +171,11 @@ for sgn in (-1, 1): beam('cal_string', (0, BY - .03, 2.5), (sgn * .2, BY - .03, 
 box('cal_back', .44, .02, .62, 0, BY - .01, 1.68, M['card'])
 for i in range(4, 0, -1):
     GRP[0] = 'cal%d' % i; quad('cal_leaf', .4, .56, 0, BY - .025 - (4 - i) * .004, 2.0, 0, mat('cal_year%d' % i, png='cal_year%d' % i, rough=.9)); GRP[0] = ''
-for k in range(3):                                                             # torn leaves of the years gone by, lying on the concrete (E8, light)
-    o = flat('leaf_torn', .4, .56, rnd.uniform(-.6, .6), BY - rnd.uniform(.4, 1.0), .135 + k * .002, mat('cal_year%d' % (k + 1), png='cal_year%d' % (k + 1), rough=.9), rnd.uniform(-40, 40))
+# FIX 2: the torn leaves on the concrete are switches gl1..gl4 (boards.ground in the kit, set_boards(ground=) in Blender); YEAR 4 blew over to the red truck's nose
+for k, (lx, ly, lr) in enumerate([(-.45, BY - .55, -28), (.35, BY - .9, 33), (.05, BY - 1.35, -8), (-2.1, NOSE - 1.1, 61)]):
+    GRP[0] = 'gl%d' % (k + 1)
+    flat('leaf_torn', .4, .56, lx, ly, .135 + k * .002, mat('cal_year%d' % (k + 1), png='cal_year%d' % (k + 1), rough=.9), lr)
+    GRP[0] = ''
 asset('small_wooden_table_01'); put('small_wooden_table_01', 2.1, NOSE - .6, .12, 8)            # the trestle with the chalk box and the clerk's clipboard
 box('chalk_box', .22, .12, .07, 2.0, NOSE - .6, .65, M['card'])
 for k in range(7): cyl('chalk_in_box', .006, .08, 1.92 + k * .025, NOSE - .6, .7, M['chalk'], seg=6, rx=90)
@@ -265,27 +282,30 @@ def truss_leg_tower(name, cx, cy, base, top, h, levels, m, r=.12):
         A, B = c(za), c(zb)
         for i in range(4):
             j = (i + 1) % 4; beam(name + '_girt', B[i], B[j], r * .6, m, 4); beam(name + '_x', A[i], B[j], r * .45, m, 4); beam(name + '_x', A[j], B[i], r * .45, m, 4)
-TX, TY = 30, 165
-truss_leg_tower('tank', TX, TY, 9, 6, 30, 4, M['tankpaint'], .3)
-cyl('tank_body', 7.5, 7, TX, TY, 30, M['tankpaint'], seg=32); cyl('tank_roof', 7.6, 3.2, TX, TY, 37, M['tankpaint'], seg=32, r2=.4)
-cyl('tank_balcony', 8.2, .2, TX, TY, 30, M['galv'], seg=32); cyl('tank_riser', .9, 30, TX, TY, 0, M['tankpaint'], seg=12)
-for k in range(24): a = k / 24 * 6.283; beam('tank_rail', (TX + 8.1 * math.cos(a), TY + 8.1 * math.sin(a), 30.2), (TX + 8.1 * math.cos(a), TY + 8.1 * math.sin(a), 31.2), .05, M['galv'])
-for k in range(30): beam('tank_ladder', (TX - 4.4, TY - 4.6, k * 1.0 + .5), (TX - 3.8, TY - 4.6, k * 1.0 + .5), .03, M['galv'])
-anchor('water_tank', TX, TY, 38)
-DXX, DYY = -42, 240
-truss_leg_tower('derrick', DXX, DYY, 9, 1.8, 36, 9, M['derrick'], .18)
-box('derrick_crown', 2.6, 2.6, 1.4, DXX, DYY, 36, M['derrick']); box('derrick_floor', 12, 12, 1.6, DXX, DYY, 0, M['derrick']); box('derrick_shed', 7, 5, 3.4, DXX + 9, DYY - 2, 0, M['corr'], 2.)
+# FIX 2: the far landmarks moved to where the S5 (1.35, 4.1) and S7 (8.4, 4.9) cameras see them OVER the station roof (16 deg up) and the roof sign (26 deg):
+# the tank crowns the sign (body 40-47 m, 30 deg up), the derrick stands west of the red stack, the skyline at 300-370 m peeks over the sign.
+TX, TY, TL = -12, 70, 40
+truss_leg_tower('tank', TX, TY, 8, 5, TL, 5, M['tankpaint'], .3)
+cyl('tank_body', 6.2, 7, TX, TY, TL, M['tankpaint'], seg=32); cyl('tank_roof', 6.3, 3.0, TX, TY, TL + 7, M['tankpaint'], seg=32, r2=.4)
+cyl('tank_balcony', 6.9, .2, TX, TY, TL, M['galv'], seg=32); cyl('tank_riser', .9, TL, TX, TY, 0, M['tankpaint'], seg=12)
+for k in range(24): a = k / 24 * 6.283; beam('tank_rail', (TX + 6.8 * math.cos(a), TY + 6.8 * math.sin(a), TL + .2), (TX + 6.8 * math.cos(a), TY + 6.8 * math.sin(a), TL + 1.2), .05, M['galv'])
+for k in range(40): beam('tank_ladder', (TX - 3.9, TY - 4.1, k * 1.0 + .5), (TX - 3.3, TY - 4.1, k * 1.0 + .5), .03, M['galv'])
+anchor('water_tank', TX, TY, TL + 8)
+DXX, DYY, DH = -38, 60, 44
+truss_leg_tower('derrick', DXX, DYY, 9, 1.8, DH, 11, M['derrick'], .18)
+box('derrick_crown', 2.6, 2.6, 1.4, DXX, DYY, DH, M['derrick']); box('derrick_floor', 12, 12, 1.6, DXX, DYY, 0, M['derrick']); box('derrick_shed', 7, 5, 3.4, DXX + 9, DYY - 2, 0, M['corr'], 2.)
 for (px, py, rz) in [(-20, 200, 20), (-70, 260, -30), (-5, 300, 60)]:          # pump jacks nodding on the far lots
     box('pj_base', 6, 1.4, .6, px, py, 0, M['derrick'], 1., rz); beam('pj_samson', (px, py, .6), (px, py, 4.4), .25, M['derrick']); beam('pj_beam', (px - 3.5, py, 4.8), (px + 3, py, 4.0), .3, M['derrick'])
     box('pj_head', 1.0, .9, 2.0, px - 3.8, py, 3.0, M['derrick'], 1., rz); box('pj_counter', 1.2, 1.2, 1.2, px + 2.6, py, 1.6, M['derrick'], 1., rz)
 for (ox, oy, r) in [(-62, 215, 8), (-80, 222, 7), (-55, 232, 6)]: cyl('oil_tank', r, 9, ox, oy, 0, M['oiltank'], seg=28); cyl('oil_tank_roof', r + .1, 1.0, ox, oy, 9, M['oiltank'], seg=28, r2=r * .3)
-anchor('derrick', DXX, DYY, 37)
+anchor('derrick', DXX, DYY, DH + 1)
 TOW = [(-520, 1100, 60, 40, 140, 'hazeB'), (-420, 1250, 40, 50, 95, 'hazeC'), (-300, 1050, 50, 40, 70, 'hazeB'), (-180, 1300, 70, 45, 180, 'hazeC'), (-60, 1150, 45, 45, 120, 'hazeB'),
        (40, 1350, 60, 60, 210, 'hazeC'), (130, 1200, 40, 40, 150, 'hazeB'), (230, 1100, 50, 50, 90, 'hazeB'), (330, 1300, 70, 40, 160, 'hazeC'), (450, 1150, 40, 40, 110, 'hazeB'),
        (560, 1250, 60, 50, 80, 'hazeC'), (-250, 900, 120, 30, 25, 'hazeA'), (300, 950, 140, 30, 22, 'hazeA'), (0, 980, 200, 30, 18, 'hazeA')]
+TOW = [(x * .3, y * .27, w * .5, d * .5, h * 1.1, mm) for (x, y, w, d, h, mm) in TOW]   # FIX 2: the skyline brought in to 300-370 m (it hid behind the roof)
 for i, (x, y, w, d, h, mm) in enumerate(TOW):
     box('tower_%d' % i, w, d, h, x, y, 0, M[mm], 8.)
     if h > 60: box('tower_top_%d' % i, w * .6, d * .6, h * .15, x, y, h, M[mm], 8.)
     if h > 150: cyl('tower_spire_%d' % i, 1.5, 35, x, y, h * 1.15, M[mm], seg=8, r2=.3)
 for k in range(30): a = rnd.uniform(-1, 1); box('far_low_%d' % k, rnd.uniform(20, 60), 20, rnd.uniform(5, 14), a * 700, rnd.uniform(500, 800), 0, M['hazeA'], 8.)
-anchor('far_skyline', 0, 1150, 90)
+anchor('far_skyline', 0, 320, 100)

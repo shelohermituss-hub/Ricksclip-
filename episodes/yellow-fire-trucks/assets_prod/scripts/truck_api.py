@@ -57,13 +57,18 @@ def _paint_groups(root):
                     if n.type == 'GROUP' and n.node_tree and n.node_tree.name.startswith('PHFD_paint'): yield m, n
 
 
-def set_paint(root, paint='red', edge=0.3, drain=0.0, masking=None, letters='over', wear=0.6, ribbon=None, a=None, b=None):
-    """paint: 'red' | 'lemon' | 'half' (front a=red, rear b=lemon). letters 'under' = the gold disappears where coat B covers it."""
+def set_paint(root, paint='red', edge=0.3, drain=0.0, masking=None, letters='over', wear=0.6, ribbon=None, a=None, b=None, drain_wipe=None, wipe=None, wipe_from=None, wipe_to=None):
+    """paint: 'red' | 'lemon' | 'half' (front a=red, rear b=lemon). letters 'under' = the gold disappears where coat B covers it.
+    round 3 WIPES (twins of assets.js setPaint): drain_wipe 0..1 = the dusk drain front runs nose (0) to tail (1) (None = the whole truck at once);
+    wipe 0..1 with wipe_from / wipe_to = a repaint running nose to tail (e.g. lime -> red in S7): the half-state edge moves from x -4.3 to +4.3."""
+    if wipe is not None:
+        paint, a, b, edge = 'half', (wipe_to or RED), (wipe_from or LEMON), -4.3 + 8.6 * wipe
     A = a or (LEMON if paint == 'lemon' else RED); B = b or (RED if paint == 'red' else LEMON)
     for m, n in _paint_groups(root):
         n.inputs['colA'].default_value = lin(A); n.inputs['colB'].default_value = lin(B)
         n.inputs['edge'].default_value = edge if paint == 'half' else (99.0 if paint != 'lemon' else -99.0)
         n.inputs['drain'].default_value = drain; n.inputs['wear'].default_value = wear
+        if 'drainEdge' in n.inputs: n.inputs['drainEdge'].default_value = 99.0 if drain_wipe is None else -4.3 + 8.6 * drain_wipe
         n.inputs['drainA'].default_value = 1.0 if A.upper() == RED else 0.0
         n.inputs['drainB'].default_value = 1.0 if B.upper() == RED else 0.0
         if m.get('phfd_role') == 'letters':
@@ -142,12 +147,16 @@ def set_extras(root, sirens=4, beacon_row=True, price_card=None):
 def set_letters(root, which='truck_letters'):
     """'truck_letters' (ENGINE No. 1), 'truck_letters_e2' (the Chief's ENGINE No. 2), 'truck_letters_dal14' / 'truck_letters_dal22' (Dallas pair)."""
     img = bpy.data.images[which]
+    plate = bpy.data.images.get('badges_dallas' if '_dal' in which else 'badges_pine')   # round 3: the period plate follows the town
     for o in _objs(root):
         for sl in getattr(o, 'material_slots', []):
             m = sl.material
             if m and m.get('phfd_role') == 'letters':
                 for n in m.node_tree.nodes:
                     if n.type == 'TEX_IMAGE': n.image = img
+            if m and m.get('phfd_role_plate') and plate:
+                for n in m.node_tree.nodes:
+                    if n.type == 'TEX_IMAGE' and n.image and n.image.name.startswith('badges_'): n.image = plate
 
 
 def set_age(root, age=1.0):

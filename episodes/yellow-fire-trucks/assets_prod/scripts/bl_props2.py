@@ -78,7 +78,14 @@ def lathe(name, prof, mat, steps=48, smooth=True):
     for p in me.polygons: p.use_smooth = smooth
     o = bpy.data.objects.new(name, me); me.materials.append(mat); bpy.context.scene.collection.objects.link(o); return o
 def tris(col): n = 0
-def save(name, root, col, extra=None):
+def save(name, root, col, extra=None, glb_plain=None):
+    # glb_plain {material: hex}: node tricks (mix, noise) do not survive the glTF export (round 2: the navy lunch box came out WHITE in the kit):
+    # their Base Color is unlinked and set flat for the GLB export only, then linked back for the .blend (round 3, LECONS)
+    relink = []
+    for mn_, hx in (glb_plain or {}).items():
+        m = bpy.data.materials[mn_]; p = bsdf(m); L = p.inputs['Base Color'].links
+        if L: relink.append((m, L[0].from_socket, p.inputs['Base Color'])); m.node_tree.links.remove(L[0])
+        p.inputs['Base Color'].default_value = PA.lin(hx)
     n = 0
     for o in col.objects:
         if o.type == 'MESH': o.data.calc_loop_triangles(); n += len(o.data.loop_triangles)
@@ -86,9 +93,12 @@ def save(name, root, col, extra=None):
     bpy.ops.object.select_all(action='DESELECT')
     for o in col.objects: o.select_set(True)
     glb = os.path.join(OUT, name.lower() + '.glb')
-    bpy.ops.export_scene.gltf(filepath=glb, export_format='GLB', use_selection=True, export_extras=True, export_yup=True, export_apply=True, export_cameras=False, export_lights=False)
+    tmp = glb[:-4] + '_tmp.glb'
+    bpy.ops.export_scene.gltf(filepath=tmp, export_format='GLB', use_selection=True, export_extras=True, export_yup=True, export_apply=True, export_cameras=False, export_lights=False)
+    os.replace(tmp, glb)   # round 3: write to a temp name, then rename (a stretch render reading the GLB never sees half a file)
+    for m, a_, b_ in relink: m.node_tree.links.new(a_, b_)
     for m in bpy.data.materials: m.use_fake_user = True
-    bpy.ops.file.pack_all(); bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, name.lower() + '.blend'), compress=True)
+    bpy.ops.file.pack_all(); bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, name.lower() + '.blend'), compress=True, copy=True)
     META[name] = dict(tris=n, size=[round(v, 3) for v in mx - mn], **(extra or {}))
     print('PROP2', name, 'tris', n, 'size', META[name]['size'])
 
@@ -98,27 +108,48 @@ grill = next(o for o in ms if 'Grill' in o.name); gy = sum((v.co.y for v in gril
 rot = Matrix.Rotation(math.radians(-90 if gy < 0 else 90), 4, 'Z')      # its front (grille) to -X
 mn, mx = fit(ms, 5.40, axis=0, rot=rot)
 body = next(m for m in bpy.data.materials if m.name == 'material')
-# cream body with one cornflower stripe at waist height (object z band), the van's own dirt texture kept as a multiply
-nt = body.node_tree; p = bsdf(body); L = p.inputs['Base Color'].links; src = L[0].from_socket if L else None
-tc = nt.nodes.new('ShaderNodeTexCoord'); sz = nt.nodes.new('ShaderNodeSeparateXYZ'); nt.links.new(tc.outputs['Object'], sz.inputs[0])
-lo = nt.nodes.new('ShaderNodeMath'); lo.operation = 'GREATER_THAN'; nt.links.new(sz.outputs[2], lo.inputs[0]); lo.inputs[1].default_value = 0.98
-hi = nt.nodes.new('ShaderNodeMath'); hi.operation = 'LESS_THAN'; nt.links.new(sz.outputs[2], hi.inputs[0]); hi.inputs[1].default_value = 1.16
-band = nt.nodes.new('ShaderNodeMath'); band.operation = 'MULTIPLY'; nt.links.new(lo.outputs[0], band.inputs[0]); nt.links.new(hi.outputs[0], band.inputs[1])
-col_ = nt.nodes.new('ShaderNodeMix'); col_.data_type = 'RGBA'; nt.links.new(band.outputs[0], col_.inputs['Factor']); col_.inputs[6].default_value = PA.lin('#F1E7CC'); col_.inputs[7].default_value = PA.lin('#6495ED')
-if src:
-    gray = nt.nodes.new('ShaderNodeRGBToBW'); nt.links.new(src, gray.inputs[0])
-    dirt = nt.nodes.new('ShaderNodeMath'); dirt.operation = 'MULTIPLY_ADD'; nt.links.new(gray.outputs[0], dirt.inputs[0]); dirt.inputs[1].default_value = 0.9; dirt.inputs[2].default_value = 0.45
-    mul = nt.nodes.new('ShaderNodeMix'); mul.data_type = 'RGBA'; mul.blend_type = 'MULTIPLY'; mul.inputs['Factor'].default_value = 1.0
-    nt.links.new(col_.outputs[2], mul.inputs[6]); nt.links.new(dirt.outputs[0], mul.inputs[7]); nt.links.new(mul.outputs[2], p.inputs['Base Color'])
-else: nt.links.new(col_.outputs[2], p.inputs['Base Color'])
+# ROUND 3: cream body BAKED into the texture (numpy, in Blender) so the GLB carries it too (round 2 did it with nodes: the kit showed the download's
+# GREEN). cream x (0.45 + 0.9 x the texel's grey): the van's own dirt and panel shading are kept. The cornflower stripe is GEOMETRY (below).
+import numpy as np
+nt = body.node_tree; p = bsdf(body); L = p.inputs['Base Color'].links; srcn = L[0].from_node if L else None
+if srcn is not None and srcn.type == 'TEX_IMAGE':
+    im0 = srcn.image; w_, h_ = im0.size; px = np.empty(w_ * h_ * 4, np.float32); im0.pixels.foreach_get(px); px = px.reshape(-1, 4)
+    grey = px[:, 0] * 0.299 + px[:, 1] * 0.587 + px[:, 2] * 0.114; k_ = np.clip(0.45 + 0.9 * grey / max(1e-4, float(np.median(grey))) * 0.5, 0.35, 1.08)
+    cream = np.array([0xF1, 0xE7, 0xCC], np.float32) / 255
+    px[:, :3] = np.clip(cream[None, :] * k_[:, None], 0, 1)
+    im1 = bpy.data.images.new('van_body_cream', w_, h_, alpha=True); im1.pixels.foreach_set(px.ravel()); im1.pack(); srcn.image = im1
+    print('R3 van body cream', w_, h_, 'median grey', round(float(np.median(grey)), 3))
+else: p.inputs['Base Color'].default_value = PA.lin('#F1E7CC')
 p.inputs['Roughness'].default_value = 0.42
 for l in list(p.inputs['Roughness'].links): nt.links.remove(l)
+dg = bpy.context.evaluated_depsgraph_get(); sc = bpy.context.scene
+STRIPE = new_mat('stripe_cornflower', '#6495ED', 0.0, 0.4)
+Z0, Z1 = 0.90, 1.04
+vmn, vmx = PA.bbox(ms)
+for s_ in (-1, 1):   # the stripe: one band per flank, every 4 cm a ray from outside onto the body, 5 mm proud; gaps (wheel arches, door) left open
+    bm = bmesh.new(); prev = None; nseg = 0
+    xs_ = [vmn.x + 0.05 + 0.04 * k for k in range(int((vmx.x - vmn.x - 0.1) / 0.04) + 1)]
+    for x in xs_:
+        ys = []
+        for zz in (Z0 + 0.01, Z1 - 0.01):
+            hit, loc, nrm, *_ = sc.ray_cast(dg, Vector((x, s_ * 5, zz)), Vector((0, -s_, 0)))
+            if hit and abs(nrm.y) > 0.6 and abs(loc.y) > 0.6: ys.append(abs(loc.y))
+        if len(ys) == 2 and abs(ys[0] - ys[1]) < 0.03:
+            yy = s_ * (max(ys) + 0.005); pair = (bm.verts.new((x, yy, Z0)), bm.verts.new((x, yy, Z1)))
+            if prev and abs(prev[0].co.y - yy) < 0.04: bm.faces.new((prev[0], pair[0], pair[1], prev[1]) if s_ < 0 else (prev[1], pair[1], pair[0], prev[0])); nseg += 1
+            prev = pair
+        else: prev = None
+    me = bpy.data.meshes.new('van_stripe'); bm.to_mesh(me); bm.free(); o = bpy.data.objects.new('van_stripe', me); me.materials.append(STRIPE); sc.collection.objects.link(o); ms.append(o)
+    print('R3 van stripe side', s_, 'segments', nseg)
 # side lettering: one decal on each flank of the box body, found by rays from the side
 dg = bpy.context.evaluated_depsgraph_get(); sc = bpy.context.scene; dec = img_mat('van_decal', 'van_decal.png', 0.4, alpha=True)
 DW, DH, DX, DZ = 2.9, 1.09, 0.75, 1.62
 for s in (-1, 1):
-    hit, loc, nrm, *_ = sc.ray_cast(dg, Vector((DX, s * 5, DZ)), Vector((0, -s, 0)))
-    yy = (loc.y if hit else s * 1.1) + s * 0.006
+    hy = []   # round 3: the outermost of five rays (centre + corners) + 1 cm: the round-2 single ray could put the decal inside the panel
+    for ox, oz in ((0, 0), (-1.2, -0.4), (1.2, -0.4), (-1.2, 0.4), (1.2, 0.4)):
+        hit, loc, nrm, *_ = sc.ray_cast(dg, Vector((DX + ox, s * 5, DZ + oz)), Vector((0, -s, 0)))
+        if hit and abs(nrm.y) > 0.6: hy.append(abs(loc.y))
+    yy = s * ((max(hy) if hy else 1.1) + 0.01); print('R3 van decal side', s, 'y', round(yy, 3), 'rays', len(hy))
     bm = bmesh.new(); uvl = bm.loops.layers.uv.new()
     cs = [(DX - DW / 2, DZ - DH / 2), (DX + DW / 2, DZ - DH / 2), (DX + DW / 2, DZ + DH / 2), (DX - DW / 2, DZ + DH / 2)]
     vs = [bm.verts.new((x, yy, z)) for x, z in cs]; f = bm.faces.new(vs if s < 0 else vs[::-1])
@@ -177,6 +208,10 @@ for o in (bx_, lid):
 for v in lid.data.vertices:
     if v.co.z < 0: v.co.z = 0
 lid.data.update(); lid.modifiers.new('s', 'SOLIDIFY').thickness = 0.002
+for sx in (-1, 1):   # round 3: the dome's two END CAPS (round 2 left them open: the box read hollow)
+    bm = bmesh.new(); vs_ = [bm.verts.new((sx * L_ / 2, 0, H_))] + [bm.verts.new((sx * L_ / 2, (W_ / 2) * math.cos(math.pi * k / 24), H_ + 0.75 * (W_ / 2) * math.sin(math.pi * k / 24))) for k in range(25)]
+    for k in range(24): bm.faces.new((vs_[0], vs_[k + 1], vs_[k + 2]) if sx > 0 else (vs_[0], vs_[k + 2], vs_[k + 1]))
+    me = bpy.data.meshes.new('lunch_box_lid_end'); bm.to_mesh(me); bm.free(); o = bpy.data.objects.new('lunch_box_lid_end', me); me.materials.append(EN); bpy.context.scene.collection.objects.link(o)
 for sx in (-1, 1):   # hinge pins at the back, two latches at the front (one sprung open)
     bpy.ops.mesh.primitive_cube_add(size=1, location=(sx * 0.07, -W_ / 2 - 0.004, H_ - 0.012)); la = bpy.context.object; la.name = 'lunch_box_latch'; la.scale = (0.025, 0.004, 0.03); la.data.materials.append(STL)
     if sx > 0: la.rotation_euler.x = -0.5; la.location.z -= 0.012
@@ -194,13 +229,28 @@ for o in ms:
         bpy.context.view_layer.update(); dgx = bpy.context.evaluated_depsgraph_get(); me = bpy.data.meshes.new_from_object(o.evaluated_get(dgx)); o.modifiers.clear(); o.data = me
 for o in ms:
     for pg in o.data.polygons: pg.use_smooth = o.name.startswith(('lunch_box_lid', 'lunch_box_handle'))
-root, col = rootify('LUNCH_BOX', ms); mx = PA.bbox(ms)[1]; anchor(col, root, 'lid_top', (0, 0, mx.z)); save('LUNCH_BOX', root, col)
+root, col = rootify('LUNCH_BOX', ms); mx = PA.bbox(ms)[1]; anchor(col, root, 'lid_top', (0, 0, mx.z)); save('LUNCH_BOX', root, col, glb_plain={'enamel_navy': '#24345e'})
 
 # ---------------------------------------------------------------- LEMON ("Lemon", svnfbgr, CC-BY 4.0 scan): 8.5 cm, lying on its side
 fresh(); ms = imp(os.path.join(A, 'lemon', 'lemon.glb'))
 mn, mx = PA.bbox(ms); ext = mx - mn; ax = max(range(3), key=lambda i: ext[i])
 rot = Matrix.Rotation(math.radians(90), 4, 'X') if ax == 2 else (Matrix.Rotation(math.radians(90), 4, 'Z') if ax == 1 else Matrix.Identity(4))
-fit(ms, 0.085, axis=None, rot=rot); root, col = rootify('LEMON', ms); save('LEMON', root, col)
+fit(ms, 0.085, axis=None, rot=rot)
+# ROUND 3: the scan's skin read ORANGE beside the lime truck: its colour texture is retinted to the film's lemon-lime #E3EA22 (each texel keeps its
+# brightness ratio to the median, so the pores and the stalk shading stay), in the texture itself so the GLB carries it too
+import numpy as np
+for m in {m for o in ms for m in o.data.materials if m}:
+    L = bsdf(m).inputs['Base Color'].links
+    if not L or L[0].from_node.type != 'TEX_IMAGE': continue
+    im0 = L[0].from_node.image
+    if im0.size[0] > 2048: im0.scale(2048, 2048)
+    w_, h_ = im0.size; px = np.empty(w_ * h_ * 4, np.float32); im0.pixels.foreach_get(px); px = px.reshape(-1, 4)
+    lum = px[:, 0] * 0.299 + px[:, 1] * 0.587 + px[:, 2] * 0.114; ratio = np.clip(lum / max(1e-4, float(np.median(lum))), 0.25, 1.25)
+    tgt = np.array([0xE3, 0xEA, 0x22], np.float32) / 255
+    px[:, :3] = np.clip(tgt[None, :] * ratio[:, None], 0, 1)
+    im1 = bpy.data.images.new('lemon_lime_skin', w_, h_, alpha=True); im1.pixels.foreach_set(px.ravel()); im1.pack(); L[0].from_node.image = im1
+    print('R3 lemon retint', m.name, w_, h_)
+root, col = rootify('LEMON', ms); save('LEMON', root, col)
 
 # ---------------------------------------------------------------- PAINT TIN ("Used Open Red Paint Can with Paint Brush", glowbox3d, CC-BY): the red paint
 # becomes the film's lemon (retint keeps the drips and dirt), a SUNBEAM ENAMEL label band LEMON YELLOW / LIME / RED (three variants)
