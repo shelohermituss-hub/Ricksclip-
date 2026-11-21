@@ -72,3 +72,5 @@ tools/runpod/.pod.json
 episodes/*/cine/prev/
 episodes/_style_test/cast/out/
 episodes/_style_test/props/_sheet_tiles/
+episodes/*/crew/*_vs_rick*
+episodes/*/cast/*_vs_rick*
