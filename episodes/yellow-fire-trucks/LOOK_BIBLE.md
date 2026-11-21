@@ -1,5 +1,17 @@
 # LOOK BIBLE: Why Fire Trucks Turned Yellow (owned by the lead; every helper reads it, none edits it)
-v1 2026-11-20, written before any set is built (CB_RULES 11c, 12c). Tier ULTRA. Voice 63.25 s, locked. Plan: PICTURE_PLAN.md. Ideas: CREATIVE.md.
+v2 2026-11-21: THE RICK RECIPE (CB_RULES section 3; CB: « reprendre le film des camions de pompiers avec ce rendu »). Where v1 below disagrees, v2 wins.
+
+## v2: THE RICK RECIPE applied to this film (read first)
+- Two levels of realism: trees, grass, hedges and every truck are REALISTIC and clean (Poly Haven / Sketchfab trees, grass blades, truck paint high-gloss metallic clearcoat reflecting sky and houses, real chrome and glass). Station, eye shop, houses, props: SIMPLIFIED and clean (rounded bevels, flat saturated paint, clapboard lines, a few cracks). Wear and grime at the LOW end everywhere (the hero truck's masking paper and wet paint stay: they are story, not dirt).
+- AM (lines 1-4): one hard bright sun, higher than v1 (elevation 35-50, chosen per shot so the hero and the truck front are in full sun), sun #ffe2c0; strong sky fill, shadows lifted and BLUE-VIOLET, soft edged; leaf dapple only on empty ground. Camera sky deep flat blue #0f79e8 (low #1a86f2) with white cumulus; this replaces cornflower #5C8FEA (the teal turtleneck #12A5A0 still reads against it: hue gap and value gap kept; the torso still never against open sky by day). NO warm haze: a slight blue haze on far streets only.
+- DU dusk: violet sky (Rick dusk #604bde zenith) over the apricot band, pink-warm key, long soft shadows; plum shade lifted as v1. Street lamps and windows as v1.
+- NO Dallas noon: same recipe with a higher sun (el 65-70), pale dry ground; still clean and saturated, not bleached.
+- LR lamp room: lamps as v1; clean saturated colour, INTERIOR targets.
+- Thin outline on objects (trucks, props, station and house edges): #2a1830, 1.2 px at 1080, alpha 0.62-0.75; not on ground, walls, sky or cast cards.
+- Grade: tools/grade_rick.py toward templates/blender_look/rick_light.json targets (DAY mean .48, p1 .06, sat .38, contrast .21, cool shadows). The v1 recipe of the old key frames (pale warm depth haze, lavender veil on darks, cream sun bands, sat x1.62) is REMOVED.
+- Kept from v1: the palette roles (THE ONE RED, the lemon accent, the teal signature, no red/yellow on people), the period rules, the light changing with the story, the lemon truck's own bounce, no vignette, no grain, the camera and detail rules.
+
+## v1 (2026-11-20), kept for the story, places and palette roles
 No Rick frames ship in this repo: every "beside Rick" check is done against his MEASURED numbers (saturation 0.40-0.50, brightness 0.42-0.50, darkest 1 % at 0.08-0.15, edge density median 0.14) and said so in the report.
 `kit3d: { pbr: true, relief: true }` in every film.json from the first render. Surfaces only from `sets/look_pack.js` (start: `episodes/fake-surgery/sets/look_pack.js`).
 
