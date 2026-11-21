@@ -16,8 +16,10 @@ def hexf(h): h = h.lstrip('#'); return np.array([int(h[i:i + 2], 16) / 255 for i
 PRESETS = {
     'A': dict(haze=hexf('#f6ead8'), haze_k=.30, haze_d0=5.5, haze_len=40., veil=hexf('#a2a8e6'), veil_k=.16, band=hexf('#ffd096'), band_k=.28, band_angle=-34., band_period=.30,
               bloom_thr=.74, bloom_k=.55, dof_d0=11., dof_r=5., sat=1.62, contrast=1.08, black=.085, white=.955, target_mean=.46),
-    'B': dict(haze=hexf('#8f7fc6'), haze_k=.18, haze_d0=1.2, haze_len=8., veil=hexf('#a2a8e6'), veil_k=.14, band=hexf('#ffcd86'), band_k=0., band_angle=-30., band_period=.3,
-              bloom_thr=.62, bloom_k=.8, dof_d0=2.6, dof_r=4., sat=1.10, contrast=1.04, black=.09, white=.95, target_mean=None),
+    # B (lamp room): keep the deep violet dome (no lift of the whole frame), no vignette, no blur on the pupil window (it is the subject, 13 m deep),
+    # darkest 1 % lifted to .08-.15, mean solved to .27 (lead: the lamp room has no brightness floor, .24-.29 accepted)
+    'B': dict(haze=hexf('#8f7fc6'), haze_k=.12, haze_d0=1.5, haze_len=9., veil=hexf('#7d6fc0'), veil_k=.10, band=hexf('#ffcd86'), band_k=0., band_angle=-30., band_period=.3,
+              bloom_thr=.60, bloom_k=.75, dof_d0=60., dof_r=4., sat=1.25, contrast=1.06, black=.07, white=.95, target_mean=.27),
 }
 
 def numbers(rgb):
