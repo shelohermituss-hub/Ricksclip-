@@ -1,0 +1,18 @@
+00:00.468  blend            | Read blend: "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/lamproom/out/lamproom.blend"
+00:00.810  cycles           | WARNING CUEW initialization failed: Error opening the library
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_B.py:70: DeprecationWarning: 'Scene.compositing_node_group' is expected to be removed in Blender 6.0
+  tree = bpy.data.node_groups.new('cine_comp_B', 'CompositorNodeTree'); sc.compositing_node_group = tree; N, L = tree.nodes, tree.links
+WINDOW_PACKED window_grey.png (1068, 1068)
+WINDOW_PACKED window_red.png (1068, 1068)
+STATE {'wave': 4, 'iris': 0.7581818181818182, 'dim': 0.6, 'grey': 1.0, 'flick': 0.5}
+CAM [0.0, -1.817, -1.828] lens 24.0
+Info: No new files have been packed
+Info: Saved as "scene.blend"
+PACKAGE_SAVED /home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/runpod/B/scene.blend
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit
+
+real	0m1.153s
+user	0m1.092s
+sys	0m0.249s

@@ -18,8 +18,8 @@ PRESETS = {
               bloom_thr=.74, bloom_k=.55, dof_d0=11., dof_r=5., sat=1.62, contrast=1.08, black=.085, white=.955, target_mean=.46),
     # B (lamp room): keep the deep violet dome (no lift of the whole frame), no vignette, no blur on the pupil window (it is the subject, 13 m deep),
     # darkest 1 % lifted to .08-.15, mean solved to .27 (lead: the lamp room has no brightness floor, .24-.29 accepted)
-    'B': dict(haze=hexf('#8f7fc6'), haze_k=.12, haze_d0=1.5, haze_len=9., veil=hexf('#7d6fc0'), veil_k=.10, band=hexf('#ffcd86'), band_k=0., band_angle=-30., band_period=.3,
-              bloom_thr=.60, bloom_k=.75, dof_d0=60., dof_r=4., sat=1.25, contrast=1.06, black=.07, white=.95, target_mean=.27),
+    'B': dict(haze=hexf('#8f7fc6'), haze_k=.08, haze_d0=1.5, haze_len=9., veil=hexf('#7d6fc0'), veil_k=.06, band=hexf('#ffcd86'), band_k=0., band_angle=-30., band_period=.3,
+              bloom_thr=.60, bloom_k=.75, dof_d0=60., dof_r=4., sat=1.35, contrast=1.12, black=.06, white=.95, target_mean=.27),
 }
 
 def numbers(rgb):

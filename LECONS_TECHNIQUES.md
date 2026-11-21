@@ -16,6 +16,34 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — An OFF red lamp still read lit in Blender (yellow-fire-trucks, cine key B) — FERMÉ (cine), OUVERT (set API)
+- Problème : key frame B (wave 4, all red off): every red bulb read bright red in the Blender preview; the kit shows dark red rings.
+- Cause réelle : lamproom_api.set_state sets only the emission to 0; the glass keeps base colour (.65, .01, .01) rough .15, lit by the lemon/blue lamps and fills.
+- Correction : cine/build_B.py multiplies the base colour of bulb_red_on/flick_g1-4 by .18 (the set's own dead-bulb colour) when off.
+- Garde-fou : the kit | Blender pair (CINE_KEYS.jpg row B) before any package; set-builder to move it into set_state.
+- Preuve : prev/prev_B.png round 2 vs round 1: red bulbs dark with a small red pip, like kit_B/f_01293.png.
+
+## 2026-11-21 — The RunPod log test counted a "not found" that was not a file (yellow-fire-trucks, cine render.sh) — FERMÉ
+- Problème : the 10 % test of runpod/B logged 1 "not found".
+- Cause réelle : the device probe sets compute_device_type to "METAL", an enum value Linux Blender 5.3 does not have: 'enum "METAL" not found'.
+- Correction : runpod/B/render.sh probes only the types in compute_device_type.enum_items.
+- Garde-fou : `grep -ci "not found" out/blender.log` = 0 after `PCT=10 SPP=8 bash render.sh` from a scratch copy of the package.
+- Preuve : scratchpad pkgtest run: NOTFOUND 0, B_final.png written.
+
+## 2026-11-21 — Lamp-room window pictures packed from an absolute path (yellow-fire-trucks, cine key B) — FERMÉ
+- Problème : the window images are stored 'out/window_*.png' relative to the working folder (lamproom entry above, OUVERT).
+- Cause réelle : bl_lamproom.py loaded them with a relative path.
+- Correction : build_B.py sets im.filepath to sets/lamproom/out/<name>, reload, pack, before anything else.
+- Garde-fou : WINDOW_PACKED lines in logs_B_pkg.log; the package test runs from a scratch copy, where no relative path can resolve.
+- Preuve : scratch-copy render at 10 % shows the grey truck in the pupil.
+
+## 2026-11-21 — The solved grade gain dimmed the lamps (yellow-fire-trucks, cine key B) — FERMÉ
+- Problème : preset B at mean .27 solved a world gain of .72; the white point fell to .71 and the lit lamps went dull.
+- Cause réelle : the light in the scene was too high (set fills and a 650 W window light lit the deck and dome grey), and black lift + veil + haze added more.
+- Correction : light lowered in build_B.py (fills x.5, window x.5, spill 18 W), preset B black .06, veil .06, haze .08: gain .905, white .893.
+- Garde-fou : grade_key.py prints 'world gain'; below .85 = fix the light in Blender, not the grade.
+- Preuve : prev/gradeB.json (mean .270, dark1 .086, white .893).
+
 ## 2026-11-21 — problem: the Dallas trucks kept the ENGINE No (yellow-fire-trucks, dallas, fix 2) — FERMÉ
 - problem: the Dallas trucks kept the ENGINE No. 1 letters (log LETTERS_FAIL, key "truck_letters_dal14" not found). Cause: truck_api.append_truck appends the TRUCK collection only; the extra letter images live in truck.blend with a fake user and do not come along. Fix: dallas_api.link_trucks loads assets_prod/out/<letters>.png, packs it, then set_letters. Guard: build_dallas.sh prints any LETTERS_FAIL line. Proof: run 2 has none, DALLAS FIRE DEPT. on the doors. FERMÉ
 

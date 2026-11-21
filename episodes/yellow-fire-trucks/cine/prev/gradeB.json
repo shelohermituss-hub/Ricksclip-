@@ -1,18 +1,18 @@
 {
  "raw": {
-  "sat": 0.312,
-  "mean": 0.28,
+  "sat": 0.338,
+  "mean": 0.258,
   "dark1": 0.033,
-  "contrast": 0.227,
-  "white": 0.952,
-  "corner": 0.707
+  "contrast": 0.215,
+  "white": 0.951,
+  "corner": 0.616
  },
  "graded": {
-  "sat": 0.298,
+  "sat": 0.353,
   "mean": 0.27,
-  "dark1": 0.131,
-  "contrast": 0.144,
-  "white": 0.734,
-  "corner": 0.764
+  "dark1": 0.086,
+  "contrast": 0.192,
+  "white": 0.893,
+  "corner": 0.632
  }
 }

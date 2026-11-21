@@ -1,4 +1,4 @@
-# cine/ STATE: two CINEMATIC KEY FRAMES in Blender (look-finisher, 2026-11-21). A: package READY. B: NOT started.
+# cine/ STATE: two CINEMATIC KEY FRAMES in Blender (look-finisher, 2026-11-21). A: package READY. B: package READY (preview only here).
 Plan changed by the user (via the coordinator): finals render on a RunPod RTX 4090; here only 540x960 16 spp CPU previews + one packed package per frame.
 
 ## Method (frame A, S1 f0, the hook poster)
@@ -39,8 +39,21 @@ rim on the gun/fist/truck flank, depth haze, sun bands, bloom on the lemon panel
 - Station clapboard reads more yellow-olive after the grade than the kit's warmer olive (sat x1.62); within LOOK_BIBLE but check beside the film.
 Nothing missing in props, words or lamps: PINE HOLLOW sign, door letters, masking paper, 4 sirens, compressor, gun, fist, hose all present.
 
+## B (S6 f1293 "red FIRST.", lamp room) - package READY: runpod/B/ (25 MB scene.blend, all packed, 0 libraries, 0 "not found" at 10 %)
+- kitB: film_plan check -> out/plan; kit_B/f_01293.png + dump_B.json (5.6 s). No cast card in the room (hero is drawn in the window picture) -> mask empty, no rim/shadow card.
+- build_B.py (run FROM sets/lamproom: blender -b out/lamproom.blend --python ../../cine/build_B.py -- preview|package): window images made absolute + packed;
+  set_state wave 4, iris .758 (keys .62@1289 -> 1@1300), dim .6, grey 1; OFF red glass x.18 (dead colour); kit camera; window light cool #b4b6e0 x.5;
+  cool spill disk 18 W; set fills green/blue/back x.5; iris rake lights amber #ffa858 30 W (kit's amber ring). Preset B in grade_key.py: haze .08, veil .06,
+  no DOF (dof_d0 60: the window is the subject), sat 1.35, contrast 1.12, black .06, white .95, mean solved .27, no vignette, no grain.
+- Numbers (540x960 16 spp CPU, 31.7 s): kit sat .733 mean .160 dark .011 contr .199 white .896 corner .307 | Blender graded .353 .270 .086 .192 .893 .632 (gain .905).
+- runpod/B: scene.blend, render.sh (OptiX > CUDA > HIP > CPU, probes only device types this Blender has; PCT/SPP env for tests), grade_key.py, grade_metrics.py,
+  vidio.py, mask_B.png (1080x1920, empty). Tested from a scratch copy at PCT=10 SPP=8: renders, grades, NOTFOUND 0.
+- BLENDER NEVER WEAKER, what B has LESS than the kit: (1) saturation .35 vs .73: the lemon/blue lamps read paler, the dome lighter navy-grey, the deck mauve
+  not near-black; (2) the kit's continuous amber ring round the iris is only orange spots on nearby bulbs; (3) the pupil lip shows bead reflections of lamps
+  (kit: a clean pale rim); (4) relay box lid reads flat cream-tan (kit: orange gradient). Same props/words: window picture (grey truck, MAIN ST, hero) identical.
+- ADDS: real bulb glass with rings, raytraced chrome iris blades, bounce of lemon/blue on the deck and rail, bloom on lit lamps, depth haze.
+
 ## Open
-- B (S6 f1293, lamp room): `kitB/` copy made (film_eye.json, puppet path fixed); needs `python tools/film_plan.py check film.json` in kitB, then the
-  same dump + build from sets/lamproom/out/lamproom.blend (lamproom_api wave=4, grey truck window; pack window images).
-- A final at full size comes from RunPod (not rendered here, per the user's decision).
-- Lessons: 3 entries added to LECONS_TECHNIQUES.md (drawn cast mask; shadow card vs key angle; kit -> Blender exact dump).
+- A and B finals at full size come from RunPod (not rendered here, per the user's decision). runpod/A/render.sh has the old device loop, which on Blender 5.3 Linux logs
+  'enum "METAL" not found' (harmless, but trips a "not found" grep): copy B's loop if A is re-sent.
+- Set-builder: lamproom_api.set_state should darken the OFF red glass itself (build_B does it locally).
