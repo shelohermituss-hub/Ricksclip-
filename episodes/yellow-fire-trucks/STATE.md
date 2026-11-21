@@ -1,5 +1,9 @@
 # STATE: yellow-fire-trucks (updated by the writer, 2026-11-20, picture-plan round)
 
+## 2026-11-21: LOOK CHANGES TO THE RICK RECIPE (CB: « reprendre le film des camions de pompiers avec ce rendu »)
+- The approved draft, script, voice, cast, staging and camera STAY. Only the look changes: CB_RULES section 3 "THE RICK RECIPE" replaces the warm/haze armor look of LOOK_BIBLE.md and the cine/ key frames A and B (rejected grade).
+- Next: LOOK_BIBLE and LOOK_CARD redone to the recipe, then key frames A and B redone in Blender (light preview, then one full key frame on a new RunPod pod, deleted at the end).
+
 ## Built
 - SCRIPT.md v1 (14 lines), FACTS.md, BEATS.md, voice/ (voice.wav, words.json, 63.25 s): APPROVED AND LOCKED.
 - CAST_PERSONALITY.md (writer), CREATIVE.md (creative-director).

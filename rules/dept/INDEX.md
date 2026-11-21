@@ -1,23 +1,23 @@
-# Rule slices (GENERATED 2026-11-20). Master CB_RULES.md = 190,828 bytes, about 47,707 tokens.
+# Rule slices (GENERATED 2026-11-21). Master CB_RULES.md = 195,360 bytes, about 48,840 tokens.
 
 | department | bytes | about tokens | share of the master |
 |---|---|---|---|
-| writer | 61,116 | 15,279 | 32 % |
-| creative-director | 59,080 | 14,770 | 30 % |
+| writer | 61,116 | 15,279 | 31 % |
+| creative-director | 59,291 | 14,822 | 30 % |
 | rick-researcher | 39,089 | 9,772 | 20 % |
-| set-builder | 81,894 | 20,473 | 42 % |
-| props-hero | 65,642 | 16,410 | 34 % |
-| background-painter | 56,931 | 14,232 | 29 % |
-| 3d-designer | 57,129 | 14,282 | 29 % |
-| character-artist | 98,696 | 24,674 | 51 % |
-| animator | 90,116 | 22,529 | 47 % |
-| camera-director | 77,099 | 19,274 | 40 % |
-| lighting-director | 77,882 | 19,470 | 40 % |
-| vfx-artist | 52,256 | 13,064 | 27 % |
-| sound-designer | 39,263 | 9,815 | 20 % |
-| look-finisher | 52,016 | 13,004 | 27 % |
-| editor-compositor | 52,783 | 13,195 | 27 % |
+| set-builder | 86,371 | 21,592 | 44 % |
+| props-hero | 69,908 | 17,477 | 35 % |
+| background-painter | 61,408 | 15,352 | 31 % |
+| 3d-designer | 61,729 | 15,432 | 31 % |
+| character-artist | 98,786 | 24,696 | 50 % |
+| animator | 90,116 | 22,529 | 46 % |
+| camera-director | 77,099 | 19,274 | 39 % |
+| lighting-director | 82,359 | 20,589 | 42 % |
+| vfx-artist | 52,388 | 13,097 | 26 % |
+| sound-designer | 39,262 | 9,815 | 20 % |
+| look-finisher | 52,349 | 13,087 | 26 % |
+| editor-compositor | 53,177 | 13,294 | 27 % |
 | storyboard-judge | 53,114 | 13,278 | 27 % |
-| studio-director | 56,606 | 14,151 | 29 % |
-| stretch-builder | 94,306 | 23,576 | 49 % |
-| lead | 189,802 | 47,450 | 99 % |
+| studio-director | 56,606 | 14,151 | 28 % |
+| stretch-builder | 94,516 | 23,629 | 48 % |
+| lead | 194,279 | 48,569 | 99 % |

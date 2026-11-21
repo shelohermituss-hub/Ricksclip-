@@ -1,4 +1,4 @@
-# CB RULES for the character-artist (GENERATED 2026-11-20 by tools/slice_rules.py from CB_RULES.md; do not edit)
+# CB RULES for the character-artist (GENERATED 2026-11-21 by tools/slice_rules.py from CB_RULES.md; do not edit)
 CB_RULES.md is the master and wins. This file holds the rules that touch your job. Read it instead of the whole book. If a rule you need seems missing, grep CB_RULES.md for the word; do not read it top to bottom.
 
 ## RULE NO. 1: MAKE A RICK-QUALITY VIDEO. If this fails, everything is wrong.
@@ -149,7 +149,7 @@ Why: Rule No. 1 makes Rick the floor, and a floor alone makes a copy. The old st
 ### from 3. World and look (Rick's 3D world, never a flat drawing)
 - [ ] The WORLD is real 3D with real materials, light, shadow and reflection. Only the characters are flat 2D cards. A flat 2D drawing of the whole scene is wrong. ("oh no. what are you doing that is not like ricks")
 - [ ] One strong key light you can see or infer (sun, window, lamp). Hard long shadows of characters and props; shaped light patches (window bars); colour bounce from strong colours; lamps glow. Light shafts only on the hook or a dramatic beat, soft and see-through. (Pink Prison)
-- [ ] No ink lines on the world; ink only on characters. No film grain.
+- [ ] (REPLACED 2026-11-21 by THE RICK RECIPE point 5: a thin outline on objects) No ink lines on the world; ink only on characters. No film grain (still holds).
 - [ ] Background blur: wides and mediums fully sharp; only close-ups get a mild soft background. Characters NEVER blur. ("background blur is too much", "characters never blur. always sharp")
 - [ ] RICK FINISH (CB 2026-11-11: "apply everything that makes it more to rick clips style"; measured on his roller coaster film against ours, report https://claude.ai/artifact/H62bCh9DCKS58eqqD4vDVM):
   - Every character and prop throws a hard shadow on the ground from the one key light. No grey blob under the feet.

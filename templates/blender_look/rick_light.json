@@ -1,0 +1,12 @@
+{
+ "_about": "Rick recipe light presets (CB_RULES section 3, 2026-11-21). Blender Cycles, view transform Standard (never AgX), look None. Measured and matched on the private look-match exercise; sky colour seen by the camera is separate from the light the sky gives (Light Path 'Is Camera Ray' mix).",
+ "day":  {"sky_top": "#0f79e8", "sky_low": "#1a86f2", "fill_col": "#b4c3f0", "fill": 0.85, "sun": 7.0, "sun_col": "#ffe2c0", "sun_el": 50, "sun_angle_deg": 1.2, "exposure": 0.0, "cloud_emit": 0.25},
+ "dusk": {"sky_top": "#604bde", "sky_low": "#c58aa8", "fill_col": "#8f7be0", "fill": 1.0, "sun": 2.4, "sun_col": "#ffa58f", "sun_el": 14, "sun_angle_deg": 3.0, "exposure": 0.9, "cloud_emit": 0.1},
+ "targets_after_grade": {
+  "DAY":  {"p1": 0.061, "p50": 0.467, "p99": 0.966, "mean": 0.48, "contrast": 0.208, "sat": 0.381, "shadows_rgb": [0.134, 0.153, 0.178], "highs_rgb": [0.827, 0.837, 0.845]},
+  "DUSK": {"p1": 0.059, "p50": 0.418, "p99": 0.918, "mean": 0.431, "contrast": 0.211, "sat": 0.40, "shadows_rgb": [0.199, 0.134, 0.168]},
+  "NIGHT": {"p1": 0.007, "p50": 0.174, "p99": 0.83, "mean": 0.234, "sat": 0.403},
+  "INTERIOR": {"p1": 0.082, "p50": 0.438, "p99": 0.94, "mean": 0.429, "sat": 0.308},
+  "_source": "tools/measure/rick_grade_study.py on 320 frames of his 5 reference videos (report private: references/reports/rick_grade_2026-11-21)"
+ }
+}
