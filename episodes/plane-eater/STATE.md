@@ -10,3 +10,10 @@ Weak / open:
 - Close share 19 % (Rick ~40 %); accepted for scale, lead may push rows 11 and 19 to CLOSE.
 - Brand: "GUINNESS" is spoken only; the book reads BOOK OF RECORDS (no logo). Lead to confirm.
 - Colour proposals (Michel only red; Cessna white + navy, tail F-MIAM; plum curtains) go to the lead for LOOK_BIBLE.md.
+
+## v2 round (2026-11-21, CREATIVE.md merged with the lead's decisions)
+- PICTURE_PLAN.md v2: 38 rows, same word timings. Frame 0 = Michel salting the wing tip; Mechanic -> the Owner (yellow rag running gag, knee beard from the time-lapse on, seat neighbour at the end).
+- Signature rows 19-22: tiny bite-built Cessna on the X-ray (ship in a bottle) -> fly into the film -> lining puffs to a mattress on THICK -> the mini Cessna slides on SLID -> Doctor double take.
+- Places now: apron at the hangar, X-ray room, airliner cabin (records stage dropped: the certificate comes under the dessert cloche). Ending: tray table bitten, the window shows the airliner wing with a bite missing, loops to frame 0.
+- Extremes 3 (mattress lining, two-year beard time-lapse, dessert cake). Power 4. CLOSE 7 (18 %). STILLNESS moved to 31.82-32.28 (sniff of the airline meal).
+- Open: no refs/ board; the cake and the cabin are new sets; new faces needed: chew with cheek bulge, disgust, jaw drop.

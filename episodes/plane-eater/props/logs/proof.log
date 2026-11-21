@@ -1,0 +1,10 @@
+00:00.366  blend            | Read blend: "/home/user/Ricksclip-/episodes/plane-eater/props/out/cessna150.blend"
+/home/user/Ricksclip-/episodes/plane-eater/props/scripts/bl_proof.py:34: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w = bpy.data.worlds.new('sky'); sc.world = w; w.use_nodes = True; N, L = w.node_tree.nodes, w.node_tree.links
+00:10.863  render           | Saved: 'tiles/A_hero34.png'
+00:10.867  gpu.vulkan       | WARNING Unable to initialize a Vulkan 1.1 instance.
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+00:11.340  render           | Saved: 'tiles/A_hero34_lines_id.png'
+00:11.347  blend            | Read blend: "/home/user/Ricksclip-/episodes/plane-eater/props/out/cessna150.blend"

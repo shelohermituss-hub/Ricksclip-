@@ -1,0 +1,208 @@
+{
+ "source": "Sketchfab c9cadc2f026946da8cf9715a683739e9 (NLM-Group, CC BY 4.0)",
+ "scale_k": 2.7565,
+ "size_m": {
+  "span": 10.17,
+  "length": 7.61,
+  "height": 2.48
+ },
+ "axes": "nose -Y, up +Z, pilot left wing +X (_L)",
+ "registration": "F-MIAM",
+ "colours": {
+  "white": "#f3f4f1",
+  "red": "#d62828"
+ },
+ "red_share_of_paint_texture": 0.2376,
+ "reg_letter_h_m": 0.195,
+ "fin_chord_at_letters_m": 1.02,
+ "intact": {
+  "objects": 73,
+  "tris": 172684,
+  "parts": [
+   "aileron_L",
+   "aileron_R",
+   "cabin_lining",
+   "cowl_inlet",
+   "cowl_nose",
+   "door_L",
+   "door_R",
+   "door_glass_L",
+   "door_glass_R",
+   "door_handle_L",
+   "door_handle_R",
+   "door_lining_L",
+   "door_lining_R",
+   "elevator_L",
+   "elevator_R",
+   "fin",
+   "fin_cap",
+   "flap_L",
+   "flap_R",
+   "fuselage",
+   "gear_legs_L",
+   "gear_legs_R",
+   "glareshield",
+   "glass_cabin",
+   "hub_nose",
+   "hubs_main_L",
+   "hubs_main_R",
+   "nose_fork",
+   "nose_gear",
+   "part_104",
+   "part_105",
+   "part_107",
+   "part_52",
+   "part_58",
+   "part_60",
+   "part_66",
+   "part_81",
+   "part_83",
+   "part_84",
+   "part_85",
+   "part_86",
+   "part_87",
+   "part_88",
+   "part_90",
+   "part_92",
+   "part_94",
+   "prop_L",
+   "prop_R",
+   "prop_tips_L",
+   "prop_tips_R",
+   "reg_L",
+   "reg_R",
+   "roof_vent",
+   "rudder",
+   "seat_backs",
+   "seat_cushions",
+   "seat_rails",
+   "spinner",
+   "stabiliser_L",
+   "stabiliser_R",
+   "strut_L",
+   "strut_R",
+   "tail_tiedown",
+   "tyre_nose",
+   "tyres_main_L",
+   "tyres_main_R",
+   "wheel_spats_L",
+   "wheel_spats_R",
+   "wing_L",
+   "wing_R",
+   "wing_root_fairing_L",
+   "wing_root_fairing_R",
+   "yokes"
+  ]
+ },
+ "wingoff": {
+  "removed": [
+   "aileron_L",
+   "flap_L",
+   "strut_L",
+   "wheel_spats_L",
+   "wing_L",
+   "wing_root_fairing_L"
+  ],
+  "added": [
+   "wing_L_stub_0",
+   "wing_L_stub_1",
+   "wing_L_stub_2",
+   "wing_L_stub_3",
+   "wing_L_stub_4",
+   "wing_L_panel_ground"
+  ],
+  "tris": 168602,
+  "stub_steps_m": [
+   0.06,
+   0.19,
+   0.11,
+   0.23,
+   0.14
+  ]
+ },
+ "sliced": {
+  "n": 9,
+  "gap_m": 0.22,
+  "slices": [
+   {
+    "slice": 0,
+    "y0": -3.738,
+    "y1": -2.89,
+    "parts": 12,
+    "tris": 22026,
+    "stands_on": "wheel"
+   },
+   {
+    "slice": 1,
+    "y0": -2.67,
+    "y1": -1.822,
+    "parts": 24,
+    "tris": 38924,
+    "stands_on": "wheel"
+   },
+   {
+    "slice": 2,
+    "y0": -1.602,
+    "y1": -0.755,
+    "parts": 30,
+    "tris": 45104,
+    "stands_on": "wheel"
+   },
+   {
+    "slice": 3,
+    "y0": -0.535,
+    "y1": 0.313,
+    "parts": 30,
+    "tris": 51766,
+    "stands_on": "wheel"
+   },
+   {
+    "slice": 4,
+    "y0": 0.533,
+    "y1": 1.381,
+    "parts": 12,
+    "tris": 16088,
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.562
+   },
+   {
+    "slice": 5,
+    "y0": 1.601,
+    "y1": 2.448,
+    "parts": 3,
+    "tris": 3314,
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.467
+   },
+   {
+    "slice": 6,
+    "y0": 2.668,
+    "y1": 3.516,
+    "parts": 3,
+    "tris": 2612,
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.684
+   },
+   {
+    "slice": 7,
+    "y0": 3.736,
+    "y1": 4.584,
+    "parts": 10,
+    "tris": 4166,
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.871
+   },
+   {
+    "slice": 8,
+    "y0": 4.804,
+    "y1": 5.651,
+    "parts": 9,
+    "tris": 6808,
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.825
+   }
+  ],
+  "tris": 191168,
+  "stages": "eaten stage k = hide slice_{8..9-k} (tail first); last piece = s0_spinner"
+ }
+}
