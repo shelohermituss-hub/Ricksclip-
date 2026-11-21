@@ -35,7 +35,7 @@ def mat(name, col='#ffffff', rough=.6, metal=0., png=None, emit=None, coat=0., a
 M = dict(
     sage=mat('hangar_sage', '#c9dcc0', .55), trim=mat('trim_white', '#f4f4ee', .4), door=mat('door_greyblue', '#8ea4b8', .45, coat=.3),
     roof=mat('roof_metal', '#b4bcc2', .35, .6), steel=mat('steel_grey', '#8e959c', .35, .8), dark=mat('rubber_dark', '#2e3034', .7),
-    glass=mat('glass_win', '#9fc0dc', .05, .2, alpha=.55), conc=mat('concrete', '#ffffff', .85, png='concrete'), conc_in=mat('concrete_in', '#b4b2ac', .92)   # FIX 2: matte (glossy floor gave noisy white blotches in V4),
+    glass=mat('glass_win', '#9fc0dc', .05, .2, alpha=.55), conc=mat('concrete', '#ffffff', .85, png='concrete'), conc_in=mat('concrete_in', '#b4b2ac', .92),
     cloth=mat('tablecloth', '#ffffff', .8, png='cloth'), wood=mat('wood_honey', '#ffffff', .5, png='wood'), bent=mat('wood_bentwood', '#6b4a2f', .4, coat=.4),
     china=mat('china_white', '#f7f7f4', .15, coat=.6), crystal=mat('glass_crystal', '#ffffff', .02, alpha=.25), oil=mat('oil_amber', '#f0a81c', .05, emit='#f0a81c', coat=.8),
     water=mat('water_clear', '#d8ecf6', .02, alpha=.35), chrome=mat('chrome', '#e8eaee', .08, 1.), canvas=mat('canvas_stripe', '#ffffff', .75, png='canvas'),
