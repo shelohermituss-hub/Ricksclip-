@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Une machine RunPod arrêtée n'a pas pu redémarrer : sa carte graphique avait été donnée à un autre (projet privé car_science) — FERMÉ
+- Problème : podResume refusé toute la session (« not enough free GPUs on the host machine ») ; l'assistant est passé en silence au processeur en 360x640, environ 1 h 20 de rendu de secours en basse qualité.
+- Cause réelle : chez RunPod, arrêter une machine libère sa carte ; au redémarrage, rien ne garantit qu'une carte soit libre sur ce serveur. Je ne l'avais pas vérifié avant de compter dessus ; et la consigne ne disait pas de s'arrêter en cas d'échec.
+- Correction : une machine neuve créée pour le travail ; l'ancienne supprimée.
+- Garde-fou : REGLES_METHODE section 2 : une machine neuve par travail, supprimée à la fin ; une ressource qui échoue = arrêt et alerte, jamais de secours silencieux.
+- Preuve : nouvelle machine 28zyh4pgkcwf2m répond « Blender 5.3.0 » à 17:59.
+
 ## 2026-11-21 — Le suivi de caméra de Blender ne tourne qu'avec un écran virtuel, et son point principal est normalisé en Blender 5 (projet privé car_science) — FERMÉ
 - Problème : les outils de suivi (bpy.ops.clip) échouaient en mode batch ; ensuite toutes les résolutions de caméra étaient fausses.
 - Cause réelle : les opérateurs du suivi demandent un éditeur de clip, donc une fenêtre ; et en Blender 5 le point principal de la caméra de suivi est normalisé (0 = centre), alors qu'on le donnait en pixels.

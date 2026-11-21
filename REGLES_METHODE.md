@@ -26,6 +26,9 @@
 
 - Contour des objets façon Rick (CB 2026-11-21 : « L'outline noir est trop épais, il doit être fin ») : trait sombre FIN, environ 0,6 px pour 540 px de large (1,2 px en 1080), opacité environ 0,75, couleur #2a1830, sur les objets seulement (pas les murs, le sol ni les personnages).
 
+- Machines RunPod (CB 2026-11-21 : « Tu ne dois pas la conserver et arrêter à la fin, c'est mieux d'en construire une nouvelle ») : une machine NEUVE par travail de rendu, SUPPRIMÉE (terminate) dès les résultats récupérés et vérifiés ; jamais de machine arrêtée gardée pour plus tard (au redémarrage, RunPod ne garantit pas la carte graphique). Chaque nouvelle machine demande une autorisation de CB pour son adresse.
+- Ressource prévue qui échoue (machine, carte graphique, service) : l'assistant S'ARRÊTE et prévient le lead tout de suite ; jamais de solution de secours silencieuse qui change la qualité ou le coût.
+
 ## 3. Environnement cloud, accès, secrets
 - Première chose à faire dans une nouvelle session : vérifier l'environnement (bonne version de Blender, hôtes réseau autorisés, clés enregistrées) et restaurer les fichiers non versionnés avec un script unique et relançable. (Problème : 40 minutes perdues sur un environnement mal préparé.)
 - Les clés ne passent jamais par la discussion ni par un fichier : elles sont enregistrées comme secrets réseau de l'environnement. Les scripts qui attendent une variable reçoivent une valeur factice.
