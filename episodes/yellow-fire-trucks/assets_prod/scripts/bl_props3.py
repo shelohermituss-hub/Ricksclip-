@@ -40,8 +40,10 @@ def grey_nodes(m):
     else:
         rgb = nt.nodes.new('ShaderNodeRGB'); rgb.outputs[0].default_value = p.inputs['Base Color'].default_value; src = rgb.outputs[0]
     bw = nt.nodes.new('ShaderNodeRGBToBW'); nt.links.new(src, bw.inputs[0])
+    lift = nt.nodes.new('ShaderNodeMath'); lift.operation = 'MULTIPLY_ADD'; nt.links.new(bw.outputs[0], lift.inputs[0]); lift.inputs[1].default_value = 0.65; lift.inputs[2].default_value = 0.35
     tint = nt.nodes.new('ShaderNodeMix'); tint.data_type = 'RGBA'; tint.blend_type = 'MULTIPLY'; tint.inputs['Factor'].default_value = 1.0
-    nt.links.new(bw.outputs[0], tint.inputs[6]); tint.inputs[7].default_value = [min(1.0, c * 2.4) for c in DUSK[:3]] + [1]
+    # grey = tint x (0.35 + 0.65 luminance): dark assets do not sink to black on the dusk lawn (kit twin)
+    nt.links.new(lift.outputs[0], tint.inputs[6]); tint.inputs[7].default_value = [min(1.0, c * 2.4) for c in DUSK[:3]] + [1]
     v = nt.nodes.new('ShaderNodeValue'); v.name = 'phfd_grey'; v.outputs[0].default_value = 0.0
     mx = nt.nodes.new('ShaderNodeMix'); mx.data_type = 'RGBA'; nt.links.new(v.outputs[0], mx.inputs['Factor']); nt.links.new(src, mx.inputs[6]); nt.links.new(tint.outputs[2], mx.inputs[7])
     nt.links.new(mx.outputs[2], p.inputs['Base Color'])
@@ -71,9 +73,9 @@ def flat_side_down(ms):   # rotation that puts the thinnest extent on Z
     mn, mx = PA.bbox(ms); e = mx - mn; ax = min(range(3), key=lambda i: e[i])
     return Matrix.Rotation(math.radians(90), 4, 'X') if ax == 1 else (Matrix.Rotation(math.radians(90), 4, 'Y') if ax == 0 else Matrix.Identity(4))
 
-# ---------------------------------------------------------------- RED BALL (built): a 28 cm red rubber playground ball, two cream seam rings,
+# ---------------------------------------------------------------- RED BALL (built): a 32 cm red rubber playground ball, two cream seam rings,
 # two cream stars, a grass stain (tex_r3.py ball_red.png on the sphere's own UVs), raised seam ridges
-fresh(); R = 0.14
+fresh(); R = 0.16
 bpy.ops.mesh.primitive_uv_sphere_add(radius=R, segments=64, ring_count=32, location=(0, 0, R)); b = bpy.context.object; b.name = 'ball_rubber'
 bpy.ops.object.shade_smooth()
 m = bpy.data.materials.new('ball_red_rubber'); m.use_nodes = True; p = bsdf(m); t = m.node_tree.nodes.new('ShaderNodeTexImage')
@@ -90,8 +92,8 @@ for o in ms:
 save('red_ball', ms, {'centre': (0, 0, R)}, 'built (no fitting free asset of a 1940s rubber ball)')
 
 # ---------------------------------------------------------------- LOST THINGS (downloads)
-LOST = [('lost_wagon', 'wagon/wagon.glb', 1.0, None), ('lost_kite', 'kite/kite.glb', 0.9, 'flat'), ('lost_boot', 'rubber_boots/rubber_boots_1k.gltf', 0.38, 'one'),
-        ('lost_watering_can', 'watering_can_metal_01/watering_can_metal_01_1k.gltf', 0.5, None), ('lost_tricycle', 'tricycle/tricycle.glb', 0.75, None)]
+LOST = [('lost_wagon', 'wagon/wagon.glb', 1.1, None), ('lost_kite', 'kite/kite.glb', 1.0, 'flat'), ('lost_boot', 'rubber_boots/rubber_boots_1k.gltf', 0.45, 'one'),
+        ('lost_watering_can', 'watering_can_metal_01/watering_can_metal_01_1k.gltf', 0.56, None), ('lost_tricycle', 'tricycle/tricycle.glb', 0.85, None)]   # round 3: a touch above life (phone size)
 for name, f, size, how in LOST:
     fresh(); ms = imp(os.path.join(A, f))
     for o in list(ms):   # ground planes / backdrops shipped with some models

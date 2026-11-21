@@ -9,7 +9,8 @@ import town_api as TA, truck_api as T
 a = sys.argv[sys.argv.index('--') + 1:]; OUT = a[0]; S = int(a[1]); SPP = int(a[2]) if len(a) > 2 else 16
 os.makedirs(OUT, exist_ok=True); sc = bpy.context.scene
 TA.set_light(sc, 'du')
-CAM = dict(pos=[29.3, -13.5, 1.75], aim=[23.6, -5.6, 1.45], lens=28)     # the viewer's eye at the park kerb, looking up the street (crossing cam, a little lower)
+# FIX 2: lens 28 -> 16.8 (= 28 x 9 / 15): the same view in the middle 9 m of the now 15 m window plane, more town round it (size 640 -> 1068)
+CAM = dict(pos=[29.3, -13.5, 1.75], aim=[23.6, -5.6, 1.45], lens=16.8)     # the viewer's eye at the park kerb, looking up the street (crossing cam, a little lower)
 TRUCK_AT = [24.6, -6.2]                                                 # the pumper on the crossing, nose to the viewer
 chief = TA.chief_root(); hero = TA.hero_root()
 # headlamp circle of the pumper (for the pupil match): bbox of the headlight_glass parts, truck frame

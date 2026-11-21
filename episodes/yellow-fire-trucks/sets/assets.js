@@ -211,14 +211,14 @@ export async function buildProp2(THREE, name, opts = {}) {
 }
 // ---------------------------------------------------------------- round 3: the dusk GREY state (S6: the lost things, the red ball, the toy in his fist)
 // setGrey(k): k 0 = own colours, 1 = drained to the grey-plum (the twin of assets_prod/scripts/props_api.py set_grey). Each instance gets its own materials.
-const GREY_TINT = '#a49aac';   // luminance x this tint (the Blender twin: DUSK #6a6470 x 2.4)
+const GREY_TINT = '#a49aac';   // (0.35 + 0.65 luminance) x this tint (the Blender twin: DUSK #6a6470 x 2.4): dark assets do not sink to black
 export function greyable(THREE, g) {
   const U = { uGrey: { value: 0 }, uGreyTint: { value: new THREE.Color(GREY_TINT) } }; let done = false;
   const patch = () => { if (done) return; done = true; const seen = new Map();
     g.traverse(o => { if (!o.isMesh) return; const one = m => { if (seen.has(m)) return seen.get(m); const k = m.clone(); const prev = m.onBeforeCompile;
       k.onBeforeCompile = (sh, r) => { if (prev) prev.call(k, sh, r); Object.assign(sh.uniforms, U);
         sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uGrey; uniform vec3 uGreyTint;')
-          .replace('#include <map_fragment>', '#include <map_fragment>\n{ float l = dot(diffuseColor.rgb, vec3(.299, .587, .114)); diffuseColor.rgb = mix(diffuseColor.rgb, l * uGreyTint, uGrey); }'); };
+          .replace('#include <map_fragment>', '#include <map_fragment>\n{ float l = dot(diffuseColor.rgb, vec3(.299, .587, .114)); diffuseColor.rgb = mix(diffuseColor.rgb, (.35 + .65 * l) * uGreyTint, uGrey); }'); };
       k.customProgramCacheKey = () => 'phfd_grey_' + (m.customProgramCacheKey ? m.customProgramCacheKey() : ''); seen.set(m, k); return k; };
       o.material = Array.isArray(o.material) ? o.material.map(one) : one(o.material); }); };
   return k => { patch(); U.uGrey.value = Math.max(0, Math.min(1, k)); };

@@ -13,8 +13,9 @@ SERIF = '/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf'; BOLD 
 STATES = G.load_states(os.path.join(A, 'us-atlas', 'states-10m.json'))
 PAPER = Image.open(os.path.join(A, 'acg', 'Paper001', 'Paper001_2K-JPG_Color.jpg')).convert('L')
 # palette: no red, no yellow, no teal on a set (LOOK_BIBLE). Water cornflower-pale, land pastel 1970s tints, highways navy.
-CREAM = (241, 233, 212); WATER = (182, 205, 236); WATER_LINE = (140, 170, 222); GREYLAND = (226, 221, 207)
-TINTS = [(241, 214, 196), (216, 228, 192), (233, 210, 226), (238, 228, 200), (212, 221, 236), (232, 218, 190)]
+CREAM = (241, 230, 204); WATER = (160, 196, 246); WATER_LINE = (140, 170, 222); GREYLAND = (226, 221, 207)
+# FIX 2: tints about twice as strong (Blender saturation measured 0.19-0.26 under the bleached noon; the floor is 0.30). Still no red, yellow or teal.
+TINTS = [(252, 200, 168), (200, 232, 170), (244, 190, 226), (246, 230, 186), (192, 214, 250), (246, 214, 166)]
 NAVY = (39, 54, 90); INK = (31, 35, 56); BROWN = (132, 86, 58); ROAD = (150, 138, 126); PLUM = (122, 104, 140); RIVER = (96, 136, 214); PENCIL = (88, 86, 92)
 COFFEE = (150, 104, 66)
 STATIONS = G.stations(); SNAMES = [s[0] for s in STATIONS]

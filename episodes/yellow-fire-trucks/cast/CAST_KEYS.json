@@ -105,17 +105,26 @@
   "scepticDriver": {
    "puppet": "cast:firetrucks/scepticDriver",
    "height": 1.88,
-   "in_vehicle": true
+   "in_vehicle": true,
+   "hip_up_m": 0.683,
+   "seated_head_m": 1.197,
+   "cut_px": 331
   },
   "rookieDriver": {
    "puppet": "cast:firetrucks/rookieDriver",
    "height": 1.64,
-   "in_vehicle": true
+   "in_vehicle": true,
+   "hip_up_m": 0.67,
+   "seated_head_m": 0.97,
+   "cut_px": 366
   },
   "milkmanDriver": {
    "puppet": "cast:firetrucks/milkmanDriver",
    "height": 1.62,
-   "in_vehicle": true
+   "in_vehicle": true,
+   "hip_up_m": 0.662,
+   "seated_head_m": 0.958,
+   "cut_px": 366
   }
  },
  "faces_ep": {

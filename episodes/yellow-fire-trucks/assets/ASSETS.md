@@ -19,6 +19,10 @@ FINAL CREDIT LINES (YOUTUBE.md):
 - (round 2) "wooden stool" by diana_ver (sketchfab.com/3d-models/79847abac75a4211a4f072c45516fbea), CC BY 4.0
 - (round 2) "Milk" by Multipainkiller_Studio (sketchfab.com/3d-models/5e8d71045e2040ba8f6619d86d204cf5), CC BY 4.0
 - (round 2) "Antique Wooden Milk Crates" by CurlyFryWhy (sketchfab.com/3d-models/489a6f095dc44bb1b279ed58e5bb3571), CC BY 4.0
+- (round 3) "Radio Flyer Wagon" by cukooart (sketchfab.com/3d-models/35d5166f87ac409b957b3209c406709f), CC BY 4.0, rescaled, greyed at dusk
+- (round 3) "Kite" by phac (sketchfab.com/3d-models/881a6736d0eb4f53b38d75c5b03dc7fe), CC BY 4.0, rescaled, greyed at dusk
+- (round 3) "Tricycle" by Marousiya (sketchfab.com/3d-models/d30c207f4c0246588f766b0dd49b459c), CC BY 4.0, rescaled, greyed at dusk
+- (round 3) "Rubber Boots" and "Watering Can Metal 01": Poly Haven (polyhaven.com/a/rubber_boots, polyhaven.com/a/watering_can_metal_01), CC0
 
 | file | name / url | author | licence | size | what it is / used for | YOUTUBE.md credit line (only if it goes into the film) |
 |---|---|---|---|---|---|---|
@@ -121,3 +125,14 @@ FINAL CREDIT LINE (YOUTUBE.md): "Lamp room models and textures: Poly Haven (poly
 | painted_metal_shutter | texture | the pleated back of the iris | diffuse x indigo #3a3aa8 |
 | metal_grate_rusty | texture | the catwalk deck | diffuse x #5a5470 |
 Coded (no fitting free asset): the dome shell, iris pleats with the 'open' shape key, chrome entry ring/bezel/reflector, relay box with switches, cables (bezier), ladder rail.
+
+## ROUND 3 (props-hero 2026-11-21): the five lost things of S6 (fetched by `assets_prod/scripts/fetch_r3.sh`, built by `scripts/bl_props3.py`)
+| file | name / url | author | licence | kept | used for |
+|---|---|---|---|---|---|
+| `wagon/wagon.glb` | "Radio Flyer Wagon" https://sketchfab.com/3d-models/35d5166f87ac409b957b3209c406709f | cukooart | CC-BY 4.0 | 27,372 tris, 1.10 m | lost wagon (S6 lawn), grey state |
+| `kite/kite.glb` | "Kite" https://sketchfab.com/3d-models/881a6736d0eb4f53b38d75c5b03dc7fe | phac | CC-BY 4.0 | 4,360 tris, 1.0 m, lying tipped 12 deg | lost kite |
+| `tricycle/tricycle.glb` | "Tricycle" https://sketchfab.com/3d-models/d30c207f4c0246588f766b0dd49b459c | Marousiya | CC-BY 4.0 | 16,418 tris, 0.85 m | lost tricycle |
+| `rubber_boots/rubber_boots_1k.gltf` | https://polyhaven.com/a/rubber_boots | Poly Haven | CC0 | ONE boot of the pair, 28,064 tris, 0.45 m, fallen on its side | lost boot |
+| `watering_can_metal_01/watering_can_metal_01_1k.gltf` | https://polyhaven.com/a/watering_can_metal_01 | Poly Haven | CC0 | 11,837 tris, 0.56 m | lost watering can |
+Built (no fitting free asset): the red playground ball (32 cm, red rubber, two raised cream seam rings, two cream stars, grass stain; `tex_r3.py` ball_red.png).
+Nothing bought. Rejected in the search: NonCommercial / NoDerivs wagons and tricycles (JordanF, lamont-media, alienor.org, leolee, kurtcamarines).

@@ -1,0 +1,186 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "s1_ch_burst",
+   "view": "side",
+   "frames": 80,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 27.9
+  },
+  {
+   "move": "s2_he_walk",
+   "view": "side",
+   "frames": 80,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "at the door",
+     "frames": [
+      43,
+      44
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 30
+  },
+  {
+   "move": "s6_kid_run",
+   "view": "side",
+   "frames": 80,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "stopped, head tilted",
+     "frames": [
+      29,
+      30
+     ],
+     "max_px_per_frame": 2.0924
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 30
+  },
+  {
+   "move": "s7_cv_march",
+   "view": "side",
+   "frames": 80,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "planted",
+     "frames": [
+      41,
+      43
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 29.3
+  },
+  {
+   "move": "s5_cl_climb",
+   "view": "side",
+   "frames": 80,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "at the top, hat tipped back",
+     "frames": [
+      61,
+      64
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 1.3,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 29
+  }
+ ]
+}

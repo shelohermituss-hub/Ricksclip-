@@ -3,7 +3,7 @@
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); KD = os.path.join(HERE, '..', 'proof', 'kit'); META = json.load(open(os.path.join(HERE, '..', 'out', 'lamproom_meta.json')))
 W, H = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (540, 960)
-TILES = dict(allon=('CAM_ROOM', 0, 0), redoff=('CAM_ROOM', 4, 0), irisopen=('CAM_ROOM', 4, 1), entry=('CAM_ENTRY', 0, 0))
+TILES = dict(allon=('CAM_ROOM', 0, 0), redoff=('CAM_ROOM', 4, 0), irisopen=('CAM_ROOM', 4, 1), entry=('CAM_ENTRY', 0, 0), exit=('CAM_EXIT', 4, 1))   # FIX 2: exit = the window edge check
 LIGHT_OVER = dict(top='#120c24', hor='#1c1438', sun='#b8a8ff', si=.12, amb='#2a1d52', ai=.35, tint='#ffffff')
 names = []
 for t, (cam, wave, iris) in TILES.items():

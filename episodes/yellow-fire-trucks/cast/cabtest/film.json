@@ -1,0 +1,509 @@
+{
+ "title": "cast FIX 3 proof: seated drivers in the real truck and van",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "start": 0,
+ "end": 90,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": false,
+ "kit3d": {
+  "pbr": true,
+  "relief": false,
+  "sky": true,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "castpkg",
+  "../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "scepticDriver": {
+   "puppet": "cast:firetrucks/scepticDriver",
+   "height": 1.88,
+   "in_vehicle": true
+  },
+  "rookieDriver": {
+   "puppet": "cast:firetrucks/rookieDriver",
+   "height": 1.64,
+   "in_vehicle": true
+  },
+  "milkmanDriver": {
+   "puppet": "cast:firetrucks/milkmanDriver",
+   "height": 1.62,
+   "in_vehicle": true
+  }
+ },
+ "faces_ep": {
+  "chiefShout": {
+   "eyes": "angry",
+   "brows": [
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ],
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 30,
+   "teethH": 12
+  },
+  "proudShut": {
+   "eyes": "closed",
+   "brows": [
+    [
+     10,
+     -2,
+     6
+    ],
+    [
+     14,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "peekOne": {
+   "eyes": [
+    "shut",
+    "wideXL"
+   ],
+   "brows": [
+    [
+     -4,
+     6,
+     0
+    ],
+    [
+     16,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "frozenWide": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0,
+  "dust": 0,
+  "bloom": 0,
+  "vignette": 0
+ },
+ "places": {
+  "cab": {
+   "set": "cabtest",
+   "light": "day"
+  }
+ },
+ "props": {
+  "drv": {
+   "pos": [
+    -2.3,
+    -0.42,
+    2.0
+   ],
+   "kind": "driver"
+  }
+ },
+ "acts": [
+  {
+   "who": "scepticDriver",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -2.3,
+    -0.42,
+    0.27
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "scepticDriver",
+   "at": 0,
+   "visible": true,
+   "view": "side",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "rookieDriver",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -2.3,
+    -0.42,
+    0.45
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "milkmanDriver",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -1.45,
+    9.89,
+    0.29
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "scepticDriver",
+   "at": 10,
+   "visible": true,
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "scepticDriver",
+   "at": 20,
+   "visible": true,
+   "view": "34",
+   "dir": 1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "scepticDriver",
+   "at": 30,
+   "visible": false
+  },
+  {
+   "who": "rookieDriver",
+   "at": 30,
+   "visible": true,
+   "view": "side",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "rookieDriver",
+   "at": 40,
+   "visible": true,
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "rookieDriver",
+   "at": 50,
+   "visible": true,
+   "view": "34",
+   "dir": 1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "rookieDriver",
+   "at": 60,
+   "visible": false
+  },
+  {
+   "who": "milkmanDriver",
+   "at": 60,
+   "visible": true,
+   "view": "side",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "milkmanDriver",
+   "at": 70,
+   "visible": true,
+   "view": "34",
+   "dir": -1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "milkmanDriver",
+   "at": 80,
+   "visible": true,
+   "view": "34",
+   "dir": 1,
+   "pose": "drive",
+   "face": "standard"
+  },
+  {
+   "who": "milkmanDriver",
+   "at": 90,
+   "visible": false
+  }
+ ],
+ "takes": [
+  {
+   "id": "t0",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -2.3,
+      -6.42,
+      1.9
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      2.0
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 10,
+     "pos": [
+      -8.5,
+      -3.62,
+      2.0
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      2.0
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 20,
+     "pos": [
+      -7.8,
+      1.7800000000000002,
+      3.0
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      2.0
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 30,
+     "pos": [
+      -2.3,
+      -6.42,
+      1.9
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      1.95
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 40,
+     "pos": [
+      -8.5,
+      -3.62,
+      2.0
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      1.95
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t5",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 50,
+     "pos": [
+      -7.8,
+      1.7800000000000002,
+      3.0
+     ],
+     "aim": [
+      -2.3,
+      -0.42,
+      1.95
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t6",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 60,
+     "pos": [
+      -1.45,
+      3.8900000000000006,
+      1.9
+     ],
+     "aim": [
+      -1.45,
+      9.89,
+      1.65
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t7",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 70,
+     "pos": [
+      -7.65,
+      6.69,
+      2.0
+     ],
+     "aim": [
+      -1.45,
+      9.89,
+      1.65
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  },
+  {
+   "id": "t8",
+   "place": "cab",
+   "stations": [
+    {
+     "at": 80,
+     "pos": [
+      -6.95,
+      12.09,
+      3.0
+     ],
+     "aim": [
+      -1.45,
+      9.89,
+      1.65
+     ],
+     "lens": 35,
+     "subject": "drv",
+     "framing": "M",
+     "hold": 0.3
+    }
+   ]
+  }
+ ]
+}

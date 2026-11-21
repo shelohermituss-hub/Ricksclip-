@@ -22,6 +22,8 @@
 - Annoncer les durées à partir d'une mesure, pas d'une impression. Mes estimations à l'œil ont été fausses plusieurs fois.
 - Les calculs longs tournent en arrière-plan, avec un journal et un marqueur de fin ; pendant ce temps on documente ou on prépare la suite.
 
+- Assistants : vitesse avant tout (CB 2026-11-21 : « pourquoi chaque assistant passe 15-30 minute pour juste lire les règle et tes fichiers ? »). Le lead fait lui-même les petites corrections (une couleur, une option, une ligne) ; un assistant reçoit une consigne courte et précise (quel fichier, quoi changer, quelle preuve), pas une longue liste de lecture ; le même assistant est gardé d'un tour à l'autre pour garder sa mémoire ; au plus 3 assistants en même temps sur cette machine. (Problème : consignes trop lourdes et 5 à 7 assistants qui se ralentissaient entre eux.)
+
 ## 3. Environnement cloud, accès, secrets
 - Première chose à faire dans une nouvelle session : vérifier l'environnement (bonne version de Blender, hôtes réseau autorisés, clés enregistrées) et restaurer les fichiers non versionnés avec un script unique et relançable. (Problème : 40 minutes perdues sur un environnement mal préparé.)
 - Les clés ne passent jamais par la discussion ni par un fichier : elles sont enregistrées comme secrets réseau de l'environnement. Les scripts qui attendent une variable reçoivent une valeur factice.

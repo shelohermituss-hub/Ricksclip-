@@ -101,6 +101,8 @@ const save = (f, url) => fs.writeFileSync(f, Buffer.from(url.split(',')[1], 'bas
 if (BEFORE) { const BD = path.join(OUT, 'before'); fs.mkdirSync(BD, { recursive: true }); for (const [id, url] of Object.entries(res.PNG)) if (!/^SIL:/.test(id)) save(path.join(BD, id + '.png'), url); console.log('before views ->', BD); process.exit(0); }
 save(path.join(SHEETS, 'CAST_SHEET.jpg'), res.sheet); save(path.join(SHEETS, 'CAST_FACES.jpg'), res.faces); save(path.join(SHEETS, 'LINEUP.jpg'), res.line); save(path.join(SHEETS, 'LINEUP_phone360.jpg'), res.phone);
 for (const t of tiles) if (t.view === 'front' && t.id === t.who + '_front' && KEYS.cast[t.who]) KEYS.cast[t.who].heads_tall = +(t.px / t.headPx).toFixed(2);
+for (const w of DRV) { const E = KEYS.cast[w], m = P.metrics(E), up = (sheet.DRIVER_HIP || {})[w]; if (!up) continue; const k = E.height / m.px;   // FIX 3: seat line in metres (card pos z = seat_z - hip_up_m)
+  E.hip_up_m = +(up * k).toFixed(3); E.seated_head_m = +((m.px - up) * k).toFixed(3); E.cut_px = up - 14; console.log(`${w}: hip_up_m ${E.hip_up_m}  head top above the seat ${E.seated_head_m} m`); }
 fs.writeFileSync(path.join(CAST, 'CAST_KEYS.json'), JSON.stringify(KEYS, null, 1));
 for (const [id, url] of Object.entries(res.PNG)) if (!/^SIL:/.test(id)) save(path.join(VIEWS, id + '.png'), url);
 fs.writeFileSync(path.join(OUT, 'numbers.json'), JSON.stringify(res.NUM, null, 1));

@@ -44,7 +44,8 @@ M = {}
 M['dome'] = texmat('dome_plates', 'metal_plate', '#4a3a86', scale=1., rough_mul=.9, metal=.35, nstr=.8)     # plum-indigo painted riveted plates (LOOK LR: deep violet dome)
 M['bulk'] = texmat('bulkhead_plates', 'metal_plate_02', '#3e3274', scale=1., metal=.4, nstr=.8)
 M['iris'] = texmat('iris_pleats', 'painted_metal_shutter', '#3a3aa8', scale=1., rough_mul=.55, metal=.3, nstr=.7)   # the back of the iris: indigo shutter cloth-metal, never flesh
-M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#5a5470', scale=1., metal=.6, nstr=1.)
+# FIX 2: the deck darker (it is the plain band behind the captions in the room views)
+M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#34303f', scale=1., metal=.6, nstr=1.)
 M['chrome'] = pmat('chrome', '#e8e8ee', rough=.07, metal=1.)
 M['chrome_refl'] = pmat('chrome_reflector', '#dcdce6', rough=.2, metal=1.)   # the headlamp's reflector bowl: a mirror read black in the entry tile, brushed reads as a silver funnel
 M['brass'] = pmat('brass', '#c9a24a', rough=.28, metal=1.)
@@ -138,7 +139,8 @@ for t, nm in zip(ti, ('window_red.png', 'window_grey.png')): t.image = bpy.data.
 mx = N.new('ShaderNodeMix'); mx.name = 'grey_mix'; mx.data_type = 'RGBA'; ins = [i for i in mx.inputs if i.type == 'RGBA']
 Lk.new(ti[0].outputs[0], ins[0]); Lk.new(ti[1].outputs[0], ins[1]); Lk.new([o for o in mx.outputs if o.type == 'RGBA'][0], em.inputs['Color']); Lk.new(em.outputs[0], oo.inputs['Surface'])
 wm.use_fake_user = True
-WIN_SIZE = 9.0; WIN_Z = 0.25
+# FIX 2: 9 -> 15 m (the exit flight through the open pupil saw the picture's top edge); bl_window renders a wider view to match (lens 28 x 9/15)
+WIN_SIZE = 15.0; WIN_Z = 0.25
 win = prim('plane', wm, 'WINDOW_VIEW', glb=False, size=WIN_SIZE, location=(0, WIN_Y, WIN_Z), rotation=(math.pi / 2, 0, 0))
 win.visible_shadow = False
 # ---------------------------------------------------------------- 4 the lamps: concentric rows round the eye axis, three kinds, three states, red in 4 wave groups
@@ -224,7 +226,8 @@ prim('torus', M['brass_dark'], 'LADDER_RAIL', major_radius=rr, minor_radius=.03,
 for k in range(36):
     p = 2 * math.pi * k / 36; o = prim('cube', M['steel'], 'rail_bracket_%d' % k, size=1, location=((rr + .1) * math.cos(p), (rr + .1) * math.sin(p), RZ)); o.scale = (.22, .03, .05); o.rotation_euler.z = p
 # ---------------------------------------------------------------- 6 the brass relay box (row 37 near thing): three switch rows, the red row drops with the wave
-BX, BY, BW, BD, BH, LEG = -0.62, -0.45, 1.1, .5, .72, .26; z0 = DECK_Z + LEG
+# FIX 2: legs .26 -> .02 (the box sits on a low skid): the lid line drops from 71.8 % to about 80 % of the CAM_ROOM frame, below the caption line (71.5 %)
+BX, BY, BW, BD, BH, LEG = -0.62, -0.45, 1.1, .5, .72, .02; z0 = DECK_Z + LEG
 box = prim('cube', M['brass'], 'RELAY_BOX', size=1, location=(BX, BY, z0 + BH / 2)); box.scale = (BW, BD, BH)
 bv = box.modifiers.new('bv', 'BEVEL'); bv.width = .02; bv.segments = 3; bpy.context.view_layer.objects.active = box; bpy.ops.object.modifier_apply(modifier='bv')
 lid = prim('cube', M['brass_dark'], 'RELAY_LID', size=1, location=(BX, BY, z0 + BH + .02)); lid.scale = (BW + .06, BD + .06, .04)
@@ -265,13 +268,19 @@ for o in pb:                                                  # repaint the cabi
     for sl in getattr(o, 'material_slots', []):
         m = sl.material
         if not m or m.get('tinted'): continue
-        nt = m.node_tree; b = nt.nodes.get('Principled BSDF'); lk = b.inputs['Base Color'].links if b else []
+        # FIX 2: find the BSDF by type (the glTF import names it differently, so the tint never took) and tint a plain colour too
+        nt = m.node_tree; b = next((n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'), None); lk = b.inputs['Base Color'].links if b else []
+        if b and not lk:
+            c0 = b.inputs['Base Color'].default_value; t_ = lin('#7a6aa0'); b.inputs['Base Color'].default_value = (c0[0] * t_[0], c0[1] * t_[1], c0[2] * t_[2], 1.)
+            print('CABINET_TINT plain', m.name)
         if lk:
+            print('CABINET_TINT linked', m.name)
             mx2 = nt.nodes.new('ShaderNodeMix'); mx2.data_type = 'RGBA'; mx2.blend_type = 'MULTIPLY'; mx2.inputs['Factor'].default_value = 1.
             i2 = [i for i in mx2.inputs if i.type == 'RGBA']; nt.links.new(lk[0].from_socket, i2[0]); i2[1].default_value = lin('#7a6aa0')
             nt.links.new([q for q in mx2.outputs if q.type == 'RGBA'][0], b.inputs['Base Color'])
         m['tinted'] = True
-pr_.scale = (2.2,) * 3; pr_.location = (1.55, 0.9, DECK_Z); pr_.rotation_euler.z = math.radians(-30)
+# FIX 2: the cabinet smaller and nearer so its top line also falls below the caption band
+pr_.scale = (1.8,) * 3; pr_.location = (1.4, 0.15, DECK_Z); pr_.rotation_euler.z = math.radians(-30)
 # ---------------------------------------------------------------- 7 cables: bundles up the meridians to junction boxes, a loom from the relay box
 def cable(name, pts, r, mat):
     cu = bpy.data.curves.new(name, 'CURVE'); cu.dimensions = '3D'; cu.bevel_depth = r; cu.bevel_resolution = 2; sp = cu.splines.new('BEZIER'); sp.bezier_points.add(len(pts) - 1)
