@@ -146,7 +146,7 @@ if (has('--frames')) {
   const failed = []; for (const f of list) { const p = path.join(d, `f_${String(f).padStart(5, '0')}.png`); try { await shot(f, p); } catch (e) { failed.push(f); console.log(`still FAILED f${f} after the retry: ${String(e.message).split('\n')[0].slice(0, 160)}`); continue; } if (list.length <= 12) console.log('still', p); }
   if (failed.length) { console.log(`stills FAILED: ${failed.join(',')}`); process.exitCode = 3; }   // the other frames are kept; exit code 3 says some are missing
   if (has('--eval')) { const code = fs.readFileSync(path.resolve(val('--eval', '')), 'utf8'); console.log('eval', JSON.stringify(await page.evaluate(code))); }   // GPU: debug hook, runs a script in the page after the last still
-  console.log(`stills: ${list.length} frames in ${((Date.now() - t0) / 1000).toFixed(1)} s = ${((Date.now() - t0) / list.length).toFixed(0)} ms/frame (draw ${(TM.draw / TM.n).toFixed(0)} + grab ${(TM.grab / TM.n).toFixed(0)}) -> ${d}`);
+  console.log(`stills: ${list.length} frames in ${((Date.now() - t0) / 1000).toFixed(1)} s = ${((Date.now() - t0) / list.length).toFixed(0)} ms/frame (draw ${(TM.draw / Math.max(1, TM.n)).toFixed(0)} + grab ${(TM.grab / Math.max(1, TM.n)).toFixed(0)}) -> ${d}`);
 }
 
 if (has('--held')) {   // kit 2026-11-13 (props-hero): every generic held 3D prop (film.json held3d with "grip") on the given frames: grip, tip, anchors and fists in plan metres, each fist's place on screen (px, fractions of the frame) and the gap between arm end and fist (m). --held 0,45 [--held-out <file>]; default out/plan/held3d.json
