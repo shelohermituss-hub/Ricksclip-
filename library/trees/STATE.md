@@ -7,3 +7,5 @@ Tris: near spread 67k, round 118k, tall 55k; mid 14-21k; far 2.7k; scene 624k. B
 Weak: crown lit tops less yellow than Rick's; some edge-on cards pale blue-grey; solid crown shadow (no holes);
   no terrain snap for tufts; no mask-image input; lawn colour tuned under day light only.
 Open: card translucency/fresnel test; optional dapple holes; GLB export test into the three.js kit.
+Round 2 (lead notes): smooth puffy denser clumps, cards half size x~3 count over whole outer surface, cells .075 m, card translucency = leaf colour x.5, spec 0.
+  Tris near 66-84k, mid 35-45k, far 2.7k; 9-10.5 s per panel. Weak: clumps a bit topiary-regular; few light-grey cards from below.

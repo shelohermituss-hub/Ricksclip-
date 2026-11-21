@@ -74,9 +74,9 @@ me.materials.append(road_m)
 sc.collection.objects.link(bpy.data.objects.new("road", me))
 
 SHAPES = {  # name: (height, crown_width, n_clumps, seed, crown_height ratio)
-    "spread": (8.0, 10.0, 28, 3, .58),
-    "round": (7.0, 6.5, 18, 11, .7),
-    "tall": (11.0, 5.0, 22, 21, .72),
+    "spread": (8.0, 7.8, 28, 3, .64),
+    "round": (7.0, 6.2, 18, 11, .72),
+    "tall": (10.0, 7.4, 22, 21, .74),
 }
 stats = {}
 
