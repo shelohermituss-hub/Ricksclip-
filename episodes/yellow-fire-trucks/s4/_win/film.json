@@ -233,7 +233,20 @@
     1.2,
     0.06
    ],
+   "visible": false,
    "note": "row 24: brisk and bored, gun at the hip"
+  },
+  {
+   "who": "painterThin",
+   "at": 75,
+   "visible": true,
+   "note": "shown once the camera starts down to ST. LOUIS (a 2 %-of-frame dot before: keeps the framing gates on the real shots)"
+  },
+  {
+   "who": "painterThin",
+   "at": 135,
+   "visible": false,
+   "note": "off screen behind the camera on the way to PINE HOLLOW"
   },
   {
    "who": "painterThin",
@@ -258,11 +271,28 @@
     1.2,
     0.06
    ],
+   "visible": false,
    "note": "row 24: careful, leans in, tongue out"
+  },
+  {
+   "who": "painterFat",
+   "at": 75,
+   "visible": true
+  },
+  {
+   "who": "painterFat",
+   "at": 135,
+   "visible": false
+  },
+  {
+   "who": "sceptic",
+   "at": 126,
+   "visible": true
   },
   {
    "who": "sceptic",
    "at": 0,
+   "visible": false,
    "pos": [
     2.3,
     -0.5,
@@ -281,7 +311,13 @@
   },
   {
    "who": "rookie",
+   "at": 126,
+   "visible": true
+  },
+  {
+   "who": "rookie",
    "at": 0,
+   "visible": false,
    "pos": [
     2.425,
     -0.53,
@@ -306,7 +342,13 @@
   },
   {
    "who": "oldTimer",
+   "at": 126,
+   "visible": true
+  },
+  {
+   "who": "oldTimer",
    "at": 0,
+   "visible": false,
    "pos": [
     2.555,
     -0.5,
@@ -332,6 +374,60 @@
    "tip": "tip",
    "when": "always",
    "scale": 0.15
+  }
+ ],
+ "fx": [
+  {
+   "at": 92,
+   "kind": "glint",
+   "pos": [
+    2.865,
+    1.15,
+    0.12
+   ],
+   "note": "row 24: the wet lime band shines on the ST. LOUIS nose"
+  },
+  {
+   "at": 108,
+   "kind": "glint",
+   "pos": [
+    3.2,
+    2.6,
+    0.12
+   ],
+   "note": "row 25 \"LIME\": the glint wave runs west to east through the noses (s4_map.js)"
+  },
+  {
+   "at": 146,
+   "kind": "glint",
+   "pos": [
+    2.29,
+    -0.36,
+    0.12
+   ],
+   "note": "row 26 \"Plenty\": the home door is up on the lime truck"
+  }
+ ],
+ "moods": [
+  {
+   "at": 63,
+   "look": "doors_wave",
+   "note": "row 23 \"cities\": the door wave, hard little door shadows"
+  },
+  {
+   "at": 92,
+   "look": "lime_band",
+   "note": "row 24: the first lime nose"
+  },
+  {
+   "at": 104,
+   "look": "lime_country",
+   "note": "row 25 \"lime\": the country turns lime, west to east"
+  },
+  {
+   "at": 144,
+   "look": "home_door",
+   "note": "row 26: the lime truck lights the firemen's fronts"
   }
  ],
  "takes": [
@@ -381,7 +477,7 @@
      ]
     },
     {
-     "at": 62,
+     "at": 64,
      "pos": [
       3.55,
       -1.35,
@@ -396,45 +492,45 @@
      "subject": "map",
      "framing": "W",
      "purpose": "ROWS 22-23 (M fly-land-rest, 11f pull-out): the rise keeps going, the town becomes one dot among many; on \"CITIES\" the door wave rolls west to east across the Midwest stations",
-     "hold": 0.15,
+     "hold": 0.2,
      "creep": 0.0028,
      "shows": [
       "map"
      ]
     },
     {
-     "at": 98,
+     "at": 100,
      "pos": [
-      3.4,
-      0.52,
-      0.3
+      3.25,
+      0.7,
+      0.2
      ],
      "aim": [
-      2.95,
-      1.12,
-      0.12
+      2.97,
+      1.06,
+      0.165
      ],
      "lens": 26,
      "subject": "painterThin",
      "framing": "M",
      "purpose": "ROWS 24-25 (descend to the nearest station): the Painters at the ST. LOUIS bay, the lime band over the red nose; on \"LIME\" the sweep runs through every nose behind them",
-     "hold": 0.9,
+     "hold": 0.6,
      "creep": 0.0028,
      "shows": [
       "painters"
      ]
     },
     {
-     "at": 160,
+     "at": 164,
      "pos": [
-      2.42,
-      -0.9,
-      0.15
+      2.425,
+      -0.86,
+      0.17
      ],
      "aim": [
-      2.42,
-      -0.43,
-      0.125
+      2.425,
+      -0.5,
+      0.175
      ],
      "lens": 28,
      "subject": "rookie",

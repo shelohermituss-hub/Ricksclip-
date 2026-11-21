@@ -17,16 +17,19 @@ M = lambda k: 'm:../../ep_s4/' + k
 
 acts = [
     # row 24: the two Painters at the ST. LOUIS bay mouth (left bay), the thin one sprays the red truck nose
-    dict(who='painterThin', at=770, pos=G(2.985, 1.035), view='34', dir=-1, pose=M('pt_spray'), face='k:sleepy', look=[2.86, 1.2, .06], note='row 24: brisk and bored, gun at the hip'),
+    dict(who='painterThin', at=770, pos=G(2.985, 1.035), view='34', dir=-1, pose=M('pt_spray'), face='k:sleepy', look=[2.86, 1.2, .06], visible=False, note='row 24: brisk and bored, gun at the hip'),
+    dict(who='painterThin', at=845, visible=True, note='shown once the camera starts down to ST. LOUIS (a 2 %-of-frame dot before: keeps the framing gates on the real shots)'),
+    dict(who='painterThin', at=905, visible=False, note='off screen behind the camera on the way to PINE HOLLOW'),
     dict(who='painterThin', at=848, face='k:sleepy', note='row 24 "PAINTING": one long sweep, a lime band wipes over the red nose (s4_map.js 862)'),
-    dict(who='painterFat', at=770, pos=G(3.085, 0.985), view='34', dir=-1, pose=M('pt_watch'), face='k:concentrate', look=[2.86, 1.2, .06], note='row 24: careful, leans in, tongue out'),
+    dict(who='painterFat', at=770, pos=G(3.085, 0.985), view='34', dir=-1, pose=M('pt_watch'), face='k:concentrate', look=[2.86, 1.2, .06], visible=False, note='row 24: careful, leans in, tongue out'),
+    dict(who='painterFat', at=845, visible=True), dict(who='painterFat', at=905, visible=False),
     # rows 26-27: three firemen in front of the home bay door at PINE HOLLOW
-    dict(who='sceptic', at=770, pos=G(2.30, -0.50), view='34', dir=1, pose=M('sc_hate'), note='row 26: arms crossed high, stone'),
+    dict(who='sceptic', at=896, visible=True), dict(who='sceptic', at=770, visible=False, pos=G(2.30, -0.50), view='34', dir=1, pose=M('sc_hate'), note='row 26: arms crossed high, stone'),
     dict(who='sceptic', at=932, face='k:browUp', note='row 26 "FIREMEN": head away, one fist over his eyes'),
-    dict(who='rookie', at=770, pos=G(2.425, -0.53), view='34', dir=-1, pose=M('rk_peek'), note='row 27: heels together, eager'),
+    dict(who='rookie', at=896, visible=True), dict(who='rookie', at=770, visible=False, pos=G(2.425, -0.53), view='34', dir=-1, pose=M('rk_peek'), note='row 27: heels together, eager'),
     dict(who='rookie', at=944, face='k:lipBite', note='row 27 "HATED": both fists clap over his eyes'),
     dict(who='rookie', at=952, face='k:peekOne', note='row 27 "THEM": the top fist sinks, one eye over it at the lime truck, a second too long'),
-    dict(who='oldTimer', at=770, pos=G(2.555, -0.50), view='34', dir=-1, pose=M('ot_late'), note='row 27: a second late, pulls his helmet down at 960'),
+    dict(who='oldTimer', at=896, visible=True), dict(who='oldTimer', at=770, visible=False, pos=G(2.555, -0.50), view='34', dir=-1, pose=M('ot_late'), note='row 27: a second late, pulls his helmet down at 960'),
 ]
 held3d = [dict(who='painterThin', obj='spray_gun', module='sets/assets.js', builder='buildSprayGun', opts={}, grip='handle', face='out', hand='R',
                anchor='grip', tip='tip', when='always', scale=0.15)]
@@ -38,9 +41,9 @@ A = ([2.52, -0.82, 0.62], [2.48, -0.18, 0.06])
 stations = [
     st(0, A[0], A[1], 24, 'pine_hollow', 'W', 'lead-in anchor (frames before 770 are not rendered): holds the opening framing so the rise cannot start before the stretch (s2 LECONS)', hold=0),
     st(770, A[0], A[1], 24, 'pine_hollow', 'W', 'ROW 22 in (S3 -> S4 join): straight down-ish on the printed street plan of PINE HOLLOW with the home station model; the lead cross-fades S3\'s town into this plan on the motion', hold=0.25, shows=['pine_hollow']),
-    st(832, [3.55, -1.35, 1.45], [2.7, 2.5, 0.05], 24, 'map', 'W', 'ROWS 22-23 (M fly-land-rest, 11f pull-out): the rise keeps going, the town becomes one dot among many; on "CITIES" the door wave rolls west to east across the Midwest stations', hold=0.15, shows=['map']),
-    st(868, [3.40, 0.52, 0.30], [2.95, 1.12, 0.12], 26, 'painterThin', 'M', 'ROWS 24-25 (descend to the nearest station): the Painters at the ST. LOUIS bay, the lime band over the red nose; on "LIME" the sweep runs through every nose behind them', hold=0.9, shows=['painters']),
-    st(930, [2.42, -0.90, 0.15], [2.42, -0.43, 0.125], 28, 'rookie', 'M', 'ROWS 26-27 (sink to the home station, M09 push in): the home door rolls up on the lime truck on "Plenty", three firemen hate it, the Rookie peeks over his fist', hold=1.2, creep=0.003, shows=['rookie']),
+    st(834, [3.55, -1.35, 1.45], [2.7, 2.5, 0.05], 24, 'map', 'W', 'ROWS 22-23 (M fly-land-rest, 11f pull-out): the rise keeps going, the town becomes one dot among many; on "CITIES" the door wave rolls west to east across the Midwest stations', hold=0.2, shows=['map']),
+    st(870, [3.25, 0.70, 0.20], [2.97, 1.06, 0.165], 26, 'painterThin', 'M', 'ROWS 24-25 (descend to the nearest station): the Painters at the ST. LOUIS bay, the lime band over the red nose; on "LIME" the sweep runs through every nose behind them', hold=0.6, shows=['painters']),
+    st(934, [2.425, -0.86, 0.17], [2.425, -0.50, 0.175], 28, 'rookie', 'M', 'ROWS 26-27 (sink to the home station, M09 push in): the home door rolls up on the lime truck on "Plenty", three firemen hate it, the Rookie peeks over his fist', hold=1.2, creep=0.003, shows=['rookie']),
 ]
 props = {
     'pine_hollow': dict(pos=[PH[0], PH[1] - .3, PH[2] + .05], kind='the home station model on its printed street plan'),
@@ -60,6 +63,11 @@ film = {
     'card_shade': dict(keys['card_shade'], amount=0, rim_amount=0),
     'post': {'dof': 0.0, 'dust': 0.3, 'bloom': 1, 'vignette': 0},
     'places': {'map': place}, 'props': props, 'acts': acts, 'held3d': held3d,
+    'fx': [dict(at=862, kind='glint', pos=[2.865, 1.15, 0.12], note='row 24: the wet lime band shines on the ST. LOUIS nose'),
+           dict(at=878, kind='glint', pos=[3.2, 2.6, 0.12], note='row 25 "LIME": the glint wave runs west to east through the noses (s4_map.js)'),
+           dict(at=916, kind='glint', pos=[2.29, -0.36, 0.12], note='row 26 "Plenty": the home door is up on the lime truck')],
+    'moods': [dict(at=833, look='doors_wave', note='row 23 "cities": the door wave, hard little door shadows'), dict(at=862, look='lime_band', note='row 24: the first lime nose'),
+              dict(at=874, look='lime_country', note='row 25 "lime": the country turns lime, west to east'), dict(at=914, look='home_door', note='row 26: the lime truck lights the firemen\'s fronts')],
     'takes': [{'id': 's4', 'place': 'map', 'stations': stations}],
 }
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
