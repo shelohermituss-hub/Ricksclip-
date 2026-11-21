@@ -27,7 +27,7 @@ export async function build(THREE, scene, film, ctx) {
     if (/bulb_work/.test(n)) lamps.push(m);
     if (n === 'lamp_fluor') m.emissiveIntensity = dusk ? 4 : 2;
     if (n === 'oil_amber') m.emissiveIntensity = .25;                     // the warmest thing on the table glows a little, like wine in sun
-    if (n === 'air_mote') o.visible = false;                              // the kit draws its own drifting motes (below)
+    if (n === 'air_mote' || /^contact_/.test(o.name)) o.visible = false;   // Blender-only contact discs (kit: its own shadows)                              // the kit draws its own drifting motes (below)
     if (o.name.startsWith('windsock')) sock.push(o);
     if (kind === 'winter' && /^lawn|lawn_mown/.test(n)) m.color.set('#cfe0f5');
     if (m.map) m.map.anisotropy = 4;

@@ -66,3 +66,25 @@ States (PROP_STATES: once cut, a part never comes back; the kit hides nodes, nev
 | certificate in metal frame | 40x30 cm | both hands, DIET 30.4 (corner bitten) | code + PIL lettering | 1 "STRANGEST DIET EVER" (no Guinness logo, G2), 2 metal frame with a bite out, 3 gold seal, 4 glass, 5 hanging wire |
 | airliner seat + tray table | 1 seat row | 8b; tray bitten FOOD 33.38 | Sketchfab CC-BY | 1 cabin blue #1f4fa0 cover, 2 tray table with a neat bite, 3 seat belt buckle chrome, 4 grey-beige meal #b9b3a3 + foil, 5 window shade |
 | deck chair + beard (4 sizes) + yellow rag | 1.0 m | owner (6, running gag) | code | 1 striped canvas (blue/white, no red), 2 wood frame on pivots, 3 beard sizes S-XL, 4 yellow rag folds, 5 contact shadows |
+
+## 3. ROUND 2 PROPS BUILT (2026-11-21, scripts/bl_props2.py -> out/<name>.glb; sheet PROPS_SHEET2.jpg)
+Built in code (library helpers st_prop_helpers + hose_tool.mat, bike after kids_bike_16); no downloads. Held props: origin = grip (fist centre), business end +X.
+| glb | size m (x y z) | grip / origin | tris | details |
+|---|---|---|---|---|
+| out/fork.glb | 0.215 x 0.026 x 0.017 | origin = fist centre on the handle; tines +X, 0.20 m long | 1316 | brushed bistro steel, 4 tines with gaps, bevelled handle |
+| out/knife.glb | 0.257 x 0.02 x 0.014 | origin = fist centre on the handle; blade +X, edge -Y, 0.27 m | 616 | wood handle with 3 brass rivets, steel bolster, serrated blade |
+| out/salt_shaker.glb | 0.074 x 0.074 x 0.12 | origin = fist centre at 40 % height; cap +Z (turn it over to salt) | 908 | 8-facet glass, salt inside, chrome cap with 7 holes; 12 cm |
+| out/hacksaw.glb | 0.509 x 0.045 x 0.178 | origin = fist centre on the pistol grip; blade teeth down, cuts toward +X; 0.50 m | 976 | blue tube frame, 70-tooth blade on pins, wing-nut tension screw, wood grip |
+| out/sugar_tongs.glb | 0.124 x 0.022 x 0.011 | origin = fist centre at the spring bow; claws +X; 11 cm | 2892 | silver-plate arms, spring bow, 3-claw ends, gilt engraving line |
+| out/metal_bites.glb | 0.162 x 0.103 x 0.003 | pick one by name bite_0..5 (sugar tongs, fork tines); each 3-4 cm, 1.5 mm sheet | 808 | white or navy painted face, aluminium cut edges, rivet heads on 3, a navy stripe on 1 |
+| out/plate.glb | 0.272 x 0.272 x 0.024 | ground = table top; 27 cm | 2496 | porcelain white like the Cessna skin, raised rim, silver rim line, foot ring |
+| out/oil_glass.glb | 0.084 x 0.084 x 0.185 | origin = fist centre on the stem; bowl +Z; 18.5 cm | 2688 | clear glass, amber mineral oil #f0a81c, thin stem, round foot, rim highlight |
+| out/water_jug.glb | 0.403 x 0.156 x 0.283 | origin = jug foot centre; grips: right hand on jug_handle (x -0.12, z 0.17), left under the spout; tumbler at +0.22 m | 4320 | jug 28 cm with handle + spout + bubbles; tumbler 10 cm, water lines |
+| out/kitchen_scale.glb | 0.25 x 0.25 x 0.245 | ground = table top; dial faces -Y; needle node scale_needle (pivot = scale_needle_hub, 0..4 lb over 300 deg) | 10628 | cream enamel 1970s body, chrome bezel + pan, lb ticks 0-4, printed mark "2 lb / 900 g", black needle on 2 lb |
+| out/dessert_trolley.glb | 1.268 x 0.952 x 1.721 | ground = trolley castors; push bar at -X (Michel pushes/rings from there); tiers bottom->top: bike, cart, TV, coffin topper (node coffin_*) | 32144 | two-shelf chrome/maple trolley with gallery rails + castors; 3-tier cream cake with blue piping + swirls; teal bike, wire cart, wood 1970s TV, polished coffin |
+| out/cloche_bell.glb | 0.515 x 0.33 x 0.205 | cloche origin = plate centre (lift by cloche_knob); bell at +0.30 m, grip = bell_handle_knob | 3496 | cloche 33 cm polished silver with rolled rim + knob; table bell with wood knob |
+| out/record_book.glb | 0.247 x 0.312 x 0.052 | both hands on the long edges; cover up +Z; 24 x 31 cm | 8540 | navy cloth cover, gilt BOOK OF / RECORDS + rule + medal, ivory page block, round spine |
+| out/certificate.glb | 0.952 x 0.09 x 0.353 | both hands on the sides; faces -Y; two versions: cert_* (whole) at x 0, cert_bitten_* (corner bitten, DIET 30.4) at x +0.5 | 60738 | brushed steel frame, ivory paper, navy STRANGEST DIET EVER / MONSIEUR MANGETOUT, gold seal + navy ribbons, hanging wire; no Guinness logo |
+| out/owner_rag_spanner.glb | 0.646 x 0.36 x 0.156 | rag origin = pinch point (owner's hand, polishing); spanner at +0.35 m, grip = shaft centre | 3100 | 36 cm yellow cotton rag with folds + weave; chrome combination spanner (ring + open jaw) |
+| out/airline_tray.glb | 0.34 x 0.308 x 0.116 | ground = tray table; foil lid node meal_foil_lid (lift on 31.44); 34 x 25 cm | 2552 | grey-beige compartment tray, grey meal + peas, crinkled foil lid, bread roll, plastic cutlery pack |
+Not built this round: bolt cutter (not in CREATIVE), X-ray film + light box and the mini Cessna of bites (X-ray set), deck chair + beard sizes, airliner seat (cabin set builder), red napkin (character/costume; the one red).

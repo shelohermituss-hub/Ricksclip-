@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Fonction de lumière copiée qui sortait trop tôt (plane-eater, accessoires) — FERMÉ
+- Problème : l'image sortait dans la mauvaise transformation de couleur et en 1920x1080, alors que la passe de contour était en 900x1600 : les contours tombaient à côté des objets.
+- Cause : une fonction de réglage de la lumière copiée d'un autre script faisait un return avant les réglages de rendu (taille, vue Standard).
+- Correction : réglages de rendu dans leur propre fonction, appelée toujours.
+- Garde-fou : vérifier que la taille du rendu et la vue sont identiques entre l'image et la passe de contour avant le composite.
+- Preuve : props/PROPS_SHEET2.jpg, contours sur les objets.
+
 ## 2026-11-21 — Cessna F-MIAM (plane-eater) : quatre pièges Blender sur un modèle téléchargé — FERMÉ
 - o.bound_box est périmé juste après une modification bmesh : lire les coordonnées des sommets.
 - Shrinkwrap OUTSIDE_SURFACE enfonçait les lettres dans ce modèle (normales vers l'intérieur) : projection rayon par sommet à la place.

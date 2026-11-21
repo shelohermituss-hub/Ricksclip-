@@ -363,7 +363,7 @@ box('stepl_top', .4, .22, .04, -4.6, 1.97, 1.2, M['bench'])
 anchor('owner_polish_spot', -.9, -4.4, .03)
 
 # ================================================================== 5. THE TABLE UNDER THE WING (rows 10-17) + Michel's chair
-TX_, TY_ = 3.6, -.55   # under the left wing (wing x .45-5.09, y -1.86..-.29, underside z 1.64); its shade falls on the cloth at noon
+TX_, TY_ = 3.4, -.32   # FIX 2: under the left wing; ray-cast to the sun (apron_api SUN_AZ day): the whole cloth top is in the wing's shade
 TW, TD, TH = 1.25, .8, .76
 for dx in (-1, 1):
     for dy in (-1, 1): lathe('table_leg_%d_%d' % (dx, dy), [(0, 0), (.025, 0), (.03, .1), (.024, .5), (.03, TH - .05), (.0, TH - .05)], TX_ + dx * (TW / 2 - .08), TY_ + dy * (TD / 2 - .08), .03, M['wood'], 12)
@@ -477,22 +477,22 @@ CUR[0] = NEAR
 
 # ================================================================== 9. TREES (rick_tree): the near one SE of the table (dapple), mid ones round the hangar, far hedgerow blobs
 def tree(name, x, y, h, w, n, seed, lod, c, rz=0.):
-    r = T.make_tree(name, height=h, crown_width=w, n_clumps=n, seed=seed, lod=lod, clump_var=(.6, 1.5))
+    r = T.make_tree(name, height=h, crown_width=w, n_clumps=n, seed=seed, lod=lod, clump_var=(.5, 1.7) if c is FAR else (.6, 1.5), crown_height=h * .8 if c is FAR else None)
     r.location = (x, y, 0); r.rotation_euler = (0, 0, math.radians(rz))
     for o in [r] + list(r.children_recursive):
         for cc in list(o.users_collection): cc.objects.unlink(o)
         c.objects.link(o)
     return r
-TREES = [tree('tree_table', 8.2, -5.2, 8.5, 7.5, 26, 3, 'near', NEAR, 40), tree('tree_hangar_e', 15.5, 17.0, 10.5, 8.5, 24, 5, 'mid', MID),
+TREES = [tree('tree_table', 7.0, -4.9, 8.5, 7.5, 26, 3, 'near', NEAR, 40), tree('tree_hangar_e', 15.5, 17.0, 10.5, 8.5, 24, 5, 'mid', MID),
          tree('tree_office', -17.5, 20.0, 9.0, 7.0, 20, 9, 'mid', MID), tree('tree_fence_e', 38.0, -30.0, 9.5, 8.0, 18, 12, 'mid', MID)]
-anchor('tree_table', 8.2, -5.2, 0)
+anchor('tree_table', 7.0, -4.9, 0)
 for k in range(26):   # far hedgerow blob trees along the field edges (south, east, north)
     if k < 12: x, y = -110 + k * 20 + rnd.uniform(-5, 5), -95 + rnd.uniform(-6, 6)
     elif k < 19: x, y = 75 + rnd.uniform(-5, 5), -70 + (k - 12) * 22
     else: x, y = -90 + (k - 19) * 28 + rnd.uniform(-6, 6), 75 + rnd.uniform(-6, 6)
-    tree('tree_far_%d' % k, x, y, rnd.uniform(8, 13), rnd.uniform(6, 10), 6, 100 + k, 'far', FAR)
+    h_ = rnd.uniform(8, 13); tree('tree_far_%d' % k, x, y, h_, h_ * rnd.uniform(.8, 1.1), 8, 100 + k, 'mid', FAR)   # FIX 2: lod mid, irregular clumps (no lollipops)
 for k in range(9):   # a row of tall poplars along the far lane, north-east (a French airfield landmark seen from the table views)
-    tree('poplar_%d' % k, 50 + k * 9, 48 + k * 1.5, 16, 4.2, 7, 200 + k, 'far', FAR)
+    tree('poplar_%d' % k, 50 + k * 9, 48 + k * 1.5, 16, 4.6, 6, 200 + k, 'mid', FAR)
 
 # ================================================================== 10. FAR: field patchwork beyond the fence, low hills in two hazes (slight blue haze only on the far)
 CUR[0] = FAR
@@ -504,10 +504,40 @@ for k in range(14):
     bm = bmesh.new(); bmesh.ops.create_uvsphere(bm, u_segments=24, v_segments=10, radius=1.)
     for v in bm.verts:
         if v.co.z < 0: v.co.z = 0
-        v.co = Vector((v.co.x * s, v.co.y * s * .6, v.co.z * rnd.uniform(28, 55)))
+        v.co = Vector((v.co.x * s * 1.5, v.co.y * s * .9, v.co.z * rnd.uniform(14, 30)))   # FIX 2: softer, lower, wider
     for v in bm.verts: v.co += Vector((math.cos(a) * d, math.sin(a) * d, -2))
     bm.normal_update(); from_bm(bm, 'hill_%d' % k, M['hill2'] if d > 640 else M['hill'], smooth=True, c=FAR)
 CUR[0] = NEAR
+
+# FIX 2: a far tree line in front of the hills' feet (south, east, west, north arcs at 160-230 m), lod far blobs packed so they read as one hedgerow mass
+for k in range(40):
+    a = math.radians(k * 9 + rnd.uniform(-3, 3)); d = rnd.uniform(160, 230); h_ = rnd.uniform(9, 14)
+    tree('treeline_%d' % k, math.cos(a) * d, math.sin(a) * d, h_, h_ * 1.1, 7, 300 + k, 'far', FAR)
+# FIX 2: the joint bed under the slabs (the lawn showed green in the joints) + contact shadows (soft dark discs, no shadow cast) under legs, wheels, drums
+box('joint_bed', 24.2, 13.2, .02, 0, 2.5, -.01, mat('joint_dark', '#6f6e6a', .9)); box('joint_bed_in', 20, 16, .02, 0, 17, -.01, mat('joint_dark', '#6f6e6a'))
+def contact(name, x, y, rx, ry, dark=.85, z=.032):
+    m = bpy.data.materials.get('contact_dark')
+    if m is None:
+        m = bpy.data.materials.new('contact_dark'); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links
+        for n in list(N): N.remove(n)
+        gc = N.new('ShaderNodeTexGradient'); gc.gradient_type = 'SPHERICAL'; tc_ = N.new('ShaderNodeTexCoord'); L.new(tc_.outputs['Generated'], gc.inputs['Vector'])
+        mp = N.new('ShaderNodeMapping'); mp.inputs['Location'].default_value = (-1, -1, 0); mp.inputs['Scale'].default_value = (2, 2, 1); L.new(tc_.outputs['UV'], mp.inputs['Vector']); L.new(mp.outputs[0], gc.inputs['Vector'])
+        pw = N.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 1.8; L.new(gc.outputs['Fac'], pw.inputs[0])
+        mul = N.new('ShaderNodeMath'); mul.operation = 'MULTIPLY'; mul.inputs[1].default_value = dark; L.new(pw.outputs[0], mul.inputs[0])
+        dk = N.new('ShaderNodeBsdfDiffuse'); dk.inputs['Color'].default_value = (0.015, 0.016, 0.03, 1); trn = N.new('ShaderNodeBsdfTransparent')
+        mx2 = N.new('ShaderNodeMixShader'); L.new(mul.outputs[0], mx2.inputs['Fac']); L.new(trn.outputs[0], mx2.inputs[1]); L.new(dk.outputs[0], mx2.inputs[2])
+        o2 = N.new('ShaderNodeOutputMaterial'); L.new(mx2.outputs[0], o2.inputs['Surface'])
+    o = quad('contact_' + name, 2 * rx, 2 * ry, x, y, z, 0, m, flat=True); o.visible_shadow = False; return o
+for dx in (-1, 1):
+    for dy in (-1, 1): contact('table_leg_%d_%d' % (dx, dy), TX_ + dx * (TW / 2 - .08), TY_ + dy * (TD / 2 - .08), .12, .12)
+contact('table', TX_, TY_, .75, .5, .45, .031)
+for k in range(4):
+    a = math.pi / 4 + k * math.pi / 2; contact('chair_leg_%d' % k, CX + math.cos(a) * .23, CY + math.sin(a) * .23, .07, .07)
+contact('chair', CX, CY, .3, .3, .4, .031)
+for nm, x, y, r in (('wheel_L', 1.165, -1.155, .3), ('wheel_R', -1.165, -1.155, .3), ('wheel_nose', 0, -2.76, .26), ('drum_0', 11.0, 8.2, .42), ('drum_1', 11.65, 8.45, .42),
+                    ('drum_2', 11.3, 7.55, .42), ('tyres', 12.4, 6.2, .45), ('toolchest', tx, ty, .5), ('pump', px, py, .55), ('crate', cx_, cy_, .38), ('deckchair', DX, DY, .5)):
+    contact(nm, x, y, r, r)
+anchor('table_seat', TX_, TY_ - .75, .03)
 
 # ================================================================== 11. GRASS TUFTS only where chosen: apron edge, fence posts, hangar + office feet, trunk, windsock, markers, runway edges
 def into(o, c):

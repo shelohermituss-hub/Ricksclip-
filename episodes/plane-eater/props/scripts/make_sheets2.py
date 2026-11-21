@@ -12,7 +12,7 @@ TG = json.load(open(GR.DEF))['DAY']
 LAB2 = {'A_hero34': 'HERO 3/4', 'B_side': 'SIDE (left, F-MIAM)', 'C_front': 'FRONT', 'D_top_rear': 'TOP REAR 3/4', 'E_wingoff': 'EATEN: LEFT WING',
        'F_sliced': 'SLICED LIKE A LOAF', 'G_sliced_half': 'EATEN: TAIL + CABIN', 'H_nose_only': 'EATEN: NOSE LEFT', 'I_stub_macro': 'MACRO: BITTEN STUB', 'J_reg_macro': 'MACRO: F-MIAM'}
 nums = {}
-LAB = {'P1_table': 'TABLE: PLATE, BITES, FORK, KNIFE, OIL, JUG, SCALE', 'P2_dessert': 'DESSERT TROLLEY', 'P3_records_tray': 'BOOK, CERTIFICATE, CLOCHE, TRAY', 'P4_tools': 'HACKSAW, RAG, SPANNER', 'P5_scale_macro': 'SCALE: 2 lb / 900 g'}
+LAB = {'P1_table': 'TABLE PROPS', 'P2_dessert': 'DESSERT TROLLEY', 'P3_records_tray': 'BOOK, CERTIFICATE, CLOCHE, TRAY', 'P4_tools': 'HACKSAW, RAG, SPANNER', 'P5_scale_macro': 'SCALE: 2 lb / 900 g'}
 for t in LAB:
     a = GR.load(os.path.join(T, t + '.png')); g = a   # NO grade (lead 2026-11-21: the grade turned whites lilac); the rick_light.json day light as rendered
     im, al = CO.key_composite(g * 255, os.path.join(T, t + '_lines_id.png'))
