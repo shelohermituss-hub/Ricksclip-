@@ -50,7 +50,8 @@ function gaitTables(U) {
   const fx = [0, 1].map(i => fq[i].map(q => q * span + home[i])), bx = bq.map(q => q * span), bw = bq.map(q => q * Dpx);
   // card path (plan metres), per frame: across with the body; depth with the body in a walk, only on flight frames in a run / burst
   const air = g => [0, 1].every(i => fl[i][g] >= 3 || (g > 0 && fl[i][g - 1] >= 3));
-  const inc = []; let tot = 0; for (let g = 1; g <= G; g++) { const d = Math.max(0, bq[g] - bq[g - 1]) * (!run || air(g) ? 1 : U.ground ?? 0) + (run && air(g) ? 1e-4 : 0);   // U.ground: share of the depth a run may take on a planted frame (a 60 cm pop per flight frame reads worse) inc[g] = d; tot += d; }
+  // U.ground: the share of the depth a run may take on a planted frame (all of it on flight frames read as 60 cm pops)
+  const inc = []; let tot = 0; for (let g = 1; g <= G; g++) { const d = Math.max(0, bq[g] - bq[g - 1]) * (!run || air(g) ? 1 : U.ground ?? 0) + (run && air(g) ? 1e-4 : 0); inc[g] = d; tot += d; }
   const card = []; let acc = 0; for (let g = 0; g <= G; g++) { if (g) acc += tot ? inc[g] / tot : 0; const a = bq[g] * AX.across * AX.dir;
     card[g] = [0, 1, 2].map(k => +(U.P0[k] + (k < 2 ? AX.r[k] * a : 0) + AX.depth[k] * acc).toFixed(4)); }
   return { Dpx, run, steps, fx, fl, bx, bw, card, AX };
