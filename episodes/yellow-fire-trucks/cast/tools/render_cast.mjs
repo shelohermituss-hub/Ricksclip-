@@ -27,7 +27,7 @@ const six = w => V6.map(v => `${w}_${v}`);
 const FX = [['hero', 'k:aim', 'front'], ['hero', 'k:glanceCam', '34'], ['hero', 'k:proud', '34'], ['heroShop', 'k:think', '34'], ['chief', 'k:chiefShout', 'front'], ['chief', 'k:chiefShout', '34'], ['chief', 'k:proudShut', '34'],
   ['rookie', 'k:peekOne', 'front'], ['rookie', 'k:lipBite', '34'], ['rookie', 'k:browUp', '34'], ['milkman', 'k:frozenWide', 'front'], ['sceptic', 'k:browUp', '34'], ['oldTimer', 'k:sleepy', '34'], ['kid', 'k:confused', '34'], ['clerk', 'k:concentrate', '34']];
 const fxIds = FX.map(([w, fc, v]) => T(w, { view: v, face: fc, tag: fc.slice(2) }));
-const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'push', face: 'k:concentrate', tag: 'push' })));   // FIX 3: seated drivers, fists forward on the rim
+const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'drive', face: 'k:concentrate', tag: 'drive' })));   // FIX 3: seated drivers, fists forward on the rim
 if (!BEFORE) T('heroShopEye', { view: '34', face: 'k:concentrate', tag: 'concentrate' });
 const PT = (process.env.CAST_POSETEST || '').split(',').filter(Boolean), ptIds = PT.flatMap(pz => ['front', '34'].map(v => T('scepticDriver', { view: v, pose: pz, tag: 'pt_' + pz.replace(/\W/g, '_') })));   // scratch: compare plain kit poses on a driver
 const rows = [
@@ -38,7 +38,7 @@ const rows = [
   { h: 330, label: 'THE MILKMAN (thin, short; white cap, pencil moustache; bottle = prop, LEFT fist)  |  THE KID (child form; signature: plaster on the LEFT knee)', ids: [...six('milkman'), ...six('kid')] },
   { h: 330, label: 'THE DALLAS CLERK (standard; signature: tan cowboy hat; pencil behind the ear)  |  PAINTER thin (signature: brush behind the ear)', ids: [...six('clerk'), ...six('painterThin')] },
   { h: 330, label: 'FIX 2 heroShopEye: head mirror DOWN over the right eye (S2 row 11), six views  |  FIX 1 badge in the LEFT views: Chief, Old-Timer, Rookie, Sceptic 3/4 L + side L', ids: [...six('heroShopEye'), 'chief_34L', 'chief_sideL', 'oldTimer_34L', 'rookie_34L', 'sceptic_34L', 'crew1_34L'] },
-  { h: 330, label: 'FIX 3 SEATED DRIVERS (cut at the seat line, fists forward on the rim = pose push): Sceptic, Rookie, Milkman: front, 3/4 R, 3/4 L, side R', ids: drvIds },
+  { h: 330, label: 'FIX 3 SEATED DRIVERS (cut at the seat line, fists on the rim = pose drive): Sceptic, Rookie, Milkman: front, 3/4 R, 3/4 L, side R', ids: drvIds },
   ...(PT.length ? [{ h: 330, label: 'POSE TEST ' + PT.join(' '), ids: ptIds }] : []),
   { h: 330, label: 'PAINTER fat (signature: rag out of the back pocket: side + back)  |  crowd firemen 3/4 and back  |  black fill', ids: [...six('painterFat'), 'crew1_34', 'crew2_back', 'crew3_34', 'SIL:milkman_front', 'SIL:kid_front', 'SIL:clerk_front'] },
 ];

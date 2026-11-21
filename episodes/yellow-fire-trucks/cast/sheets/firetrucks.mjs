@@ -175,7 +175,7 @@ export const CAST = [
 // kit's own svgFor and CUT at the seat line just under the hips (kit_patch customCard: spec.card = { svg(st, CARD), metrics }): no legs and no lower body
 // on the card, so nothing of him can poke under the cab floor or out through a door. Metrics = the standing puppet's, so cast height scales him exactly.
 // Place him with his HIPS ON THE SEAT: card pos z = seat_z - hip_up_m (hip_up_m = DRIVER_HIP below, metres, for the cast height); hands on the wheel rim
-// = pose 'push' (both fists forward at the rim) or the stretch's own cab move (feet are cut off, so the move's legs never show). Note: DRIVER_NOTE.md.
+// = pose 'drive' (both fists on the rim, every view) or the stretch's own cab move (feet are cut off, so the move's legs never show). Note: DRIVER_NOTE.md.
 import { buildChar } from '../castkit.mjs';
 let PUP = null;   // the kit's live puppets module (the same instance film.js initialised): /kit/puppets.mjs in the film, ../puppets.mjs in render_cast
 for (const u of ['../../kit/puppets.mjs', '../puppets.mjs']) { try { const m = await import(new URL(u, import.meta.url).href); if (m && m.svgFor && m.metrics) { PUP = m; break; } } catch (e) { /* not this layout */ } }
@@ -183,9 +183,12 @@ const CUT_PAD = 14;   // rig px below the hip line: the coat hem lying on the la
 const hipUpPx = spec => { const S = buildChar({ ...spec, face: 'standard' }, 400); return (S.ground ?? 900) - (S.bodyBot ?? 640) + 30; };   // = puppets.mjs chOf hipY (bodyBot - 30), measured up from the feet
 const cutSvg = (svg, y, id) => svg.includes('</defs>') ? svg.replace('</defs>', `<clipPath id="${id}"><rect x="-400" y="-400" width="1600" height="${f(y + 400)}"/></clipPath></defs><g clip-path="url(#${id})">`).replace(/<\/svg>\s*$/, '</g></svg>')
   : svg.replace(/(<svg[^>]*>)/, `$1<defs><clipPath id="${id}"><rect x="-400" y="-400" width="1600" height="${f(y + 400)}"/></clipPath></defs><g clip-path="url(#${id})">`).replace(/<\/svg>\s*$/, '</g></svg>');
+// pose 'drive' (this sheet only): both fists ON the wheel rim. side = kit 'push' (fists forward at chest height); front / 3/4 / back = kit 'grip_box' fists
+// (each fist at a torso edge, mid chest, drawn IN FRONT of the body) with its box shrunk to nothing, so the 3D wheel of the cab is what they hold.
+const driveSt = st => st.pose !== 'drive' ? st : (st.view || 'front') === 'side' ? { ...st, pose: 'push' } : { ...st, pose: 'grip_box', grip: { obj: 'box', two: 1, scale: .001 } };
 const driver = (name, base, label) => { const src = CAST.find(c => c.name === base), ref = { puppet: 'cast:firetrucks/' + base }, up = hipUpPx(src);
   const spec = { ...src, name, label, driverOf: base, hipUpPx: up };
-  if (PUP) spec.card = { svg: (st, CARD) => cutSvg(PUP.svgFor(ref, st), CARD.GY - up + CUT_PAD, 'drvcut_' + name), get metrics() { return PUP.metrics(ref); } };
+  if (PUP) spec.card = { svg: (st, CARD) => cutSvg(PUP.svgFor(ref, driveSt(st)), CARD.GY - up + CUT_PAD, 'drvcut_' + name), get metrics() { return PUP.metrics(ref); } };
   return spec; };
 CAST.push(driver('scepticDriver', 'sceptic', 'The Sceptic at the wheel (seated: cut at the seat, S3 red truck cab, S6 pumper)'),
   driver('rookieDriver', 'rookie', 'The Rookie at the wheel (seated: cut at the seat, S6 lemon truck cab)'),
