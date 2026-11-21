@@ -91,3 +91,5 @@ library/trees/tex/
 library/trees/out/
 episodes/plane-eater/props/tiles/
 episodes/*/props/logs/
+episodes/*/sets/*/proof/
+episodes/*/sets/*/logs/

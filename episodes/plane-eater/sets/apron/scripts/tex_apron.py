@@ -11,7 +11,7 @@ def blur_noise(n, s, sig):
     a = NP.random((s, s)).astype(np.float32); im = Image.fromarray((a * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(sig)); return np.asarray(im).astype(np.float32) / 255
 
 # concrete: pale warm grey, soft clouding, fine speckle, two hairline cracks per tile (2 m tile, 1024 px)
-S = 1024; base = np.array(hx('#c9c6bd'), np.float32)
+S = 1024; base = np.array(hx('#aeaba3'), np.float32)   # FIX 1: was #c9c6bd, clipped white in the sun
 cl = blur_noise(0, S, 40); cl = (cl - cl.mean()) / (cl.std() + 1e-6); sp = NP.random((S, S)).astype(np.float32)
 img = base[None, None, :] * (1 + .035 * cl[..., None]) + (sp[..., None] - .5) * 14
 img = np.clip(img, 0, 255).astype(np.uint8); im = Image.fromarray(img); d = ImageDraw.Draw(im)
@@ -43,9 +43,14 @@ Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).save(os.path.join(OUT, 'can
 
 def painted(draw_im, text, font_path, size, box, fill, jitter=2.5, outline=None, ow=0):
     """hand-painted letters: each letter its own tiny lift and turn, a soft brush edge (never a clean typed line)."""
-    W, H = draw_im.size; f = ImageFont.truetype(font_path, size); x0, y0, x1, y1 = box
-    widths = [f.getbbox(ch)[2] - f.getbbox(ch)[0] if ch != ' ' else size * .32 for ch in text]; sp = size * .06
-    tot = sum(widths) + sp * (len(text) - 1); x = x0 + (x1 - x0 - tot) / 2; cy = (y0 + y1) / 2
+    W, H = draw_im.size; x0, y0, x1, y1 = box
+    while True:   # FIX 1: shrink until the line fits its box (the sign overflowed both edges: "DROME DE VILLEB")
+        f = ImageFont.truetype(font_path, size)
+        widths = [f.getbbox(ch)[2] - f.getbbox(ch)[0] if ch != ' ' else size * .32 for ch in text]; sp = size * .06
+        tot = sum(widths) + sp * (len(text) - 1)
+        if tot <= (x1 - x0) * .96 or size < 12: break
+        size = int(size * .95)
+    x = x0 + (x1 - x0 - tot) / 2; cy = (y0 + y1) / 2
     for ch, w in zip(text, widths):
         if ch != ' ':
             L = Image.new('RGBA', (int(size * 1.6), int(size * 1.6)), (0, 0, 0, 0)); dl = ImageDraw.Draw(L)

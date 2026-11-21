@@ -1,7 +1,67 @@
 {
  "_about": "the plan's main camera stations on the apron (PICTURE_PLAN v2); metres, X east, Y north, Z up. The stretch builders lock their own; these are the set proofs.",
- "V1_hook_row1": {"pos": [6.3, -5.9, 0.55], "look": [1.0, 3.0, 1.9], "lens": 22, "rows": "1-5 hook: low in the grass edge, wing tip upper left, hangar + poster behind"},
- "V2_wide_row8": {"pos": [10.5, -15.5, 2.4], "look": [0.0, 2.5, 2.0], "lens": 24, "rows": "3, 8, 25: the whole plane, hangar, windsock, tree"},
- "V3_table_row10": {"pos": [1.0, -4.6, 1.25], "look": [4.4, 0.6, 0.95], "lens": 28, "rows": "10-17: the table under the wing, plaque DON'T TRY THIS AT HOME behind"},
- "V4_reverse_row27": {"pos": [-2.5, 12.5, 2.2], "look": [1.5, -10.0, 1.2], "lens": 24, "rows": "27, 32: from the hangar mouth (trolley, press) to the strip, fence, fields (4th wall)"}
+ "V1_hook_row1": {
+  "pos": [
+   6.3,
+   -5.9,
+   0.55
+  ],
+  "look": [
+   1.0,
+   3.0,
+   1.9
+  ],
+  "lens": 22,
+  "rows": "1-5 hook: low in the grass edge, wing tip upper left, hangar + poster behind",
+  "lens_band": [
+   0.6,
+   1.6
+  ]
+ },
+ "V2_wide_row8": {
+  "pos": [
+   10.5,
+   -15.5,
+   2.4
+  ],
+  "look": [
+   0.0,
+   2.5,
+   2.0
+  ],
+  "lens": 24,
+  "rows": "3, 8, 25: the whole plane, hangar, windsock, tree",
+  "lens_band": [
+   1.2,
+   7.0
+  ]
+ },
+ "V3_table_row10": {
+  "pos": [
+   1.0,
+   -4.6,
+   1.25
+  ],
+  "look": [
+   4.4,
+   0.6,
+   0.95
+  ],
+  "lens": 28,
+  "rows": "10-17: the table under the wing, plaque DON'T TRY THIS AT HOME behind"
+ },
+ "V4_reverse_row27": {
+  "pos": [
+   -2.5,
+   12.5,
+   2.2
+  ],
+  "look": [
+   1.5,
+   -10.0,
+   1.2
+  ],
+  "lens": 24,
+  "rows": "27, 32: from the hangar mouth (trolley, press) to the strip, fence, fields (4th wall)"
+ }
 }

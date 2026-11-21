@@ -35,7 +35,7 @@ def mat(name, col='#ffffff', rough=.6, metal=0., png=None, emit=None, coat=0., a
 M = dict(
     sage=mat('hangar_sage', '#c9dcc0', .55), trim=mat('trim_white', '#f4f4ee', .4), door=mat('door_greyblue', '#8ea4b8', .45, coat=.3),
     roof=mat('roof_metal', '#b4bcc2', .35, .6), steel=mat('steel_grey', '#8e959c', .35, .8), dark=mat('rubber_dark', '#2e3034', .7),
-    glass=mat('glass_win', '#9fc0dc', .05, .2, alpha=.55), conc=mat('concrete', '#ffffff', .85, png='concrete'), conc_in=mat('concrete_in', '#d6d3cb', .6),
+    glass=mat('glass_win', '#9fc0dc', .05, .2, alpha=.55), conc=mat('concrete', '#ffffff', .85, png='concrete'), conc_in=mat('concrete_in', '#b9b6ae', .6),
     cloth=mat('tablecloth', '#ffffff', .8, png='cloth'), wood=mat('wood_honey', '#ffffff', .5, png='wood'), bent=mat('wood_bentwood', '#6b4a2f', .4, coat=.4),
     china=mat('china_white', '#f7f7f4', .15, coat=.6), crystal=mat('glass_crystal', '#ffffff', .02, alpha=.25), oil=mat('oil_amber', '#f0a81c', .05, emit='#f0a81c', coat=.8),
     water=mat('water_clear', '#d8ecf6', .02, alpha=.35), chrome=mat('chrome', '#e8eaee', .08, 1.), canvas=mat('canvas_stripe', '#ffffff', .75, png='canvas'),
@@ -220,8 +220,8 @@ for k, (cx, cy) in enumerate(((-5.62, HY0 - .38), (-5.5, HY0 - .24), (5.5, HY0 -
         cyl('door_roller_%d_%.0f' % (k, dx), .08, .06, cx + dx, cy, DOOR_H + .02, M['steel'], seg=12, rx=90)
 anchor('hangar_door_gap', 0, HY0, 0); anchor('hangar_mouth', 0, HY0 + 1.5, .03)
 # hangar sign (gable header band) AERODROME DE VILLEBRUNE on a white board with a trim frame
-box('sign_backer', 9.8, .08, 1.3, 0, HY0 - .09, 4.95, M['trim'], bev=.02)
-quad('sign_villebrune', 9.6, 1.6 * 1.2 / 1.6 * 1.0, 0, HY0 - .14, 5.6, 0, M['sign'])
+box('sign_backer', 8.0, .08, 1.4, 0, HY0 - .09, 4.9, M['trim'], bev=.02)
+quad('sign_villebrune', 7.8, 1.3, 0, HY0 - .14, 5.6, 0, M['sign'])   # texture aspect 6.02
 anchor('hangar_sign', 0, HY0 - .14, 5.6)
 # four gooseneck work lamps above the sign (row 27: they snap on at dusk); enamel shade, bulb, arm, wall plate; a light each (off by day)
 for k, x in enumerate((-6.6, -2.2, 2.2, 6.6)):
