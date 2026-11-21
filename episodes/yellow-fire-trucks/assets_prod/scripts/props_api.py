@@ -54,3 +54,14 @@ def air_hose(A, B, name='air_hose', loops=True):
         bpy.ops.mesh.primitive_cylinder_add(radius=0.013, depth=0.05, location=p); c = bpy.context.object; c.name = name + '_coupler'
         t = (pts[1] - pts[0]) if k == 0 else (pts[-1] - pts[-2]); c.rotation_euler = t.to_track_quat('Z', 'Y').to_euler(); c.data.materials.append(br)
     return o
+
+
+def set_grey(root, k=1.0):
+    """Round 3: the S6 dusk 'grey' state of the lost things and the red ball (bl_props3.py): k 0 = own colours, 1 = drained to grey-plum."""
+    def walk(o):
+        yield o
+        for c in o.children: yield from walk(c)
+    for o in walk(root):
+        for sl in getattr(o, 'material_slots', []):
+            m = sl.material
+            if m and m.node_tree and 'phfd_grey' in m.node_tree.nodes: m.node_tree.nodes['phfd_grey'].outputs[0].default_value = k

@@ -29,6 +29,7 @@ const FX = [['hero', 'k:aim', 'front'], ['hero', 'k:glanceCam', '34'], ['hero', 
 const fxIds = FX.map(([w, fc, v]) => T(w, { view: v, face: fc, tag: fc.slice(2) }));
 const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'push', face: 'k:concentrate', tag: 'push' })));   // FIX 3: seated drivers, fists forward on the rim
 if (!BEFORE) T('heroShopEye', { view: '34', face: 'k:concentrate', tag: 'concentrate' });
+const PT = (process.env.CAST_POSETEST || '').split(',').filter(Boolean), ptIds = PT.flatMap(pz => ['front', '34'].map(v => T('scepticDriver', { view: v, pose: pz, tag: 'pt_' + pz.replace(/\W/g, '_') })));   // scratch: compare plain kit poses on a driver
 const rows = [
   { h: 330, label: 'HERO (thin, tall; teal #12A5A0 ONLY on him; signature: big round wire glasses): yard, six views  |  eye shop: open white coat + head mirror, six views', ids: [...six('hero'), ...six('heroShop')] },
   { h: 330, label: 'THE CHIEF (fat, short; signature: grey walrus moustache under the ONLY white helmet): six views  |  VISITOR tag (Dallas) front + 3/4  |  helmet over the eyes + bent moustache  |  hero without helmet  |  black fill', ids: [...six('chief'), 'chiefVisitor_front', 'chiefVisitor_34', 'chiefDown_front', 'heroBare_front', 'SIL:hero_front', 'SIL:chief_front'] },
@@ -37,14 +38,15 @@ const rows = [
   { h: 330, label: 'THE MILKMAN (thin, short; white cap, pencil moustache; bottle = prop, LEFT fist)  |  THE KID (child form; signature: plaster on the LEFT knee)', ids: [...six('milkman'), ...six('kid')] },
   { h: 330, label: 'THE DALLAS CLERK (standard; signature: tan cowboy hat; pencil behind the ear)  |  PAINTER thin (signature: brush behind the ear)', ids: [...six('clerk'), ...six('painterThin')] },
   { h: 330, label: 'FIX 2 heroShopEye: head mirror DOWN over the right eye (S2 row 11), six views  |  FIX 1 badge in the LEFT views: Chief, Old-Timer, Rookie, Sceptic 3/4 L + side L', ids: [...six('heroShopEye'), 'chief_34L', 'chief_sideL', 'oldTimer_34L', 'rookie_34L', 'sceptic_34L', 'crew1_34L'] },
-  { h: 330, label: 'FIX 3 SEATED DRIVERS (cut at the seat line, fists forward on the rim = pose push): Sceptic, Rookie, Milkman: front, 3/4 R, 3/4 L, side R', ids: [] },
+  { h: 330, label: 'FIX 3 SEATED DRIVERS (cut at the seat line, fists forward on the rim = pose push): Sceptic, Rookie, Milkman: front, 3/4 R, 3/4 L, side R', ids: drvIds },
+  ...(PT.length ? [{ h: 330, label: 'POSE TEST ' + PT.join(' '), ids: ptIds }] : []),
   { h: 330, label: 'PAINTER fat (signature: rag out of the back pocket: side + back)  |  crowd firemen 3/4 and back  |  black fill', ids: [...six('painterFat'), 'crew1_34', 'crew2_back', 'crew3_34', 'SIL:milkman_front', 'SIL:kid_front', 'SIL:clerk_front'] },
 ];
 const faces = [{ h: 300, ids: ['hero_front', 'hero_34', 'hero_side', 'hero_back', 'heroShop_front', 'heroShop_34'] }, { h: 300, ids: ['hero_front_aim', 'hero_34_glanceCam', 'hero_34_proud', 'heroShop_34_think', 'chief_front_chiefShout', 'chief_34_proudShut'] },
   { h: 300, ids: ['chief_front', 'chief_34', 'chief_side', 'chief_back', 'chiefDown_front', 'chief_34_chiefShout'] }, { h: 300, ids: ['rookie_front_peekOne', 'rookie_34_lipBite', 'rookieDown_front', 'milkman_front_frozenWide', 'sceptic_34_browUp', 'clerk_34_concentrate'] }];
 const LINE = ['chief', 'oldTimer', 'rookie', 'hero', 'sceptic', 'milkman', 'kid', 'clerk', 'painterThin', 'painterFat'];
 const html = `<html><body style="margin:0;background:#fff"><canvas id="sheet"></canvas><canvas id="faces"></canvas><canvas id="line"></canvas><script>
-const CS = ${JSON.stringify(CS)}, TILES = ${JSON.stringify(tiles)}, ROWS = ${JSON.stringify(rows)}, FACES = ${JSON.stringify(faces)}, LINE = ${JSON.stringify(LINE)}, SC = .75, CW = 800 * SC, CH = 1500 * SC, GY = 1440 * SC;
+const CS = ${JSON.stringify(CS)}, TILES = ${JSON.stringify(tiles)}, ROWS = ${JSON.stringify(BEFORE ? [] : rows)}, FACES = ${JSON.stringify(faces)}, LINE = ${JSON.stringify(LINE)}, SC = .75, CW = 800 * SC, CH = 1500 * SC, GY = 1440 * SC;
 function shade(base, W, H, side, smooth) { const d = new Uint8ClampedArray(base), A = CS.amount, st0 = CS.start, cool = CS.cool, sc = H / 1500;
   const ink = i => base[i] + base[i + 1] + base[i + 2] < 150, skin = i => { const ch = Math.max(base[i], base[i + 1], base[i + 2]) - Math.min(base[i], base[i + 1], base[i + 2]), lo = Math.min(base[i], base[i + 1], base[i + 2]); return ch <= 40 && lo >= 150; };
   const XL = new Float32Array(H).fill(-1), XR = new Float32Array(H).fill(-1);
@@ -96,6 +98,7 @@ const b = await chromium.launch(), pg = await b.newPage({ viewport: { width: 160
 await pg.setContent(html); const res = await pg.evaluate(() => window.run()); await b.close(); fs.rmSync(TMP, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true }); fs.mkdirSync(VIEWS, { recursive: true });
 const save = (f, url) => fs.writeFileSync(f, Buffer.from(url.split(',')[1], 'base64'));
+if (BEFORE) { const BD = path.join(OUT, 'before'); fs.mkdirSync(BD, { recursive: true }); for (const [id, url] of Object.entries(res.PNG)) if (!/^SIL:/.test(id)) save(path.join(BD, id + '.png'), url); console.log('before views ->', BD); process.exit(0); }
 save(path.join(SHEETS, 'CAST_SHEET.jpg'), res.sheet); save(path.join(SHEETS, 'CAST_FACES.jpg'), res.faces); save(path.join(SHEETS, 'LINEUP.jpg'), res.line); save(path.join(SHEETS, 'LINEUP_phone360.jpg'), res.phone);
 for (const t of tiles) if (t.view === 'front' && t.id === t.who + '_front' && KEYS.cast[t.who]) KEYS.cast[t.who].heads_tall = +(t.px / t.headPx).toFixed(2);
 fs.writeFileSync(path.join(CAST, 'CAST_KEYS.json'), JSON.stringify(KEYS, null, 1));
@@ -104,6 +107,6 @@ fs.writeFileSync(path.join(OUT, 'numbers.json'), JSON.stringify(res.NUM, null, 1
 let bad = 0; const flagsOf = (id, n) => { const who = id.split('_')[0], fl = [], fa = n.face;
   if (fa && fa.coloured_share > .05) fl.push('COLOUR ON FACE ' + fa.coloured_share); if (fa && fa.grey_share > .12) fl.push('GREY PATCH ' + fa.grey_share);
   if (n.red_px > 0) fl.push('RED ' + n.red_px); if (n.yellow_px > 0) fl.push('YELLOW ' + n.yellow_px); if (n.gold_px > 40) fl.push('GOLD ' + n.gold_px); if (!HERO.has(who) && n.teal_px > 0) fl.push('TEAL OFF-HERO ' + n.teal_px);
-  if (n.ground_px < 1425 || n.ground_px > 1445) fl.push('FEET ' + n.ground_px); return fl; };
+  if (!DRV.includes(who) && (n.ground_px < 1425 || n.ground_px > 1445)) fl.push('FEET ' + n.ground_px); return fl; };
 for (const [id, n] of Object.entries(res.NUM)) { const fl = flagsOf(id, n); bad += fl.length; if (fl.length || id.endsWith('_front')) console.log(`${id.padEnd(28)} feet ${n.ground_px} red ${n.red_px} yel ${n.yellow_px} gold ${n.gold_px} teal ${n.teal_px}` + (n.face ? ` face colour ${n.face.coloured_share} grey ${n.face.grey_share}` : '') + (fl.length ? '   <-- ' + fl.join(', ') : '')); }
 console.log(`${Object.keys(res.NUM).length} tiles, ${bad ? 'FLAGS ' + bad : 'NUMBERS PASS'}`); console.log('ok', path.join(SHEETS, 'CAST_SHEET.jpg'));

@@ -99,7 +99,8 @@
   },
   "heroShopEye": {
    "puppet": "cast:firetrucks/heroShopEye",
-   "height": 1.88
+   "height": 1.88,
+   "heads_tall": 3.1
   },
   "scepticDriver": {
    "puppet": "cast:firetrucks/scepticDriver",

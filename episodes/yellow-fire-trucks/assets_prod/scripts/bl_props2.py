@@ -126,7 +126,7 @@ dg = bpy.context.evaluated_depsgraph_get(); sc = bpy.context.scene
 STRIPE = new_mat('stripe_cornflower', '#6495ED', 0.0, 0.4)
 Z0, Z1 = 0.90, 1.04
 vmn, vmx = PA.bbox(ms)
-for s_ in (-1, 1):   # the stripe: one band per flank, every 4 cm a ray from outside onto the body, 5 mm proud; gaps (wheel arches, door) left open
+for s_ in (-1, 1):   # the stripe: one band per flank, every 4 cm a ray from outside onto the body, 5 mm proud, gaps (wheel arches, door) left open
     bm = bmesh.new(); prev = None; nseg = 0
     xs_ = [vmn.x + 0.05 + 0.04 * k for k in range(int((vmx.x - vmn.x - 0.1) / 0.04) + 1)]
     for x in xs_:

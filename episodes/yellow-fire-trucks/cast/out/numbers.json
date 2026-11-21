@@ -25,7 +25,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 9384,
+  "teal_px": 7916,
   "top_px": 411,
   "ground_px": 1440
  },
@@ -41,7 +41,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 6867,
+  "teal_px": 5148,
   "top_px": 416,
   "ground_px": 1440
  },
@@ -79,7 +79,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 5600,
+  "teal_px": 7093,
   "top_px": 480,
   "ground_px": 1440
  },
@@ -95,7 +95,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 4991,
+  "teal_px": 5461,
   "top_px": 480,
   "ground_px": 1440
  },
@@ -133,7 +133,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 9384,
+  "teal_px": 7916,
   "top_px": 480,
   "ground_px": 1440
  },
@@ -149,7 +149,7 @@
   "red_px": 0,
   "yellow_px": 0,
   "gold_px": 0,
-  "teal_px": 6864,
+  "teal_px": 5147,
   "top_px": 480,
   "ground_px": 1440
  },
@@ -348,7 +348,7 @@
  "oldTimer_34L": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 12,
+  "gold_px": 7,
   "teal_px": 0,
   "top_px": 381,
   "ground_px": 1440
@@ -364,7 +364,7 @@
  "oldTimer_sideL": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 6,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 389,
   "ground_px": 1440
@@ -402,7 +402,7 @@
  "rookie_34L": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 12,
+  "gold_px": 7,
   "teal_px": 0,
   "top_px": 384,
   "ground_px": 1440
@@ -418,7 +418,7 @@
  "rookie_sideL": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 4,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 392,
   "ground_px": 1440
@@ -456,7 +456,7 @@
  "rookieDown_34L": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 12,
+  "gold_px": 7,
   "teal_px": 0,
   "top_px": 371,
   "ground_px": 1440
@@ -472,7 +472,7 @@
  "rookieDown_sideL": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 4,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 379,
   "ground_px": 1440
@@ -510,7 +510,7 @@
  "sceptic_34L": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 8,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 381,
   "ground_px": 1440
@@ -580,7 +580,7 @@
  "crew1_sideL": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 7,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 360,
   "ground_px": 1440
@@ -672,7 +672,7 @@
  "crew3_34L": {
   "red_px": 0,
   "yellow_px": 0,
-  "gold_px": 8,
+  "gold_px": 0,
   "teal_px": 0,
   "top_px": 411,
   "ground_px": 1440
@@ -971,6 +971,60 @@
   "top_px": 360,
   "ground_px": 1440
  },
+ "heroShopEye_front": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 5270,
+  "top_px": 480,
+  "ground_px": 1440,
+  "face": {
+   "n": 6423,
+   "coloured_share": 0,
+   "grey_share": 0.0358,
+   "darkest_skin": 43
+  }
+ },
+ "heroShopEye_34": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 5654,
+  "top_px": 480,
+  "ground_px": 1440
+ },
+ "heroShopEye_34L": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 7093,
+  "top_px": 480,
+  "ground_px": 1440
+ },
+ "heroShopEye_side": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 5004,
+  "top_px": 480,
+  "ground_px": 1440
+ },
+ "heroShopEye_sideL": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 5461,
+  "top_px": 480,
+  "ground_px": 1440
+ },
+ "heroShopEye_back": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 1898,
+  "top_px": 480,
+  "ground_px": 1440
+ },
  "hero_front_aim": {
   "red_px": 31,
   "yellow_px": 0,
@@ -1114,5 +1168,281 @@
   "teal_px": 0,
   "top_px": 373,
   "ground_px": 1440
+ },
+ "scepticDriver_front_push": {
+  "red_px": 192,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107,
+  "face": {
+   "n": 6487,
+   "coloured_share": 0.0096,
+   "grey_share": 0.029,
+   "darkest_skin": 44
+  }
+ },
+ "scepticDriver_34_push": {
+  "red_px": 200,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
+ },
+ "scepticDriver_34L_push": {
+  "red_px": 197,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
+ },
+ "scepticDriver_side_push": {
+  "red_px": 171,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1107
+ },
+ "rookieDriver_front_push": {
+  "red_px": 130,
+  "yellow_px": 0,
+  "gold_px": 6,
+  "teal_px": 0,
+  "top_px": 384,
+  "ground_px": 1072,
+  "face": {
+   "n": 5526,
+   "coloured_share": 0.0259,
+   "grey_share": 0.028,
+   "darkest_skin": 44
+  }
+ },
+ "rookieDriver_34_push": {
+  "red_px": 169,
+  "yellow_px": 0,
+  "gold_px": 12,
+  "teal_px": 0,
+  "top_px": 384,
+  "ground_px": 1072
+ },
+ "rookieDriver_34L_push": {
+  "red_px": 170,
+  "yellow_px": 0,
+  "gold_px": 7,
+  "teal_px": 0,
+  "top_px": 384,
+  "ground_px": 1072
+ },
+ "rookieDriver_side_push": {
+  "red_px": 142,
+  "yellow_px": 0,
+  "gold_px": 4,
+  "teal_px": 0,
+  "top_px": 392,
+  "ground_px": 1072
+ },
+ "milkmanDriver_front_push": {
+  "red_px": 136,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 445,
+  "ground_px": 1072,
+  "face": {
+   "n": 6099,
+   "coloured_share": 0.0092,
+   "grey_share": 0.0375,
+   "darkest_skin": 44
+  }
+ },
+ "milkmanDriver_34_push": {
+  "red_px": 169,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 445,
+  "ground_px": 1072
+ },
+ "milkmanDriver_34L_push": {
+  "red_px": 170,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 445,
+  "ground_px": 1072
+ },
+ "milkmanDriver_side_push": {
+  "red_px": 142,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 445,
+  "ground_px": 1072
+ },
+ "heroShopEye_34_concentrate": {
+  "red_px": 169,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 5654,
+  "top_px": 480,
+  "ground_px": 1440
+ },
+ "scepticDriver_front_pt_clap": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 376,
+  "ground_px": 1107,
+  "face": {
+   "n": 7386,
+   "coloured_share": 0,
+   "grey_share": 0.0181,
+   "darkest_skin": 51
+  }
+ },
+ "scepticDriver_34_pt_clap": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 376,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_hands_hips": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107,
+  "face": {
+   "n": 6773,
+   "coloured_share": 0,
+   "grey_share": 0.0123,
+   "darkest_skin": 44
+  }
+ },
+ "scepticDriver_34_pt_hands_hips": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_sit": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 688,
+  "ground_px": 1107,
+  "face": {
+   "n": 356,
+   "coloured_share": 0,
+   "grey_share": 1,
+   "darkest_skin": 45
+  }
+ },
+ "scepticDriver_34_pt_sit": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 688,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_grip_box": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 303,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107,
+  "face": {
+   "n": 6773,
+   "coloured_share": 0,
+   "grey_share": 0.0123,
+   "darkest_skin": 44
+  }
+ },
+ "scepticDriver_34_pt_grip_box": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 303,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_dust": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1107,
+  "face": {
+   "n": 6161,
+   "coloured_share": 0,
+   "grey_share": 0.018,
+   "darkest_skin": 48
+  }
+ },
+ "scepticDriver_34_pt_dust": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_show_wrist": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 66,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107,
+  "face": {
+   "n": 6773,
+   "coloured_share": 0,
+   "grey_share": 0.0123,
+   "darkest_skin": 44
+  }
+ },
+ "scepticDriver_34_pt_show_wrist": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
+ },
+ "scepticDriver_front_pt_press_watch": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107,
+  "face": {
+   "n": 6773,
+   "coloured_share": 0,
+   "grey_share": 0.0123,
+   "darkest_skin": 44
+  }
+ },
+ "scepticDriver_34_pt_press_watch": {
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 8,
+  "teal_px": 0,
+  "top_px": 381,
+  "ground_px": 1107
  }
 }

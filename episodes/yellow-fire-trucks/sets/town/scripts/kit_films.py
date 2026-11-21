@@ -8,6 +8,7 @@ names = []
 for kind in ('am', 'du'):
     for cam, c in CAMS.items():
         place = dict(set='town', kind=kind, light='morning' if kind == 'am' else 'golden', light_over=META['light'][kind], lite=bool(os.environ.get('LITE')), kit3d=dict(envGround='#8f8a7e' if kind == 'am' else '#5a4a66'))
+        place.update(c.get('light_opts', {}))
         if c.get('card'): place['card'] = dict(c['card'], face=c['pos'][:2])
         st = dict(at=0, subject='town', framing='W', hold=0, pos=c['pos'], aim=c['aim'], lens=c['lens'])
         film = dict(title='town proof %s %s' % (kind, cam), fps=30, size=[W, H], words='words.json', end=2, tween=dict(frames=0, face_frames=0, ones=True), auto_view=False,

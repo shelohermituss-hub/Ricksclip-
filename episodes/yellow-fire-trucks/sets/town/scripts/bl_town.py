@@ -400,9 +400,13 @@ anchor('park_fence_gap', GAP, FY, .1)
 asset('island_tree_02'); TPLS['island_tree_02']['heavy'] = 1
 put('island_tree_02', 40.0, -20.0, .08, 30, 3.1, tag='big_tree')               # the park's one big tree (about 10.5 m)
 rope_m = mat('swing_rope', col='#d6c79e', rough=.9)
-beam('swing_rope', (38.2, -19.3, 4.4), (38.2, -19.3, .66), .024, rope_m, 6); beam('swing_rope', (38.2, -18.7, 4.4), (38.2, -18.7, .66), .024, rope_m, 6)   # FIX 1: ropes thicker, seat pale (reads against the dark lawn)
-box('swing_seat', .28, .8, .06, 38.2, -19.0, .62, mat('swing_seat', col='#d8cdb4', rough=.7), .3); box('swing_branch_hide', .01, .01, .01, 38.2, -19, 4.4, M['bark'], .5)
-quad('swing_worn', 1.6, 1.0, 38.2, -19.0, .085, 90, DECAL('oil'), flat=True)
+# FIX 2: the swing turned 90 deg so its FACE looks north to the S6 park cameras (F/G/H stand north of it; the old ropes lined up one behind the other
+# and the seat was seen end-on): ropes .9 m apart along x, thicker (.03), the seat .9 x .3 m, its ends bound, a short bar on the branch
+for rx in (37.75, 38.65): beam('swing_rope', (rx, -19.0, 4.4), (rx, -19.0, .66), .03, rope_m, 6)
+box('swing_seat', .9, .3, .07, 38.2, -19.0, .62, mat('swing_seat', col='#e2d7bd', rough=.7), .3)
+for rx in (37.75, 38.65): box('swing_knot', .09, .09, .1, rx, -19.0, .66, rope_m, .3)
+box('swing_branch_hide', 1.1, .14, .14, 38.2, -19.0, 4.36, M['bark'], .5)
+quad('swing_worn', 1.6, 1.0, 38.2, -19.0, .085, 0, DECAL('oil'), flat=True)
 anchor('park_swing', 38.2, -19.0, .1); anchor('park_tree', 40.0, -20.0, .08)
 put('painted_wooden_bench', 33.0, -13.0, .08, 200, 1.); anchor('park_bench', 33.0, -13.0, .08)
 put('metal_trash_can', 31.2, -12.6, .08, 0, 1.)

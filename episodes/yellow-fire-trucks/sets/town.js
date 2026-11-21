@@ -7,6 +7,8 @@
 //   hero: buildTruck opts for the hero (default: AM half-sprayed + masking, DU lemon), chief: opts for the pumper (default red, aged), trucks: false = none
 //   card: { png: 'cast/views/chief_34.png', pos: [x, y, z], h: 1.8, face: [x, y] }   a flat cast stand-in (detail gate only)
 //   air: 1 (default) | 0.5 | 0   FIX 1 air life: AM dust motes in the sun (yard, shop), DU moths + warm mist at the street and wall lamps; drifts per frame (update)
+//   FIX 2: bays: 0-1 (default 1) dims the two bay tubes (lights + fluor lens; S8 POV: the Chief's pumper almost invisible); glow: 1 (default) scales the
+//     dusk lamp halo (now .9 m sprite + lens 2.5, was 2.6 m + 6: it filled a third of the sky); park_fill: 1 (default) the dusk park fill (Blender lamp_parkfill)
 //   FIX 1 also: DU sodium pool (spot + additive decal) under the street lamp, retro blade letters at dusk, shop glass sheen, cut-out leaves and LITE tuft cards
 // Returns anchors (plan metres, Z up): yard_centre, bay1_truck, bay2_truck, station_door, yard_line_start, yard_line_end, shop_window, shop_chair,
 // crossing_stop_bar, street_lamp, park_swing, park_fence_gap, water_tower, wall_lamp, bench, hose_reel, yard_drain, shop_lamp, shop_shingle, park_bench, park_tree.
@@ -41,12 +43,15 @@ export async function build(THREE, scene, film, ctx) {
   const keep = pl.grass_keep ?? .4; grass.forEach((o, i) => { if ((i * .618) % 1 >= keep) o.visible = false; else o.scale.multiplyScalar(1.15); });
   for (const m of lit) { m.emissiveIntensity = du ? 2.2 : 0; m.needsUpdate = true; }
   for (const m of blades) { m.emissiveIntensity = du ? .45 : 0; m.needsUpdate = true; }
-  for (const m of lamps) { const day = m.name === 'lamp_fluor'; m.emissiveIntensity = du ? 6 : (day ? 2 : 0); m.needsUpdate = true; }
+  const bays = pl.bays ?? 1, glow = pl.glow ?? 1;
+  // FIX 2: dusk lens 6 -> 2.5 (the kit bloom made a halo a third of the sky wide); the fluor tubes follow bays
+  for (const m of lamps) { const day = m.name === 'lamp_fluor'; m.emissiveIntensity = (day ? (du ? 6 : 2) * bays : (du ? 2.5 * glow : 0)); m.needsUpdate = true; }
   const A = ANCHORS, V = p => ctx.B2T(p);
   // the practical lamps (Blender: town_api.build_lights): shop amber lamp and bay tubes always, street sodium, station wall lamp and porch at dusk
   const pt = (p, col, I, d) => { const l = new THREE.PointLight(col, I, d, 2); l.position.copy(V(p)); scene.add(l); return l; };
   pt(A.shop_lamp, '#ffb85c', 8, 6); pt([-1.0, -12.3, 3.6], '#ffe0b0', 40, 14); pt([-1.0, -9.0, 2.5], '#fff2dc', 25, 10);   // the shop reads dark in the kit without a stronger fill (sheet 1)
-  for (const bx of [-4.2, 4.2]) pt([bx, 27, 4.2], '#f2f4ea', 30, 14);
+  if (bays > 0) for (const bx of [-4.2, 4.2]) pt([bx, 27, 4.2], '#f2f4ea', 30 * bays, 14);
+  if (du && (pl.park_fill ?? 1) > 0) pt([37.0, -17.0, 9.0], '#e8d6e4', 70 * (pl.park_fill ?? 1), 28);   // FIX 2: the dusk park fill (Blender lamp_parkfill)
   if (du) { pt([A.street_lamp[0], A.street_lamp[1], A.street_lamp[2] - .3], '#ffae4a', 40, 10);
     // FIX 1: the sodium POOL under the street lamp (Blender: lamp_street spot 5200 W, 100 deg): a spot on road, stop bar and kerb + a soft additive pool decal
     const sl = A.street_lamp, sp = new THREE.SpotLight('#ffa040', 520, 16, Math.PI * .3, .55, 2); sp.position.copy(V([sl[0], sl[1], sl[2] - .2])); sp.target.position.copy(V([sl[0] + .4, sl[1] - .3, 0])); scene.add(sp, sp.target);
@@ -69,7 +74,7 @@ export async function build(THREE, scene, film, ctx) {
     card.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tx, alphaTest: .5 }); scene.add(card);
   }
   if (ctx.sky && ctx.sky.clouds && !du) scene.add(ctx.sky.clouds({ kind: 'clear-day', seed: 4 }));
-  const air = airLife(THREE, scene, A, V, du, pl.air ?? 1);           // FIX 1: AM dust motes in the sun / DU moths + mist at the lamps (places.<name>.air: 0 = off, 0.5 = half)
+  const air = airLife(THREE, scene, A, V, du, pl.air ?? 1, glow);           // FIX 1: AM dust motes in the sun / DU moths + mist at the lamps (places.<name>.air: 0 = off, 0.5 = half)
   console.warn('PHFD_TOWN ' + JSON.stringify({ lite, kind: du ? 'du' : 'am', meshes, tris: Math.round(tris), load_ms: Math.round(performance.now() - t0) }));
   return { anchors: A, hero, chief, update: (f, t) => air.update(t) };
 }
@@ -93,7 +98,7 @@ function dotTex(THREE) {
   r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(.4, 'rgba(255,255,255,.55)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64);
   DOT = new THREE.CanvasTexture(c); return DOT;
 }
-function airLife(THREE, scene, A, V, du, amount) {
+function airLife(THREE, scene, A, V, du, amount, glow = 1) {
   // seeded, so a frame renders the same twice (REGLES 4). Plan metres (X east, Y north, Z up) -> three through V (B2T). Every piece is userData.noExport.
   let s = 1970; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647, layers = [];
   const cloud = (n, box, size, col, op, amp, speed, flutter) => {
@@ -114,7 +119,7 @@ function airLife(THREE, scene, A, V, du, amount) {
     const sl = A.street_lamp, wl = A.wall_lamp;
     cloud(26, [[sl[0] - 1.2, sl[1] - 1.2, sl[2] - 1.4], [sl[0] + 1.2, sl[1] + 1.2, sl[2] + .3]], .05, '#e8dcc0', .9, .25, 1.4, true);
     cloud(16, [[wl[0] - .8, wl[1] - .9, wl[2] - .9], [wl[0] + .8, wl[1] + .1, wl[2] + .3]], .04, '#ecdcbc', .9, .2, 1.6, true);
-    for (const [p, r, op] of [[[sl[0], sl[1], sl[2] - .5], 2.6, .16], [[wl[0], wl[1] - .3, wl[2] - .2], 1.6, .14]]) {
+    for (const [p, r, op] of [[[sl[0], sl[1], sl[2] - .45], .9 * glow, .12], [[wl[0], wl[1] - .3, wl[2] - .2], .7 * glow, .12]]) {   // FIX 2: halo 2.6 -> .9 m
       const m = new THREE.SpriteMaterial({ map: dotTex(THREE), color: '#ffb060', transparent: true, opacity: op * amount, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false });
       const sp = new THREE.Sprite(m); sp.position.copy(V(p)); sp.scale.setScalar(r); sp.userData.noExport = true; scene.add(sp);
     }

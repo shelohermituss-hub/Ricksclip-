@@ -63,8 +63,20 @@ def build_lights(sc, anchors):
 def _sun_dir(az, el):
     a, e = math.radians(az), math.radians(el); return -Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a), math.sin(e)))
 
-def set_light(sc, kind):
+# FIX 2: the dusk fill over the park (lead: keep the grass colour, lift the dusk park to brightness >= .31): a soft lavender-rose disk high over the lawn,
+# made here when missing so an older town.blend gets it too. PARK_FILL_W is its dusk power; park_fill scales it. bays scales the two bay tubes (S8 POV: 0-1).
+PARK_FILL_W = 2600.
+def _park_fill(sc):
+    o = bpy.data.objects.get('lamp_parkfill')
+    if o is None:
+        ld = bpy.data.lights.new('lamp_parkfill', 'AREA'); ld.shape = 'DISK'; ld.size = 22.; ld.color = lin('#e8d6e4')[:3]
+        if hasattr(ld, 'spread'): ld.spread = math.radians(110)
+        o = bpy.data.objects.new('lamp_parkfill', ld); o.location = (37.0, -17.0, 16.0); sc.collection.objects.link(o)
+    o['lamp_energy'] = PARK_FILL_W; return o
+def set_light(sc, kind, bays=1.0, park_fill=1.0):
+    """kind 'am' | 'du'; bays 0-1 dims the bay tubes (lights and the fluor lens); park_fill scales the dusk park fill (0 = off)."""
     P = LIGHTS[kind]; N = _world(sc); rp = N['town_ramp'].color_ramp.elements
+    _park_fill(sc)
     cols = [P['ground'], P['sky_hor'], P['sky_hor'], P['sky_top']]
     for e, c in zip(sorted(rp, key=lambda e: e.position), cols): e.color = lin(c)
     N['town_bg'].inputs[1].default_value = P['world']
@@ -72,13 +84,15 @@ def set_light(sc, kind):
     s.rotation_euler = _sun_dir(P['sun_az'], P['sun_el']).to_track_quat('-Z', 'Y').to_euler()
     for o in sc.objects:
         if o.type == 'LIGHT' and o.name.startswith('lamp_'):            # shop lamp and bay tubes burn by day too (rows 9-12: the amber cone); street, wall, porch lamps at dusk only
-            on = 1. if o.name.startswith(('lamp_shop', 'lamp_bay')) else P['lamps']; o.data.energy = o['lamp_energy'] * on; o.hide_render = on == 0
+            on = 1. if o.name.startswith(('lamp_shop', 'lamp_bay')) else P['lamps']
+            on *= bays if o.name.startswith('lamp_bay') else (park_fill if o.name == 'lamp_parkfill' else 1.)
+            o.data.energy = o['lamp_energy'] * on; o.hide_render = on == 0
     for m in bpy.data.materials:                                   # lit windows and lamp lenses: emission only at dusk
         b = m.node_tree.nodes.get('Principled BSDF') if m.use_nodes and m.node_tree else None
         if not b: continue
         if m.name.startswith('win_lit'): b.inputs['Emission Strength'].default_value = P['windows']
         if m.name in ('lamp_sodium', 'lamp_warm'): b.inputs['Emission Strength'].default_value = 12. * P['lamps']
-        if m.name == 'lamp_fluor': b.inputs['Emission Strength'].default_value = 3. + 4. * P['lamps']
+        if m.name == 'lamp_fluor': b.inputs['Emission Strength'].default_value = (3. + 4. * P['lamps']) * bays
         if m.name.startswith('sign_blade'): b.inputs['Emission Strength'].default_value = .35 * P['lamps']   # FIX 1: retro-reflective blade letters read at dusk
     air = bpy.data.collections.get('AIR')                           # FIX 1: air life of this kind only (air_am_* dust motes, air_du_* moths + lamp mist)
     for o in (air.objects if air else []):
@@ -88,7 +102,7 @@ def set_light(sc, kind):
             import truck_api as T
             st = r['town_state'].to_dict() if 'town_state' in r else {}
             st['drain'] = 1.0 if kind == 'du' else 0.0; _paint(r, st)
-    sc['phfd_light'] = kind
+    sc['phfd_light'] = kind; sc['town_bays'] = bays; sc['town_park_fill'] = park_fill
     t = bpy.data.texts.get('TOWN_LIGHT') or bpy.data.texts.new('TOWN_LIGHT'); t.clear(); t.write(kind)
 
 def _paint(root, st):

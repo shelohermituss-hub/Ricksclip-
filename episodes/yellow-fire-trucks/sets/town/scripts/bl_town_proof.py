@@ -30,6 +30,7 @@ for name in want:
     if co.name not in sc.collection.objects: sc.collection.objects.link(co)
     co.data.sensor_fit = 'VERTICAL'; co.data.sensor_height = 36; co.data.lens = c['lens']; co.data.clip_start = .03; co.data.clip_end = 2000
     co.location = c['pos']; co.rotation_euler = (Vector(c['aim']) - Vector(c['pos'])).to_track_quat('-Z', 'Y').to_euler(); sc.camera = co
+    TA.set_light(sc, KIND, **c.get('light_opts', {}))
     old = bpy.data.objects.get('CAST_CARD')
     if old: bpy.data.objects.remove(old)
     if c.get('card'): card(os.path.normpath(os.path.join(HERE, '..', '..', '..', c['card']['png'])), c['card']['pos'], c['card']['h'], c['pos'])
