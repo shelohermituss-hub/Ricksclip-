@@ -308,3 +308,15 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - 2026-11-21 (same fix) My edit added a "//" comment in the middle of the one-line steam forEach and swallowed `const ang = ...` (ReferenceError, every frame
   failed). tools/check_midline_comments.py did NOT flag it (the swallowed text "const ang = (i / 16) * ..." ends without ";" on that line, so CODE_AFTER_JS
   misses it). Fix: comment moved to its own line. Guard: `node --check` is not enough either (it parses); render one frame after every set-module edit.
+- 2026-11-21 (yellow-fire-trucks cine, key frame A) The Blender cast mask from the Object Index pass was speckled where the lemon mist volume sits in front of a
+  card's clear area (and the Z pass is random inside volumes, so depth haze and depth blur turned to grain there). Fix: cine/make_mask.py draws the cast mask
+  exactly from the kit dump (card alpha warped to its projected corners, 99.5 % agreement with the ID pass elsewhere); grade_key.py median-filters the depth.
+  Guard: grade_key.py takes the drawn mask, never the ID pass. Proof: prev/prevA_graded.png has no grain in the mist. FERMÉ
+- 2026-11-21 (same) Card SHADOW PASS "did not work": the sun-facing shadow card cast fine (ray_cast hit it; an emission card does block Cycles shadow rays),
+  but the town's AM sun (az 205) put the hero in the truck's shade and threw the figure shadow out of frame to the right. Fix: per-framing key angle checked
+  by ray_cast from the feet toward the sun BEFORE rendering (az 255, el 28 for S1 f0). Guard: project the shadow tip into the frame first (60-75 s per preview
+  saved). Proof: build_A.py info mode SHRAY lines. FERMÉ
+- 2026-11-21 (same) Kit -> Blender exact rebuild without --export-lock: render_gpu.mjs --frames N --eval cine/dump_scene.js dumps the camera matrix + fov,
+  each visible card's drawn texture + world corners + UVs, the props' group matrices, the hose tube and the mist sprites (three Y-up; Blender = C M C^-1 with
+  C (x,y,z)->(x,-z,y); camera = C M). The Blender frame lines up with the kit frame to the pixel. Packed blend: libraries vanish on save after append
+  (LIBS [] in the test), 0 "not found" lines at 10 %. FERMÉ

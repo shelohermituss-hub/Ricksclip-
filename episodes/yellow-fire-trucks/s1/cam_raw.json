@@ -2,22 +2,22 @@
  "_raw.mp4": {
   "frames": 288,
   "cut_frames": 0,
-  "hold_pct": 0.7,
-  "drift_pct": 30.9,
-  "move_pct": 68.4,
-  "speed_median": 8.81,
-  "speed_p90": 26.1,
-  "moves_per_10s": 8.33,
-  "move_peak_median": 26.6,
+  "hold_pct": 0.3,
+  "drift_pct": 15.6,
+  "move_pct": 84.0,
+  "speed_median": 9.11,
+  "speed_p90": 27.61,
+  "moves_per_10s": 11.46,
+  "move_peak_median": 20.7,
   "move_peak_p25_p75": [
-   25.5,
-   29.2
+   10.1,
+   29.1
   ],
-  "attack_median_f": 4.5,
-  "release_median_f": 6.0,
-  "quiet_zoom_active_pct": 97.7,
-  "quiet_zoom_pushin_pct": 93.8,
-  "quiet_zoom_rate_median": 0.248,
-  "hf_residual_median_px": 0.201
+  "attack_median_f": 6.0,
+  "release_median_f": 8.0,
+  "quiet_zoom_active_pct": 98.1,
+  "quiet_zoom_pushin_pct": 93.4,
+  "quiet_zoom_rate_median": 0.265,
+  "hf_residual_median_px": 0.203
  }
 }

@@ -1,0 +1,538 @@
+{
+ "title": "Why Fire Trucks Turned Yellow, S1 THE HOOK (lines 1-2, frames 0-288)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 0,
+ "end": 289,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "hero": {
+   "puppet": "cast:firetrucks/hero",
+   "height": 1.88,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "chief": {
+   "puppet": "cast:firetrucks/chief",
+   "height": 1.62,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "rookie": {
+   "puppet": "cast:firetrucks/rookie",
+   "height": 1.64,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "rookieDown": {
+   "puppet": "cast:firetrucks/rookieDown",
+   "height": 1.64,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "oldTimer": {
+   "puppet": "cast:firetrucks/oldTimer",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "sceptic": {
+   "puppet": "cast:firetrucks/sceptic",
+   "height": 1.88,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "faces_ep": {
+  "chiefShout": {
+   "eyes": "angry",
+   "brows": [
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ],
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 30,
+   "teethH": 12
+  },
+  "proudShut": {
+   "eyes": "closed",
+   "brows": [
+    [
+     10,
+     -2,
+     6
+    ],
+    [
+     14,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "peekOne": {
+   "eyes": [
+    "shut",
+    "wideXL"
+   ],
+   "brows": [
+    [
+     -4,
+     6,
+     0
+    ],
+    [
+     16,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "frozenWide": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.5,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "yard": {
+   "set": "s1_yard",
+   "lite": true,
+   "truckFull": true,
+   "chief": {
+    "light": true
+   },
+   "kind": "am",
+   "light": "morning",
+   "light_over": {
+    "top": "#5c8fea",
+    "hor": "#d6e2f3",
+    "sun": "#ffd896",
+    "si": 3.0,
+    "amb": "#a2a8e6",
+    "ai": 1.25,
+    "dir": [
+     -8.67,
+     2.92,
+     4.04
+    ],
+    "tint": "#fff6ea",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#8f8a7e"
+   },
+   "grass_keep": 0.4,
+   "hero": {
+    "paint": "half",
+    "edge": -1.55,
+    "masking": true,
+    "letters": "under",
+    "ribbon": false,
+    "priceCard": true,
+    "sirens": 4,
+    "wear": 0.25
+   }
+  }
+ },
+ "props": {
+  "truck": {
+   "pos": [
+    -3.3,
+    17.0,
+    1.3
+   ],
+   "kind": "the half-sprayed truck"
+  },
+  "door": {
+   "pos": [
+    -3.2,
+    15.2,
+    1.2
+   ],
+   "kind": "the gold No. 1 on the cab door"
+  },
+  "lunch_box": {
+   "pos": [
+    2.2,
+    18.4,
+    0.24
+   ],
+   "kind": "the Old-Timer's lunch box"
+  },
+  "lemon": {
+   "pos": [
+    3.3,
+    13.7,
+    0.18
+   ],
+   "kind": "the lemon"
+  }
+ },
+ "acts": [
+  {
+   "who": "hero",
+   "at": 0,
+   "pos": [
+    -2.0,
+    15.7,
+    0.14
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s1/he_spray",
+   "face": "k:concentrate",
+   "note": "row 1 frame 0: mid-sweep, firemen frozen"
+  },
+  {
+   "who": "hero",
+   "at": 127,
+   "face": "k:aim",
+   "note": "row 5 \"lemon\": one eye shut, judging at arm's length"
+  },
+  {
+   "who": "hero",
+   "at": 136,
+   "face": "k:proud",
+   "note": "row 5 \"yellow\": the small half-smile, then dead still"
+  },
+  {
+   "who": "hero",
+   "at": 176,
+   "face": "k:browUp",
+   "note": "rows 6-7: listens, polite, unmoved"
+  },
+  {
+   "who": "hero",
+   "at": 264,
+   "face": "k:concentrate",
+   "note": "row 8: already turning back to spray"
+  },
+  {
+   "who": "chief",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    2.45,
+    19.1,
+    0.14
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/ch_burst",
+   "face": "k:frozenWide"
+  },
+  {
+   "who": "chief",
+   "at": 157,
+   "visible": true,
+   "note": "row 6: in the bay 2 doorway beside his old red pumper, he bursts out on \"chief\""
+  },
+  {
+   "who": "chief",
+   "at": 172,
+   "face": "k:furious",
+   "note": "POWER 1 \"exploded\""
+  },
+  {
+   "who": "chief",
+   "at": 200,
+   "face": "k:chiefShout",
+   "say": [
+    19,
+    28
+   ],
+   "note": "rows 7-8: \"Fire trucks are RED! We look like a giant lemon!\" lip sync 6.66-9.42"
+  },
+  {
+   "who": "rookieDown",
+   "at": 0,
+   "pos": [
+    -2.45,
+    19.3,
+    0.14
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/rk_frozen",
+   "face": "k:frozenWide"
+  },
+  {
+   "who": "rookieDown",
+   "at": 164,
+   "visible": false
+  },
+  {
+   "who": "rookie",
+   "at": 0,
+   "visible": false,
+   "pos": [
+    -2.45,
+    19.3,
+    0.14
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/rk_jump",
+   "face": "k:frozenWide"
+  },
+  {
+   "who": "rookie",
+   "at": 164,
+   "visible": true,
+   "pose": "m:../../ep_s1/rk_jump"
+  },
+  {
+   "who": "oldTimer",
+   "at": 0,
+   "pos": [
+    -1.55,
+    19.6,
+    0.14
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/ot_frozen",
+   "face": "k:shocked"
+  },
+  {
+   "who": "oldTimer",
+   "at": 230,
+   "face": "k:browUp",
+   "note": "row 8: his lunch box hops, the lemon rolls"
+  },
+  {
+   "who": "sceptic",
+   "at": 0,
+   "pos": [
+    -2.2,
+    20.8,
+    0.14
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s1/sc_crossed",
+   "face": "k:browUp"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "hero",
+   "obj": "spray_gun",
+   "module": "sets/assets.js",
+   "builder": "buildSprayGun",
+   "opts": {},
+   "grip": "handle",
+   "face": "out",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "when": "always",
+   "scale": 1.7
+  }
+ ],
+ "kicks": [
+  {
+   "at": 172,
+   "amp": 3
+  }
+ ],
+ "fx": [
+  {
+   "at": 19,
+   "kind": "glint",
+   "pos": [
+    -2.6,
+    15.65,
+    1.4
+   ],
+   "note": "row 2: a glint runs down the chrome gun on \"grabbed\""
+  },
+  {
+   "at": 83,
+   "kind": "glint",
+   "pos": [
+    -4.2,
+    13.85,
+    0.9
+   ],
+   "note": "row 4: the white ribbon bow flares on \"brand\""
+  }
+ ],
+ "moods": [
+  {
+   "at": 127,
+   "look": "warm_up",
+   "note": "row 5: the sun full on the lemon half"
+  },
+  {
+   "at": 172,
+   "look": "flash_white",
+   "note": "row 6: POWER 1 impact flash (with the set impact frame)"
+  }
+ ],
+ "takes": [
+  {
+   "id": "s1",
+   "place": "yard",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -1.35,
+      13.0,
+      1.14
+     ],
+     "aim": [
+      -2.75,
+      16.9,
+      1.84
+     ],
+     "lens": 24,
+     "subject": "hero",
+     "framing": "W",
+     "purpose": "ROWS 1-3 FRAME 0 (HOOK, M00 living rest): the hero mid-sweep big in frame, both fists on the gun and hose (row 2), the wet lemon edge eating the red toward the cab door, the three firemen frozen behind him, the lemon paint tin near the lens",
+     "hold": 1.6,
+     "creep": 0.0028,
+     "shows": [
+      "door"
+     ]
+    },
+    {
+     "at": 110,
+     "pos": [
+      -0.1,
+      11.6,
+      1.4
+     ],
+     "aim": [
+      -0.55,
+      20.6,
+      1.5
+     ],
+     "lens": 18,
+     "subject": "hero",
+     "framing": "W",
+     "purpose": "ROWS 4-6 (SETUP, M04 pull back reveal, then M00 rest): the pull back over \"brand new firetruck\" lands on the whole yard: the hero steps back and judges (row 5 on \"lemon\"), the lemon truck, the frozen firemen, and bay 2 at the right where the Chief bursts out on \"chief\"",
+     "hold": 1.6,
+     "creep": 0.0028
+    },
+    {
+     "at": 215,
+     "pos": [
+      2.1,
+      16.3,
+      0.85
+     ],
+     "aim": [
+      2.6,
+      19.0,
+      1.25
+     ],
+     "lens": 22,
+     "subject": "chief",
+     "framing": "W",
+     "purpose": "ROWS 6-7 (POWER 1 + TALK, M02 snap push in): the push starts on the impact and lands low on the Chief in the bay mouth, his old red pumper behind his shoulder, the lunch box at his boots for the stamp on \"RED\"; the firemen stay out of this frame",
+     "hold": 0.55,
+     "creep": 0.0028,
+     "shows": [
+      "lunch_box"
+     ]
+    },
+    {
+     "at": 276,
+     "pos": [
+      3.42,
+      13.42,
+      0.32
+     ],
+     "aim": [
+      -0.1,
+      19.6,
+      1.3
+     ],
+     "lens": 18,
+     "subject": "chief",
+     "framing": "M",
+     "purpose": "ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down and lands with it at the lens: real lemon, the lemon truck and his pointing fist in one picture, the firemen whole between them",
+     "hold": 0.5,
+     "creep": 0.0028,
+     "shows": [
+      "lemon"
+     ]
+    }
+   ]
+  }
+ ]
+}

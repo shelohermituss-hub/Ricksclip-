@@ -1,11 +1,19 @@
-# S1 STATE: THE HOOK, moving clip v1 (S1 stretch builder, 2026-11-21). Frames 0-288 (0.00-9.60 s), plan rows 1-8, yard, MORNING, LITE town.
-## NOT done / failing (the clip is NOT ready for the user)
-- frame_checks 12 FAIL / 3 WARN / 22 PASS (out/fc/frame_checks.md): firemen cut by the LEFT edge in the Chief rest (f165-288: Old-Timer, Sceptic, Rookie);
-  hero + rookieDown cut during the flight f130-148; Chief slide 33 cm/f during the 10-frame burst glide (f161-170); Chief cut by the right edge at f157 (first frame visible).
-- cam_track p90 26.1 px/f (FAIL, <= 22), move peak median 26.6. The plan estimated 15.2: the via-point flight A -> wide -> Chief (f54-165) is faster on screen than planned.
-- Row 5 MISSED: the flight leaves the hero at f120; f128-152 frame an empty bay wall ("lemon", "yellow": his judging pose is not seen).
-- f200: a black rectangle at the top of the frame (strip sheet), not diagnosed (one frame; steam sprites or a broken retry render).
-- Lock export, Blender: not done (lead's order).
+# S1 STATE: THE HOOK, fix round 1 (2026-11-21). HALF-SIZE DRAFT clip (540x960; user rule 2026-11-21: drafts at --scale 0.5).
+## NOT done / failing (fix round 1)
+- frame_checks 8 FAIL / 1 WARN / 28 PASS: every FAIL is a figure crossing the LEFT edge while the camera moves: hero f150-185 (the push from the wide
+  to the Chief), Old-Timer f178-186, Rookie, Sceptic f250-259 (the sink to the lemon). Rests: no cuts. Fixing it needs flights that keep the people in frame.
+- cam_track p90 27.6 px/f (FAIL, <= 22), measured on the 540-wide draft video; peak median 20.7 (was 26.6). Plan estimate 15.9. Main cost: the 6.3 m push f158-215.
+- Row 5 is now in a rest (wide f110-158, hero judging on "lemon") but the hero is SMALL at the left; the wide is mostly the station wall and empty yard.
+- Lock export and Blender: not done (lead's order).
+## Fix round 1 (done, seen on the strip S1_strip_4fps.jpg)
+- Camera: 4 stations A f0 (hook rest 0-48) -> W f110 wide REST to f158 (row 5) -> D f215 Chief rest (stamp f223 in the rest) -> F f276 lemon. Plan 0 FAIL / 5 WARN.
+- Chief: no glide any more; he bursts out IN the bay 2 mouth (2.45, 19.1) and stomps in place (planted feet; slide FAIL gone). Lunch box moved to his boots (2.2, 18.4),
+  lemon rolls to (3.3, 13.7). D frame: Chief, his red pumper behind his shoulder, lunch box; firemen out of frame (not cut). F: lemon, lemon truck, firemen whole, his point.
+- Black square f200: NaN steam opacity ((1-a)**1.1 with a > 1), clamped; gone on the strip. LECONS added (and the swallowed-line edit that broke every frame once).
+- Frames: 0-124 were rendered full size before the half-size rule; kept in frames_full/ and downscaled into frames/; 125-288 rendered at half size.
+  Half size, --grab fast, ONE process: 2.9 s/frame (106 frames in 306 s). One process per frame cost about 3 min/frame (browser start-up): never again.
+- Gates: camsafe 1288 PASS / 0 FAIL; motion gate 6 moves 0/0/0/0; 11i edge .256/.273/.180/.167 (PASS); S1_hook.mp4 9.63 s with voice + captions (half-size draft).
+
 ## Built (files)
 - `make_film.py` -> `film.json` (places.yard: lite true, truckFull true, chief light; camera v2, camsafe, kit3d, tween ones, face_frames 0, card_shade 0/0,
   costume_shade keep_drawn_light + smooth 40). `CAMERA_NOTE.md` (idea, move ids, attention chain). `moves/ep_s1.mjs` (6 moves). `sets/s1_yard.js`.

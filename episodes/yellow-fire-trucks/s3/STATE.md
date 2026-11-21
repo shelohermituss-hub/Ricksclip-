@@ -1,49 +1,41 @@
-# S3 STATE: THE CROSSING AT DUSK, BOARD round (S3 stretch builder, 2026-11-21). Frames 474-770 (15.80-25.65 s), plan rows 14-21, lines 5-6.
-## NOT done / wrong in the board (seen in BOARD.jpg, my own list)
-- BOARD only, no clip, no polish; looked at by me only. No Rick frame exists in the repo: no side-by-side (RULE NO. 1 test open).
-- Row 18 f643 "flashing": the Milkman is NOT in the frame (the camera is still on the roof line; v2 reaches via point E ~25 f late). Beacons + rings only.
-- Row 16 f584 "crossings": the camera is travelling; the Milkman's freeze and bottle check are not seen (hubcap + spark only). f584 has the old Sceptic spot.
-- Row 21 f765 "it": the tilt has not landed; the truck does NOT fill the frame "out of the top" (truck mid-distance). Row 19-21: the truck reads big, not "three storeys".
-- Faces read weakly: frozenWide/nervousSmile on the Milkman look almost the same as concentrate at board size; arms on "I never" are half wide (rig clamps).
-- f511: his "look left" face is half hidden by the van pillar. The Sceptic never leans OUT of the window (driver side faces away from this camera): he leans to the windscreen.
-- Red at dusk reads salmon/clear red, not the nearly-lost grey-plum of LOOK_BIBLE (drain .85 in assets.js). Lower frame halves are plain apricot asphalt (no lamp pool).
-- Frames 511-584, 694-765 use truck_light.glb (no sirens, no beacon row): full truck.glb got Chrome killed by the shared memory limit; 613/643 have the full truck.
-- frame_checks: 17 FAIL (see Numbers). 0 FAIL only in the shifted plan check; the absolute check has 3 FAIL (CAMERA_NOTE.md).
-- S2 -> S3 join ("EVERY", toy truck -> real truck): only S3's half exists (f474 long lens on the real truck); S2 is not built, the match is unchecked.
+# S3 STATE: THE CROSSING AT DUSK, BOARD v2 = fix round (S3 stretch builder, 2026-11-21). Frames 474-770 (15.80-25.65 s), plan rows 14-21, lines 5-6.
+## NOT done / still wrong (seen in BOARD.jpg v2, my own list)
+- Row 21 f760 "it": the tilt lands on the word, but the truck does NOT fill the frame "out of the top". It is a real 2.6 m cab; a low 16 mm lens 2-3 m away
+  shows mostly sky above it (tried at 1.5 m: worse). "Three storeys" needs a scale cheat or a set decision (lead): a bigger truck for this shot, or the camera on the bumper.
+- Faces: the drivers' faces are partly hidden by the cab and van bodies from the low angles (frame_checks face_covered, below). The Sceptic never leans out
+  (seated card stays in the seat; driver side faces away from the camera corner). f760: the bottle hand, not the free knuckle, ends at the cap.
+- Board is HALF SIZE (540x960, as ordered). No clip, no polish. No Rick frame in the repo: no side-by-side.
+- Absolute plan check `--window 474-770`: 3 FAIL (2 frame-0 artefacts; "at rest while a face is on screen" 22 %, target 40). Shifted check: 0 FAIL.
+- S2 -> S3 join ("EVERY", toy -> real truck) unchecked: S2 not built.
+## Fixed this round (seen in the v2 tiles)
+1 Drivers seated: `milkmanDriver` (van seat, plan [VX-.11, vy+1.45, .29], rides the van's linear runs) and `sceptic` = scepticDriver puppet (truck seat
+  [TXH-2.30, TY-.42, .42], helmet on: it did not clip the roof in any tile). Climb-out = visible swap to the standing `milkman` at f662. body_in_mesh gone.
+2 Rows on their words: f582 "crossings" camera AT REST, Milkman frozen behind his windscreen; f644 "flashing" at rest: beacons + rings at the top, Milkman
+  in frame lower right; f614 "screaming" is the rise (sirens + rings top left, still moving); f760 "it" at rest after the tilt (see NOT done).
+3 Red at dusk: drain 1 (was .85): the pumper reads grey-plum, chrome and beacons carry it. 4 "I never" f735: both arms fully out (mk_out arms past reach).
+- Dropped my workarounds: uInvRoot call, van re-tint (van is cream with stripe now), full truck (light truck has sirens + beacon row), render_s3.mjs copy.
 ## Built (files)
-- `make_film.py` -> `film.json` (camera v2, camsafe, kit3d, tween ones, face_frames 0, card_shade 0/0, costume_shade keep_drawn_light + smooth 40, faces_ep from
-  CAST_KEYS; Milkman lip sync `say [72,75]` = 24.02-25.50). `film_light.json` = the same + `places.crossing.truckLight`. ONE take, 7 stations (CAMERA_NOTE.md).
-- `moves/ep_s3.mjs`: 3 episode moves (STUDIO MOTION): mk_van, mk_out (Milkman), sc_cab (Sceptic). No kit pose, no frozen move. `moves/studio_ep.mjs` = S1's copy.
-- `sets/s3_crossing.js`: town LITE (trucks off) + red pumper racing west on Main (south lane), braking into the bump; van creeping to the white bar, rolling on
-  "kept", bump on "hit" f569, rocks once; POWER 2 (impact frame flat plum + white focus lines f569-571, shock lines at the bumper, kick f569, hubcap off the front
-  right wheel with a spark trail past the lens to rest); siren sound rings 598-648; bell swing; beacon wave; pale pulse light on the Milkman; milk crate on the kerb.
-  Symlinks as S1 (cast, voice, assets_prod, sets/{town.js, assets.js, prop_kit.js, town}).
-- `tools/render_s3.mjs` (render_gpu.mjs copy: kit path + 240 s screenshot wait), `render_keys.sh` (one frame per process, waits for memory, 3 tries),
-  `check_shifted.py` (plan check of the stretch alone), `board.py` -> `BOARD.jpg`. Key frames: `key/f_*.png` 1080x1920, no captions.
+- `make_film.py` -> `film.json` (camera v2, camsafe, kit3d, tween ones, face_frames 0, card_shade 0/0, costume_shade keep_drawn_light + smooth 40; Milkman
+  lip sync `say [72,75]`). ONE take, 6 stations: A474 tele, B508 rest, C580 rest (bump + freeze), D640 rest (roof + Milkman), F694 rest, H752 rest (CAMERA_NOTE.md).
+- `moves/ep_s3.mjs` (mk_van, mk_out, sc_cab; the clock of every move = film frame - 474, see lessons). `sets/s3_crossing.js` (staging, POWER 2, rings, beacons, hubcap).
+- `render_keys.sh` (ONE process, kit render_gpu --scale 0.5 --grab fast --grab-timeout 120), `board.py key2 BOARD.jpg`, `check_shifted.py`, `proj_cast.py`.
+- Key frames v2 in `key2/` (511 530 569 582 614 644 694 735 760); v1 full-size frames in `key/`, v1 board `BOARD_v1.jpg`.
 ## Numbers
-- Plan: shifted check 0 FAIL / 9 WARN; absolute `--window 474-770` 3 FAIL (2 frame-0 artefacts) / 12 WARN; WINDOW speed p90 12.8, peak 21.0 px/f.
-- Render: 45-62 s per full-size frame (grab 38-56 s) with ~7 helpers on the CPU; about 14 tries were killed (memory) before the memory wait, 1 after.
-- `node tools/frame_checks/check.mjs film_light.json --frames 474-770` (rests + moving body test): 17 FAIL, 3 WARN, 37 PASS (frame_checks.txt). All are the drivers:
-  body_in_mesh (Milkman 23-49 % in the van, Sceptic 22-95 % in the cab: cards standing inside vehicles, the check has no seat exemption for them), Sceptic face_covered
-  + feet sunk (cab), Milkman foot "slide" 6-8 cm/f while the van carries him. Real faults to fix next: Sceptic card through the cab body; a seated/hidden-legs driver.
-- `node tools/camsafe/validate.mjs film_light.json --frames 474-770 --step 2`: 248 checks, PASS 248, WARN 0, FAIL 0.
-- Key tiles land 1 frame before their word where the word starts mid-frame (613/643/734: "screaming" 613.2, "flashing" 643.2, "never" 734.4); f765 = the end of "it".
+- Shifted plan check 0 FAIL / 7 WARN; absolute 3 FAIL / 9 WARN; WINDOW speed p90 10.0, peak 19.8 px/f.
+- Render: 9 frames in 48-63 s (5.3-7.0 s per half-size frame, grab fast 80 ms). No crash this round.
+- `node tools/frame_checks/check.mjs film.json --frames 474-770`: FAIL face_covered x3 (milkmanDriver f508-531 behind the van pillar; sceptic f694-714 and
+  f752-770 behind the cab front from the low camera), WARN face_covered sceptic f640-651; FAIL body_contact x2 = the kit's "in_vehicle needs a body rig"
+  (kit-owner item, DRIVER_NOTE). No body_in_mesh, feet or slide FAIL any more.
+- `node tools/camsafe/validate.mjs film.json --frames 474-770 --step 2`: 252 checks, PASS 252, FAIL 0.
 ## Requests (not done by me)
-- set-builder (town, being fixed now): the sodium lamp POOL on the road at the crossing is missing: every frame's lower half is one flat apricot asphalt, the van
-  and the Milkman have no pool to stand in (worst f569, f694, f734). Also no mist/moths at the lamp (LOOK_BIBLE DU particles).
-- props-hero: (1) the van GLB shows the download's GREEN paint in the kit; s3_crossing.js re-tints the body cream from the texture lightness; no cornflower stripe,
-  no "Meadowbrook DAIRY" lettering visible. (2) truck_light.glb has no sirens and no beacon row: a light truck WITH them is needed (memory). (3) the van wheel keeps
-  its cap: the flying hubcap is a second one. (4) buildTruck should set uInvRoot itself (S1 lesson, copied). (5) dusk drain: red must sink to #4B4753.
-  (6) the hero/pumper licence plate "LIBAU" from the asset shows on the bumper (also in the town STATE).
-- camera-director: a v2 layout that reaches rows 16 and 18 ON their words (via points arrive late; 297 f leave room for ~4 stations).
+- lead / set-builder: row 21 scale decision (above). Kit owner: body rig / driverSeat for in_vehicle drivers (body_contact FAIL).
+- camera-director: "rest on faces" 22 % (rows 16-18 are object pictures with small faces).
 ## LECONS (LECONS_TECHNIQUES.md format; the lead copies)
-- 2026-11-21 (S3) Full-size kit stills died: Playwright screenshot timeout 30 s (grab took 26-56 s on the shared CPU) and `--grab canvas` crashed the page every
-  time (also on S1's film). Fix: s3/tools/render_s3.mjs = render_gpu.mjs with a 240 s screenshot wait. Guard: comment line 1 of the copy. Proof: key/*.png. OUVERT
-  for the kit owner (a --grab-timeout flag in render_gpu.mjs).
-- 2026-11-21 (S3) Chrome was OOM-killed (memory cgroup shared by all helpers; Blender proofs peak). Fix: render_keys.sh renders ONE frame per process and waits for
-  3.8 GB free. Guard: logs/keys.log line per try. Proof: 1 kill in 16 tries after the wait (about 14 before).
-- 2026-11-21 (S3) film_plan.py check counts film-wide gates from frame 0; a stretch on absolute frames (S3 starts at 474) FAILs "first face", "faces in the first
-  15 s", "longest without a face", rests/effects/moods per minute. Fix: check_shifted.py checks a copy shifted to 0 (words too). Guard: run both. Proof: 3 vs 0 FAIL.
-- 2026-11-21 (S3) camera v2 moves a hold-0 station later than its `at` (wants 48-67 f per travel): row pictures on via points land ~25 f late. Guard: project the
-  cast on the baked camera at the word frame before rendering (s3/proj_cast.py). Proof: f643 Milkman off frame.
-- 2026-11-21 (S3) the step-van card: in a 3/4 card the act `dir` flips which screen side he faces, not plan left/right: from camera B dir -1 = his look LEFT.
+- 2026-11-21 (S3 fix) Problem: the Milkman's "arms wide" never showed. Cause: a move's clock starts at the FIRST act that names the pose (here the hidden
+  act at f474), not at a later act that names it again; mk_out assumed f668, so every frame played the end of the move. Fix: every S3 move uses
+  f = F(t) + 474 (film frame). Guard: comment in ep_s3.mjs; check one acting frame in a still before the board. Proof: key2/f_00735.png arms wide. FERMÉ
+- 2026-11-21 (S3 fix) Problem: rows 16 and 18 landed off their words. Cause: v2 delays a station by its travel; via points and long holds shift the rest.
+  Fix: fewer stations (6), holds tuned until proj_cast.py shows the cast in frame AND state 'rest' on the word. Guard: proj_cast.py before every render. FERMÉ
+- 2026-11-21 (S3) film_plan check counts film-wide gates from frame 0: a stretch on absolute frames fails them. check_shifted.py measures the stretch alone.
+- 2026-11-21 (S3, v1) Full-size kit stills: screenshot 30 s timeout / canvas grab crash / OOM. Now solved in the kit (--grab fast, --grab-timeout, retry).
+- 2026-11-21 (S3) In a 3/4 card the act `dir` flips the screen side he faces, not plan left/right (from camera B dir -1 = his look LEFT).
