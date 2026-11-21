@@ -1,0 +1,73 @@
+{
+ "face_shadow": true,
+ "face_shadow_rule": "CB 2026-11-15: the template drawn face shadow STAYS (face_shadow true); only generated shade is removed (card_shade amount 0, rim 0, hat_shadow 0, no far light).",
+ "_note": "character-artist 2026-11-21 (plane-eater, NOT locked by CB). Copy these keys into film.json. puppet_pkg paths are relative to film.json: first episodes/plane-eater/cast (holds sheets/plane_eater.mjs), then the kit code. Height = ground to the top of the bare head (caps stand above it). Puppet names cast:plane_eater/<name> (or cast:<name>). heads_tall is written by cast/tools/render_cast.mjs. New faces: k:peChew, k:peChewHard, k:peDisgust, k:peJawDrop (registered by the sheet itself, no faces_ep needed). Owner beard prop = swap the puppet ownerBeardS/M/L/XL on the time-lapse beats.",
+ "puppet_pkg": [
+  "<relative path to>/episodes/plane-eater/cast",
+  "<relative path to>/templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "michel": {
+   "puppet": "cast:plane_eater/michel",
+   "height": 1.8,
+   "heads_tall": 3.1
+  },
+  "doctor": {
+   "puppet": "cast:plane_eater/doctor",
+   "height": 1.64,
+   "heads_tall": 2.79
+  },
+  "doctorSlid": {
+   "puppet": "cast:plane_eater/doctorSlid",
+   "height": 1.64,
+   "heads_tall": 2.79
+  },
+  "owner": {
+   "puppet": "cast:plane_eater/owner",
+   "height": 1.74,
+   "heads_tall": 2.93
+  },
+  "ownerBeardS": {
+   "puppet": "cast:plane_eater/ownerBeardS",
+   "height": 1.74,
+   "heads_tall": 2.93
+  },
+  "ownerBeardM": {
+   "puppet": "cast:plane_eater/ownerBeardM",
+   "height": 1.74,
+   "heads_tall": 2.93
+  },
+  "ownerBeardL": {
+   "puppet": "cast:plane_eater/ownerBeardL",
+   "height": 1.74,
+   "heads_tall": 2.93
+  },
+  "ownerBeardXL": {
+   "puppet": "cast:plane_eater/ownerBeardXL",
+   "height": 1.74,
+   "heads_tall": 2.93
+  }
+ },
+ "faces_new": [
+  "peChew",
+  "peChewHard",
+  "peDisgust",
+  "peJawDrop"
+ ],
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "card_shade_rule": "CB 2026-11-15: card_shade.amount 0 AND rim_amount 0 in every place, no far light, lights []. Never raise amount."
+}

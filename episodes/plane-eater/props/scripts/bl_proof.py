@@ -20,8 +20,8 @@ SHOTS = {   # tile: (blend, camera, look-at, lens, hide-rule)
     'F_sliced': ('cessna150_sliced', (9.0, -4.2, 2.6), (0, 0.9, 0.9), 22, None),
     'G_sliced_half': ('cessna150_sliced', (6.8, -6.4, 2.2), (0, -1.6, 0.9), 22, [3, 4, 5, 6, 7, 8]),
     'H_nose_only': ('cessna150_sliced', (2.6, -5.8, 1.1), (0, -3.3, 0.85), 26, [1, 2, 3, 4, 5, 6, 7, 8]),
-    'I_stub_macro': ('cessna150_wingoff', (3.3, -2.4, 2.25), (0.95, -0.9, 1.8), 32, None),
-    'J_reg_macro': ('cessna150', (3.6, -0.6, 1.5), (0.4, 1.1, 1.35), 30, None),
+    'I_stub_macro': ('cessna150_wingoff', (2.9, -1.6, 2.75), (1.0, -1.05, 1.82), 30, None),
+    'J_reg_macro': ('cessna150', (4.6, 0.2, 1.45), (0.3, 1.9, 1.45), 30, None),
 }
 
 

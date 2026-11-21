@@ -19,7 +19,7 @@ Parts and materials (named nodes, so the kit can hide or grab them):
 | part | material |
 |---|---|
 | fuselage, fin, rudder, fin_cap, stabiliser_L/R, elevator_L/R, wing_L/R, flap_L/R, aileron_L/R, strut_L/R, wheel_spats_L/R, gear_legs_L/R, doors, cowl_nose, roof_vent | `Body`: white #f3f4f1 gloss paint (rough .20, clear coat 1.0, coat rough .04), clean navy #1d3461 stripes (the asset's navy, de-grimed), fin + rudder whitened for the letters; the asset's normal map kept (panel seams, rivet rows, hinge lines) |
-| reg_L / reg_R, reg_fin_L / reg_fin_R | "F-MIAM" (CREATIVE 4.2, "miam" = yum, invented registration), DejaVu Sans Bold, navy #1d3461, 1.5 mm raised letters shrink-wrapped on both rear-fuselage sides (0.26 m high) and both fin sides (0.20 m) |
+| reg_L / reg_R, reg_fin_L / reg_fin_R | "F-MIAM" (CREATIVE 4.2, "miam" = yum, invented registration), DejaVu Sans Bold, navy #1d3461, 1.5 mm raised letters projected on both rear-fuselage sides (0.26 m high) and both fin sides (0.20 m) |
 | spinner, door handles, wing-root fittings | `Metal`: polished chrome (metallic 1, rough .12) |
 | prop, prop_tips | brushed aluminium blades (metallic 1, rough .30), white tip bands |
 | tyres_main_L/R, tyre_nose | rubber with the asset's tread normal map (rough .62) |

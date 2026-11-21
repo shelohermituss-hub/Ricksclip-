@@ -431,3 +431,9 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   each visible card's drawn texture + world corners + UVs, the props' group matrices, the hose tube and the mist sprites (three Y-up; Blender = C M C^-1 with
   C (x,y,z)->(x,-z,y); camera = C M). The Blender frame lines up with the kit frame to the pixel. Packed blend: libraries vanish on save after append
   (LIBS [] in the test), 0 "not found" lines at 10 %. FERMÉ
+- 2026-11-21 (plane-eater cast) A film's own outfit parts (napkin knot, coat half-belt, back wing patch, rag in the back pocket) never showed in the
+  BACK view. Cause: outfit_lib dress() draws only parts listed in its private BACKOK set on the back, so any part registered by a film sheet is skipped there.
+  Fix: back designs go through the castkit `backOver` hook (back view only, over the body) with a body context rebuilt from B (`bA(B, hw)` in
+  episodes/plane-eater/cast/sheets/plane_eater.mjs, hw = body half width per size). Guard: render_cast.mjs flags an owner tile without rag pixels
+  (back included). Also: never use the `behind` hook for an accessory, it switches off the near-leg-over-body rule (char2d nearOver needs !S.behind).
+  Proof: cast/CAST_SHEET.jpg back tiles, numbers rag > 0 on owner_back. FERMÉ

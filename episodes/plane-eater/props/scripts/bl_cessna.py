@@ -158,11 +158,28 @@ wp.inputs['Base Color'].default_value = lin('#b88a55'); wp.inputs['Roughness'].d
 fus = bpy.data.objects['fuselage']
 sc = bpy.context.scene
 bpy.context.view_layer.update()
-YC = 1.05                                                  # letter-block centre, metres behind the wing (wing trailing edge ~ -0.28)
+YC = 1.15                                                  # letter-block centre, metres behind the wing (wing trailing edge ~ -0.28)
 ok_t, top, *_ = fus.ray_cast(Vector((0, YC, 9)), Vector((0, 0, -1)))
 ok_b, bot, *_ = fus.ray_cast(Vector((0, YC, -9)), Vector((0, 0, 1)))
 zt, zb = top.z, bot.z
-LH = min(.30, .42 * (zt - zb)); zc = zb + .56 * (zt - zb)
+LH = min(.26, .42 * (zt - zb)); zc = zb + .56 * (zt - zb)
+def densify(me, n=2):
+    """flat text faces span the curved skin: split them fine so the shrinkwrap lays every letter part ON the skin (else long strokes sink)"""
+    bm = bmesh.new(); bm.from_mesh(me); bmesh.ops.triangulate(bm, faces=bm.faces[:])
+    for _ in range(n): bmesh.ops.subdivide_edges(bm, edges=bm.edges[:], cuts=1, use_grid_fill=True)
+    bm.to_mesh(me); bm.free()
+
+
+def project(me, target, side):
+    """lay the letters on the skin: every vertex is moved along X onto the first hit of target seen from outside, keeping the
+    1.5 mm raised depth (+3 mm clearance). Replaces a shrinkwrap, which sank letters where the asset's skin normals point inward."""
+    xs = [v.co.x for v in me.vertices]; base = min(xs) if side > 0 else max(xs)
+    for v in me.vertices:
+        ok, hit, *_ = target.ray_cast(Vector((side * 6, v.co.y, v.co.z)), Vector((-side, 0, 0)))
+        if ok: v.co.x = hit.x + side * (.003 + abs(v.co.x - base))
+    me.update()
+
+
 reg_objs = []
 for side in (1, -1):
     ok, hit, *_ = fus.ray_cast(Vector((side * 5, YC, zc)), Vector((-side, 0, 0)))
@@ -172,11 +189,8 @@ for side in (1, -1):
     me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get())); bpy.data.objects.remove(t)
     me.name = 'reg_' + ('L' if side > 0 else 'R'); t = bpy.data.objects.new(me.name, me); sc.collection.objects.link(t)
     R = Matrix(((0, 0, 1), (1, 0, 0), (0, 1, 0))) if side > 0 else Matrix(((0, 0, -1), (-1, 0, 0), (0, 1, 0)))
-    me.transform(Matrix.Translation((hit.x + side * .01, YC, zc)) @ R.to_4x4())
-    me.materials.append(red)
-    sw = t.modifiers.new('wrap', 'SHRINKWRAP'); sw.target = fus; sw.wrap_method = 'NEAREST_SURFACEPOINT'; sw.offset = .003
-    sw.wrap_mode = 'OUTSIDE_SURFACE'
-    bpy.context.view_layer.objects.active = t; t.select_set(True); bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
+    densify(me); me.transform(Matrix.Translation((hit.x + side * .01, YC, zc)) @ R.to_4x4())
+    me.materials.append(red); project(me, fus, side)
     reg_objs.append(t)
 reg_len = len(REG) * LH * .8
 # fin letters: target = fin + rudder joined (temporary), letter block fitted to the chord at 40 % fin height
@@ -198,9 +212,7 @@ for side in (1, -1):
     me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get())); bpy.data.objects.remove(t)
     me.name = 'reg_fin_' + ('L' if side > 0 else 'R'); t = bpy.data.objects.new(me.name, me); sc.collection.objects.link(t)
     R = Matrix(((0, 0, 1), (1, 0, 0), (0, 1, 0))) if side > 0 else Matrix(((0, 0, -1), (-1, 0, 0), (0, 1, 0)))
-    me.transform(Matrix.Translation((hit.x + side * .01, ycf, zf)) @ R.to_4x4()); me.materials.append(red)
-    sw = t.modifiers.new('wrap', 'SHRINKWRAP'); sw.target = tgt; sw.wrap_method = 'NEAREST_SURFACEPOINT'; sw.offset = .003; sw.wrap_mode = 'OUTSIDE_SURFACE'
-    bpy.context.view_layer.objects.active = t; t.select_set(True); bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
+    densify(me); me.transform(Matrix.Translation((hit.x + side * .01, ycf, zf)) @ R.to_4x4()); me.materials.append(red); project(me, tgt, side)
     reg_objs.append(t)
 bpy.data.objects.remove(tgt, do_unlink=True)
 fin_letter_h = LHF
@@ -234,8 +246,12 @@ def dup(ob, name):
 
 
 def bbox(ob):
-    v = [ob.matrix_world @ Vector(c) for c in ob.bound_box]
-    return Vector([min(p[i] for p in v) for i in range(3)]), Vector([max(p[i] for p in v) for i in range(3)])
+    """from the vertices (o.bound_box is stale right after a bmesh edit); empties -> their location"""
+    if ob.type != 'MESH' or not len(ob.data.vertices):
+        return Vector(ob.location), Vector(ob.location)
+    co = np.empty(len(ob.data.vertices) * 3); ob.data.vertices.foreach_get('co', co); co = co.reshape(-1, 3)
+    M = np.array(ob.matrix_world); co = co @ M[:3, :3].T + M[:3, 3]
+    return Vector(co.min(0)), Vector(co.max(0))
 
 
 def tris(objs):
@@ -278,7 +294,7 @@ print('INTACT', meta['intact']['objects'], 'objects', meta['intact']['tris'], 't
 wing_L = bpy.data.objects['wing_L']; wlo, whi = bbox(wing_L)
 root_x = .30 * K / 1.0                    # 0.30 asset units from the centre = just outside the cabin
 chord_y = np.linspace(wlo.y - .01, whi.y + .01, 6)
-steps = [.06, .19, .11, .23, .14]          # each chord strip is cut at its own length: the stepped edge of bitten squares
+steps = [.10, .38, .20, .46, .26]          # each chord strip is cut at its own length: the stepped edge of bitten squares
 stub = []
 for i in range(5):
     s = dup(wing_L, f'wing_L_stub_{i}')
@@ -321,6 +337,8 @@ for i in range(N_SLICES):
     zmin = min(bbox(s)[0].z for s in objs)
     row = dict(slice=i, y0=round(cuts[i] + i * GAP, 3), y1=round(cuts[i + 1] + i * GAP, 3), parts=len(objs), tris=tris(objs),
                stands_on='wheel' if zmin < .03 else 'sawhorse')
+    tyre_y = [bbox(s)[1].y - bbox(s)[0].y for s in objs if 'tyre' in s.name and bbox(s)[0].z < .03]
+    if not tyre_y or max(tyre_y) < .15: zmin = max(zmin, .03); row['stands_on'] = 'sawhorse'   # a sliver of tyre cannot carry a slice
     if zmin >= .03:   # no wheel under it: a wooden sawhorse under the fuselage keel of this slice
         ym = (cuts[i] + cuts[i + 1]) / 2
         ok, loc, *_ = sc.ray_cast(bpy.context.evaluated_depsgraph_get(), Vector((0, ym, -1)), Vector((0, 0, 1)))

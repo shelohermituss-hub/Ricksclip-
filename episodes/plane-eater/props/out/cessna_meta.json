@@ -14,13 +14,13 @@
  },
  "navy_share_of_paint_texture": 0.2376,
  "fin_texels_whitened": 37741,
- "reg_letter_h_m": 0.265,
+ "reg_letter_h_m": 0.258,
  "fin_letter_h_m": 0.2,
- "reg_block_len_m": 1.27,
- "fuselage_h_at_letters_m": 0.63,
+ "reg_block_len_m": 1.24,
+ "fuselage_h_at_letters_m": 0.61,
  "intact": {
   "objects": 75,
-  "tris": 173052,
+  "tris": 185052,
   "parts": [
    "aileron_L",
    "aileron_R",
@@ -116,13 +116,13 @@
    "wing_L_stub_4",
    "wing_L_panel_ground"
   ],
-  "tris": 168970,
+  "tris": 180972,
   "stub_steps_m": [
-   0.06,
-   0.19,
-   0.11,
-   0.23,
-   0.14
+   0.1,
+   0.38,
+   0.2,
+   0.46,
+   0.26
   ]
  },
  "sliced": {
@@ -135,7 +135,8 @@
     "y1": -2.89,
     "parts": 12,
     "tris": 22026,
-    "stands_on": "wheel"
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.944
    },
    {
     "slice": 1,
@@ -151,7 +152,8 @@
     "y1": -0.755,
     "parts": 30,
     "tris": 45104,
-    "stands_on": "wheel"
+    "stands_on": "sawhorse",
+    "sawhorse_top_z": 0.5
    },
    {
     "slice": 3,
@@ -175,7 +177,7 @@
     "y0": 1.601,
     "y1": 2.448,
     "parts": 5,
-    "tris": 3644,
+    "tris": 7972,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.467
    },
@@ -184,7 +186,7 @@
     "y0": 2.668,
     "y1": 3.516,
     "parts": 5,
-    "tris": 2710,
+    "tris": 4558,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.684
    },
@@ -193,7 +195,7 @@
     "y0": 3.736,
     "y1": 4.584,
     "parts": 10,
-    "tris": 4140,
+    "tris": 6850,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.871
    },
@@ -202,12 +204,12 @@
     "y0": 4.804,
     "y1": 5.651,
     "parts": 9,
-    "tris": 6806,
+    "tris": 10172,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.825
    }
   ],
-  "tris": 191568,
+  "tris": 203964,
   "stages": "eaten stage k = hide slice_{8..9-k} (tail first); last piece = s0_spinner"
  }
 }
