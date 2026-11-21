@@ -5,8 +5,9 @@
 - RULES: CB_RULES.md (the one rule book), SKILL.md (the lean how-to). STEP 0 before every film: read CB_RULES + SKILL.md + this section, run `python tools/refresh_installed_skill.py`, say "Skill checked, up to date".
 - SOUND: library folders set in `templates/sound_kit/sound_config.json`: `sound_pack/sfx`, `sound_pack/music` (free Sound Pack V1.2, 625 files). Index built by `tools/cloud_setup.sh`.
 - VOICE: Fish Audio through `tools/fish_tts.py` (key added by the cloud proxy); voice name: "rick" (bf223ba8059343d6b32bc1cbe0b4a586).
-- FILMS IN WORK: "Why Fire Trucks Turned Yellow" (episodes/yellow-fire-trucks/), Ultra, Guided mode. Script and voice approved (63.25 s). Picture plan, creative, look bible written. 2026-11-20: Blender back with ready-made assets (CB_RULES section 3), final render on RunPod.
+- FILMS IN WORK: PAUSED 2026-11-21 by the user (to do a private Rick look-match exercise first): "Why Fire Trucks Turned Yellow" (episodes/yellow-fire-trucks/), Ultra, Guided mode. Script and voice approved (63.25 s). Picture plan, creative, look bible written. 2026-11-20: Blender back with ready-made assets (CB_RULES section 3), final render on RunPod.
 - OPEN QUESTIONS: none.
+- PRIVATE EXERCISE 2026-11-21 (user): reproduce Rick's scene "He Crashed His Own Car For Science" 13-25 s with our pipeline and cast, to learn his render, camera and timing. Folder references/look_match/car_science/ (git-ignored, never published, never in a film). Findings so far: references/reports/rick_grade_2026-11-21/ (grade numbers), the pink-cell calibration (clean flat pastel materials, built objects with bevels and bolts, thin dark outline on objects not walls, soft enveloping light, low contrast).
 
 ## How Claude writes a film section here (newest first)
 ```
