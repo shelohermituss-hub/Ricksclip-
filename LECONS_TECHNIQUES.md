@@ -16,6 +16,14 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Cessna F-MIAM (plane-eater) : quatre pièges Blender sur un modèle téléchargé — FERMÉ
+- o.bound_box est périmé juste après une modification bmesh : lire les coordonnées des sommets.
+- Shrinkwrap OUTSIDE_SURFACE enfonçait les lettres dans ce modèle (normales vers l'intérieur) : projection rayon par sommet à la place.
+- Un texte plat posé sur une coque courbe doit être densifié avant la projection, sinon il traverse la coque.
+- Le Python de Blender n'a pas PIL : les images se font hors de Blender (déjà noté en REGLES 3).
+- Preuve : props/HERO_SHEET.jpg, lettres F-MIAM nettes sur la dérive et le fuselage.
+- Personnages (plane-eater) : un motif de dos défini dans le fichier du film ne s'affiche pas en vue de dos ; il passe par un crochet « dos seulement » (cast/STATE.md).
+
 ## 2026-11-21 — Image test du style Rick : six pièges d'assemblage Blender (episodes/_style_test) — FERMÉ
 - Personnage caché derrière la voiture : une caméra à 0,9 m est sous la ligne du capot (1,04 m), tout ce qui est derrière sous ~1,05 m disparaît. Correction : personnage sur la pelouse devant. Garde-fou : le mode info d'assemble.py écrit la part visible de chaque carte (> 0,8 exigé). Preuve : 0,21 → 0,94.
 - Voiture tournée à l'envers : rot_z +a tourne l'avant -Y vers +X, l'inverse du plan. Correction : rot_z = -YAW. Garde-fou : coins de la voiture à l'écran (l'avant doit être à gauche).
