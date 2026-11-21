@@ -45,10 +45,10 @@ SET_LINE = {n for n in SET_LINE_NAMES if n in sc.objects}
 print('SET_LINE objects', len(SET_LINE))
 print('TREE_MATS', [m.name for m in bpy.data.materials if 'tree' in m.name.lower() or 'leaf' in m.name.lower()])
 
-# mailbox: onto the right lawn (the LAYOUT point lands on the drive and behind the kid); set local (2.25, -3.3) -> world
+# mailbox: onto the right lawn near the lens, right edge, clear of grandpa (the LAYOUT point lands on the drive); set local (2.5, -4.0) -> world
 SM = json.load(open(os.path.join(EP, 'set', 'set_meta.json'))); RW = Matrix(SM['root_matrix_world'])
 mb = bpy.data.objects.get('mailbox')
-if mb: mb.location = (RW @ Vector((2.25, -3.3, 0))).to_3d(); mb.location.z = 0; mb.rotation_euler.z = math.radians(180 - 26)
+if mb: mb.location = (RW @ Vector((2.5, -4.0, 0))).to_3d(); mb.location.z = 0; mb.rotation_euler.z = math.radians(180 - 26)
 
 # ---------------- camera (LAYOUT)
 C = LAY['camera']; cam = bpy.data.objects.new('cam', bpy.data.cameras.new('cam')); sc.collection.objects.link(cam); sc.camera = cam
@@ -74,12 +74,12 @@ def card_mat(name, img, strength):
     tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader'); L.new(tx.outputs['Alpha'], mx.inputs['Fac']); L.new(tr.outputs[0], mx.inputs[1]); L.new(em.outputs[0], mx.inputs[2])
     out = N.new('ShaderNodeOutputMaterial'); L.new(mx.outputs[0], out.inputs['Surface']); return m
 
-def card_mesh(name, c, mpp):
-    W, H = c['size_px']; fx, fy = c['foot_point_px']
-    me = bpy.data.meshes.new(name); x0, x1 = -fx * mpp, (W - fx) * mpp; z0, z1 = -(H - fy) * mpp, fy * mpp
+def card_mesh(name, c, mpp, row_top=0, row_bot=None):
+    W, H = c['size_px']; fx, fy = c['foot_point_px']; row_bot = H if row_bot is None else row_bot
+    me = bpy.data.meshes.new(name); x0, x1 = -fx * mpp, (W - fx) * mpp; z0, z1 = (fy - row_bot) * mpp, (fy - row_top) * mpp
     me.from_pydata([(x0, 0, z0), (x1, 0, z0), (x1, 0, z1), (x0, 0, z1)], [], [(0, 1, 2, 3)])
-    uv = me.uv_layers.new(name='UVMap')
-    for li, (u, v) in enumerate([(0, 0), (1, 0), (1, 1), (0, 1)]): uv.data[li].uv = (u, v)
+    uv = me.uv_layers.new(name='UVMap'); v0, v1 = 1 - row_bot / H, 1 - row_top / H
+    for li, (u, v) in enumerate([(0, v0), (1, v0), (1, v1), (0, v1)]): uv.data[li].uv = (u, v)
     return me
 
 CARDS, SHADOWS, HIDE_EXTRA = [], [], []
@@ -94,6 +94,15 @@ for who in ('grandpa', 'kid'):
     sh.visible_camera = False; sh.visible_glossy = False; sh.visible_diffuse = False; sh.visible_transmission = False; sh.visible_shadow = True; SHADOWS.append(sh)
     bpy.context.view_layer.update()
     CARD[who] = dict(obj=o, mpp=mpp, c=c, img=img)
+    if who == 'kid':
+        # the kid's UPPER card (above the knees) is pushed back along the lens rays (same picture on screen) so the water leaving the nozzle
+        # and the nozzle itself sit in front of his body; the legs stay on the ground plane (feet keep their contact)
+        SPLIT = int(os.environ.get('KID_SPLIT', '1080')); PUSH = float(os.environ.get('KID_PUSH', '0.9'))
+        o.data = card_mesh('card_kid_legs', c, mpp, SPLIT, None); o.data.materials.append(me.materials[0])
+        up = bpy.data.objects.new('CARD_kid_upper', card_mesh('card_kid_upper', c, mpp, 0, SPLIT + 2)); up.data.materials.append(me.materials[0])
+        sc.collection.objects.link(up); up.matrix_world = o.matrix_world.copy(); d0 = (o.location - CAMP).xy.length; k_ = (d0 + PUSH) / d0
+        up.location = CAMP + (o.location - CAMP) * k_; up.scale = (k_, k_, k_)
+        up.pass_index = 1; up.visible_diffuse = False; up.visible_shadow = False; CARDS.append(up)
 
 def card_pt(who, px, toward_cam=0.0):
     k = CARD[who]; o = k['obj']; fx, fy = k['c']['foot_point_px']
@@ -128,7 +137,7 @@ def contact(who, rad, dark):
     mx2 = N.new('ShaderNodeMixShader'); L.new(mul.outputs[0], mx2.inputs['Fac']); L.new(trn.outputs[0], mx2.inputs[1]); L.new(dk.outputs[0], mx2.inputs[2])
     o2 = N.new('ShaderNodeOutputMaterial'); L.new(mx2.outputs[0], o2.inputs['Surface']); cp.data.materials.append(pm); cp.visible_shadow = False
     HIDE_EXTRA.append(cp)
-contact('kid', .32, .85); contact('grandpa', .5, .45)
+contact('kid', .32, .85); contact('grandpa', .42, .8)
 
 # ---------------- water material (clear, glassy) + mist; wet film + foam re-shaded
 def water_mat():
@@ -147,12 +156,12 @@ if wf:
 foam = bpy.data.materials.get('soap_foam')
 if foam:
     b = [n for n in foam.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'][0]
-    b.inputs['Base Color'].default_value = (0.93, 0.95, 0.98, 1); b.inputs['Roughness'].default_value = 0.12
-    b.inputs['Subsurface Weight'].default_value = 0.6; b.inputs['Subsurface Radius'].default_value = (0.02, 0.02, 0.025)
-    b.inputs['Transmission Weight'].default_value = 0.35; b.inputs['IOR'].default_value = 1.33
-# foam: flatten the hood bubbles into low suds (merged look, not white balls)
+    b.inputs['Base Color'].default_value = (0.95, 0.96, 0.98, 1); b.inputs['Roughness'].default_value = 0.3
+    b.inputs['Subsurface Weight'].default_value = 0.15; b.inputs['Subsurface Radius'].default_value = (0.01, 0.01, 0.012)
+    b.inputs['Transmission Weight'].default_value = 0.0; b.inputs['Coat Weight'].default_value = 0.6
+# foam: the lens (1.0 m) sees the hood nearly edge-on, so the suds are heaped up: bubbles bigger and overlapping (one mass, not loose balls)
 for o in list(bpy.data.objects):
-    if o.name.startswith('car_foam_'): o.scale.z *= 0.55; o.scale.x *= 1.25; o.scale.y *= 1.25
+    if o.name.startswith('car_foam_'): o.scale = (o.scale.x * 1.9, o.scale.y * 1.9, o.scale.z * 1.7)
 
 # ---------------- hose + nozzle re-made for the final kid card: coupling at his back fist (pistol grip), barrel through his front fist
 WCOLL = bpy.data.collections.new('water'); sc.collection.children.link(WCOLL)
@@ -167,13 +176,16 @@ for s in np.linspace(1.0, 1.8, 161):
 D = (best[2] - gb_).normalized(); NSC = 1.35
 F = HT._frame(D); O = gb_ - (F @ Vector((0.03, 0, -0.06))) * NSC
 NSC = max(NSC, ((best[2] - O).dot(D) + 0.06) / 0.165); O = gb_ - (F @ Vector((0.03, 0, -0.06))) * NSC
-pts = [[1.08, 4.84, 0.28], [1.08, 4.7, 0.06], [1.1, 4.58, 0.011], [1.22, 4.45, 0.011], [1.26, 4.4, 0.011], [1.2, 4.32, 0.011], [0.8, 4.6, 0.011],
-       [-0.4, 4.75, 0.011], [-1.25, 5.25, 0.011], [-1.15, 6.05, 0.011], [-0.85, 6.1, 0.05]]
-pts += [list(O - D * 0.22 + Vector((0, 0, -0.25))), list(O - D * 0.12 - Vector((0, 0, 0.04))), list(O)]
-rad = [1, 1, 1, .7, .45, .7, 1, 1, 1, 1, 1, 1, 1, 1]
+KP = Vector(LAY['kid']['pos']); BK = (KP - CAMP); BK.z = 0; BK.normalize(); RT = Vector((BK.y, -BK.x, 0))
+gb0 = card_pt('kid', nz['grip_back_px'], 0.0)
+pts = [[1.08, 4.84, 0.28], [1.08, 4.7, 0.06], [1.1, 4.58, 0.011], [1.22, 4.45, 0.011], [1.26, 4.4, 0.011], [1.2, 4.32, 0.011], [0.75, 4.75, 0.011],
+       list(KP + BK * 0.35 + RT * 0.55 + Vector((0, 0, .011))), list(KP + BK * 0.3 + RT * 0.05 + Vector((0, 0, .011))),
+       list(KP + BK * 1.05 + Vector((0, 0, .36))), list(CAMP + (gb0 - CAMP) * (((gb0 - CAMP).length + 1.0) / (gb0 - CAMP).length) - Vector((0, 0, .05))),
+       list(O - D * 0.07), list(O)]
+rad = [1, 1, 1, .7, .45, .7, 1, 1, 1, 1, 1, 1, 1]
 hose, nparts = HT.make_hose(pts, radii=rad, coll=HCOLL)
 for p in nparts: p.matrix_world = Matrix.Translation(O) @ Matrix.Scale(NSC, 4) @ Matrix.Translation(-O) @ p.matrix_world
-TIP = O + D * 0.165 * NSC
+TIP = O + D * 0.15 * NSC
 # arc: parabola from TIP to grandpa whose start slope equals the barrel's (bisection on the apex height)
 L_ = (G_TGT.xy - TIP.xy).length; want = D.z / max(1e-4, D.xy.length)
 def slope(h):
