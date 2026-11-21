@@ -17,3 +17,4 @@ Weak / open:
 - Places now: apron at the hangar, X-ray room, airliner cabin (records stage dropped: the certificate comes under the dessert cloche). Ending: tray table bitten, the window shows the airliner wing with a bite missing, loops to frame 0.
 - Extremes 3 (mattress lining, two-year beard time-lapse, dessert cake). Power 4. CLOSE 7 (18 %). STILLNESS moved to 31.82-32.28 (sniff of the airline meal).
 - Open: no refs/ board; the cake and the cabin are new sets; new faces needed: chew with cheek bulge, disgust, jaw drop.
+- 2026-11-21 Reference pack: REF_PACK.md (text). Rick frames and boards are private in references/look_match/plane-eater/refs/ (git-ignored).
