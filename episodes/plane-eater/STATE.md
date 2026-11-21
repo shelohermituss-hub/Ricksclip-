@@ -18,3 +18,4 @@ Weak / open:
 - Extremes 3 (mattress lining, two-year beard time-lapse, dessert cake). Power 4. CLOSE 7 (18 %). STILLNESS moved to 31.82-32.28 (sniff of the airline meal).
 - Open: no refs/ board; the cake and the cabin are new sets; new faces needed: chew with cheek bulge, disgust, jaw drop.
 - 2026-11-21 Reference pack: REF_PACK.md (text). Rick frames and boards are private in references/look_match/plane-eater/refs/ (git-ignored).
+- 2026-11-21 USER DECISIONS: (1) certificate "STRANGEST DIET EVER" + book "BOOK OF RECORDS" with NO Guinness logo (the name is only spoken); (2) ADD a "Don't try this at home" card: small printed warning sign in the world (a hazard-style plaque on the hangar wall / the dessert trolley), readable on the first eating shots (rows 3-8), plus the same words in the YOUTUBE.md description. Lead's choice of placement; the user did not name one.
