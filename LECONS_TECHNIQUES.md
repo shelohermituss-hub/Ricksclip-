@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Le suivi de caméra de Blender ne tourne qu'avec un écran virtuel, et son point principal est normalisé en Blender 5 (projet privé car_science) — FERMÉ
+- Problème : les outils de suivi (bpy.ops.clip) échouaient en mode batch ; ensuite toutes les résolutions de caméra étaient fausses.
+- Cause réelle : les opérateurs du suivi demandent un éditeur de clip, donc une fenêtre ; et en Blender 5 le point principal de la caméra de suivi est normalisé (0 = centre), alors qu'on le donnait en pixels.
+- Correction : lancer Blender sous Xvfb (écran virtuel) pour le suivi ; donner le point principal en coordonnées normalisées.
+- Garde-fou : vérifier l'erreur médiane de reprojection après chaque résolution (attendu sous 1 px).
+- Preuve : 0,22 px de reprojection médiane après correction ; plan S3 résolu à 0,50 px.
+
 ## 2026-11-21 — Le client Python de la machine RunPod recevait 403 alors que curl passait (proxy RunPod) — FERMÉ
 - Problème : HTTP 403 à chaque appel de tools/runpod/pod.py, alors que curl obtenait 200 sur la même adresse avec le même jeton.
 - Cause réelle : le proxy de RunPod refuse l'User-Agent par défaut « Python-urllib » (même piège que Poly Haven le même jour).
