@@ -90,3 +90,4 @@ library/**/downloads/
 library/trees/tex/
 library/trees/out/
 episodes/plane-eater/props/tiles/
+episodes/*/props/logs/
