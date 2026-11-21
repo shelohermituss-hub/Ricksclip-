@@ -16,6 +16,18 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — truck_api (yellow-fire-trucks, carte) — FERMÉ
+- truck_api.set_paint(masking=False) on truck_light.blend: AssertionError mask_paper missing. Cause: the light truck has no mask materials (bl_light removed them with no fake user). Fix: masking=None (leave the masks as saved). Guard: bl_map.py calls set_paint(masking=None); build stops on Traceback. Proof: logs/map.log MAP_DONE. FERMÉ
+
+## 2026-11-21 — 94 truck_light copies would be 94 x 161 draw calls (15 k) and 3 (yellow-fire-trucks, carte) — FERMÉ
+- 94 truck_light copies would be 94 x 161 draw calls (15 k) and 3.3 M tris in the kit. Cause: the glTF truck is 161 meshes / 34 materials. Fix: map_truck_tiny.glb (joined, 4 materials, 4 k tris) drawn as 4 InstancedMesh with per-instance paint colour. Guard: PHFD_MAP line prints meshes/trucks/tris. Proof: 615,888 tris, 600 meshes, 1.1-7 s/frame. FERMÉ
+
+## 2026-11-21 — matplotlib is not installed (point-in-polygon) (yellow-fire-trucks, carte) — FERMÉ
+- matplotlib is not installed (point-in-polygon). Fix: a 50 px/m PIL raster of the states as the inside test (tex_map.inside_us_fn). FERMÉ
+
+## 2026-11-21 — DejaVuSerif-Italic is not in the image (OSError cannot open resource) (yellow-fire-trucks, carte) — FERMÉ
+- DejaVuSerif-Italic is not in the image (OSError cannot open resource). Fix: LiberationSerif-Italic. Guard: fonts are absolute paths at the top of tex_map.py. FERMÉ
+
 ## 2026-11-21 — Les camions de Dallas gardaient le lettrage « ENGINE No. 1 » (yellow-fire-trucks, décor Dallas) — FERMÉ
 - Problème : log LETTERS_FAIL, clé "truck_letters_dal14" introuvable.
 - Cause réelle : truck_api.append_truck n'ajoute que la collection TRUCK ; les images de lettrage supplémentaires restent dans truck.blend.

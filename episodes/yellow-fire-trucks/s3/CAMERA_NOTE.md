@@ -3,7 +3,7 @@ Built from the BUILT set (sets/town/out/town_meta.json + town_STORY.md): Main St
 bar on Elm northbound at y -6.2..-6.6 (x 22..26.5, the van's lane), the sodium lamp on the SE corner (25.3, -6.95, 7.05). Asphalt z 0. Camera v2, lens in mm on a 36 mm tall frame.
 Staging (sets/s3_crossing.js S3, make_film.py): the red pumper races WEST along Main in the south lane (y -4.0) out of the long dark stretch with no lamp, brakes hard
 and stops nose x 25.1; the milk van (nose north, x 24.3) creeps to the bar (f475-505), rolls on "kept" (f554-569) and its front RIGHT corner meets the truck's
-bumper on "hit" (f569) at (25.05, -4.9). The Milkman stands at the wheel inside the open door (west side); the Sceptic drives (driver side = south).
+bumper on "hit" (f569) at (25.05, -4.9). The Milkman stands at the wheel in the open door (west side, card at van x -0.8); the Sceptic drives (driver side = south).
 After the bump the Milkman climbs out and stands in front of the truck's nose, north of his van (23.8, -3.3).
 
 ## One flowing idea: "the corner he pulls out from"
@@ -14,7 +14,7 @@ beacons to the man, and ends low in front of the truck nose, tilting up the thin
 | # | at (f) | pos -> aim (plan m) | lens | move id | rows | why, from this scene |
 |---|---|---|---|---|---|---|
 | A | 474 | (20.5,-5.1,1.3) -> (58,-4,1.7) | 50 | M09 push-in match (piece 11), then lens widens | 14 | the toy truck of S2 becomes the real truck: down the dark street on a long lens, dull and heavy |
-| B | 508, rest to ~547 | (20.4,-5.0,1.25) -> (30,-8.6,1.2) | 22 | M00 living rest | 14-15 | Milkman at the wheel in the open door, the white bar, truck far down Main behind him: look left on "dusk", right on "red" |
+| B | 508, rest to ~547 | (20.4,-5.0,1.25) -> (30,-9.0,1.15) | 19 | M00 living rest | 14-15 | Milkman at the wheel in the open door, the white bar, truck far down Main behind him: look left on "dusk", right on "red" |
 | C | 569 (via) | (22.4,-2.9,0.6) -> (25.1,-4.9,0.9) | 22 | M03 hit on object, low | 16 | the camera drops low onto the two bumpers for the bump; impact frame, hubcap leaves toward the lens |
 | D | 613, rest | (23.3,-2.4,2.9) -> (26.3,-4.0,2.5) | 26 | M13 rise up the object | 17 | the rise up the stopped truck lands on the roof line: four sirens with sound rings, the bell below |
 | E | 643 (via) | (21.2,-3.2,1.05) -> (25.0,-5.6,1.75) | 20 | M02 sink | 18 | on the way down: beacons at the top, the Milkman small behind his windscreen |

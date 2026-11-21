@@ -1,16 +1,16 @@
 {
  "stills": {
   "blender_wide": {
-   "edge": 0.0949,
-   "brightness": 0.535,
-   "saturation": 0.262,
-   "sec_per_frame": 52.1
+   "edge": 0.1245,
+   "brightness": 0.546,
+   "saturation": 0.258,
+   "sec_per_frame": 57.2
   },
   "kit_wide": {
-   "edge": 0.0975,
-   "brightness": 0.516,
-   "saturation": 0.459,
-   "sec_per_frame": 7.1
+   "edge": 0.1236,
+   "brightness": 0.464,
+   "saturation": 0.496,
+   "sec_per_frame": 1.7
   },
   "blender_station_open": {
    "edge": 0.1631,
@@ -25,16 +25,16 @@
    "sec_per_frame": 1.9
   },
   "blender_dallas": {
-   "edge": 0.1285,
-   "brightness": 0.646,
-   "saturation": 0.239,
-   "sec_per_frame": 66.6
+   "edge": 0.1395,
+   "brightness": 0.693,
+   "saturation": 0.23,
+   "sec_per_frame": 56.5
   },
   "kit_dallas": {
-   "edge": 0.1252,
-   "brightness": 0.611,
-   "saturation": 0.319,
-   "sec_per_frame": 3.9
+   "edge": 0.142,
+   "brightness": 0.66,
+   "saturation": 0.294,
+   "sec_per_frame": 3.5
   },
   "blender_pine_sink": {
    "edge": 0.2731,
@@ -52,25 +52,25 @@
  "gate": {
   "blender": {
    "edges": [
-    0.0949,
+    0.1245,
     0.1631,
-    0.1285,
+    0.1395,
     0.2731
    ],
-   "median": 0.1458,
-   "min": 0.0949,
+   "median": 0.1513,
+   "min": 0.1245,
    "PASS": true
   },
   "kit": {
    "edges": [
-    0.0975,
+    0.1236,
     0.1431,
-    0.1252,
+    0.142,
     0.2608
    ],
-   "median": 0.1341,
-   "min": 0.0975,
-   "PASS": false
+   "median": 0.1426,
+   "min": 0.1236,
+   "PASS": true
   }
  }
 }

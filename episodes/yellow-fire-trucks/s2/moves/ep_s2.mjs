@@ -39,7 +39,7 @@ function heShop(t, ch) { const f = F(t) + 328, S = ch.sh[1], L = ch.armL, Wd = c
   const head = 2 + ring(f, 330, 2, 8) - 4 * (snap(f - W.eye, 4) - snap(f - 396, 10)) + 6 * (snap(f - W.knew, 8) - snap(f - W.red, 10)) + 3 * out - 7 * look;
   const m = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   const rest1 = { wx: Wd * .75, wy: ch.hipY - 14 }, rest0 = { wx: -Wd * .75, wy: ch.hipY - 14 };
-  const behind = { wx: -Wd * .35, wy: S - .75 * L }, lapel1 = { wx: Wd * .32, wy: ch.hipY - 38 + tug }, lapel0 = { wx: -Wd * .28, wy: ch.hipY - 38 + tug };
+  const behind = { wx: -Wd * .35, wy: S - .75 * L }, lapel1 = { wx: Wd * .62, wy: ch.hipY - 30 + tug }, lapel0 = { wx: -Wd * .58, wy: ch.hipY - 30 + tug };
   const brow = { wx: Wd * .12, wy: S - .7 * L - flick + ant }, lamp = { wx: Wd * .3 + .8 * L, wy: S - .1 * L }, far = { wx: Wd * .3 + .95 * L, wy: S - .16 * L };
   let h1 = m(behind, rest1, down); h1 = m(h1, lapel1, lap); h1 = m(h1, brow, rise); h1 = m(h1, lamp, lift); h1 = m(h1, far, out);
   const h0 = m(rest0, lapel0, lap);

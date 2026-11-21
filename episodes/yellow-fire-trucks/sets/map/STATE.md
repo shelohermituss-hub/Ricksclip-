@@ -2,7 +2,7 @@
 ## NOT done / still wrong (seen in the sheet)
 - No Rick frame in the repo: no side-by-side, no close-up 90 % check; numbers only against his measured bands (LOOK_BIBLE).
 - Saturation low: Blender 0.19-0.26 (< 0.30 day floor), kit 0.27-0.46. The pastel print + bleached sun wash out; the paper reads near white in Blender closes.
-- Kit wide edge below the 0.14 target in the first pass (0.098: half the frame was table and sky); re-aimed, see numbers below.
+- Wide still below 0.14 (.124 both): the portrait frame shows the table above and below the map. Dallas close: a near station roof blocks the lower left.
 - Not built: cloud shadows drifting (row 22), glint wave through the lime noses (row 25), air life (motes, shimmer), paper corner draught. Door wave and paint wave ARE built.
 - Kit: the tiny truck has 4 flat materials (no PBR paint patch, no letters); near closes (Dallas, Pine Hollow) show it; use assets.js buildTruck(light) there if it shows.
 - Station models are coded card boxes (~600 tris): no fold edges, roofs plain; the Pine Hollow model is the same model as all others (sign differs only).
@@ -19,7 +19,14 @@
 - Anchors (Z up, plan m): map_centre, pine_hollow_station, dallas_label, dallas_station, door_row [x,y,z,city] west->east (94), highway_path (Pine Hollow -> Little Rock ->
   Texarkana -> DALLAS, 31 points on the paper), title_block, compass, cities{}. I-35 and I-45 also reach the DALLAS dot from the south (the proof glide uses I-35).
 ## Numbers (proof/numbers.json; 540x960; Blender Cycles CPU 16 spp + OIDN, Standard; kit 2nd-frame seconds)
-NUMBERS_TABLE
+| cam | Blender edge / s | kit edge / s | note |
+|---|---|---|---|
+| wide | .124 / 57 | .124 / 1.7 | below .14: portrait frame of a 1.6:1 map shows table above and below |
+| station_open | .163 / 53 | .143 / 1.9 | door wave mid-way, red->lime |
+| dallas | .140 / 57 | .142 / 3.5 | a near station roof (bell) fills the lower left: re-aim in the stretch |
+| pine_sink | .273 / 101 | .261 / 1.1 | |
+GATE median: Blender .151 PASS, kit .143 PASS (target .14; none under .08). Brightness .46-.69 (above the .42-.50 band in closes), saturation above.
+Kit: 615,888 tris (241 k set + 94 x 4 k trucks), 600 meshes, load 1.5-2.4 s. Kit brass (bell, flag ball) renders black: no env map on GLB metals.
 ## LECONS (LECONS format; the lead copies them into LECONS_TECHNIQUES.md)
 - 2026-11-21 truck_api.set_paint(masking=False) on truck_light.blend: AssertionError mask_paper missing. Cause: the light truck has no mask materials (bl_light removed them
   with no fake user). Fix: masking=None (leave the masks as saved). Guard: bl_map.py calls set_paint(masking=None); build stops on Traceback. Proof: logs/map.log MAP_DONE. FERMÉ
