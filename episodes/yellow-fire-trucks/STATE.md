@@ -34,3 +34,4 @@
 - Hero truck = the 1940s American LaFrance asset (user's choice 2026-11-20, era kept as a cartoon licence); spray gun and compressor = the downloaded assets; final render in Blender on RunPod (CB_RULES section 3 "BLENDER IS BACK").
 - 2026-11-20 user "Ok continue": cast phase A (18 puppets, the four composed faces chiefShout, proudShut, peekOne, frozenWide) and the asset pack (props/ASSET_PACK.jpg) accepted. Lead rulings: an open mouth's pink interior is a face, not story red (as fake-surgery); the Chief's metal is silver.
 - Next: town set (yard, crossing, eye shop, park) assets-first in Blender + GLB for staging; missing truck gags (4 sirens, price card) + a light truck for rows; then the S1 hook in three.js and one Blender key frame.
+- 2026-11-21 user: no helmet-jump variant for the Chief ("Non cela prendrait trop de temps"): POWER 1 keeps the whole-Chief jump, the impact frame, the shockwave ring and the steam.
