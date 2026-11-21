@@ -13,8 +13,8 @@ const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x), cl = x => Math.ma
 // story numbers (plan metres, Z up). make_film.py uses the same (keep in step).
 export const S6 = {
   TY: -4.0,                                              // the south lane of Main (S3)
-  park: { tx0: 41.0, v: .085, f0: 1318, shaftX: 39.0, drain0: 1347, drain1: 1368, ball0: [36.6, -12.2, .11], ball1: [35.35, -9.75, .11], throwF: 1394, restF: 1412, greyF0: 1408, greyF1: 1414 },
-  cross: { vx: 24.3, vy: -7.6, tx0: 70.0, v: .489, f0: 1470, crate: [27.35, -7.55, .12], p4: 1556 },
+  park: { tx0: 41.0, v: .085, f0: 1318, shaftX: 39.0, drain0: 1347, drain1: 1368, ball0: [36.6, -12.2, .11], ball1: [35.6, -10.4, .11], throwF: 1394, restF: 1412, greyF0: 1408, greyF1: 1414 },
+  cross: { vx: 24.3, vy: -7.6, tx0: 60.0, v: .384, f0: 1470, crate: [27.35, -7.55, .12], p4: 1556 },
 };
 export const TXP = f => S6.park.tx0 - S6.park.v * (f - S6.park.f0);        // red pumper centre x in the park take (linear: the driver card follows it with one linear act)
 export const TXC = f => S6.cross.tx0 - S6.cross.v * (f - S6.cross.f0);     // lemon truck centre x at the crossing (linear, same reason)

@@ -192,3 +192,9 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   Guard: make_film.py and s1_yard.js both read one Z constant. Proof: key frames f0/f272 feet on the concrete.
 - 2026-11-20 (S1) render_gpu.mjs on CPU: --scale 0.5 costs the same ~11-14 s per frame as --scale 1 (the screenshot grab dominates). Measured on 1-4 frames.
   So a half-size timing pass saves nothing in this cloud; go to full size after the key frames.
+- 2026-11-21 (yellow-fire-trucks S1 fix round) A black square at f200 (S1 v1). Cause: steam age a = (E+1)/26 went above 1 while the sprite was still on, and
+  (1 - a) ** 1.1 of a negative number is NaN -> NaN opacity draws black. Fix: a clamped to 0..1, steam off at E 25. Guard: comment in s1/sets/s1_yard.js;
+  rule: never raise a value that can go negative to a fractional power in an effect. Proof: re-rendered f195-205 (S1 fix round).
+- 2026-11-21 (same fix) My edit added a "//" comment in the middle of the one-line steam forEach and swallowed `const ang = ...` (ReferenceError, every frame
+  failed). tools/check_midline_comments.py did NOT flag it (the swallowed text "const ang = (i / 16) * ..." ends without ";" on that line, so CODE_AFTER_JS
+  misses it). Fix: comment moved to its own line. Guard: `node --check` is not enough either (it parses); render one frame after every set-module edit.

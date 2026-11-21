@@ -37,10 +37,10 @@ held3d = [dict(who='clerk', obj='chalk', module='sets/s5_dallas.js', builder='bu
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
-S1P, S1A = [1.0, 4.8, 1.25], [-0.7, 11.5, 1.8]
+S1P, S1A = [1.35, 4.1, 1.3], [-0.7, 12.0, 2.1]
 stations = [
-    st(0, S1P, S1A, 20, 'clerk', 'W', 'lead-in anchor (frames before 969 are not rendered): holds the opening framing so the S5 take starts at 969', hold=0),
-    st(F0, S1P, S1A, 20, 'clerk', 'W', 'ROWS 28-33 (PLACE + ACT, M12 land, then ONE long living rest with a slow creep in): S4 lands low in front of the boards: DALLAS FIRE DEPT. over both bays, the Clerk at the RED board, LIME beside him; "ran": the trucks roll out and stop nose level; "four": leaves drop, plasters pop; "counted": the ticks, the plastered red fender behind him; the stool; board 2', hold=4.9, creep=0.0018, shows=['sign', 'board_red', 'board_lime', 'calendar']),
+    st(0, S1P, S1A, 19, 'clerk', 'W', 'lead-in anchor (frames before 969 are not rendered): holds the opening framing so the S5 take starts at 969', hold=0),
+    st(F0, S1P, S1A, 19, 'clerk', 'W', 'ROWS 28-33 (PLACE + ACT, M12 land, then ONE long living rest with a slow creep in): S4 lands low in front of the boards: DALLAS FIRE DEPT. over both bays, the Clerk at the RED board, LIME beside him; "ran": the trucks roll out and stop nose level; "four": leaves drop, plasters pop; "counted": the ticks, the plastered red fender behind him; the stool; board 2', hold=4.9, creep=0.0018, shows=['sign', 'board_red', 'board_lime', 'calendar']),
     st(1172, [0.85, 4.75, 2.1], [-0.8, 8.42, 6.75], 34, 'clerk', 'M', 'ROW 34 (EXPLAIN + EXTREME, M05 rise with him): the camera rises and tilts up the climb to UP TO 3x at the top of the third board; readable on "three"/"times"', hold=0.3, creep=0.0008, shows=['up_to_3x']),
     st(1202, [0.15, 4.85, 1.6], [-2.6, 8.3, 1.2], 26, 'headlamp', 'M', 'ROW 35 + S5 -> S6 join: his long look down leads the camera down past the short LIME board onto the RED truck chrome headlamp (S6 pushes in on "YOU" 1207)', hold=0.1, creep=0.0008, shows=['headlamp']),
 ]
