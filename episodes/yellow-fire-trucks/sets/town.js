@@ -1,6 +1,7 @@
 // town.js: PLACE A, the town of PINE HOLLOW, for the staging in the three.js kit (set-builder 2026-11-20). It loads the SAME world the final Blender
 // render uses: sets/town/out/town.glb (written by sets/town/build_town.sh next to town.blend; heavy trees and grass decimated for the kit only) and the
 // two trucks of sets/assets.js (hero in bay 1, the Chief's older red pumper in bay 2). Story and map: sets/town_STORY.md. Credits: assets/ASSETS.md.
+// lite: places.<name>.lite = true loads town_lite.glb (the fast staging copy; the final render stays on Blender's full town).
 // film.json:  "places": { "yard_am": { "set": "town", "kind": "am", "light": "morning", "light_over": <LIGHT.am>, "kit3d": { "envGround": "#8f8a7e" } } }
 //   kind 'am' | 'du' (the two LOOK_BIBLE lights; light_over values = export LIGHT, the same numbers as town_api.KIT_LIGHT in Blender)
 //   hero: buildTruck opts for the hero (default: AM half-sprayed + masking, DU lemon), chief: opts for the pumper (default red, aged), trucks: false = none
@@ -13,10 +14,11 @@ const DIR = new URL('./town/out/', import.meta.url).href;
 const META = await (await fetch(DIR + 'town_meta.json')).json();
 export const LIGHT = META.light;            // { am: {...}, du: {...} } for places.<name>.light_over
 export const ANCHORS = META.anchors;
-let GLTF = null;
+let GLTF = null, LITE = null;
 export async function build(THREE, scene, film, ctx) {
   const pl = ctx.place || {}, du = (pl.kind || 'am') === 'du', t0 = performance.now();
-  GLTF ||= await new GLTFLoader().loadAsync(DIR + 'town.glb');
+  const lite = !!(pl.lite || ctx.lite);   // lite: out/town_lite.glb, the staging copy (about 1 M tris instead of 16 M; build_town.sh makes it; trucks use the 35 k-tri truck_light.glb unless places.<name>.truckFull)
+  GLTF = lite ? (LITE ||= await new GLTFLoader().loadAsync(DIR + 'town_lite.glb')) : (GLTF ||= await new GLTFLoader().loadAsync(DIR + 'town.glb'));
   const root = GLTF.scene.clone(true); root.name = 'pine_hollow'; scene.add(root);     // glTF is Y up with Blender's -Y as +Z: the same map as B2T
   let tris = 0, meshes = 0; const lit = [], lamps = [], grass = [];
   root.traverse(o => {
@@ -44,9 +46,9 @@ export async function build(THREE, scene, film, ctx) {
     pt([A.station_door[0] + 1.9, A.station_door[1], 2.4], '#ffd49a', 6, 6); }
   let hero = null, chief = null;
   if (pl.trucks !== false) {
-    hero = await buildTruck(THREE, ctx, { ...(du ? { paint: 'lemon', masking: false, letters: 'over' } : { paint: 'half', edge: .3, masking: true, letters: 'under' }), wear: .25, ...(pl.hero || {}) });
+    hero = await buildTruck(THREE, ctx, { ...(du ? { paint: 'lemon', masking: false, letters: 'over' } : { paint: 'half', edge: .3, masking: true, letters: 'under' }), wear: .25, ...(lite && pl.truckFull !== true ? { light: true } : {}), ...(pl.hero || {}) });
     place(THREE, scene, ctx, hero, A.bay1_truck, 90);
-    chief = await buildTruck(THREE, ctx, { paint: 'red', masking: false, letters: 'over', wear: .9, drain: du ? 1 : 0, age: 1, sirens: 1, beaconRow: false, priceCard: false, ...(pl.chief || {}) });
+    chief = await buildTruck(THREE, ctx, { paint: 'red', masking: false, letters: 'over', wear: .9, drain: du ? 1 : 0, age: 1, sirens: 1, beaconRow: false, priceCard: false, ...(lite && pl.truckFull !== true ? { light: true } : {}), ...(pl.chief || {}) });
     place(THREE, scene, ctx, chief, A.bay2_truck, 90);
   }
   if (pl.card) {                                          // a flat cast stand-in for the detail gate (the real cast comes from film.json acts)
@@ -58,6 +60,6 @@ export async function build(THREE, scene, film, ctx) {
     card.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tx, alphaTest: .5 }); scene.add(card);
   }
   if (ctx.sky && ctx.sky.clouds && !du) scene.add(ctx.sky.clouds({ kind: 'clear-day', seed: 4 }));
-  console.warn('PHFD_TOWN ' + JSON.stringify({ kind: du ? 'du' : 'am', meshes, tris: Math.round(tris), load_ms: Math.round(performance.now() - t0) }));
+  console.warn('PHFD_TOWN ' + JSON.stringify({ lite, kind: du ? 'du' : 'am', meshes, tris: Math.round(tris), load_ms: Math.round(performance.now() - t0) }));
   return { anchors: A, hero, chief };
 }

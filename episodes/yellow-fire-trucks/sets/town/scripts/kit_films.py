@@ -7,7 +7,7 @@ W, H = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (540, 960)
 names = []
 for kind in ('am', 'du'):
     for cam, c in CAMS.items():
-        place = dict(set='town', kind=kind, light='morning' if kind == 'am' else 'golden', light_over=META['light'][kind], kit3d=dict(envGround='#8f8a7e' if kind == 'am' else '#5a4a66'))
+        place = dict(set='town', kind=kind, light='morning' if kind == 'am' else 'golden', light_over=META['light'][kind], lite=bool(os.environ.get('LITE')), kit3d=dict(envGround='#8f8a7e' if kind == 'am' else '#5a4a66'))
         if c.get('card'): place['card'] = dict(c['card'], face=c['pos'][:2])
         st = dict(at=0, subject='town', framing='W', hold=0, pos=c['pos'], aim=c['aim'], lens=c['lens'])
         film = dict(title='town proof %s %s' % (kind, cam), fps=30, size=[W, H], words='words.json', end=2, tween=dict(frames=0, face_frames=0, ones=True), auto_view=False,
@@ -16,5 +16,5 @@ for kind in ('am', 'du'):
             places=dict(town=place), props=dict(town=dict(pos=c['aim'], kind='the town')),
             acts=[dict(who='fireman', at=0, pos=[200, 200, 0], view='34', dir=-1, pose='stand', face='cool')],
             takes=[dict(id='%s_%s' % (kind, cam), place='town', stations=[st])])
-        n = 'film_%s_%s.json' % (kind, cam); json.dump(film, open(os.path.join(KD, n), 'w'), indent=1); names.append(n[5:-5])
+        n = ('film_%s_%s.json' if not os.environ.get('LITE') else 'film_%s_%s_lite.json') % (kind, cam); json.dump(film, open(os.path.join(KD, n), 'w'), indent=1); names.append(n[5:-5])
 print(' '.join(names))

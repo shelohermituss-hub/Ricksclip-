@@ -16,6 +16,20 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Le décor comptait 16,4 M de triangles dans le kit pour 395 k uniques (yellow-fire-trucks, ville) — FERMÉ
+- Problème : 16,4 M de triangles dans le kit alors que le GLB n'en a que 395 k uniques ; 3 à 13 s par image.
+- Cause réelle : les instances glTF partagent leurs maillages, mais le chargeur les clone : 210 carrés d'herbe (62 k chacun = 13 M) et 36 arbres (64 k = 2,3 M).
+- Correction : `town_lite.glb` (herbe seulement à 8 m des caméras, arbres et herbe décimés), option `lite` dans `sets/town.js`.
+- Garde-fou : la ligne de log PHFD_TOWN donne lite et tris à chaque rendu ; LITE_TRIS dans logs/lite.log.
+- Preuve : 16,4 M -> 1,15 M ; cour large 1,7 s par image, densité de détail inchangée (0,250 -> 0,249).
+
+## 2026-11-21 — Après l'allègement du décor, l'image restait à 2,5-3 s (yellow-fire-trucks) — FERMÉ
+- Problème : le temps par image ne baissait plus sous 2,5-3 s.
+- Cause réelle : les deux camions complets coûtent environ 2,2 s par image (sans camions : 0,9 s).
+- Correction : en mode lite, camions en version légère (35 k triangles) ; `truckFull: true` garde le camion complet là où il est vu de près.
+- Garde-fou : mesurer d'abord sans camions (trucks:false). Aussi : `film_plan.py bake` écrit un seul out/plan partagé, ne jamais lancer deux bakes de films en parallèle.
+- Preuve : sets/town/LITE_SHEET.jpg et les temps de sets/town/STATE.md (LITE).
+
 ## 2026-11-20 — Poly Haven answered 403 to every download (yellow-fire-trucks, décor de la ville) — FERMÉ
 - Poly Haven answered 403 to every download. Cause: it refuses the default "Python-urllib" User-Agent. Fix: fetch_town.py sends a browser-like UA. Guard: build_town.sh stops if logs/fetch.log has a FAIL. Proof: 46 files ok. FERMÉ
 

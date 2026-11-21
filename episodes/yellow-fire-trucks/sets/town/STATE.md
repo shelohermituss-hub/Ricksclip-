@@ -39,3 +39,19 @@
 ## Open for other departments
 - Lead: OK the map (station north of Main, shop south facing bay 1, crossing east, park SE, water tower N). Kit owner: a per-film screenshot timeout (park).
 - Background painter: sky dome, clouds, far haze (hills are simple domes). Props-hero: plate on the asset bumper; a distinct older pumper if wanted.
+
+## LITE (kit staging copy, 2026-11-21; the final render stays on town.blend, untouched)
+- Built: `scripts/bl_town_lite.py` (opens out/town.blend, writes out/town_lite.glb), run by `bash build_town.sh` and alone by `bash build_town.sh --lite` (18 s). `town.js`: `places.<name>.lite = true`
+  loads town_lite.glb and, in lite, both trucks use truck_light.glb (35 k tris; `truckFull: true` keeps the full trucks). Default is unchanged. `LITE=1 ONLY="am_<cam>_lite" bash proof/run_kit.sh` renders lite stills.
+- Means: grass patches only within 8 m of yard/crossing/park/shop anchors and camera spots (120 of 210 removed, the ground texture carries the lawn), kept patches and trees decimated hard (tree 1.07 M -> 6.4 k, patch 207 k -> 4 k), bush/dandelion capped 800 tris, any mesh >40 k capped. Env knobs: LITE_GRASS_R, LITE_TREE_RATIO, LITE_GRASS_RATIO.
+- Numbers (AM, 540x960, kit, 2nd-frame seconds; full = old STATE numbers 3.3-7.1 s, park timeout >30 s): tris 16.4 M -> 1.15 M (+2 light trucks).
+  | cam | lite s | edge full | edge lite |
+  | yard_wide | 1.7 | .250 | .249 |
+  | yard_medium | 3.0 (card+shadows, noisy) | .194 | .193 |
+  | yard_low | 2.5 | .226 | .225 |
+  | park | 6.0 (1st frame 19 s, no timeout) | timeout | .294 |
+  Yard median edge .225 (>= .14 floor, PASS); park .294 PASS. Sheet: LITE_SHEET.jpg (FULL park tile empty: it times out).
+- NOT met: the 2 s target is met only on yard_wide (1.7 s); yard_medium/low 2.5-3.0 s. Timing is noisy (+-0.5 s). Yard views are pixel-near identical to full (no trees/grass in frame), so the cost left is the kit's own floor.
+- WEAK: lite park: grass reads as a dark spiky mass (decimated blade cards), tree leaves sparse. A near-grass tier (ratio .1 within 4 m) did not look better and cost +4 s: dropped. Better fix: a grass proxy (flat green tufts card or textured ground only) or bake a lawn texture.
+- LECON 2026-11-21: problem: 16.4 M tris in the kit though the GLB has 395 k unique. Cause: glTF instances share meshes; the loader clones them, and 210 grass patches (62 k each = 13 M) + 36 trees (64 k = 2.3 M) are counted per instance. Fix: lite GLB (above). Guard: log line PHFD_TOWN {"lite":..,"tris":..} and LITE_TRIS in logs/lite.log. Proof: 16.4 M -> 1.15 M.
+- LECON 2026-11-21: problem: kit frame cost stayed 2.5-3 s after cutting the town to 1.1 M tris. Cause: the two full trucks (assets.js) cost about 2.2 s/frame of the total (no trucks: 0.9 s). Fix: opts.light (truck_light.glb) in lite. Guard: measure with trucks:false first. Also: `film_plan.py bake` writes one shared out/plan: never run two films' bakes in parallel.

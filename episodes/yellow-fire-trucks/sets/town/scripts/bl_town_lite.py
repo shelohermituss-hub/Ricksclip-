@@ -4,7 +4,7 @@
 # the kept patches and all trees decimated hard, any other mesh over 40 k unique tris decimated to that.
 import bpy, os, sys, json, math
 OUT = sys.argv[sys.argv.index('--') + 1]
-GR = float(os.environ.get('LITE_GRASS_R', 10)); TREE_R = float(os.environ.get('LITE_TREE_RATIO', .012)); GRASS_R = float(os.environ.get('LITE_GRASS_RATIO', .035))
+GR = float(os.environ.get('LITE_GRASS_R', 8)); TREE_R = float(os.environ.get('LITE_TREE_RATIO', .006)); GRASS_R = float(os.environ.get('LITE_GRASS_RATIO', .02))
 meta = json.load(open(os.path.join(OUT, 'town_meta.json'))); A = meta['anchors']
 spots = [A['yard_centre'], A['bay1_truck'], A['bay2_truck'], A['crossing_stop_bar'], A['park_swing'], A['park_bench'], A['park_tree'], A['shop_window'],
          [47.0, -31.0, 1.25], [31.0, -15.5, 1.7], [37.0, -17.0, 2.4]]       # + the park and crossing camera positions and aim (town_cams.json)
@@ -21,10 +21,11 @@ for o in list(TOWN.objects):
     if a == 'grass_patch':
         x, y = o.location.x, o.location.y
         if min(math.hypot(x - s[0], y - s[1]) for s in spots) > GR: bpy.data.objects.remove(o); removed += 1; continue
-    key = o.data.name
+    near = a == 'grass_patch' and min(math.hypot(o.location.x - q[0], o.location.y - q[1]) for q in spots) <= float(os.environ.get('LITE_NEAR_R', 0))
+    key = o.data.name + ('_n' if near else '')
     if key in swap: o.data = swap[key]; continue
     n = tris(o.data)
-    r = TREE_R if a and a.startswith('island_tree') else GRASS_R if a == 'grass_patch' else (1500. / n if (n > 1500 and a in ('bush', 'dandelion')) else 40000. / n if n > 40000 else 1.)
+    r = .1 if near else TREE_R if a and a.startswith('island_tree') else GRASS_R if a == 'grass_patch' else (800. / n if (n > 800 and a in ('bush', 'dandelion')) else 40000. / n if n > 40000 else 1.)
     if r < 1: swap[key] = dec(o.data, r); print('LITE_DEC', a or o.name, n, '->', tris(swap[key])); o.data = swap[key]
 print('LITE_GRASS_REMOVED', removed)
 for m in bpy.data.materials:
