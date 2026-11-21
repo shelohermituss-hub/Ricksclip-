@@ -27,7 +27,7 @@ acts = [
     dict(who='heroShop', at=429, face='k:aim', note='row 12 "strange": one eye shut, toy out of the cone and back'),
     dict(who='heroShop', at=453, face='k:glanceCam', note='row 13 "red": eyes slide to the lens, half smile'),
 ]
-held3d = [dict(who='heroShop', obj='toy_truck', module='sets/s2_shop.js', builder='buildToyTruck', opts={}, grip='raise', hand='L', anchor='grip', tip='tip',
+held3d = [dict(who='heroShop', obj='toy_truck', module='sets/s2_shop.js', builder='buildToyTruck', opts={}, grip='raise', hand='R', anchor='grip', tip='tip',
                when='always', f0=405, scale=1.5)]
 
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):

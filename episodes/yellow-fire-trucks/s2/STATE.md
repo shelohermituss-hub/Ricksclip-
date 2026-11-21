@@ -2,9 +2,10 @@
 ## NOT done
 - No moving clip, no strip, no feet-and-eyes sheet, no lock, no cam_track, no 11i density run (board round). Frames looked at by me only.
 - No Rick frame exists in the repo: no side-by-side (numbers only, as LOOK_BIBLE says).
-- Row 9: the camera does NOT start on S1's last station: the lead joins S1 -> S2 with an 8-12 f blend on the motion (see CAMERA_NOTE A). He is seen crossing
-  to the shop but NOT entering the door; the helmet doff of row 10 happens off screen (the card swaps hero -> heroShop at 328 while unseen): row 10 shows
-  him already in the white coat tugging it on, the helmet on the stand. Quick-change gag (row 10/11) therefore NOT acted on screen.
+- Row 9: the camera does NOT start on S1's last station: the lead joins S1 -> S2 with an 8-12 f blend on the motion (see CAMERA_NOTE A). The fireman is
+  NOT in row 9 (his jog across Main St was a card glide: frame_checks slide FAIL 15 cm/f; hidden until a locked-feet walk exists). He is first seen inside
+  (f336) already in the white coat, helmet on the stand: the row 10/11 QUICK CHANGE gag (helmet off backward onto the hook, coat on) is NOT acted on screen.
+- Row 10 coat tug is two small hand dips at the coat sides (reads weakly).
 - Row 11: the head mirror cannot flip DOWN (heroShop draws it UP only): the knuckle goes to the band on "eye", glint fx at 385, mirror stays up.
 - Row 13 "window a shade warmer" not built; row 11 "shingle swings outside" not visible (camera faces the back wall); shingle not rigged in the set.
 ## Built (files)
@@ -17,18 +18,19 @@
   (held3d: truck_light.glb at 18 cm, red tin paint, dulls to #5a3a40 f436-446 = out of the cone; its own paint, no grade), paint-frame workaround of s1.
 - Symlinks in s2/ (the render server serves the stretch folder only): cast, voice, assets_prod, sets/{town.js, assets.js, prop_kit.js, town}.
 - `render_key.sh` (one background command: bake + key frames), `plan_window.py` (plan gates on the window only), `board.py` -> `BOARD.jpg`.
-- Key frames `key/f_00292/344/386/418/440/458.png` (1080x1920, no captions).
+- Key frames `key/f_00292/344/386/418/440/458.png` (1080x1920, no captions), `render_each.sh` = one frame per process.
 ## Numbers
 - plan_window.py (gates on 288-474): 0 FAIL, 4 WARN of 42. Real file `film_plan.py check film.json --window 288-474`: 1 FAIL ("at rest while a face is on
-  screen" 22 %: the 288 lead-in frames; the window alone reads 34 %, WARN), WINDOW p90 21.7 px/f PASS, peak 41.5 WARN (window crossing f332-336).
-- Motion gate: he_enter and he_shop twos 0, linear 0, no_settle 0, creep 0, contact 0 px; holds dead still (0 px/f). Plain kit poses 0, frozen moves 0.
+  screen" 22 %: the 288 lead-in frames; the window alone reads 34 %, WARN), WINDOW p90 19.4 px/f PASS, peak 35.1 WARN (window crossing f332-336).
+- Motion gate (both moves, side + front exports): twos 0, linear 0, no_settle 0, creep 0, contact 0 px; holds dead still (0 px/f). Plain kit poses 0, frozen moves 0.
 - Render: 31-42 s per full-size frame here (draw ~3.7 s + grab 27-38 s, CPU shared by ~7 helpers); one render crashed ("Target crashed", memory), re-run.
-- FRAME_CHECKS / CAMSAFE: see the end of this file.
+- frame_checks.mjs --frames 288-474 (rests + moving body rows): 0 FAIL, 1 WARN (heroShop planted-foot slide 5.3 cm/f mid-arc = the view switch while the camera
+  swings), 18 PASS. camsafe validate.mjs --frames 288-474: 146 checks, PASS 146, FAIL 0.
 ## Weak points (my own list, seen in BOARD.jpg)
 - The shop ceiling is a hot amber blob (town.js point light at 3.6 m); cameras raised to 1.8-1.9 m to show less of it; still big.
 - The chart reads E / R / ED / GOES / FIRST / LPED: an extra top E in the set texture (user decision is R / ED / GOES / FIRST).
-- Lamp clone: its cone is faint; the "dulls out of the cone" reads only as a small colour change on an 18 cm toy (x1.5 in the fist).
-- The jog across Main St is fast (4.6 m in 1 s). The shop window glass is invisible in the kit (no reflection sweep on the pass-through).
+- Line 4 is drawn in SIDE view (apply_looks, he faces the lamp): the glance to the lens on "red" reads weakly in profile. Lamp clone: its cone is faint; the "dulls out of the cone" reads only as a small colour change on an 18 cm toy (x1.5 in the fist).
+- The shop window glass is invisible in the kit (no reflection sweep on the pass-through).
 - aim / glanceCam faces show the pink tongue (CAST_KEYS _mouth_note: lead to rule). Hero small in the two wides (W).
 ## Requests (not done by me; I edited no sets/ or assets_prod/ file)
 - character-artist: heroShop "mirror DOWN" state (disc over the eye) for row 11; a helmet-in-hand state for the yard card so the doff can be acted on screen.
@@ -47,3 +49,9 @@
   /^desk_lamp_arm_01/. Guard: s2_shop.js warns "not found" in the render log. Proof: the lamp clone is on the table in key/f_00344. FERMÉ
 - 2026-11-21 render_gpu.mjs stills died "locator.screenshot: Timeout 30000ms" with 7 helpers on the CPU. Cause: software mode defaults to grab screenshot,
   the compositor misses 30 s under load. Fix: --grab canvas. Guard: render_key.sh passes it. Proof: 6 frames, 31 s each. FERMÉ
+- 2026-11-21 The shop moves played 40 f ahead (the knuckle at the eye on "job", the toy out before "strange"). Cause: an episode move's clock starts at
+  the FIRST act that sets the pose (heroShop at f288, hidden); re-setting the same pose at f328 does not restart it. Fix: he_shop f = F(t) + 288.
+  Guard: board LINE CHECK tiles (the action must match the CAPS word). Proof: f386 knuckle at the mirror on "eye", f440 toy out on "strange". FERMÉ
+- 2026-11-21 camsafe validate: 126 of 146 checks FAIL VIEW_MISMATCH. Cause: the moves always returned view '34' while apply_looks (act "look") asked front
+  or side. Fix: ep_s2.mjs exports `default` (side) and `front` (front; camsafeView turns it to 3/4 or back). Guard: validate.mjs in the cycle.
+  Proof: 146/146 PASS. FERMÉ

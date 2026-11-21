@@ -324,7 +324,7 @@
    "builder": "buildToyTruck",
    "opts": {},
    "grip": "raise",
-   "hand": "L",
+   "hand": "R",
    "anchor": "grip",
    "tip": "tip",
    "when": "always",

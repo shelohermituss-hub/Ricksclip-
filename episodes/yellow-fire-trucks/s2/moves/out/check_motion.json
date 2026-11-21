@@ -3,7 +3,7 @@
  "moves": [
   {
    "move": "he_enter",
-   "view": "34",
+   "view": "side",
    "frames": 187,
    "twos": 0,
    "two_frames": [],
@@ -47,7 +47,7 @@
   },
   {
    "move": "he_shop",
-   "view": "34",
+   "view": "side",
    "frames": 187,
    "twos": 0,
    "two_frames": [],
@@ -114,7 +114,7 @@
    "contact": {
     "knee_off_spot_px": 0,
     "planted_foot_slide_px": 0,
-    "arm_over_reach_px": 0,
+    "arm_over_reach_px": 3.43,
     "leg_stretch_px": 0,
     "off_built_ground_px": 0
    },

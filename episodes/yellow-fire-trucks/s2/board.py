@@ -4,7 +4,7 @@ import json, os
 from PIL import Image, ImageDraw, ImageFont
 H = os.path.dirname(os.path.abspath(__file__))
 W = json.load(open(os.path.join(H, 'voice', 'words.json')))
-KEYS = [(292, 3, 'row 9: the station, the finished lemon truck, he crosses to his shop'), (344, 3, 'row 10: inside, white coat tug, helmet on the stand, truck through the window'),
+KEYS = [(292, 3, 'row 9: from his shop door: the station, the finished lemon truck'), (344, 3, 'row 10: inside, white coat tug, helmet on the stand, truck through the window'),
         (386, 3, 'row 11: knuckle flicks the head mirror, chart behind'), (418, 4, 'row 12: the toy up to the lamp, head tilt'),
         (440, 4, 'row 12: the toy out of the cone, dulled'), (458, 4, 'row 13: eyes to the lens, half smile')]
 LINES = {3: (29, 42), 4: (43, 49)}

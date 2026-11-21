@@ -1,5 +1,2 @@
-CAMERA-SAFE  s2  camsafe on  146 checks: PASS 20  WARN 0  FAIL 126
-  VIEW_MISMATCH  126
-  f329 heroShop FAIL  yaw 17.1 pitch 22.5  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_s2/he_shop)
-      FIX: set film.json "camsafe": true (moves then draw the asked view)
+CAMERA-SAFE  s2  camsafe on  146 checks: PASS 146  WARN 0  FAIL 0
 report -> /home/user/Ricksclip-/episodes/yellow-fire-trucks/s2/out/plan/camsafe_report.json

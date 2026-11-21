@@ -50,8 +50,11 @@ function heShop(t, ch) { const f = F(t) + 288,   // the move clock runs from the
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
 const STY = [sty('he_enter', heEnter, 'walks in from the door, fist to the helmet brim, sweeps it back onto the stand'),
   sty('he_shop', heShop, 'coat tug, knuckle flicks the head mirror on "eye", toy up to the lamp, out of the cone and back, glance to the lens')];
-export default { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY };
-export const front = { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY };
+// camsafe: the kit takes `front` for a wanted front / 3/4 / back (camsafeView turns the front drawing) and `default` for a wanted side, so each export
+// draws its own view (a single '34' drawing gave VIEW_MISMATCH on every frame where apply_looks asked front or side, validate.mjs 126 FAIL).
+const AS = view => STY.map(s => ({ ...s, pose: (t, ch) => ({ ...s.pose(t, ch), view }) }));
+export default { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: AS('side') };
+export const front = { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: AS('front') };
 // motion-gate plan (moves/tools/check_motion_ep.mjs): strikes + holds in frames from the move start (both 288)
 export const PLAN = {
   he_enter: { who: 'hero', view: '34', strikes: [{ name: 'sweep (off screen) f311', f0: 23, ch: 'h1x', to: 'min' }], holds: [], acting: [0, 33] },

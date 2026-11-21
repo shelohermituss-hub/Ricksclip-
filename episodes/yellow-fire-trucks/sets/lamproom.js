@@ -26,6 +26,7 @@ export async function build(THREE, scene, film, ctx) {
     if (o.morphTargetInfluences && o.morphTargetInfluences.length) iris.push(o);
     const m = o.material; if (/^ind_/.test(m.name)) { (ind[m.name] ||= []).push(m); m.toneMapped = false; }
     if (m.map) m.map.anisotropy = 4;
+    if (/chrome|brass|rivet/.test(m.name)) { m.metalness = Math.min(m.metalness, .55); m.roughness = Math.max(m.roughness, .3); }   // no environment map in the kit: a true mirror renders black (first kit tiles)
   });
   // the lamps: relay plate + socket cup (one InstancedMesh each) and one bulb InstancedMesh per kind/state/wave group
   const L = META.lamps, n = L.length, q = new THREE.Quaternion(), Z = new THREE.Vector3(0, 0, 1), m4 = new THREE.Matrix4(), one = new THREE.Vector3(1, 1, 1);
@@ -56,11 +57,11 @@ export async function build(THREE, scene, film, ctx) {
   const redFill = [];
   for (let g = 1; g <= 4; g++) {
     const pc = (135 - 45 - 90 * (g - 1)) * Math.PI / 180;
-    redFill.push(pt([3.6 * Math.cos(pc), 1.2, 3.6 * Math.sin(pc)], KIND[0], pl.fillI ?? 14, 10)); pt([3.6 * Math.cos(pc + .6), 0, 3.6 * Math.sin(pc + .6)], KIND[1], (pl.fillI ?? 14) * .7, 10);
+    redFill.push(pt([3.6 * Math.cos(pc), 1.2, 3.6 * Math.sin(pc)], KIND[0], pl.fillI ?? 26, 10)); pt([3.6 * Math.cos(pc + .6), 0, 3.6 * Math.sin(pc + .6)], KIND[1], (pl.fillI ?? 26) * .7, 10);
   }
-  pt([0, 2, 3.5], KIND[2], 10, 10); pt([2.4, -1, -2.2], KIND[2], 7, 9); pt([0, -3.8, 1], '#8a6ad8', 6, 9);
+  pt([0, 2, 3.5], KIND[2], 18, 10); pt([2.4, -1, -2.2], KIND[2], 12, 9); pt([0, -3.8, 1], '#8a6ad8', 12, 9); pt([0, LAYOUT.BULK_Y - 3.2, 0], '#d8ccff', 14, 6);   // last: the reflector fill (entry view)
   const win = pt([0, LAYOUT.YI - .4, 0], '#f0a878', 10, 9);
-  scene.add(new THREE.AmbientLight('#2a1d52', .5));
+  scene.add(new THREE.AmbientLight('#3a2c6e', 1.3));
   // state
   const S = { wave: P.wave ?? 0, iris: P.iris ?? 0, dim: P.dim ?? 1, grey: P.grey ?? null, flick: .5 };
   function setState(s = {}) {
@@ -73,7 +74,7 @@ export async function build(THREE, scene, film, ctx) {
     for (const [nm, ms] of Object.entries(ind)) { const g = +(nm.match(/_g(\d)/) || [0, 0])[1]; ms.forEach(m => { m.emissiveIntensity = g && g <= w ? 0 : 2.5; }); }
     levers.forEach(({ o, g }) => { o.rotation.set((g <= w ? 35 : -35) * Math.PI / 180, 0, 0); });
     iris.forEach(o => { o.morphTargetInfluences[0] = S.iris; });
-    const pr = LAYOUT.PUP0 + (LAYOUT.PUP1 - LAYOUT.PUP0) * S.iris; win.intensity = 10 * S.dim * (pr / LAYOUT.PUP0) ** 2;
+    const pr = LAYOUT.PUP0 + (LAYOUT.PUP1 - LAYOUT.PUP0) * S.iris; win.intensity = 16 * S.dim * (pr / LAYOUT.PUP0) ** 2;
     wGrey.material.opacity = grey; const b = .35 + .65 * S.dim; wRed.material.color.setScalar(b); wGrey.material.color.setScalar(b);
   }
   const K = (P.keys || []).slice().sort((a, b) => a.f - b.f);

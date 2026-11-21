@@ -16,6 +16,24 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — film_plan check on a stretch file FAILed first face, face share, speed median (9 FAIL) (yellow-fire-trucks, S2) — OUVERT
+- film_plan check on a stretch file FAILed first face, face share, speed median (9 FAIL). Cause: every gate counts from frame 0; a stretch starting at f288 carries 288 parked lead-in frames with no cast. Fix: s2/plan_window.py shifts a copy by -288 (words too) and runs the gates on the window only. Guard: plan_check_window.txt beside plan_check.txt. Proof: same stations, 9 FAIL -> real faults only, now 0 FAIL. OUVERT for the tool (a --stretch flag).
+
+## 2026-11-21 — The first station at S1's last framing made the pull back start ~3 s BEFORE f288 (yellow-fire-trucks, S2) — FERMÉ
+- The first station at S1's last framing made the pull back start ~3 s BEFORE f288. Cause: film_plan forces the first station's arrive to frame 0, so the v2 speed stretch takes the whole lead-in as "rest before". Fix: an anchor station at f0 with the same pose; the real first station at 288 with a hold. Guard: the baked camera at f288 must equal station 1 (proj check). Proof: camera at f288 = (1.2, -5.3, 2.1). FERMÉ
+
+## 2026-11-21 — scene (yellow-fire-trucks, S2) — FERMÉ
+- scene.getObjectByName('desk_lamp_arm_01.000') found nothing. Cause: GLTFLoader sanitises node names (the '.' is dropped). Fix: match by regex /^desk_lamp_arm_01/. Guard: s2_shop.js warns "not found" in the render log. Proof: the lamp clone is on the table in key/f_00344. FERMÉ
+
+## 2026-11-21 — render_gpu (yellow-fire-trucks, S2) — FERMÉ
+- render_gpu.mjs stills died "locator.screenshot: Timeout 30000ms" with 7 helpers on the CPU. Cause: software mode defaults to grab screenshot, the compositor misses 30 s under load. Fix: --grab canvas. Guard: render_key.sh passes it. Proof: 6 frames, 31 s each. FERMÉ
+
+## 2026-11-21 — The shop moves played 40 f ahead (the knuckle at the eye on "job", the toy out before "str (yellow-fire-trucks, S2) — FERMÉ
+- The shop moves played 40 f ahead (the knuckle at the eye on "job", the toy out before "strange"). Cause: an episode move's clock starts at the FIRST act that sets the pose (heroShop at f288, hidden); re-setting the same pose at f328 does not restart it. Fix: he_shop f = F(t) + 288. Guard: board LINE CHECK tiles (the action must match the CAPS word). Proof: f386 knuckle at the mirror on "eye", f440 toy out on "strange". FERMÉ
+
+## 2026-11-21 — camsafe validate: 126 of 146 checks FAIL VIEW_MISMATCH (yellow-fire-trucks, S2) — FERMÉ
+- camsafe validate: 126 of 146 checks FAIL VIEW_MISMATCH. Cause: the moves always returned view '34' while apply_looks (act "look") asked front or side. Fix: ep_s2.mjs exports `default` (side) and `front` (front; camsafeView turns it to 3/4 or back). Guard: validate.mjs in the cycle. Proof: 146/146 PASS. FERMÉ
+
 ## 2026-11-21 — Deux pavés superposés faisaient un trou noir au coin du carrefour (yellow-fire-trucks, ville) — FERMÉ
 - Problème : une tache noire nette au coin du trottoir. Cause : deux boîtes de pavé coplanaires qui se chevauchaient. Correction : y -7,5 / 7,5, plus de chevauchement. Garde-fou : commentaire dans la boucle ; chercher des boîtes coplanaires dès qu'une tache noire dure apparaît. Preuve : FIX_SHEET vignettes 1 et 2.
 
