@@ -483,7 +483,7 @@ for k, v in spots.items(): ANCH[k] = v
 TA.set_light(SC)
 TA.set_boards(SC, n=3, ladder=True, stool=False, painters=True, leaves=0, ground=3)
 meta = dict(anchors=ANCH, frame='metres, X east, Y north, Z up (plan frame)', light=TA.KIT_LIGHT,
-            groups=dict(stack2='red board 2', stack3='red board 3 + UP TO 3x', ladder='sectioned ladder', stool='step stool', painters="painters' gear (line 13)", cal1='YEAR 1 leaf', cal2='YEAR 2', cal3='YEAR 3', cal4='YEAR 4', gl1='YEAR 1 leaf on the ground', gl2='YEAR 2 on the ground', gl3='YEAR 3 on the ground', gl4='YEAR 4 by the red nose', ladder_side_dx=LADDER_SIDE_DX))
+            groups=dict(stack2='red board 2', stack3='red board 3 + UP TO 3x', ladder='sectioned ladder', stool='step stool', painters="painters' gear (line 13)", cal1='YEAR 1 leaf', cal2='YEAR 2', cal3='YEAR 3', cal4='YEAR 4', gl1='YEAR 1 leaf on the ground', gl2='YEAR 2 on the ground', gl3='YEAR 3 on the ground', gl4='YEAR 4 by the red nose'), ladder_side_dx=LADDER_SIDE_DX)
 tot = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in TOWN.objects if o.type == 'MESH')
 print('DALLAS_TRIS_BLEND', tot, 'OBJECTS', len(TOWN.objects))
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'dallas.blend'), relative_remap=True)

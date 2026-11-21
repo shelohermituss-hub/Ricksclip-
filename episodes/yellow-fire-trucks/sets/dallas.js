@@ -45,7 +45,7 @@ export async function build(THREE, scene, film, ctx) {
   vis('stack2', b.n >= 2); vis('stack3', b.n >= 3); vis('ladder', !!b.ladder); vis('stool', !!b.stool); vis('painters', !!b.painters);
   for (let i = 1; i <= 4; i++) vis('cal' + i, i > b.leaves);
   // FIX 2: ladder 'side' (move only the group's top nodes, so a child is not shifted twice) and the leaves on the ground
-  const DX = (META.groups && META.groups.ladder_side_dx) || -.9, lad = nodes.ladder.filter(o => !nodes.ladder.includes(o.parent));
+  const DX = META.ladder_side_dx ?? -.9, lad = nodes.ladder.filter(o => !nodes.ladder.includes(o.parent));
   lad.forEach(o => { o.userData.baseX = o.position.x; });
   const setLadder = v => { lad.forEach(o => { o.position.x = o.userData.baseX + (v === 'side' ? DX : 0); }); vis('ladder', !!v); };
   const setGround = k => { for (let i = 1; i <= 4; i++) vis('gl' + i, i <= k); };
