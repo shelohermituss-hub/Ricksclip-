@@ -87,7 +87,7 @@ export async function build(THREE, scene, film, ctx) {
     for (const [r, k, j] of rings) { const ph = ((f - 600) / 14 + j / 3) % 1, on = f >= 598 && f < 648;
       r.position.set(sirenX - .9 * ph, sirenY, sirenZ[k]); r.scale.setScalar(.09 + .3 * ph); r.material.opacity = on ? .9 * (1 - ph) : 0; }
     // pale beacon pulse ticking over the Milkman's jacket in the van door (630-664) and over his cap on "never" (725-745)
-    const mk = f < 664 ? V([S3.vx - .9, vy + 1.7, 1.6]) : V([23.4, -2.6, 1.9]); pulse.position.copy(mk);
+    const mk = f < 664 ? V([S3.vx - 1.25, vy + 1.45, 1.6]) : V([23.4, -2.6, 1.9]); pulse.position.copy(mk);
     const pw = (f > 630 && f < 664) || (f > 725 && f < 746) ? Math.max(0, Math.cos(f * .32 * 2.2)) ** 6 : 0; pulse.intensity = 9 * pw;
   }
   return { anchors: { ...T.anchors }, update };

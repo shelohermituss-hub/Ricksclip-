@@ -91,3 +91,33 @@ FINAL CREDIT LINE (YOUTUBE.md): "Dallas yard models and textures: Poly Haven (po
 | white_stucco, smooth_concrete_floor, concrete_floor_worn_001, dry_ground_01, withered_grass, painted_metal_shutter, concrete_pavement, asphalt_02, rusty_metal, wood_table_worn, concrete_block_wall, sandy_gravel, box_profile_metal_sheet, corrugated_iron | textures | station stucco (cream, tan, grey), pale apron, bay floor, sand #D9B98C, dry grass, roll-up shutters, walks, street, derrick, easel wood, plinth/roof, far lots, shed | repainted by tex_dallas.py (paint colour x the texture's own light and dark) |
 | paint_tin_red / _lime / _lemon (assets_prod, glowbox3d CC-BY, see PROPS) | models | the painters' cans | from assets_prod/out GLBs |
 Coded (no usable free asset found): the station (bays, shutters, office wing, shed, roof units, mast), the two slate boards + easels + battens, the 4-leaf calendar, the water cooler, the chain-link fence, flag pole, poles + wires, the water tank, the derrick + pump jacks + oil tanks, the low skyline, all lettering and decals.
+
+## MAP SET (set-builder, 2026-11-21): PLACE C, THE MAP (S4, line 7). Re-downloaded by sets/map/build_map.sh (sets/map/scripts/fetch_map.py) into `assets/map/` (git-ignored)
+FINAL CREDIT LINE (YOUTUBE.md): "Map models and textures: Poly Haven (polyhaven.com) and ambientCG (ambientcg.com), CC0. State outlines: us-atlas (ISC), from US Census Bureau data. Fonts: Patrick Hand and Righteous (SIL Open Font License)."
+| id | source, licence | author | used as | adapted for the story |
+|---|---|---|---|---|
+| seadogs_compass | Poly Haven, CC0 | Benny Weimer | brass compass on the Atlantic | scale x35 table scale (2.4 m) |
+| magnifying_glass_01 | Poly Haven, CC0 | Nazar Borodavka | magnifier on the table by the title block | as is |
+| measuring_tape_01 | Poly Haven, CC0 | Kuutti Siitonen | tape measure on the table, top right | as is |
+| pine_sapling_small | Poly Haven, CC0 | Rob Tuytel, Rico Cilliers | 10 model pines round the Pine Hollow station model | scaled to 0.34 m (model-railway trees) |
+| wood_table_worn | Poly Haven texture, CC0 | Dimitrios Savva, Rico Cilliers | the table under the map | as is |
+| Paper001 (grain + normal), Paper004, Cardboard004 | ambientCG, CC0 | ambientCG (Lennart Demes) | paper grain under the printed map, paper normal; 004s downloaded, not used yet | print multiplied over the grain |
+| us-atlas 3.0.1 states-10m.json | npm, ISC (data: US Census Bureau, public domain) | Mike Bostock | state shapes of the printed map (Albers, lower 48) | redrawn as a 1970s print by tex_map.py |
+| @fontsource/patrick-hand, @fontsource/righteous | npm, SIL OFL 1.1 | Patrick Wagesreiter; Astigmatic | hand-lettered city labels; title block, state names, station signs | - |
+| truck_light (assets_prod) | our own adaptation (see ALF 1940s above) | - | a truck nose in each of the 94 bays (Blender: instances, lime #E3EA22 and red; kit: 4 k-tri tiny copy) | repainted by truck_api.set_paint |
+Coded (no usable free asset): the printed map itself, the pop-up station models (card, cream brick print, navy trim, hose tower, signs), pushpins, the pencil.
+
+## LAMP ROOM (set-builder, 2026-11-21): PLACE D, THE LAMP ROOM BEHIND THE EYE (sets/lamproom/build_lamproom.sh re-downloads them: sets/lamproom/scripts/fetch_lamproom.py)
+All from Poly Haven (polyhaven.com), licence CC0. Files in `assets/ph_lamproom/models/<id>/` (glTF 1k) and `assets/ph_lamproom/tex/` (1k jpg). Git-ignored like ph_town.
+FINAL CREDIT LINE (YOUTUBE.md): "Lamp room models and textures: Poly Haven (polyhaven.com), CC0."
+| id | kind | used as | adapted for the story |
+|---|---|---|---|
+| lightbulb_01 | model | every one of the 4,376 dome lamps (Blender, instanced) | scaled to 9.5 cm; glass swapped per kind/state (red, lemon-green, blue; on, flicker, dead); the kit uses a coded 140-tri bulb |
+| pull_chain_light_socket | model | the socket of every lamp housing (Blender, instanced; the pull chain removed) | turned to face the room, scale 1.3, on a coded riveted relay plate |
+| retro_multimeter | model | the meter on top of the brass relay box | scale 1.7 |
+| power_box_01 | model | the fuse cabinet on the catwalk (door open) | scale 2.2, texture multiplied by a plum-steel tint |
+| modular_electric_cables (cable_box_4way only) | model | the junction boxes where the cable bundles meet the iris track | scale 3 |
+| metal_plate, metal_plate_02 | texture | the riveted dome plates, the bulkhead | diffuse x plum-indigo #4a3a86 / #3e3274 |
+| painted_metal_shutter | texture | the pleated back of the iris | diffuse x indigo #3a3aa8 |
+| metal_grate_rusty | texture | the catwalk deck | diffuse x #5a5470 |
+Coded (no fitting free asset): the dome shell, iris pleats with the 'open' shape key, chrome entry ring/bezel/reflector, relay box with switches, cables (bezier), ladder rail.

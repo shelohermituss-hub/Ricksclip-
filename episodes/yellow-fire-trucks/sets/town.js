@@ -114,7 +114,7 @@ function airLife(THREE, scene, A, V, du, amount) {
     const sl = A.street_lamp, wl = A.wall_lamp;
     cloud(26, [[sl[0] - 1.2, sl[1] - 1.2, sl[2] - 1.4], [sl[0] + 1.2, sl[1] + 1.2, sl[2] + .3]], .05, '#e8dcc0', .9, .25, 1.4, true);
     cloud(16, [[wl[0] - .8, wl[1] - .9, wl[2] - .9], [wl[0] + .8, wl[1] + .1, wl[2] + .3]], .04, '#ecdcbc', .9, .2, 1.6, true);
-    for (const [p, r, op] of [[[sl[0], sl[1], sl[2] - .6], 5.5, .22], [[wl[0], wl[1] - .3, wl[2] - .2], 2.6, .2]]) {
+    for (const [p, r, op] of [[[sl[0], sl[1], sl[2] - .5], 2.6, .16], [[wl[0], wl[1] - .3, wl[2] - .2], 1.6, .14]]) {
       const m = new THREE.SpriteMaterial({ map: dotTex(THREE), color: '#ffb060', transparent: true, opacity: op * amount, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false });
       const sp = new THREE.Sprite(m); sp.position.copy(V(p)); sp.scale.setScalar(r); sp.userData.noExport = true; scene.add(sp);
     }

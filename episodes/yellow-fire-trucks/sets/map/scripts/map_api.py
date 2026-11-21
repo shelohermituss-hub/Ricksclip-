@@ -23,6 +23,6 @@ def set_paint(sc, t=None, lime=True, wave=2.4, dur=.5):
 def set_sand(sc, v):
     o = bpy.data.objects.get('sand_blend'); m = bpy.data.materials['sand_blend']; m.node_tree.nodes['SAND'].outputs[0].default_value = v
     if o: o.hide_render = v <= 0
-LIGHT = dict(sun='#fff4e2', sun_e=4.2, sun_az=232., sun_el=52., sky_top='#8fb3ef', sky_hor='#e9eef4', world=1.1)
-KIT_LIGHT = dict(top='#8fb3ef', hor='#e9eef4', sun='#fff4e2', si=3.2, amb='#c9d3ee', ai=1.35, tint='#fffaf0', card_gain=1.0,
+LIGHT = dict(sun='#fff4e2', sun_e=2.6, sun_az=232., sun_el=52., sky_top='#8fb3ef', sky_hor='#e9eef4', world=.55)
+KIT_LIGHT = dict(top='#8fb3ef', hor='#e9eef4', sun='#fff4e2', si=2.4, amb='#c9d3ee', ai=1.0, tint='#fffaf0', card_gain=1.0,
                  dir=[round(10 * math.cos(math.radians(52)) * math.cos(math.radians(232)), 2), round(10 * math.sin(math.radians(52)), 2), round(-10 * math.cos(math.radians(52)) * math.sin(math.radians(232)), 2)])

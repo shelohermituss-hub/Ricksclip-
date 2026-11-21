@@ -11,7 +11,7 @@ M = lambda k: 'm:../../ep_s3/' + k
 
 # keep in step with sets/s3_crossing.js S3
 VX, VY0, VY1, VY2, TY, TXH = 24.3, -11.2, -8.9, -7.6, -4.0, 28.9
-DRV = lambda vy: [VX - .45, vy + 1.7, .55]              # the Milkman standing at the wheel of the step van (van floor .55)
+DRV = lambda vy: [VX - .8, vy + 1.45, .55]               # the Milkman standing at the wheel in the open door of the step van (van floor .55)
 CAB = [TXH - 2.6, TY - .5, .35]                          # the Sceptic in the driver's seat (driver side = south, the van side)
 LEAN = [TXH - 2.95, TY - .35, .45]                       # leaning forward over the wheel to the windscreen (the driver window is on the far side from this camera)
 OUT = [23.8, -3.3, 0.0]                                  # the Milkman, climbed out, in front of the truck's nose (north of his van)
@@ -22,7 +22,7 @@ acts = [
     dict(who='milkman', at=511, dir=1, note='row 14 "dusk": the long look LEFT'),
     dict(who='milkman', at=530, dir=-1, note='row 15 "red": the long look RIGHT, at the dark truck'),
     dict(who='milkman', at=553, pos=DRV(VY2), move_s=0.5, linear=True, note='row 15 "kept": nod, the van rolls (f554-569)'),
-    dict(who='milkman', at=569, face='k:frozenWide', note='row 16 "hit": frozen wide eyes (approved faces_ep)'),
+    dict(who='milkman', at=567, face='k:frozenWide', note='row 16 "hit": frozen wide eyes (approved faces_ep)'),
     dict(who='milkman', at=584, face='k:holdBreath', note='row 16 after "crossings": holdBreath, then checks the bottle (591)'),
     dict(who='milkman', at=640, face='k:surprised', dir=1, note='row 18 "flashing": looks up at the beacons, lost'),
     dict(who='milkman', at=660, visible=False, note='climbs out (22.3 s)'),
@@ -43,7 +43,7 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
 
 stations = [
     st(474, [20.5, -5.1, 1.3], [58.0, -4.0, 1.7], 50, 'truck', 'P', 'ROW 14 in (piece 11 match on the hero object): the toy truck of S2 is now the real red pumper racing west down the long dark stretch of Main, seen from the corner on a long lens, dull and heavy, only chrome catching the apricot band; the lens widens onto the van', hold=0),
-    st(508, [20.4, -5.0, 1.25], [30.0, -8.6, 1.2], 22, 'milkman', 'M', 'ROWS 14-15 (M00 living rest): the Milkman at the wheel in the open door of the van stopped on the white bar, looks left on "dusk", right on "red"; the truck far and dull down Main', hold=1.3),
+    st(508, [20.4, -5.0, 1.25], [30.0, -9.0, 1.15], 19, 'milkman', 'M', 'ROWS 14-15 (M00 living rest): the Milkman at the wheel in the open door of the van stopped on the white bar, looks left on "dusk", right on "red"; the truck far and dull down Main', hold=1.3),
     st(569, [22.4, -2.9, 0.6], [25.1, -4.9, 0.9], 22, 'bumpers', 'M', 'ROW 16 POWER 2 "hit" (via point, the camera flies in low on the bump): the two bumpers close; impact frame on flat plum, the hubcap leaves with sparks and passes the lens', hold=0),
     st(613, [23.3, -2.4, 2.9], [26.3, -4.0, 2.05], 26, 'sirens', 'O', 'ROW 17 EXTREME "screaming" (the rise up the stopped truck lands on the roof line): four chrome sirens with white sound rings, the bell swinging below', hold=0.5),
     st(643, [21.2, -3.2, 1.05], [25.0, -5.6, 1.75], 20, 'milkman', 'M', 'ROW 18 "flashing" (via point on the way down): the beacon row runs a wave at the top, the Milkman small at the bottom behind his windscreen, looking up, lost', hold=0),

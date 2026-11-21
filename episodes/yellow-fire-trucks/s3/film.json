@@ -207,8 +207,8 @@
    "who": "milkman",
    "at": 474,
    "pos": [
-    23.85,
-    -9.5,
+    23.5,
+    -9.75,
     0.55
    ],
    "view": "34",
@@ -221,8 +221,8 @@
    "who": "milkman",
    "at": 474,
    "pos": [
-    23.85,
-    -7.2,
+    23.5,
+    -7.45,
     0.55
    ],
    "move_s": 1.0,
@@ -245,8 +245,8 @@
    "who": "milkman",
    "at": 553,
    "pos": [
-    23.85,
-    -5.8999999999999995,
+    23.5,
+    -6.1499999999999995,
     0.55
    ],
    "move_s": 0.5,
@@ -255,7 +255,7 @@
   },
   {
    "who": "milkman",
-   "at": 569,
+   "at": 567,
    "face": "k:frozenWide",
    "note": "row 16 \"hit\": frozen wide eyes (approved faces_ep)"
   },
@@ -463,10 +463,10 @@
      ],
      "aim": [
       30.0,
-      -8.6,
-      1.2
+      -9.0,
+      1.15
      ],
-     "lens": 22,
+     "lens": 19,
      "subject": "milkman",
      "framing": "M",
      "purpose": "ROWS 14-15 (M00 living rest): the Milkman at the wheel in the open door of the van stopped on the white bar, looks left on \"dusk\", right on \"red\"; the truck far and dull down Main",

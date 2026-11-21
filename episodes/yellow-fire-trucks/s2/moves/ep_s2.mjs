@@ -11,13 +11,12 @@ export const N = 187;
 export const W = { but: 294, fireman: 303, second: 325, job: 332, day: 360, eye: 385, doctor: 392, and: 407, knew: 415, strange: 429, red: 453 };
 
 // ---- HERO m:he_enter (yard outfit, helmet on), f288-327: he walks in from the shop door with four even strides (the card glides 2.4 m, film.json),
-//   arms swinging against the legs; f314 he slows (last stride short), f318-325 the near fist rises to the helmet brim (anticipation dip 3 f), on "second"
-//   f325 the arm sweeps back over his shoulder (the helmet goes to the stand behind him; the card swaps to heroShop at 328 mid-sweep).
+//   arms swinging against the legs; he leaves the frame on the right about f300 and the card is hidden at f322 (the helmet doff is off screen in this round).
 function heEnter(t, ch) { const f = F(t) + 288, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   let l0 = 0, l1 = 0, sw = 0;
   for (let k = 0; k < 4; k++) { const s = 289 + k * 7, g = f - s, l = 26 * (snap(g, 3) - snap(g - 3, 4)); if (k % 2) l1 += l; else l0 += l; sw += (k % 2 ? -1 : 1) * (snap(g, 4) - snap(g - 4, 3)); }
-  const brim = snap(f - 316, 6), back = snap(f - W.second, 5), ant = 4 * (snap(f - 314, 2) - snap(f - 317, 3));
-  const head = -2 + 4 * brim - 6 * back + ring(f, 318, 2, 8);
+  const brim = snap(f - 306, 6), back = snap(f - 311, 5), ant = 4 * (snap(f - 304, 2) - snap(f - 307, 3));   // off screen from ~f300 (board round), so it plays early and settles before the card hides at 322
+  const head = -2 + 4 * brim - 6 * back + ring(f, 312, 2, 8);
   const n = { wx: Wd * .7 + 24 * sw, wy: ch.hipY - 14 - 8 * Math.abs(sw) }, r = { wx: -Wd * .7 - 24 * sw, wy: ch.hipY - 14 - 8 * Math.abs(sw) };
   const up = { wx: Wd * .2, wy: S - .66 * L }, over = { wx: -Wd * .35, wy: S - .75 * L };
   const m = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
@@ -40,7 +39,7 @@ function heShop(t, ch) { const f = F(t) + 328, S = ch.sh[1], L = ch.armL, Wd = c
   const head = 2 + ring(f, 330, 2, 8) - 4 * (snap(f - W.eye, 4) - snap(f - 396, 10)) + 6 * (snap(f - W.knew, 8) - snap(f - W.red, 10)) + 3 * out - 7 * look;
   const m = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   const rest1 = { wx: Wd * .75, wy: ch.hipY - 14 }, rest0 = { wx: -Wd * .75, wy: ch.hipY - 14 };
-  const behind = { wx: -Wd * .35, wy: S - .75 * L }, lapel1 = { wx: Wd * .3, wy: S + .4 * L + tug }, lapel0 = { wx: -Wd * .26, wy: S + .4 * L + tug };
+  const behind = { wx: -Wd * .35, wy: S - .75 * L }, lapel1 = { wx: Wd * .32, wy: ch.hipY - 38 + tug }, lapel0 = { wx: -Wd * .28, wy: ch.hipY - 38 + tug };
   const brow = { wx: Wd * .12, wy: S - .7 * L - flick + ant }, lamp = { wx: Wd * .3 + .8 * L, wy: S - .1 * L }, far = { wx: Wd * .3 + .95 * L, wy: S - .16 * L };
   let h1 = m(behind, rest1, down); h1 = m(h1, lapel1, lap); h1 = m(h1, brow, rise); h1 = m(h1, lamp, lift); h1 = m(h1, far, out);
   const h0 = m(rest0, lapel0, lap);
@@ -54,7 +53,7 @@ export default { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY
 export const front = { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY };
 // motion-gate plan (moves/tools/check_motion_ep.mjs): strikes + holds in frames from the move start (he_enter 288, he_shop 328)
 export const PLAN = {
-  he_enter: { who: 'hero', view: '34', strikes: [{ name: 'sweep "second" f325', f0: W.second - 288, ch: 'h1x', to: 'min' }], holds: [], acting: [0, 39] },
+  he_enter: { who: 'hero', view: '34', strikes: [{ name: 'sweep (off screen) f311', f0: 23, ch: 'h1x', to: 'min' }], holds: [], acting: [0, 33] },
   he_shop: { who: 'heroShop', view: '34', strikes: [{ name: 'flick "eye" f385', f0: W.eye - 328, ch: 'h1y', to: 'min' }, { name: 'out "strange" f429', f0: W.strange - 328, ch: 'h1x', to: 'max' }],
-    holds: [[28, 43, 'coat on, dead still'], [136, 146, 'looks at us, dead still']], acting: [0, 135] },
+    holds: [[36, 43, 'coat on, dead still'], [136, 146, 'looks at us, dead still']], acting: [0, 135] },
 };

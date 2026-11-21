@@ -47,7 +47,7 @@ def build_lights(sc, anchors):
         for k, v in kw.items(): setattr(ld, k, v)
         o = bpy.data.objects.new(name, ld); o.location = pos; sc.collection.objects.link(o); o['lamp_energy'] = energy; return o
     sun = add('town_sun', 'SUN', (0, 0, 50), 4., '#ffffff', angle=math.radians(.8)); sun['lamp_energy'] = 0
-    sl = anchors['street_lamp']; o = add('lamp_street', 'SPOT', (sl[0], sl[1], sl[2] - .15), 5200., '#ffa040', spot_size=math.radians(100), spot_blend=.45, shadow_soft_size=.25)   # FIX 1: a warm sodium pool on road, stop bar and kerb
+    sl = anchors['street_lamp']; o = add('lamp_street', 'SPOT', (sl[0], sl[1], sl[2] - .15), 12000., '#ffa040', spot_size=math.radians(90), spot_blend=.4, shadow_soft_size=.25)   # FIX 1: a warm sodium pool on road, stop bar and kerb
     o.rotation_euler = (0, 0, 0)
     wl = anchors['wall_lamp']; o = add('lamp_wall', 'SPOT', (wl[0], wl[1] - .1, wl[2] - .1), 900., '#ffd49a', spot_size=math.radians(110), spot_blend=.7, shadow_soft_size=.1); o.rotation_euler = (math.radians(25), 0, 0)
     sp = anchors['shop_lamp']; add('lamp_shop', 'POINT', sp, 120., '#ffb85c', shadow_soft_size=.08)
@@ -56,7 +56,7 @@ def build_lights(sc, anchors):
     add('lamp_porch', 'POINT', (anchors['station_door'][0] + 1.9, anchors['station_door'][1], 2.4), 60., '#ffd49a', shadow_soft_size=.1)
     # FIX 1: the last low sun patch on the park lawn at dusk (row 42 "the last sun patch lies on the lawn"; lifts the dusk park to brightness >= .31)
     tgt = Vector((41.0, -25.0, 0.)); src = tgt + Vector((-.87, .5, 0.)).normalized() * 25. + Vector((0, 0, 4.6))
-    o = add('lamp_sunpatch', 'SPOT', src, 26000., '#ffb06a', spot_size=math.radians(16), spot_blend=.6, shadow_soft_size=.6)
+    o = add('lamp_sunpatch', 'SPOT', src, 45000., '#ffb06a', spot_size=math.radians(38), spot_blend=.5, shadow_soft_size=.6)
     o.rotation_euler = (tgt - src).to_track_quat('-Z', 'Y').to_euler()
     sc['phfd_anchors'] = str(anchors)
 

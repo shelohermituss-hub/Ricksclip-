@@ -178,11 +178,11 @@ for (x0, x1, ys) in ((-140, -13.5, 1), (14.5, 17.5, 1), (-140, 17.5, -1), (26.5,
 bm = bmesh.new(); P_ = [(-13.5, 5.0, 0), (14.5, 5.0, 0), (14.5, 7.5, .14), (-13.5, 7.5, .14), (-13.5, 7.5, -.05), (14.5, 7.5, -.05), (14.5, 5.0, -.05), (-13.5, 5.0, -.05)]
 V_ = [bm.verts.new(p) for p in P_]; bm.faces.new((V_[0], V_[1], V_[2], V_[3])); bm.faces.new((V_[3], V_[2], V_[5], V_[4])); bm.normal_update(); obj_from_bm(bm, 'apron_ramp', M['yard'], 3.)
 for (x0, x1) in ((-13.6, -13.5), (14.5, 14.6)): pass
-for (y0, y1) in ((-120, -5), (5, 120)):
+for (y0, y1) in ((-120, -7.5), (7.5, 120)):        # FIX 1: stop at the Main walks (overlapping coplanar walk tops rendered a black pit at the crossing corner)
     for xs in (16.25, 27.75):
         if xs == 16.25 and y0 > 0: continue
         box('walk', 2.5, y1 - y0, .15, xs, (y0 + y1) / 2, 0, M['walk'], 1.5)
-box('walk_e', 2.5, 115, .15, 16.25, 64.5, 0, M['walk'], 1.5)
+box('walk_e', 2.5, 114.5, .15, 16.25, 64.75, 0, M['walk'], 1.5)
 for x in range(-140, 160, 3):                                  # paver joints on the walks (real seams, not only in the texture)
     if 17 < x < 27: continue
     for ys in (1, -1): box('joint', .03, 2.5, .005, x, ys * 6.25, .15, M['ink'], 1.)
@@ -399,8 +399,9 @@ picket_run(28.6, 62., FY, True); picket_run(-8.6, -42., 28.6, False)
 anchor('park_fence_gap', GAP, FY, .1)
 asset('island_tree_02'); TPLS['island_tree_02']['heavy'] = 1
 put('island_tree_02', 40.0, -20.0, .08, 30, 3.1, tag='big_tree')               # the park's one big tree (about 10.5 m)
-beam('swing_rope', (38.2, -19.3, 4.4), (38.2, -19.3, .55), .024, M['pole'], 6); beam('swing_rope', (38.2, -18.7, 4.4), (38.2, -18.7, .55), .024, M['pole'], 6)   # FIX 1: ropes thicker, seat pale (reads against the dark lawn)
-box('swing_seat', .28, .8, .06, 38.2, -19.0, .5, mat('swing_seat', col='#d8cdb4', rough=.7), .3); box('swing_branch_hide', .01, .01, .01, 38.2, -19, 4.4, M['bark'], .5)
+rope_m = mat('swing_rope', col='#d6c79e', rough=.9)
+beam('swing_rope', (38.2, -19.3, 4.4), (38.2, -19.3, .66), .024, rope_m, 6); beam('swing_rope', (38.2, -18.7, 4.4), (38.2, -18.7, .66), .024, rope_m, 6)   # FIX 1: ropes thicker, seat pale (reads against the dark lawn)
+box('swing_seat', .28, .8, .06, 38.2, -19.0, .62, mat('swing_seat', col='#d8cdb4', rough=.7), .3); box('swing_branch_hide', .01, .01, .01, 38.2, -19, 4.4, M['bark'], .5)
 quad('swing_worn', 1.6, 1.0, 38.2, -19.0, .085, 90, DECAL('oil'), flat=True)
 anchor('park_swing', 38.2, -19.0, .1); anchor('park_tree', 40.0, -20.0, .08)
 put('painted_wooden_bench', 33.0, -13.0, .08, 200, 1.); anchor('park_bench', 33.0, -13.0, .08)
@@ -424,6 +425,7 @@ for i in range(170):                                                    # dense 
     x = rnd.uniform(28.5, 62); y = -8.8 - abs(rnd.gauss(0, 9)) - .5
     put('grass_patch', x, y, .08, rnd.uniform(0, 360), rnd.uniform(.9, 1.2))
 for i in range(40): put('grass_patch', rnd.uniform(-60, -16), rnd.choice([rnd.uniform(9, 12), rnd.uniform(-12, -9)]) * (1 if rnd.random() < .5 else 1), .02, rnd.uniform(0, 360), 1.)
+for o in [o for o in TOWN.objects if o.get('asset') == 'grass_patch' and math.hypot(o.location.x - 38.2, o.location.y + 19.0) < 1.8]: bpy.data.objects.remove(o)   # FIX 1: worn earth under the swing (no blades hide the seat)
 for i in range(60): put('dandelion', rnd.uniform(29, 58), -9 - abs(rnd.gauss(0, 8)), .08, rnd.uniform(0, 360), rnd.uniform(.9, 1.2))
 for (x, y, s) in ((29.5, -9.2, 1.6), (60.5, -9.3, 1.9), (45, -40, 2.4), (29.3, -26, 1.8), (55, -30, 2.0)): put('bush', x, y, .08, rnd.uniform(0, 360), s)
 

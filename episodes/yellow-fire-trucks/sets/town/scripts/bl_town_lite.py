@@ -19,7 +19,7 @@ swap = {}; removed = 0
 # FIX 1 (LITE park): no decimated blade patches (they read as a dark spiky mass). Every grass patch becomes a few TUFT CARDS (3 crossed quads with a painted
 # blade texture, tex_town.py tuft.png), dense near the camera spots; the tree keeps whole leaf cards (a share of them, scaled up) instead of decimated shards.
 TEX = os.path.normpath(os.path.join(OUT, '..', 'build', 'tex')); rt = random.Random(57)
-KEEP = float(os.environ.get('LITE_LEAF_KEEP', .009)); LS = float(os.environ.get('LITE_LEAF_SCALE', 3.0))
+KEEP = float(os.environ.get('LITE_LEAF_KEEP', .016)); LS = float(os.environ.get('LITE_LEAF_SCALE', 2.8))
 tm = bpy.data.materials.new('lite_tuft'); tm.use_nodes = True; tb = tm.node_tree.nodes['Principled BSDF']; tt = tm.node_tree.nodes.new('ShaderNodeTexImage')
 tt.image = bpy.data.images.load(os.path.join(TEX, 'tuft.png')); tm.node_tree.links.new(tt.outputs[0], tb.inputs['Base Color']); tm.node_tree.links.new(tt.outputs[1], tb.inputs['Alpha'])
 tb.inputs['Roughness'].default_value = .85; tm.surface_render_method = 'DITHERED'
@@ -34,7 +34,7 @@ for c in cams:                                                                 #
         a = rt.uniform(math.radians(95), math.radians(150)); d = rt.uniform(.9, 7.); tufts.append((c[0] + math.cos(a) * d, c[1] + math.sin(a) * d, rt.uniform(1.1, 1.6)))
 bm = bmesh.new(); uvl = bm.loops.layers.uv.new()
 for (x, y, sz) in tufts:
-    w, h, r0 = .55 * sz, .34 * sz * rt.uniform(.85, 1.15), rt.uniform(0, math.pi)
+    w, h, r0 = .55 * sz, .27 * sz * rt.uniform(.85, 1.15), rt.uniform(0, math.pi)
     for q in range(3):
         a = r0 + q * math.pi / 3; dx, dy = math.cos(a) * w / 2, math.sin(a) * w / 2
         vs = [bm.verts.new(v) for v in ((x - dx, y - dy, .07), (x + dx, y + dy, .07), (x + dx, y + dy, .07 + h), (x - dx, y - dy, .07 + h))]

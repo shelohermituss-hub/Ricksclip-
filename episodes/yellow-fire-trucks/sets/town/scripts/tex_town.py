@@ -83,7 +83,7 @@ def line(d, rng, w, h, im):            # FIX 1 (row 57 "like a ruler"): ONE clea
 def tuft(d, rng, w, h, im):            # FIX 1 LITE grass: a tuft card (blades from the bottom, dark root, sunlit tips) for the kit staging copy only
     for k in range(150):
         x0 = rng.normal(w / 2, w * .2); hh = h * rng.uniform(.45, 1.); lean = rng.normal(0, w * .08); g = rng.uniform(.7, 1.15)
-        base = np.array([62, 104, 48]) * g; tip = np.array([150, 190, 92]) * g; bw = rng.uniform(3, 7)
+        base = np.array([80, 124, 58]) * g; tip = np.array([170, 205, 104]) * g; bw = rng.uniform(3, 7)
         for s_ in range(12):
             t0, t1 = s_ / 12, (s_ + 1) / 12; c = base * (1 - t1) + tip * t1
             p0 = (x0 + lean * t0 * t0, h - hh * t0); p1 = (x0 + lean * t1 * t1, h - hh * t1)

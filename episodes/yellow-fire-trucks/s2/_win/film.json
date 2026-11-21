@@ -166,7 +166,7 @@
     "envGround": "#8f8a7e"
    },
    "grass_keep": 0.4,
-   "lamp_yaw": 160,
+   "lamp_yaw": 340,
    "hero": {
     "paint": "lemon",
     "masking": false,
@@ -322,7 +322,7 @@
    "builder": "buildToyTruck",
    "opts": {},
    "grip": "raise",
-   "hand": "R",
+   "hand": "L",
    "anchor": "grip",
    "tip": "tip",
    "when": "always",
@@ -415,12 +415,12 @@
      "pos": [
       0.0,
       -14.2,
-      1.5
+      1.85
      ],
      "aim": [
       1.6,
       -7.5,
-      1.3
+      1.25
      ],
      "lens": 22,
      "subject": "hero",
@@ -438,12 +438,12 @@
      "pos": [
       3.2,
       -12.9,
-      1.55
+      1.85
      ],
      "aim": [
       1.2,
       -11.5,
-      1.5
+      1.35
      ],
      "lens": 24,
      "subject": "heroShop",
@@ -457,12 +457,12 @@
      "pos": [
       3.1,
       -9.7,
-      1.58
+      1.9
      ],
      "aim": [
       0.53,
       -12.76,
-      1.3
+      1.2
      ],
      "lens": 26,
      "subject": "heroShop",
@@ -480,12 +480,12 @@
      "pos": [
       2.3,
       -10.0,
-      1.5
+      1.8
      ],
      "aim": [
       0.95,
       -11.45,
-      1.42
+      1.35
      ],
      "lens": 28,
      "subject": "heroShop",

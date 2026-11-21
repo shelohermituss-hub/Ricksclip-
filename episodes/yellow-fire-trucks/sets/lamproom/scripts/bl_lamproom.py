@@ -43,7 +43,7 @@ def texmat(name, tex, tint, scale=1., rough_mul=1., metal=0., nstr=.6, coord='UV
 M = {}
 M['dome'] = texmat('dome_plates', 'metal_plate', '#4a3a86', scale=1., rough_mul=.9, metal=.35, nstr=.8)     # plum-indigo painted riveted plates (LOOK LR: deep violet dome)
 M['bulk'] = texmat('bulkhead_plates', 'metal_plate_02', '#3e3274', scale=1., metal=.4, nstr=.8)
-M['iris'] = texmat('iris_pleats', 'painted_metal_shutter', '#3b3f9a', scale=1., rough_mul=.7, metal=.15, nstr=.5)   # the back of the iris: indigo shutter cloth-metal, never flesh
+M['iris'] = texmat('iris_pleats', 'painted_metal_shutter', '#3a3aa8', scale=1., rough_mul=.55, metal=.3, nstr=.7)   # the back of the iris: indigo shutter cloth-metal, never flesh
 M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#5a5470', scale=1., metal=.6, nstr=1.)
 M['chrome'] = pmat('chrome', '#e8e8ee', rough=.07, metal=1.)
 M['brass'] = pmat('brass', '#c9a24a', rough=.28, metal=1.)
@@ -114,13 +114,14 @@ def iris_verts(rin, amp):
         for j in range(NS + 1):
             p = 2 * math.pi * j / NS; dy = (-amp if j % 2 == 0 else amp * .6) * math.sin(math.pi * min(1, f * 1.4 + .15)); V.append((r * math.cos(p), YI + dy, r * math.sin(p)))
     return V
-V0 = iris_verts(PUP0, .07); V1 = iris_verts(PUP1, .12); W = NS + 1; F, UV = [], []
+V0 = iris_verts(PUP0, .15); V1 = iris_verts(PUP1, .22); W = NS + 1; F, UV = [], []
 rows = len(LIP) + KR + 1
 for i in range(rows - 1):
     for j in range(NS): F.append((i * W + j, i * W + j + 1, (i + 1) * W + j + 1, (i + 1) * W + j))
 for i in range(rows):
     for j in range(W): UV.append((j / NS * 18, i / rows * 2.2))
-iris = mesh_obj('IRIS', V0, F, M['iris'], UV); iris.data.materials.append(M['chrome'])
+# flat shading: the pleats read as folds (smooth made a vinyl-record sheen, tile 1)
+iris = mesh_obj('IRIS', V0, F, M['iris'], UV, smooth=False); iris.data.materials.append(M['chrome'])
 nlip = (len(LIP) - 1) * NS
 for pi_, poly in enumerate(iris.data.polygons): poly.material_index = 1 if pi_ < nlip else 0
 iris.shape_key_add(name='Basis'); kb = iris.shape_key_add(name='open'); kb.data.foreach_set('co', np.asarray(V1, dtype=np.float32).ravel())
@@ -259,6 +260,16 @@ pb = import_gltf('power_box_01'); pr_ = bpy.data.objects.new('POWER_CABINET', No
 for o in pb:
     o['glb'] = True
     if o.parent is None: o.parent = pr_
+for o in pb:                                                  # repaint the cabinet to the room: its texture x a plum-steel tint
+    for sl in getattr(o, 'material_slots', []):
+        m = sl.material
+        if not m or m.get('tinted'): continue
+        nt = m.node_tree; b = nt.nodes.get('Principled BSDF'); lk = b.inputs['Base Color'].links if b else []
+        if lk:
+            mx2 = nt.nodes.new('ShaderNodeMix'); mx2.data_type = 'RGBA'; mx2.blend_type = 'MULTIPLY'; mx2.inputs['Factor'].default_value = 1.
+            i2 = [i for i in mx2.inputs if i.type == 'RGBA']; nt.links.new(lk[0].from_socket, i2[0]); i2[1].default_value = lin('#7a6aa0')
+            nt.links.new([q for q in mx2.outputs if q.type == 'RGBA'][0], b.inputs['Base Color'])
+        m['tinted'] = True
 pr_.scale = (2.2,) * 3; pr_.location = (1.55, 0.9, DECK_Z); pr_.rotation_euler.z = math.radians(-30)
 # ---------------------------------------------------------------- 7 cables: bundles up the meridians to junction boxes, a loom from the relay box
 def cable(name, pts, r, mat):
@@ -292,6 +303,8 @@ for g in (1, 2, 3, 4):
     plight('fill_red_g%d' % g, (rrr * math.cos(pc), 1.2, rrr * math.sin(pc)), RED, 260)
     plight('fill_green_%d' % g, (rrr * math.cos(pc + .6), 0.0, rrr * math.sin(pc + .6)), LEMON, 170)
 plight('fill_blue_top', (0, 2.0, 3.5), BLUE, 220); plight('fill_blue_low', (2.4, -1.0, -2.2), BLUE, 140); plight('fill_back', (0, -3.8, 1.0), '#8a6ad8', 120, 1.)
+for k in range(8):                                            # raking light across the iris pleats (lamps on the iris track)
+    p = 2 * math.pi * (k + .5) / 8; plight('iris_rake_%d' % k, ((IR_OUT + .05) * math.cos(p), YI - .45, (IR_OUT + .05) * math.sin(p)), LEMON if k % 2 else BLUE, 18, .08)
 ld = bpy.data.lights.new('window_light', 'AREA'); ld.shape = 'DISK'; ld.size = 2 * PUP0; ld.color = lin('#f0a878')[:3]; ld.energy = 420
 wl = bpy.data.objects.new('window_light', ld); COL.objects.link(wl); wl.location = (0, YI - .35, 0); wl.rotation_euler = (math.radians(-90), 0, 0); wl['e'] = 420
 # ---------------------------------------------------------------- 9 cameras (LOOK_BIBLE lens 24 mm on a 36 mm tall frame)
@@ -305,7 +318,10 @@ r = sc.render; r.resolution_x, r.resolution_y, r.resolution_percentage = 540, 96
 sc.cycles.samples = 16
 sc.cycles.use_denoising = True
 sc.cycles.denoiser = 'OPENIMAGEDENOISE'
-sc.cycles.max_bounces = 4
+sc.cycles.max_bounces = 3
+sc.cycles.caustics_reflective = False
+sc.cycles.caustics_refractive = False
+sc.cycles.use_adaptive_sampling = True
 sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'
 # lamp glow: compositor fog glow (Blender 5: compositing_node_group with a group output; glare settings are inputs)
 try:

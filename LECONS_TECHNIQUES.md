@@ -16,6 +16,20 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Les camions de Dallas gardaient le lettrage « ENGINE No. 1 » (yellow-fire-trucks, décor Dallas) — FERMÉ
+- Problème : log LETTERS_FAIL, clé "truck_letters_dal14" introuvable.
+- Cause réelle : truck_api.append_truck n'ajoute que la collection TRUCK ; les images de lettrage supplémentaires restent dans truck.blend.
+- Correction : dallas_api.link_trucks charge assets_prod/out/<letters>.png, l'empaquette, puis set_letters.
+- Garde-fou : build_dallas.sh affiche toute ligne LETTERS_FAIL.
+- Preuve : 2e build sans LETTERS_FAIL, « DALLAS FIRE DEPT. » sur les portes.
+
+## 2026-11-21 — Les temps par image ne veulent plus rien dire quand la machine est surchargée (yellow-fire-trucks) — OUVERT
+- Problème : une mesure de temps du kit est sortie négative ; Blender a pris 64 à 127 s par aperçu au lieu d'environ 30 s.
+- Cause réelle : sept assistants en parallèle sur 4 cœurs (charge moyenne autour de 19).
+- Correction : aucune encore. Les durées mesurées sous charge ne servent pas d'estimation.
+- Garde-fou à mettre : noter la charge (`uptime`) à côté de chaque temps mesuré ; au plus 3 ou 4 assistants qui rendent en même temps sur cette machine.
+- Preuve : sets/dallas/STATE.md, charge 18,9 relevée par le lead à 01:02.
+
 ## 2026-11-21 — Le décor comptait 16,4 M de triangles dans le kit pour 395 k uniques (yellow-fire-trucks, ville) — FERMÉ
 - Problème : 16,4 M de triangles dans le kit alors que le GLB n'en a que 395 k uniques ; 3 à 13 s par image.
 - Cause réelle : les instances glTF partagent leurs maillages, mais le chargeur les clone : 210 carrés d'herbe (62 k chacun = 13 M) et 36 arbres (64 k = 2,3 M).

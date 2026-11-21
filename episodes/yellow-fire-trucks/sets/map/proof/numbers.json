@@ -1,0 +1,76 @@
+{
+ "stills": {
+  "blender_wide": {
+   "edge": 0.0949,
+   "brightness": 0.535,
+   "saturation": 0.262,
+   "sec_per_frame": 52.1
+  },
+  "kit_wide": {
+   "edge": 0.0975,
+   "brightness": 0.516,
+   "saturation": 0.459,
+   "sec_per_frame": 7.1
+  },
+  "blender_station_open": {
+   "edge": 0.1631,
+   "brightness": 0.642,
+   "saturation": 0.186,
+   "sec_per_frame": 53.3
+  },
+  "kit_station_open": {
+   "edge": 0.1431,
+   "brightness": 0.631,
+   "saturation": 0.272,
+   "sec_per_frame": 1.9
+  },
+  "blender_dallas": {
+   "edge": 0.1285,
+   "brightness": 0.646,
+   "saturation": 0.239,
+   "sec_per_frame": 66.6
+  },
+  "kit_dallas": {
+   "edge": 0.1252,
+   "brightness": 0.611,
+   "saturation": 0.319,
+   "sec_per_frame": 3.9
+  },
+  "blender_pine_sink": {
+   "edge": 0.2731,
+   "brightness": 0.675,
+   "saturation": 0.196,
+   "sec_per_frame": 101.4
+  },
+  "kit_pine_sink": {
+   "edge": 0.2608,
+   "brightness": 0.581,
+   "saturation": 0.279,
+   "sec_per_frame": 1.1
+  }
+ },
+ "gate": {
+  "blender": {
+   "edges": [
+    0.0949,
+    0.1631,
+    0.1285,
+    0.2731
+   ],
+   "median": 0.1458,
+   "min": 0.0949,
+   "PASS": true
+  },
+  "kit": {
+   "edges": [
+    0.0975,
+    0.1431,
+    0.1252,
+    0.2608
+   ],
+   "median": 0.1341,
+   "min": 0.0975,
+   "PASS": false
+  }
+ }
+}

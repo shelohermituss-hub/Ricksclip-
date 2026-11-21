@@ -1,0 +1,124 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "he_enter",
+   "view": "34",
+   "frames": 187,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [],
+   "snaps": [
+    {
+     "name": "sweep (off screen) f311",
+     "f0": 23,
+     "ch": "h1x",
+     "to": "min",
+     "end": 28,
+     "share": [
+      23,
+      63,
+      89,
+      97,
+      100
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 28.2
+  },
+  {
+   "move": "he_shop",
+   "view": "34",
+   "frames": 187,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 7,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "coat on, dead still",
+     "frames": [
+      36,
+      43
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "looks at us, dead still",
+     "frames": [
+      136,
+      146
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "flick \"eye\" f385",
+     "f0": 57,
+     "ch": "h1y",
+     "to": "min",
+     "end": 60,
+     "share": [
+      56,
+      95,
+      100,
+      100,
+      88
+     ]
+    },
+    {
+     "name": "out \"strange\" f429",
+     "f0": 101,
+     "ch": "h1x",
+     "to": "max",
+     "end": 108,
+     "share": [
+      13,
+      38,
+      68,
+      87,
+      95
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 23.6
+  }
+ ]
+}

@@ -27,7 +27,7 @@ acts = [
     dict(who='heroShop', at=429, face='k:aim', note='row 12 "strange": one eye shut, toy out of the cone and back'),
     dict(who='heroShop', at=453, face='k:glanceCam', note='row 13 "red": eyes slide to the lens, half smile'),
 ]
-held3d = [dict(who='heroShop', obj='toy_truck', module='sets/s2_shop.js', builder='buildToyTruck', opts={}, grip='raise', hand='R', anchor='grip', tip='tip',
+held3d = [dict(who='heroShop', obj='toy_truck', module='sets/s2_shop.js', builder='buildToyTruck', opts={}, grip='raise', hand='L', anchor='grip', tip='tip',
                when='always', f0=405, scale=1.5)]
 
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
@@ -36,10 +36,10 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
 stations = [
     st(0, [1.2, -5.3, 2.1], [-3.0, 15.5, 1.75], 22, 'truck', 'W', 'lead-in anchor (frames before 288 are not rendered): holds the opening framing so the pull back cannot start before the stretch', hold=0),
     st(288, [1.2, -5.3, 2.1], [-3.0, 15.5, 1.75], 22, 'truck', 'W', 'ROW 9 (PLACE): S2 opens on the pavement outside the shop under its awning, looking across Main St at the station: the lemon truck finished in bay 1 (time has passed); the fireman crosses toward the shop door. The lead joins S1 to it with an 8-12 f blend on the motion (a place change)', hold=0.3, shows=['truck']),
-    st(330, [0.0, -14.2, 1.5], [1.6, -7.5, 1.3], 22, 'hero', 'W', 'ROWS 9-10 (M04 pull back through the window glass, short living rest): back through the glass into the shop; he has walked in and stands by the exam chair with the station and its lemon truck through the window behind him; the helmet goes back onto the stand on "second"', hold=0.35, shows=['stand', 'truck']),
-    st(362, [3.2, -12.9, 1.55], [1.2, -11.5, 1.5], 24, 'heroShop', 'W', 'ROW 10 (M11 truck arc, via): the arc round his east side while he tugs the white coat on', hold=0),
-    st(395, [3.1, -9.7, 1.58], [0.53, -12.76, 1.3], 26, 'heroShop', 'W', 'ROW 11 (SETUP, M11 lands): his front, the letter chart R / ED / GOES / FIRST behind him and the coat stand with his helmet, for the mirror flip on "eye"', hold=0.45, shows=['chart', 'stand']),
-    st(445, [2.3, -10.0, 1.5], [0.95, -11.45, 1.42], 28, 'heroShop', 'M', 'ROWS 12-13 (SETUP, M09 push in to the hand, then M02 slow creep): in to face and toy under the lamp cone for "strange", rests and creeps in for the glance on "red"; creeps on into the S3 push into the toy', hold=1.0, creep=0.004, shows=['toy']),
+    st(330, [0.0, -14.2, 1.85], [1.6, -7.5, 1.25], 22, 'hero', 'W', 'ROWS 9-10 (M04 pull back through the window glass, short living rest): back through the glass into the shop; he has walked in and stands by the exam chair with the station and its lemon truck through the window behind him; the helmet goes back onto the stand on "second"', hold=0.35, shows=['stand', 'truck']),
+    st(362, [3.2, -12.9, 1.85], [1.2, -11.5, 1.35], 24, 'heroShop', 'W', 'ROW 10 (M11 truck arc, via): the arc round his east side while he tugs the white coat on', hold=0),
+    st(395, [3.1, -9.7, 1.9], [0.53, -12.76, 1.2], 26, 'heroShop', 'W', 'ROW 11 (SETUP, M11 lands): his front, the letter chart R / ED / GOES / FIRST behind him and the coat stand with his helmet, for the mirror flip on "eye"', hold=0.45, shows=['chart', 'stand']),
+    st(445, [2.3, -10.0, 1.8], [0.95, -11.45, 1.35], 28, 'heroShop', 'M', 'ROWS 12-13 (SETUP, M09 push in to the hand, then M02 slow creep): in to face and toy under the lamp cone for "strange", rests and creeps in for the glance on "red"; creeps on into the S3 push into the toy', hold=1.0, creep=0.004, shows=['toy']),
 ]
 props = {
     'truck': dict(pos=[-4.2, 15.5, 1.3], kind='the finished lemon truck in bay 1'),
@@ -47,7 +47,7 @@ props = {
     'chart': dict(pos=CHART, kind='the letter chart R / ED / GOES / FIRST'),
     'toy': dict(pos=[0.75, -11.35, 1.45], kind='the red toy truck at the lamp'),
 }
-place = dict(set='s2_shop', lite=True, kind='am', light='morning', light_over=meta['light']['am'], kit3d=dict(envGround='#8f8a7e'), grass_keep=0.4, lamp_yaw=160,
+place = dict(set='s2_shop', lite=True, kind='am', light='morning', light_over=meta['light']['am'], kit3d=dict(envGround='#8f8a7e'), grass_keep=0.4, lamp_yaw=340,
              hero=dict(paint='lemon', masking=False, letters='under', ribbon=False, priceCard=False, sirens=4, wear=.25))
 film = {
     'title': 'Why Fire Trucks Turned Yellow, S2 THE SECRET (lines 3-4, frames 288-474)',

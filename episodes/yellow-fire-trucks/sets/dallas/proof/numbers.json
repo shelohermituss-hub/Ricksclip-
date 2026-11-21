@@ -1,0 +1,98 @@
+{
+ "stills": {
+  "blender_wide": {
+   "file": "proof/bl/bl_no_wide.png",
+   "edge": 0.159,
+   "shapes": 570,
+   "brightness": 0.779,
+   "sec_per_frame": 95.6,
+   "passes": 4,
+   "of": 7
+  },
+  "blender_medium": {
+   "file": "proof/bl/bl_no_medium.png",
+   "edge": 0.2493,
+   "shapes": 959,
+   "brightness": 0.683,
+   "sec_per_frame": 113.3,
+   "passes": 4,
+   "of": 7
+  },
+  "blender_low": {
+   "file": "proof/bl/bl_no_low.png",
+   "edge": 0.2699,
+   "shapes": 1214,
+   "brightness": 0.585,
+   "sec_per_frame": 126.5,
+   "passes": 5,
+   "of": 7
+  },
+  "blender_boards": {
+   "file": "proof/bl/bl_no_boards.png",
+   "edge": 0.1365,
+   "shapes": 450,
+   "brightness": 0.665,
+   "sec_per_frame": 63.7,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_wide": {
+   "file": "proof/kit/stills/wide/f_00000.png",
+   "edge": 0.1483,
+   "shapes": 614,
+   "brightness": 0.649,
+   "sec_per_frame": 5.8,
+   "passes": 3,
+   "of": 7
+  },
+  "kit_medium": {
+   "file": "proof/kit/stills/medium/f_00000.png",
+   "edge": 0.2397,
+   "shapes": 854,
+   "brightness": 0.529,
+   "sec_per_frame": 1.5,
+   "passes": 4,
+   "of": 7
+  },
+  "kit_low": {
+   "file": "proof/kit/stills/low/f_00000.png",
+   "edge": 0.2347,
+   "shapes": 1185,
+   "brightness": 0.412,
+   "sec_per_frame": -2.1,
+   "passes": 5,
+   "of": 7
+  },
+  "kit_boards": {
+   "file": "proof/kit/stills/boards/f_00000.png",
+   "edge": 0.1239,
+   "shapes": 487,
+   "brightness": 0.555,
+   "sec_per_frame": 6.8,
+   "passes": 2,
+   "of": 7
+  }
+ },
+ "gate": {
+  "blender": {
+   "edges": [
+    0.159,
+    0.2493,
+    0.2699
+   ],
+   "median": 0.2493,
+   "min": 0.159,
+   "PASS": true
+  },
+  "kit": {
+   "edges": [
+    0.1483,
+    0.2397,
+    0.2347
+   ],
+   "median": 0.2347,
+   "min": 0.1483,
+   "PASS": true
+  }
+ }
+}
