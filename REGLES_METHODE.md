@@ -36,7 +36,7 @@
 - Un cylindre entièrement lissé s'ombre comme une boule : marquer les arêtes vives.
 - Un matériau qui multiplie par un attribut de couleur rend noir sur un objet qui n'a pas cet attribut.
 - Un volume de brume trop petit montre son bord ; un volume ou des cartes de rayons à faible qualité donnent du grain : préférer la passe de brume et le compositeur.
-- Un commentaire `#` au milieu d'une ligne à plusieurs instructions neutralise tout ce qui suit.
+- Un commentaire `#` au milieu d'une ligne à plusieurs instructions neutralise tout ce qui suit. Garde-fou depuis le 2026-11-21 : `python tools/check_midline_comments.py <dossier>` avant chaque rendu (le piège est revenu cinq fois, et existait dans le kit livré).
 - Deux rendus de la même image doivent donner les mêmes octets : pas de date ni de temps de rendu écrits dans l'image.
 
 ## 5. Honnêteté du compte rendu

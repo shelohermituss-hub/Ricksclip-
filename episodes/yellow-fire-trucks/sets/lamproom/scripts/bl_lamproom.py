@@ -306,8 +306,8 @@ for g in (1, 2, 3, 4):
 plight('fill_blue_top', (0, 2.0, 3.5), BLUE, 220); plight('fill_blue_low', (2.4, -1.0, -2.2), BLUE, 140); plight('fill_back', (0, -3.8, 1.0), '#8a6ad8', 120, 1.)
 for k in range(8):                                            # raking light across the iris pleats (lamps on the iris track)
     p = 2 * math.pi * (k + .5) / 8; plight('iris_rake_%d' % k, ((IR_OUT + .05) * math.cos(p), YI - .45, (IR_OUT + .05) * math.sin(p)), LEMON if k % 2 else BLUE, 18, .08)
-rf = bpy.data.lights.new('reflector_fill', 'AREA'); rf.shape = 'DISK'; rf.size = 4.4; rf.color = lin('#d8ccff')[:3]; rf.energy = 160
-rfo = bpy.data.objects.new('reflector_fill', rf); COL.objects.link(rfo); rfo.location = (0, BULK_Y - 3.35, 0); rfo.rotation_euler = (math.radians(90), 0, 0); rfo['e'] = 160
+rf = bpy.data.lights.new('reflector_fill', 'AREA'); rf.shape = 'DISK'; rf.size = 4.4; rf.color = lin('#8a72c8')[:3]; rf.energy = 9
+rfo = bpy.data.objects.new('reflector_fill', rf); COL.objects.link(rfo); rfo.location = (0, BULK_Y - 3.35, 0); rfo.rotation_euler = (math.radians(90), 0, 0); rfo['e'] = 9   # 160 blew the entry tile white (brightness .75)
 ld = bpy.data.lights.new('window_light', 'AREA'); ld.shape = 'DISK'; ld.size = 2 * PUP0; ld.color = lin('#f0a878')[:3]; ld.energy = 420
 wl = bpy.data.objects.new('window_light', ld); COL.objects.link(wl); wl.location = (0, YI - .35, 0); wl.rotation_euler = (math.radians(-90), 0, 0); wl['e'] = 420
 # ---------------------------------------------------------------- 9 cameras (LOOK_BIBLE lens 24 mm on a 36 mm tall frame)

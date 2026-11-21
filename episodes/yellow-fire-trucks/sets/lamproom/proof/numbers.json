@@ -33,11 +33,11 @@
  },
  "blender_entry": {
   "file": "proof/bl/bl_entry.png",
-  "edge": 0.1627,
-  "regions": 677,
-  "colours": 1241,
-  "brightness": 0.754,
-  "sec_per_frame": 35.0
+  "edge": 0.1505,
+  "regions": 1199,
+  "colours": 1107,
+  "brightness": 0.239,
+  "sec_per_frame": 34.8
  },
  "kit_allon": {
   "file": "proof/kit/stills/allon/f_00000.png",
@@ -57,10 +57,10 @@
  },
  "kit_entry": {
   "file": "proof/kit/stills/entry/f_00000.png",
-  "edge": 0.0862,
-  "regions": 345,
-  "colours": 799,
-  "brightness": 0.508,
-  "sec_per_frame": 2.2
+  "edge": 0.1008,
+  "regions": 436,
+  "colours": 672,
+  "brightness": 0.177,
+  "sec_per_frame": 3.0
  }
 }

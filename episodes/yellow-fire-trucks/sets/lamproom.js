@@ -59,7 +59,7 @@ export async function build(THREE, scene, film, ctx) {
     const pc = (135 - 45 - 90 * (g - 1)) * Math.PI / 180;
     redFill.push(pt([3.6 * Math.cos(pc), 1.2, 3.6 * Math.sin(pc)], KIND[0], pl.fillI ?? 26, 10)); pt([3.6 * Math.cos(pc + .6), 0, 3.6 * Math.sin(pc + .6)], KIND[1], (pl.fillI ?? 26) * .7, 10);
   }
-  pt([0, 2, 3.5], KIND[2], 18, 10); pt([2.4, -1, -2.2], KIND[2], 12, 9); pt([0, -3.8, 1], '#8a6ad8', 12, 9); pt([0, LAYOUT.BULK_Y - 3.2, 0], '#d8ccff', 14, 6);   // last: the reflector fill (entry view)
+  pt([0, 2, 3.5], KIND[2], 18, 10); pt([2.4, -1, -2.2], KIND[2], 12, 9); pt([0, -3.8, 1], '#8a6ad8', 12, 9); pt([0, LAYOUT.BULK_Y - 3.2, 0], '#8a72c8', 2.5, 6);   // last: the reflector fill (entry view)
   const win = pt([0, LAYOUT.YI - .4, 0], '#f0a878', 10, 9);
   scene.add(new THREE.AmbientLight('#3a2c6e', 1.3));
   // state

@@ -16,6 +16,28 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Le piège du commentaire en milieu de ligne, cinquième fois, et un cas dans le kit livré (poses.mjs) — FERMÉ
+- Problème : quatre fois dans ce film (pivots du camion, ancres de la ligne de cour, débruitage, matière chrome de l'iris) un « # » ou « // » placé au milieu d'une ligne à plusieurs instructions a supprimé le code qui suivait. En cherchant, l'outil a trouvé le même défaut dans le kit livré : `templates/threejs_film/poses.mjs` ligne 162, où `S.chairPose` et `S.liePose` étaient dans un commentaire, donc les poses assis sur une chaise et couché ne recevaient jamais leur dessin par ce chemin.
+- Cause réelle : des modifications par sed ou par remplacement qui ajoutent un commentaire en bout de ligne, sur des lignes qui contiennent plusieurs instructions.
+- Correction : commentaire sur sa propre ligne dans poses.mjs (et dans chaque fichier du film concerné).
+- Garde-fou : `python tools/check_midline_comments.py <dossier>` (sort 1 si une ligne suspecte) ; à lancer avant chaque rendu et dans chaque brief d'assistant. Testé sur une faute plantée en .py et en .js.
+- Preuve : check_views.mjs identique avant et après la correction (mêmes 24 « no approved picture », aucune autre différence) ; test_lie3d.mjs sort 0 ; l'outil donne 0 sur poses.mjs.
+
+## 2026-11-21 — A sed appended a '#' comment in the middle of the iris line and ate `iris (yellow-fire-trucks, salle des lampes) — FERMÉ
+- A sed appended a '#' comment in the middle of the iris line and ate `iris.data.materials.append(chrome)`. Cause: REGLES 4 trap again. Fix: comment on its own line. Guard: `grep -n "; *#" scripts/*.py` before every render (it caught this one). Proof: the chrome lip shows in bl_irisopen.png. FERMÉ
+
+## 2026-11-21 — The socket asset joined to an empty list (IndexError) (yellow-fire-trucks, salle des lampes) — FERMÉ
+- The socket asset joined to an empty list (IndexError). Cause: the filter `'chain' in name` also matched the asset's own name pull_chain_light_socket. Fix: `name.endswith('_chain')`. Guard: join() fails loudly on an empty list. Proof: SRC_housing built, LAMPS line in logs/build.log. FERMÉ
+
+## 2026-11-21 — ReferenceError after bpy (yellow-fire-trucks, salle des lampes) — FERMÉ
+- ReferenceError after bpy.ops.object.join. Cause: the joined objects are deleted; the loop then read their names. Fix: list the non-mesh objects before the join. Guard: in join(). Proof: logs/build.log LAMPROOM_DONE. FERMÉ
+
+## 2026-11-21 — Lamps at emission 9 clipped in the Standard view: red read salmon, lemon read white (yellow-fire-trucks, salle des lampes) — FERMÉ
+- Lamps at emission 9 clipped in the Standard view: red read salmon, lemon read white. Fix: E_ON 3.0 in lamproom_api. Guard: the constant's comment. Proof: bl_allon.png round 2, red reads red. FERMÉ
+
+## 2026-11-21 — Mirror chrome reads black where nothing bright is in front (Blender reflector bowl; every  (yellow-fire-trucks, salle des lampes) — FERMÉ
+- Mirror chrome reads black where nothing bright is in front (Blender reflector bowl; every kit chrome without an env map). Fix: brushed reflector (rough .2) + a dim violet fill (160 W blew it white, 9 W kept); kit caps metalness .55. Proof: bl_entry.png / kit entry, round 3. FERMÉ
+
 ## 2026-11-21 — Full-size kit stills died: Playwright screenshot timeout 30 s (grab took 26-56 s on the sh (yellow-fire-trucks, S3) — OUVERT
 - Full-size kit stills died: Playwright screenshot timeout 30 s (grab took 26-56 s on the shared CPU) and `--grab canvas` crashed the page every time (also on S1's film). Fix: s3/tools/render_s3.mjs = render_gpu.mjs with a 240 s screenshot wait. Guard: comment line 1 of the copy. Proof: key/*.png. OUVERT for the kit owner (a --grab-timeout flag in render_gpu.mjs).
 
