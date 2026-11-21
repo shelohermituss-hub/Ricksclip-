@@ -61,3 +61,15 @@ Mailbox moved to the left edge (no blockout re-render; LAYOUT re-run). Bike is o
 5. Water leaving a card-held nozzle is hidden by the card when it heads into depth. Fix: split the card at the knees, push the upper part
    back along the lens rays (scale about the camera). Guard: zoom the nozzle area. Proof: prev/asm3 vs asm4.
 6. Appending a second collection that holds the same objects duplicates them (.001). Fix: read names, strip suffixes, delete the copies.
+
+## Round 4: LIBRARY nature (CB_RULES 3 point 1b + THE ASSET LIBRARY)
+- Set's Poly Haven trees (hero + 13 far, 1.07 M tris each x2), lawn_hair (973k strands) and grass_near_blades deleted in assemble.py;
+  library rick_tree (yard tree near, 22 clumps, seed 8, clump_var .55-1.6; 13 far trees lod mid) + rick_grass (lawn_material on lawn_soil,
+  tufts: lens band 1.0-2.6 m h .2, both drive edges, trunk ring, fence; blade colours root #5e9a28 tip #b0d84c).
+- Lawn/blade bounce greyed for non-camera rays (Light Path -> saturation .2); sky fill #a6b6f2 (was #b4c3f0).
+- Water: opaque blue-white core tube on the first 0.42 m; hose ends along the lens ray behind the back fist, nozzle built separately (no loop).
+- Rendered tris 32 M -> 2.22 M. Final 1080x1920 64 spp: render 378 s -> 264 s, lines 12 s -> 2 s, wall 474 s -> 361 s. Preview 38 s -> 19.5 s.
+- Final numbers: p1 .070 p50 .457 p99 .994 mean .456 contrast .209 sat .443 shadows .152/.169/.134 (DAY .061/.467/.966/.480/.208/.381).
+- Weak: shadows metric still green (darkest pixels = grass/tree undersides); drive shade .49/.49/.52 (recipe #898d9a .54/.55/.60);
+  a short gap remains where the stream crosses the white face edge; far trees read as round puffs (no trunks seen); lens tufts darker than lawn.
+- Library: library/trees/rick_tree.py got an optional clump_var parameter (default unchanged), noted in library/trees/STATE.md.

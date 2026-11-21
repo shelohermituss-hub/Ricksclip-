@@ -9,3 +9,4 @@ Weak: crown lit tops less yellow than Rick's; some edge-on cards pale blue-grey;
 Open: card translucency/fresnel test; optional dapple holes; GLB export test into the three.js kit.
 Round 2 (lead notes): smooth puffy denser clumps, cards half size x~3 count over whole outer surface, cells .075 m, card translucency = leaf colour x.5, spec 0.
   Tris near 66-84k, mid 35-45k, far 2.7k; 9-10.5 s per panel. Weak: clumps a bit topiary-regular; few light-grey cards from below.
+Round 3 (look-finisher, style test, 2026-11-21): make_tree(..., clump_var=(min, max)) added (default .85-1.25 unchanged); .55-1.6 gives a less hedge-like crown.
