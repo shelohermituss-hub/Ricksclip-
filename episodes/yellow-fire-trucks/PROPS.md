@@ -42,6 +42,16 @@ Built by the same `assets_prod/build_assets.sh` (new: `scripts/bl_light.py`, `sc
 FIVE DETAILS, round-2 props: van: cream + one cornflower stripe, hand-sign dairy name, open sliding door, the asset's rust and dents at the corners, chrome bumper; hubcap: domed chrome, stamped ring, scuff, 25 cm, comes off the van's front right wheel (anchor); bottle: glass, cream line, foil cap, thick base, real quart size; lunch box: navy enamel, chips to steel, wire handle, sprung latch, hinge pins; tins: SUNBEAM label word in the world, lemon drips and dirt kept from the asset, brush across the rim, wet paint surface, three colours; ribbon set: gilt scissors, navy velvet, gilt tassels, plumped cushion, worn wooden stool.
 NOT done this round: initials scratched in the lunch box lid, a grocer's sticker on the lemon, "MAYOR" engraving and a cut-ribbon end on the scissors, the mug's chipped rim + station crest + lemon fingerprint, the bottle crack after the bump, the van's dented wing and bare hub (the asset's wheel keeps its own cap), air horns in a row (row 17 says "horns in a row": not built), a three.js toy, plaster pop animation. PRIORITY 3 not started: head mirror, trial-lens case, chalk, slate boards RED/LIME with tallies and "UP TO 3x", 4-leaf calendar, ladder sections, red ball and the five lost things, order sheet REPAINT: RED.
 
+## ROUND 3 (props-hero 2026-11-21): fixes asked by the stretches. Proof `props/PROPS_R3.jpg` (Blender + kit). Details: `assets_prod/STATE.md` ROUND 3.
+| Prop | Source, licence | Size, tris | Story change | Controls |
+|---|---|---|---|---|
+| all trucks | ALF (robinmikart, CC-BY) | full 182,344 / light 43,372 / toy 18,435 | plate "PINE HOLLOW / F.D. 1 / FIRE DEPT. 1941" (Dallas: "TEXAS / DALLAS"), ribbon hugs the body, light truck keeps 4 sirens + beacon row | `setLetters`, `{ light, sirens, beaconRow }`, `setPaint({ drainWipe, wipe, from, to })`, `update()` |
+| milk van | step van (the.snajp, CC-BY) | 5.40 m, 19,032 | cream baked in the texture, cornflower stripe geometry, Meadowbrook DAIRY both flanks | `buildProp2('milk_van')` |
+| red ball | built | 32 cm, 6,016 | red rubber, cream seams + stars, grass stain | `buildLost('red_ball', { grey })` |
+| lost wagon / kite / boot / watering can / tricycle | cukooart, phac, Marousiya (CC-BY); Poly Haven (CC0) | 1.10 / 1.0 / 0.45 / 0.56 / 0.85 m | S6 dusk grey state | `buildLost(name, { grey })`, `.setGrey(k)`; Blender `props_api.set_grey` |
+| toy truck | ALF light, 18 cm | 18,435 | tin tabs, missing hubcap, bent ladder | `buildToyTruck(THREE, { grey })`, `.setGrey(k)` (held3d builder) |
+| lunch box, lemon | built; svnfbgr (CC-BY) | 928; 7,492 | navy enamel in the kit, dome end caps; lemon-lime #E3EA22 skin | `buildProp2` |
+
 ## THE HERO OBJECT: the fire truck (CODED REFERENCE, replaced in the film by the asset above; `sets/hero_truck.js` `buildTruck`)
 1970s American cab-forward pumper, "ENGINE No. 1" of Pine Hollow. Real size 8.02 m long, 2.4 m body (2.6 over mirrors and hoses), 2.89 m to the beacon top; a 1.75 m man reaches the top of the pump panel.
 103,256 triangles, 1,482 meshes, 337 named part kinds. Front = local -X, driver's side (pump panel, suction hoses) = +Z, officer's side (ladder) = -Z.

@@ -45,3 +45,26 @@
   props are built by the set here (PROPS.md listed them as LIST): props-hero may replace them.
 - Background-painter: sky dome, far haze, skyline may be painted; leave the water tank and derrick sight lines (anchors water_tank, derrick, far_skyline).
 - Effects: heat shimmer, dust devils, flies, chalk dust, red mist (DRESSING.md). Lead: OK the layout (red west, lime east; boards centred on the bay pier).
+## FIX 2 (2026-11-21) - sheet FIX2_SHEET.jpg (8 tiles, looked at), numbers proof/fix2/numbers.json; runs fix2_run.sh + fix2_rerun.sh (build -> out_tmp/, renamed)
+- NOT done: Blender air life twin; grass/halyard/pump-jack motion; skyline towers are plain haze boxes (no window rows); Blender S5/S7 saturation .15-.16 and S7
+  brightness .79 (pale apron at hot noon, near white); the period of DALLAS FIRE DEPT. does not read at preview size; no Rick side-by-side (no refs).
+- Done, seen in the sheet: 1 apron pale grey (tint #b6bec8 keep .1, grain pulled 45 % to its mean; texture mean 189/188/192, was brown-cream), oil/cracks/joints kept.
+  2 boards.ladder 'side' (kit) / set_boards(ladder='side') (Blender): ladder on the stack's west edge, dx -.9 (meta ladder_side_dx; anchors ladder_side_foot/top);
+  board 3 UP TO 150 px + 3x 400 px chalk in a chalk box. 3 far layer moved: tank (-12,70) body 40-47 m, derrick (-38,60) 44 m, skyline x.3 y.27 h x1.1 (300-370 m):
+  all three read from the S5 and S7 cameras (cams s5, s7 in dallas_cams.json). DALLAS FIRE DEPT. is a roof sign (10.4 x 1.3 m, centre z 9.7) clear of the boards in S5.
+  4 dallas.js still: true | [t0, t1] (frozen, no jump) over the new air life; update(f, t) returned. 5 boards.ground 0-4 (default 3 as before; gl4 by the red nose).
+  Kit metals get a painted noon env (ladder read black). Anchors: all 28 old names kept; MOVED (needed by the fix): sign_front, water_tank, derrick, far_skyline.
+| tile | edge | bright | sat | s/f (load) |
+|---|---|---|---|---|
+| BL wide BEFORE | .159 | .779 | .238 | 95.6 (~14) |
+| BL S5 cam after | .296 | .666 | .159 | 15.5 (3.5) |
+| BL S7 cam after | .176 | .791 | .149 | 15.2 (3.5) |
+| BL boards before / after | .137 / .180 | .665 / .643 | .296 / .276 | 63.7 (~14) / 16.7 (3.1) |
+| KIT lite S5 / S7 / boards after | .294 / .182 / .168 | .548 / .690 / .559 | .325 / .231 / .391 | 3.3 / 3.1 / 3.1 (4.3) |
+- For stretch builders: S5/S7 wrappers must call the returned update(f, t) for the air life; S7 passes still: [57.667, 58.467]; S5 row 34 may pass ladder: 'side'.
+## FIX 2 LECONS (LECONS format)
+- 2026-11-21 The far landmarks (tank, derrick, skyline) were in the set but never in a frame. Cause: placed by plan only; from a 1.3 m camera 18 m from a 6.3 m
+  roof, anything under 16 deg up hides (a 38 m tank at 163 m is 13 deg). Fix: place far things by the elevation test against the roof and the sign from the
+  shot cameras. Guard: the s5/s7 cams in dallas_cams.json are proof tiles. Proof: FIX2_SHEET tiles 2, 3, 6, 7. FERME
+- 2026-11-21 The apron read warm sand after a grey tint. Cause: tint() keeps 25-50 % of the source colour and the Poly Haven concrete is brown (85/60/41).
+  Fix: keep .1 + pull the grain to the mean. Guard: tex_dallas prints nothing: check the texture mean (python one-liner in STATE) before a build. Proof: tiles 2/3. FERME

@@ -16,6 +16,34 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Truck paint computed in world space when the truck's first mesh is off screen (yellow-fire-trucks, assets.js) — FERMÉ
+- Problème : S1 f272, the lemon rear of the hero rendered aged red; every stretch (S1, S2, S3, S5, S7, S8) copied a workaround.
+- Cause réelle : uInvRoot (the paint frame) was refreshed only in the FIRST mesh's onBeforeRender; three.js skips onBeforeRender of a culled mesh, so the inverse stayed identity.
+- Correction : `sets/assets.js` buildTruck overrides the truck group's updateMatrixWorld / updateWorldMatrix (the renderer calls them every frame) to refresh the inverse, plus onBeforeRender on every paint mesh; `T.update()`.
+- Garde-fou : proof tile `assets_prod/proof/kit_r3` mode "rear" (camera on the rear, no workaround) in `build_assets.sh --proof`.
+- Preuve : `props/PROPS_R3.jpg` tile 3: lemon rear correct without the workaround.
+
+## 2026-11-21 — Blender node colours vanish in the GLB (yellow-fire-trucks, props) — FERMÉ
+- Problème : the kit showed the navy lunch box WHITE and the cream milk van GREEN (the download's paint); stretches repainted them by hand.
+- Cause réelle : the colour was a Blender node trick (Mix with noise, object-space band); the glTF exporter only writes a texture or a flat factor, so it wrote nothing (white) or the original texture.
+- Correction : bake the colour into the texture (van, lemon: numpy in Blender), real geometry for the stripe, and `bl_props2.save(glb_plain=)` (flat factor for the GLB export only, nodes relinked for the .blend).
+- Garde-fou : `python3 assets_prod/scripts/check_glb_colours.py out/*.glb` (exit 1 on a material with neither texture nor factor), run by `build_assets.sh`.
+- Preuve : check prints enamel_navy [0.018, 0.034, 0.112], GLB_COLOURS flags 0; kit lawn tile shows the navy box and the cream van.
+
+## 2026-11-21 — Ribbon "around" the truck stood 0.2-0.4 m off the body (yellow-fire-trucks, bl_truck.py) — FERMÉ
+- Problème : the mayor's ribbon floated off the doors and the pump panel.
+- Cause réelle : convex hull of every painted vertex at band height: the wheel fenders (|y| 1.26 m) set the hull, the body is 0.87-1.05 m.
+- Correction : per-side outer profile every 5 cm from all meshes but the wheels, points |y| <= 1.10 m, window 0.2 m, smoothed, 1.2 cm proud.
+- Garde-fou : the build log prints `R3 ribbon profile y(-) min/max` (max must stay under 1.12).
+- Preuve : log 0.312 / 1.11; PROPS_R3 tiles 1-2 (Blender + kit).
+
+## 2026-11-21 — A comment I inserted before "; next statement" disabled the statement (yellow-fire-trucks, bl_props3.py) — FERMÉ
+- Problème : the grey tint of the lost things was silently skipped (a scripted replace put "# ..." in front of "; tint.inputs[7] = ...").
+- Cause réelle : the known midline-comment trap (REGLES 4), this time made by a text replace, not by hand.
+- Correction : comment moved to its own line.
+- Garde-fou : `python tools/check_midline_comments.py <dir>` before every render (it caught this one before the proof).
+- Preuve : MIDLINE_COMMENTS 0 on assets_prod/scripts and sets/assets.js before the last renders.
+
 ## 2026-11-21 — Le « temps de capture » de 11 à 20 s n'était pas la capture (kit three.js, rendu logiciel) — FERMÉ
 - Problème : 13 à 22 s par image en taille réelle, dont 11 à 20 s attribuées à la capture d'écran ; des rendus tués par la limite de 30 s.
 - Cause réelle : SwiftShader exécute encore les commandes GL de l'image après le retour de renderFrame ; la capture attend ce travail. Le coût vient des pixels (multi-échantillonnage, ombres douces, flou du look), pas de la capture. Les plantages « --grab canvas » étaient des tués par manque de mémoire (dmesg), pas le mode de capture.
