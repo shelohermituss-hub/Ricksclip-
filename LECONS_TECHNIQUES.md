@@ -16,6 +16,12 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Rendus Blender tués par manque de mémoire avec de vrais arbres et Freestyle (décor privé car_science) — OUVERT
+- Problème : 2 vignettes sur 4 tuées par manque de mémoire une fois 11 arbres Poly Haven ajoutés et les contours Freestyle activés, pendant qu'un autre assistant rendait avec Chromium.
+- Cause réelle : la machine partage environ 15 Go entre tous les assistants ; des arbres réalistes en instances plus Freestyle (qui garde toute la géométrie en mémoire pour tracer les lignes) dépassent ce que la machine peut tenir à côté d'un autre rendu.
+- Correction à appliquer : rendre une vignette à la fois quand rien d'autre de lourd ne tourne ; ou tracer les contours dans une deuxième couche sans les arbres ; ou rendre ces décors réalistes sur RunPod (plus de mémoire).
+- Garde-fou à mettre : vérifier la mémoire libre (`free -g`) avant de lancer un rendu Blender avec végétation, et ne pas lancer deux rendus lourds en même temps.
+
 ## 2026-11-21 — L'herbe en poils devenait des murs verts de 2 m (Blender 5.3, décor privé car_science) — FERMÉ
 - Problème : l'herbe rendait comme des murs verts. Cause : régler `normal_factor` après `hair_length` recalcule la longueur. Correction : régler hair_length en dernier, ne jamais toucher normal_factor. Garde-fou : hair_length est le dernier réglage de grass(). Preuve : gazon de 7 cm au 2e tour.
 
