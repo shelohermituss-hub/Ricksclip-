@@ -74,3 +74,6 @@ episodes/_style_test/cast/out/
 episodes/_style_test/props/_sheet_tiles/
 episodes/*/crew/*_vs_rick*
 episodes/*/cast/*_vs_rick*
+episodes/_style_test/look/prev/*_raw*
+episodes/_style_test/look/final/*_raw*
+episodes/_style_test/look/prev/*.log
