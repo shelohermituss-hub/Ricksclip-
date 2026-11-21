@@ -11,6 +11,9 @@
 - The order sheet REPAINT: RED is the set's (painters: true); not checked readable in a key frame. "UP TO 3x" small over his shoulder (row 52) not checked.
 - Motion gate (motion_gate.txt): twos 0, linear 0, creep 0; no_settle 2 in pt_s7 (shrug, sweep) and 2 in cv_s7 (nod, salute); pf_s7 clean.
   Plain kit poses 0, frozen moves 0 (3 episode moves).
+- Seen in BOARD.jpg: f1600 is still the close on the lemon door (no painters, no shrug, order sheet not seen: the pull back starts late);
+  f1640/1655 the red sweep reads well but the Painters are at the right edge / out of frame (fat one's pat NOT visible); f1690-1742 the Chief reads
+  (VISITOR, chest out, proudShut) but the thin painter and the set step ladder stand behind/beside him; no boards/UP TO 3x in any frame.
 ## Built (files, s7/)
 - make_film.py -> film.json (camera v2, camsafe, kit3d, tween ones, face_frames 0, card_shade 0/0, costume_shade keep_drawn_light + smooth 40, LITE dallas,
   boards n3 / ladder off / painters on / leaves 3). ONE take: anchor, lemon door 1576, pull-back rest 1618, push to the Chief 1727 + stillness. CAMERA_NOTE.md.

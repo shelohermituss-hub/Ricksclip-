@@ -16,6 +16,21 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — plan_window (yellow-fire-trucks, S5) — FERMÉ
+- plan_window.py (from s2) read 4 % "at rest" on a 4.9 s hold. Cause: the f0 lead-in anchor shifted to f-969 in the window copy and its default creep (0.0028) carried into the window's first rest. Fix: plan_window drops stations before the window; the anchor gets creep 0. Guard: the comment in plan_window.py. Proof: at rest 4.3 % -> 41-59 %, real camera at 969 unchanged. FERMÉ
+
+## 2026-11-21 — Camera v2 stretched the travel out of a short rest and the camera was not on UP TO 3x on " (yellow-fire-trucks, S5) — FERMÉ
+- Camera v2 stretched the travel out of a short rest and the camera was not on UP TO 3x on "three" (it had left at 1151 for the headlamp). Cause: v2 wants 1.5 s + 0.25 s/m per travel and starts it early from the previous rest. Fix: the drop to the headlamp is a whip (place change), the 3x station at 1166. Guard: print camera_baked state at the word frames before rendering. Proof: f1168 state rest at the 3x framing. FERMÉ (picture: BOARD.jpg)
+
+## 2026-11-21 — Mid-stretch "rest creep" sits on a knife edge between two gates (at rest < 2 px/f >= 30 %  (yellow-fire-trucks, S5) — OUVERT
+- Mid-stretch "rest creep" sits on a knife edge between two gates (at rest < 2 px/f >= 30 % and speed median about 4): creep .0012 -> median FAIL, .0021 -> at-rest FAIL, .0018 passes both. Guard: try 3 creep values in one loop (make_film + bake + plan_window). OUVERT for the tool (a window-aware gate).
+
+## 2026-11-21 — A planned stillness at the END of a stretch cannot be followed by a camera move in the sam (yellow-fire-trucks, S7) — OUVERT
+- A planned stillness at the END of a stretch cannot be followed by a camera move in the same stretch under camera v2. Cause: v2 times every travel (a whip is stretched to stay under 46 px/f: 36 f here), so the move starts inside the stillness. Fix: end the stretch on the frozen tableau; the next stretch carries the move. Guard: print camera_baked state over the stillness frames (must read rest with zero motion). Proof: 1730-1754 rest. FERMÉ (for the plan: OUVERT, lead decision)
+
+## 2026-11-21 — Painters spraying a truck side face the truck, so a lens on the open side sees their BACKS (yellow-fire-trucks, S7) — FERMÉ
+- Painters spraying a truck side face the truck, so a lens on the open side sees their BACKS. Fix: stand them rear-ward of the patch, spraying forward-diagonal, lens south-east: apply_looks gives 3/4 front. Guard: camsafe validate (FACE_BEHIND) before rendering. Proof: 537/537 PASS. FERMÉ
+
 ## 2026-11-21 — People on the map: cast at real height would be giants beside 0 (yellow-fire-trucks, S4) — FERMÉ
 - People on the map: cast at real height would be giants beside 0.76 m station models. Fix: cast height x META truck_scale (0.088), positions on map_geo.fold_z + 7 mm (station base minus fold_z). Guard: make_film.py derives both from the set files. Proof: f936/f956 feet on the apron, shadows. FERMÉ
 

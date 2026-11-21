@@ -10,7 +10,8 @@
   Plaster pop not readable in the shared framing (small). Shadow sweeps = 2 `moods` (white edge flash in the kit), not a real sun move.
 - Row 32: no close-up on the chalk mark (the camera stays in the shared framing); the Clerk's concentrate face shows the pink tongue (CAST_KEYS _mouth_note).
 - Rows 33-35 (first render): the Clerk is OUT of frame on the ladder (f1150, f1168) and UP TO 3x cut by the right edge. Fixed in the camera plan
-  (station at 1166 aim -0.55, lens 26, the drop to the headlamp is a planned whip at the S5 -> S6 place change, 30 f); f1150/f1168 re-rendered (see BOARD.jpg).
+  (station 1166, lens 26, planned whip to the headlamp). Re-render seen: f1168 the Clerk on the top rung, "3x" readable, "UP TO" small and half behind
+  him (needs him 0.3 m right); f1150 his HEAD IS CUT by the bottom edge (head-cut = FAIL, not fixed); f1200 headlamp end OK, no Clerk.
 - The ladder climb is a card rising on rung glides (4 steps of 1.2 m in 3 f each): cartoon-fast; feet on treads NOT checked. The 3x is already written
   in the set texture (no live chalk stroke). Hat tip and the long look are in the move but not shown in a key frame.
 - Motion gate (motion_gate.txt): twos 2 (f1136, 1147), no_settle 2 (nods 1050-62; the point-back into the first tick 1075-80), linear 0, creep 0,
