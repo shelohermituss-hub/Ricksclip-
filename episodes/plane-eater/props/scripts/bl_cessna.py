@@ -3,7 +3,8 @@ Run (props/build_props.sh does it):  blender -b --factory-startup --python bl_ce
 Source: "FREE Cessna 172SP" by NLM-Group, Sketchfab c9cadc2f026946da8cf9715a683739e9, CC BY 4.0 (props/ASSETS.md).
 Adapted to a 1970s Cessna 150: scaled to the 150's span (10.17 m), rear bench removed (2 seats), tie-down ropes / blocks / tags
 removed, missing right wing strut mirrored from the left one, glass-cockpit screens switched off, grime + navy livery + the
-baked registration replaced by clean white (#f3f4f1) and the film's one red (#d62828), new registration F-MIAM on both rear-fuselage sides.
+baked registration replaced by clean white (#f3f4f1) and a clean navy (#1d3461; lead 2026-11-21: red is only Michel's napkin), the fin
+whitened, new registration F-MIAM in bold sans navy letters on both fin sides and both rear-fuselage sides.
 Axes: nose -Y, up +Z, span X; pilot's LEFT wing = +X (suffix _L). Ground z = 0 under the tyres. Units metres.
 Writes: cessna150.{blend,glb} (intact, parts split L/R), cessna150_wingoff.{blend,glb} (left wing sawn off at the root in square
 bites, outer panel on the ground), cessna150_sliced.{blend,glb} (whole plane in 9 even slices like a loaf, gaps 0.22 m, sawhorses
@@ -16,7 +17,8 @@ from mathutils import Vector, Matrix
 A = sys.argv[sys.argv.index('--') + 1:]
 GLB, OUT = A[0], A[1]
 os.makedirs(OUT, exist_ok=True)
-WHITE, RED, REG = '#f3f4f1', '#d62828', 'F-MIAM'
+WHITE, NAVY, REG = '#f3f4f1', '#1d3461', 'F-MIAM'
+FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
 SPAN_150 = 10.17
 N_SLICES, GAP = 9, 0.22
 DROP = ['Object_72', 'Object_76', 'Object_78', 'Object_79', 'Object_114', 'Object_116', 'Object_74',   # ropes, tags, blocks, chains
@@ -75,9 +77,38 @@ body = bpy.data.materials['Body']; b = P(body); nt = body.node_tree
 img = [n for n in nt.nodes if n.type == 'TEX_IMAGE' and n.outputs[0].links and n.outputs[0].links[0].to_socket.name == 'Base Color'][0].image
 w, h = img.size; px = np.array(img.pixels[:], np.float32).reshape(h, w, 4)
 navy = np.clip(((px[..., 2] - px[..., 0]) - .07) / .12, 0, 1)[..., None]     # the navy livery = blue minus red; grime + old letters are grey -> white
-new = px.copy(); new[..., :3] = srgb(WHITE) * (1 - navy) + srgb(RED) * navy
+new = px.copy(); new[..., :3] = srgb(WHITE) * (1 - navy) + srgb(NAVY) * navy
+# whiten the fin + rudder (their navy stripes would cross the letters): UV texels used ONLY by the tail parts
+def uv_mask(objs, limit=None):
+    """texels covered by the Body faces of objs (numpy rasteriser; Blender's Python has no PIL). limit = (x0, y0, x1, y1) skip box"""
+    m = np.zeros((h, w), bool)
+    for o in objs:
+        uv = o.data.uv_layers.active
+        if uv is None: continue
+        U = np.zeros((len(o.data.loops), 2)); uv.data.foreach_get('uv', U.ravel()); U[:, 0] *= w; U[:, 1] *= h
+        for poly in o.data.polygons:
+            if o.data.materials[poly.material_index].name != 'Body': continue
+            li = list(poly.loop_indices)
+            for k in range(1, len(li) - 1):
+                T = U[[li[0], li[k], li[k + 1]]]
+                x0, y0 = np.floor(T.min(0)).astype(int); x1, y1 = np.ceil(T.max(0)).astype(int)
+                if limit and (x1 < limit[0] or x0 > limit[2] or y1 < limit[1] or y0 > limit[3]): continue
+                x0, y0 = max(x0, 0), max(y0, 0); x1, y1 = min(x1, w - 1), min(y1, h - 1)
+                if x1 < x0 or y1 < y0: continue
+                X, Y = np.meshgrid(np.arange(x0, x1 + 1) + .5, np.arange(y0, y1 + 1) + .5)
+                (ax, ay), (bx, by), (cx, cy) = T
+                d = (by - cy) * (ax - cx) + (cx - bx) * (ay - cy)
+                if abs(d) < 1e-9: continue
+                l1 = ((by - cy) * (X - cx) + (cx - bx) * (Y - cy)) / d; l2 = ((cy - ay) * (X - cx) + (ax - cx) * (Y - cy)) / d
+                m[y0:y1 + 1, x0:x1 + 1] |= (l1 >= -.002) & (l2 >= -.002) & (1 - l1 - l2 >= -.002)
+    return m
+tail = [bpy.data.objects[n] for n in ('fin', 'rudder', 'fin_cap')]
+others = [o for o in bpy.data.objects if o.type == 'MESH' and o not in tail and 'Body' in [m.name for m in o.data.materials if m]]
+tm = uv_mask(tail); ys_, xs_ = np.nonzero(tm)
+fin_only = tm & ~uv_mask(others, (xs_.min(), ys_.min(), xs_.max(), ys_.max()))
+new[fin_only, :3] = srgb(WHITE)
 paint = bpy.data.images.new('cessna_paint', w, h); paint.pixels[:] = new.ravel(); paint.pack()
-paint_px_red = float((navy > .5).mean())
+paint_px_navy = float((navy > .5).mean())
 for n in list(nt.nodes):
     if n.type == 'TEX_IMAGE' and n.image == img: n.image = paint
 for n in list(nt.nodes):   # constant gloss: drop the grimy roughness / metal map, keep the normal map (panel seams, rivets)
@@ -117,13 +148,13 @@ for nm in ('Material.006', 'material', 'material_19', 'material_20', 'Cockpit'):
     set_p(nm)                                                      # labels stay, no glow
 cut = bpy.data.materials.new('alu_cut'); cut.use_nodes = True; cp = P(cut)
 cp.inputs['Base Color'].default_value = lin('#c7cbd0'); cp.inputs['Metallic'].default_value = 1; cp.inputs['Roughness'].default_value = .28
-red = bpy.data.materials.new('paint_red'); red.use_nodes = True; rp = P(red)
-rp.inputs['Base Color'].default_value = lin(RED); rp.inputs['Roughness'].default_value = .22; rp.inputs['Coat Weight'].default_value = 1
+red = bpy.data.materials.new('paint_navy'); red.use_nodes = True; rp = P(red)
+rp.inputs['Base Color'].default_value = lin(NAVY); rp.inputs['Roughness'].default_value = .22; rp.inputs['Coat Weight'].default_value = 1
 wood = bpy.data.materials.new('sawhorse_wood'); wood.use_nodes = True; wp = P(wood)
 wp.inputs['Base Color'].default_value = lin('#b88a55'); wp.inputs['Roughness'].default_value = .6
 
 # ------------------------------------------------------------------ registration F-MIAM on both sides of the rear fuselage, ahead of the tail
-# (1970s French practice; the fin keeps its red stripes, so the letters go where they read clean, big, in red, above the cheat line)
+# (1970s French practice) + big on both fin sides (CREATIVE 4.2: reads big on the tail); navy bold sans, raised 1.5 mm
 fus = bpy.data.objects['fuselage']
 sc = bpy.context.scene
 bpy.context.view_layer.update()
@@ -131,11 +162,11 @@ YC = 1.05                                                  # letter-block centre
 ok_t, top, *_ = fus.ray_cast(Vector((0, YC, 9)), Vector((0, 0, -1)))
 ok_b, bot, *_ = fus.ray_cast(Vector((0, YC, -9)), Vector((0, 0, 1)))
 zt, zb = top.z, bot.z
-LH = min(.30, .30 * (zt - zb)); zc = zb + .60 * (zt - zb)
+LH = min(.30, .42 * (zt - zb)); zc = zb + .56 * (zt - zb)
 reg_objs = []
 for side in (1, -1):
     ok, hit, *_ = fus.ray_cast(Vector((side * 5, YC, zc)), Vector((-side, 0, 0)))
-    cu = bpy.data.curves.new('reg', 'FONT'); cu.body = REG; cu.size = LH * 1.38; cu.extrude = .0015
+    cu = bpy.data.curves.new('reg', 'FONT'); cu.body = REG; cu.font = bpy.data.fonts.load(FONT, check_existing=True); cu.size = LH * 1.38; cu.extrude = .0015
     cu.align_x = 'CENTER'; cu.align_y = 'CENTER'; cu.space_character = 1.05
     t = bpy.data.objects.new('tmp', cu); sc.collection.objects.link(t); bpy.context.view_layer.update()
     me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get())); bpy.data.objects.remove(t)
@@ -148,6 +179,31 @@ for side in (1, -1):
     bpy.context.view_layer.objects.active = t; t.select_set(True); bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
     reg_objs.append(t)
 reg_len = len(REG) * LH * .8
+# fin letters: target = fin + rudder joined (temporary), letter block fitted to the chord at 40 % fin height
+bm = bmesh.new()
+for n in ('fin', 'rudder'): bm.from_mesh(bpy.data.objects[n].data)
+tme = bpy.data.meshes.new('tmp_tail'); bm.to_mesh(tme); bm.free(); tgt = bpy.data.objects.new('tmp_tail', tme); sc.collection.objects.link(tgt)
+bpy.context.view_layer.update()
+fb = [Vector(c) for c in tgt.bound_box]; fz0 = min(v.z for v in fb)
+fz1 = max(v.z for v in fb)
+zf = fz0 + .55 * (fz1 - fz0)
+ysc = [y for y in np.linspace(min(v.y for v in fb), max(v.y for v in fb), 300) if tgt.ray_cast(Vector((3, y, zf)), Vector((-1, 0, 0)))[0]]
+fy0, fy1 = min(ysc), max(ysc); chord = fy1 - fy0
+LHF = min(.32, chord * .86 / (len(REG) * .78)); ycf = (fy0 + fy1) / 2
+for side in (1, -1):
+    ok, hit, *_ = tgt.ray_cast(Vector((side * 3, ycf, zf)), Vector((-side, 0, 0)))
+    cu = bpy.data.curves.new('regf', 'FONT'); cu.body = REG; cu.font = bpy.data.fonts.load(FONT, check_existing=True); cu.size = LHF * 1.38
+    cu.extrude = .0015; cu.align_x = 'CENTER'; cu.align_y = 'CENTER'; cu.space_character = 1.0
+    t = bpy.data.objects.new('tmp', cu); sc.collection.objects.link(t); bpy.context.view_layer.update()
+    me = bpy.data.meshes.new_from_object(t.evaluated_get(bpy.context.evaluated_depsgraph_get())); bpy.data.objects.remove(t)
+    me.name = 'reg_fin_' + ('L' if side > 0 else 'R'); t = bpy.data.objects.new(me.name, me); sc.collection.objects.link(t)
+    R = Matrix(((0, 0, 1), (1, 0, 0), (0, 1, 0))) if side > 0 else Matrix(((0, 0, -1), (-1, 0, 0), (0, 1, 0)))
+    me.transform(Matrix.Translation((hit.x + side * .01, ycf, zf)) @ R.to_4x4()); me.materials.append(red)
+    sw = t.modifiers.new('wrap', 'SHRINKWRAP'); sw.target = tgt; sw.wrap_method = 'NEAREST_SURFACEPOINT'; sw.offset = .003; sw.wrap_mode = 'OUTSIDE_SURFACE'
+    bpy.context.view_layer.objects.active = t; t.select_set(True); bpy.ops.object.modifier_apply(modifier='wrap'); t.select_set(False)
+    reg_objs.append(t)
+bpy.data.objects.remove(tgt, do_unlink=True)
+fin_letter_h = LHF
 
 # ------------------------------------------------------------------ helpers: bisect with a filled cut face
 def bisect(ob, co, no, keep_pos, fill=True):
@@ -201,8 +257,8 @@ for o in base:
     lo, hi = bbox(o); lo_all = Vector(map(min, lo_all, lo)); hi_all = Vector(map(max, hi_all, hi))
 meta = dict(source='Sketchfab c9cadc2f026946da8cf9715a683739e9 (NLM-Group, CC BY 4.0)', scale_k=round(K, 4),
             size_m=dict(span=round(hi_all.x - lo_all.x, 2), length=round(hi_all.y - lo_all.y, 2), height=round(hi_all.z, 2)),
-            axes='nose -Y, up +Z, pilot left wing +X (_L)', registration=REG, colours=dict(white=WHITE, red=RED),
-            red_share_of_paint_texture=round(paint_px_red, 4), reg_letter_h_m=round(LH, 3), reg_block_len_m=round(reg_len, 2), fuselage_h_at_letters_m=round(zt - zb, 2))
+            axes='nose -Y, up +Z, pilot left wing +X (_L)', registration=REG, colours=dict(white=WHITE, navy=NAVY),
+            navy_share_of_paint_texture=round(paint_px_navy, 4), fin_texels_whitened=int(fin_only.sum()), reg_letter_h_m=round(LH, 3), fin_letter_h_m=round(fin_letter_h, 3), reg_block_len_m=round(reg_len, 2), fuselage_h_at_letters_m=round(zt - zb, 2))
 
 
 def save(name, objs):

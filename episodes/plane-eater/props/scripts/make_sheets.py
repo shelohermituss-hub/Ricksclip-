@@ -10,10 +10,10 @@ sys.path.insert(0, os.path.join(ROOT, 'tools')); sys.path.insert(0, os.path.join
 import grade_rick as GR, composite as CO
 TG = json.load(open(GR.DEF))['DAY']
 LAB = {'A_hero34': 'HERO 3/4', 'B_side': 'SIDE (left, F-MIAM)', 'C_front': 'FRONT', 'D_top_rear': 'TOP REAR 3/4', 'E_wingoff': 'EATEN: LEFT WING',
-       'F_sliced': 'SLICED LIKE A LOAF', 'G_sliced_half': 'EATEN: TAIL HALF', 'H_nose_only': 'EATEN: NOSE LEFT', 'I_stub_macro': 'MACRO: BITTEN STUB', 'J_reg_macro': 'MACRO: F-MIAM'}
+       'F_sliced': 'SLICED LIKE A LOAF', 'G_sliced_half': 'EATEN: TAIL + CABIN', 'H_nose_only': 'EATEN: NOSE LEFT', 'I_stub_macro': 'MACRO: BITTEN STUB', 'J_reg_macro': 'MACRO: F-MIAM'}
 nums = {}
 for t in LAB:
-    a = GR.load(os.path.join(T, t + '.png')); g = GR.grade(a, TG, None, .35)   # light grade: a prop tile is half flat sky + lawn, full strength over-shoots
+    a = GR.load(os.path.join(T, t + '.png')); g = a   # NO grade (lead 2026-11-21: the grade turned whites lilac); the rick_light.json day light as rendered
     im, al = CO.key_composite(g * 255, os.path.join(T, t + '_lines_id.png'))
     Image.fromarray(im.clip(0, 255).round().astype(np.uint8)).save(os.path.join(T, t + '_final.png'))
     lum = (im / 255) @ np.array([.2126, .7152, .0722])

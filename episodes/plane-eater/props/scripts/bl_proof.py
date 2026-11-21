@@ -1,5 +1,5 @@
 """bl_proof.py: light-preview tiles of the Cessna states in the Rick day light (templates/blender_look/rick_light.json), on the flat
-airfield lawn (library/grass rick_grass) with tufts at the wheels, Cycles CPU 16 spp, 540x960, plus the outline id pass per tile.
+airfield lawn (library/grass rick_grass) Cycles CPU 32 spp + OIDN, 540x960, plus the outline id pass per tile.
 Run: blender -b --factory-startup --python bl_proof.py -- <props/out> <tiles dir>      Ends with PROOF_DONE."""
 import bpy, sys, os, json, math, time
 from mathutils import Vector
@@ -18,7 +18,7 @@ SHOTS = {   # tile: (blend, camera, look-at, lens, hide-rule)
     'D_top_rear': ('cessna150', (-5.6, 8.0, 5.4), (0, 0.2, 0.8), 22, None),
     'E_wingoff': ('cessna150_wingoff', (6.8, -6.4, 1.3), (1.3, -0.4, 1.05), 22, None),
     'F_sliced': ('cessna150_sliced', (9.0, -4.2, 2.6), (0, 0.9, 0.9), 22, None),
-    'G_sliced_half': ('cessna150_sliced', (6.8, -6.4, 2.2), (0, -1.0, 0.9), 22, None if False else [4, 5, 6, 7, 8]),
+    'G_sliced_half': ('cessna150_sliced', (6.8, -6.4, 2.2), (0, -1.6, 0.9), 22, [3, 4, 5, 6, 7, 8]),
     'H_nose_only': ('cessna150_sliced', (2.6, -5.8, 1.1), (0, -3.3, 0.85), 26, [1, 2, 3, 4, 5, 6, 7, 8]),
     'I_stub_macro': ('cessna150_wingoff', (3.3, -2.4, 2.25), (0.95, -0.9, 1.8), 32, None),
     'J_reg_macro': ('cessna150', (3.6, -0.6, 1.5), (0.4, 1.1, 1.35), 30, None),
@@ -52,8 +52,7 @@ def stage(sc):
         if o.type == 'MESH' and not o.hide_render and ('tyre' in o.name or 'sawhorse' in o.name):
             v = [o.matrix_world @ Vector(c) for c in o.bound_box]
             pts.append(((min(p.x for p in v) + max(p.x for p in v)) / 2, (min(p.y for p in v) + max(p.y for p in v)) / 2, 0))
-    if pts: G.tufts(pts, height=.28, spread=.22, seed=3, name='wheel_tufts')
-    sc.render.engine = 'CYCLES'; sc.cycles.device = 'CPU'; sc.cycles.samples = 16; sc.cycles.use_denoising = True; sc.cycles.max_bounces = 6
+    sc.render.engine = 'CYCLES'; sc.cycles.device = 'CPU'; sc.cycles.samples = 32; sc.cycles.use_denoising = True; sc.cycles.denoiser = 'OPENIMAGEDENOISE'; sc.cycles.max_bounces = 6
     sc.render.resolution_x, sc.render.resolution_y, sc.render.resolution_percentage = 540, 960, 100
     sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'; sc.view_settings.exposure = LT['exposure']
     sc.render.image_settings.file_format = 'PNG'

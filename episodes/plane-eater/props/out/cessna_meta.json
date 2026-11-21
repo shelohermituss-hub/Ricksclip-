@@ -10,15 +10,17 @@
  "registration": "F-MIAM",
  "colours": {
   "white": "#f3f4f1",
-  "red": "#d62828"
+  "navy": "#1d3461"
  },
- "red_share_of_paint_texture": 0.2376,
- "reg_letter_h_m": 0.189,
- "reg_block_len_m": 0.91,
+ "navy_share_of_paint_texture": 0.2376,
+ "fin_texels_whitened": 37741,
+ "reg_letter_h_m": 0.265,
+ "fin_letter_h_m": 0.2,
+ "reg_block_len_m": 1.27,
  "fuselage_h_at_letters_m": 0.63,
  "intact": {
-  "objects": 73,
-  "tris": 172684,
+  "objects": 75,
+  "tris": 173052,
   "parts": [
    "aileron_L",
    "aileron_R",
@@ -72,6 +74,8 @@
    "prop_tips_R",
    "reg_L",
    "reg_R",
+   "reg_fin_L",
+   "reg_fin_R",
    "roof_vent",
    "rudder",
    "seat_backs",
@@ -112,7 +116,7 @@
    "wing_L_stub_4",
    "wing_L_panel_ground"
   ],
-  "tris": 168602,
+  "tris": 168970,
   "stub_steps_m": [
    0.06,
    0.19,
@@ -171,7 +175,7 @@
     "y0": 1.601,
     "y1": 2.448,
     "parts": 5,
-    "tris": 3682,
+    "tris": 3644,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.467
    },
@@ -180,7 +184,7 @@
     "y0": 2.668,
     "y1": 3.516,
     "parts": 5,
-    "tris": 2688,
+    "tris": 2710,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.684
    },
@@ -188,8 +192,8 @@
     "slice": 7,
     "y0": 3.736,
     "y1": 4.584,
-    "parts": 8,
-    "tris": 3950,
+    "parts": 10,
+    "tris": 4140,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.871
    },
@@ -197,13 +201,13 @@
     "slice": 8,
     "y0": 4.804,
     "y1": 5.651,
-    "parts": 7,
-    "tris": 6580,
+    "parts": 9,
+    "tris": 6806,
     "stands_on": "sawhorse",
     "sawhorse_top_z": 0.825
    }
   ],
-  "tris": 191168,
+  "tris": 191568,
   "stages": "eaten stage k = hide slice_{8..9-k} (tail first); last piece = s0_spinner"
  }
 }
