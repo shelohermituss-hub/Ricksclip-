@@ -1,0 +1,25 @@
+00:00.415  blend            | Read blend: "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/lamproom/out/lamproom.blend"
+00:01.400  cycles           | WARNING CUEW initialization failed: Error opening the library
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_B2.py:73: DeprecationWarning: 'Scene.compositing_node_group' is expected to be removed in Blender 6.0
+  tree = bpy.data.node_groups.new('cine_comp_B2', 'CompositorNodeTree'); sc.compositing_node_group = tree; N, L = tree.nodes, tree.links
+00:01.466  gpu.vulkan       | WARNING Unable to initialize a Vulkan 1.1 instance.
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
+00:32.352  render           | Saved: '/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_/pass_mask.png'
+00:32.372  render           | Saved: '/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_/pass_depth.png'
+00:32.519  render           | Saved: '/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_raw.png'
+00:34.613  render           | Saved: '/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_lines_id.png'
+WINDOW_PACKED window_grey.png (1068, 1068)
+WINDOW_PACKED window_red.png (1068, 1068)
+STATE {'wave': 4, 'iris': 0.7581818181818182, 'dim': 0.6, 'grey': 1.0, 'flick': 0.5}
+CAM [0.0, -1.817, -1.828] lens 24.0
+LINE_SETUP 185 ['ENTRY_RING', 'ENTRY_BEZEL', 'bezel_rib_0', 'bezel_rib_1', 'bezel_rib_2', 'bezel_rib_3', 'bezel_rib_4', 'bezel_rib_5', 'bezel_rib_6', 'bezel_rib_7', 'bezel_rib_8', 'bezel_rib_9', 'bezel_rib_10', 'bezel_rib_11', 'bezel_rib_12', 'bezel_rib_13', 'bezel_rib_14', 'bezel_rib_15', 'bezel_rib_16', 'bezel_rib_17', 'bezel_rib_18', 'bezel_rib_19', 'bezel_rib_20', 'bezel_rib_21', 'bezel_rib_22', 'bezel_rib_23', 'IRIS', 'IRIS_TRACK', 'LADDER_RAIL', 'rail_bracket_0', 'rail_bracket_1', 'rail_bracket_2', 'rail_bracket_3', 'rail_bracket_4', 'rail_bracket_5', 'rail_bracket_6', 'rail_bracket_7', 'rail_bracket_8', 'rail_bracket_9', 'rail_bracket_10']
+RENDER_SECONDS 31.1
+PREVIEW_DONE /home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_raw.png
+LINES_ID /home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/prev/B2_lines_id.png 900 1600 line objects 185 hidden 0
+LINES_SECONDS 2.1
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit
+EXIT 0

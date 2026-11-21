@@ -1,0 +1,103 @@
+{
+ "_about": "Rick grade targets, NUMBERS ONLY (per-kind medians of tools/measure/rick_grade_study.py on 320 frames of 5 reference videos, 2026-11-21; the same source as templates/blender_look/rick_light.json targets_after_grade). No reference picture is used. For tools/grade_rick.py --targets.",
+ "DAY": {
+  "p1": 0.061,
+  "p10": 0.225,
+  "p50": 0.467,
+  "p90": 0.782,
+  "p99": 0.966,
+  "mean": 0.48,
+  "contrast": 0.208,
+  "sat": 0.381,
+  "shadows": [
+   0.134,
+   0.153,
+   0.178
+  ],
+  "mids": [
+   0.389,
+   0.489,
+   0.577
+  ],
+  "highs": [
+   0.827,
+   0.837,
+   0.845
+  ]
+ },
+ "DUSK": {
+  "p1": 0.059,
+  "p10": 0.166,
+  "p50": 0.418,
+  "p90": 0.708,
+  "p99": 0.918,
+  "mean": 0.431,
+  "contrast": 0.211,
+  "sat": 0.4,
+  "shadows": [
+   0.199,
+   0.134,
+   0.168
+  ],
+  "mids": [
+   0.536,
+   0.415,
+   0.457
+  ],
+  "highs": [
+   0.895,
+   0.806,
+   0.782
+  ]
+ },
+ "NIGHT": {
+  "p1": 0.007,
+  "p10": 0.066,
+  "p50": 0.174,
+  "p90": 0.454,
+  "p99": 0.83,
+  "mean": 0.234,
+  "contrast": 0.183,
+  "sat": 0.403,
+  "shadows": [
+   0.108,
+   0.114,
+   0.175
+  ],
+  "mids": [
+   0.394,
+   0.417,
+   0.447
+  ],
+  "highs": [
+   0.839,
+   0.826,
+   0.727
+  ]
+ },
+ "INTERIOR": {
+  "p1": 0.082,
+  "p10": 0.155,
+  "p50": 0.438,
+  "p90": 0.785,
+  "p99": 0.94,
+  "mean": 0.429,
+  "contrast": 0.22,
+  "sat": 0.308,
+  "shadows": [
+   0.154,
+   0.149,
+   0.143
+  ],
+  "mids": [
+   0.456,
+   0.46,
+   0.424
+  ],
+  "highs": [
+   0.851,
+   0.833,
+   0.785
+  ]
+ }
+}

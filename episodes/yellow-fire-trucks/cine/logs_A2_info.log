@@ -1,0 +1,64 @@
+00:00.648  blend            | Read blend: "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/town/out/town.blend"
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:50: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new('cardmat_' + who); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mm = bpy.data.materials.new('contact_' + who); mm.use_nodes = True; N, L = mm.node_tree.nodes, mm.node_tree.links
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:36: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links; b = N['Principled BSDF']
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:100: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  vm = bpy.data.materials.new('mist_lemon'); vm.use_nodes = True; N, L = vm.node_tree.nodes, vm.node_tree.links
+00:14.005  cycles           | WARNING CUEW initialization failed: Error opening the library
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:224: DeprecationWarning: 'Scene.compositing_node_group' is expected to be removed in Blender 6.0
+  tree = bpy.data.node_groups.new('cine_comp_A2', 'CompositorNodeTree'); sc.compositing_node_group = tree; N, L = tree.nodes, tree.links
+KIT_TRUCK [-4.2, 17.8, 0.14] BL hero [-4.2, 17.8, 0.14]
+KIT_TRUCK [4.2, 22.35, 0.14] BL hero [-4.2, 17.8, 0.14]
+CAM [-1.35, 13.0, 1.14] lens 24.0
+PROP phfd_compressor [-1.05, 17.5, 0.14]
+PROP phfd_paint_tin_lemon [-1.5, 13.45, 0.14]
+PROP phfd_ribbon_set [-2.45, 12.85, 0.14]
+PROP phfd_lunch_box [2.2, 18.4, 0.14]
+PROP phfd_lemon [2.2, 18.4, 0.227]
+PROP phfd_spray_gun [-2.21, 15.702, 1.092]
+PAINT body_paint.001 0.55 rough linked
+PAINT body_paint.003 0.55 rough linked
+TYRE ['BSDF_PRINCIPLED', 'OUTPUT_MATERIAL', 'TEX_IMAGE', 'NORMAL_MAP', 'TEX_IMAGE']
+LINE_SETUP 861
+VIEW [('town_yard', 1009), ('town_clap_sage', 664), ('SKY', 546), ('SHADOWCARD_hero', 417), ('CARD_hero', 414), ('Object_42', 300), ('town_trim_white', 253), ('town_block_buff', 127), ('st_sign', 120), ('town_floor_wood', 115), ('Object_46', 91), ('Object_216', 78), ('town_hill_green', 73), ('town_roof_grey', 65), ('Object_206', 52), ('town_win_lit_0', 41), ('Object_98', 40), ('town_ground_far', 37), ('town_baydoor', 33), ('Object_55.001', 32), ('town_navy_paint', 31), ('Object_42.001', 30), ('island_tree_02.003', 27), ('windscreen_driver', 25), ('town_dark_metal', 22), ('town_steel_silver', 21), ('Object_219', 21), ('bell_body', 20), ('base_01 - Base_0', 20), ('Object_214', 17), ('SHADOWCARD_oldTimer', 17), ('town_glass_dark', 15), ('Object_215', 13), ('Object_109', 13), ('MIST_40', 13), ('Object_38.001', 13), ('Object_92.001', 13), ('Object_9', 12), ('st_engine_board', 11), ('Object_78', 10), ('Object_110', 10), ('Object_93.001', 10), ('Object_68', 10), ('metal_toolbox.000', 9), ('Object_66', 9), ('Object_64', 9), ('Object_111', 8), ('Object_44', 8), ('Object_210', 8), ('Object_123', 7), ('Object_208.001', 7), ('MIST_18', 7), ('MIST_50', 7), ('Object_104', 7), ('town_decal_oil', 7), ('town_win_lit_2', 6), ('Object_50.001', 6), ('Object_38', 6), ('CONTACT_hero', 6), ('Object_128', 5)]
+LINE_IN_VIEW ['town_clap_sage', 'Object_42', 'town_trim_white', 'town_block_buff', 'st_sign', 'town_floor_wood', 'Object_46', 'Object_216', 'Object_206', 'town_win_lit_0', 'Object_98', 'town_baydoor', 'Object_55.001', 'town_navy_paint', 'Object_42.001', 'windscreen_driver', 'town_dark_metal', 'town_steel_silver', 'Object_219', 'bell_body', 'base_01 - Base_0', 'Object_214', 'town_glass_dark', 'Object_215', 'Object_109', 'Object_38.001', 'Object_92.001', 'Object_9', 'st_engine_board', 'Object_78', 'Object_110', 'Object_93.001', 'Object_68', 'metal_toolbox.000', 'Object_66', 'Object_64', 'Object_111', 'Object_44', 'Object_210', 'Object_123', 'Object_208.001', 'Object_104', 'town_win_lit_2', 'Object_50.001', 'Object_38', 'Object_128', 'Object_119', 'bell_yoke_post.001', 'Object_40.001', 'Object_96', 'Object_10', 'Object_117', 'Object_132', 'Object_121', 'Object_84.001', 'Object_74.001', 'Object_53.001', 'Object_59.001', 'Object_198.001', 'Object_96.001']
+SUNSCAN az 225 el 35 hero 0.70 truckfront 0.57 (n 414/851)
+SUNSCAN az 225 el 40 hero 0.74 truckfront 0.57 (n 414/851)
+SUNSCAN az 225 el 42 hero 0.76 truckfront 0.58 (n 414/851)
+SUNSCAN az 225 el 45 hero 0.79 truckfront 0.58 (n 414/851)
+SUNSCAN az 225 el 50 hero 0.83 truckfront 0.57 (n 414/851)
+SUNSCAN az 240 el 35 hero 0.92 truckfront 0.60 (n 414/851)
+SUNSCAN az 240 el 40 hero 0.97 truckfront 0.60 (n 414/851)
+SUNSCAN az 240 el 42 hero 0.98 truckfront 0.61 (n 414/851)
+SUNSCAN az 240 el 45 hero 0.98 truckfront 0.61 (n 414/851)
+SUNSCAN az 240 el 50 hero 0.97 truckfront 0.61 (n 414/851)
+SUNSCAN az 250 el 35 hero 0.98 truckfront 0.65 (n 414/851)
+SUNSCAN az 250 el 40 hero 0.99 truckfront 0.67 (n 414/851)
+SUNSCAN az 250 el 42 hero 1.00 truckfront 0.67 (n 414/851)
+SUNSCAN az 250 el 45 hero 1.00 truckfront 0.69 (n 414/851)
+SUNSCAN az 250 el 50 hero 1.00 truckfront 0.69 (n 414/851)
+SUNSCAN az 255 el 35 hero 0.98 truckfront 0.71 (n 414/851)
+SUNSCAN az 255 el 40 hero 0.99 truckfront 0.71 (n 414/851)
+SUNSCAN az 255 el 42 hero 0.99 truckfront 0.72 (n 414/851)
+SUNSCAN az 255 el 45 hero 1.00 truckfront 0.72 (n 414/851)
+SUNSCAN az 255 el 50 hero 1.00 truckfront 0.72 (n 414/851)
+SUNSCAN az 265 el 35 hero 1.00 truckfront 0.88 (n 414/851)
+SUNSCAN az 265 el 40 hero 1.00 truckfront 0.88 (n 414/851)
+SUNSCAN az 265 el 42 hero 1.00 truckfront 0.88 (n 414/851)
+SUNSCAN az 265 el 45 hero 1.00 truckfront 0.88 (n 414/851)
+SUNSCAN az 265 el 50 hero 1.00 truckfront 0.87 (n 414/851)
+SUNSCAN az 280 el 35 hero 1.00 truckfront 0.89 (n 414/851)
+SUNSCAN az 280 el 40 hero 1.00 truckfront 0.88 (n 414/851)
+SUNSCAN az 280 el 42 hero 1.00 truckfront 0.89 (n 414/851)
+SUNSCAN az 280 el 45 hero 1.00 truckfront 0.90 (n 414/851)
+SUNSCAN az 280 el 50 hero 1.00 truckfront 0.90 (n 414/851)
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit
+
+real	0m41.333s
+user	0m40.513s
+sys	0m2.598s

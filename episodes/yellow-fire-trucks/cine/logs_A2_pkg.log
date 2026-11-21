@@ -1,0 +1,38 @@
+00:00.421  blend            | Read blend: "/home/user/Ricksclip-/episodes/yellow-fire-trucks/sets/town/out/town.blend"
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:50: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new('cardmat_' + who); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mm = bpy.data.materials.new('contact_' + who); mm.use_nodes = True; N, L = mm.node_tree.nodes, mm.node_tree.links
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:36: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links; b = N['Principled BSDF']
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:100: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  vm = bpy.data.materials.new('mist_lemon'); vm.use_nodes = True; N, L = vm.node_tree.nodes, vm.node_tree.links
+00:09.825  cycles           | WARNING CUEW initialization failed: Error opening the library
+/home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/build_A2.py:227: DeprecationWarning: 'Scene.compositing_node_group' is expected to be removed in Blender 6.0
+  tree = bpy.data.node_groups.new('cine_comp_A2', 'CompositorNodeTree'); sc.compositing_node_group = tree; N, L = tree.nodes, tree.links
+KIT_TRUCK [-4.2, 17.8, 0.14] BL hero [-4.2, 17.8, 0.14]
+KIT_TRUCK [4.2, 22.35, 0.14] BL hero [-4.2, 17.8, 0.14]
+CAM [-1.35, 13.0, 1.14] lens 24.0
+PROP phfd_compressor [-1.05, 17.5, 0.14]
+PROP phfd_paint_tin_lemon [-1.5, 13.45, 0.14]
+PROP phfd_ribbon_set [-2.45, 12.85, 0.14]
+PROP phfd_lunch_box [2.2, 18.4, 0.14]
+PROP phfd_lemon [2.2, 18.4, 0.227]
+PROP phfd_spray_gun [-2.21, 15.702, 1.092]
+PAINT body_paint.001 0.55 rough linked
+PAINT body_paint.003 0.55 rough linked
+TYRE ['BSDF_PRINCIPLED', 'OUTPUT_MATERIAL', 'TEX_IMAGE', 'NORMAL_MAP', 'TEX_IMAGE']
+LINE_SETUP 809
+Info: No new files have been packed
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/compressor.blend
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/gun.blend
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/lemon.blend
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/lunch_box.blend
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/paint_tin_lemon.blend
+LIBRARY (must be none) /home/user/Ricksclip-/episodes/yellow-fire-trucks/assets_prod/out/ribbon_set.blend
+Info: Saved as "scene.blend"
+PACKAGE_SAVED /home/user/Ricksclip-/episodes/yellow-fire-trucks/cine/runpod/A2/scene.blend
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit
+EXIT 0
