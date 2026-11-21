@@ -216,6 +216,7 @@
   {
    "who": "hero",
    "at": 0,
+   "visible": false,
    "pos": [
     1.3,
     1.2,
@@ -272,6 +273,7 @@
    "visible": true,
    "pose": "m:../../ep_s2/he_shop",
    "look_full": true,
+   "face": "k:concentrate",
    "note": "row 10 \"second job\": coat tugged on"
   },
   {

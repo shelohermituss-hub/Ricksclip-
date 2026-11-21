@@ -21,9 +21,9 @@
   PASS framing  face on screen, first 15 s, %                              91.0           target >= 50 (Rick 55-63)
   PASS framing  longest stretch without a face, s                          0.9            target <= 6
   PASS framing  frames with a face, %                                      91.0           target 45-68 (Rick 55, range 23-66): about a third of the film belongs to the world and the story object
-  WARN framing  head width / frame width, median                           0.18           target about 0.25 (Rick 0.25, range 0.16-0.52)
+  WARN framing  head width / frame width, median                           0.17           target about 0.25 (Rick 0.25, range 0.16-0.52)
          FIX: figures are too small: move the camera closer (a whole-body rest sits about 2.4 m from a standing adult at 24 mm)
-  PASS framing  head width / frame width, p90                              0.21           target <= 0.55
+  PASS framing  head width / frame width, p90                              0.2            target <= 0.55
   WARN framing  whole-body rests: figure height / frame height, median     0.33           target about 0.45 (his head width of 0.25 at puppet proportions)
          FIX: the figure is small and the floor is empty: move the camera closer, do not zoom
   WARN framing  whole-body rests: feet height (0 = top), median            0.71           target 0.80-0.95: feet near the bottom, at most a fifth of the frame is empty floor

@@ -1,7 +1,7 @@
 he_enter [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 28.2  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
    snap sweep (off screen) f311        f23-28  23 / 63 / 89 / 97 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
 he_shop [34]  twos 0   linear 0  stops 7 no_settle 0  creep 0  dps 23.6  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
-   snap flick "eye" f385               f57-60  56 / 95 / 100 / 100 / 88 %   (Rick 5 / 16 / 31 / 48 / 66)
-   snap out "strange" f429             f101-108  13 / 38 / 68 / 87 / 95 %   (Rick 5 / 16 / 31 / 48 / 66)
-   hold coat on, dead still              f36-43  max 0 px/f
-   hold looks at us, dead still          f136-146  max 0 px/f
+   snap flick "eye" f385               f97-100  56 / 95 / 100 / 100 / 88 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap out "strange" f429             f141-148  13 / 38 / 68 / 87 / 95 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold coat on, dead still              f76-83  max 0 px/f
+   hold looks at us, dead still          f176-186  max 0 px/f

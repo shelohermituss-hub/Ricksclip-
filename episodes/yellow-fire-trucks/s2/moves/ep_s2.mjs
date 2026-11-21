@@ -1,6 +1,6 @@
 // EPISODE MOVES, yellow-fire-trucks S2 THE SECRET (film 9.60-15.80 s = frames 288-474, plan rows 9-13, script lines 3-4). S2 stretch builder 2026-11-21.
 // STUDIO MOTION form (./studio_ep.mjs, copy of s1's: Rick's snap, settle, DEAD STILL in holds), drawn new on every frame (tween.ones).
-// he_enter starts at film frame 288, he_shop at 328 (the card swap on "second"): move frame + start = FILM frame.
+// Both moves' clocks start at film frame 288 (the first act that sets the pose; re-setting the same pose at 328 does NOT restart it, LECONS): move frame + 288 = FILM frame.
 // Act frames are plain frame numbers from voice/words.json (s x 30, rounded). Written facing +x (dir 1); the act's dir -1 mirrors.
 // Rig units: y down, ch.sh = [shoulder half width, shoulder y], ch.armL, ch.handX, ch.hipY. hands[0] = far (held3d 'L'), hands[1] = near (held3d 'R').
 import { snap, tr, dip, ring } from './studio_ep.mjs';
@@ -32,7 +32,8 @@ function heEnter(t, ch) { const f = F(t) + 288, S = ch.sh[1], L = ch.armL, Wd = 
 //   f405-418 "knew": near fist (toy, held3d R) rises out to the lamp at shoulder height (snap 12), head tilts 6 (a man checking what he knows)
 //   f429-446 "strange": the toy goes a hand's width further out, out of the cone (snap 7), held, and back in (snap 8); head leans in 3
 //   f453     "red": head turns to the lens (head -7, snap 10, the face glanceCam does the eyes); DEAD STILL from 464
-function heShop(t, ch) { const f = F(t) + 328, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
+function heShop(t, ch) { const f = F(t) + 288,   // the move clock runs from the act that first sets the pose (heroShop, hidden, f288), not from the f328 re-set
+  S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const down = snap(f - 328, 10), lap = snap(f - 334, 6) - snap(f - 352, 10), tug = 10 * (snap(f - 336, 3) - snap(f - 339, 4)) + 10 * (snap(f - 345, 3) - snap(f - 348, 4));
   const rise = snap(f - 372, 10) - snap(f - 394, 10), flick = 8 * (snap(f - W.eye, 3) - snap(f - W.eye - 4, 6)), ant = 3 * (snap(f - 381, 2) - snap(f - W.eye, 2));
   const lift = snap(f - 405, 12), out = snap(f - W.strange, 7) - snap(f - 440, 8), look = snap(f - W.red, 10);
@@ -40,7 +41,7 @@ function heShop(t, ch) { const f = F(t) + 328, S = ch.sh[1], L = ch.armL, Wd = c
   const m = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   const rest1 = { wx: Wd * .75, wy: ch.hipY - 14 }, rest0 = { wx: -Wd * .75, wy: ch.hipY - 14 };
   const behind = { wx: -Wd * .35, wy: S - .75 * L }, lapel1 = { wx: Wd * .62, wy: ch.hipY - 30 + tug }, lapel0 = { wx: -Wd * .58, wy: ch.hipY - 30 + tug };
-  const brow = { wx: Wd * .12, wy: S - .7 * L - flick + ant }, lamp = { wx: Wd * .3 + .8 * L, wy: S - .1 * L }, far = { wx: Wd * .3 + .95 * L, wy: S - .16 * L };
+  const brow = { wx: Wd * .62, wy: S - .72 * L - flick + ant }, lamp = { wx: Wd * .3 + .8 * L, wy: S - .1 * L }, far = { wx: Wd * .3 + .95 * L, wy: S - .16 * L };
   let h1 = m(behind, rest1, down); h1 = m(h1, lapel1, lap); h1 = m(h1, brow, rise); h1 = m(h1, lamp, lift); h1 = m(h1, far, out);
   const h0 = m(rest0, lapel0, lap);
   return { view: '34', dir: 1, x: 0, y: dip(f, 352, 3, 4), rot: 1 - 2 * lap + 2 * lift, head, feet: [{ x: -26, lift: 0 }, { x: 26, lift: 0 }], farArmFront: true,
@@ -51,9 +52,9 @@ const STY = [sty('he_enter', heEnter, 'walks in from the door, fist to the helme
   sty('he_shop', heShop, 'coat tug, knuckle flicks the head mirror on "eye", toy up to the lamp, out of the cone and back, glance to the lens')];
 export default { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY };
 export const front = { title: 'FIRETRUCKS S2: episode moves', dur: N / 30, styles: STY };
-// motion-gate plan (moves/tools/check_motion_ep.mjs): strikes + holds in frames from the move start (he_enter 288, he_shop 328)
+// motion-gate plan (moves/tools/check_motion_ep.mjs): strikes + holds in frames from the move start (both 288)
 export const PLAN = {
   he_enter: { who: 'hero', view: '34', strikes: [{ name: 'sweep (off screen) f311', f0: 23, ch: 'h1x', to: 'min' }], holds: [], acting: [0, 33] },
-  he_shop: { who: 'heroShop', view: '34', strikes: [{ name: 'flick "eye" f385', f0: W.eye - 328, ch: 'h1y', to: 'min' }, { name: 'out "strange" f429', f0: W.strange - 328, ch: 'h1x', to: 'max' }],
-    holds: [[36, 43, 'coat on, dead still'], [136, 146, 'looks at us, dead still']], acting: [0, 135] },
+  he_shop: { who: 'heroShop', view: '34', strikes: [{ name: 'flick "eye" f385', f0: W.eye - 288, ch: 'h1y', to: 'min' }, { name: 'out "strange" f429', f0: W.strange - 288, ch: 'h1x', to: 'max' }],
+    holds: [[76, 83, 'coat on, dead still'], [176, 186, 'looks at us, dead still']], acting: [40, 175] },
 };

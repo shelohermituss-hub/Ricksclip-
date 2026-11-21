@@ -6,7 +6,7 @@ H = os.path.dirname(os.path.abspath(__file__))
 W = json.load(open(os.path.join(H, 'voice', 'words.json')))
 ROWS = {511: (14, 5, 'Every evening at DUSK,'), 530: (15, 5, 'RED firetrucks kept getting'), 569: (16, 5, 'HIT at crossings,  (POWER 2)'),
         584: (16, 5, 'hit at CROSSINGS,'), 613: (17, 5, 'sirens SCREAMING,'), 643: (18, 5, 'lights FLASHING.'),
-        694: (19, 6, 'The drivers all SAID the same thing,'), 734: (20, 6, '"I NEVER saw it."'), 758: (21, 6, '"saw IT."')}
+        694: (19, 6, 'The drivers all SAID the same thing,'), 734: (20, 6, '"I NEVER saw it."'), 765: (21, 6, '"saw IT."')}
 def word_at(f):
     t = f / 30.0
     for w in W:

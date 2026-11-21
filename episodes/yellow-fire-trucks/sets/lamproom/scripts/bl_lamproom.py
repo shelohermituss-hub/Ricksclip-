@@ -46,6 +46,7 @@ M['bulk'] = texmat('bulkhead_plates', 'metal_plate_02', '#3e3274', scale=1., met
 M['iris'] = texmat('iris_pleats', 'painted_metal_shutter', '#3a3aa8', scale=1., rough_mul=.55, metal=.3, nstr=.7)   # the back of the iris: indigo shutter cloth-metal, never flesh
 M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#5a5470', scale=1., metal=.6, nstr=1.)
 M['chrome'] = pmat('chrome', '#e8e8ee', rough=.07, metal=1.)
+M['chrome_refl'] = pmat('chrome_reflector', '#dcdce6', rough=.2, metal=1.)   # the headlamp's reflector bowl: a mirror read black in the entry tile, brushed reads as a silver funnel
 M['brass'] = pmat('brass', '#c9a24a', rough=.28, metal=1.)
 M['brass_dark'] = pmat('brass_dark', '#7d6330', rough=.45, metal=1.)
 M['steel'] = pmat('steel_black', '#2a2733', rough=.4, metal=.8)
@@ -95,7 +96,7 @@ for i in range(NT):
 dome = mesh_obj('DOME', V, F, M['dome'], UV)
 # bulkhead with the entry porthole, and the chrome reflector behind it (the inside of the headlamp: the camera comes in through it)
 bulk = revolve('BULKHEAD', [(R * math.sin(th1) + .05, BULK_Y), (2.2, BULK_Y - .0), (1.25, BULK_Y), (RING_R + .02, BULK_Y)], 96, M['bulk'], uvscale=1.6)
-refl = revolve('REFLECTOR', [(RING_R + 1.7 * k / 12, BULK_Y - .01 - 3.4 * (k / 12) ** 2) for k in range(13)], 96, M['chrome'])
+refl = revolve('REFLECTOR', [(RING_R + 1.7 * k / 12, BULK_Y - .01 - 3.4 * (k / 12) ** 2) for k in range(13)], 96, M['chrome_refl'])
 ring = prim('torus', M['chrome'], 'ENTRY_RING', major_radius=RING_R + .05, minor_radius=.075, major_segments=96, minor_segments=16, location=(0, BULK_Y + .03, 0), rotation=(math.pi / 2, 0, 0))
 bez = revolve('ENTRY_BEZEL', [(RING_R + .12, BULK_Y + .045), (RING_R + .3, BULK_Y + .03), (RING_R + .34, BULK_Y + .0)], 96, M['chrome'])
 for k in range(24):                                       # the headlamp's bezel ribs and three screws (the same rim as the pumper's headlamp)
@@ -305,6 +306,8 @@ for g in (1, 2, 3, 4):
 plight('fill_blue_top', (0, 2.0, 3.5), BLUE, 220); plight('fill_blue_low', (2.4, -1.0, -2.2), BLUE, 140); plight('fill_back', (0, -3.8, 1.0), '#8a6ad8', 120, 1.)
 for k in range(8):                                            # raking light across the iris pleats (lamps on the iris track)
     p = 2 * math.pi * (k + .5) / 8; plight('iris_rake_%d' % k, ((IR_OUT + .05) * math.cos(p), YI - .45, (IR_OUT + .05) * math.sin(p)), LEMON if k % 2 else BLUE, 18, .08)
+rf = bpy.data.lights.new('reflector_fill', 'AREA'); rf.shape = 'DISK'; rf.size = 4.4; rf.color = lin('#d8ccff')[:3]; rf.energy = 160
+rfo = bpy.data.objects.new('reflector_fill', rf); COL.objects.link(rfo); rfo.location = (0, BULK_Y - 3.35, 0); rfo.rotation_euler = (math.radians(90), 0, 0); rfo['e'] = 160
 ld = bpy.data.lights.new('window_light', 'AREA'); ld.shape = 'DISK'; ld.size = 2 * PUP0; ld.color = lin('#f0a878')[:3]; ld.energy = 420
 wl = bpy.data.objects.new('window_light', ld); COL.objects.link(wl); wl.location = (0, YI - .35, 0); wl.rotation_euler = (math.radians(-90), 0, 0); wl['e'] = 420
 # ---------------------------------------------------------------- 9 cameras (LOOK_BIBLE lens 24 mm on a 36 mm tall frame)

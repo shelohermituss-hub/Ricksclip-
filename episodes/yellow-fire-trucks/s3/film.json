@@ -232,13 +232,13 @@
   {
    "who": "milkman",
    "at": 511,
-   "dir": 1,
+   "dir": -1,
    "note": "row 14 \"dusk\": the long look LEFT"
   },
   {
    "who": "milkman",
    "at": 530,
-   "dir": -1,
+   "dir": 1,
    "note": "row 15 \"red\": the long look RIGHT, at the dark truck"
   },
   {
@@ -326,7 +326,7 @@
    "at": 474,
    "visible": false,
    "pos": [
-    26.299999999999997,
+    26.65,
     -4.5,
     0.35
    ],
@@ -352,8 +352,8 @@
    "who": "sceptic",
    "at": 679,
    "pos": [
-    25.95,
-    -4.35,
+    26.5,
+    -4.4,
     0.45
    ],
    "move_s": 0.4,

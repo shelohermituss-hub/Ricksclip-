@@ -60,16 +60,16 @@
     {
      "hold": "coat on, dead still",
      "frames": [
-      36,
-      43
+      76,
+      83
      ],
      "max_px_per_frame": 0
     },
     {
      "hold": "looks at us, dead still",
      "frames": [
-      136,
-      146
+      176,
+      186
      ],
      "max_px_per_frame": 0
     }
@@ -77,10 +77,10 @@
    "snaps": [
     {
      "name": "flick \"eye\" f385",
-     "f0": 57,
+     "f0": 97,
      "ch": "h1y",
      "to": "min",
-     "end": 60,
+     "end": 100,
      "share": [
       56,
       95,
@@ -91,10 +91,10 @@
     },
     {
      "name": "out \"strange\" f429",
-     "f0": 101,
+     "f0": 141,
      "ch": "h1x",
      "to": "max",
-     "end": 108,
+     "end": 148,
      "share": [
       13,
       38,

@@ -15,12 +15,12 @@ M = lambda k: 'm:../../ep_s2/' + k
 
 acts = [
     # yard outfit (helmet on): walks in from the shop door during the pull back, helmet off backward onto the stand on "second" (f325)
-    dict(who='hero', at=288, pos=[1.3, 1.2, 0.02], view='front', dir=-1, pose=M('he_enter'), look=[-0.9, -8.0, 1.6], note='row 9 "But the fireman": he crosses Main St from the station toward his shop, the lemon truck behind him'),
+    dict(who='hero', at=288, visible=False, pos=[1.3, 1.2, 0.02], view='front', dir=-1, pose=M('he_enter'), look=[-0.9, -8.0, 1.6], note='row 9 "But the fireman": he crosses Main St from the station toward his shop, the lemon truck behind him'),
     dict(who='hero', at=289, pos=[2.6, -3.2, 0.02], move_s=1.0, note='four strides toward the shop door (the camera pulls back ahead of him)'),
     dict(who='hero', at=322, visible=False, note='he reaches the shop door as the camera passes the glass: the next time we see him he is inside in his white coat'),
     # shop outfit (white coat open over the teal roll-neck, head mirror on its band)
     dict(who='heroShop', at=288, visible=False, pos=HERO, view='34', dir=-1, pose=M('he_shop'), look=[-1.0, -15.5, 1.6]),
-    dict(who='heroShop', at=328, visible=True, pose=M('he_shop'), look_full=True, note='row 10 "second job": coat tugged on'),
+    dict(who='heroShop', at=328, visible=True, pose=M('he_shop'), look_full=True, face='k:concentrate', note='row 10 "second job": coat tugged on'),
     dict(who='heroShop', at=366, look=[3.1, -9.7, 1.6], note='row 11: turns to the lens side as the fist rises to the mirror'),
     dict(who='heroShop', at=385, face='k:proud', note='row 11 "eye": the knuckle flicks the head mirror, small pride'),
     dict(who='heroShop', at=403, look=[0.45, -11.2, 1.3], face='k:think', note='row 12 "knew": toy up to the lamp, head tilt'),

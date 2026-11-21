@@ -16,6 +16,15 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Deux pavés superposés faisaient un trou noir au coin du carrefour (yellow-fire-trucks, ville) — FERMÉ
+- Problème : une tache noire nette au coin du trottoir. Cause : deux boîtes de pavé coplanaires qui se chevauchaient. Correction : y -7,5 / 7,5, plus de chevauchement. Garde-fou : commentaire dans la boucle ; chercher des boîtes coplanaires dès qu'une tache noire dure apparaît. Preuve : FIX_SHEET vignettes 1 et 2.
+
+## 2026-11-21 — Un « # » au milieu d'une ligne a encore supprimé du code (ville : ancres de la ligne de cour, débruitage) — FERMÉ
+- Problème : les deux ancres de la ligne de cour avaient disparu, et le débruitage OIDN n'était jamais appliqué aux aperçus. Cause : un commentaire « # » collé au milieu d'une ligne à plusieurs instructions (déjà dans REGLES_METHODE section 4, revenu deux fois). Correction : commentaire sur sa propre ligne. Garde-fou : le build vérifie maintenant les 21 ancres ; chercher « ; *# » avant un rendu. Preuve : proof/fix.
+
+## 2026-11-21 — Les images du kit dépassent la limite de 30 s quand la machine est chargée (yellow-fire-trucks) — OUVERT
+- Problème : la boutique et le parc du soir ont échoué au premier essai, réussi au second. Cause : charge moyenne autour de 22 (7 assistants). Correction à faire : un réglage de délai par film dans le kit. En attendant : relancer une image à la fois.
+
 ## 2026-11-21 — truck_api (yellow-fire-trucks, carte) — FERMÉ
 - truck_api.set_paint(masking=False) on truck_light.blend: AssertionError mask_paper missing. Cause: the light truck has no mask materials (bl_light removed them with no fake user). Fix: masking=None (leave the masks as saved). Guard: bl_map.py calls set_paint(masking=None); build stops on Traceback. Proof: logs/map.log MAP_DONE. FERMÉ
 

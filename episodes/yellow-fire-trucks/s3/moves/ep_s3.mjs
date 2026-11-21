@@ -10,8 +10,8 @@ export const W = { every: 485, dusk: 511, red: 530, kept: 553, hit: 569, cross: 
 
 // ---- MILKMAN m:mk_van (3/4, standing at the wheel of his step van, the door open), rows 14-18. Act at f474.
 //   474-505 both fists on the wheel rim (the bottle in the far/left fist rides on the rim), leaning in: careful creep to the white bar
-//   511 "dusk": the long look LEFT (head turn = act dir 1 in film.json, here a lean and a slow head tilt, DEAD STILL 520-528)
-//   530 "red": the long look RIGHT (act dir -1), straight at the dark truck; DEAD STILL 538-551
+//   511 "dusk": the long look LEFT (head turn = act dir -1 in film.json: dir -1 faces screen right from camera B, here a lean and a slow head tilt, DEAD STILL 520-528)
+//   530 "red": the long look RIGHT (act dir 1), straight at the dark truck; DEAD STILL 538-551
 //   553 "kept": one small nod (head dip 6, snap 5), the van rolls
 //   569 "hit": the bump: body thrown back 10 px (snap 3), then FROZEN stiff, shoulders up at his ears (y -10, fists jammed up to the chest), DEAD STILL 575-589
 //   591 bottle check: the far fist lifts the bottle to eye height (snap 8), head tips to it; DEAD STILL 600-636

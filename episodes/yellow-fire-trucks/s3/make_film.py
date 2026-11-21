@@ -12,15 +12,15 @@ M = lambda k: 'm:../../ep_s3/' + k
 # keep in step with sets/s3_crossing.js S3
 VX, VY0, VY1, VY2, TY, TXH = 24.3, -11.2, -8.9, -7.6, -4.0, 28.9
 DRV = lambda vy: [VX - .8, vy + 1.45, .55]               # the Milkman standing at the wheel in the open door of the step van (van floor .55)
-CAB = [TXH - 2.6, TY - .5, .35]                          # the Sceptic in the driver's seat (driver side = south, the van side)
-LEAN = [TXH - 2.95, TY - .35, .45]                       # leaning forward over the wheel to the windscreen (the driver window is on the far side from this camera)
+CAB = [TXH - 2.25, TY - .5, .35]                          # the Sceptic in the driver's seat (driver side = south, the van side)
+LEAN = [TXH - 2.4, TY - .4, .45]                       # leaning forward over the wheel to the windscreen (the driver window is on the far side from this camera)
 OUT = [23.8, -3.3, 0.0]                                  # the Milkman, climbed out, in front of the truck's nose (north of his van)
 
 acts = [
     dict(who='milkman', at=474, pos=DRV(VY0), view='34', dir=1, pose=M('mk_van'), face='k:concentrate', note='row 14: careful, creeping to the white bar'),
     dict(who='milkman', at=474, pos=DRV(VY1), move_s=1.0, linear=True, note='the van creeps to the bar (s3_crossing.js VY, f475-505)'),
-    dict(who='milkman', at=511, dir=1, note='row 14 "dusk": the long look LEFT'),
-    dict(who='milkman', at=530, dir=-1, note='row 15 "red": the long look RIGHT, at the dark truck'),
+    dict(who='milkman', at=511, dir=-1, note='row 14 "dusk": the long look LEFT'),
+    dict(who='milkman', at=530, dir=1, note='row 15 "red": the long look RIGHT, at the dark truck'),
     dict(who='milkman', at=553, pos=DRV(VY2), move_s=0.5, linear=True, note='row 15 "kept": nod, the van rolls (f554-569)'),
     dict(who='milkman', at=567, face='k:frozenWide', note='row 16 "hit": frozen wide eyes (approved faces_ep)'),
     dict(who='milkman', at=584, face='k:holdBreath', note='row 16 after "crossings": holdBreath, then checks the bottle (591)'),
