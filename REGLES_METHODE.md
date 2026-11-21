@@ -24,6 +24,8 @@
 
 - Assistants : vitesse avant tout (CB 2026-11-21 : « pourquoi chaque assistant passe 15-30 minute pour juste lire les règle et tes fichiers ? »). Le lead fait lui-même les petites corrections (une couleur, une option, une ligne) ; un assistant reçoit une consigne courte et précise (quel fichier, quoi changer, quelle preuve), pas une longue liste de lecture ; le même assistant est gardé d'un tour à l'autre pour garder sa mémoire ; au plus 3 assistants en même temps sur cette machine. (Problème : consignes trop lourdes et 5 à 7 assistants qui se ralentissaient entre eux.)
 
+- Contour des objets façon Rick (CB 2026-11-21 : « L'outline noir est trop épais, il doit être fin ») : trait sombre FIN, environ 0,6 px pour 540 px de large (1,2 px en 1080), opacité environ 0,75, couleur #2a1830, sur les objets seulement (pas les murs, le sol ni les personnages).
+
 ## 3. Environnement cloud, accès, secrets
 - Première chose à faire dans une nouvelle session : vérifier l'environnement (bonne version de Blender, hôtes réseau autorisés, clés enregistrées) et restaurer les fichiers non versionnés avec un script unique et relançable. (Problème : 40 minutes perdues sur un environnement mal préparé.)
 - Les clés ne passent jamais par la discussion ni par un fichier : elles sont enregistrées comme secrets réseau de l'environnement. Les scripts qui attendent une variable reçoivent une valeur factice.
