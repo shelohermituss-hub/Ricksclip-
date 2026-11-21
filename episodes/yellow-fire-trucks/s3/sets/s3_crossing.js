@@ -33,7 +33,12 @@ export async function build(THREE, scene, film, ctx) {
   place(THREE, scene, ctx, truck, [S3.tx0, S3.ty, 0], 0);
   // ---- the milk van, nose north (yaw -90): local front -X -> plan +Y, local +Z (cab door, open) -> plan -X
   const van = await buildProp2(THREE, 'milk_van'); place(THREE, scene, ctx, van, [S3.vx, S3.vy0, 0], -90); van.group.rotation.order = 'YXZ';
-  const hubL = van.anchors.hubcap_front_right ? van.anchors.hubcap_front_right.clone() : new THREE.Vector3(-2.02, .31, -.86);
+  // WORKAROUND (asset file untouched): the van GLB keeps the download's GREEN paint texture in the kit (PROPS.md: cream #F1E7CC). Re-tint the body
+  // materials to cream from the texture's own lightness, so the asset's dirt and rust stay. The cornflower stripe is not drawn (request in STATE.md).
+  van.group.traverse(o => { if (!o.isMesh || !/^(material|Doors|Doors\.back|Backstand_metal)$/.test(o.material.name)) return; const m = o.material.clone(); o.material = m;
+    m.onBeforeCompile = sh => { sh.fragmentShader = sh.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n{ float l = dot(diffuseColor.rgb, vec3(.299, .587, .114)); diffuseColor.rgb = vec3(.88, .80, .62) * clamp(l * 2.4, .3, 1.0); }'); };
+    m.customProgramCacheKey = () => 'phfd_van_cream'; m.needsUpdate = true; });
+  const hubL =van.anchors.hubcap_front_right ? van.anchors.hubcap_front_right.clone() : new THREE.Vector3(-2.02, .31, -.86);
   const cap = await buildProp2(THREE, 'hubcap'); scene.add(cap.group);
   // the van's own front right wheel keeps the asset's cap (assets_prod STATE: "bare hub" not built): our flying cap is placed just outside it
   const crate = await buildProp2(THREE, 'milk_crate'); place(THREE, scene, ctx, crate, S3.crate, 20);
