@@ -8,6 +8,13 @@
 - Tray table hangs too low/far from Michel's seat (reads beside the seat); meal reads small and pale; the bite on tray_table_bitten is not readable at CAM_TRAY.
 - Gates (density_check --day): two 1/7 (black), tray 3/7, traybitten 3/7, window 2/7; edge .050-.051 vs bar .086.
 - Kit module cabin.js: syntax-checked only, not rendered. No airline name on the headrest covers (lead to decide).
+## FIX 1 (lead round, 2026-11-21) - result, sheet re-rendered
+- Done: CAM_TWO in the aisle (row 35 renders: edge .075, 5/7 gates); exposure down (means .51-.57 from .79-.82); tray table moved to Michel's seat (x .28,
+  z .76) with a bigger corner bite (r 9 cm) that reads in row 37; headrest covers carry AIR VILLEBRUNE in navy (#1d3461); sky low band bluer; the wing bite is
+  placed by script where the CAM_WINDOW window ray meets the leading edge (BITE_Y 6.8, ray z .79 = wing z .78).
+- Still weak: row 38 window reads grey and small, the bite/cloud deck is NOT readable through it (window too small at that distance; needs a closer window station
+  or a bigger window share); seatbacks in rows 36-37 are big plain white shells (add a seat-back pocket print, latch, literature card); edge .043-.075 vs .086.
+- Gates now: two 5/7, tray 2/7, traybitten 2/7, window 4/7. Tris: cabin 199,546 (lettering added), outside 62,292, total 261,838 (GLB 9.59 MB).
 ## Built
 - scripts/tex_cabin.py (carpet, blue weave fabric, sky gradient, SAFETY card), scripts/bl_cabin.py, build_cabin.sh; out/cabin.blend (cams CAM_TWO, CAM_TRAY,
   CAM_WINDOW), out/cabin_lite.glb (7.2 MB), out/cabin_meta.json (anchors, cams, states). ../cabin.js (bitten, foil, pea, keys). ../cabin_STORY.md, ../cabin_DRESSING.md.
