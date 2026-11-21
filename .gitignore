@@ -89,3 +89,4 @@ library/**/downloads/
 # rick_tree / rick_grass: bark texture re-downloaded by library/trees/fetch_tex.sh, proof renders re-made by tree_sheet.sh
 library/trees/tex/
 library/trees/out/
+episodes/plane-eater/props/tiles/
