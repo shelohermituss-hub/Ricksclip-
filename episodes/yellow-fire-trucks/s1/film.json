@@ -168,6 +168,11 @@
  "places": {
   "yard": {
    "set": "s1_yard",
+   "lite": true,
+   "truckFull": true,
+   "chief": {
+    "light": true
+   },
    "kind": "am",
    "light": "morning",
    "light_over": {
@@ -279,8 +284,8 @@
    "at": 0,
    "visible": false,
    "pos": [
-    2.75,
-    19.05,
+    2.65,
+    19.7,
     0.14
    ],
    "view": "34",
@@ -290,9 +295,9 @@
   },
   {
    "who": "chief",
-   "at": 160,
+   "at": 157,
    "visible": true,
-   "note": "row 6: bursts out of bay 2 past his old red pumper"
+   "note": "row 6: in the bay 2 doorway beside his old red pumper, he bursts out on \"chief\""
   },
   {
    "who": "chief",
@@ -502,7 +507,7 @@
       0.74
      ],
      "aim": [
-      0.5,
+      1.1,
       17.6,
       1.24
      ],

@@ -39,6 +39,9 @@ export async function build(THREE, scene, film, ctx) {
   const box = await buildProp2(THREE, 'lunch_box'); place(THREE, scene, ctx, box, S1.box, 75);
   const lemon = await buildProp2(THREE, 'lemon'); scene.add(lemon.group);
   const boxTop = box.anchors.lid_top ? box.anchors.lid_top.y : .2;
+  // the lunch box read white in the kit (key frames v2): its enamel is navy in PROPS.md; repaint the non-metal parts navy here (asset file untouched)
+  box.group.traverse(o => { if (!o.isMesh) return; const m = o.material; console.warn('PHFD_BOX ' + m.name + ' ' + m.color.getHexString() + ' metal ' + m.metalness);
+    if (m.metalness < .5) { o.material = m.clone(); o.material.color.set('#22325e'); o.material.map = null; o.material.roughness = Math.min(m.roughness, .45); } });
   // ---- air hose: a tube rebuilt every frame (compressor outlet -> ground loop -> up through the left fist -> gun inlet)
   const hoseMat = new THREE.MeshStandardMaterial({ color: '#26262a', roughness: .6 }); let hose = null;
   const outlet = comp.plan.outlet ? V(comp.plan.outlet) : V([S1.comp[0], S1.comp[1], Z + .47]);
@@ -47,7 +50,7 @@ export async function build(THREE, scene, film, ctx) {
   for (let i = 0; i < 70; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: mistTex, color: COLORS.lemon, transparent: true, depthWrite: false, opacity: 0, fog: false })); m.renderOrder = 5; scene.add(m); mist.push(m); }
   // ---- POWER 1 parts
   const steamTex = softTex(THREE), steam = [];
-  for (let i = 0; i < 16; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: steamTex, color: '#ffffff', transparent: true, depthWrite: false, opacity: 0, fog: false })); m.renderOrder = 6; scene.add(m); steam.push(m); }
+  for (let i = 0; i < 16; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: steamTex, color: '#b9c4da', transparent: true, depthWrite: false, opacity: 0, fog: false })); m.renderOrder = 6; scene.add(m); steam.push(m); }   // grey-blue: reads on the sky and on the cream wall (white on white did not)
   const dust = [];
   for (let i = 0; i < 14; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: steamTex, color: '#d9d0bf', transparent: true, depthWrite: false, opacity: 0 })); m.renderOrder = 4; scene.add(m); dust.push(m); }
   const impA = impactTex(THREE, '#f4f1ea', '#1f2a54'), impB = impactTex(THREE, '#1f2a54', '#f4f1ea');
@@ -89,7 +92,7 @@ export async function build(THREE, scene, film, ctx) {
     lemon.group.position.copy(lp); lemon.group.rotation.set(-roll + wob, Math.PI / 2, 0);
     // ---- POWER 1
     const E = f - S1.EXPLODE;
-    if (R && R.camera) { if (!ring) ring = makeShockwaveRing(THREE, scene, V([S1.chief[0], S1.chief[1], Z + .03]), { orient: 'ground', radius: 3.4, color: '#f6f1e6', shade: '#c4cbe0', ink: '#1d1a2a',
+    if (R && R.camera) { if (!ring) ring = makeShockwaveRing(THREE, scene, V([S1.chief[0], S1.chief[1], Z + .03]), { orient: 'ground', radius: 2.2, color: '#f6f1e6', shade: '#c4cbe0', ink: '#1d1a2a',
         dust: { count: 18, color: '#d9d0bf', ink: '#2a2230', size: .14, lift: .4, life: 1.3 }, debris: { count: 8, color: '#6f6a60', size: .05, speed: 3.2, gravity: 9.8 }, camera: () => R.camera });
       ring.update(E >= -3 && E < 50 ? E / 30 : -1e3);
       // impact frame: f172 light field with navy lines, f173-174 navy field with white lines; behind the Chief, facing the lens, filling the frame
@@ -99,9 +102,9 @@ export async function build(THREE, scene, film, ctx) {
         // centre the focus lines on his head
         const hp = chiefHead.clone().project(cam); imp.material.map.offset.set(0, 0); imp.position.addScaledVector(new THREE.Vector3(1, 0, 0).applyQuaternion(cam.quaternion), hp.x * h * cam.aspect / 2 * .0);
       } }
-    steam.forEach((m, i) => { const a = (E + 1) / 26; const on = E >= -1 && E < 25; const ang = (i / 16) * Math.PI * 2, r = .18 + .55 * snap(E + 1, 10) * (.6 + .5 * rnd(i, 3));
+    steam.forEach((m, i) => { const a = (E + 1) / 26; const on = E >= 3 && E < 30; const ang = (i / 16) * Math.PI * 2, r = .18 + .55 * snap(E + 1, 10) * (.6 + .5 * rnd(i, 3));
       m.position.set(chiefHead.x + Math.cos(ang) * r, chiefHead.y + .05 + .35 * a * (.5 + rnd(i, 4)) + Math.abs(Math.sin(ang)) * .1, chiefHead.z + Math.sin(ang) * r * .6);
-      m.scale.setScalar(.18 + .5 * a); m.material.opacity = on ? .9 * (1 - a) ** 1.3 : 0; });
+      m.scale.setScalar(.18 + .5 * a); m.material.opacity = on ? .95 * (1 - a) ** 1.1 : 0; });
     dust.forEach((m, i) => { const a = (f - S1.RED) / 20, on = a >= 0 && a < 1, ft = i % 2 ? -.17 : .17, ang = rnd(i, 5) * 6.283;
       const b = V([S1.chief[0] + ft * .6, S1.chief[1] + ft * .3, Z + .05]); m.position.set(b.x + Math.cos(ang) * .3 * a, b.y + .12 * a, b.z + Math.sin(ang) * .3 * a);
       m.scale.setScalar(.1 + .3 * a); m.material.opacity = on ? .7 * (1 - a) : 0; });

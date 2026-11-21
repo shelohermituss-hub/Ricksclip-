@@ -22,8 +22,8 @@ acts = [
     dict(who='hero', at=176, face='k:browUp', note='rows 6-7: listens, polite, unmoved'),
     dict(who='hero', at=264, face='k:concentrate', note='row 8: already turning back to spray'),
     # CHIEF: hidden in the bay until he bursts out on "chief" (f163); the card runs 2.2 m in 10 f (his move draws the two stamping strides)
-    dict(who='chief', at=0, visible=False, pos=[2.75, 19.05, Z], view='34', dir=-1, pose=M('ch_burst'), face='k:frozenWide'),
-    dict(who='chief', at=160, visible=True, note='row 6: bursts out of bay 2 past his old red pumper'),
+    dict(who='chief', at=0, visible=False, pos=[2.65, 19.7, Z], view='34', dir=-1, pose=M('ch_burst'), face='k:frozenWide'),
+    dict(who='chief', at=157, visible=True, note='row 6: in the bay 2 doorway beside his old red pumper, he bursts out on "chief"'),
     dict(who='chief', at=161, pos=CHIEF, move_s=0.3, note='the burst: two strides to his spot'),
     dict(who='chief', at=172, face='k:furious', note='POWER 1 "exploded"'),
     dict(who='chief', at=200, face='k:chiefShout', say=[19, 28], note='rows 7-8: "Fire trucks are RED! We look like a giant lemon!" lip sync 6.66-9.42'),
@@ -46,7 +46,7 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
 stations = [
     st(0, [-1.35, 13.0, 1.14], [-2.75, 16.9, 1.84], 24, 'hero', 'W', 'ROWS 1-3 FRAME 0 (HOOK, M00 living rest): the hero mid-sweep big in frame, both fists on the gun and hose (row 2), the wet lemon edge eating the red toward the cab door, the three firemen frozen behind him, the lemon paint tin near the lens', hold=1.6, shows=['door']),
     st(120, [-1.6, 10.2, 1.34], [-3.0, 16.0, 1.74], 20, 'truck', 'W', 'ROWS 4-5 (SETUP + EXTREME, M04 pull back reveal): over "brand new firetruck" the pull back reveals the gift-wrapped truck (ribbon and bow on the nose, price card, scissors on the cushion on the stool); the camera flows THROUGH this wide (via point) on its way round to bay 2', hold=0),
-    st(165, [1.45, 14.9, 0.74], [0.5, 17.6, 1.24], 22, 'chief', 'W', 'ROWS 6-7 (TALK + POWER 1, M11 push + truck arc): the camera swings right and in as the Chief bursts out of bay 2; the push runs through the impact; low on him, boots and lunch box for the stamp on "RED"', hold=2.2, shows=['lunch_box']),
+    st(165, [1.45, 14.9, 0.74], [1.1, 17.6, 1.24], 22, 'chief', 'W', 'ROWS 6-7 (TALK + POWER 1, M11 push + truck arc): the camera swings right and in as the Chief bursts out of bay 2; the push runs through the impact; low on him, boots and lunch box for the stamp on "RED"', hold=2.2, shows=['lunch_box']),
     st(272, [2.2, 14.02, 0.30], [-0.15, 18.1, 1.3], 22, 'chief', 'M', 'ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down to the ground; it stops at the lens, as big as the yellow half of the truck, under his pointing fist', hold=0.5, shows=['lemon']),
 ]
 props = {
@@ -55,7 +55,7 @@ props = {
     'lunch_box': dict(pos=[1.15, 16.9, 0.24], kind="the Old-Timer's lunch box"),
     'lemon': dict(pos=[2.02, 14.32, 0.18], kind='the lemon'),
 }
-place = dict(set='s1_yard', kind='am', light='morning', light_over=meta['light']['am'], kit3d=dict(envGround='#8f8a7e'), grass_keep=0.4,
+place = dict(set='s1_yard', lite=True, truckFull=True, chief=dict(light=True), kind='am', light='morning', light_over=meta['light']['am'], kit3d=dict(envGround='#8f8a7e'), grass_keep=0.4,
              hero=dict(paint='half', edge=-1.55, masking=True, letters='under', ribbon=False, priceCard=True, sirens=4, wear=.25))
 film = {
     'title': 'Why Fire Trucks Turned Yellow, S1 THE HOOK (lines 1-2, frames 0-288)',
