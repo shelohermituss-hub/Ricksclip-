@@ -1,0 +1,291 @@
+{
+ "_about": "Style test LAYOUT (look-finisher, round 1). Metres, Z up, origin on the ground, camera looks along +Y. yaw_deg: the object front turns from -Y toward -X by this angle (car, drive, house, garage share it). Departments place their pieces to these points and sizes; deliver a .blend whose root empty is named as the key, origin on the ground at the point, front along -Y before the yaw.",
+ "camera": {
+  "loc": [
+   0.3499999940395355,
+   2.5999999046325684,
+   1.0
+  ],
+  "look_dir_deg": {
+   "heading_from_+Y": 2.0,
+   "pitch_up": 1.5
+  },
+  "lens_mm": 26,
+  "sensor_fit": "VERTICAL",
+  "sensor_mm": 36,
+  "res": [
+   1080,
+   1920
+  ]
+ },
+ "sun": {
+  "to_sun_xy": [
+   0.5,
+   -0.87
+  ],
+  "elevation_deg": 45,
+  "strength": 7.0,
+  "colour": "#ffe2c0",
+  "angle_deg": 1.2
+ },
+ "car": {
+  "pos": [
+   0.8999999761581421,
+   10.600000381469727,
+   0.0
+  ],
+  "yaw_deg": 26.0,
+  "blender_rot_z_deg": -26.0,
+  "size_lwh": [
+   4.8,
+   1.95,
+   1.5
+  ],
+  "note": "car in the right half (kid needs the left half); near side = the car LEFT side (faces camera-right)"
+ },
+ "grandpa": {
+  "pos": [
+   1.3889570236206055,
+   8.63698673248291,
+   0.0
+  ],
+  "height": 1.72,
+  "faces": "screen left (the hood, the spray)",
+  "note": "beside the front fender, bent over the hood",
+  "card_m": [
+   1.757,
+   2.284
+  ],
+  "m_per_px": 0.00176,
+  "hands_world_local_xz": [
+   [
+    -0.264,
+    1.212
+   ],
+   [
+    0.299,
+    1.265
+   ]
+  ]
+ },
+ "kid": {
+  "pos": [
+   -0.62,
+   5.85,
+   0.0
+  ],
+  "height": 1.25,
+  "faces": "screen right (grandpa)",
+  "note": "in front of and left of the car front, 3.3 m from the lens (25-30 % of frame height), in full view (a 0.9 m lens hides everything below 1.05 m behind the hood, so the kid cannot stand straight behind the car)",
+  "card_m": [
+   1.568,
+   2.039
+  ],
+  "m_per_px": 0.00157,
+  "hands_world_local_xz": [
+   [
+    -0.235,
+    0.502
+   ],
+   [
+    -0.11,
+    0.455
+   ]
+  ]
+ },
+ "bucket": {
+  "pos": [
+   1.5709209442138672,
+   8.325716972351074,
+   0.0
+  ],
+  "size": 0.32
+ },
+ "hose_reel": {
+  "pos": [
+   1.100000023841858,
+   5.0,
+   0.0
+  ],
+  "size": 0.6,
+  "note": "lower right foreground, on the lawn"
+ },
+ "mailbox": {
+  "pos": [
+   -1.0,
+   5.199999809265137,
+   0.0
+  ],
+  "height": 1.1,
+  "note": "left edge, by the drive"
+ },
+ "bike": {
+  "pos": [
+   2.0999999046325684,
+   6.199999809265137,
+   0.0
+  ],
+  "yaw_deg": -70,
+  "note": "lying on the lawn, right edge"
+ },
+ "drive": {
+  "from": [
+   -1.7302268743515015,
+   5.207236289978027,
+   0.0
+  ],
+  "to": [
+   5.108363151550293,
+   19.228424072265625,
+   0.0
+  ],
+  "width": 3.4
+ },
+ "garage": {
+  "pos": [
+   5.108363151550293,
+   19.228424072265625,
+   0.0
+  ],
+  "yaw_deg": 26.0,
+  "blender_rot_z_deg": -26.0,
+  "size_whd": [
+   3.6,
+   6.0,
+   2.9
+  ],
+  "note": "door faces the car"
+ },
+ "house": {
+  "pos": [
+   -0.9245824813842773,
+   23.283491134643555,
+   0.0
+  ],
+  "yaw_deg": 26.0,
+  "blender_rot_z_deg": -26.0,
+  "size_whd": [
+   10.0,
+   8.0,
+   3.0
+  ],
+  "roof_ridge": 5.6,
+  "note": "pastel clapboard, porch toward the camera side"
+ },
+ "tree": {
+  "pos": [
+   5.6,
+   13.5,
+   0.0
+  ],
+  "height": 9.5,
+  "crown_radius": 3.8,
+  "note": "screen right, crown into the top right corner; its dapple falls on the drive behind the car"
+ },
+ "lawn": {
+  "note": "everywhere outside the drive; dense blades near the camera (y < 4)"
+ },
+ "_screen_numbers": {
+  "car": {
+   "base_xy_from_top_left": [
+    0.634,
+    0.61,
+    7.95
+   ]
+  },
+  "grandpa": {
+   "base_xy_from_top_left": [
+    0.769,
+    0.64,
+    5.97
+   ],
+   "visible_share": 0.96,
+   "down_angle_deg": -1.9,
+   "top_xy": [
+    0.767,
+    0.432,
+    6.01
+   ]
+  },
+  "kid": {
+   "base_xy_from_top_left": [
+    0.162,
+    0.741,
+    3.25
+   ],
+   "visible_share": 1.0,
+   "down_angle_deg": 2.1,
+   "top_xy": [
+    0.166,
+    0.464,
+    3.29
+   ]
+  },
+  "bucket": {
+   "base_xy_from_top_left": [
+    0.823,
+    0.647,
+    5.65
+   ]
+  },
+  "hose_reel": {
+   "base_xy_from_top_left": [
+    0.956,
+    0.827,
+    2.35
+   ]
+  },
+  "mailbox": {
+   "base_xy_from_top_left": [
+    -0.117,
+    0.795,
+    2.62
+   ]
+  },
+  "bike": {
+   "base_xy_from_top_left": [
+    1.186,
+    0.725,
+    3.51
+   ]
+  },
+  "tree": {
+   "base_xy_from_top_left": [
+    1.176,
+    0.587,
+    10.68
+   ]
+  },
+  "garage": {
+   "base_xy_from_top_left": [
+    0.917,
+    0.563,
+    16.42
+   ]
+  },
+  "house": {
+   "base_xy_from_top_left": [
+    0.466,
+    0.554,
+    20.68
+   ]
+  },
+  "car_corners": [
+   [
+    0.629,
+    0.653,
+    5.38
+   ],
+   [
+    0.873,
+    0.594,
+    9.62
+   ],
+   [
+    0.267,
+    0.634,
+    6.27
+   ]
+  ]
+ }
+}

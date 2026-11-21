@@ -1,0 +1,16 @@
+{
+ "start": [
+  -0.668,
+  5.799,
+  0.515
+ ],
+ "end": [
+  0.432,
+  10.439,
+  1.481
+ ],
+ "apex_z": 2.031,
+ "drops": 64,
+ "seed": 7,
+ "note": "WORLD metres. start = nozzle tip, end = splash point on the car roof. Re-run or call hose_tool.make_water(start, end, apex_z)."
+}

@@ -1,0 +1,108 @@
+{
+ "grandpa": {
+  "file": "grandpa.png",
+  "file_flat": "grandpa_flat.png",
+  "size_px": [
+   898,
+   1400
+  ],
+  "height_m": 1.75,
+  "height_note": "ground to the top of the bare head (hat and cap stand above it)",
+  "px_per_m": 529.92,
+  "m_per_px": 0.001887,
+  "card_m": [
+   1.695,
+   2.642
+  ],
+  "foot_point_px": [
+   453.1,
+   1399.0
+  ],
+  "foot_point_note": "card bottom edge = the ground; put the card origin here",
+  "view": "3/4",
+  "faces_screen": "left",
+  "dir": -1,
+  "hands_px": {
+   "R": [
+    118.6,
+    479.4
+   ],
+   "L": [
+    773.3,
+    460.3
+   ]
+  },
+  "fist_radius_px": 24.9,
+  "pose": "jump_surprise: both feet off the ground, near knee up, both fists flung up, straw hat flying off, mouth wide open (face k:shocked)",
+  "lowest_foot_px": 1219.3,
+  "jump_clearance_m": 0.339,
+  "sponge": {
+   "hand": "R",
+   "centre_px": [
+    118.6,
+    479.4
+   ],
+   "note": "drawn on the card (yellow sponge + suds + flung drips); his RIGHT fist, the forward hand toward the kid"
+  },
+  "shade_side": "screen left (sun front-right)"
+ },
+ "kid": {
+  "file": "kid.png",
+  "file_flat": "kid_flat.png",
+  "size_px": [
+   948,
+   1400
+  ],
+  "height_m": 1.25,
+  "height_note": "ground to the top of the bare head (hat and cap stand above it)",
+  "px_per_m": 938.69,
+  "m_per_px": 0.001065,
+  "card_m": [
+   1.01,
+   1.491
+  ],
+  "foot_point_px": [
+   484.5,
+   1398.1
+  ],
+  "foot_point_note": "card bottom edge = the ground; put the card origin here",
+  "view": "3/4",
+  "faces_screen": "right",
+  "dir": 1,
+  "hands_px": {
+   "R": [
+    657.6,
+    815.3
+   ],
+   "L": [
+    849.5,
+    761.3
+   ]
+  },
+  "fist_radius_px": 49.8,
+  "pose": "hose_aim: both fists on a pistol nozzle in front of the chest, nozzle aimed screen right and up, cheeky grin (face k:evil)",
+  "nozzle": {
+   "grip_back_px": [
+    657.6,
+    815.3
+   ],
+   "grip_back": "his RIGHT fist on the pistol grip / trigger (screen left fist)",
+   "grip_front_px": [
+    849.5,
+    761.3
+   ],
+   "grip_front": "his LEFT fist round the barrel (screen right fist)",
+   "axis_deg_screen": 28,
+   "axis_note": "barrel runs from grip_back toward grip_front and on: right and UP, this many degrees above the card horizontal; the spray leaves past grip_front",
+   "outlet_px": [
+    967.9,
+    698.4
+   ],
+   "hose_leaves": "down and back from under grip_back (screen left, toward the reel)",
+   "drawn_on_card": false,
+   "preview": "kid_nozzle2d.png (2D stand-in only, NOT for the scene)"
+  },
+  "shade_side": "screen left (sun front-right)"
+ },
+ "_about": "character-artist 2026-11-21, style test. Cards from the LOCKED vector cast (templates/vector2d_characters, kit puppets.mjs svgFor, poses.mjs) via cast/tools/make_cards.mjs + finish_cards.py. px origin = card top-left. Fists are ink circles: a 3D prop held in a hand goes UNDER the fist (fist in front). Costume shade baked (screen left); *_flat.png = no shade if the scene shades the cards itself. Card plane faces the camera."
+}

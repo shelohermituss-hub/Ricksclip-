@@ -1,0 +1,80 @@
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:133: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:315: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:286: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:211: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:375: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:415: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:438: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:464: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:1266: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:1444: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  hm.use_nodes = True
+20:42:41 | INFO: Data are loaded, start creating Blender stuff
+20:42:41 | INFO: Blender create Mesh node mesh.001
+20:42:44 | INFO: glTF import finished in 2.91s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node Plane.097
+20:42:46 | INFO: Blender create Mesh node Plane.089
+20:42:46 | INFO: Blender create Mesh node Plane.170
+20:42:46 | INFO: Blender create Mesh node Plane.279
+20:42:46 | INFO: Blender create Mesh node Plane.164
+20:42:46 | INFO: Blender create Mesh node Plane.108
+20:42:46 | INFO: Blender create Mesh node Plane.082
+20:42:46 | INFO: Blender create Mesh node Plane.227
+20:42:46 | INFO: glTF import finished in 0.08s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node Plane.102
+20:42:46 | INFO: Blender create Mesh node Plane.130
+20:42:46 | INFO: Blender create Mesh node Plane.175
+20:42:46 | INFO: Blender create Mesh node Plane.085
+20:42:46 | INFO: Blender create Mesh node Plane.001
+20:42:46 | INFO: glTF import finished in 0.07s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node tree
+20:42:46 | INFO: Blender create Mesh node tree.001
+20:42:46 | INFO: Blender create Mesh node tree.002
+20:42:46 | INFO: Blender create Mesh node tree.003
+20:42:46 | INFO: Blender create Mesh node tree.004
+20:42:46 | INFO: Blender create Mesh node tree.048
+20:42:46 | INFO: glTF import finished in 0.12s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node Plane.024
+20:42:46 | INFO: Blender create Mesh node Plane.029
+20:42:46 | INFO: Blender create Mesh node Plane.041
+20:42:46 | INFO: Blender create Mesh node Plane.036
+20:42:46 | INFO: glTF import finished in 0.08s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node Plane.002
+20:42:46 | INFO: Blender create Mesh node Plane.054
+20:42:46 | INFO: Blender create Mesh node Plane.128
+20:42:46 | INFO: Blender create Mesh node Plane.090
+20:42:46 | INFO: glTF import finished in 0.04s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node garden_gnome_01
+20:42:46 | INFO: glTF import finished in 0.07s
+20:42:46 | INFO: Data are loaded, start creating Blender stuff
+20:42:46 | INFO: Blender create Mesh node garden_sprinkler_01_body_main
+20:42:46 | INFO: Blender create Mesh node garden_sprinkler_01_spinner
+20:42:46 | INFO: Blender create Mesh node garden_sprinkler_01_nozel_left
+20:42:46 | INFO: Blender create Mesh node garden_sprinkler_01_nozel_right
+20:42:46 | INFO: Blender create Mesh node garden_sprinkler_01_wheels
+20:42:46 | INFO: glTF import finished in 0.05s
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:133: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:286: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+Warning: Cannot set relative paths with an unsaved blend file
+Info: Saved as "set.tmp.blend"
+SET_BUILT {"triangles_rendered_incl_instances": 31940087, "triangles_unique": 2060233, "near_blades": 70000, "hair_strands_incl_children": 973539, "objects": 410, "build_s": 35.6}
+Blender 5.3.0 (hash 02f0899d78e3 built 2026-11-10 01:31:18)
+
+Blender quit

@@ -1,0 +1,3 @@
+00:00.605  blend            | Read blend: "/home/user/Ricksclip-/episodes/_style_test/set/set.blend"
+/home/user/Ricksclip-/episodes/_style_test/set/build_set.py:1916: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  w.use_nodes = True

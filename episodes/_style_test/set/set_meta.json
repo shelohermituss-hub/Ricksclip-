@@ -1,0 +1,153 @@
+{
+ "units": "metres, Z up, origin = car spot on the driveway centre",
+ "camera_world": {
+  "loc": [
+   0.3499999940395355,
+   2.5999999046325684,
+   1.0
+  ],
+  "target": [
+   0.698875367641449,
+   12.590482711791992,
+   1.2617695331573486
+  ],
+  "lens": 26
+ },
+ "camera_local": {
+  "loc": [
+   3.012634038925171,
+   -8.031457901000977,
+   1.0
+  ],
+  "target": [
+   -1.0533390045166016,
+   1.1008652448654175,
+   1.2617695331573486
+  ],
+  "lens": 26
+ },
+ "root_matrix_world": [
+  [
+   0.8987939953804016,
+   0.4383711814880371,
+   0.0,
+   1.163022518157959
+  ],
+  [
+   -0.4383711814880371,
+   0.8987939953804016,
+   0.0,
+   11.139278411865234
+  ],
+  [
+   0.0,
+   0.0,
+   1.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "anchors_frame": "LOCAL (driveway along +Y); world = root_matrix_world @ local",
+ "anchors_world": {
+  "house": [
+   -0.925,
+   23.283,
+   0.0
+  ],
+  "garage": [
+   5.108,
+   19.228,
+   0.0
+  ],
+  "tree": [
+   5.6,
+   13.5,
+   0.0
+  ],
+  "drive": [
+   -1.73,
+   5.207,
+   0.0
+  ],
+  "car_spot": [
+   0.9,
+   10.6,
+   0.0
+  ]
+ },
+ "anchors": {
+  "car_spot": [
+   0,
+   -0.6,
+   0
+  ],
+  "drive": [
+   -1.7,
+   1.7,
+   -11.6,
+   9.0
+  ],
+  "garage_door_centre": [
+   0,
+   9.0,
+   1.075
+  ],
+  "front_door": [
+   -5.8,
+   10.0,
+   1.59
+  ],
+  "porch_top": [
+   -5.8,
+   9.6,
+   0.54
+  ],
+  "tree_trunk": [
+   2.953,
+   4.067,
+   0
+  ],
+  "tree_height": 9.5,
+  "birdhouse": [
+   2.957,
+   3.251,
+   2.3
+  ],
+  "gnome": [
+   -2.6,
+   6.6
+  ],
+  "sprinkler": [
+   6.6,
+   -0.8
+  ],
+  "kerb_y": -11.6,
+  "lawn_right": [
+   1.7,
+   12.4
+  ],
+  "lawn_left": [
+   -13.6,
+   -1.7
+  ],
+  "lot_front_fence_y": -9.0
+ },
+ "triangles_rendered_incl_instances": 31940087,
+ "triangles_unique": 2060233,
+ "tris_per_collection": {
+  "SET_house": 55522,
+  "SET_ground": 653294,
+  "SET_yard": 1059449,
+  "SET_tree": 2144424,
+  "SET_far": 28027398
+ },
+ "near_blades": 70000,
+ "hair_strands_incl_children": 973539,
+ "objects": 410,
+ "build_s": 35.6
+}
