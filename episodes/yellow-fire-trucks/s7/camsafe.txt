@@ -1,0 +1,2 @@
+CAMERA-SAFE  s7  camsafe on  537 checks: PASS 537  WARN 0  FAIL 0
+report -> /home/user/Ricksclip-/episodes/yellow-fire-trucks/s7/out/plan/camsafe_report.json

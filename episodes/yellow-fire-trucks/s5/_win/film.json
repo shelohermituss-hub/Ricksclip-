@@ -425,18 +425,18 @@
      ]
     },
     {
-     "at": 203,
+     "at": 197,
      "pos": [
-      0.85,
-      4.75,
-      2.1
+      0.95,
+      3.7,
+      2.4
      ],
      "aim": [
-      -0.8,
+      -0.55,
       8.42,
-      6.75
+      6.85
      ],
-     "lens": 34,
+     "lens": 26,
      "subject": "clerk",
      "framing": "M",
      "purpose": "ROW 34 (EXPLAIN + EXTREME, M05 rise with him): the camera rises and tilts up the climb to UP TO 3x at the top of the third board; readable on \"three\"/\"times\"",
@@ -464,6 +464,7 @@
      "purpose": "ROW 35 + S5 -> S6 join: his long look down leads the camera down past the short LIME board onto the RED truck chrome headlamp (S6 pushes in on \"YOU\" 1207)",
      "hold": 0.1,
      "creep": 0.0008,
+     "whip": true,
      "shows": [
       "headlamp"
      ]

@@ -44,11 +44,11 @@ function lostThings(THREE, mat) {
   const tor = (R, r, x, y, z, ry = 0) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 8, 24), mat); m.position.set(x, y, z); m.rotation.y = ry; return m; };
   const wagon = new THREE.Group(); wagon.add(box(.9, .18, .45, 0, .26, 0), box(.9, .05, .02, 0, .37, .22), box(.9, .05, .02, 0, .37, -.22));
   for (const [x, z] of [[-.32, .25], [.32, .25], [-.32, -.25], [.32, -.25]]) wagon.add(tor(.1, .025, x, .11, z));
-  const hnd = cyl(.012, .012, .8, -.75, .2, 0, 0, 1.2); wagon.add(hnd); wagon.userData.at = [33.6, -15.6, .02, 30];
+  const hnd = cyl(.012, .012, .8, -.75, .2, 0, 0, 1.2); wagon.add(hnd); wagon.userData.at = [34.6, -15.0, .02, 30];
   const kite = new THREE.Group(); const ks = new THREE.Shape(); ks.moveTo(0, .45); ks.lineTo(.3, 0); ks.lineTo(0, -.65); ks.lineTo(-.3, 0); ks.closePath();
   const km = new THREE.Mesh(new THREE.ShapeGeometry(ks), mat); km.rotation.x = -Math.PI / 2 + .25; km.position.y = .06; kite.add(km, cyl(.006, .006, 1.05, 0, .07, -.1, Math.PI / 2 - .25)); kite.userData.at = [38.8, -14.2, .02, -40];
   const boot = new THREE.Group(); boot.add(box(.13, .3, .13, 0, .15, 0), box(.28, .1, .13, .08, .05, 0)); boot.rotation.z = -1.35; boot.userData.at = [35.9, -16.6, .07, 70];
-  const can = new THREE.Group(); can.add(cyl(.13, .15, .26, 0, .13, 0), cyl(.02, .03, .36, .2, .22, 0, 0, -.9), cyl(.01, .01, .2, -.02, .33, 0, 0, Math.PI / 2)); can.userData.at = [40.6, -11.6, .02, 15];
+  const can = new THREE.Group(); can.add(cyl(.13, .15, .26, 0, .13, 0), cyl(.02, .03, .36, .2, .22, 0, 0, -.9), cyl(.01, .01, .2, -.02, .33, 0, 0, Math.PI / 2)); can.userData.at = [38.2, -11.0, .02, 15];
   const tri = new THREE.Group(); tri.add(tor(.22, .03, 0, .22, 0), tor(.14, .025, .55, .14, .2), tor(.14, .025, .55, .14, -.2), cyl(.02, .02, .55, .28, .3, 0, 0, 1.1), box(.18, .04, .12, .32, .45, 0), cyl(.015, .015, .4, 0, .48, 0, Math.PI / 2));
   tri.rotation.z = 1.4; tri.userData.at = [37.6, -18.4, .3, -20];
   for (const o of [wagon, kite, boot, can, tri]) G.add(o); return G;

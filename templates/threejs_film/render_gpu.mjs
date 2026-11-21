@@ -1,5 +1,6 @@
 // render_gpu.mjs = render.mjs + drawing on the PC's graphics card (2026-11-14). Same usage and options as render.mjs. See GPU_RENDER.md.
-//   Extra options: --software (the old software WebGL, for comparing) · --grab screenshot|canvas (how a frame is read back; default canvas = the page joins its canvases and hands back a PNG)
+//   Extra options: --software (the old software WebGL, for comparing) · --grab screenshot|canvas|fast (how a frame is read back; default: screenshot in software mode, canvas on the graphics card; fast = raw pixels, see GPU_RENDER.md "Fast grab")
+//                  --grab-timeout <s> (how long one screenshot / fast grab may take; default 30, Playwright's own) · a frame that fails is tried once more (on a fresh page if the page crashed)
 //                  --frames a-b (a range, besides a,b,c) · --cache <dir> (private copy of the character package; default = a temp folder per process, so parallel runs never share one)
 //                  --headed (a real, off-screen window instead of the new headless mode) · --gpu-info (print the GPU facts and stop)
 // Differences from render.mjs are marked "GPU:".
@@ -49,7 +50,9 @@ const FILM_PATCHES = has('--no-patch') ? [] : [
 // Every shader the page compiles gets a pow() that holds its base at zero or above: no change for a valid base. --no-guard switches it off.
 const POW_GUARD = String.raw`(() => { const P = '#define pow(a, b) pow(__GUARD__, b)\n'; for (const C of [self.WebGL2RenderingContext, self.WebGLRenderingContext]) { if (!C) continue; const ss = C.prototype.shaderSource;
   C.prototype.shaderSource = function (sh, src) { src = String(src); const m = /^\s*#version[^\n]*\n/.exec(src); return ss.call(this, sh, m ? m[0] + P + src.slice(m[0].length) : P + src); }; } })()`;
+const GRABS = new Map();   // fast grab: the page POSTs the raw pixels of a frame to /grab/<ticket>; the waiting grab() is called with the bytes
 const server = http.createServer((q, r) => {
+  if (q.method === 'POST' && q.url.startsWith('/grab/')) { const ch = []; q.on('data', c => ch.push(c)); q.on('end', () => { const t = q.url.slice(6), w = GRABS.get(t); GRABS.delete(t); if (w) w(Buffer.concat(ch)); r.writeHead(204); r.end(); }); return; }
   const u = decodeURIComponent(q.url.split('?')[0]), m = /^\/(kit|ep|puppets)\/(.*)$/.exec(u), f = m && path.normalize(path.join(ROOTS[m[1]], m[2]));
   if (!f || !f.startsWith(ROOTS[m[1]]) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { r.writeHead(404); return r.end('not found'); }
   if (m[1] === 'kit' && m[2] === 'film.js') { let s = fs.readFileSync(f, 'utf8'); for (const [a, b] of FILM_PATCHES) { if (!s.includes(a)) console.warn('render_gpu: film.js patch did not find its place: ' + a.slice(0, 60)); s = s.replace(a, b); } r.writeHead(200, { 'content-type': 'text/javascript', 'cache-control': 'no-store' }); return r.end(s + ' ;window.__R = () => R;'); }   // GPU: film.js is served with the small changes of FILM_PATCHES; the file on disk is never touched
@@ -65,15 +68,20 @@ const [FW, FH] = film.size || [1080, 1920], scale = +val('--scale', has('--story
 const SOFT = has('--software') || (process.platform !== 'win32' && !has('--gpu')),   /* cloud: Linux containers have no graphics card and no Direct3D, so frames are drawn by SwiftShader (CPU); --gpu forces the card path */ GRAB = val('--grab', SOFT ? 'screenshot' : 'canvas');
 const GPU_ARGS = ['--use-angle=d3d11', '--use-gl=angle', '--enable-gpu', '--ignore-gpu-blocklist', '--enable-gpu-rasterization', '--disable-gpu-vsync', '--disable-frame-rate-limit', '--force_high_performance_gpu',
   '--disable-background-timer-throttling', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--force-color-profile=srgb'];
-const browser = SOFT ? await chromium.launch() : await chromium.launch({ channel: 'chromium', headless: !has('--headed'), args: has('--headed') ? [...GPU_ARGS, '--window-position=-32000,-32000'] : GPU_ARGS });
+let browser = null, page = null, stage = null, info = null, crashed = false;
+const SETUP = { film: '/ep/' + path.basename(FILM), W, H, captions: !has('--no-captions'), sheets: SHEETS, epSets: fs.existsSync(path.join(EP, 'sets')) ? fs.readdirSync(path.join(EP, 'sets')) : [] };
+const openPage = async () => {   // launch (or relaunch, after the browser died) and build the film page; also used to retry a frame on a fresh page
+  if (!browser || !browser.isConnected()) browser = SOFT ? await chromium.launch() : await chromium.launch({ channel: 'chromium', headless: !has('--headed'), args: has('--headed') ? [...GPU_ARGS, '--window-position=-32000,-32000'] : GPU_ARGS });
+  page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 }); crashed = false; page.on('crash', () => { crashed = true; });
+  if (!SOFT && !has('--no-guard')) await page.addInitScript(POW_GUARD.replace('__GUARD__', val('--guard', 'abs') === 'max' ? 'max(a, 0.)' : 'abs(a)'));
+  if (has('--seed')) await page.addInitScript(`(() => { let a = ${+val('--seed', 1) >>> 0} || 1; Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })()`);   // GPU: --seed N = the same 'random' dust and set scatter on every run, so two renders can be compared pixel by pixel
+  page.on('console', m => { if ((m.type() === 'warning' || m.type() === 'error') && !/GL Driver Message/.test(m.text())) console.log('[page]', m.text()); }); page.on('pageerror', e => console.log('[page error]', e.message));
+  await page.goto(`${BASE}/kit/film_page.html`);
+  info = await page.evaluate(c => window.setup(c), SETUP);
+  stage = page.locator('#stage');
+};
 process.on('exit', () => { if (!val('--cache')) fs.rmSync(CACHE, { recursive: true, force: true }); });
-const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
-if (!SOFT && !has('--no-guard')) await page.addInitScript(POW_GUARD.replace('__GUARD__', val('--guard', 'abs') === 'max' ? 'max(a, 0.)' : 'abs(a)'));
-if (has('--seed')) await page.addInitScript(`(() => { let a = ${+val('--seed', 1) >>> 0} || 1; Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })()`);   // GPU: --seed N = the same 'random' dust and set scatter on every run, so two renders can be compared pixel by pixel
-page.on('console', m => { if ((m.type() === 'warning' || m.type() === 'error') && !/GL Driver Message/.test(m.text())) console.log('[page]', m.text()); }); page.on('pageerror', e => console.log('[page error]', e.message));
-await page.goto(`${BASE}/kit/film_page.html`);
-const info = await page.evaluate(c => window.setup(c), { film: '/ep/' + path.basename(FILM), W, H, captions: !has('--no-captions'), sheets: SHEETS, epSets: fs.existsSync(path.join(EP, 'sets')) ? fs.readdirSync(path.join(EP, 'sets')) : [] });
-const stage = page.locator('#stage');
+await openPage();
 // GPU: prove which device draws (the film's own WebGL context), and stop if the graphics card was asked for but the CPU answered
 const glInfo = await page.evaluate(() => { const c = document.querySelector('#stage canvas'), gl = c.getContext('webgl2') || c.getContext('webgl'), e = gl.getExtension('WEBGL_debug_renderer_info'); return { vendor: e ? gl.getParameter(e.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR), renderer: e ? gl.getParameter(e.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), version: gl.getParameter(gl.VERSION), maxTex: gl.getParameter(gl.MAX_TEXTURE_SIZE), maxSamples: gl.getParameter(gl.MAX_SAMPLES), aa: gl.getContextAttributes().antialias }; });
 console.log(`WebGL renderer: ${glInfo.renderer}  |  vendor: ${glInfo.vendor}  |  ${glInfo.version}  |  browser ${browser.version()}  |  mode ${SOFT ? 'software' : 'gpu'}, grab ${GRAB}`);
@@ -81,21 +89,58 @@ const onCPU = /swiftshader|llvmpipe|software|basic render/i.test(glInfo.renderer
 if (!SOFT && onCPU && !has('--allow-cpu')) { console.error('The graphics card is NOT drawing (renderer above is a CPU one). Stopped. Use --software to render on the CPU on purpose.'); await browser.close(); server.close(); process.exit(2); }
 if (has('--gpu-info')) { console.log(JSON.stringify(glInfo)); await browser.close(); server.close(); process.exit(0); }
 // GPU: 'canvas' grab = the page draws its canvases (the WebGL picture, then the drawn overlay) onto one 2D canvas and hands back the PNG bytes; no compositor screenshot is involved, so a GPU canvas can never come back black or a frame late
+const GT = has('--grab-timeout') ? Math.round(+val('--grab-timeout', 30) * 1000) : undefined;   // undefined = Playwright's own 30 s, as before
+const within = (p, ms, what) => ms ? Promise.race([p, new Promise((_, no) => setTimeout(() => no(new Error(`${what}: Timeout ${ms}ms`)), ms))]) : p;
+const CRCT = Array.from({ length: 256 }, (_, n) => { for (let k = 0; k < 8; k++) n = n & 1 ? 0xEDB88320 ^ (n >>> 1) : n >>> 1; return n >>> 0; }), crc32 = zlib.crc32 || (b => { let c = ~0; for (let i = 0; i < b.length; i++) c = CRCT[(c ^ b[i]) & 255] ^ (c >>> 8); return ~c >>> 0; });
+const pngRGB = (rows, W, H) => {   // rows = H scanlines of 1 filter byte + W*3 bytes; zlib level 1 (the browser's own PNGs are about as loose)
+  const ck = (t, d) => { const l = Buffer.alloc(4), c = Buffer.alloc(4), td = Buffer.concat([Buffer.from(t, 'latin1'), d]); l.writeUInt32BE(d.length); c.writeUInt32BE(crc32(td)); return Buffer.concat([l, td, c]); }, ih = Buffer.alloc(13);
+  ih.writeUInt32BE(W, 0); ih.writeUInt32BE(H, 4); ih[8] = 8; ih[9] = 2;   // 8 bit, RGB (the screenshot's PNGs are RGB too)
+  return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), ck('IHDR', ih), ck('IDAT', zlib.deflateSync(rows, { level: 1 })), ck('IEND', Buffer.alloc(0))]);
+};
+// 'fast' grab (2026-11-21, cloud): the page reads the WebGL picture with gl.readPixels and the drawn overlay with getImageData, and POSTs the raw bytes to this script's own server (no screenshot, no base64, no PNG in the page).
+// Node lays the overlay over the picture ("source over", as the compositor does), flips the rows (WebGL reads bottom-up) and writes an RGB PNG with the 'up' filter.
+let TICKET = 0;
+const grabFast = async file => {
+  const t = String(++TICKET), got = new Promise(ok => GRABS.set(t, ok)), T0 = Date.now();
+  const n = await within(page.evaluate(async t => { const cs = [...document.getElementById('stage').querySelectorAll('canvas')], gc = cs[0], W = gc.width, H = gc.height, gl = gc.getContext('webgl2') || gc.getContext('webgl'), g2 = !!self.WebGL2RenderingContext && gl instanceof WebGL2RenderingContext;
+    if (!window.__px || window.__px.length !== W * H * 4) window.__px = new Uint8Array(W * H * 4);
+    const fb = gl.getParameter(gl.FRAMEBUFFER_BINDING), rf = g2 ? gl.getParameter(gl.READ_FRAMEBUFFER_BINDING) : null, pb = g2 ? gl.getParameter(gl.PIXEL_PACK_BUFFER_BINDING) : null, al = gl.getParameter(gl.PACK_ALIGNMENT);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null); if (g2) gl.bindBuffer(gl.PIXEL_PACK_BUFFER, null); gl.pixelStorei(gl.PACK_ALIGNMENT, 4);
+    const q0 = performance.now(); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4)); const q1 = performance.now();   // 1 pixel first: returns when the GL work of the frame is done (timing only)
+    gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, window.__px); const q2 = performance.now();   // the drawing buffer is kept (preserveDrawingBuffer), so this is the frame just drawn
+    gl.pixelStorei(gl.PACK_ALIGNMENT, al); if (g2) { gl.bindBuffer(gl.PIXEL_PACK_BUFFER, pb); gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, fb); gl.bindFramebuffer(gl.READ_FRAMEBUFFER, rf); } else gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+    const ov = cs.slice(1).filter(c => getComputedStyle(c).visibility !== 'hidden' && getComputedStyle(c).display !== 'none').map(c => c.getContext('2d', { willReadFrequently: true }).getImageData(0, 0, W, H).data);
+    const q3 = performance.now(); await fetch('/grab/' + t, { method: 'POST', body: new Blob([new Uint32Array([W, H, ov.length]), window.__px, ...ov]) }); window.__gt = [q1 - q0, q2 - q1, q3 - q2, performance.now() - q3].map(Math.round); return ov.length; }, t), GT ?? 30000, 'fast grab');
+  const b = await within(got, GT ?? 30000, 'fast grab upload'), W = b.readUInt32LE(0), H = b.readUInt32LE(4), N = W * H * 4, gl = b.subarray(12, 12 + N), ovs = Array.from({ length: n }, (_, i) => b.subarray(12 + N * (i + 1), 12 + N * (i + 2)));
+  const RW = W * 3 + 1, rows = Buffer.alloc(RW * H), cur = new Uint8Array(W * 3), prev = new Uint8Array(W * 3);
+  for (let y = 0; y < H; y++) {
+    const gs = (H - 1 - y) * W * 4;
+    for (let x = 0, j = 0; x < W; x++, j += 3) { const gi = gs + x * 4; let r = gl[gi], g = gl[gi + 1], bl = gl[gi + 2];
+      for (const o of ovs) { const oi = (y * W + x) * 4, a = o[oi + 3]; if (a === 255) { r = o[oi]; g = o[oi + 1]; bl = o[oi + 2]; } else if (a) { r = (o[oi] * a + r * (255 - a) + 127) / 255 | 0; g = (o[oi + 1] * a + g * (255 - a) + 127) / 255 | 0; bl = (o[oi + 2] * a + bl * (255 - a) + 127) / 255 | 0; } }
+      cur[j] = r; cur[j + 1] = g; cur[j + 2] = bl; }
+    const o = y * RW; rows[o] = 2; for (let i = 0; i < W * 3; i++) rows[o + 1 + i] = (cur[i] - prev[i]) & 255; prev.set(cur);   // filter 2 = 'up'
+  }
+  const T1 = Date.now(), png = pngRGB(rows, W, H); fs.writeFileSync(file, png); if (has('--grab-debug')) console.log(`fast grab: in page [GL work still running, readPixels, overlay getImageData, POST] = ${await page.evaluate(() => window.__gt)} ms; total ${T1 - T0} ms, lay + filter + PNG ${Date.now() - T1} ms, ${(png.length / 1e6).toFixed(1)} MB`);
+};
 const grab = async (file, clear) => {
-  if (GRAB !== 'canvas') return stage.screenshot({ path: file, omitBackground: !!clear });
+  if (GRAB === 'fast' && !clear) return grabFast(file);
+  if (GRAB !== 'canvas') return stage.screenshot({ path: file, omitBackground: !!clear, timeout: GT });
   const b64 = await page.evaluate(async () => { const st = document.getElementById('stage'), cs = [...st.querySelectorAll('canvas')], W = cs[0].width, H = cs[0].height, o = (window.__grab ??= Object.assign(document.createElement('canvas'), { width: W, height: H })), g = o.getContext('2d');
     g.clearRect(0, 0, W, H); for (const c of cs) if (getComputedStyle(c).visibility !== 'hidden' && getComputedStyle(c).display !== 'none') g.drawImage(c, 0, 0, W, H);
     const blob = await new Promise(ok => o.toBlob(ok, 'image/png')), u8 = new Uint8Array(await blob.arrayBuffer()); let s = ''; for (let i = 0; i < u8.length; i += 32768) s += String.fromCharCode.apply(null, u8.subarray(i, i + 32768)); return btoa(s); });
   fs.writeFileSync(file, Buffer.from(b64, 'base64'));
 };
 const TM = { draw: 0, grab: 0, n: 0 };   // GPU: where the time goes (draw = film.js builds and draws the frame; grab = reading it back and writing the PNG)
-const shot = async (f, file) => { const t0 = Date.now(); await page.evaluate(f => window.renderFrame(f), f); const t1 = Date.now(); await grab(file); TM.draw += t1 - t0; TM.grab += Date.now() - t1; TM.n++; };
+const shot = async (f, file) => { for (let k = 0; ; k++) { try { const t0 = Date.now(); await page.evaluate(f => window.renderFrame(f), f); const t1 = Date.now(); await grab(file); TM.draw += t1 - t0; TM.grab += Date.now() - t1; TM.n++; return; }
+  catch (e) { if (k >= 1) throw e; console.log(`frame ${f} failed (${String(e.message).split('\n')[0].slice(0, 120)}); trying once more${crashed || page.isClosed() || !browser.isConnected() ? ' on a fresh page' : ''}`);   // retry once instead of killing the run
+    if (crashed || page.isClosed() || !browser.isConnected()) { await page.close().catch(() => {}); await openPage(); } } } };
 console.log(`film: ${info.frames} frames at ${info.fps} fps, ${W}x${H}, cast ${info.cast.join(', ')}`);
 
 if (has('--frames')) {
   const d = has('--stills-dir') ? path.resolve(val('--stills-dir', '')) : path.join(OUT, 'stills'); fs.mkdirSync(d, { recursive: true });   // kit_patch (animator): --stills-dir = a private folder, not the shared out/stills
   const list = val('--frames', '0').split(',').flatMap(x => { const m = /^(\d+)-(\d+)$/.exec(x); return m ? Array.from({ length: +m[2] - +m[1] + 1 }, (_, i) => +m[1] + i) : [Number(x)]; }), t0 = Date.now();   // GPU: a-b ranges, and the time per frame
-  for (const f of list) { const p = path.join(d, `f_${String(f).padStart(5, '0')}.png`); await shot(f, p); if (list.length <= 12) console.log('still', p); }
+  const failed = []; for (const f of list) { const p = path.join(d, `f_${String(f).padStart(5, '0')}.png`); try { await shot(f, p); } catch (e) { failed.push(f); console.log(`still FAILED f${f} after the retry: ${String(e.message).split('\n')[0].slice(0, 160)}`); continue; } if (list.length <= 12) console.log('still', p); }
+  if (failed.length) { console.log(`stills FAILED: ${failed.join(',')}`); process.exitCode = 3; }   // the other frames are kept; exit code 3 says some are missing
   if (has('--eval')) { const code = fs.readFileSync(path.resolve(val('--eval', '')), 'utf8'); console.log('eval', JSON.stringify(await page.evaluate(code))); }   // GPU: debug hook, runs a script in the page after the last still
   console.log(`stills: ${list.length} frames in ${((Date.now() - t0) / 1000).toFixed(1)} s = ${((Date.now() - t0) / list.length).toFixed(0)} ms/frame (draw ${(TM.draw / TM.n).toFixed(0)} + grab ${(TM.grab / TM.n).toFixed(0)}) -> ${d}`);
 }
@@ -152,7 +197,7 @@ if (has('--overlay')) {
   // The drawn layer alone, on a clear ground, one PNG per frame: effects, lens glints, transitions and captions exactly as the animatic drew them.
   // The look pass lays it over the Blender picture. Use --scale 1 for the final size; --range a-b for a part.
   const d = path.join(OUT, 'overlay'), [a, b] = val('--range', `0-${info.frames - 1}`).split('-').map(Number); fs.mkdirSync(d, { recursive: true }); const t0 = Date.now(); let n = 0;
-  for (let f = a; f <= b; f++) { await page.evaluate(f => window.renderFrame(f, { overlayOnly: true }), f); await stage.screenshot({ path: path.join(d, `o_${String(f).padStart(5, '0')}.png`), omitBackground: true }); if (++n % 200 === 0) console.log(`  ${f}/${b}  ${((Date.now() - t0) / n).toFixed(0)} ms/frame`); }
+  for (let f = a; f <= b; f++) { await page.evaluate(f => window.renderFrame(f, { overlayOnly: true }), f); await stage.screenshot({ path: path.join(d, `o_${String(f).padStart(5, '0')}.png`), omitBackground: true, timeout: GT }); if (++n % 200 === 0) console.log(`  ${f}/${b}  ${((Date.now() - t0) / n).toFixed(0)} ms/frame`); }
   console.log('overlay ->', d, `(${n} frames)`);
 }
 if (has('--export-lock')) {

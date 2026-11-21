@@ -1,0 +1,5 @@
+CAMERA-SAFE  s5  camsafe on  234 checks: PASS 192  WARN 42  FAIL 0
+  LOW            42
+  f1161 clerk WARN  yaw -117.9 pitch -48  WARN LOW: camera 48 deg up at him
+      FIX: raise the camera to 35 deg up or less, or check the chin and feet on the frame
+report -> /home/user/Ricksclip-/episodes/yellow-fire-trucks/s5/out/plan/camsafe_report.json

@@ -1,0 +1,486 @@
+{
+ "title": "Why Fire Trucks Turned Yellow, S7 THE FALSE WIN (line 13, frames 1576-1754), BOARD",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 0,
+ "end": 179,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "../moves",
+  "../.",
+  "../cast",
+  "../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "painterThin": {
+   "puppet": "cast:firetrucks/painterThin",
+   "height": 1.86,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "painterFat": {
+   "puppet": "cast:firetrucks/painterFat",
+   "height": 1.64,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  },
+  "chiefVisitor": {
+   "puppet": "cast:firetrucks/chiefVisitor",
+   "height": 1.62,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  }
+ },
+ "faces_ep": {
+  "chiefShout": {
+   "eyes": "angry",
+   "brows": [
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ],
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 30,
+   "teethH": 12
+  },
+  "proudShut": {
+   "eyes": "closed",
+   "brows": [
+    [
+     10,
+     -2,
+     6
+    ],
+    [
+     14,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "peekOne": {
+   "eyes": [
+    "shut",
+    "wideXL"
+   ],
+   "brows": [
+    [
+     -4,
+     6,
+     0
+    ],
+    [
+     16,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "frozenWide": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.5,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "dallas": {
+   "set": "s7_dallas",
+   "lite": true,
+   "kind": "no",
+   "light": "day",
+   "light_over": {
+    "top": "#8fb4ee",
+    "hor": "#e9eef4",
+    "sun": "#fff3d0",
+    "si": 3.3,
+    "amb": "#dfe5ef",
+    "ai": 1.35,
+    "dir": [
+     -1.31,
+     9.4,
+     3.16
+    ],
+    "tint": "#fffaf0",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#cdb690"
+   },
+   "boards": {
+    "n": 3,
+    "ladder": false,
+    "stool": false,
+    "painters": true,
+    "leaves": 3
+   }
+  }
+ },
+ "props": {
+  "door": {
+   "pos": [
+    4.45,
+    10.0,
+    1.35
+   ],
+   "kind": "the Dallas lime truck door panel"
+  },
+  "boards": {
+   "pos": [
+    -0.95,
+    8.42,
+    4.0
+   ],
+   "kind": "the three-board RED tally, UP TO 3x"
+  },
+  "order": {
+   "pos": [
+    6.85,
+    12.0,
+    1.08
+   ],
+   "kind": "order sheet REPAINT: RED"
+  }
+ },
+ "acts": [
+  {
+   "who": "painterThin",
+   "at": 0,
+   "pos": [
+    5.35,
+    11.25,
+    0.12
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s7/pt_s7",
+   "look": [
+    6.85,
+    12.0,
+    1.08
+   ],
+   "face": "k:sleepy",
+   "note": "row 49 \"Dallas?\": bored, shrugs at the order sheet REPAINT: RED"
+  },
+  {
+   "who": "painterThin",
+   "at": 36,
+   "look": [
+    4.45,
+    9.9,
+    1.3
+   ],
+   "face": "k:concentrate",
+   "note": "raises the gun at the door"
+  },
+  {
+   "who": "painterThin",
+   "at": 91,
+   "pos": [
+    5.55,
+    12.0,
+    0.12
+   ],
+   "move_s": 0.2,
+   "look": [
+    8.4,
+    4.9,
+    1.45
+   ],
+   "note": "row 51 \"because\": steps aside, gun down"
+  },
+  {
+   "who": "painterFat",
+   "at": 0,
+   "pos": [
+    5.35,
+    16.3,
+    0.12
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s7/pf_s7",
+   "look": [
+    4.45,
+    15.0,
+    1.3
+   ],
+   "face": "k:concentrate",
+   "note": "careful, tongue out"
+  },
+  {
+   "who": "painterFat",
+   "at": 73,
+   "face": "k:lipBite",
+   "look": [
+    4.45,
+    15.4,
+    1.2
+   ],
+   "note": "row 50 \"anyway\": pats the last yellow patch goodbye"
+  },
+  {
+   "who": "painterFat",
+   "at": 91,
+   "pos": [
+    5.6,
+    16.9,
+    0.12
+   ],
+   "move_s": 0.2,
+   "look": [
+    8.4,
+    4.9,
+    1.45
+   ]
+  },
+  {
+   "who": "chiefVisitor",
+   "at": 0,
+   "pos": [
+    7.05,
+    10.9,
+    0.12
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s7/cv_s7",
+   "look": [
+    4.45,
+    12.0,
+    1.3
+   ],
+   "face": "k:proud",
+   "note": "VISITOR tag; watches, pleased"
+  },
+  {
+   "who": "chiefVisitor",
+   "at": 96,
+   "pos": [
+    5.75,
+    9.35,
+    0.12
+   ],
+   "move_s": 0.25,
+   "look": [
+    8.4,
+    4.9,
+    1.45
+   ],
+   "note": "row 51 \"firetruck\": plants himself in front of the wet red truck"
+  },
+  {
+   "who": "chiefVisitor",
+   "at": 126,
+   "face": "k:proudShut",
+   "note": "row 52 \"has\": eyes-shut salute, rocks back too far"
+  },
+  {
+   "who": "chiefVisitor",
+   "at": 144,
+   "face": "k:proud",
+   "note": "row 52 \"red\": catches himself, chin up, the proud nod"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "painterThin",
+   "obj": "spray_gun",
+   "module": "sets/assets.js",
+   "builder": "buildSprayGun",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "when": "always",
+   "scale": 1
+  },
+  {
+   "who": "painterFat",
+   "obj": "spray_gun",
+   "module": "sets/assets.js",
+   "builder": "buildSprayGun",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "when": "always",
+   "scale": 1
+  }
+ ],
+ "fx": [
+  {
+   "at": 102,
+   "kind": "dust",
+   "pos": [
+    5.75,
+    9.35,
+    0.2
+   ],
+   "note": "row 51: the plant kicks sand dust"
+  },
+  {
+   "at": 53,
+   "kind": "dust",
+   "pos": [
+    4.5,
+    9.6,
+    1.3
+   ],
+   "note": "row 50: paint mist puff at the door (stand-in for red mist)"
+  }
+ ],
+ "moods": [
+  {
+   "at": 53,
+   "look": "red_wet",
+   "note": "row 50 \"back\": the wet red takes over the panel"
+  },
+  {
+   "at": 102,
+   "look": "warm_pride",
+   "note": "row 51 \"firetruck\""
+  }
+ ],
+ "takes": [
+  {
+   "id": "s7",
+   "place": "dallas",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      6.15,
+      9.2,
+      1.4
+     ],
+     "aim": [
+      4.45,
+      10.1,
+      1.38
+     ],
+     "lens": 28,
+     "subject": "door",
+     "framing": "M",
+     "purpose": "ROW 49 in (S6 -> S7 \"And\", match on colour): the lemon door panel fills the frame; the pull back starts on \"Dallas\"",
+     "hold": 0.4,
+     "creep": 0.0018,
+     "shows": [
+      "door"
+     ]
+    },
+    {
+     "at": 42,
+     "pos": [
+      8.4,
+      4.9,
+      1.45
+     ],
+     "aim": [
+      4.6,
+      12.4,
+      1.55
+     ],
+     "lens": 20,
+     "subject": "painterThin",
+     "framing": "W",
+     "purpose": "ROWS 49-51 (PLACE + ACT, M04 pull back, long living rest): the lime truck side, the two Painters, the Chief by the drum, the boards and DALLAS behind; \"back\": red sweeps over lime; \"anyway\": the pat",
+     "hold": 2.0,
+     "creep": 0.0018,
+     "shows": [
+      "door",
+      "boards"
+     ]
+    },
+    {
+     "at": 151,
+     "pos": [
+      8.1,
+      7.2,
+      1.45
+     ],
+     "aim": [
+      5.6,
+      9.7,
+      1.5
+     ],
+     "lens": 24,
+     "subject": "chiefVisitor",
+     "framing": "M",
+     "purpose": "ROWS 51-53 (ACT, M09 push in, then the STILLNESS 1730-1745 dead still: creep 0): the Chief, chest up, the wet red door behind him",
+     "hold": 0.9,
+     "creep": 0.0,
+     "shows": [
+      "door"
+     ]
+    }
+   ]
+  }
+ ]
+}
