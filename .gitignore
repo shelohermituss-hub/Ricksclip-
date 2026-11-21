@@ -54,3 +54,5 @@ episodes/*/sets/*/proof/fix*/
 episodes/*/assets_prod/out_tmp/
 *.blend
 *.glb
+episodes/*/assets_prod/proof/kit_r*/out/
+episodes/*/assets_prod/proof/kit_r*/stills*/

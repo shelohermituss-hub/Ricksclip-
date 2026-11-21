@@ -1,0 +1,158 @@
+// SHARED LOCKED-FEET MOVES for yellow-fire-trucks (animator, 2026-11-21). One file for every stretch: each stretch links it into its moves/ folder
+// (ln -s ../../moves/shared_walks.mjs <stretch>/moves/shared_walks.mjs) and plays a use as pose "m:../../shared_walks/<use key>".
+// Self-contained on purpose: the render cache copies moves/*.mjs flat, so this file imports nothing.
+// THE METHOD (why nothing glides): the card never travels by a film_plan tween. The film carries one act per frame with the card position this file
+// computes (shared_walks_acts.json, written by tools/make_acts.mjs from the same USES table), so the card is exactly where the body is on every frame;
+// the feet are drawn in card px = (foot world - body world) across the picture, so a planted foot stays on its spot in the world.
+// Travel toward or away from the lens cannot be undone on one card: in a run or a burst it happens ONLY on the frames with both feet off the ground
+// (flight), in a climb only on the frames with the lower foot off its tread. A WALK must be laid across the picture (its depth part is listed in
+// SHARED_WALKS.md per use and kept under 15 % of the path).
+// Times are FRAMES at 30 fps from the start of the move (g = 0 on the act that sets the pose). Written facing +x (dir 1); the act's dir -1 mirrors.
+
+const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];   // Rick's measured body snap (STUDIO_MOTION 1)
+const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
+const ease = (f, n) => { if (f <= 0) return 0; if (f >= n) return 1; const u = f / n; return u * u * u * (u * (u * 6 - 15) + 10); };   // smootherstep: foot swings and the body ramp
+const ring = (f, f0, amp, n = 10) => f > f0 && f < f0 + n ? amp * Math.exp(-(f - f0) / 3) * Math.sin((f - f0) * 2.1) * (1 - (f - f0) / n) : 0;
+const dip = (f, f0, amp = 8, n = 4) => f > f0 && f < f0 + n ? amp * Math.sin(Math.PI * (f - f0) / n) : 0;
+const mixP = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
+const G0 = 1003;                                                         // the move rig's ground line for a foot centre (MG 1010 - 7)
+
+// metres -> card px per cast member: metrics(entry).px / height, measured on this film's cast (tools/probe_px.mjs output in SHARED_WALKS.md)
+export const PXM = { hero: 494.50, chief: 598.82, chiefVisitor: 598.82, kid: 519.21, clerk: 533.64 };
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------
+// GAIT: walk / march / run / burst. spec: { who, n steps, T frames per step, a first lift frame, G frames in all, across m, depth m, kind,
+//   lift px (swing height), lean deg, home [rear, front] foot px, hands (fn of ch, phase, g) , end { rot, head, y } settle target }
+function planGait(U) {
+  const run = U.kind === 'run' || U.kind === 'burst', T = U.T, n = U.n, sw = run ? Math.round(T * 1.4) : Math.max(3, Math.round(T * .72));
+  const steps = []; for (let j = 0; j < n; j++) { const i = (U.lead ?? 1) === 1 ? (j + 1) % 2 : j % 2;   // lead foot = the front foot (feet[1]) by default
+    const to = Math.min(1, (j + 1) / (n - 1)), g0 = U.a + j * T; steps.push({ j, i, g0, g1: g0 + (j === n - 1 && !run ? Math.max(3, sw - 1) : sw), to }); }
+  return { run, sw, steps };
+}
+function gaitTables(U, ch) {
+  const Dpx = U.across * PXM[U.who], { run, steps } = planGait(U), G = U.G, home = U.home || [-22, 24];
+  const fx = [[], []], fl = [[], []];
+  for (let g = 0; g <= G; g++) for (let i = 0; i < 2; i++) {
+    let x = 0, lift = 0; for (const s of steps.filter(s => s.i === i)) { if (g >= s.g1) x = s.to; else if (g > s.g0) { const u = (g - s.g0) / (s.g1 - s.g0);
+      x = x + (s.to - x) * ease(Math.max(0, u - .08), .92); lift = U.lift * Math.sin(Math.PI * Math.min(1, u)) ** (run ? .7 : 1.2); } }
+    fx[i][g] = x * Dpx + home[i]; fl[i][g] = lift < .5 ? 0 : lift; }
+  // the body rides the mean of the two feet, smoothed by a wide triangle (it keeps moving through the double support, starts and stops soft)
+  const avg = []; for (let g = 0; g <= G; g++) avg[g] = (fx[0][g] - home[0] + fx[1][g] - home[1]) / 2;
+  const W = Math.max(3, Math.round(T * (run ? .9 : .8))), bx = [];
+  for (let g = 0; g <= G; g++) { let s = 0, w = 0; for (let k = -W; k <= W; k++) { const q = Math.min(G, Math.max(0, g + k)), c = W + 1 - Math.abs(k); s += avg[q] * c; w += c; } bx[g] = s / w; }
+  const end = Dpx; for (let g = 0; g <= G; g++) if (g >= steps[steps.length - 1].g1 + W) bx[g] = end;   // settled exactly on the end spot
+  return { Dpx, run, steps, fx, fl, bx };
+}
+function gaitPose(U, tab, g, ch) {
+  const gi = Math.max(0, Math.min(U.G, Math.round(g))), { fx, fl, bx, steps, run, Dpx } = tab, body = bx[gi];
+  const hipY = ch.hipY, V0 = G0 - hipY, L = ch.legL * .985, hx = U.view === 'side' ? [-12, 10] : [-(ch.hipW || 13), ch.hipW || 13];
+  // hip drop that keeps every planted foot inside the leg's reach (the rig would pull an out-of-reach foot in = a slide)
+  let need = 0; for (let i = 0; i < 2; i++) { const dx = fx[i][gi] - body - hx[i], vert = Math.sqrt(Math.max(0, L * L - dx * dx)) - fl[i][gi]; need = Math.max(need, V0 - vert); }
+  const last = steps[steps.length - 1], gEnd = last.g1, lands = steps.map(s => s.g1);
+  let y = Math.max(0, need) + (U.bob || 0) * lands.reduce((a, l) => a + dip(gi, l - 1, 1, 5), 0);
+  if (run) { const air = fl[0][gi] > 2 && fl[1][gi] > 2; y -= air ? (U.hop || 10) * Math.min(fl[0][gi], fl[1][gi]) / U.lift : 0; }
+  const go = snap(gi - U.a + 2, 6) - snap(gi - gEnd, 10);                                         // the lean comes in with the first step, goes with the stop
+  const ant = U.ant ? U.ant * (snap(gi - U.a + 4, 3) - snap(gi - U.a, 3)) : 0;                    // anticipation crouch before the first step (runs)
+  const stomp = U.stomp ? lands.reduce((a, l) => a + dip(gi, l, U.stomp, 4), 0) : 0;              // the proud stomp: the body drops on every plant
+  y += ant + stomp;
+  const E = U.end || {}, settle = snap(gi - gEnd, 10);
+  const rot = (U.lean || 0) * go + (E.rot || 0) * settle + ring(gi, gEnd, U.skid || 0, 10) + (U.rot0 || 0) * (1 - settle);
+  const head = (U.head || 0) * go + (E.head || 0) * snap(gi - gEnd - 1, 10) + ring(gi, gEnd + 1, U.nod || 0, 10) + (U.head0 || 0) * (1 - settle);
+  y += (E.y || 0) * settle;
+  // arms: counter-swing to the legs (each step a snap, never a sine), or the use's own hands
+  const ph = steps.reduce((a, s) => a + (s.i === 1 ? 1 : -1) * (snap(gi - s.g0, s.g1 - s.g0 + 2) - (s.j ? 0 : 0)) * (s.j === 0 ? 1 : 2), 0);
+  const swing = Math.max(-1, Math.min(1, ph - Math.round(ph) + (Math.round(ph) % 2 ? 0 : 0))) * (1 - settle);
+  const hands = U.hands(ch, swing, gi, { go, settle, gEnd });
+  return { view: U.view, dir: 1, x: 0, y, rot, head, farArmFront: !!U.farArmFront,
+    feet: [0, 1].map(i => ({ x: fx[i][gi] - body, lift: fl[i][gi] })), hands, held: [],
+    _walk: { side: true, on: true, travel: body, planted: [fl[0][gi] === 0, fl[1][gi] === 0] } };
+}
+
+// arm sets per personality
+const armsHero = (ch, s, g, k) => { const S = ch.sh[1], L = ch.armL, Wd = ch.handX;            // calm: arms long and loose, a small even swing
+  return [{ wx: -Wd * .2 - .18 * L * s, wy: ch.hipY - 8 + 6 * Math.abs(s), bow: .3 }, { wx: Wd * .2 + .18 * L * s, wy: ch.hipY - 8 + 6 * Math.abs(s), bow: .3, over: true }]; };
+const armsThumbs = (ch, s, g, k) => [{ wx: -ch.handX * .45, wy: ch.hipY - 34 - 3 * Math.abs(s), bow: .35 }, { wx: ch.handX * .45, wy: ch.hipY - 34 - 3 * Math.abs(s), bow: .4, over: true }];   // thumbs in the belt (cv_s7's own pose)
+const armsPump = (end) => (ch, s, g, k) => { const S = ch.sh[1], L = ch.armL, Wd = ch.handX, u = k.settle;   // fists pumping, bent at the elbow
+  const p0 = { wx: -Wd * .3 - .35 * L * s, wy: S + .45 * L - .25 * L * Math.max(0, -s) }, p1 = { wx: Wd * .3 + .35 * L * s, wy: S + .45 * L - .25 * L * Math.max(0, s) };
+  const e = end ? end(ch) : [{ wx: -Wd * .9, wy: ch.hipY - 10 }, { wx: Wd * .9, wy: ch.hipY - 10 }];
+  return [{ ...mixP(p0, e[0], u), bow: .45 }, { ...mixP(p1, e[1], u), bow: .45, over: true }]; };
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------
+// LADDER CLIMB (S5 Clerk): treads every RUNG m; three stages with a pause; hands on the rails at rung height, feet on the treads.
+// The card's ground = the tread under the LOWER planted foot; it jumps up one tread on the frame the lower foot is off its tread (lift > 0),
+// and every card-px value shifts by the same amount on that frame, so nothing moves in the world.
+function planClimb(U) {
+  const ev = []; let g = U.a; const fr = [0, 0], hr = [0, 0];                                     // foot tread index, hand rung index (from the start tread)
+  fr[0] = 0; fr[1] = 0; hr[0] = U.handStart; hr[1] = U.handStart + 1;
+  for (let st = 0; st < U.stages.length; st++) { const n = U.stages[st];
+    for (let k = 0; k < n; k++) { const i = k % 2;                                              // the foot that steps; the opposite hand reaches
+      const hand = 1 - i; ev.push({ type: 'hand', i: hand, g0: g, g1: g + U.T - 1, from: hr[hand], to: hr[hand] + 2 }); hr[hand] += 2;
+      const up = fr[i] === fr[1 - i] ? 1 : 2; ev.push({ type: 'foot', i, g0: g + 1, g1: g + U.T, from: fr[i], to: fr[i] + up }); fr[i] += up; g += U.T; }
+    g += st < U.stages.length - 1 ? U.pause : 0; }
+  return { ev, gEnd: g, top: Math.max(...fr) };
+}
+function climbTables(U) {
+  const { ev, gEnd } = planClimb(U), G = U.G, ft = [[], []], hd = [[], []], lift = [[], []];
+  for (let g = 0; g <= G; g++) { for (let i = 0; i < 2; i++) { let r = 0, l = 0, h = i ? U.handStart + 1 : U.handStart;
+      for (const e of ev.filter(e => e.i === i)) { if (e.type === 'foot') { if (g >= e.g1) r = e.to; else if (g > e.g0) { const u = (g - e.g0) / (e.g1 - e.g0); r = e.from + (e.to - e.from) * ease(Math.max(0, u - .1), .9); l = 1; } else if (g <= e.g0) {} }
+        else { if (g >= e.g1) h = e.to; else if (g > e.g0) { const u = (g - e.g0) / (e.g1 - e.g0); h = e.from + (e.to - e.from) * snap(u * 12, 12); } } }
+      ft[i][g] = r; lift[i][g] = l; hd[i][g] = h; } }
+  // the card ground (tread index): the lower planted foot's tread, held until that foot is off it
+  const cg = []; let c = 0; for (let g = 0; g <= G; g++) { const pl = [0, 1].filter(i => !lift[i][g]); const low = pl.length ? Math.min(...pl.map(i => ft[i][g])) : c; if (low > c && pl.length) c = low; cg[g] = c; }
+  return { ev, gEnd, ft, lift, hd, cg };
+}
+function climbPose(U, tab, g, ch) {
+  const gi = Math.max(0, Math.min(U.G, Math.round(g))), px = PXM[U.who] * U.rung, { ft, hd, cg, gEnd } = tab, c = cg[gi];
+  const S = ch.sh[1], L = ch.armL;
+  const fH = [0, 1].map(i => (ft[i][gi] - c) * px), lowH = Math.min(...fH);
+  const rise = (ft[0][gi] + ft[1][gi]) / 2 - c;                                                     // the hips ride the middle of the two treads
+  const y = -rise * px * .9 + 10 * (1 - snap(gi - gEnd, 10)) * (gi >= U.a ? 1 : 0);
+  const top = snap(gi - gEnd - U.tipAt, 6) - snap(gi - gEnd - U.tipAt - 18, 10);                     // the hat tip at the top: knuckle to the brim and back
+  const look = snap(gi - gEnd - 2, 8);
+  const hands = [0, 1].map(i => { const hy = G0 - (hd[i][gi] - c) * px - 6, hx = (i ? 1 : -1) * ch.handX * .55; return { wx: hx, wy: Math.max(S - .95 * L + y, hy), bow: .3, over: !!i }; });
+  if (top > 0) { const brim = { wx: ch.handX * .35, wy: ch.hy - 95 + y }; hands[1] = { ...mixP(hands[1], brim, top), bow: .5, over: true }; }
+  const head = -6 * look + 4 * top + ring(gi, gEnd + U.tipAt + 6, 2.5, 9);
+  const feet = [0, 1].map(i => ({ x: (i ? 14 : -14), lift: fH[i] + (tab.lift[i][gi] ? 10 * Math.sin(Math.PI * Math.min(1, Math.max(0, frac(tab, i, gi)))) : 0) }));
+  return { view: U.view, dir: 1, x: 0, y, rot: -3 * (1 - snap(gi - gEnd, 12)), head, farArmFront: true, feet, hands, held: [],
+    _walk: { side: true, on: false, travel: 0, planted: [!tab.lift[0][gi], !tab.lift[1][gi]] }, _card: c };
+}
+const frac = (tab, i, g) => { const e = tab.ev.find(e => e.type === 'foot' && e.i === i && g > e.g0 && g < e.g1); return e ? (g - e.g0) / (e.g1 - e.g0) : 0; };
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------
+// USES: one per stretch place change. A = film frame of the act that sets the pose; P0 / P1 plan metres; cam = camera pos at the travel (for the across axis).
+export const USES = {
+  // S1 row 6: the Chief bursts out of the bay 2 mouth beside his red pumper on "chief" (f163): two fast planted strides, lands in ch_burst's f171 crouch
+  s1_ch_burst: { stretch: 's1', who: 'chief', A: 157, back: { pose: 'm:../../ep_s1/ch_burst@5.7', at: 171 }, P0: [3.0, 20.15, 0.14], P1: [2.45, 19.1, 0.14], cam: [-0.15, 12.74, 1.41],
+    kind: 'burst', view: '34', n: 3, T: 4, a: 2, G: 14, lift: 34, hop: 12, lean: 10, head: -4, ant: 8, home: [-30, 30], hands: armsPump(),
+    end: { rot: .4, head: -6, y: 14 }, farArmFront: true },
+  // S2 row 9: the fireman's long calm stride on the pavement toward his shop door (hidden at 322 as now)
+  s2_he_walk: { stretch: 's2', who: 'hero', A: 289, P0: [2.95, -2.15, 0.02], P1: [2.6, -3.2, 0.02], cam: [1.04, -5.18, 2.08],
+    kind: 'walk', view: 'side', n: 3, T: 12, a: 1, G: 33, lift: 16, bob: 0, lean: 2, head: 1, home: [-22, 24], hands: armsHero },
+  // S6 row 43: the Kid's quick run in behind the ball (stops with the head tilted on "in" f1427 / think face f1431)
+  s6_kid_run: { stretch: 's6', who: 'kid', A: 1408, P0: [36.9, -12.8, 0.0], P1: [36.35, -10.35, 0.0], cam: [35.3, -9.85, 0.35],
+    kind: 'run', view: '34', n: 5, T: 4, a: 3, G: 30, lift: 22, hop: 8, lean: 14, head: 4, ant: 6, skid: -5, home: [-14, 14], hands: armsPump(),
+    end: { rot: -3, head: 8 }, nod: 3, farArmFront: true },
+  // S7 row 51: the Chief marches to the wet red door, thumbs in his belt, high knees, and plants himself with a stomp ON "firetruck" (f1678)
+  s7_cv_march: { stretch: 's7', who: 'chiefVisitor', A: 1647, back: { pose: 'm:../../ep_s7/cv_s7@3.8', at: 1690 }, P0: [6.82, 9.89, 0.12], P1: [5.75, 9.35, 0.12], cam: [6.67, 8.0, 1.41],
+    kind: 'walk', view: '34', n: 5, T: 6, a: 2, G: 43, lift: 40, stomp: 6, lean: -4, head: -2, home: [-26, 26], hands: armsThumbs,
+    end: { rot: -4, head: -3 }, nod: 2, farArmFront: false },
+  // S5 rows 33-34: the Clerk climbs the ladder from the stool top: three stages with a pause, hands on the rails, feet on the treads, hat tip at the top
+  s5_cl_climb: { stretch: 's5', who: 'clerk', A: 1147, climb: true, rung: .3, P0: null, view: '34', stages: [2, 2, 2], T: 4, pause: 4, a: 2, handStart: 4, tipAt: 6, G: 52 },
+};
+const TABS = {}; const tabOf = (k, ch) => (TABS[k] ||= USES[k].climb ? climbTables(USES[k]) : gaitTables(USES[k], ch));
+const poseOf = (k, view) => (t, ch) => { const U = USES[k], g = t * 30, P = U.climb ? climbPose(U, tabOf(k, ch), g, ch) : gaitPose(U, tabOf(k, ch), g, ch); return view ? { ...P, view } : P; };
+export const tables = (k, ch) => tabOf(k, ch);
+
+const STY = Object.keys(USES).map(k => ({ key: k, name: k, blurb: USES[k].kind || 'climb', pose: poseOf(k, USES[k].view === 'side' ? 'side' : 'side') }));
+const STF = Object.keys(USES).map(k => ({ key: k, name: k, blurb: USES[k].kind || 'climb', pose: poseOf(k, USES[k].view === 'side' ? 'front' : USES[k].view) }));
+export const N = 60;
+export default { title: 'FIRETRUCKS shared locked-feet moves (side)', dur: N / 30, styles: STY };
+export const front = { title: 'FIRETRUCKS shared locked-feet moves (front / 3/4)', dur: N / 30, styles: STF };
+// motion-gate plan (moves/tools/check_motion_ep.mjs): frames from the move start
+export const PLAN = {
+  s1_ch_burst: { who: 'chief', view: '34', strikes: [], holds: [], acting: [0, 14] },
+  s2_he_walk: { who: 'hero', view: 'side', strikes: [], holds: [], acting: [0, 33] },
+  s6_kid_run: { who: 'kid', view: '34', strikes: [], holds: [[29, 30, 'stopped, head tilted']], acting: [0, 28] },
+  s7_cv_march: { who: 'chiefVisitor', view: '34', strikes: [], holds: [[41, 43, 'planted']], acting: [0, 40] },
+  s5_cl_climb: { who: 'clerk', view: '34', strikes: [], holds: [[50, 52, 'at the top']], acting: [0, 50] },
+};

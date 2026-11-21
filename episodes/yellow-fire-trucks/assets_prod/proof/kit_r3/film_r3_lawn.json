@@ -1,0 +1,112 @@
+{
+ "title": "props r3 proof lawn",
+ "fps": 30,
+ "size": [
+  640,
+  480
+ ],
+ "words": "words.json",
+ "end": 2,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "cast": {
+  "fireman": {
+   "puppet": "cast:firefighter",
+   "height": 1.75,
+   "heads_tall": 2.9,
+   "walk_speed": 9999
+  }
+ },
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "yard": {
+   "set": "proof_r3",
+   "light": "day",
+   "time": "day",
+   "light_over": {
+    "top": "#3e7fd2",
+    "hor": "#cfe0f0",
+    "sun": "#fff3dc",
+    "si": 2.9,
+    "amb": "#aebfdb",
+    "ai": 1.2,
+    "dir": [
+     -5,
+     6.5,
+     6
+    ],
+    "tint": "#fffaf0",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#8f8a7e"
+   },
+   "mode": "lawn"
+  }
+ },
+ "props": {
+  "truck": {
+   "pos": [
+    0,
+    0,
+    1.4
+   ],
+   "kind": "the fire truck"
+  }
+ },
+ "acts": [
+  {
+   "who": "fireman",
+   "at": 0,
+   "pos": [
+    60,
+    60,
+    0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "stand",
+   "face": "cool"
+  }
+ ],
+ "takes": [
+  {
+   "id": "r3_lawn",
+   "place": "yard",
+   "stations": [
+    {
+     "at": 0,
+     "subject": "truck",
+     "framing": "W",
+     "hold": 0,
+     "pos": [
+      -0.4,
+      -6.6,
+      1.9
+     ],
+     "aim": [
+      0.0,
+      0.2,
+      0.5
+     ],
+     "lens": 46.7
+    }
+   ]
+  }
+ ]
+}
