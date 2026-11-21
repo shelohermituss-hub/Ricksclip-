@@ -37,7 +37,8 @@ function cardScale(who, f) {
   return [1, 1];
 }
 const tweened = (who, f) => camsafeSt(R.h3o || R.hat ? h3State(who, f, tweenedB(who, f)) : tweenedB(who, f));
-const camsafeSt = st => { if (st && R.film && R.film.camsafe) st.camsafe = 1; return st; };   // CAMERA-SAFE (2026-11-16): film.json "camsafe": true = moves draw the view the camera asks for (puppets.mjs camsafeView); off = as before   // kit 2026-11-13: generic held 3D (held3d entries with "grip") and hand_at with "hand"; a film without them gets tweenedB as before
+// CAMERA-SAFE (2026-11-16): film.json "camsafe": true = moves draw the view the camera asks for (puppets.mjs camsafeView); off = as before   // kit 2026-11-13: generic held 3D (held3d entries with "grip") and hand_at with "hand"; a film without them gets tweenedB as before
+const camsafeSt = st => { if (st && R.film && R.film.camsafe) st.camsafe = 1; return st; };
 function tweenedB(who, f) {
   const st = tweened0(who, f); if (!/^m:/.test(st.pose || '')) return st;
   const MC = (R.moveCh ||= {})[who] ||= (() => { const out = []; let prev; for (const r of R.perf[who]) { if (r.state.pose !== prev) { out.push(r.f0); prev = r.state.pose; } } return out; })();

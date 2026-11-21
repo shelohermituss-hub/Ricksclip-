@@ -130,3 +130,34 @@ GPU memory (`nvidia-smi`, whole card; other programs already held 1.6-1.8 GB):
 5. Optional: `--frames a-b` ranges and the canvas read-back (`grab`) from `render_gpu.mjs`.
 
 Until then: use `render_gpu.mjs` as it is. It needs none of these edits.
+
+## Fast grab, grab timeout and retry (cloud, software mode, 2026-11-21)
+
+New options in `render_gpu.mjs` (`render.mjs` is unchanged; the default is unchanged: `screenshot` in software mode, `canvas` on the graphics card):
+
+| Option | What it does |
+|---|---|
+| `--grab fast` | The page reads the WebGL picture with `gl.readPixels` and the drawn overlay with `getImageData`, and POSTs the raw bytes to the script's own little server (no screenshot, no base64, no PNG made in the page). Node lays the overlay over the picture with the compositor's own rounding, flips the rows and writes an RGB PNG (zlib level 1, 'up' filter). In this mode the draw step also waits for the GL work to finish (a 1-pixel `readPixels`), so "draw" and "grab" in the printed line are honest. |
+| `--grab-timeout <s>` | How long one screenshot (or fast grab) may take. Default: Playwright's 30 s, as before. `--grab-timeout 240` replaces the S3 copy `render_s3.mjs`. |
+| (always on) | A frame that fails is tried **once more**; if the page crashed or the browser died, on a fresh page (relaunched browser and film rebuilt, about 30-60 s). With `--frames`, a frame that fails twice is listed (`stills FAILED: ...`), the other frames are still written and the exit code is 3. `--animatic` and `--storyboard` stop after the second failure, as before after the first. |
+| `--grab-debug`, `--grab-raw` | Fast grab only, for testing: print where the time goes; also write the raw bytes beside the PNG. |
+
+**What the measurements say (S1 `film.json`, frames 0, 60, 172 and 60-65, 1080x1920, `--seed 7`, 4 CPUs shared with other helpers):**
+
+- The 11-20 s "grab" of the screenshot path is **not the capture**. It is SwiftShader still executing the frame's GL commands: `renderFrame` returns after the JavaScript (0.05-5 s), the GL work runs afterwards in the GPU process, and the screenshot waits for it. Measured with a 1-pixel `readPixels` right after `renderFrame`: 15-29 s of GL work at full size (load average 7-8), 5.4-5.8 s at `--scale 0.5` (load 4.7). Only about 1000 draw calls and almost no texture uploads on a repeated frame: the cost is the pixels (multisampling, soft shadows, the look pass blur).
+- The capture itself, once the GL work is done: readPixels 3-22 ms, overlay getImageData 5-8 ms, POST 60-100 ms, overlay + filter + PNG in Node 60-170 ms: **0.2-0.3 s per full-size frame**.
+- So the whole frame is **not faster**: frames 60-65, `--grab fast` 22.8 s/frame (draw 22.5 + grab 0.27, load 5.9 -> 4.1) against `--grab screenshot` 21.3 s/frame (draw 0.9 + grab 20.3, load 4.1 -> 7.6). Same within the load noise. A capture path under 2 s exists (0.3 s), but a frame under 2 s needs a lighter GL picture, not a different grab.
+- **Pixels:** the fast grab gives the screenshot's pixels. Laying the raw bytes of one fast run with the final rounding against the screenshot run: 0 pixels differ on f0, f60, f172 (f172 has a half-transparent overlay over the whole frame). The PNGs of the final `--grab fast` against the screenshot run: f172 0 pixels, f0 1 pixel (max 14), f60 2 pixels (max 10), all where the overlay is empty, so in the GL picture (run-to-run noise, below). The first rounding I wrote (`(o*a + g*(255-a) + 127) / 255`) was off by 1 on 63 % of f172; the compositor does `round(o*a/255) + (g*(256-a) >> 8)`. Between two runs the software renderer itself is not fully repeatable: screenshot against screenshot, f0 1427 pixels differ (0.07 %, max 83), f60 526 pixels, f172 0, and the fast grab shows the same spread. That noise is in the GL picture, in both paths.
+- **Why `--grab canvas` crashed:** not reproduced. With 10 GB free it ran (f0, f60, 22.7 s/frame) and the whole browser peaked at about 3.6 GB. The crashes were seen while other helpers' Blender runs filled the shared memory cgroup, and `dmesg` shows the cgroup OOM killer killing `chrome-headless` (anon-rss 1.7 GB). Canvas grab adds a 2D copy of the frame, a PNG blob and a base64 string (tens of MB), not enough to explain a crash alone: the cause is the shared memory limit, and the retry above now survives a killed page. The fast grab keeps one 8 MB buffer per page and makes no strings.
+- Retry proven: renderer process killed with `kill -9` during frame 0 -> "frame 0 failed (page.evaluate: Target crashed); trying once more on a fresh page", both stills written, exit 0. `--grab-timeout 1` -> two timeouts, `stills FAILED: 0`, exit 3.
+
+**Use:** `--grab fast` in software mode whenever other helpers load the CPU: its wait for the GL work has no 30 s limit, so it cannot die of the screenshot timeout, and it does not ask the compositor for a frame. Not made the default: it is identical but not faster.
+
+### Lesson for LECONS_TECHNIQUES.md (for the lead to copy)
+
+## 2026-11-21 — Full-size software stills: the "screenshot grab" was the GL drawing, not the capture (threejs_film kit) — FERMÉ
+- Problem: S1 full-size stills cost 13 s (draw 2 + grab 11), 20-30 s under load; the 30 s screenshot timeout and "Target crashed" killed runs; `--grab canvas` crashed the page on these films.
+- Cause: `renderFrame` returns when the JavaScript is done; SwiftShader executes the GL commands afterwards, and the screenshot waited for them (1-pixel `readPixels` after `renderFrame`: 15-29 s full size, 5.5 s at half size; the capture itself is 0.2-0.3 s). The crashes were the shared memory cgroup's OOM killer (`dmesg`), not the grab mode.
+- Fix: `render_gpu.mjs --grab fast` (readPixels + getImageData POSTed raw to the script's server, PNG made in Node with the compositor's rounding `round(o*a/255) + (g*(256-a) >> 8)`; the draw step waits for the GL work); `--grab-timeout <s>` (default 30 s, unchanged); a failed frame is tried once more, on a fresh page after a crash; `--frames` lists frames that failed twice and exits 3.
+- Guard: the printed line `stills: ... (draw X + grab Y)` with `--grab fast` puts the GL time in "draw"; a "grab" over 1 s in that line means the capture is slow again. Under 2 s per frame needs a lighter GL picture (pixels: multisampling, soft shadows, look pass), not a new grab.
+- Proof: grabtest (scratch) f0, f60, f172 at 1080x1920: fast against screenshot 0 / 1 / 2 pixels differ (the 1-2 are renderer noise where the overlay is empty; screenshot against screenshot differs by 1427 / 526 / 0); frames 60-65 fast 22.8 s/frame against screenshot 21.3 s/frame (load 4-8); renderer killed during f0 -> retried on a fresh page, exit 0.

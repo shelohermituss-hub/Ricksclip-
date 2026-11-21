@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Le « temps de capture » de 11 à 20 s n'était pas la capture (kit three.js, rendu logiciel) — FERMÉ
+- Problème : 13 à 22 s par image en taille réelle, dont 11 à 20 s attribuées à la capture d'écran ; des rendus tués par la limite de 30 s.
+- Cause réelle : SwiftShader exécute encore les commandes GL de l'image après le retour de renderFrame ; la capture attend ce travail. Le coût vient des pixels (multi-échantillonnage, ombres douces, flou du look), pas de la capture. Les plantages « --grab canvas » étaient des tués par manque de mémoire (dmesg), pas le mode de capture.
+- Correction : `render_gpu.mjs --grab fast` (capture réelle 0,2 à 0,3 s, attente sans limite de 30 s), `--grab-timeout <s>`, et une image ratée est réessayée une fois sur une page neuve ; les images qui ratent deux fois sont listées et la sortie vaut 3.
+- Garde-fou : utiliser `--grab fast` dès que la machine est partagée ; pour accélérer vraiment, réduire les pixels (`--scale 0.5` : 5,5 s par image au lieu de 15 à 29 s) ou une carte graphique.
+- Preuve : pixels identiques au mode capture d'écran (écart 0 à 2 pixels, moins que le bruit entre deux captures) ; renderer tué par kill -9 puis réessayé, sortie 0. Détails : templates/threejs_film/GPU_RENDER.md.
+
 ## 2026-11-21 — (S6) A one-place film copy that starts mid-film baked its first station as a flowed-throug (yellow-fire-trucks, S6) — FERMÉ
 - (S6) A one-place film copy that starts mid-film baked its first station as a flowed-through travel (camera at the exit at f1236). Cause: film_plan bakes from frame 0; the take's first station was the first point. Fix: make_film.py prepends a copy of the first station at at=0 in every film_<place>.json. Guard: proj_s6.py prints state/pos per key frame before rendering. Proof: f1236 = CAM_ENTRY rest (BOARD). FERME
 
