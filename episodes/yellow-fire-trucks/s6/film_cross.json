@@ -532,6 +532,25 @@
    "place": "cross",
    "stations": [
     {
+     "at": 0,
+     "pos": [
+      21.3,
+      -7.6,
+      1.95
+     ],
+     "aim": [
+      29.8,
+      -4.7,
+      1.75
+     ],
+     "lens": 24,
+     "subject": "milkman",
+     "framing": "M",
+     "purpose": "first-station anchor at f0 (S2 lesson): the copy bakes from frame 0",
+     "hold": 0,
+     "creep": 0.0028
+    },
+    {
      "at": 1470,
      "pos": [
       21.3,

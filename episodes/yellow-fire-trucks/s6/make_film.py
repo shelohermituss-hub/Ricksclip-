@@ -65,7 +65,7 @@ takes = [
         st(1234, [HL[0], HL[1] - D_ENTRY, HL[2]], [HL[0], HL[1] + 3, HL[2]], 24, 'headlamp', 'C', 'ROW 36 "YOU see" (M09 push-in, piece 11, the plan\'s 27 eased frames): the chrome rim fills 89 % of the frame width = the lamp room CAM_ENTRY ring (the match)', travel=.9),
     ]),
     dict(id='s6_eye', place='eye', stations=[
-        st(1235, CE['pos'], CE['aim'], CE['lens'], 'ring', 'C', 'ROW 36 (match): CAM_ENTRY, the chrome entry ring fills 89 % of the width, the small pupil far inside it; fly forward through the ring', hold=0),
+        st(1235, CE['pos'], CE['aim'], CE['lens'], 'ring', 'C', 'ROW 36 (match): CAM_ENTRY, the chrome entry ring fills 89 % of the width, the small pupil far inside it; fly forward through the ring', hold=.2),
         st(1258, CR['pos'], CR['aim'], CR['lens'], 'pupil', 'W', 'ROWS 37-38 (M00 living rest, IMPOSSIBLE VIEW + SIGNATURE): the lamp dome, the pupil window 40 % from the top; "dim" widens it; on "red" the wave', hold=1.1, travel=.75),
         st(1317, [0, 6.6, .15], CX['aim'], CX['lens'], 'window', 'C', 'ROW 39 "FIRST." (piece 11 fly through the pupil, the plan\'s 28 frames): forward through the widened pupil past the exit point; the window fills the frame (blend on motion to the park: lead)', travel=.87),
     ]),
@@ -89,7 +89,7 @@ DU = town['light']['du']
 LR_LIGHT = dict(top='#120c24', hor='#1c1438', sun='#b8a8ff', si=.12, amb='#2a1d52', ai=.35, tint='#ffffff')      # the set-builder's kit proof light (sets/lamproom/scripts/kit_films.py)
 s5 = json.load(open(os.path.join(EP, 's5', 'film.json')))['places']['dallas']
 places = {
-    'dal': dict(s5, set='s6_world', mode='dal'),
+    'dal': dict(s5, set='s6_world', mode='dal', headlamp=HL),
     'eye': dict(set='lamproom', light='night', light_over=LR_LIGHT, kit3d=dict(envGround='#1c1438'), post=dict(dust=0),
                 lamproom=dict(wave=0, iris=0, dim=1, keys=[dict(f=1202, wave=0, iris=0, dim=1), dict(f=1243, wave=0, iris=0, dim=1), dict(f=1255, wave=0, iris=.55, dim=.6),
                      dict(f=1280, wave=1, iris=.6, dim=.6), dict(f=1283, wave=2), dict(f=1286, wave=3), dict(f=1289, wave=4, iris=.62), dict(f=1300, wave=4, iris=1.0, dim=.6)])),
@@ -118,7 +118,8 @@ film = {
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 for t in takes:                                   # one-place render copies of the same film
     nxt = [x['stations'][0]['at'] for x in takes if x['stations'][0]['at'] > t['stations'][0]['at']]
-    g = dict(film, takes=[t], places={t['place']: places[t['place']]}, start=t['stations'][0]['at'], end=min(nxt) if nxt else film['end'])
+    t2 = dict(t, stations=[dict(t['stations'][0], at=0, hold=0, purpose='first-station anchor at f0 (S2 lesson): the copy bakes from frame 0')] + t['stations'])
+    g = dict(film, takes=[t2], places={t['place']: places[t['place']]}, start=t['stations'][0]['at'], end=min(nxt) if nxt else film['end'])
     if t['place'] == 'eye': g['kit3d'] = dict(pbr=True, relief=False, sky=False, trees=False)
     json.dump(g, open(os.path.join(HERE, 'film_%s.json' % t['place']), 'w'), indent=1)
 print('film.json written:', len(acts), 'acts,', sum(len(t['stations']) for t in takes), 'stations in', len(takes), 'takes (+ film_<place>.json)')

@@ -532,6 +532,25 @@
    "place": "park",
    "stations": [
     {
+     "at": 0,
+     "pos": [
+      33.6,
+      -6.9,
+      1.2
+     ],
+     "aim": [
+      39.0,
+      -3.6,
+      1.45
+     ],
+     "lens": 20,
+     "subject": "truck",
+     "framing": "M",
+     "purpose": "first-station anchor at f0 (S2 lesson): the copy bakes from frame 0",
+     "hold": 0,
+     "creep": 0.0028
+    },
+    {
      "at": 1331,
      "pos": [
       33.6,

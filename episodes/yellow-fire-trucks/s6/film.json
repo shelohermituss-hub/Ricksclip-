@@ -184,7 +184,12 @@
     "painters": false,
     "leaves": 0
    },
-   "mode": "dal"
+   "mode": "dal",
+   "headlamp": [
+    -2.68,
+    8.676,
+    1.4300000000000002
+   ]
   },
   "eye": {
    "set": "lamproom",
@@ -719,7 +724,7 @@
      "subject": "ring",
      "framing": "C",
      "purpose": "ROW 36 (match): CAM_ENTRY, the chrome entry ring fills 89 % of the width, the small pupil far inside it; fly forward through the ring",
-     "hold": 0,
+     "hold": 0.2,
      "creep": 0.0028
     },
     {

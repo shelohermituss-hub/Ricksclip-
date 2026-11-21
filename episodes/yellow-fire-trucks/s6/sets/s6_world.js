@@ -59,6 +59,15 @@ export async function build(THREE, scene, film, ctx) {
   if (mode === 'dal') {                                                        // S5's yard as built; the trucks stand at their marks (S5 rolls them there by f1024)
     const D = await dallasBuild(THREE, scene, film, ctx);
     const up = () => { for (const T of [D.red, D.lime]) { if (!T) continue; const m0 = T.group.getObjectByProperty('isMesh', true); if (m0 && m0.onBeforeRender) m0.onBeforeRender(null, scene); } };
+    // the chrome rim of the headlamp we push into (row 36): the kit has no environment map, so the asset's chrome reads black at this distance. A chrome
+    // MATCAP ring (sky band over ground band, the same look Blender's chrome gives) is laid on the rim, and a faint matcap sheen on the glass; the lamp asset is untouched
+    const mc = document.createElement('canvas'); mc.width = mc.height = 256; const g = mc.getContext('2d'), gr = g.createLinearGradient(0, 0, 0, 256);
+    for (const [o, c] of [[0, '#ffffff'], [.18, '#cfe0f4'], [.42, '#7d93b0'], [.5, '#2a2a30'], [.56, '#d8b88a'], [.75, '#8a6a4a'], [1, '#3a3028']]) gr.addColorStop(o, c);
+    g.fillStyle = gr; g.beginPath(); g.arc(128, 128, 128, 0, 6.283); g.fill(); const mt = new THREE.CanvasTexture(mc); mt.colorSpace = THREE.SRGBColorSpace;
+    const HL = pl.headlamp || [-2.68, 8.676, 1.43], rim = new THREE.Mesh(new THREE.TorusGeometry(.121, .013, 14, 64), new THREE.MeshMatcapMaterial({ matcap: mt }));
+    rim.position.copy(V([HL[0], HL[1] - .012, HL[2]])); scene.add(rim);
+    const sheen = new THREE.Mesh(new THREE.CircleGeometry(.109, 48), new THREE.MeshMatcapMaterial({ matcap: mt, transparent: true, opacity: .28, depthWrite: false }));
+    sheen.position.copy(V([HL[0], HL[1] - .006, HL[2]])); scene.add(sheen);
     return { anchors: { ...D.anchors }, update: f => up() };
   }
   const T = await townBuild(THREE, scene, film, { ...ctx, place: { ...pl, trucks: false } });

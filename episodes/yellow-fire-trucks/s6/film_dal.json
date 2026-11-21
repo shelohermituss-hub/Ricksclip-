@@ -184,7 +184,12 @@
     "painters": false,
     "leaves": 0
    },
-   "mode": "dal"
+   "mode": "dal",
+   "headlamp": [
+    -2.68,
+    8.676,
+    1.4300000000000002
+   ]
   }
  },
  "props": {
@@ -537,6 +542,25 @@
    "id": "s6_dal",
    "place": "dal",
    "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -2.2,
+      5.4,
+      1.35
+     ],
+     "aim": [
+      -2.6,
+      8.3,
+      1.15
+     ],
+     "lens": 26,
+     "subject": "headlamp",
+     "framing": "M",
+     "purpose": "first-station anchor at f0 (S2 lesson): the copy bakes from frame 0",
+     "hold": 0,
+     "creep": 0.0028
+    },
     {
      "at": 1202,
      "pos": [
