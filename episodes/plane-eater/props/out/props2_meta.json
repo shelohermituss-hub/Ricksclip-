@@ -1,0 +1,178 @@
+{
+ "fork": {
+  "size_m": [
+   0.215,
+   0.026,
+   0.017
+  ],
+  "grip": "origin = fist centre on the handle; tines +X, 0.20 m long",
+  "parts": 7,
+  "tris": 1316,
+  "note": "brushed bistro steel, 4 tines with gaps, bevelled handle"
+ },
+ "knife": {
+  "size_m": [
+   0.257,
+   0.02,
+   0.014
+  ],
+  "grip": "origin = fist centre on the handle; blade +X, edge -Y, 0.27 m",
+  "parts": 6,
+  "tris": 616,
+  "note": "wood handle with 3 brass rivets, steel bolster, serrated blade"
+ },
+ "salt_shaker": {
+  "size_m": [
+   0.074,
+   0.074,
+   0.12
+  ],
+  "grip": "origin = fist centre at 40 % height; cap +Z (turn it over to salt)",
+  "parts": 10,
+  "tris": 908,
+  "note": "8-facet glass, salt inside, chrome cap with 7 holes; 12 cm"
+ },
+ "hacksaw": {
+  "size_m": [
+   0.509,
+   0.045,
+   0.178
+  ],
+  "grip": "origin = fist centre on the pistol grip; blade teeth down, cuts toward +X; 0.50 m",
+  "parts": 8,
+  "tris": 976,
+  "note": "blue tube frame, 70-tooth blade on pins, wing-nut tension screw, wood grip"
+ },
+ "sugar_tongs": {
+  "size_m": [
+   0.124,
+   0.022,
+   0.011
+  ],
+  "grip": "origin = fist centre at the spring bow; claws +X; 11 cm",
+  "parts": 10,
+  "tris": 2892,
+  "note": "silver-plate arms, spring bow, 3-claw ends, gilt engraving line"
+ },
+ "metal_bites": {
+  "size_m": [
+   0.162,
+   0.103,
+   0.003
+  ],
+  "grip": "pick one by name bite_0..5 (sugar tongs, fork tines); each 3-4 cm, 1.5 mm sheet",
+  "parts": 13,
+  "tris": 808,
+  "note": "white or navy painted face, aluminium cut edges, rivet heads on 3, a navy stripe on 1"
+ },
+ "plate": {
+  "size_m": [
+   0.272,
+   0.272,
+   0.024
+  ],
+  "grip": "ground = table top; 27 cm",
+  "parts": 2,
+  "tris": 2496,
+  "note": "porcelain white like the Cessna skin, raised rim, silver rim line, foot ring"
+ },
+ "oil_glass": {
+  "size_m": [
+   0.084,
+   0.084,
+   0.185
+  ],
+  "grip": "origin = fist centre on the stem; bowl +Z; 18.5 cm",
+  "parts": 2,
+  "tris": 2688,
+  "note": "clear glass, amber mineral oil #f0a81c, thin stem, round foot, rim highlight"
+ },
+ "water_jug": {
+  "size_m": [
+   0.403,
+   0.156,
+   0.283
+  ],
+  "grip": "origin = jug foot centre; grips: right hand on jug_handle (x -0.12, z 0.17), left under the spout; tumbler at +0.22 m",
+  "parts": 15,
+  "tris": 4320,
+  "note": "jug 28 cm with handle + spout + bubbles; tumbler 10 cm, water lines"
+ },
+ "kitchen_scale": {
+  "size_m": [
+   0.25,
+   0.25,
+   0.245
+  ],
+  "grip": "ground = table top; dial faces -Y; needle node scale_needle (pivot = scale_needle_hub, 0..4 lb over 300 deg)",
+  "parts": 32,
+  "tris": 10628,
+  "note": "cream enamel 1970s body, chrome bezel + pan, lb ticks 0-4, printed mark \"2 lb / 900 g\", black needle on 2 lb"
+ },
+ "dessert_trolley": {
+  "size_m": [
+   1.268,
+   0.952,
+   1.721
+  ],
+  "grip": "ground = trolley castors; push bar at -X (Michel pushes/rings from there); tiers bottom->top: bike, cart, TV, coffin topper (node coffin_*)",
+  "parts": 177,
+  "tris": 32144,
+  "note": "two-shelf chrome/maple trolley with gallery rails + castors; 3-tier cream cake with blue piping + swirls; teal bike, wire cart, wood 1970s TV, polished coffin"
+ },
+ "cloche_bell": {
+  "size_m": [
+   0.515,
+   0.33,
+   0.205
+  ],
+  "grip": "cloche origin = plate centre (lift by cloche_knob); bell at +0.30 m, grip = bell_handle_knob",
+  "parts": 6,
+  "tris": 3496,
+  "note": "cloche 33 cm polished silver with rolled rim + knob; table bell with wood knob"
+ },
+ "record_book": {
+  "size_m": [
+   0.247,
+   0.312,
+   0.052
+  ],
+  "grip": "both hands on the long edges; cover up +Z; 24 x 31 cm",
+  "parts": 7,
+  "tris": 8540,
+  "note": "navy cloth cover, gilt BOOK OF / RECORDS + rule + medal, ivory page block, round spine"
+ },
+ "certificate": {
+  "size_m": [
+   0.952,
+   0.09,
+   0.353
+  ],
+  "grip": "both hands on the sides; faces -Y; two versions: cert_* (whole) at x 0, cert_bitten_* (corner bitten, DIET 30.4) at x +0.5",
+  "parts": 27,
+  "tris": 60738,
+  "note": "brushed steel frame, ivory paper, navy STRANGEST DIET EVER / MONSIEUR MANGETOUT, gold seal + navy ribbons, hanging wire; no Guinness logo"
+ },
+ "owner_rag_spanner": {
+  "size_m": [
+   0.646,
+   0.36,
+   0.156
+  ],
+  "grip": "rag origin = pinch point (owner's hand, polishing); spanner at +0.35 m, grip = shaft centre",
+  "parts": 5,
+  "tris": 3100,
+  "note": "36 cm yellow cotton rag with folds + weave; chrome combination spanner (ring + open jaw)"
+ },
+ "airline_tray": {
+  "size_m": [
+   0.34,
+   0.308,
+   0.116
+  ],
+  "grip": "ground = tray table; foil lid node meal_foil_lid (lift on 31.44); 34 x 25 cm",
+  "parts": 15,
+  "tris": 2552,
+  "note": "grey-beige compartment tray, grey meal + peas, crinkled foil lid, bread roll, plastic cutlery pack"
+ }
+}
