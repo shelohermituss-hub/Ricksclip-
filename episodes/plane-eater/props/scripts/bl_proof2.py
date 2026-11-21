@@ -33,7 +33,6 @@ def stage(sc):
     d = Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
     sun.rotation_euler = d.to_track_quat('Z', 'Y').to_euler()
     G.flat_lawn(size=(400, 400), location=(0, 60, 0))
-    return
     pts = []
     for o in sc.objects:
         if o.type == 'MESH' and not o.hide_render and ('tyre' in o.name or 'sawhorse' in o.name):
