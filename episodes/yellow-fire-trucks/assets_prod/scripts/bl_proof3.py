@@ -36,6 +36,6 @@ if grp == 'props':
     le = PA.append(O('lemon'), 'LEMON'); le.location = (.62, -1.25, 0)
     toy = PA.append(O('toy_truck'), 'TOY_TRUCK'); toy.location = (1.05, -1.2, 0); toy.rotation_euler.z = math.radians(30)
     shot('r3_lawn_lost_things', ((-0.4, -6.6, 1.9), (0.0, 0.2, 0.5), 35))
-    shot('r3_close_box_lemon_toy_ball', ((0.2, -2.6, 0.55), (0.3, -1.1, 0.1), 50))
+    shot('r3_close_box_lemon_toy', ((0.45, -2.25, 0.42), (0.72, -1.15, 0.07), 50))
 json.dump(times, open(os.path.join(OUTD, 'times_r3_%s.json' % grp), 'w'), indent=1)
 print('PROOF3_END', grp)

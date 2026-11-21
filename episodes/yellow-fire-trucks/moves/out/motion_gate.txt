@@ -1,0 +1,7 @@
+file:///tmp/moonck_3q9OHr/shared_walks.mjs:140
+export const USES = {
+^^^^^^
+
+SyntaxError: Unexpected token 'export'
+
+Node.js v22.23.5

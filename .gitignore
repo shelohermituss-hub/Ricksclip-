@@ -56,3 +56,4 @@ episodes/*/assets_prod/out_tmp/
 *.glb
 episodes/*/assets_prod/proof/kit_r*/out/
 episodes/*/assets_prod/proof/kit_r*/stills*/
+episodes/*/cast/cabtest/out/

@@ -10,7 +10,7 @@ for mode, cam in CAM.items():
     cast=dict(fireman=dict(puppet='cast:firefighter', height=1.75, heads_tall=2.9, walk_speed=9999)),
     kit3d=dict(pbr=True, relief=True, sky=True, trees=False), post=dict(dof=0.0, dust=0, bloom=1, vignette=0),
     places=dict(yard=place), props=dict(truck=dict(pos=[0, 0, 1.4], kind='the fire truck')),
-    acts=[dict(who='fireman', at=0, pos=[60, 60, 0], view='34', dir=-1, pose='stand', face='cool')],
+    acts=[dict(who='fireman', at=0, pos=[20, -15, 0] if mode == 'rear' else [-30, -25, 0], view='34', dir=-1, pose='stand', face='cool')],
     takes=[dict(id='r3_' + mode, place='yard', stations=[dict(at=0, subject='truck', framing='W', hold=0, **cam)])])
   json.dump(film, open('film_r3_%s.json' % mode, 'w'), indent=1)
 print(' '.join(CAM))

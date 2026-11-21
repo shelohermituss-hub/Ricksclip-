@@ -25,7 +25,7 @@ Rule: set z so that the BARE head top sits about 0.1 m under the cab roof line. 
 
 ## Anchors (truck local: front -X, driver side +Z, Y up; GLB windscreen_driver x -3.25..-2.78, y 1.76..2.21, z 0.06..0.75)
 - Truck driver seat (plan, yaw 0): truck origin + (x -2.30, driver side 0.42 m), i.e. with yaw 0 plan [X0 - 2.30, Y0 - 0.42, z]. With another yaw, rotate (-2.30, +0.42 local Z) by the truck yaw (local +Z = plan -Y at yaw 0).
-- Van driver seat (milk_van.glb Car_Chair x -1.71..-1.17, z -0.15..0.37; wheel Car_Steering x -2.05..-1.68, y 0.95..1.18): van local (x -1.45, z +0.11); at yaw 0 plan [X0 - 1.45, Y0 - 0.11, z]. S3 has the van at yaw -90 (local -X -> plan +Y, local +Z -> plan -X): plan [VX - 0.11, VY - 1.45, z].
+- Van driver seat (milk_van.glb Car_Chair x -1.71..-1.17, z -0.15..0.37; wheel Car_Steering x -2.05..-1.68, y 0.95..1.18): van local (x -1.45, z +0.11); at yaw 0 plan [X0 - 1.45, Y0 - 0.11, z]. S3 has the van at yaw -90 (local -X -> plan +Y, local +Z -> plan -X): plan [VX - 0.11, VY + 1.45, z] (S3 make_film DRV already uses VY + 1.45).
 - A riding driver: give the card the same linear runs as the vehicle (as S3 / S6 already do). Feet slide rows no longer apply (in_vehicle).
 
 ## Views

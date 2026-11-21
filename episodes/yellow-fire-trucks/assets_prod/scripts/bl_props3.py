@@ -113,8 +113,8 @@ for name, f, size, how in LOST:
     if how == 'flat':   # the kite lies on the lawn tipped 12 degrees (one spar on a tuft), tail string kept
         for o in ms: o.data.transform(Matrix.Rotation(math.radians(12), 4, 'X'))
         mn, mx = fit(ms, size)
-    if name == 'lost_boot':   # fallen over on its side
-        for o in ms: o.data.transform(Matrix.Rotation(math.radians(80), 4, 'X'))
+    if name == 'lost_boot':   # standing, tipped 8 degrees (round 3 look: lying on its side it read as a hair dryer at phone size)
+        for o in ms: o.data.transform(Matrix.Rotation(math.radians(8), 4, 'X'))
         mn, mx = fit(ms, size)
     save(name, ms, {'top': (0, 0, mx.z)}, f)
 
