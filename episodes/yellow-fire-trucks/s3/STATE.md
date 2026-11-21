@@ -8,7 +8,7 @@
 - f511: his "look left" face is half hidden by the van pillar. The Sceptic never leans OUT of the window (driver side faces away from this camera): he leans to the windscreen.
 - Red at dusk reads salmon/clear red, not the nearly-lost grey-plum of LOOK_BIBLE (drain .85 in assets.js). Lower frame halves are plain apricot asphalt (no lamp pool).
 - Frames 511-584, 694-765 use truck_light.glb (no sirens, no beacon row): full truck.glb got Chrome killed by the shared memory limit; 613/643 have the full truck.
-- frame_checks / camsafe: see CHECKS below. 0 FAIL only in the shifted plan check; the absolute check has 3 FAIL (CAMERA_NOTE.md).
+- frame_checks: 17 FAIL (see Numbers). 0 FAIL only in the shifted plan check; the absolute check has 3 FAIL (CAMERA_NOTE.md).
 - S2 -> S3 join ("EVERY", toy truck -> real truck): only S3's half exists (f474 long lens on the real truck); S2 is not built, the match is unchecked.
 ## Built (files)
 - `make_film.py` -> `film.json` (camera v2, camsafe, kit3d, tween ones, face_frames 0, card_shade 0/0, costume_shade keep_drawn_light + smooth 40, faces_ep from
@@ -22,8 +22,12 @@
   `check_shifted.py` (plan check of the stretch alone), `board.py` -> `BOARD.jpg`. Key frames: `key/f_*.png` 1080x1920, no captions.
 ## Numbers
 - Plan: shifted check 0 FAIL / 9 WARN; absolute `--window 474-770` 3 FAIL (2 frame-0 artefacts) / 12 WARN; WINDOW speed p90 12.8, peak 21.0 px/f.
-- Render: 45-62 s per full-size frame (grab 38-56 s) with ~7 helpers on the CPU; 12 of ~25 tries were killed (memory), all before the memory wait.
-- CHECKS
+- Render: 45-62 s per full-size frame (grab 38-56 s) with ~7 helpers on the CPU; about 14 tries were killed (memory) before the memory wait, 1 after.
+- `node tools/frame_checks/check.mjs film_light.json --frames 474-770` (rests + moving body test): 17 FAIL, 3 WARN, 37 PASS (frame_checks.txt). All are the drivers:
+  body_in_mesh (Milkman 23-49 % in the van, Sceptic 22-95 % in the cab: cards standing inside vehicles, the check has no seat exemption for them), Sceptic face_covered
+  + feet sunk (cab), Milkman foot "slide" 6-8 cm/f while the van carries him. Real faults to fix next: Sceptic card through the cab body; a seated/hidden-legs driver.
+- `node tools/camsafe/validate.mjs film_light.json --frames 474-770 --step 2`: 248 checks, PASS 248, WARN 0, FAIL 0.
+- Key tiles land 1 frame before their word where the word starts mid-frame (613/643/734: "screaming" 613.2, "flashing" 643.2, "never" 734.4); f765 = the end of "it".
 ## Requests (not done by me)
 - set-builder (town, being fixed now): the sodium lamp POOL on the road at the crossing is missing: every frame's lower half is one flat apricot asphalt, the van
   and the Milkman have no pool to stand in (worst f569, f694, f734). Also no mist/moths at the lamp (LOOK_BIBLE DU particles).
@@ -37,7 +41,7 @@
   time (also on S1's film). Fix: s3/tools/render_s3.mjs = render_gpu.mjs with a 240 s screenshot wait. Guard: comment line 1 of the copy. Proof: key/*.png. OUVERT
   for the kit owner (a --grab-timeout flag in render_gpu.mjs).
 - 2026-11-21 (S3) Chrome was OOM-killed (memory cgroup shared by all helpers; Blender proofs peak). Fix: render_keys.sh renders ONE frame per process and waits for
-  3.8 GB free. Guard: logs/keys.log line per try. Proof: 0 kills after the wait was added (12 before).
+  3.8 GB free. Guard: logs/keys.log line per try. Proof: 1 kill in 16 tries after the wait (about 14 before).
 - 2026-11-21 (S3) film_plan.py check counts film-wide gates from frame 0; a stretch on absolute frames (S3 starts at 474) FAILs "first face", "faces in the first
   15 s", "longest without a face", rests/effects/moods per minute. Fix: check_shifted.py checks a copy shifted to 0 (words too). Guard: run both. Proof: 3 vs 0 FAIL.
 - 2026-11-21 (S3) camera v2 moves a hold-0 station later than its `at` (wants 48-67 f per travel): row pictures on via points land ~25 f late. Guard: project the

@@ -31,6 +31,6 @@ then the bottle check (f591); the Sceptic's one brow (f572).
 ## The numbers (see plan_check.txt and plan_check_shifted.txt)
 - Absolute check `film_plan.py check film.json --window 474-770`: 3 FAIL. Two are artefacts of the absolute frame numbers (the film-wide gates count from frame 0,
   and S3 has nothing before 474): "face on screen, first 15 s" and "longest stretch without a face 14.7 s". The third, "at rest while a face is on screen 24 %"
-  (target >= 40) is real: rows 16-18 are a moving camera on objects with his face small in frame. WINDOW speed p90 13.5, peak 21.1 px/f (PASS).
-- The same film shifted to start at 0 (check_shifted.py, measures the stretch alone): 0 FAIL, 12 WARN.
+  (target >= 40) is real: rows 16-18 are a moving camera on objects with his face small in frame. WINDOW speed p90 12.8, peak 21.0 px/f (PASS).
+- The same film shifted to start at 0 (check_shifted.py, measures the stretch alone): 0 FAIL, 9 WARN.
 - v2 moves the via points C and E later than their word (it wants 48-67 f travels); the key frames are taken where the row's picture is.

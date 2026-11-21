@@ -1,0 +1,66 @@
+{
+ "blender_allon": {
+  "file": "proof/bl/bl_allon.png",
+  "edge": 0.2441,
+  "regions": 1985,
+  "colours": 1684,
+  "brightness": 0.26,
+  "sec_per_frame": 142.2
+ },
+ "blender_wave2": {
+  "file": "proof/bl/bl_wave2.png",
+  "edge": 0.245,
+  "regions": 2173,
+  "colours": 1635,
+  "brightness": 0.246,
+  "sec_per_frame": 102.2
+ },
+ "blender_redoff": {
+  "file": "proof/bl/bl_redoff.png",
+  "edge": 0.2447,
+  "regions": 2059,
+  "colours": 1427,
+  "brightness": 0.236,
+  "sec_per_frame": 95.2
+ },
+ "blender_irisopen": {
+  "file": "proof/bl/bl_irisopen.png",
+  "edge": 0.2831,
+  "regions": 1980,
+  "colours": 1692,
+  "brightness": 0.289,
+  "sec_per_frame": 45.6
+ },
+ "blender_entry": {
+  "file": "proof/bl/bl_entry.png",
+  "edge": 0.1627,
+  "regions": 677,
+  "colours": 1241,
+  "brightness": 0.754,
+  "sec_per_frame": 35.0
+ },
+ "kit_allon": {
+  "file": "proof/kit/stills/allon/f_00000.png",
+  "edge": 0.1677,
+  "regions": 2035,
+  "colours": 1083,
+  "brightness": 0.173,
+  "sec_per_frame": 2.8
+ },
+ "kit_redoff": {
+  "file": "proof/kit/stills/redoff/f_00000.png",
+  "edge": 0.1652,
+  "regions": 1803,
+  "colours": 937,
+  "brightness": 0.141,
+  "sec_per_frame": 1.3
+ },
+ "kit_entry": {
+  "file": "proof/kit/stills/entry/f_00000.png",
+  "edge": 0.0862,
+  "regions": 345,
+  "colours": 799,
+  "brightness": 0.508,
+  "sec_per_frame": 2.2
+ }
+}

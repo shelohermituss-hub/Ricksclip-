@@ -16,6 +16,21 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Full-size kit stills died: Playwright screenshot timeout 30 s (grab took 26-56 s on the sh (yellow-fire-trucks, S3) — OUVERT
+- Full-size kit stills died: Playwright screenshot timeout 30 s (grab took 26-56 s on the shared CPU) and `--grab canvas` crashed the page every time (also on S1's film). Fix: s3/tools/render_s3.mjs = render_gpu.mjs with a 240 s screenshot wait. Guard: comment line 1 of the copy. Proof: key/*.png. OUVERT for the kit owner (a --grab-timeout flag in render_gpu.mjs).
+
+## 2026-11-21 — Chrome was OOM-killed (memory cgroup shared by all helpers; Blender proofs peak) (yellow-fire-trucks, S3) — FERMÉ
+- Chrome was OOM-killed (memory cgroup shared by all helpers; Blender proofs peak). Fix: render_keys.sh renders ONE frame per process and waits for 3.8 GB free. Guard: logs/keys.log line per try. Proof: 1 kill in 16 tries after the wait (about 14 before).
+
+## 2026-11-21 — film_plan (yellow-fire-trucks, S3) — FERMÉ
+- film_plan.py check counts film-wide gates from frame 0; a stretch on absolute frames (S3 starts at 474) FAILs "first face", "faces in the first 15 s", "longest without a face", rests/effects/moods per minute. Fix: check_shifted.py checks a copy shifted to 0 (words too). Guard: run both. Proof: 3 vs 0 FAIL.
+
+## 2026-11-21 — camera v2 moves a hold-0 station later than its `at` (wants 48-67 f per travel): row pictu (yellow-fire-trucks, S3) — FERMÉ
+- camera v2 moves a hold-0 station later than its `at` (wants 48-67 f per travel): row pictures on via points land ~25 f late. Guard: project the cast on the baked camera at the word frame before rendering (s3/proj_cast.py). Proof: f643 Milkman off frame.
+
+## 2026-11-21 — the step-van card: in a 3/4 card the act `dir` flips which screen side he faces, not plan  (yellow-fire-trucks, S3) — FERMÉ
+- the step-van card: in a 3/4 card the act `dir` flips which screen side he faces, not plan left/right: from camera B dir -1 = his look LEFT.
+
 ## 2026-11-21 — film_plan check on a stretch file FAILed first face, face share, speed median (9 FAIL) (yellow-fire-trucks, S2) — OUVERT
 - film_plan check on a stretch file FAILed first face, face share, speed median (9 FAIL). Cause: every gate counts from frame 0; a stretch starting at f288 carries 288 parked lead-in frames with no cast. Fix: s2/plan_window.py shifts a copy by -288 (words too) and runs the gates on the window only. Guard: plan_check_window.txt beside plan_check.txt. Proof: same stations, 9 FAIL -> real faults only, now 0 FAIL. OUVERT for the tool (a --stretch flag).
 
