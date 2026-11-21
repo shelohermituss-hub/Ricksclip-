@@ -77,3 +77,4 @@ episodes/*/cast/*_vs_rick*
 episodes/_style_test/look/prev/*_raw*
 episodes/_style_test/look/final/*_raw*
 episodes/_style_test/look/prev/*.log
+episodes/_style_test/look/final/*.log

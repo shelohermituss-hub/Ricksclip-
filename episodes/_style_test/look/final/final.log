@@ -1,2 +1,0 @@
-/home/user/Ricksclip-/episodes/_style_test/look/assemble.py:70: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
-  m = bpy.data.materials.new(name); m.use_nodes = True; N, L = m.node_tree.nodes, m.node_tree.links
