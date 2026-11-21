@@ -19,7 +19,7 @@ TY = -4.0
 P_TX0, P_V, P_F0 = 41.0, .085, 1318
 TXP = lambda f: P_TX0 - P_V * (f - P_F0)
 C_TX0, C_V, C_F0 = 60.0, .384, 1470
-TXC = lambda f: C_TX0 - C_V * (f - C_F0)
+TXC = lambda f: C_TX0 - .52 * (f - C_F0) if f <= 1524 else 31.92 - .193 * (f - 1524)     # comes fast, eases past the crossing (two linear runs: the Rookie card follows each)
 VX, VY = 24.3, -7.6
 DRV = [VX - .8, VY + 1.45, .55]                 # the Milkman at the wheel in the open door of the van (S3's mark on the white bar)
 CABX, CABY, CABZ = -2.25, -.5, .35              # the driver in the cab, relative to the truck centre (S3: driver side = south)
@@ -38,9 +38,9 @@ acts = [
     dict(who='kid', at=1202, visible=False, pos=[36.9, -12.8, 0.0], view='34', dir=-1, pose=M('kid_park'), face='k:concentrate'),
     dict(who='kid', at=1376, visible=True, pose=M('kid_park'), face='k:concentrate', note='row 42: one more throw before dark (two-fisted wind-up)'),
     dict(who='kid', at=1394, face='k:proud', note='row 42 "red": the throw'),
-    dict(who='kid', at=1418, pos=[36.1, -11.1, 0.0], move_s=.4, note='row 43: the quick run in behind the ball'),
+    dict(who='kid', at=1418, pos=[36.35, -10.35, 0.0], move_s=.4, note='row 43: the quick run in behind the ball'),
     dict(who='kid', at=1431, face='k:think', note='sure it is right there'),
-    dict(who='kid', at=1445, pos=[35.15, -9.75, 0.0], move_s=.25, face='k:browUp', note='row 44 "grass": steps clean over the ball'),
+    dict(who='kid', at=1445, pos=[35.15, -10.85, 0.0], move_s=.25, face='k:browUp', note='row 44 "grass": steps clean over the ball'),
     dict(who='kid', at=1452, dir=1, face='k:browUp', note='row 44: the shrug to the lens'),
     dict(who='kid', at=1470, visible=False),
     # line 12, the crossing
@@ -51,7 +51,8 @@ acts = [
     dict(who='milkman', at=1556, face='k:proud', note='row 48: the toast, a small smile'),
     dict(who='rookie', at=1202, visible=False, pos=[TXC(1470) + CABX, TY + CABY, CABZ], view='34', dir=-1, pose=M('rk_cab'), face='k:concentrate'),
     dict(who='rookie', at=1470, visible=True, pose=M('rk_cab'), face='k:concentrate', note='row 46: at the wheel of the lemon truck'),
-    dict(who='rookie', at=1470, pos=[TXC(1577) + CABX, TY + CABY, CABZ], move_s=(1577 - 1470) / 30, linear=True, note='rides with the lemon truck (TXC linear)'),
+    dict(who='rookie', at=1470, pos=[TXC(1524) + CABX, TY + CABY, CABZ], move_s=(1524 - 1470) / 30, linear=True, note='rides with the lemon truck (TXC run 1)'),
+    dict(who='rookie', at=1524, pos=[TXC(1577) + CABX, TY + CABY, CABZ], move_s=(1577 - 1524) / 30, linear=True, note='rides with the lemon truck (TXC run 2)'),
     dict(who='rookie', at=1523, face='k:proud', note='row 46 "color": proud, chin up, sees everything'),
 ]
 held3d = [dict(who='milkman', obj='milk_bottle', module='sets/assets.js', builder='buildMilkBottle', opts={}, grip='pole', face='out', hand='L', anchor='grip', when='always', scale=1.6)]
@@ -70,20 +71,20 @@ takes = [
         st(1317, [0, 6.6, .15], CX['aim'], CX['lens'], 'window', 'C', 'ROW 39 "FIRST." (piece 11 fly through the pupil, the plan\'s 28 frames): forward through the widened pupil past the exit point; the window fills the frame (blend on motion to the park: lead)', travel=.87),
     ]),
     dict(id='s6_park', place='park', stations=[
-        st(1331, [33.6, -6.9, 1.2], [39.0, -3.6, 1.45], 20, 'truck', 'M', 'ROWS 40-41 (M00 living rest, 3/4 front from the north-west kerb): the pumper IN the last sun shaft, full red ("RED" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on "GRAY" 1368, the fender big', hold=1.3),
-        st(1420, [35.25, -9.8, .16], [36.25, -11.6, .3], 20, 'ball', 'C', 'ROWS 42-43 (follow past the fence, M09 push-in low): the travel picks up the Kid\'s two-fisted throw ("ball" 1400); the lens lands in the grass, the ball stops by it, grey on "VANISHES"', hold=.5),
-        st(1452, [34.0, -7.4, 2.4], [36.9, -14.6, .6], 20, 'lawn', 'W', 'ROW 44 EXTREME "in the evening GRASS" (M05 rise): the lawn of lost grey things; the Kid steps over the ball (1445) and shrugs (1452)', hold=.5),
+        st(1318, [30.5, -6.6, 1.2], [37.0, -3.2, 1.3], 18, 'truck', 'M', 'ROWS 40-41 (M00 living rest from the take start 1318, 3/4 front from the park kerb, west of the shaft): the pumper IN the last sun shaft, full red ("RED" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on "GRAY" 1368, the fender big', hold=1.8),
+        st(1408, [35.3, -9.85, .35], [36.7, -12.5, .4], 20, 'ball', 'C', 'ROWS 42-43 (follow past the fence, M09 push-in low): the travel picks up the Kid\'s two-fisted throw ("ball" 1400); the lens lands in the grass, the ball stops by it, grey on "VANISHES"', hold=.5, travel=1.2),
+        st(1452, [34.4, -9.0, 1.35], [36.2, -12.9, .15], 18, 'lawn', 'W', 'ROW 44 EXTREME "in the evening GRASS" (M05 rise): the lawn of lost grey things; the Kid steps over the ball (1445) and shrugs (1452)', hold=.5, travel=.9),
     ]),
     dict(id='s6_cross', place='cross', stations=[
-        st(1470, [21.3, -7.6, 1.95], [29.8, -4.7, 1.75], 24, 'milkman', 'M', 'ROW 45 "But yellow GREEN?" (lands on the van, M00 rest): his look left, the head stops dead on "green"; one lemon dot far down Main', hold=1.4),
-        st(1560, [20.0, -10.5, .5], [24.5, -4.5, 1.7], 18, 'truck', 'W', 'ROWS 46-48 (M02 sink to a low hero angle): on the way the lemon truck comes, the brightest thing, Rookie at the wheel ("COLOR" 1523); POWER 4 "the LONGEST": it sails past, the Milkman toasts it', hold=.4),
+        st(1470, [20.4, -4.6, 1.95], [30.0, -7.2, 1.6], 20, 'milkman', 'M', 'ROW 45 "But yellow GREEN?" (lands on the van, M00 rest): his look left, the head stops dead on "green"; one lemon dot far down Main', hold=1.4),
+        st(1560, [20.6, -10.9, .5], [22.6, -4.6, 1.8], 18, 'truck', 'W', 'ROWS 46-48 (M02 sink to a low hero angle): on the way the lemon truck comes, the brightest thing, Rookie at the wheel ("COLOR" 1523); POWER 4 "the LONGEST": it sails past, the Milkman toasts it', hold=.4, travel=1.5),
     ]),
 ]
 props = {
     'headlamp': dict(pos=HL, kind='the red truck chrome headlamp'), 'ring': dict(pos=LR['anchors']['entry_ring']['c'], kind='the chrome entry ring'),
     'pupil': dict(pos=LR['anchors']['pupil']['c'], kind='the pupil window'), 'window': dict(pos=LR['anchors']['window_view']['c'], kind='the window picture'),
     'truck': dict(pos=[38.0, TY, 1.4], kind='a fire truck at dusk'), 'fender': dict(pos=[34.6, TY + 1.1, 1.0], kind='the front fender'),
-    'ball': dict(pos=[35.6, -10.4, .11], kind='the red ball'), 'lawn': dict(pos=[36.5, -14.0, .1], kind='the lawn of lost things'), 'door': dict(pos=[TXC(1576) - 2.2, TY + 1.25, 1.3], kind='the lemon door panel'),
+    'ball': dict(pos=[35.75, -10.6, .11], kind='the red ball'), 'lawn': dict(pos=[36.5, -14.0, .1], kind='the lawn of lost things'), 'door': dict(pos=[TXC(1576) - 2.2, TY + 1.25, 1.3], kind='the lemon door panel'),
 }
 DU = town['light']['du']
 LR_LIGHT = dict(top='#120c24', hor='#1c1438', sun='#b8a8ff', si=.12, amb='#2a1d52', ai=.35, tint='#ffffff')      # the set-builder's kit proof light (sets/lamproom/scripts/kit_films.py)
@@ -93,7 +94,7 @@ places = {
     'eye': dict(set='lamproom', light='night', light_over=LR_LIGHT, kit3d=dict(envGround='#1c1438'), post=dict(dust=0),
                 lamproom=dict(wave=0, iris=0, dim=1, keys=[dict(f=1202, wave=0, iris=0, dim=1), dict(f=1243, wave=0, iris=0, dim=1), dict(f=1255, wave=0, iris=.55, dim=.6),
                      dict(f=1280, wave=1, iris=.6, dim=.6), dict(f=1283, wave=2), dict(f=1286, wave=3), dict(f=1289, wave=4, iris=.62), dict(f=1300, wave=4, iris=1.0, dim=.6)])),
-    'park': dict(set='s6_world', mode='park', lite=True, kind='du', light='golden', light_over=DU, kit3d=dict(envGround='#5a4a66'), grass_keep=0.4),
+    'park': dict(set='s6_world', mode='park', lite=True, kind='du', light='golden', light_over=DU, kit3d=dict(envGround='#5a4a66'), grass_keep=0.0),
     'cross': dict(set='s6_world', mode='cross', lite=True, kind='du', light='golden', light_over=DU, kit3d=dict(envGround='#5a4a66'), grass_keep=0.4),
 }
 film = {
@@ -133,7 +134,7 @@ if '--proj' in sys.argv:                          # pinhole check, lens mm on a 
         k = lens / 36.0; x = sum(d[i] * r[i] for i in range(3)) / z * k; y = sum(d[i] * u[i] for i in range(3)) / z * k
         return round(.5 + x / (1080 / 1920), 2), round(.5 - y, 2)
     pos_at = lambda who, f: [a for a in acts if a['who'] == who and 'pos' in a and a['at'] <= f][-1]['pos']
-    S = {1331: [('truck nose', [TXP(1331) - 4, TY, 1.4]), ('truck tail', [TXP(1331) + 4, TY, 1.4]), ('sceptic head', [TXP(1331) + CABX, TY + CABY, CABZ + 1.5])],
+    S = {1360: [('truck nose', [TXP(1331) - 4, TY, 1.4]), ('truck tail', [TXP(1331) + 4, TY, 1.4]), ('sceptic head', [TXP(1331) + CABX, TY + CABY, CABZ + 1.5])],
          1368: [('fender', [TXP(1368) - 3.2, TY + 1.1, 1.0])], 1400: [('kid', [36.9, -12.8, .6]), ('ball', [36.6, -12.2, .6])],
          1420: [('ball', [35.6, -10.4, .11]), ('kid', [36.1, -11.1, .6])], 1452: [('ball', [35.6, -10.4, .11]), ('kid', [35.5, -10.2, .6]), ('wagon', [34.6, -15.0, .2]), ('kite', [38.8, -14.2, .1]), ('boot', [35.9, -16.6, .1]), ('can', [38.2, -11.0, .2]), ('tricycle', [37.6, -18.4, .3])],
          1470: [('milkman head', [DRV[0], DRV[1], DRV[2] + 1.45]), ('lemon dot', [TXC(1483) - 4, TY, 1.4])], 1523: [('truck nose', [TXC(1523) - 4, TY, 1.4]), ('rookie head', [TXC(1523) + CABX, TY + CABY, CABZ + 1.45]), ('crate', [27.35, -7.55, .2])],

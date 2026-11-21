@@ -1,0 +1,16 @@
+frame_checks: s6/film_cross.json  85 of 1577 frames (rests f0-1279 f1286-1363 f1470-1514 f1560-1576)  cast kid, sceptic, milkman, rookie
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   milkman        f1470-1514   face_covered  3 rays    f1471     44/44      behind Scene/MILK_VAN/Car_Car_0 (28 cm in front of the fa~
+FAIL   rookie         f1470-1514   body_in_mesh  96 %      f1471     44/44      inside Scene/TRUCK/Object_42: torso-hips-thighs 100 %, le~
+FAIL   milkman        f1470-1514   body_in_mesh  8 %       f1505     44/44      inside Scene/MILK_VAN/Car_Car_0: torso-hips-thighs 9 %, l~
+FAIL   rookie         f1515-1559 ~ body_in_mesh  95 %      f1515     23/23      inside Scene/TRUCK/Object_42: torso-hips-thighs 100 %, le~
+FAIL   rookie         f1515-1559 ~ slide         18 %      f1559     23/23      the planted foot slides 18.0 cm per frame across the pict~
+FAIL   milkman        f1560-1576   feet          23 cm     f1560     17/17      2 of 2 feet float, nearest Scene/MILK_VAN/Car_CarInside_0 
+FAIL   rookie         f1560-1576   body_in_mesh  54 %      f1560     17/17      inside Scene/TRUCK/Object_14: torso-hips-thighs 58 %, leg~
+FAIL   rookie         f1560-1576   slide         19.3 %    f1572     17/17      the planted foot slides 19.3 cm per frame across the pict~
+FAIL   milkman        f1515-1559 ~ body_in_mesh  8 %       f1515     8/23       inside Scene/MILK_VAN/Car_Car_0: torso-hips-thighs 9 %, l~
+WARN   milkman        f1470-1514   feet          23 cm     f1471     44/44      1 of 2 feet float, nearest Scene/MILK_VAN/Car_CarInside_0 
+WARN   milkman        f1560-1576   face_covered  1 rays    f1560     17/17      behind Scene/MILK_VAN/Car_Car_0 (6 cm in front of the fac~
+WARN   rookie         f1470-1514   slide         1.5 %     f1514     5/43       the planted foot slides 1.5 cm per frame across the pictu~
+WARN   milkman        f1515-1559 ~ slide         3.8 %     f1525     1/23       the planted foot slides 3.8 cm per frame across the pictu~
+9 FAIL, 4 WARN, 18 PASS (175.7 s, scan 121.5 s)  ->  /home/user/Ricksclip-/episodes/yellow-fire-trucks/s6/out/frame_checks.md, 9 crops in /home/user/Ricksclip-/episodes/yellow-fire-trucks/s6/out/frame_checks

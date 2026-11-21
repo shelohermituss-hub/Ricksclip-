@@ -6,7 +6,7 @@
   1920
  ],
  "words": "voice/words.json",
- "start": 1331,
+ "start": 1318,
  "end": 1470,
  "camera": {
   "v2": true
@@ -178,7 +178,7 @@
    "kit3d": {
     "envGround": "#5a4a66"
    },
-   "grass_keep": 0.4
+   "grass_keep": 0.0
   }
  },
  "props": {
@@ -232,8 +232,8 @@
   },
   "ball": {
    "pos": [
-    35.6,
-    -10.4,
+    35.75,
+    -10.6,
     0.11
    ],
    "kind": "the red ball"
@@ -248,7 +248,7 @@
   },
   "door": {
    "pos": [
-    17.096,
+    19.684,
     -2.75,
     1.3
    ],
@@ -333,8 +333,8 @@
    "who": "kid",
    "at": 1418,
    "pos": [
-    36.1,
-    -11.1,
+    36.35,
+    -10.35,
     0.0
    ],
    "move_s": 0.4,
@@ -351,7 +351,7 @@
    "at": 1445,
    "pos": [
     35.15,
-    -9.75,
+    -10.85,
     0.0
    ],
    "move_s": 0.25,
@@ -437,13 +437,25 @@
    "who": "rookie",
    "at": 1470,
    "pos": [
-    16.662,
+    29.669999999999998,
     -4.5,
     0.35
    ],
-   "move_s": 3.566666666666667,
+   "move_s": 1.8,
    "linear": true,
-   "note": "rides with the lemon truck (TXC linear)"
+   "note": "rides with the lemon truck (TXC run 1)"
+  },
+  {
+   "who": "rookie",
+   "at": 1524,
+   "pos": [
+    19.441000000000003,
+    -4.5,
+    0.35
+   ],
+   "move_s": 1.7666666666666666,
+   "linear": true,
+   "note": "rides with the lemon truck (TXC run 2)"
   },
   {
    "who": "rookie",
@@ -534,16 +546,16 @@
     {
      "at": 0,
      "pos": [
-      33.6,
-      -6.9,
+      30.5,
+      -6.6,
       1.2
      ],
      "aim": [
-      39.0,
-      -3.6,
-      1.45
+      37.0,
+      -3.2,
+      1.3
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "truck",
      "framing": "M",
      "purpose": "first-station anchor at f0 (S2 lesson): the copy bakes from frame 0",
@@ -551,61 +563,63 @@
      "creep": 0.0028
     },
     {
-     "at": 1331,
+     "at": 1318,
      "pos": [
-      33.6,
-      -6.9,
+      30.5,
+      -6.6,
       1.2
      ],
      "aim": [
-      39.0,
-      -3.6,
-      1.45
+      37.0,
+      -3.2,
+      1.3
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "truck",
      "framing": "M",
-     "purpose": "ROWS 40-41 (M00 living rest, 3/4 front from the north-west kerb): the pumper IN the last sun shaft, full red (\"RED\" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on \"GRAY\" 1368, the fender big",
-     "hold": 1.3,
+     "purpose": "ROWS 40-41 (M00 living rest from the take start 1318, 3/4 front from the park kerb, west of the shaft): the pumper IN the last sun shaft, full red (\"RED\" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on \"GRAY\" 1368, the fender big",
+     "hold": 1.8,
      "creep": 0.0028
     },
     {
-     "at": 1420,
+     "at": 1408,
      "pos": [
-      35.25,
-      -9.8,
-      0.16
+      35.3,
+      -9.85,
+      0.35
      ],
      "aim": [
-      36.25,
-      -11.6,
-      0.3
+      36.7,
+      -12.5,
+      0.4
      ],
      "lens": 20,
      "subject": "ball",
      "framing": "C",
      "purpose": "ROWS 42-43 (follow past the fence, M09 push-in low): the travel picks up the Kid's two-fisted throw (\"ball\" 1400); the lens lands in the grass, the ball stops by it, grey on \"VANISHES\"",
      "hold": 0.5,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 1.2
     },
     {
      "at": 1452,
      "pos": [
-      34.0,
-      -7.4,
-      2.4
+      34.4,
+      -9.0,
+      1.35
      ],
      "aim": [
-      36.9,
-      -14.6,
-      0.6
+      36.2,
+      -12.9,
+      0.15
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "lawn",
      "framing": "W",
      "purpose": "ROW 44 EXTREME \"in the evening GRASS\" (M05 rise): the lawn of lost grey things; the Kid steps over the ball (1445) and shrugs (1452)",
      "hold": 0.5,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 0.9
     }
    ]
   }

@@ -98,7 +98,7 @@ const pngRGB = (rows, W, H) => {   // rows = H scanlines of 1 filter byte + W*3 
   return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), ck('IHDR', ih), ck('IDAT', zlib.deflateSync(rows, { level: 1 })), ck('IEND', Buffer.alloc(0))]);
 };
 // 'fast' grab (2026-11-21, cloud): the page reads the WebGL picture with gl.readPixels and the drawn overlay with getImageData, and POSTs the raw bytes to this script's own server (no screenshot, no base64, no PNG in the page).
-// Node lays the overlay over the picture ("source over", as the compositor does), flips the rows (WebGL reads bottom-up) and writes an RGB PNG with the 'up' filter.
+// Node lays the overlay over the picture ("source over", with the compositor's rounding: premultiplied colour + picture * (256 - alpha) >> 8), flips the rows (WebGL reads bottom-up) and writes an RGB PNG with the 'up' filter.
 let TICKET = 0;
 const grabFast = async file => {
   const t = String(++TICKET), got = new Promise(ok => GRABS.set(t, ok)), T0 = Date.now();
@@ -112,11 +112,12 @@ const grabFast = async file => {
     const ov = cs.slice(1).filter(c => getComputedStyle(c).visibility !== 'hidden' && getComputedStyle(c).display !== 'none').map(c => c.getContext('2d', { willReadFrequently: true }).getImageData(0, 0, W, H).data);
     const q3 = performance.now(); await fetch('/grab/' + t, { method: 'POST', body: new Blob([new Uint32Array([W, H, ov.length]), window.__px, ...ov]) }); window.__gt = [q1 - q0, q2 - q1, q3 - q2, performance.now() - q3].map(Math.round); return ov.length; }, t), GT ?? 30000, 'fast grab');
   const b = await within(got, GT ?? 30000, 'fast grab upload'), W = b.readUInt32LE(0), H = b.readUInt32LE(4), N = W * H * 4, gl = b.subarray(12, 12 + N), ovs = Array.from({ length: n }, (_, i) => b.subarray(12 + N * (i + 1), 12 + N * (i + 2)));
+  if (has('--grab-raw')) fs.writeFileSync(file.replace(/\.png$/, '.raw'), b);   // debug: the bytes as the page sent them (u32 W, H, overlays; WebGL RGBA bottom-up; overlays RGBA top-down)
   const RW = W * 3 + 1, rows = Buffer.alloc(RW * H), cur = new Uint8Array(W * 3), prev = new Uint8Array(W * 3);
   for (let y = 0; y < H; y++) {
     const gs = (H - 1 - y) * W * 4;
     for (let x = 0, j = 0; x < W; x++, j += 3) { const gi = gs + x * 4; let r = gl[gi], g = gl[gi + 1], bl = gl[gi + 2];
-      for (const o of ovs) { const oi = (y * W + x) * 4, a = o[oi + 3]; if (a === 255) { r = o[oi]; g = o[oi + 1]; bl = o[oi + 2]; } else if (a) { r = (o[oi] * a + r * (255 - a) + 127) / 255 | 0; g = (o[oi + 1] * a + g * (255 - a) + 127) / 255 | 0; bl = (o[oi + 2] * a + bl * (255 - a) + 127) / 255 | 0; } }
+      for (const o of ovs) { const oi = (y * W + x) * 4, a = o[oi + 3]; if (a === 255) { r = o[oi]; g = o[oi + 1]; bl = o[oi + 2]; } else if (a) { const ia = 256 - a; r = Math.min(255, ((o[oi] * a + 127) / 255 | 0) + (r * ia >> 8)); g = Math.min(255, ((o[oi + 1] * a + 127) / 255 | 0) + (g * ia >> 8)); bl = Math.min(255, ((o[oi + 2] * a + 127) / 255 | 0) + (bl * ia >> 8)); } }   // the compositor's own rounding (found by matching its screenshots: 0 pixels differ)
       cur[j] = r; cur[j + 1] = g; cur[j + 2] = bl; }
     const o = y * RW; rows[o] = 2; for (let i = 0; i < W * 3; i++) rows[o + 1 + i] = (cur[i] - prev[i]) & 255; prev.set(cur);   // filter 2 = 'up'
   }
@@ -131,7 +132,10 @@ const grab = async (file, clear) => {
   fs.writeFileSync(file, Buffer.from(b64, 'base64'));
 };
 const TM = { draw: 0, grab: 0, n: 0 };   // GPU: where the time goes (draw = film.js builds and draws the frame; grab = reading it back and writing the PNG)
-const shot = async (f, file) => { for (let k = 0; ; k++) { try { const t0 = Date.now(); await page.evaluate(f => window.renderFrame(f), f); const t1 = Date.now(); await grab(file); TM.draw += t1 - t0; TM.grab += Date.now() - t1; TM.n++; return; }
+// fast grab: the draw waits for the GL work too (a 1-pixel readPixels returns when SwiftShader has finished the frame). In software mode that GL work is most of the frame's time; the screenshot grab
+// used to wait for it, so the time printed as "grab" was really drawing (measured 2026-11-21: 15-29 s of GL work after a 0.06-5 s JavaScript draw, then 0.2 s to read and write the pixels).
+const DRAW = GRAB === 'fast' ? f => page.evaluate(async f => { await window.renderFrame(f); const gl = document.querySelector('#stage canvas').getContext('webgl2') || document.querySelector('#stage canvas').getContext('webgl'); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4)); }, f) : f => page.evaluate(f => window.renderFrame(f), f);
+const shot = async (f, file) => { for (let k = 0; ; k++) { try { const t0 = Date.now(); await DRAW(f); const t1 = Date.now(); await grab(file); TM.draw += t1 - t0; TM.grab += Date.now() - t1; TM.n++; return; }
   catch (e) { if (k >= 1) throw e; console.log(`frame ${f} failed (${String(e.message).split('\n')[0].slice(0, 120)}); trying once more${crashed || page.isClosed() || !browser.isConnected() ? ' on a fresh page' : ''}`);   // retry once instead of killing the run
     if (crashed || page.isClosed() || !browser.isConnected()) { await page.close().catch(() => {}); await openPage(); } } } };
 console.log(`film: ${info.frames} frames at ${info.fps} fps, ${W}x${H}, cast ${info.cast.join(', ')}`);

@@ -16,6 +16,18 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — (S6) A one-place film copy that starts mid-film baked its first station as a flowed-throug (yellow-fire-trucks, S6) — FERMÉ
+- (S6) A one-place film copy that starts mid-film baked its first station as a flowed-through travel (camera at the exit at f1236). Cause: film_plan bakes from frame 0; the take's first station was the first point. Fix: make_film.py prepends a copy of the first station at at=0 in every film_<place>.json. Guard: proj_s6.py prints state/pos per key frame before rendering. Proof: f1236 = CAM_ENTRY rest (BOARD). FERME
+
+## 2026-11-21 — (S6) Two of my stations were silently flowed through (cross I f1470, park F): v2 wants 1 (yellow-fire-trucks, S6) — OUVERT
+- (S6) Two of my stations were silently flowed through (cross I f1470, park F): v2 wants 1.5 s + .25 s/m of travel, rows were 1-1.5 s apart. Fix: hand-set travel (flagged above). Guard: grep "flowed through" in logs/bake_<place>.txt. Proof: f1484 rest on the Milkman. OUVERT (camera lead: travel rule vs dense rows).
+
+## 2026-11-21 — (S6) Kit chrome at 0 (yellow-fire-trucks, S6) — FERMÉ
+- (S6) Kit chrome at 0.3 m read as a black disc (no env map). Fix: MeshMatcapMaterial ring + faint glass sheen over the asset rim (s6_world.js dal). Guard: comment in the code. Proof: f1233. FERME for the board; Blender final needs none.
+
+## 2026-11-21 — (S6) Key frames on a word must be ceil(word start x 30): 44 (yellow-fire-trucks, S6) — FERMÉ
+- (S6) Key frames on a word must be ceil(word start x 30): 44.38 s x 30 = 1331.4, so f1331 is still "bright". Guard: board.py prints the word on the frame.
+
 ## 2026-11-21 — plan_window (yellow-fire-trucks, S5) — FERMÉ
 - plan_window.py (from s2) read 4 % "at rest" on a 4.9 s hold. Cause: the f0 lead-in anchor shifted to f-969 in the window copy and its default creep (0.0028) carried into the window's first rest. Fix: plan_window drops stations before the window; the anchor gets creep 0. Guard: the comment in plan_window.py. Proof: at rest 4.3 % -> 41-59 %, real camera at 969 unchanged. FERMÉ
 

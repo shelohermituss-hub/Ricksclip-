@@ -1,0 +1,15 @@
+frame_checks: s6/film_park.json  122 of 1470 frames (rests f0-1238 f1318-1371 f1408-1424 f1452-1469)  cast kid, sceptic, milkman, rookie
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   sceptic        f1318-1371   body_in_mesh  73 %      f1323     53/53      inside Scene/TRUCK/Object_42: torso-hips-thighs 75 %, leg~
+FAIL   sceptic        f1318-1371   slide         4.1 %     f1371     52/52      the planted foot slides 4.1 cm per frame across the pictu~
+FAIL   kid            f1452-1469   body_in_mesh  10 %      f1460     18/18      inside pine_hollow/lite_tufts: torso-hips-thighs 6 %, leg~
+FAIL   kid            f1408-1424   face_covered  3 rays    f1408     11/17      behind pine_hollow/lite_tufts (312 cm in front of the fac~
+FAIL   kid            f1372-1407 ~ body_in_mesh  6 %       f1396     7/7        inside pine_hollow/lite_tufts: torso-hips-thighs 3 %, leg~
+FAIL   kid            f1425-1451 ~ body_in_mesh  14 %      f1445     7/8        inside pine_hollow/lite_tufts: torso-hips-thighs 9 %, leg~
+FAIL   kid            f1425-1451 ~ slide         27.7 %    f1449     6/14       the planted foot slides 27.7 cm per frame across the pict~
+FAIL   sceptic        f1372-1407 ~ body_in_mesh  53 %      f1372     5/5        inside Scene/TRUCK/Object_14: torso-hips-thighs 54 %, leg~
+FAIL   sceptic        f1372-1407 ~ slide         7.1 %     f1380     5/5        the planted foot slides 7.1 cm per frame across the pictu~
+FAIL   kid            f1408-1424   slide         20.3 %    f1420     5/17       the planted foot slides 20.3 cm per frame across the pict~
+WARN   kid            f1408-1424   body_in_mesh  5 %       f1421     17/17      inside pine_hollow/lawn_park: torso-hips-thighs 0 %, legs~
+WARN   kid            f1452-1469   slide         4.8 %     f1453     2/18       the planted foot slides 4.8 cm per frame across the pictu~
+10 FAIL, 2 WARN, 12 PASS (144.1 s, scan 115.2 s)  ->  /home/user/Ricksclip-/episodes/yellow-fire-trucks/s6/out/frame_checks.md, 10 crops in /home/user/Ricksclip-/episodes/yellow-fire-trucks/s6/out/frame_checks

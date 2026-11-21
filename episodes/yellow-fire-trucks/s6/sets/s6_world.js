@@ -13,11 +13,11 @@ const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x), cl = x => Math.ma
 // story numbers (plan metres, Z up). make_film.py uses the same (keep in step).
 export const S6 = {
   TY: -4.0,                                              // the south lane of Main (S3)
-  park: { tx0: 41.0, v: .085, f0: 1318, shaftX: 39.0, drain0: 1347, drain1: 1368, ball0: [36.6, -12.2, .11], ball1: [35.6, -10.4, .11], throwF: 1394, restF: 1412, greyF0: 1408, greyF1: 1414 },
+  park: { tx0: 41.0, v: .085, f0: 1318, shaftX: 39.0, drain0: 1347, drain1: 1368, ball0: [36.6, -12.2, .11], ball1: [35.75, -10.6, .11], throwF: 1394, restF: 1412, greyF0: 1408, greyF1: 1414 },
   cross: { vx: 24.3, vy: -7.6, tx0: 60.0, v: .384, f0: 1470, crate: [27.35, -7.55, .12], p4: 1556 },
 };
 export const TXP = f => S6.park.tx0 - S6.park.v * (f - S6.park.f0);        // red pumper centre x in the park take (linear: the driver card follows it with one linear act)
-export const TXC = f => S6.cross.tx0 - S6.cross.v * (f - S6.cross.f0);     // lemon truck centre x at the crossing (linear, same reason)
+export const TXC = f => f <= 1524 ? S6.cross.tx0 - .52 * (f - S6.cross.f0) : 31.92 - .193 * (f - 1524);     // lemon truck centre x: comes fast, eases past the crossing (two linear runs, the Rookie card follows each)
 function softTex(THREE) { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.4, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
 function shaftTex(THREE) { const c = document.createElement('canvas'); c.width = 64; c.height = 256; const g = c.getContext('2d'), gr = g.createLinearGradient(0, 0, 64, 0);
@@ -44,14 +44,18 @@ function lostThings(THREE, mat) {
   const tor = (R, r, x, y, z, ry = 0) => { const m = new THREE.Mesh(new THREE.TorusGeometry(R, r, 8, 24), mat); m.position.set(x, y, z); m.rotation.y = ry; return m; };
   const wagon = new THREE.Group(); wagon.add(box(.9, .18, .45, 0, .26, 0), box(.9, .05, .02, 0, .37, .22), box(.9, .05, .02, 0, .37, -.22));
   for (const [x, z] of [[-.32, .25], [.32, .25], [-.32, -.25], [.32, -.25]]) wagon.add(tor(.1, .025, x, .11, z));
-  const hnd = cyl(.012, .012, .8, -.75, .2, 0, 0, 1.2); wagon.add(hnd); wagon.userData.at = [34.6, -15.0, .02, 30];
+  const hnd = cyl(.012, .012, .8, -.75, .2, 0, 0, 1.2); wagon.add(hnd); wagon.userData.at = [34.5, -12.4, .02, 30];
   const kite = new THREE.Group(); const ks = new THREE.Shape(); ks.moveTo(0, .45); ks.lineTo(.3, 0); ks.lineTo(0, -.65); ks.lineTo(-.3, 0); ks.closePath();
-  const km = new THREE.Mesh(new THREE.ShapeGeometry(ks), mat); km.rotation.x = -Math.PI / 2 + .25; km.position.y = .06; kite.add(km, cyl(.006, .006, 1.05, 0, .07, -.1, Math.PI / 2 - .25)); kite.userData.at = [38.8, -14.2, .02, -40];
-  const boot = new THREE.Group(); boot.add(box(.13, .3, .13, 0, .15, 0), box(.28, .1, .13, .08, .05, 0)); boot.rotation.z = -1.35; boot.userData.at = [35.9, -16.6, .07, 70];
-  const can = new THREE.Group(); can.add(cyl(.13, .15, .26, 0, .13, 0), cyl(.02, .03, .36, .2, .22, 0, 0, -.9), cyl(.01, .01, .2, -.02, .33, 0, 0, Math.PI / 2)); can.userData.at = [38.2, -11.0, .02, 15];
+  const km = new THREE.Mesh(new THREE.ShapeGeometry(ks), mat); km.rotation.x = -Math.PI / 2 + .25; km.position.y = .06; kite.add(km, cyl(.006, .006, 1.05, 0, .07, -.1, Math.PI / 2 - .25)); kite.userData.at = [37.5, -11.3, .02, -40];
+  const boot = new THREE.Group(); boot.add(box(.13, .3, .13, 0, .15, 0), box(.28, .1, .13, .08, .05, 0)); boot.rotation.z = -1.35; boot.userData.at = [34.9, -12.6, .07, 70];
+  const can = new THREE.Group(); can.add(cyl(.13, .15, .26, 0, .13, 0), cyl(.02, .03, .36, .2, .22, 0, 0, -.9), cyl(.01, .01, .2, -.02, .33, 0, 0, Math.PI / 2)); can.userData.at = [36.9, -13.0, .02, 15];
   const tri = new THREE.Group(); tri.add(tor(.22, .03, 0, .22, 0), tor(.14, .025, .55, .14, .2), tor(.14, .025, .55, .14, -.2), cyl(.02, .02, .55, .28, .3, 0, 0, 1.1), box(.18, .04, .12, .32, .45, 0), cyl(.015, .015, .4, 0, .48, 0, Math.PI / 2));
-  tri.rotation.z = 1.4; tri.userData.at = [37.6, -18.4, .3, -20];
-  for (const o of [wagon, kite, boot, can, tri]) G.add(o); return G;
+  tri.rotation.z = 1.4; tri.userData.at = [35.9, -14.2, .3, -20];
+  for (const o of [wagon, kite, boot, can, tri]) G.add(o);
+  // EXTREME: the lawn is DOTTED with them: a second round of the same five shapes further out (clones, own spots)
+  const more = [[33.3, -13.6, 0, 110], [38.0, -12.6, 0, 200], [36.1, -15.8, 0, 15], [34.3, -15.0, 0, 250], [38.8, -14.8, 0, 60]];
+  [wagon, kite, boot, can, tri].forEach((o, i) => { const c = o.clone(); c.userData.at = [more[i][0], more[i][1], o.userData.at[2], more[i][3]]; G.add(c); });
+  return G;
 }
 
 export async function build(THREE, scene, film, ctx) {
@@ -82,7 +86,7 @@ export async function build(THREE, scene, film, ctx) {
     const a = V([P.shaftX - 7, 3, 3.2]), b = V([P.shaftX, S6.TY, .2]); beam.position.copy(a).lerp(b, .5); beam.lookAt(b); beam.rotateX(Math.PI / 2); beam.userData.noExport = true; scene.add(beam);
     const patch = new THREE.Mesh(new THREE.CircleGeometry(1, 32), new THREE.MeshBasicMaterial({ map: soft, color: '#ffb47a', transparent: true, opacity: .5, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false }));
     patch.scale.set(1.6, 4.2, 1); patch.rotation.x = -Math.PI / 2; patch.position.copy(V([P.shaftX, S6.TY, .02])); scene.add(patch);
-    const glint = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#fff1d8', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false })); glint.scale.setScalar(.5); scene.add(glint);
+    const glint = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#fff1d8', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false })); glint.scale.setScalar(.16); scene.add(glint);
     // the ball: red rubber by day, its OWN paint goes grey as it leaves the last sun patch (row 43); the lost things lie grey in the lawn (row 44)
     const ballMat = new THREE.MeshStandardMaterial({ map: ballTex(THREE), color: '#D3141C', roughness: .55 }), ball = new THREE.Mesh(new THREE.SphereGeometry(.11, 32, 20), ballMat); ball.castShadow = true; scene.add(ball);
     const greyMat = new THREE.MeshStandardMaterial({ color: '#4B4753', roughness: .8 }), lost = lostThings(THREE, greyMat);

@@ -232,8 +232,8 @@
   },
   "ball": {
    "pos": [
-    35.6,
-    -10.4,
+    35.75,
+    -10.6,
     0.11
    ],
    "kind": "the red ball"
@@ -248,7 +248,7 @@
   },
   "door": {
    "pos": [
-    17.096,
+    19.684,
     -2.75,
     1.3
    ],
@@ -333,8 +333,8 @@
    "who": "kid",
    "at": 1418,
    "pos": [
-    36.1,
-    -11.1,
+    36.35,
+    -10.35,
     0.0
    ],
    "move_s": 0.4,
@@ -351,7 +351,7 @@
    "at": 1445,
    "pos": [
     35.15,
-    -9.75,
+    -10.85,
     0.0
    ],
    "move_s": 0.25,
@@ -437,13 +437,25 @@
    "who": "rookie",
    "at": 1470,
    "pos": [
-    16.662,
+    29.669999999999998,
     -4.5,
     0.35
    ],
-   "move_s": 3.566666666666667,
+   "move_s": 1.8,
    "linear": true,
-   "note": "rides with the lemon truck (TXC linear)"
+   "note": "rides with the lemon truck (TXC run 1)"
+  },
+  {
+   "who": "rookie",
+   "at": 1524,
+   "pos": [
+    19.441000000000003,
+    -4.5,
+    0.35
+   ],
+   "move_s": 1.7666666666666666,
+   "linear": true,
+   "note": "rides with the lemon truck (TXC run 2)"
   },
   {
    "who": "rookie",
@@ -534,16 +546,16 @@
     {
      "at": 0,
      "pos": [
-      21.3,
-      -7.6,
+      20.4,
+      -4.6,
       1.95
      ],
      "aim": [
-      29.8,
-      -4.7,
-      1.75
+      30.0,
+      -7.2,
+      1.6
      ],
-     "lens": 24,
+     "lens": 20,
      "subject": "milkman",
      "framing": "M",
      "purpose": "first-station anchor at f0 (S2 lesson): the copy bakes from frame 0",
@@ -553,16 +565,16 @@
     {
      "at": 1470,
      "pos": [
-      21.3,
-      -7.6,
+      20.4,
+      -4.6,
       1.95
      ],
      "aim": [
-      29.8,
-      -4.7,
-      1.75
+      30.0,
+      -7.2,
+      1.6
      ],
-     "lens": 24,
+     "lens": 20,
      "subject": "milkman",
      "framing": "M",
      "purpose": "ROW 45 \"But yellow GREEN?\" (lands on the van, M00 rest): his look left, the head stops dead on \"green\"; one lemon dot far down Main",
@@ -572,21 +584,22 @@
     {
      "at": 1560,
      "pos": [
-      20.0,
-      -10.5,
+      20.6,
+      -10.9,
       0.5
      ],
      "aim": [
-      24.5,
-      -4.5,
-      1.7
+      22.6,
+      -4.6,
+      1.8
      ],
      "lens": 18,
      "subject": "truck",
      "framing": "W",
      "purpose": "ROWS 46-48 (M02 sink to a low hero angle): on the way the lemon truck comes, the brightest thing, Rookie at the wheel (\"COLOR\" 1523); POWER 4 \"the LONGEST\": it sails past, the Milkman toasts it",
      "hold": 0.4,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 1.5
     }
    ]
   }

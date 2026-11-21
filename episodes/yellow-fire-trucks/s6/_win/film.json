@@ -184,7 +184,12 @@
     "painters": false,
     "leaves": 0
    },
-   "mode": "dal"
+   "mode": "dal",
+   "headlamp": [
+    -2.68,
+    8.676,
+    1.4300000000000002
+   ]
   },
   "eye": {
    "set": "lamproom",
@@ -279,7 +284,7 @@
    "kit3d": {
     "envGround": "#5a4a66"
    },
-   "grass_keep": 0.4
+   "grass_keep": 0.0
   },
   "cross": {
    "set": "s6_world",
@@ -359,8 +364,8 @@
   },
   "ball": {
    "pos": [
-    35.6,
-    -10.4,
+    35.75,
+    -10.6,
     0.11
    ],
    "kind": "the red ball"
@@ -375,7 +380,7 @@
   },
   "door": {
    "pos": [
-    17.096,
+    19.684,
     -2.75,
     1.3
    ],
@@ -460,8 +465,8 @@
    "who": "kid",
    "at": 216,
    "pos": [
-    36.1,
-    -11.1,
+    36.35,
+    -10.35,
     0.0
    ],
    "move_s": 0.4,
@@ -478,7 +483,7 @@
    "at": 243,
    "pos": [
     35.15,
-    -9.75,
+    -10.85,
     0.0
    ],
    "move_s": 0.25,
@@ -564,13 +569,25 @@
    "who": "rookie",
    "at": 268,
    "pos": [
-    16.662,
+    29.669999999999998,
     -4.5,
     0.35
    ],
-   "move_s": 3.566666666666667,
+   "move_s": 1.8,
    "linear": true,
-   "note": "rides with the lemon truck (TXC linear)"
+   "note": "rides with the lemon truck (TXC run 1)"
+  },
+  {
+   "who": "rookie",
+   "at": 322,
+   "pos": [
+    19.441000000000003,
+    -4.5,
+    0.35
+   ],
+   "move_s": 1.7666666666666666,
+   "linear": true,
+   "note": "rides with the lemon truck (TXC run 2)"
   },
   {
    "who": "rookie",
@@ -719,7 +736,7 @@
      "subject": "ring",
      "framing": "C",
      "purpose": "ROW 36 (match): CAM_ENTRY, the chrome entry ring fills 89 % of the width, the small pupil far inside it; fly forward through the ring",
-     "hold": 0,
+     "hold": 0.2,
      "creep": 0.0028
     },
     {
@@ -769,61 +786,63 @@
    "place": "park",
    "stations": [
     {
-     "at": 129,
+     "at": 116,
      "pos": [
-      33.2,
-      1.6,
+      30.5,
+      -6.6,
       1.2
      ],
      "aim": [
-      39.0,
-      -4.0,
-      1.35
+      37.0,
+      -3.2,
+      1.3
      ],
-     "lens": 22,
+     "lens": 18,
      "subject": "truck",
      "framing": "M",
-     "purpose": "ROWS 40-41 (M00 living rest, 3/4 front from the north-west kerb): the pumper IN the last sun shaft, full red (\"RED\" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on \"GRAY\" 1368, the fender big",
-     "hold": 1.3,
+     "purpose": "ROWS 40-41 (M00 living rest from the take start 1318, 3/4 front from the park kerb, west of the shaft): the pumper IN the last sun shaft, full red (\"RED\" 1331), rolls out of it toward the lens, the paint drains nose to tail, grey on \"GRAY\" 1368, the fender big",
+     "hold": 1.8,
      "creep": 0.0028
     },
     {
-     "at": 212,
+     "at": 206,
      "pos": [
-      35.25,
-      -9.8,
-      0.16
+      35.3,
+      -9.85,
+      0.35
      ],
      "aim": [
-      36.25,
-      -11.6,
-      0.3
+      36.7,
+      -12.5,
+      0.4
      ],
      "lens": 20,
      "subject": "ball",
      "framing": "C",
      "purpose": "ROWS 42-43 (follow past the fence, M09 push-in low): the travel picks up the Kid's two-fisted throw (\"ball\" 1400); the lens lands in the grass, the ball stops by it, grey on \"VANISHES\"",
      "hold": 0.5,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 1.2
     },
     {
      "at": 250,
      "pos": [
-      34.3,
-      -7.7,
-      2.6
+      34.4,
+      -9.0,
+      1.35
      ],
      "aim": [
-      36.4,
-      -13.6,
-      0.2
+      36.2,
+      -12.9,
+      0.15
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "lawn",
      "framing": "W",
      "purpose": "ROW 44 EXTREME \"in the evening GRASS\" (M05 rise): the lawn of lost grey things; the Kid steps over the ball (1445) and shrugs (1452)",
      "hold": 0.5,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 0.9
     }
    ]
   },
@@ -834,16 +853,16 @@
     {
      "at": 268,
      "pos": [
-      21.6,
-      -7.25,
+      20.4,
+      -4.6,
       1.95
      ],
      "aim": [
       30.0,
-      -4.8,
-      1.75
+      -7.2,
+      1.6
      ],
-     "lens": 32,
+     "lens": 20,
      "subject": "milkman",
      "framing": "M",
      "purpose": "ROW 45 \"But yellow GREEN?\" (lands on the van, M00 rest): his look left, the head stops dead on \"green\"; one lemon dot far down Main",
@@ -853,21 +872,22 @@
     {
      "at": 358,
      "pos": [
-      20.0,
-      -10.5,
+      20.6,
+      -10.9,
       0.5
      ],
      "aim": [
-      24.5,
-      -4.5,
-      1.7
+      22.6,
+      -4.6,
+      1.8
      ],
      "lens": 18,
      "subject": "truck",
      "framing": "W",
      "purpose": "ROWS 46-48 (M02 sink to a low hero angle): on the way the lemon truck comes, the brightest thing, Rookie at the wheel (\"COLOR\" 1523); POWER 4 \"the LONGEST\": it sails past, the Milkman toasts it",
      "hold": 0.4,
-     "creep": 0.0028
+     "creep": 0.0028,
+     "travel": 1.5
     }
    ]
   }
