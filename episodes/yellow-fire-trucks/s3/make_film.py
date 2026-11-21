@@ -47,7 +47,7 @@ stations = [
     st(580, [22.7, -3.4, 0.85], [24.7, -5.6, 1.05], 22, 'bumpers', 'M', 'ROW 16 POWER 2 "hit" + "crossings" (lands low on the bump, then RESTS): the two bumpers, the hubcap past the lens, the Milkman frozen behind his windscreen, then the bottle check', hold=0.35),
     st(640, [20.9, -2.4, 1.5], [25.2, -5.1, 2.15], 18, 'milkmanDriver', 'M', 'ROWS 17-18 (the rise lands on a picture of both): the four sirens with sound rings and the beacon row at the top, the Milkman small behind his windscreen at the bottom, looking up', hold=0.4),
     st(694, [21.9, -1.8, 0.55], [24.6, -4.0, 1.2], 24, 'milkman', 'W', 'ROWS 19-20 (low angle, living rest): the Milkman small in front of the huge truck nose, the Sceptic at the wheel behind the windscreen; "I never saw it" arms wide, eyes to the lens', hold=0.7),
-    st(752, [22.5, -2.2, 0.22], [25.0, -4.3, 2.7], 16, 'truck', 'W', 'ROW 21 EXTREME "it" (the tilt lands on the word): low and wide, the truck he never saw fills the frame and goes out of the top', hold=0.5),
+    st(752, [23.0, -1.9, 0.2], [25.3, -4.4, 3.3], 16, 'truck', 'W', 'ROW 21 EXTREME "it" (the tilt lands on the word): low and wide, the truck he never saw fills the frame and goes out of the top', hold=0.5),
 ]
 props = {
     'truck': dict(pos=[TXH, TY, 1.4], kind='the red pumper at dusk'),
