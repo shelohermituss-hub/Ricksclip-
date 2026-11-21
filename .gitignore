@@ -78,3 +78,11 @@ episodes/_style_test/look/prev/*_raw*
 episodes/_style_test/look/final/*_raw*
 episodes/_style_test/look/prev/*.log
 episodes/_style_test/look/final/*.log
+# asset library: binaries are rebuilt by the build scripts listed in library/LIBRARY.md (only scripts, json, md, previews committed)
+library/**/*.blend
+library/**/*.blend1
+library/**/*.glb
+library/**/*.gltf
+library/**/*.fbx
+library/**/*.bin
+library/**/downloads/
