@@ -1,0 +1,22 @@
+he_spray [side]  twos 0   linear 0  stops 4 no_settle 0  creep 0  dps 25  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":14.06,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap grab "grabbed" f19             f19-106  16 / 45 / 70 / 83 / 87 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap judge "lemon" f130             f130-137  14 / 40 / 69 / 87 / 95 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold judged, dead still               f152-175  max 0 px/f
+   hold listens, dead still              f198-261  max 0 px/f
+   hold back at work, dead still         f284-288  max 0 px/f
+ch_burst [34]  twos 0   linear 0  stops 5 no_settle 0  creep 0  dps 24.4  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":15.69,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap jump "exploded" f172           f172-180  19 / 45 / 67 / 84 / 93 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap point "giant" f262             f262-268  16 / 48 / 79 / 93 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold puffed up                        f285-288  max 0 px/f
+rk_frozen [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 27.3  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold frozen, helmet over the eyes     f0-151  max 0 px/f
+rk_jump [34]  twos 0   linear 0  stops 6 no_settle 0  creep 0  dps 14  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold brim up                          f30-35  max 0 px/f
+   hold to the Chief                     f62-71  max 0 px/f
+ot_frozen [34]  twos 0   linear 0  stops 3 no_settle 0  creep 0  dps 15.4  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold frozen                           f0-173  max 0 px/f
+   hold still                            f195-224  max 0 px/f
+   hold still                            f253-288  max 0 px/f
+sc_crossed [34]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 24.8  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold stone                            f0-174  max 0 px/f
+   hold stone                            f203-288  max 0 px/f

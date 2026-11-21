@@ -1,0 +1,4 @@
+f_00058.png 5/7 PASS G1_edge (0.2515,) PASS | G2_shapes (1110,) PASS | G3_empty (6.2, 1) PASS | G4_chroma (52.6,) PASS | G5_layers (3,) PASS | G6_fine (1.01, 3.749) FAIL | G7_haze (0.7,) FAIL
+f_00115.png 5/7 PASS G1_edge (0.2942,) PASS | G2_shapes (1292,) PASS | G3_empty (2.1, 1) PASS | G4_chroma (57.6,) PASS | G5_layers (3,) PASS | G6_fine (1.229, 3.855) FAIL | G7_haze (4.12,) FAIL
+f_00173.png 5/7 PASS G1_edge (0.1936,) PASS | G2_shapes (933,) PASS | G3_empty (10.4, 3) PASS | G4_chroma (5.8,) FAIL | G5_layers (3,) PASS | G6_fine (0.546, 4.833) PASS | G7_haze (-33.91,) FAIL
+f_00230.png 5/7 PASS G1_edge (0.2471,) PASS | G2_shapes (1607,) PASS | G3_empty (12.5, 5) PASS | G4_chroma (28.0,) PASS | G5_layers (3,) PASS | G6_fine (1.094, 3.801) FAIL | G7_haze (-8.87,) FAIL

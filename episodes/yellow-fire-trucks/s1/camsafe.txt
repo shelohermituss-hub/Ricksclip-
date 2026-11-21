@@ -1,0 +1,2 @@
+CAMERA-SAFE  s1  camsafe on  1288 checks: PASS 1288  WARN 0  FAIL 0
+report -> /home/user/Ricksclip-/episodes/yellow-fire-trucks/s1/out/plan/camsafe_report.json

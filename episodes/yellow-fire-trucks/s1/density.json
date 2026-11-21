@@ -1,0 +1,130 @@
+{
+ "frames/f_00058.png": {
+  "G1_edge": [
+   0.2515,
+   true
+  ],
+  "G2_shapes": [
+   1110,
+   true
+  ],
+  "G3_empty": [
+   6.2,
+   1,
+   true
+  ],
+  "G4_chroma": [
+   52.6,
+   true
+  ],
+  "G5_layers": [
+   3,
+   true
+  ],
+  "G6_fine": [
+   1.01,
+   3.749,
+   false
+  ],
+  "G7_haze": [
+   0.7,
+   false
+  ]
+ },
+ "frames/f_00115.png": {
+  "G1_edge": [
+   0.2942,
+   true
+  ],
+  "G2_shapes": [
+   1292,
+   true
+  ],
+  "G3_empty": [
+   2.1,
+   1,
+   true
+  ],
+  "G4_chroma": [
+   57.6,
+   true
+  ],
+  "G5_layers": [
+   3,
+   true
+  ],
+  "G6_fine": [
+   1.229,
+   3.855,
+   false
+  ],
+  "G7_haze": [
+   4.12,
+   false
+  ]
+ },
+ "frames/f_00173.png": {
+  "G1_edge": [
+   0.1936,
+   true
+  ],
+  "G2_shapes": [
+   933,
+   true
+  ],
+  "G3_empty": [
+   10.4,
+   3,
+   true
+  ],
+  "G4_chroma": [
+   5.8,
+   false
+  ],
+  "G5_layers": [
+   3,
+   true
+  ],
+  "G6_fine": [
+   0.546,
+   4.833,
+   true
+  ],
+  "G7_haze": [
+   -33.91,
+   false
+  ]
+ },
+ "frames/f_00230.png": {
+  "G1_edge": [
+   0.2471,
+   true
+  ],
+  "G2_shapes": [
+   1607,
+   true
+  ],
+  "G3_empty": [
+   12.5,
+   5,
+   true
+  ],
+  "G4_chroma": [
+   28.0,
+   true
+  ],
+  "G5_layers": [
+   3,
+   true
+  ],
+  "G6_fine": [
+   1.094,
+   3.801,
+   false
+  ],
+  "G7_haze": [
+   -8.87,
+   false
+  ]
+ }
+}

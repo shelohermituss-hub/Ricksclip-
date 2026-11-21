@@ -260,11 +260,12 @@ box('tower_beam', .2, 1.6, .2, -14.1, 24.4, 14.9, M['shadowpaint'], .5); cyl('to
 for z in range(1, 14): box('tower_rung', .5, .04, .04, -16.25, 26.2, z * 1.0, M['steel'], .5)
 for dx in (-.25, .25): box('tower_rail', .05, .05, 14.2, -16.25 + 0 * dx, 26.2 + dx, .2, M['steel'], .5)
 # yard dressing: the white YARD LINE (bay 2's centre guide, row 57), oil under bay 2, tyre tracks, lemon overspray + boot prints, drain, bins, crates
-quad('keep_clear', 7.0, 1.1, .5, 2.6, .003, 180, DECAL('keepclear'), flat=True)
+quad('keep_clear', 7.0, 1.1, .5, 2.6, .003, 0, DECAL('keepclear'), flat=True)   # FIX 1: yaw 0 = reads upright for every plan camera (they all look north, from the shop/street to the yard)
 pm_ = mat('puddle_wet', png='puddle', alpha=True, rough=.03, coat=1.); quad('puddle', 2.2, 1.6, -1.0, 10.3, .149, 20, pm_, flat=True)
 for (x, y, r) in ((-9, 12, 0), (2, 9, 40), (10, 15, 80), (-5, 19, 10), (12, 9, 120)): quad('cracks', 4., 4., x, y, .148, r, DECAL('cracks'), flat=True)
 for k in range(5): cyl('hose_coil', .42 - k * .035, .07, -11.0 + 0, 13.0, .14 + k * .07, mat('hose_canvas', col='#d9d2bd', rough=.85), 20)
-quad('yard_line', .55, 11.2, 4.2, 13.4, .147, 0, DECAL('yardline'), flat=True); anchor('yard_line_start', 4.2, 7.9, .14); anchor('yard_line_end', 4.2, 18.55, .14)
+# FIX 1: one clean 14 cm ruler line (row 57). (A '#' put mid-line here once dropped the two anchors: comments go on their own line.)
+quad('yard_line', .14, 11.2, 4.2, 13.4, .147, 0, DECAL('yardline'), flat=True); anchor('yard_line_start', 4.2, 7.9, .14); anchor('yard_line_end', 4.2, 18.55, .14)
 quad('oil_bay2', 2.6, 2.6, 4.2, 20.0, .148, 0, DECAL('oil'), flat=True); quad('oil_bay2b', 1.8, 1.8, 3.6, 23.5, .03, 40, DECAL('oil'), flat=True)
 quad('tracks_bay2', 3.0, 11., 4.2, 13.5, .146, 0, DECAL('tracks'), flat=True)
 quad('lemon_spray', 9., 4.5, -4.2, 11.5, .149, 0, DECAL('spray'), flat=True); quad('lemon_boot', 1.2, 2.8, 6.8, 18.4, .15, 25, DECAL('boot'), flat=True)
@@ -345,9 +346,14 @@ cyl('lamp_post', .12, 7.0, 27.6, -8.4, .15, M['ink'], 14, r2=.08); cyl('lamp_pos
 beam('lamp_arm', (27.6, -8.4, 7.0), (25.4, -7.0, 7.4), .05, M['ink'], 8)
 cyl('lamp_head', .38, .22, 25.3, -6.95, 7.2, M['ink'], 16, r2=.12); cyl('lamp_globe', .3, .14, 25.3, -6.95, 7.08, M['lampglass'], 16, r2=.32)
 anchor('street_lamp', 25.3, -6.95, 7.05)
-cyl('blade_post', .05, 3.2, 27.2, -7.6, .15, M['steel'], 10)
-quad('blade_main', 1.1, .17, 27.2, -7.6, 3.2, 0, SIGN('blade_main', .4)); quad('blade_main_b', 1.1, .17, 27.2, -7.59, 3.2, 180, SIGN('blade_main', .4))
-quad('blade_elm', 1.1, .17, 27.2, -7.6, 3.42, 90, SIGN('blade_elm', .4)); quad('blade_elm_b', 1.1, .17, 27.21, -7.6, 3.42, 270, SIGN('blade_elm', .4))
+cyl('blade_post', .05, 3.6, 27.2, -7.6, .15, M['steel'], 10); cyl('blade_post_cap', .065, .06, 27.2, -7.6, 3.75, M['steel'], 10)
+# FIX 1: blades 1.5 x .3 m (read at a medium shot), retro-reflective letters: the image also drives Emission (0 by day; town_api.set_light lifts it at dusk)
+for bn in ('blade_main', 'blade_elm'):
+    bm_ = SIGN(bn, .4); bnt = bm_.node_tree; btx = [n for n in bnt.nodes if n.type == 'TEX_IMAGE'][0]; bnt.links.new(btx.outputs[0], bnt.nodes['Principled BSDF'].inputs['Emission Color'])
+quad('blade_main', 1.5, .3, 27.2, -7.62, 3.2, 0, SIGN('blade_main', .4)); quad('blade_main_b', 1.5, .3, 27.2, -7.58, 3.2, 180, SIGN('blade_main', .4))
+box('blade_main_rim', 1.52, .03, .32, 27.2, -7.6, 3.04, M['navy'], .5)
+quad('blade_elm', 1.5, .3, 27.22, -7.6, 3.55, 90, SIGN('blade_elm', .4)); quad('blade_elm_b', 1.5, .3, 27.18, -7.6, 3.55, 270, SIGN('blade_elm', .4))
+box('blade_elm_rim', .03, 1.52, .32, 27.2, -7.6, 3.39, M['navy'], .5)
 asset('fire_hydrant', keep=['fire_hydrant'], drop=['aged']); tint_asset('fire_hydrant', '#c9cdd2', .85); put('fire_hydrant', 15.6, 5.7, .15, 0, 1.)
 box('mailbox', .45, .55, .7, 15.4, -5.9, .9, M['navy'], .5); box('mailbox_leg', .1, .1, .75, 15.4, -5.9, .15, M['ink'], .5)
 # telephone poles: south side of Main, every 30 m, with two crossarms, insulators, sagging wires (catenaries) and a guy wire at the end
@@ -393,8 +399,8 @@ picket_run(28.6, 62., FY, True); picket_run(-8.6, -42., 28.6, False)
 anchor('park_fence_gap', GAP, FY, .1)
 asset('island_tree_02'); TPLS['island_tree_02']['heavy'] = 1
 put('island_tree_02', 40.0, -20.0, .08, 30, 3.1, tag='big_tree')               # the park's one big tree (about 10.5 m)
-beam('swing_rope', (38.2, -19.3, 4.4), (38.2, -19.3, .55), .015, M['pole'], 4); beam('swing_rope', (38.2, -18.7, 4.4), (38.2, -18.7, .55), .015, M['pole'], 4)
-box('swing_seat', .25, .75, .05, 38.2, -19.0, .5, M['floor'], .3); box('swing_branch_hide', .01, .01, .01, 38.2, -19, 4.4, M['bark'], .5)
+beam('swing_rope', (38.2, -19.3, 4.4), (38.2, -19.3, .55), .024, M['pole'], 6); beam('swing_rope', (38.2, -18.7, 4.4), (38.2, -18.7, .55), .024, M['pole'], 6)   # FIX 1: ropes thicker, seat pale (reads against the dark lawn)
+box('swing_seat', .28, .8, .06, 38.2, -19.0, .5, mat('swing_seat', col='#d8cdb4', rough=.7), .3); box('swing_branch_hide', .01, .01, .01, 38.2, -19, 4.4, M['bark'], .5)
 quad('swing_worn', 1.6, 1.0, 38.2, -19.0, .085, 90, DECAL('oil'), flat=True)
 anchor('park_swing', 38.2, -19.0, .1); anchor('park_tree', 40.0, -20.0, .08)
 put('painted_wooden_bench', 33.0, -13.0, .08, 200, 1.); anchor('park_bench', 33.0, -13.0, .08)
@@ -499,6 +505,49 @@ for i in range(14):
 for i in range(60):                                                     # tree clumps on the hills (scaled bushes read as woods at 200 m)
     a = rnd.uniform(0, 6.283); r_ = rnd.uniform(150, 215); put('bush', r_ * math.cos(a), r_ * math.sin(a), 0, rnd.uniform(0, 360), rnd.uniform(5, 9))
 
+# ================================================================== FIX 1: AIR LIFE (collection AIR, Blender only, not in the GLB: the kit makes its own in town.js)
+# air_am_*: dust motes in the morning sun over the yard and in the shop's lamp light; air_du_*: moths at the street, wall and porch lamps, a soft mist ball at the
+# street lamp. town_api.set_light shows the layer of its kind only. Each layer has a NOISE F-modifier on its location (drifts in a film, still in a single frame).
+AIR = coll('AIR'); rair = random.Random(1970)
+def specks(name, n, box_, r, m, seed_off=0):
+    bm = bmesh.new()
+    for k in range(n):
+        p = Vector([rair.uniform(box_[0][i], box_[1][i]) for i in range(3)]); s_ = r * rair.uniform(.6, 1.4)
+        bmesh.ops.create_icosphere(bm, subdivisions=1, radius=s_, matrix=Matrix.Translation(p))
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); me.materials.append(m); o = bpy.data.objects.new(name, me); AIR.objects.link(o); return o
+def moths(name, n, c, rad, m):
+    bm = bmesh.new()
+    for k in range(n):
+        a, e = rair.uniform(0, 6.283), rair.uniform(-.9, .6); d_ = rad * rair.uniform(.35, 1.)
+        p = Vector(c) + Vector((math.cos(a) * math.cos(e), math.sin(a) * math.cos(e), math.sin(e))) * d_; yaw = rair.uniform(0, 6.283); w = .028
+        R = Matrix.Rotation(yaw, 3, 'Z') @ Matrix.Rotation(rair.uniform(-.5, .5), 3, 'X')
+        vs = [bm.verts.new(p + R @ Vector(v)) for v in ((0, -w * .6, 0), (w, 0, w * .15), (0, w * .6, 0), (-w, 0, w * .15))]; bm.faces.new(vs)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free(); me.materials.append(m); o = bpy.data.objects.new(name, me); AIR.objects.link(o); return o
+def drift(o, amp, scale, phase):
+    o.keyframe_insert('location', frame=1); act = o.animation_data.action
+    try:
+        from bpy_extras import anim_utils; fcs = anim_utils.action_get_channelbag_for_slot(act, o.animation_data.action_slot).fcurves   # Blender 5: layered actions
+    except Exception: fcs = act.fcurves
+    for fc in fcs:
+        md = fc.modifiers.new('NOISE'); md.strength = amp; md.scale = scale; md.phase = phase + fc.array_index * 7
+dust_m = mat('air_dust', col='#fff6e6', rough=.5, emit='#fff1d8'); dust_m.node_tree.nodes['Principled BSDF'].inputs['Emission Strength'].default_value = .8
+moth_m = mat('air_moth', col='#d9ccb0', rough=.8)
+specks('air_am_dust_yard', 900, ((-9, 2.5, .3), (13, 21, 4.5)), .006, dust_m)
+specks('air_am_dust_shop', 160, ((-5.5, -12.5, .9), (3.5, -8.0, 3.6)), .0035, dust_m)
+for i, (c, n, rad) in enumerate(((ANCH['street_lamp'], 10, 1.3), (ANCH['street_lamp'], 10, 1.0), (ANCH['wall_lamp'], 8, .8), (ANCH['wall_lamp'], 6, .6), ([ANCH['station_door'][0] + 1.9, ANCH['station_door'][1], 2.4], 6, .5))):
+    drift(moths('air_du_moths_%d' % i, n, (c[0], c[1], c[2] - .25), rad, moth_m), .12, 6 + i, i * 13)
+mist_m = bpy.data.materials.new('air_mist'); mist_m.use_nodes = True; mn = mist_m.node_tree.nodes; ml = mist_m.node_tree.links
+for n_ in list(mn): mn.remove(n_)
+mo = mn.new('ShaderNodeOutputMaterial'); vs_ = mn.new('ShaderNodeVolumePrincipled'); vs_.inputs['Color'].default_value = lin('#ffc888'); vs_.inputs['Anisotropy'].default_value = .5
+tco = mn.new('ShaderNodeTexCoord'); gr = mn.new('ShaderNodeTexGradient'); gr.gradient_type = 'SPHERICAL'; ml.new(tco.outputs['Object'], gr.inputs['Vector'])
+mth = mn.new('ShaderNodeMath'); mth.operation = 'MULTIPLY'; mth.inputs[1].default_value = .06; ml.new(gr.outputs['Fac'], mth.inputs[0]); ml.new(mth.outputs[0], vs_.inputs['Density']); ml.new(vs_.outputs[0], mo.inputs['Volume'])
+for nm_, c, r_ in (('air_du_mist_street', ANCH['street_lamp'], 2.6), ('air_du_mist_wall', ANCH['wall_lamp'], 1.4)):
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=1., location=(c[0], c[1], c[2] - .6 * r_ / 2.6)); o = bpy.context.object; o.name = nm_; o.scale = (r_, r_, r_ * .8); o.data.materials.append(mist_m)
+    for cc in o.users_collection: cc.objects.unlink(o)
+    AIR.objects.link(o)
+drift(bpy.data.objects['air_am_dust_yard'], .25, 40, 3); drift(bpy.data.objects['air_am_dust_shop'], .1, 30, 9)
+print('AIR_LAYERS', [o.name for o in AIR.objects])
+
 # ================================================================== merge the coded parts by material (fewer draw calls in the kit, the same look)
 groups = {}
 for o in list(TOWN.objects):
@@ -513,10 +562,13 @@ print('MERGED', len(groups), 'material groups; objects now', len(TOWN.objects))
 TA.build_lights(SC, ANCH)
 TA.link_trucks(SC, os.path.join(AP, 'out', 'truck.blend'), ANCH)
 TA.set_light(SC, 'am')
+NEED = {'yard_centre', 'bay1_truck', 'bay2_truck', 'station_door', 'yard_line_start', 'yard_line_end', 'shop_window', 'shop_chair', 'crossing_stop_bar', 'street_lamp', 'park_swing',
+        'park_fence_gap', 'water_tower', 'wall_lamp', 'bench', 'hose_reel', 'yard_drain', 'shop_lamp', 'shop_shingle', 'park_bench', 'park_tree'}   # FIX 1 guard: the 21 anchors the stretches use
+assert NEED <= set(ANCH), 'ANCHORS MISSING %s' % sorted(NEED - set(ANCH))
 meta = dict(anchors=ANCH, frame='metres, X east, Y north, Z up (plan frame)', light=TA.KIT_LIGHT)
 tot = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in TOWN.objects if o.type == 'MESH')
 print('TOWN_TRIS_BLEND', tot, 'OBJECTS', len(TOWN.objects))
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'town.blend'), relative_remap=True)
+bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'town_tmp.blend'), relative_remap=True, copy=True); os.replace(os.path.join(OUT, 'town_tmp.blend'), os.path.join(OUT, 'town.blend'))   # FIX 1: tmp + rename (stretch builders read it live)
 # GLB: the same objects; heavy templates (the 1 M-triangle tree) swapped for a decimated copy for the kit only
 swap = {}
 for nm, t in TPLS.items():
@@ -528,14 +580,15 @@ for o in TOWN.objects:
     if o.type == 'MESH' and o.data.name in swap: o.data = swap[o.data.name]
 for m in bpy.data.materials:                                 # the GLB must carry the emissive maps: strength 1 at export (the kit sets the level per light kind)
     b_ = m.node_tree.nodes.get('Principled BSDF') if m.node_tree else None
-    if b_ and (m.name.startswith('win_lit') or m.name.startswith('lamp_')): b_.inputs['Emission Strength'].default_value = 1.
+    if b_ and (m.name.startswith('win_lit') or m.name.startswith('lamp_') or m.name.startswith('sign_blade')): b_.inputs['Emission Strength'].default_value = 1.
 for o in bpy.context.scene.objects: o.select_set(False)
 for o in TOWN.objects: o.select_set(True)
-bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'town.glb'), export_format='GLB', use_selection=True, export_apply=True, export_lights=False, export_cameras=False,
+bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'town_tmp.glb'), export_format='GLB', use_selection=True, export_apply=True, export_lights=False, export_cameras=False,
                           export_extras=True, export_image_format='JPEG', export_image_quality=82)
 gt = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in TOWN.objects if o.type == 'MESH')
 uq = {o.data.name: sum(len(p.vertices) - 2 for p in o.data.polygons) for o in TOWN.objects if o.type == 'MESH'}; print('GLB_UNIQUE_TRIS', sum(uq.values()), sorted(uq.items(), key=lambda kv: -kv[1])[:8])
 meta['glb_tris'] = gt; meta['blend_tris'] = tot
-json.dump(meta, open(os.path.join(OUT, 'town_meta.json'), 'w'), indent=1)
+os.replace(os.path.join(OUT, 'town_tmp.glb'), os.path.join(OUT, 'town.glb'))
+json.dump(meta, open(os.path.join(OUT, 'town_meta_tmp.json'), 'w'), indent=1); os.replace(os.path.join(OUT, 'town_meta_tmp.json'), os.path.join(OUT, 'town_meta.json'))
 print('GLB_TRIS', gt, 'GLB_MB %.1f' % (os.path.getsize(os.path.join(OUT, 'town.glb')) / 1e6))
 print('TOWN_DONE')

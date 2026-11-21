@@ -24,3 +24,11 @@ Ready-made = Poly Haven CC0 (no BlenderKit purchase). "coded" = built in bl_town
 
 ## Stand-ins still coded that should become a ready-made model later (if a free one is found)
 Houses (a CC0/CC-BY 1970s clapboard house kit), the water tower (a free CC-BY water tower), telephone poles (Poly Haven modular_electricity_poles is a modern style: not used), the street lamp head (Poly Haven street lamps are modern: not used).
+
+## FIX 1 (2026-11-21): air life now BUILT (was named only)
+| layer | Blender (town.blend, collection AIR; town_api.set_light shows the layer of its kind) | kit (town.js airLife, places.<name>.air) | motion |
+|---|---|---|---|
+| AM dust motes | air_am_dust_yard (900 specks, 6 mm, yard sun box), air_am_dust_shop (160, lamp light) | 700 + 140 additive points | Blender: NOISE F-modifier on location (slow drift); kit: per-frame sine drift |
+| DU moths | air_du_moths_0..4 (36 pale wing quads at street, wall, porch lamps) | 26 + 16 fluttering points | Blender: NOISE per group, own phase; kit: flutter 11-17 Hz on a slow orbit |
+| DU lamp mist | air_du_mist_street / _wall (volume spheres, spherical density falloff: no edge) | 2 additive warm sprites | still (glow) |
+Stretch builders: nothing to add; to drop a layer in one shot hide the AIR object (Blender) or set places.<name>.air = 0 (kit).

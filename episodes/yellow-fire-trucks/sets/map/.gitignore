@@ -1,0 +1,6 @@
+out/
+build/
+logs/
+proof/kit/stills/
+proof/kit/out/
+scripts/__pycache__/

@@ -1,0 +1,27 @@
+frame_checks: the film page gave no result.
+[page] Failed to load resource: the server responded with a status of 404 (Not Found)
+[page] PHFD_ASSETS_LOAD_MS 292
+[page] PHFD_TOWN {"lite":true,"kind":"am","meshes":371,"tris":948833,"load_ms":4693}
+[page] PHFD_BOX enamel_navy ffffff metal 0.20000000298023224
+[page] PHFD_BOX wire_handle 8d8f92 metal 1
+[page] PHFD_BOX steel_worn a7a9ac metal 1
+[page] PHFD_BOX steel_worn a7a9ac metal 1
+[page] PHFD_BOX steel_worn a7a9ac metal 1
+[page] PHFD_BOX steel_worn a7a9ac metal 1
+[page] PHFD_BOX enamel_navy ffffff metal 0.20000000298023224
+WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab screenshot
+film: 289 frames at 30 fps, 270x480, cast hero, chief, rookie, rookieDown, oldTimer, sceptic
+still /tmp/frame_checks_KjbQIs/still/f_00000.png
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Target crashed 
+    at /home/user/Ricksclip-/templates/threejs_film/render_gpu.mjs:99:141 {
+  log: [],
+  name: 'Error'
+}
+
+Node.js v22.23.5
+

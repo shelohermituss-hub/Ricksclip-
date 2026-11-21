@@ -1,0 +1,329 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "ch_march",
+   "view": "side",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [],
+   "snaps": [
+    {
+     "name": "pat \"beautiful\" f66",
+     "f0": 64,
+     "ch": "h1x",
+     "to": "max",
+     "end": 72,
+     "share": [
+      11,
+      32,
+      58,
+      79,
+      91
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 142.52,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 30
+  },
+  {
+   "move": "ch_splat",
+   "view": "side",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "flat on the truck",
+     "frames": [
+      138,
+      164
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 24
+  },
+  {
+   "move": "he_mug",
+   "view": "34",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [
+    "no_settle@71-77 (peak 0.8, last 0.34/0.17/0.08)",
+    "no_settle@85-91 (peak 0.8, last 0.34/0.17/0.08)"
+   ],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 3,
+   "no_settle": 2,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "waits",
+     "frames": [
+      0,
+      69
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "waits",
+     "frames": [
+      98,
+      123
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "sipped",
+     "frames": [
+      146,
+      164
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "mug up f124",
+     "f0": 124,
+     "ch": "h1y",
+     "to": "min",
+     "end": 139,
+     "share": [
+      8,
+      23,
+      43,
+      63,
+      76
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 12.4
+  },
+  {
+   "move": "ot_bite",
+   "view": "34",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "watches",
+     "frames": [
+      0,
+      90
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "chews",
+     "frames": [
+      110,
+      164
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "bite f91",
+     "f0": 91,
+     "ch": "h1y",
+     "to": "min",
+     "end": 99,
+     "share": [
+      11,
+      31,
+      57,
+      79,
+      90
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 26.7
+  },
+  {
+   "move": "rk_up",
+   "view": "34",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [
+    "no_settle@131-136 (peak 156.5, last 68.47/24.45/9.78)",
+    "no_settle@139-142 (peak 2.8, last 1.17/1.17/2.83)"
+   ],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 2,
+   "no_settle": 2,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "heels together",
+     "frames": [
+      0,
+      129
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "helmet up \"it\" f130",
+     "f0": 130,
+     "ch": "h1y",
+     "to": "min",
+     "end": 136,
+     "share": [
+      16,
+      48,
+      79,
+      93,
+      98
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 21.4
+  },
+  {
+   "move": "sc_open",
+   "view": "34",
+   "frames": 165,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "stone",
+     "frames": [
+      0,
+      131
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "arms open \"it\" f132",
+     "f0": 132,
+     "ch": "h1x",
+     "to": "max",
+     "end": 140,
+     "share": [
+      11,
+      31,
+      57,
+      79,
+      91
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 20
+  }
+ ]
+}

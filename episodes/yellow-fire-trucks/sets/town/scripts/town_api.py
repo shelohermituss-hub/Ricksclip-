@@ -47,13 +47,17 @@ def build_lights(sc, anchors):
         for k, v in kw.items(): setattr(ld, k, v)
         o = bpy.data.objects.new(name, ld); o.location = pos; sc.collection.objects.link(o); o['lamp_energy'] = energy; return o
     sun = add('town_sun', 'SUN', (0, 0, 50), 4., '#ffffff', angle=math.radians(.8)); sun['lamp_energy'] = 0
-    sl = anchors['street_lamp']; o = add('lamp_street', 'SPOT', (sl[0], sl[1], sl[2] - .15), 2600., '#ffae4a', spot_size=math.radians(120), spot_blend=.6, shadow_soft_size=.25)
+    sl = anchors['street_lamp']; o = add('lamp_street', 'SPOT', (sl[0], sl[1], sl[2] - .15), 5200., '#ffa040', spot_size=math.radians(100), spot_blend=.45, shadow_soft_size=.25)   # FIX 1: a warm sodium pool on road, stop bar and kerb
     o.rotation_euler = (0, 0, 0)
     wl = anchors['wall_lamp']; o = add('lamp_wall', 'SPOT', (wl[0], wl[1] - .1, wl[2] - .1), 900., '#ffd49a', spot_size=math.radians(110), spot_blend=.7, shadow_soft_size=.1); o.rotation_euler = (math.radians(25), 0, 0)
     sp = anchors['shop_lamp']; add('lamp_shop', 'POINT', sp, 120., '#ffb85c', shadow_soft_size=.08)
     add('lamp_shop_fill', 'AREA', (-1.0, -12.3, 3.9), 500., '#ffe0b0', size=6.)
     for bx in (-4.2, 4.2): add('lamp_bay', 'AREA', (bx, 27, 4.4), 900., '#f2f4ea', size=4.)
     add('lamp_porch', 'POINT', (anchors['station_door'][0] + 1.9, anchors['station_door'][1], 2.4), 60., '#ffd49a', shadow_soft_size=.1)
+    # FIX 1: the last low sun patch on the park lawn at dusk (row 42 "the last sun patch lies on the lawn"; lifts the dusk park to brightness >= .31)
+    tgt = Vector((41.0, -25.0, 0.)); src = tgt + Vector((-.87, .5, 0.)).normalized() * 25. + Vector((0, 0, 4.6))
+    o = add('lamp_sunpatch', 'SPOT', src, 26000., '#ffb06a', spot_size=math.radians(16), spot_blend=.6, shadow_soft_size=.6)
+    o.rotation_euler = (tgt - src).to_track_quat('-Z', 'Y').to_euler()
     sc['phfd_anchors'] = str(anchors)
 
 def _sun_dir(az, el):
@@ -75,6 +79,10 @@ def set_light(sc, kind):
         if m.name.startswith('win_lit'): b.inputs['Emission Strength'].default_value = P['windows']
         if m.name in ('lamp_sodium', 'lamp_warm'): b.inputs['Emission Strength'].default_value = 12. * P['lamps']
         if m.name == 'lamp_fluor': b.inputs['Emission Strength'].default_value = 3. + 4. * P['lamps']
+        if m.name.startswith('sign_blade'): b.inputs['Emission Strength'].default_value = .35 * P['lamps']   # FIX 1: retro-reflective blade letters read at dusk
+    air = bpy.data.collections.get('AIR')                           # FIX 1: air life of this kind only (air_am_* dust motes, air_du_* moths + lamp mist)
+    for o in (air.objects if air else []):
+        off = not o.name.startswith('air_' + kind + '_'); o.hide_render = off; o.hide_viewport = off
     for r in (hero_root(), chief_root()):
         if r is not None:
             import truck_api as T

@@ -11,7 +11,8 @@ TA.set_light(sc, KIND)
 TA.set_trucks(sc, hero=dict(paint='half', edge=.3, masking=True, letters='under') if KIND == 'am' else dict(paint='lemon', masking=False, letters='over'))
 r = sc.render; r.resolution_x, r.resolution_y, r.resolution_percentage = W, H, 100; r.image_settings.file_format = 'PNG'
 sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'; r.engine = 'CYCLES'; sc.cycles.device = 'CPU'
-sc.cycles.samples = 16;   # light previews (user 2026-11-20 "Oui applique les aperçus légers"): 16 spp + OIDN at 540x960 sc.cycles.use_denoising = True; sc.cycles.denoiser = 'OPENIMAGEDENOISE'; sc.cycles.use_adaptive_sampling = True
+# light previews (user 2026-11-20 "Oui applique les aperçus légers"): 16 spp + OIDN at 540x960 (FIX 1: this line used to sit behind a mid-line '#', so OIDN was never set)
+sc.cycles.samples = 16; sc.cycles.use_denoising = True; sc.cycles.denoiser = 'OPENIMAGEDENOISE'; sc.cycles.use_adaptive_sampling = True
 sc.cycles.max_bounces = 5; sc.cycles.transparent_max_bounces = 12
 def card(png, pos, height, cam):
     im = bpy.data.images.load(png); w, h = im.size; px = [im.pixels[i * 4 + 3] for i in range(0, w * h, 7)]

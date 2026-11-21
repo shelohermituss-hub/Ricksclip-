@@ -74,14 +74,20 @@ def tracks(d, rng, w, h, im):          # pale worn tyre tracks out of bay 2
             x = rng.normal(x0, w * .05); y = rng.uniform(0, h); d.point((x, y), fill=(225, 220, 205, int(rng.uniform(20, 70))))
     im2 = im.filter(ImageFilter.GaussianBlur(2)); im.paste(im2)
 
-def line(d, rng, w, h, im):            # the yard line: white paint, chipped edges, a ghost of an older wobbly line beside it
-    for y in range(h):
-        wob = math.sin(y * .05) * 4 + math.sin(y * .013) * 7
-        d.line([(w * .70 + wob, y), (w * .70 + wob + w * .10, y)], fill=(236, 233, 222, 70))
-        d.line([(w * .2, y), (w * .55, y)], fill=(244, 242, 234, 255))
-    for k in range(700):
-        x = rng.choice([rng.uniform(w * .19, w * .23), rng.uniform(w * .52, w * .56), rng.uniform(w * .2, w * .55)]); y = rng.uniform(0, h); r = rng.uniform(1, 4)
-        d.ellipse([x - r, y - r, x + r, y + r], fill=(0, 0, 0, 0))
+def line(d, rng, w, h, im):            # FIX 1 (row 57 "like a ruler"): ONE clean straight white painted line, crisp edges, no ghost, no chips; only a faint roller grain
+    a = np.zeros((h, w, 4), float); xx = np.arange(w)[None, :]; e = np.clip(np.minimum(xx + .5, w - .5 - xx) / 1.5, 0, 1)   # 1.5 px soft edge, full white inside
+    grain = rng.normal(0, 1, (h // 16 + 1, 1)); grain = np.kron(grain, np.ones((16, w)))[:h] * 4
+    a[..., 0] = 246 + grain; a[..., 1] = 244 + grain; a[..., 2] = 236 + grain; a[..., 3] = 255 * e
+    im.paste(Image.fromarray(np.clip(a, 0, 255).astype('uint8'), 'RGBA'))
+
+def tuft(d, rng, w, h, im):            # FIX 1 LITE grass: a tuft card (blades from the bottom, dark root, sunlit tips) for the kit staging copy only
+    for k in range(150):
+        x0 = rng.normal(w / 2, w * .2); hh = h * rng.uniform(.45, 1.); lean = rng.normal(0, w * .08); g = rng.uniform(.7, 1.15)
+        base = np.array([62, 104, 48]) * g; tip = np.array([150, 190, 92]) * g; bw = rng.uniform(3, 7)
+        for s_ in range(12):
+            t0, t1 = s_ / 12, (s_ + 1) / 12; c = base * (1 - t1) + tip * t1
+            p0 = (x0 + lean * t0 * t0, h - hh * t0); p1 = (x0 + lean * t1 * t1, h - hh * t1)
+            d.line([p0, p1], fill=tuple(int(v) for v in c) + (255,), width=max(1, int(bw * (1 - t0 * .85))))
 
 def boot(d, rng, w, h, im):            # one lemon boot print trail toward the door
     for i in range(6):
@@ -126,12 +132,12 @@ if __name__ == '__main__':
     board('sign_eye', 1024, 512, '#2a3a66', ['EYE', 'DOCTOR'], '#f3ecd6', edge='#d9b66a', seed=3, sizes=[200, 150])
     board('sign_shopfront', 2048, 256, '#2a3a66', ['EYE DOCTOR  -  EXAMS  -  GLASSES'], '#f3ecd6', edge='#d9b66a', seed=4, sizes=[96])
     board('sign_chief', 512, 160, '#c9a85a', ['CHIEF'], '#2a2216', edge='#7a6230', seed=5)
-    board('blade_main', 1024, 160, '#22336a', ['MAIN ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=6, sizes=[104])
-    board('blade_elm', 1024, 160, '#22336a', ['ELM ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=7, sizes=[104])
+    board('blade_main', 1024, 205, '#22336a', ['MAIN ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=6, sizes=[140])   # FIX 1: bigger letters (blade 1.5 x .3 m)
+    board('blade_elm', 1024, 205, '#22336a', ['ELM ST'], '#f4f2ea', font=FS, edge='#f4f2ea', seed=7, sizes=[140])
     board('tower_band', 4096, 512, '#dcdfe1', ['PINE HOLLOW'], '#22336a', seed=10, sizes=[300])
     board('sign_park', 1024, 256, '#3e5a3a', ['PINE HOLLOW PARK'], '#f1ead6', edge='#f1ead6', seed=11, sizes=[110])
     board('door_glass', 512, 256, '#2a2c33', ['OPEN'], '#e9d8a4', seed=12)
-    decal('oil', 512, 512, oil, 2); decal('spray', 1024, 512, spray, 3); decal('tracks', 512, 1024, tracks, 4); decal('yardline', 128, 2048, line, 5)
+    decal('oil', 512, 512, oil, 2); decal('spray', 1024, 512, spray, 3); decal('tracks', 512, 1024, tracks, 4); decal('yardline', 32, 2048, line, 5); decal('tuft', 512, 256, tuft, 13)
     decal('boot', 256, 512, boot, 6)
     def puddle(d, rng, w, h, im):
         for k in range(14):

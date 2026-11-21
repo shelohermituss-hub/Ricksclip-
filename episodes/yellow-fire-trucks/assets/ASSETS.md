@@ -72,3 +72,22 @@ FINAL CREDIT LINE (YOUTUBE.md): "Town models and textures: Poly Haven (polyhaven
 | tree_stump_01, jacaranda_tree | models | Poly Haven | downloaded, NOT placed | - |
 | weathered_plank_siding, white_planks_clean, wooden_garage_door, concrete_block_wall, concrete_floor_worn_001, concrete_pavement, asphalt_02, leafy_grass, grey_roof_01, roof_slates_02, painted_plaster_wall, bark_brown_02, plank_flooring, forest_ground_04 | textures | Poly Haven | clapboard (sage, cream, white, blue-grey, green, tan), bay doors, block base, yard, walks, streets, lawn, roofs, poles, floors, far ground | repainted by tex_town.py (paint colour x the texture's own light and dark) |
 Coded (no usable free asset found or needed): the station, hose tower, shop, houses, water tower, picket fence, telephone poles + wires, crossing lamp, blades, bell, flag pole, all lettering and decals.
+
+## DALLAS SET (set-builder, 2026-11-21): PLACE B, DALLAS FIRE DEPT. STATION 14 yard (sets/dallas/build_dallas.sh re-downloads them: sets/dallas/scripts/fetch_dallas.py)
+All from Poly Haven (polyhaven.com), licence CC0 (no credit required; credited anyway). Files in `assets/ph_dallas/models/<id>/` (glTF 1k) and `assets/ph_dallas/tex/` (1k jpg). Nothing bought, nothing NonCommercial.
+FINAL CREDIT LINE (YOUTUBE.md): "Dallas yard models and textures: Poly Haven (polyhaven.com), CC0."
+| id | kind | used as | adapted for the story |
+|---|---|---|---|
+| ladder_sectioned_01 | model | the Clerk's sectioned ladder against the red stack (two copies, section on section) | scaled 1.3 wide, stretched to the stack |
+| folding_wooden_stool | model | the step stool (row 33) | as is |
+| small_wooden_table_01 | model | the trestle with the chalk box (row 30) | chalk box + sticks coded on top |
+| clipboard | model | the Clerk's crash sheets; the painters' order sheet REPAINT: RED (on the drum) | order sheet painted by tex_dallas.py |
+| wooden_ladder | model | the painters' two step ladders (line 13) | as is |
+| barrel_03, spray_paint_bottles (clean), wooden_bucket_02 | models | painters' corner | as is |
+| grass_medium_01 | model | dry grass clumps on the verges, fence lines, expansion joints | straw tint #cdb46e; decimated in the GLBs |
+| wild_rooibos_bush, dry_branches_medium_01 | models | dry scrub on the lots; tumbleweed caught in the chain link | as is |
+| industrial_wall_lamp, fire_hydrant (clean), metal_trash_can (clean), metal_jerrycan, propane_tank, tool_cart, metal_tool_chest, wooden_crate_02, old_tyre, oil_tin, painted_wooden_bench, metal_jug, can_rusted, garden_hose_wall_mounted_01, water_manhole_cover, cardboard_box_01, concrete_road_barrier | models | yard and bay dressing | hydrant repainted silver-grey (no red, no yellow on the set) |
+| standing_chalkboard_01, modular_chainlink_fence, sand_rocks_small_01, dead_tree_trunk_02 | models | downloaded, NOT placed (chalkboard too small for the 1.2 x 2.4 m tally boards; fence 89 k tris; rocks 739 k tris) | - |
+| white_stucco, smooth_concrete_floor, concrete_floor_worn_001, dry_ground_01, withered_grass, painted_metal_shutter, concrete_pavement, asphalt_02, rusty_metal, wood_table_worn, concrete_block_wall, sandy_gravel, box_profile_metal_sheet, corrugated_iron | textures | station stucco (cream, tan, grey), pale apron, bay floor, sand #D9B98C, dry grass, roll-up shutters, walks, street, derrick, easel wood, plinth/roof, far lots, shed | repainted by tex_dallas.py (paint colour x the texture's own light and dark) |
+| paint_tin_red / _lime / _lemon (assets_prod, glowbox3d CC-BY, see PROPS) | models | the painters' cans | from assets_prod/out GLBs |
+Coded (no usable free asset found): the station (bays, shutters, office wing, shed, roof units, mast), the two slate boards + easels + battens, the 4-leaf calendar, the water cooler, the chain-link fence, flag pole, poles + wires, the water tank, the derrick + pump jacks + oil tanks, the low skyline, all lettering and decals.

@@ -1,0 +1,19 @@
+ch_march [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 30  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":142.52,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap pat "beautiful" f66            f64-72  11 / 32 / 58 / 79 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+ch_splat [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 24  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold flat on the truck                f138-164  max 0 px/f
+he_mug [34]  twos 0 no_settle@71-77 (peak 0.8, last 0.34/0.17/0.08) no_settle@85-91 (peak 0.8, last 0.34/0.17/0.08)  linear 0  stops 3 no_settle 2  creep 0  dps 12.4  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap mug up f124                    f124-139  8 / 23 / 43 / 63 / 76 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold waits                            f0-69  max 0 px/f
+   hold waits                            f98-123  max 0 px/f
+   hold sipped                           f146-164  max 0 px/f
+ot_bite [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 26.7  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap bite f91                       f91-99  11 / 31 / 57 / 79 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold watches                          f0-90  max 0 px/f
+   hold chews                            f110-164  max 0 px/f
+rk_up [34]  twos 0 no_settle@131-136 (peak 156.5, last 68.47/24.45/9.78) no_settle@139-142 (peak 2.8, last 1.17/1.17/2.83)  linear 0  stops 2 no_settle 2  creep 0  dps 21.4  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap helmet up "it" f130            f130-136  16 / 48 / 79 / 93 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold heels together                   f0-129  max 0 px/f
+sc_open [34]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 20  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap arms open "it" f132            f132-140  11 / 31 / 57 / 79 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold stone                            f0-131  max 0 px/f
