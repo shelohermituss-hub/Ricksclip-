@@ -8,3 +8,10 @@ EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a va
 EGL Error (0x3009): EGL_BAD_MATCH: Arguments are inconsistent (for example, a valid context requires buffers not supplied by a valid surface).
 00:11.340  render           | Saved: 'tiles/A_hero34_lines_id.png'
 00:11.347  blend            | Read blend: "/home/user/Ricksclip-/episodes/plane-eater/props/out/cessna150.blend"
+00:18.738  render           | Saved: 'tiles/B_side.png'
+00:19.049  render           | Saved: 'tiles/B_side_lines_id.png'
+00:19.054  blend            | Read blend: "/home/user/Ricksclip-/episodes/plane-eater/props/out/cessna150.blend"
+00:26.043  render           | Saved: 'tiles/C_front.png'
+00:26.315  render           | Saved: 'tiles/C_front_lines_id.png'
+00:26.321  blend            | Read blend: "/home/user/Ricksclip-/episodes/plane-eater/props/out/cessna150.blend"
+00:34.424  render           | Saved: 'tiles/D_top_rear.png'
