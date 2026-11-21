@@ -14,6 +14,9 @@ for name in want:
     if co.name not in sc.collection.objects: sc.collection.objects.link(co)
     co.data.sensor_fit = 'VERTICAL'; co.data.sensor_height = 36; co.data.lens = c['lens']; co.data.clip_start = .02; co.data.clip_end = 500
     co.location = c['pos']; co.rotation_euler = (Vector(c['aim']) - Vector(c['pos'])).to_track_quat('-Z', 'Y').to_euler(); sc.camera = co
+    if c.get('field'): MA.add_field(sc)
+    fc = bpy.data.collections.get('FIELD')
+    if fc: fc.hide_render = not c.get('field')
     if c.get('doors_t') is not None: MA.set_doors(sc, c['doors_t']); MA.set_paint(sc, t=c['doors_t'] - .3)
     else: MA.set_doors(sc, 99.); MA.set_paint(sc, lime=True)
     r.filepath = os.path.join(OUTD, 'bl_%s.png' % name); t0 = time.time(); bpy.ops.render.render(write_still=True)

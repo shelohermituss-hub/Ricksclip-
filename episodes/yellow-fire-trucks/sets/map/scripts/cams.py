@@ -7,6 +7,6 @@ def cams(meta):
         if 'city' in c:
             b = st.get(c['city']) or meta['anchors']['cities'][c['city']]
             if c['city'] == 'DALLAS': b = meta['anchors']['dallas_label']
-            out[k] = dict(pos=[b[i] + c['rel_pos'][i] for i in range(3)], aim=[b[i] + c['rel_aim'][i] for i in range(3)], lens=c['lens'], doors_t=c.get('doors_t'))
-        else: out[k] = dict(pos=c['pos'], aim=c['aim'], lens=c['lens'], doors_t=c.get('doors_t'))
+            out[k] = dict(pos=[b[i] + c['rel_pos'][i] for i in range(3)], aim=[b[i] + c['rel_aim'][i] for i in range(3)], lens=c['lens'], doors_t=c.get('doors_t'), field=c.get('field'))
+        else: out[k] = dict(pos=c['pos'], aim=c['aim'], lens=c['lens'], doors_t=c.get('doors_t'), field=c.get('field'))
     return out

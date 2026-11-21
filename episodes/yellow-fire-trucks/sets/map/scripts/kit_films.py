@@ -7,6 +7,7 @@ W, H = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (540, 960)
 for cam, c in CA.cams(META).items():
     place = dict(set='map', light='morning', light_over=META['light']['map'], kit3d=dict(envGround='#7a5634'), paint='wave' if c.get('doors_t') is not None else 'lime')
     if c.get('doors_t') is not None: place['doors'] = dict(at=-c['doors_t'], wave=2.4, dur=.5)   # at film time 0 the wave stands where Blender's still is
+    if c.get('field'): place['field'] = True
     st = dict(at=0, subject='map', framing='W', hold=0, pos=c['pos'], aim=c['aim'], lens=c['lens'])
     film = dict(title='map proof %s' % cam, fps=30, size=[W, H], words='words.json', end=2, tween=dict(frames=0, face_frames=0, ones=True), auto_view=False,
         cast=dict(fireman=dict(puppet='cast:firefighter', height=1.75, heads_tall=2.9, walk_speed=9999)),

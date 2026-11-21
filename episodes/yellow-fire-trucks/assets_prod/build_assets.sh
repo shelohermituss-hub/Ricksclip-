@@ -38,15 +38,22 @@ for t in alf:alf_1940s/alf_1940s.glb gun:spray_gun/spray_gun.glb comp:air_compre
   grep -q EXTRACT_DONE "logs/extract_${t%%:*}.log" || { echo "extract ${t%%:*} FAILED"; exit 1; }
 done
 python3 scripts/tex_make.py build/tex_src build/tex | tee logs/tex.log
-for f in wear newspaper kraft price_card truck_letters truck_letters_e2 truck_letters_dal14 truck_letters_dal22 van_decal can_lemon can_lime can_red; do cp build/tex/$f.png out/; done
+python3 scripts/tex_r3.py build/tex_src build/tex | tee -a logs/tex.log   # round 3: period plates (LIBAU gone), ball, chalk 3x
+bash scripts/fetch_r3.sh > logs/fetch_r3.log 2>&1   # round 3: the five lost things of S6
+for f in wear newspaper kraft price_card truck_letters truck_letters_e2 truck_letters_dal14 truck_letters_dal22 van_decal can_lemon can_lime can_red badges_pine badges_dallas chalk_3x ball_red; do cp build/tex/$f.png out/; done
 $B scripts/bl_truck.py -- "$A/alf_1940s/alf_1940s.glb" build/tex out > logs/truck.log 2>&1
 grep -q TRUCK_DONE logs/truck.log && ! grep -q Traceback logs/truck.log || { echo "truck FAILED (logs/truck.log)"; exit 1; }
 $B scripts/bl_props.py -- "$A/spray_gun/spray_gun.glb" "$A/air_compressor/air_compressor.glb" build/tex out > logs/props.log 2>&1
 grep -q PROPS_DONE logs/props.log && ! grep -q Traceback logs/props.log || { echo "props FAILED (logs/props.log)"; exit 1; }
-$B scripts/bl_light.py -- out 35000 > logs/light.log 2>&1
+$B scripts/bl_light.py -- out 42000 > logs/light.log 2>&1   # round 3: keeps sirens + beacon row (43 k tris)
 grep -q LIGHT_DONE logs/light.log && ! grep -q Traceback logs/light.log || { echo "light truck FAILED (logs/light.log)"; exit 1; }
 $B scripts/bl_props2.py -- "$A" build/tex out > logs/props2.log 2>&1
 grep -q PROPS2_DONE logs/props2.log && ! grep -q Traceback logs/props2.log || { echo "props2 FAILED (logs/props2.log)"; exit 1; }
+$B scripts/bl_props3.py -- "$A" build/tex out > logs/props3.log 2>&1   # round 3: red ball + five lost things (grey state)
+grep -q PROPS3_DONE logs/props3.log && ! grep -q Traceback logs/props3.log || { echo "props3 FAILED (logs/props3.log)"; exit 1; }
+$B scripts/bl_toy.py -- out > logs/toy.log 2>&1   # round 3: the 18 cm pressed-tin toy (assets.js buildToyTruck)
+grep -q TOY_DONE logs/toy.log && ! grep -q Traceback logs/toy.log || { echo "toy FAILED (logs/toy.log)"; exit 1; }
+python3 scripts/check_glb_colours.py out/*.glb > logs/glb_colours.log || { echo "a GLB material exports WHITE (logs/glb_colours.log)"; exit 1; }
 grep -E "^TRUCK|^GLB|^WHEELS|^DOOR|^BEACON|^MASKED|^R2" logs/truck.log; grep -E "^GUN|^COMP" logs/props.log; grep -E "^LIGHT" logs/light.log; grep -E "^PROP2" logs/props2.log
 echo BUILD_ASSETS_END
 if [ "${1:-}" = "--proof" ]; then
@@ -59,5 +66,8 @@ if [ "${1:-}" = "--proof" ]; then
   mkdir -p proof/tiles_r2
   for g in hero fleet props; do $B scripts/bl_proof2.py -- $g . proof/tiles_r2 > logs/proof2_$g.log 2>&1; grep -h "^PROOF " logs/proof2_$g.log; done
   python3 scripts/sheet2.py . "$EP/props/PROPS_R2.jpg" > logs/sheet2.log 2>&1; tail -20 logs/sheet2.log
+  for g in trucks props; do $B scripts/bl_proof3.py -- $g . proof/tiles_r3 640 480 > logs/r3_proof_$g.log 2>&1; grep -h "^PROOF " logs/r3_proof_$g.log; done
+  (cd proof/kit_r3 && python3 build_r3.py && bash run_r3.sh) > logs/r3_kit.log 2>&1; grep KIT_TIME logs/r3_kit.log
+  python3 scripts/sheet3.py . "$EP/props/PROPS_R3.jpg" > logs/r3_sheet.log 2>&1; cat logs/r3_sheet.log
   echo PROOF_END
 fi

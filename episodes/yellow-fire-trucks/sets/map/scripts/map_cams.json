@@ -58,5 +58,21 @@
   ],
   "lens": 24,
   "note": "row 25: the sink to the home station model on its printed streets"
+ },
+ "cities_field": {
+  "pos": [
+   3.0,
+   -0.3,
+   4.0
+  ],
+  "aim": [
+   2.85,
+   1.9,
+   0.05
+  ],
+  "lens": 24,
+  "field": true,
+  "doors_t": 1.4,
+  "note": "FIX 2: S4 row 23 EXTREME on cities with the dense pop-up field (35 stations in frame, no table edge)"
  }
 }
