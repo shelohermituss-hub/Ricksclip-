@@ -16,6 +16,15 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Les personnages glissaient d'un plan à l'autre à travers une coupe (kit, film_plan.py) — OUVERT pour l'outil
+- Problème : le personnage traversait l'image en grand entre deux plans et restait hors de la voiture.
+- Cause réelle : film_plan.bake_performance fait glisser tout changement de position (`pos`) sur 0,5 s, même à travers une coupe franche vers un autre lieu.
+- Correction : dans le make_film.py du film, réécrire la position image par image en marches après la cuisson (chaque changement de lieu est une coupe). Correction de fond à faire dans tools/film_plan.py : ne pas lisser une position à travers une coupe.
+- Preuve : images tests du projet privé car_science, avant/après.
+
+## 2026-11-21 — Un GLB exporté perd la couleur de peinture d'un nœud de shader (Blender vers three.js) — FERMÉ
+- Problème : la voiture bleue sortait blanche dans le kit. Cause : la couleur venait d'un nœud de shader que l'export glTF n'emporte pas. Correction : le module du kit remet la couleur au chargement ; mieux, mettre la couleur de base directement dans le matériau avant l'export.
+
 ## 2026-11-21 — Rendus Blender tués par manque de mémoire avec de vrais arbres et Freestyle (décor privé car_science) — OUVERT
 - Problème : 2 vignettes sur 4 tuées par manque de mémoire une fois 11 arbres Poly Haven ajoutés et les contours Freestyle activés, pendant qu'un autre assistant rendait avec Chromium.
 - Cause réelle : la machine partage environ 15 Go entre tous les assistants ; des arbres réalistes en instances plus Freestyle (qui garde toute la géométrie en mémoire pour tracer les lignes) dépassent ce que la machine peut tenir à côté d'un autre rendu.
