@@ -45,7 +45,7 @@ M['dome'] = texmat('dome_plates', 'metal_plate', '#4a3a86', scale=1., rough_mul=
 M['bulk'] = texmat('bulkhead_plates', 'metal_plate_02', '#3e3274', scale=1., metal=.4, nstr=.8)
 M['iris'] = texmat('iris_pleats', 'painted_metal_shutter', '#3a3aa8', scale=1., rough_mul=.55, metal=.3, nstr=.7)   # the back of the iris: indigo shutter cloth-metal, never flesh
 # FIX 2: the deck darker (it is the plain band behind the captions in the room views)
-M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#34303f', scale=1., metal=.6, nstr=1.)
+M['deck'] = texmat('deck_grate', 'metal_grate_rusty', '#1d1a24', scale=1., metal=.25, nstr=1.)
 M['chrome'] = pmat('chrome', '#e8e8ee', rough=.07, metal=1.)
 M['chrome_refl'] = pmat('chrome_reflector', '#dcdce6', rough=.2, metal=1.)   # the headlamp's reflector bowl: a mirror read black in the entry tile, brushed reads as a silver funnel
 M['brass'] = pmat('brass', '#c9a24a', rough=.28, metal=1.)
@@ -259,7 +259,8 @@ met = [o for o in bpy.data.objects if o.name.startswith('retro_multimeter') and 
 mr = bpy.data.objects.new('METER', None); COL.objects.link(mr)
 for o in met:
     if o.parent is None: o.parent = mr
-mr.scale = (1.7,) * 3; mr.location = (BX + .3, BY, z0 + BH + .04); mr.rotation_euler.z = math.radians(15)
+# FIX 2: the meter stood on the lid and crossed the caption line: it now sits on the deck at the box's west side, turned to the lens
+mr.scale = (1.7,) * 3; mr.location = (BX - BW / 2 - .32, BY - .1, DECK_Z + .01); mr.rotation_euler.z = math.radians(-20)
 pb = import_gltf('power_box_01'); pr_ = bpy.data.objects.new('POWER_CABINET', None); COL.objects.link(pr_)
 for o in pb:
     o['glb'] = True

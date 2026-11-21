@@ -58,3 +58,5 @@ episodes/*/assets_prod/proof/kit_r*/out/
 episodes/*/assets_prod/proof/kit_r*/stills*/
 episodes/*/cast/cabtest/out/
 episodes/*/moves/out/
+episodes/*/draft/*.mp4
+!episodes/*/draft/FILM_DRAFT_v1.mp4
