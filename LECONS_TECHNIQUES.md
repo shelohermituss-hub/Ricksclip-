@@ -16,6 +16,15 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — L'herbe en poils devenait des murs verts de 2 m (Blender 5.3, décor privé car_science) — FERMÉ
+- Problème : l'herbe rendait comme des murs verts. Cause : régler `normal_factor` après `hair_length` recalcule la longueur. Correction : régler hair_length en dernier, ne jamais toucher normal_factor. Garde-fou : hair_length est le dernier réglage de grass(). Preuve : gazon de 7 cm au 2e tour.
+
+## 2026-11-21 — Construire un décor de 1 100 boîtes avec bpy.ops prend 80 s (Blender) — FERMÉ
+- Cause : chaque appel bpy.ops met la scène à jour. Correction : créer les boîtes en données bmesh. Preuve : 43 s.
+
+## 2026-11-21 — Une caméra calée sur un seul plan ne sépare pas la distance de l'objectif (calage de caméra sur une image de référence) — OUVERT
+- Problème : les points de la porte de garage collent pour n'importe quel champ de vision. Correction : ajouter un indice de profondeur (taille connue d'un objet à une autre distance) ou des valeurs a priori sur la hauteur et l'objectif, et le dire.
+
 ## 2026-11-21 — L'image clé B a été rendue sur le processeur du serveur RunPod au lieu de la carte RTX 4090 (yellow-fire-trucks, cine B) — FERMÉ
 - Problème : « DEVICE CPU fallback » dans le log ; 1 063 s de rendu au lieu d'environ 2 à 4 min sur la carte (l'image A, même machine, avait pris 50 s avec OptiX). Payé environ 18 min de machine pour rien.
 - Cause réelle : pour éviter un message « enum METAL not found », le script B lisait la liste des types d'appareil (`enum_items`) avant que Blender la remplisse : en mode batch, cette liste est dynamique et ne contient pas encore OPTIX ni CUDA, donc aucun type GPU n'était essayé.
