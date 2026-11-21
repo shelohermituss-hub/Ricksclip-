@@ -1,0 +1,5 @@
+cl_count [side]  twos 2 167 178 no_settle@81-93 (peak 3.2, last 1.92/1.80/0.28) no_settle@106-111 (peak 92.2, last 40.35/14.41/5.76)  linear 0  stops 7 no_settle 2  creep 0  dps 22.1  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":42.25,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap point back "counted" f1074     f105-111  16 / 48 / 79 / 93 / 98 %   (Rick 5 / 16 / 31 / 48 / 66)
+   snap tick f1084                     f115-119  50 / 90 / 99 / 100 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold ready, dead still                f56-76  max 0 px/f
+   hold the long look, dead still        f227-245  max 0 px/f

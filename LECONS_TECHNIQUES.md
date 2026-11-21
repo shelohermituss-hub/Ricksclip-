@@ -16,6 +16,18 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — People on the map: cast at real height would be giants beside 0 (yellow-fire-trucks, S4) — FERMÉ
+- People on the map: cast at real height would be giants beside 0.76 m station models. Fix: cast height x META truck_scale (0.088), positions on map_geo.fold_z + 7 mm (station base minus fold_z). Guard: make_film.py derives both from the set files. Proof: f936/f956 feet on the apron, shadows. FERMÉ
+
+## 2026-11-21 — Painters drew in BACK view in the plan (yellow-fire-trucks, S4) — FERMÉ
+- Painters drew in BACK view in the plan. Cause: `look` aimed into the bay, behind them from the lens, so apply_looks turned them away. Fix: no `look`, dir only. Guard: debug projection of perf views (head_box) before rendering. Proof: f860 painters in 3/4. FERMÉ
+
+## 2026-11-21 — Fist "over the eyes" sat at the mouth (yellow-fire-trucks, S4) — FERMÉ
+- Fist "over the eyes" sat at the mouth. Cause: the big-head puppets have eyes about S - .88 L, not S - .66 L. Fix: eye level S - .88 L, brim S - 1.08 L. Guard: board LINE CHECK tile. Proof: f936 Sceptic fist across the eyes. FERMÉ
+
+## 2026-11-21 — Map paint/door story timing cannot be set per station in map (yellow-fire-trucks, S4) — OUVERT
+- Map paint/door story timing cannot be set per station in map.js. Fix: s4_map.js calls map.js update() then overwrites instanceColor (2*i+k) and door_ii_d scale.y. Guard: comment in s4_map.js. Proof: f860 red noses + lime mist, f884 lime. OUVERT for the set (a per-station API).
+
 ## 2026-11-21 — Le piège du commentaire en milieu de ligne, cinquième fois, et un cas dans le kit livré (poses.mjs) — FERMÉ
 - Problème : quatre fois dans ce film (pivots du camion, ancres de la ligne de cour, débruitage, matière chrome de l'iris) un « # » ou « // » placé au milieu d'une ligne à plusieurs instructions a supprimé le code qui suivait. En cherchant, l'outil a trouvé le même défaut dans le kit livré : `templates/threejs_film/poses.mjs` ligne 162, où `S.chairPose` et `S.liePose` étaient dans un commentaire, donc les poses assis sur une chaise et couché ne recevaient jamais leur dessin par ce chemin.
 - Cause réelle : des modifications par sed ou par remplacement qui ajoutent un commentaire en bout de ligne, sur des lignes qui contiennent plusieurs instructions.

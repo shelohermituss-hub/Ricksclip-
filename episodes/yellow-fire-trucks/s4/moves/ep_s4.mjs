@@ -33,7 +33,7 @@ function ptWatch(t, ch) { const f = F(t) + T0, S = ch.sh[1], L = ch.armL, Wd = c
 //   comes up over his eyes (snap 10); DEAD STILL after.
 function scHate(t, ch) { const f = F(t) + T0, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const u = snap(f - W.firemen + 2, 10), turn = snap(f - W.firemen, 12);
-  const c0 = { wx: -Wd * .5, wy: S + .26 * L }, c1 = { wx: Wd * .55, wy: S + .22 * L }, eyes = { wx: Wd * .1, wy: S - .66 * L };
+  const c0 = { wx: -Wd * .5, wy: S + .26 * L }, c1 = { wx: Wd * .55, wy: S + .22 * L }, eyes = { wx: Wd * .1, wy: S - .88 * L };
   return { view: '34', dir: 1, x: 0, y: 0, rot: -2 * turn, head: -8 * turn, feet: [{ x: -28, lift: 0 }, { x: 28, lift: 0 }], farArmFront: true,
     hands: [{ ...c1, bow: .3 }, { ...mix(c0, eyes, u), bow: .3, over: true }], held: [] }; }
 
@@ -43,14 +43,14 @@ function scHate(t, ch) { const f = F(t) + T0, S = ch.sh[1], L = ch.armL, Wd = ch
 function rkPeek(t, ch) { const f = F(t) + T0, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const clap = snap(f - W.hated + 1, 5), sink = snap(f - W.them, 6) - snap(f - 966, 4);
   const side0 = { wx: -Wd * .72, wy: ch.hipY - 14 }, side1 = { wx: Wd * .72, wy: ch.hipY - 14 };
-  const eye0 = { wx: -Wd * .12, wy: S - .7 * L }, eye1 = { wx: Wd * .16, wy: S - .66 * L }, low1 = { wx: Wd * .2, wy: S - .42 * L };
+  const eye0 = { wx: -Wd * .14, wy: S - .9 * L }, eye1 = { wx: Wd * .18, wy: S - .86 * L }, low1 = { wx: Wd * .22, wy: S - .6 * L };
   return { view: '34', dir: 1, x: 0, y: dip(f, W.hated + 3, 5, 4), rot: -2 * clap + 2 * sink, head: 5 * clap - 4 * sink + ring(f, W.hated + 4, 2, 8), feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }],
     farArmFront: false, hands: [{ ...mix(side0, eye0, clap), bow: .35 }, { ...mix(mix(side1, eye1, clap), low1, sink), bow: .35, over: true }], held: [] }; }
 
 // ---- OLD-TIMER m:ot_late (row 27): weight back, lunch-box fist down; a second late (960 = 32.0 s) his near fist pulls the helmet brim down (snap 8)
 function otLate(t, ch) { const f = F(t) + T0, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const p = snap(f - 958, 8);
-  const rest = { wx: Wd * .75, wy: ch.hipY - 16 }, brim = { wx: Wd * .28, wy: S - .8 * L };
+  const rest = { wx: Wd * .75, wy: ch.hipY - 16 }, brim = { wx: Wd * .28, wy: S - 1.08 * L };
   return { view: '34', dir: 1, x: 0, y: 0, rot: -3, head: 2 + 5 * p, feet: [{ x: -30, lift: 0 }, { x: 28, lift: 0 }], farArmFront: true,
     hands: [{ wx: -Wd * .8, wy: ch.hipY - 22, bow: .45 }, { ...mix(rest, brim, p), bow: .35, over: true }], held: [] }; }
 

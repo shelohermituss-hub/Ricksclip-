@@ -1,0 +1,273 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "pt_spray",
+   "view": "side",
+   "frames": 222,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 3,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "gun down, still",
+     "frames": [
+      110,
+      140
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "gun up f838",
+     "f0": 68,
+     "ch": "h1y",
+     "to": "min",
+     "end": 76,
+     "share": [
+      10,
+      31,
+      57,
+      79,
+      90
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 20
+  },
+  {
+   "move": "pt_watch",
+   "view": "side",
+   "frames": 222,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 2,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "still",
+     "frames": [
+      125,
+      140
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 13.2
+  },
+  {
+   "move": "sc_hate",
+   "view": "side",
+   "frames": 222,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "arms crossed, still",
+     "frames": [
+      0,
+      150
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "fist over the eyes",
+     "frames": [
+      180,
+      199
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "fist \"firemen\" f932",
+     "f0": 160,
+     "ch": "h1y",
+     "to": "min",
+     "end": 170,
+     "share": [
+      7,
+      22,
+      41,
+      62,
+      79
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 23.3
+  },
+  {
+   "move": "rk_peek",
+   "view": "side",
+   "frames": 222,
+   "twos": 0,
+   "two_frames": [
+    "no_settle@197-200 (peak 33.1, last 33.06/11.71/2.75)"
+   ],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 2,
+   "no_settle": 1,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "heels together, still",
+     "frames": [
+      0,
+      170
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "the peek",
+     "frames": [
+      188,
+      195
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "clap \"hated\" f944",
+     "f0": 173,
+     "ch": "h1y",
+     "to": "min",
+     "end": 178,
+     "share": [
+      22,
+      62,
+      89,
+      97,
+      100
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 30
+  },
+  {
+   "move": "ot_late",
+   "view": "side",
+   "frames": 222,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 1,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "still",
+     "frames": [
+      0,
+      185
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "brim f958",
+     "f0": 188,
+     "ch": "h1y",
+     "to": "min",
+     "end": 196,
+     "share": [
+      11,
+      31,
+      57,
+      79,
+      91
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 18.5
+  }
+ ]
+}

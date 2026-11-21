@@ -1,0 +1,16 @@
+pt_spray [side]  twos 0   linear 0  stops 3 no_settle 0  creep 0  dps 20  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap gun up f838                    f68-76  10 / 31 / 57 / 79 / 90 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold gun down, still                  f110-140  max 0 px/f
+pt_watch [side]  twos 0   linear 0  stops 2 no_settle 0  creep 0  dps 13.2  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   hold still                            f125-140  max 0 px/f
+sc_hate [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 23.3  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap fist "firemen" f932            f160-170  7 / 22 / 41 / 62 / 79 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold arms crossed, still              f0-150  max 0 px/f
+   hold fist over the eyes               f180-199  max 0 px/f
+rk_peek [side]  twos 0 no_settle@197-200 (peak 33.1, last 33.06/11.71/2.75)  linear 0  stops 2 no_settle 1  creep 0  dps 30  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap clap "hated" f944              f173-178  22 / 62 / 89 / 97 / 100 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold heels together, still            f0-170  max 0 px/f
+   hold the peek                         f188-195  max 0 px/f
+ot_late [side]  twos 0   linear 0  stops 1 no_settle 0  creep 0  dps 18.5  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
+   snap brim f958                      f188-196  11 / 31 / 57 / 79 / 91 %   (Rick 5 / 16 / 31 / 48 / 66)
+   hold still                            f0-185  max 0 px/f

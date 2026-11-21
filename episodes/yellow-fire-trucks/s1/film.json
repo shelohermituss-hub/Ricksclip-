@@ -225,16 +225,16 @@
   },
   "lunch_box": {
    "pos": [
-    1.15,
-    16.9,
+    2.2,
+    18.4,
     0.24
    ],
    "kind": "the Old-Timer's lunch box"
   },
   "lemon": {
    "pos": [
-    2.02,
-    14.32,
+    3.3,
+    13.7,
     0.18
    ],
    "kind": "the lemon"
@@ -284,8 +284,8 @@
    "at": 0,
    "visible": false,
    "pos": [
-    2.65,
-    19.7,
+    2.45,
+    19.1,
     0.14
    ],
    "view": "34",
@@ -298,17 +298,6 @@
    "at": 157,
    "visible": true,
    "note": "row 6: in the bay 2 doorway beside his old red pumper, he bursts out on \"chief\""
-  },
-  {
-   "who": "chief",
-   "at": 161,
-   "pos": [
-    1.2,
-    17.6,
-    0.14
-   ],
-   "move_s": 0.3,
-   "note": "the burst: two strides to his spot"
   },
   {
    "who": "chief",
@@ -481,62 +470,62 @@
      ]
     },
     {
-     "at": 120,
+     "at": 110,
      "pos": [
-      -1.6,
-      10.2,
-      1.34
+      -0.2,
+      11.0,
+      1.4
      ],
      "aim": [
-      -3.0,
-      16.0,
-      1.74
+      -0.45,
+      20.6,
+      1.5
      ],
      "lens": 20,
-     "subject": "truck",
+     "subject": "hero",
      "framing": "W",
-     "purpose": "ROWS 4-5 (SETUP + EXTREME, M04 pull back reveal): over \"brand new firetruck\" the pull back reveals the gift-wrapped truck (ribbon and bow on the nose, price card, scissors on the cushion on the stool); the camera flows THROUGH this wide (via point) on its way round to bay 2",
-     "hold": 0,
+     "purpose": "ROWS 4-6 (SETUP, M04 pull back reveal, then M00 rest): the pull back over \"brand new firetruck\" lands on the whole yard: the hero steps back and judges (row 5 on \"lemon\"), the lemon truck, the frozen firemen, and bay 2 at the right where the Chief bursts out on \"chief\"",
+     "hold": 1.6,
      "creep": 0.0028
     },
     {
-     "at": 165,
+     "at": 215,
      "pos": [
-      1.45,
-      14.9,
-      0.74
+      2.1,
+      16.3,
+      0.85
      ],
      "aim": [
-      1.1,
-      17.6,
-      1.24
+      2.6,
+      19.0,
+      1.25
      ],
      "lens": 22,
      "subject": "chief",
      "framing": "W",
-     "purpose": "ROWS 6-7 (TALK + POWER 1, M11 push + truck arc): the camera swings right and in as the Chief bursts out of bay 2; the push runs through the impact; low on him, boots and lunch box for the stamp on \"RED\"",
-     "hold": 2.2,
+     "purpose": "ROWS 6-7 (POWER 1 + TALK, M02 snap push in): the push starts on the impact and lands low on the Chief in the bay mouth, his old red pumper behind his shoulder, the lunch box at his boots for the stamp on \"RED\"; the firemen stay out of this frame",
+     "hold": 0.55,
      "creep": 0.0028,
      "shows": [
       "lunch_box"
      ]
     },
     {
-     "at": 272,
+     "at": 276,
      "pos": [
-      2.2,
-      14.02,
-      0.3
+      3.42,
+      13.42,
+      0.32
      ],
      "aim": [
-      -0.15,
-      18.1,
+      -0.1,
+      19.6,
       1.3
      ],
-     "lens": 22,
+     "lens": 18,
      "subject": "chief",
      "framing": "M",
-     "purpose": "ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down to the ground; it stops at the lens, as big as the yellow half of the truck, under his pointing fist",
+     "purpose": "ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down and lands with it at the lens: real lemon, the lemon truck and his pointing fist in one picture, the firemen whole between them",
      "hold": 0.5,
      "creep": 0.0028,
      "shows": [

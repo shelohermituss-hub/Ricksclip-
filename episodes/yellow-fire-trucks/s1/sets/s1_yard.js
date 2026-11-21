@@ -16,7 +16,7 @@ const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 // story positions (plan metres, Z up) shared with make_film.py (keep in step)
 const Z = .14;   // the yard concrete top
-export const S1 = { hero: [-2.0, 15.7, Z], chief: [1.2, 17.6, Z], box: [1.15, 16.9, Z], lemonStop: [2.02, 14.32, Z + .03], comp: [-1.05, 17.5, Z], tin: [-1.5, 13.45, Z], stool: [-2.45, 12.85, Z],
+export const S1 = { hero: [-2.0, 15.7, Z], chief: [2.45, 19.1, Z], box: [2.2, 18.4, Z], lemonStop: [3.3, 13.7, Z + .03], comp: [-1.05, 17.5, Z], tin: [-1.5, 13.45, Z], stool: [-2.45, 12.85, Z],
   EXPLODE: 172, RED: 223 };
 export const EDGE = f => f <= 116 ? lerp(-1.55, -2.85, sm(f / 116)) : f < 268 ? -2.85 : lerp(-2.85, -3.15, sm((f - 268) / 20));
 function softTex(THREE, inner = 'rgba(255,255,255,1)') { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
@@ -102,7 +102,8 @@ export async function build(THREE, scene, film, ctx) {
         // centre the focus lines on his head
         const hp = chiefHead.clone().project(cam); imp.material.map.offset.set(0, 0); imp.position.addScaledVector(new THREE.Vector3(1, 0, 0).applyQuaternion(cam.quaternion), hp.x * h * cam.aspect / 2 * .0);
       } }
-    steam.forEach((m, i) => { const a = (E + 1) / 26; const on = E >= 3 && E < 30; const ang = (i / 16) * Math.PI * 2, r = .18 + .55 * snap(E + 1, 10) * (.6 + .5 * rnd(i, 3));
+    // fix round: a > 1 gave (1 - a) ** 1.1 = NaN -> a black sprite at f200; a is clamped now
+    steam.forEach((m, i) => { const a = Math.min(1, Math.max(0, (E + 1) / 26)); const on = E >= 3 && E < 25; const ang = (i / 16) * Math.PI * 2, r = .18 + .55 * snap(E + 1, 10) * (.6 + .5 * rnd(i, 3));
       m.position.set(chiefHead.x + Math.cos(ang) * r, chiefHead.y + .05 + .35 * a * (.5 + rnd(i, 4)) + Math.abs(Math.sin(ang)) * .1, chiefHead.z + Math.sin(ang) * r * .6);
       m.scale.setScalar(.18 + .5 * a); m.material.opacity = on ? .95 * (1 - a) ** 1.1 : 0; });
     dust.forEach((m, i) => { const a = (f - S1.RED) / 20, on = a >= 0 && a < 1, ft = i % 2 ? -.17 : .17, ang = rnd(i, 5) * 6.283;

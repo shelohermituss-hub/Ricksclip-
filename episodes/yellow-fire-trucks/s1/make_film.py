@@ -10,7 +10,7 @@ CAST = ['hero', 'chief', 'rookie', 'rookieDown', 'oldTimer', 'sceptic']
 cast = {k: dict(keys['cast'][k], walk_speed=99) for k in CAST}
 
 Z = 0.14   # the yard concrete top (town anchors carry z 0.14)
-HERO, CHIEF = [-2.0, 15.7, Z], [1.2, 17.6, Z]
+HERO, CHIEF = [-2.0, 15.7, Z], [2.45, 19.1, Z]   # fix round: the Chief bursts out IN the bay 2 mouth and stays there (no glide)
 ROOK, OLD, SCEP = [-2.45, 19.3, Z], [-1.55, 19.6, Z], [-2.2, 20.8, Z]
 M = lambda k: 'm:../../ep_s1/' + k
 
@@ -22,9 +22,8 @@ acts = [
     dict(who='hero', at=176, face='k:browUp', note='rows 6-7: listens, polite, unmoved'),
     dict(who='hero', at=264, face='k:concentrate', note='row 8: already turning back to spray'),
     # CHIEF: hidden in the bay until he bursts out on "chief" (f163); the card runs 2.2 m in 10 f (his move draws the two stamping strides)
-    dict(who='chief', at=0, visible=False, pos=[2.65, 19.7, Z], view='34', dir=-1, pose=M('ch_burst'), face='k:frozenWide'),
+    dict(who='chief', at=0, visible=False, pos=CHIEF, view='34', dir=-1, pose=M('ch_burst'), face='k:frozenWide'),
     dict(who='chief', at=157, visible=True, note='row 6: in the bay 2 doorway beside his old red pumper, he bursts out on "chief"'),
-    dict(who='chief', at=161, pos=CHIEF, move_s=0.3, note='the burst: two strides to his spot'),
     dict(who='chief', at=172, face='k:furious', note='POWER 1 "exploded"'),
     dict(who='chief', at=200, face='k:chiefShout', say=[19, 28], note='rows 7-8: "Fire trucks are RED! We look like a giant lemon!" lip sync 6.66-9.42'),
     # ROOKIE: helmet over his eyes (rookieDown) to f163, then the startled hop swaps to the rookie card in the air
@@ -45,15 +44,15 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
 
 stations = [
     st(0, [-1.35, 13.0, 1.14], [-2.75, 16.9, 1.84], 24, 'hero', 'W', 'ROWS 1-3 FRAME 0 (HOOK, M00 living rest): the hero mid-sweep big in frame, both fists on the gun and hose (row 2), the wet lemon edge eating the red toward the cab door, the three firemen frozen behind him, the lemon paint tin near the lens', hold=1.6, shows=['door']),
-    st(120, [-1.6, 10.2, 1.34], [-3.0, 16.0, 1.74], 20, 'truck', 'W', 'ROWS 4-5 (SETUP + EXTREME, M04 pull back reveal): over "brand new firetruck" the pull back reveals the gift-wrapped truck (ribbon and bow on the nose, price card, scissors on the cushion on the stool); the camera flows THROUGH this wide (via point) on its way round to bay 2', hold=0),
-    st(165, [1.45, 14.9, 0.74], [1.1, 17.6, 1.24], 22, 'chief', 'W', 'ROWS 6-7 (TALK + POWER 1, M11 push + truck arc): the camera swings right and in as the Chief bursts out of bay 2; the push runs through the impact; low on him, boots and lunch box for the stamp on "RED"', hold=2.2, shows=['lunch_box']),
-    st(272, [2.2, 14.02, 0.30], [-0.15, 18.1, 1.3], 22, 'chief', 'M', 'ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down to the ground; it stops at the lens, as big as the yellow half of the truck, under his pointing fist', hold=0.5, shows=['lemon']),
+    st(110, [-0.2, 11.0, 1.4], [-0.45, 20.6, 1.5], 20, 'hero', 'W', 'ROWS 4-6 (SETUP, M04 pull back reveal, then M00 rest): the pull back over "brand new firetruck" lands on the whole yard: the hero steps back and judges (row 5 on "lemon"), the lemon truck, the frozen firemen, and bay 2 at the right where the Chief bursts out on "chief"', hold=1.6),
+    st(215, [2.1, 16.3, 0.85], [2.6, 19.0, 1.25], 22, 'chief', 'W', 'ROWS 6-7 (POWER 1 + TALK, M02 snap push in): the push starts on the impact and lands low on the Chief in the bay mouth, his old red pumper behind his shoulder, the lunch box at his boots for the stamp on "RED"; the firemen stay out of this frame', hold=0.55, shows=['lunch_box']),
+    st(276, [3.42, 13.42, 0.32], [-0.1, 19.6, 1.3], 18, 'chief', 'M', 'ROW 8 (TALK + EXTREME, M02 sink and land at the lens): the camera follows the rolling lemon down and lands with it at the lens: real lemon, the lemon truck and his pointing fist in one picture, the firemen whole between them', hold=0.5, shows=['lemon']),
 ]
 props = {
     'truck': dict(pos=[-3.3, 17.0, 1.3], kind='the half-sprayed truck'),
     'door': dict(pos=[-3.2, 15.2, 1.2], kind='the gold No. 1 on the cab door'),
-    'lunch_box': dict(pos=[1.15, 16.9, 0.24], kind="the Old-Timer's lunch box"),
-    'lemon': dict(pos=[2.02, 14.32, 0.18], kind='the lemon'),
+    'lunch_box': dict(pos=[2.2, 18.4, 0.24], kind="the Old-Timer's lunch box"),
+    'lemon': dict(pos=[3.3, 13.7, 0.18], kind='the lemon'),
 }
 place = dict(set='s1_yard', lite=True, truckFull=True, chief=dict(light=True), kind='am', light='morning', light_over=meta['light']['am'], kit3d=dict(envGround='#8f8a7e'), grass_keep=0.4,
              hero=dict(paint='half', edge=-1.55, masking=True, letters='under', ribbon=False, priceCard=True, sirens=4, wear=.25))

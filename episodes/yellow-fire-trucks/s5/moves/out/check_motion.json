@@ -1,0 +1,85 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "cl_count",
+   "view": "side",
+   "frames": 260,
+   "twos": 2,
+   "two_frames": [
+    167,
+    178,
+    "no_settle@81-93 (peak 3.2, last 1.92/1.80/0.28)",
+    "no_settle@106-111 (peak 92.2, last 40.35/14.41/5.76)"
+   ],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 7,
+   "no_settle": 2,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "ready, dead still",
+     "frames": [
+      56,
+      76
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "the long look, dead still",
+     "frames": [
+      227,
+      245
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "point back \"counted\" f1074",
+     "f0": 105,
+     "ch": "h1x",
+     "to": "min",
+     "end": 111,
+     "share": [
+      16,
+      48,
+      79,
+      93,
+      98
+     ]
+    },
+    {
+     "name": "tick f1084",
+     "f0": 115,
+     "ch": "h1x",
+     "to": "max",
+     "end": 119,
+     "share": [
+      50,
+      90,
+      99,
+      100,
+      100
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 42.25,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 22.1
+  }
+ ]
+}

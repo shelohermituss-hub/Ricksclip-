@@ -1,0 +1,493 @@
+{
+ "title": "Why Fire Trucks Turned Yellow, S5 THE COUNT (lines 8-9, frames 969-1202), BOARD",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 969,
+ "end": 1203,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "clerk": {
+   "puppet": "cast:firetrucks/clerk",
+   "height": 1.78,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "faces_ep": {
+  "chiefShout": {
+   "eyes": "angry",
+   "brows": [
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ],
+    [
+     -6,
+     12,
+     -2,
+     1.3
+    ]
+   ],
+   "mouth": "teeth",
+   "teethW": 30,
+   "teethH": 12
+  },
+  "proudShut": {
+   "eyes": "closed",
+   "brows": [
+    [
+     10,
+     -2,
+     6
+    ],
+    [
+     14,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "proud"
+  },
+  "peekOne": {
+   "eyes": [
+    "shut",
+    "wideXL"
+   ],
+   "brows": [
+    [
+     -4,
+     6,
+     0
+    ],
+    [
+     16,
+     -3,
+     8
+    ]
+   ],
+   "mouth": "pressed"
+  },
+  "frozenWide": {
+   "eyes": "wideXL",
+   "brows": [
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ],
+    [
+     20,
+     -2,
+     9,
+     1.1
+    ]
+   ],
+   "mouth": "flatXL"
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.5,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "dallas": {
+   "set": "s5_dallas",
+   "lite": true,
+   "kind": "no",
+   "light": "day",
+   "light_over": {
+    "top": "#8fb4ee",
+    "hor": "#e9eef4",
+    "sun": "#fff3d0",
+    "si": 3.3,
+    "amb": "#dfe5ef",
+    "ai": 1.35,
+    "dir": [
+     -1.31,
+     9.4,
+     3.16
+    ],
+    "tint": "#fffaf0",
+    "card_gain": 1.0
+   },
+   "kit3d": {
+    "envGround": "#cdb690"
+   },
+   "boards": {
+    "n": 1,
+    "ladder": false,
+    "stool": false,
+    "painters": false,
+    "leaves": 0
+   }
+  }
+ },
+ "props": {
+  "sign": {
+   "pos": [
+    0,
+    21.95,
+    5.57
+   ],
+   "kind": "DALLAS FIRE DEPT. front band"
+  },
+  "board_red": {
+   "pos": [
+    -0.95,
+    8.42,
+    1.6
+   ],
+   "kind": "the RED tally board"
+  },
+  "board_lime": {
+   "pos": [
+    0.95,
+    8.42,
+    1.6
+   ],
+   "kind": "the LIME tally board"
+  },
+  "calendar": {
+   "pos": [
+    0,
+    8.42,
+    2.0
+   ],
+   "kind": "the YEAR calendar"
+  },
+  "up_to_3x": {
+   "pos": [
+    -0.95,
+    8.42,
+    7.39
+   ],
+   "kind": "UP TO 3x"
+  },
+  "headlamp": {
+   "pos": [
+    -2.62,
+    8.35,
+    1.15
+   ],
+   "kind": "red truck chrome headlamp (east one)"
+  }
+ },
+ "acts": [
+  {
+   "who": "clerk",
+   "at": 969,
+   "pos": [
+    -0.4,
+    8.0,
+    0.12
+   ],
+   "view": "side",
+   "dir": -1,
+   "pose": "m:../../ep_s5/cl_count",
+   "look": [
+    -2.2,
+    8.0,
+    1.5
+   ],
+   "face": "k:concentrate",
+   "note": "rows 28-30: he waits at the boards, chalk ready"
+  },
+  {
+   "who": "clerk",
+   "at": 1076,
+   "look": [
+    -2.2,
+    8.0,
+    1.2
+   ],
+   "note": "row 32 \"counted\": he ticks without looking round"
+  },
+  {
+   "who": "clerk",
+   "at": 1126,
+   "pos": [
+    -0.25,
+    7.6,
+    0.54
+   ],
+   "move_s": 0.2,
+   "note": "row 33: up on the stool"
+  },
+  {
+   "who": "clerk",
+   "at": 1136,
+   "face": "k:think",
+   "look": [
+    -2.2,
+    8.0,
+    3.6
+   ],
+   "note": "row 33: nothing left to write on: a first frown"
+  },
+  {
+   "who": "clerk",
+   "at": 1150,
+   "pos": [
+    -0.1,
+    6.82219512195122,
+    0.72
+   ],
+   "move_s": 0.1,
+   "look": [
+    -2.2,
+    8.0,
+    4.0
+   ],
+   "note": "row 33-34: onto the ladder, rung by rung"
+  },
+  {
+   "who": "clerk",
+   "at": 1153,
+   "pos": [
+    -0.1,
+    7.046585365853659,
+    1.92
+   ],
+   "move_s": 0.1
+  },
+  {
+   "who": "clerk",
+   "at": 1156,
+   "pos": [
+    -0.1,
+    7.270975609756097,
+    3.12
+   ],
+   "move_s": 0.1
+  },
+  {
+   "who": "clerk",
+   "at": 1159,
+   "pos": [
+    -0.1,
+    7.495365853658536,
+    4.32
+   ],
+   "move_s": 0.1
+  },
+  {
+   "who": "clerk",
+   "at": 1162,
+   "pos": [
+    -0.1,
+    7.719756097560976,
+    5.5200000000000005
+   ],
+   "move_s": 0.1,
+   "look": [
+    -2.2,
+    8.0,
+    7.3
+   ]
+  },
+  {
+   "who": "clerk",
+   "at": 1164,
+   "face": "k:concentrate",
+   "note": "row 34 \"three\": chalks the 3x under UP TO"
+  },
+  {
+   "who": "clerk",
+   "at": 1179,
+   "face": "k:think",
+   "note": "row 35 \"as\": hat tipped back"
+  },
+  {
+   "who": "clerk",
+   "at": 1184,
+   "face": "k:browUp",
+   "look": [
+    -1.4,
+    6.6,
+    0.5
+   ],
+   "note": "row 35 \"often\": the long look down at the short lime board"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "clerk",
+   "obj": "chalk",
+   "module": "sets/s5_dallas.js",
+   "builder": "buildChalk",
+   "opts": {},
+   "grip": "raise",
+   "hand": "R",
+   "anchor": "grip",
+   "tip": "tip",
+   "when": "always",
+   "scale": 1.6
+  }
+ ],
+ "fx": [
+  {
+   "at": 1102,
+   "kind": "dust",
+   "pos": [
+    -0.45,
+    7.55,
+    1.6
+   ],
+   "note": "row 32 \"crash\": the chalk dust he blows off his fist"
+  }
+ ],
+ "moods": [
+  {
+   "at": 1049,
+   "look": "sun_sweep",
+   "note": "row 31 \"four\": the shadows sweep with the leaf"
+  },
+  {
+   "at": 1057,
+   "look": "sun_sweep",
+   "note": "row 31: third leaf, third sweep"
+  }
+ ],
+ "takes": [
+  {
+   "id": "s5",
+   "place": "dallas",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      1.0,
+      4.8,
+      1.25
+     ],
+     "aim": [
+      -0.7,
+      11.5,
+      1.8
+     ],
+     "lens": 20,
+     "subject": "clerk",
+     "framing": "W",
+     "purpose": "lead-in anchor (frames before 969 are not rendered): holds the opening framing so the S5 take starts at 969",
+     "hold": 0,
+     "creep": 0.0028
+    },
+    {
+     "at": 969,
+     "pos": [
+      1.0,
+      4.8,
+      1.25
+     ],
+     "aim": [
+      -0.7,
+      11.5,
+      1.8
+     ],
+     "lens": 20,
+     "subject": "clerk",
+     "framing": "W",
+     "purpose": "ROWS 28-33 (PLACE + ACT, M12 land, then ONE long living rest with a slow creep in): S4 lands low in front of the boards: DALLAS FIRE DEPT. over both bays, the Clerk at the RED board, LIME beside him; \"ran\": the trucks roll out and stop nose level; \"four\": leaves drop, plasters pop; \"counted\": the ticks, the plastered red fender behind him; the stool; board 2",
+     "hold": 4.9,
+     "creep": 0.0018,
+     "shows": [
+      "sign",
+      "board_red",
+      "board_lime",
+      "calendar"
+     ]
+    },
+    {
+     "at": 1172,
+     "pos": [
+      0.85,
+      4.75,
+      2.1
+     ],
+     "aim": [
+      -0.8,
+      8.42,
+      6.75
+     ],
+     "lens": 34,
+     "subject": "clerk",
+     "framing": "M",
+     "purpose": "ROW 34 (EXPLAIN + EXTREME, M05 rise with him): the camera rises and tilts up the climb to UP TO 3x at the top of the third board; readable on \"three\"/\"times\"",
+     "hold": 0.3,
+     "creep": 0.0008,
+     "shows": [
+      "up_to_3x"
+     ]
+    },
+    {
+     "at": 1202,
+     "pos": [
+      0.15,
+      4.85,
+      1.6
+     ],
+     "aim": [
+      -2.6,
+      8.3,
+      1.2
+     ],
+     "lens": 26,
+     "subject": "headlamp",
+     "framing": "M",
+     "purpose": "ROW 35 + S5 -> S6 join: his long look down leads the camera down past the short LIME board onto the RED truck chrome headlamp (S6 pushes in on \"YOU\" 1207)",
+     "hold": 0.1,
+     "creep": 0.0008,
+     "shows": [
+      "headlamp"
+     ]
+    }
+   ]
+  }
+ ]
+}
