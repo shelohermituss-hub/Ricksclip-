@@ -318,14 +318,14 @@ def _clump_centres(rnd, n, c, ax):
     return [Vector((c.x + q.x * ax.x, c.y + q.y * ax.y, c.z + q.z * ax.z)) for q in pts]
 
 
-def _clumps(name, rnd, centres, c, ax, ico, parent, mat, seed):
+def _clumps(name, rnd, centres, c, ax, ico, parent, mat, seed, clump_var=(.85, 1.25)):
     """lumpy blobs: icosphere + low noise (shape) + cell knobs (leaf masses), joined in one mesh; "shade" baked per vertex"""
     bm = bmesh.new()
     sh_layer = bm.verts.layers.float.new("shade")
     rnd_layer = bm.faces.layers.float.new("rnd")
     base_r = min(ax.x, ax.z) * 1.22 / max(len(centres), 1) ** (1 / 3)
     off = Vector((seed * 7.31, seed * 3.17, seed * 1.93))
-    blobs = [(c - Vector((0, 0, ax.z * .1)), min(ax.x, ax.z) * .68, True)] + [(p, base_r * rnd.uniform(.85, 1.25), False) for p in centres]
+    blobs = [(c - Vector((0, 0, ax.z * .1)), min(ax.x, ax.z) * .68, True)] + [(p, base_r * rnd.uniform(*clump_var), False) for p in centres]
     for p, rr, core in blobs:
         tmp = bmesh.new()
         bmesh.ops.create_icosphere(tmp, subdivisions=ico, radius=rr)
@@ -505,13 +505,14 @@ def _branches(name, rnd, height, fork_h, r0, centres, c, ax, cfg, parent, mat):
 
 # ---------------------------------------------------------------- public
 def make_tree(name, height=8.0, crown_width=8.0, n_clumps=24, seed=0, lod="near", colours=None,
-              crown_height=None, trunk_radius=None, leaf_card_size=None, leaf_cell=.075):
+              crown_height=None, trunk_radius=None, leaf_card_size=None, leaf_cell=.075, clump_var=(.85, 1.25)):
     """Build a tree at the origin (trunk foot at z=0), return its root Empty.
     height: total metres; crown_width: crown diameter; n_clumps: 10-40 (far keeps at most 7);
     lod: near (full) | mid (simpler clumps, 1/3 of the cards) | far (few blobs, trunk only, no cards);
     colours: dict overriding COLOURS (lit, mid, dark, card_lit, card_dark, bark);
     crown_height: default 0.62*height; trunk_radius: default 0.034*height; leaf_card_size: default 0.022*height;
-    leaf_cell: size of a leaf cell in the clump surface pattern (m)."""
+    leaf_cell: size of a leaf cell in the clump surface pattern (m);
+    clump_var: (min, max) factor on the clump radius; wider (e.g. .55, 1.6) = a less regular, less hedge-like crown."""
     cols = dict(COLOURS, **(colours or {}))
     cfg = LOD[lod]
     rnd = random.Random(seed)
@@ -529,7 +530,7 @@ def make_tree(name, height=8.0, crown_width=8.0, n_clumps=24, seed=0, lod="near"
     bpy.context.scene.collection.objects.link(root)
     fork_h = height - ch * .92
     _branches(name, rnd, height, fork_h, r0, centres, c, ax, cfg, root, bark_material(cols["bark"]))
-    crown = _clumps(name, rnd, centres, c, ax, ico, root, crown_material(cols, leaf_cell), seed)
+    crown = _clumps(name, rnd, centres, c, ax, ico, root, crown_material(cols, leaf_cell), seed, clump_var)
     if cfg["cards"]:
         _cards(name, rnd, crown, c, ax, cfg["cards"] * len(centres), card, root, card_material(cols))
     root["rick_tree"] = dict(height=height, crown_width=crown_width, n_clumps=n, seed=seed, lod=lod)

@@ -73,12 +73,12 @@ if soil: soil.data.materials.clear(); soil.data.materials.append(LAWN_M)
 NATURE = []
 for name, pos, hgt in OLD_TREES:
     if name.startswith('hero_tree'):
-        h = 9.5; t_ = RT_.make_tree('yard_tree', height=h, crown_width=7.8 * h / 8, n_clumps=28, seed=3, lod='near', crown_height=h * .64)
+        h = 9.5; t_ = RT_.make_tree('yard_tree', height=h, crown_width=7.8 * h / 8, n_clumps=22, seed=int(os.environ.get('TREESEED', '8')), lod='near', crown_height=h * .64, clump_var=(.55, 1.6))
         t_.location = (pos.x, pos.y, 0); HERO_TREE = t_
     else:
-        dist = (pos.xy - CAMP.xy).length; lod = 'mid' if dist < 30 else 'far'
+        lod = 'mid'
         seed = sum(map(ord, name)); shp = [(7.8, 28, .64), (6.2, 18, .72), (7.4, 22, .74)][seed % 3]
-        t_ = RT_.make_tree(name.replace('far_tree', 'lib_tree'), height=hgt, crown_width=shp[0] * hgt / 8, n_clumps=shp[1], seed=seed, lod=lod, crown_height=hgt * shp[2])
+        t_ = RT_.make_tree(name.replace('far_tree', 'lib_tree'), height=hgt, crown_width=shp[0] * hgt / 8, n_clumps=max(10, shp[1] - 6), seed=seed, lod=lod, crown_height=hgt * shp[2], clump_var=(.55, 1.65))
         t_.location = (pos.x, pos.y, 0); t_.rotation_euler.z = (seed % 628) / 100
     NATURE.append(t_)
 bpy.context.view_layer.update()
@@ -91,19 +91,20 @@ def on_lawn(p):
 # a band of tall tufts in front of the lens (lawn only, never on the drive)
 fwd = Vector((-math.sin(math.radians(C['look_dir_deg']['heading_from_+Y'])), math.cos(math.radians(C['look_dir_deg']['heading_from_+Y'])), 0)); side = Vector((fwd.y, -fwd.x, 0))
 rnd_ = random.Random(7); band = []
-for _ in range(900):
-    d = 1.0 + 1.5 * rnd_.random(); q = CAMP.xy.to_3d() + fwd * d + side * ((rnd_.random() * 2 - 1) * d * .45); q.z = 0
+for _ in range(320):
+    d = 1.0 + 1.6 * rnd_.random(); q = CAMP.xy.to_3d() + fwd * d + side * ((rnd_.random() * 2 - 1) * d * .45); q.z = 0
     if on_lawn(q): band.append((q.x, q.y, 0.0))
-TUFTS = [G.tufts(band, height=.26, lod='near', seed=7, name='tufts_lens')]
+BLADE_COLS = dict(root='#5e9a28', tip='#b0d84c', var='#8cc23a')
+TUFTS = [G.tufts(band, height=.2, blades=(8, 15), lod='near', colours=BLADE_COLS, seed=7, name='tufts_lens')]
 # both drive edges, on the lawn side
 L0 = [tuple(SMi @ Vector((-1.75, y, 0)))[:2] for y in (-8.8, 9.0)]; R0 = [tuple(SMi @ Vector((1.75, y, 0)))[:2] for y in (-8.8, 9.0)]
-TUFTS.append(G.tufts([p for p in G.scatter_band(L0, width=.7, density=7, offset=.45, seed=3) if on_lawn(p)], height=.4, seed=3, name='tufts_drive_l'))
-TUFTS.append(G.tufts([p for p in G.scatter_band(R0, width=.7, density=7, offset=-.45, seed=4) if on_lawn(p)], height=.4, seed=4, name='tufts_drive_r'))
-TUFTS.append(G.tufts_around(HERO_TREE, r_in=.05, r_out=1.3, density=9, seed=5, name='tufts_trunk'))
+TUFTS.append(G.tufts([p for p in G.scatter_band(L0, width=.7, density=7, offset=.45, seed=3) if on_lawn(p)], height=.4, seed=3, name='tufts_drive_l', colours=BLADE_COLS))
+TUFTS.append(G.tufts([p for p in G.scatter_band(R0, width=.7, density=7, offset=-.45, seed=4) if on_lawn(p)], height=.4, seed=4, name='tufts_drive_r', colours=BLADE_COLS))
+TUFTS.append(G.tufts_around(HERO_TREE, r_in=.05, r_out=1.3, density=9, seed=5, name='tufts_trunk', colours=BLADE_COLS))
 fence = bpy.data.objects.get('picket_fence')
 if fence:
     fl = [fence.matrix_world @ v.co for v in fence.data.vertices if (fence.matrix_world @ v.co).z < .05]
-    rnd_.shuffle(fl); TUFTS.append(G.tufts([(v.x + rnd_.uniform(-.12, .12), v.y + rnd_.uniform(-.12, .12), 0) for v in fl[:260]], height=.35, seed=9, name='tufts_fence'))
+    rnd_.shuffle(fl); TUFTS.append(G.tufts([(v.x + rnd_.uniform(-.12, .12), v.y + rnd_.uniform(-.12, .12), 0) for v in fl[:260]], height=.35, seed=9, name='tufts_fence', colours=BLADE_COLS))
 def lawn_bounce(m):
     # what the lawn and blades give as bounce light is greyed (camera rays keep the full green): shadows stay blue-violet
     if not m or not m.use_nodes or m.node_tree.nodes.get('st_bounce'): return
