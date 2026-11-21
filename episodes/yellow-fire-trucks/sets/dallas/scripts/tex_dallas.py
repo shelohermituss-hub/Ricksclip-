@@ -14,13 +14,16 @@ def tint(src, name, col, keep=.25, gain=1.0):
     out = hexc(col)[None, None, :] * rel * gain; out = out * (1 - keep) + im * keep * (hexc(col).mean() / max(im.mean(), 1))
     Image.fromarray(np.clip(out, 0, 255).astype('uint8')).save(os.path.join(OUT, name + '_diff.jpg'), quality=90)
     for k in ('nor_gl', 'rough'): Image.open(os.path.join(SRC, '%s_%s_1k.jpg' % (src, k))).save(os.path.join(OUT, '%s_%s.jpg' % (name, k)), quality=92)
-TINTS = [('white_stucco', 'stucco', '#ece3cf', .25), ('smooth_concrete_floor', 'yard', '#c8cbcc', .4), ('concrete_floor_worn_001', 'bay_floor', '#b5aea2', .55),
+TINTS = [('white_stucco', 'stucco', '#ece3cf', .25), ('smooth_concrete_floor', 'yard', '#b6bec8', .1), ('concrete_floor_worn_001', 'bay_floor', '#b5aea2', .55),
          ('dry_ground_01', 'sand', '#d9b98c', .45), ('withered_grass', 'drygrass', '#b8a46c', .5), ('painted_metal_shutter', 'shutter', '#ebe8de', .25),
          ('concrete_pavement', 'walk', '#d2cbbd', .5), ('asphalt_02', 'asphalt', '#8e8a85', .45), ('rusty_metal', 'rust', '#8a6a52', .5),
          ('wood_table_worn', 'wood', '#a5875f', .5), ('concrete_block_wall', 'block', '#d6cdb8', .4), ('sandy_gravel', 'gravel', '#cdb690', .5),
          ('box_profile_metal_sheet', 'sheet', '#c8ccd0', .35), ('corrugated_iron', 'corr', '#aeb0ac', .15), ('dry_ground_01', 'far', '#cfb48c', .3),
          ('white_stucco', 'stucco_tan', '#d8c3a0', .25), ('white_stucco', 'stucco_grey', '#c9c6bc', .25)]
 for s, n, c, k in TINTS: tint(s, n, c, k)
+# FIX 2: the apron is PALE GREY concrete: the Poly Haven source is brown and speckled, so after the tint the yard is pulled 45 % toward its own mean (less sand-like grain)
+_y = np.asarray(Image.open(os.path.join(OUT, 'yard_diff.jpg')).convert('RGB'), float); _y = _y * .55 + _y.mean((0, 1)) * .45
+Image.fromarray(np.clip(_y, 0, 255).astype('uint8')).save(os.path.join(OUT, 'yard_diff.jpg'), quality=90)
 rnd = random.Random(14); rng = np.random.default_rng(14)
 def paint_letters(name, w, h, bg, lines, fg, font=FSER, sizes=None, edge=None, fade=.0, seed=1):
     """hand-painted sign letters, sun-faded: each glyph a little rotated and shifted, a drop shade, faded flakes."""

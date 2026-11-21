@@ -2,6 +2,8 @@
 // the .blend files the final Blender render uses, so staging and final agree. Credits: assets/ASSETS.md (CC-BY 4.0: robinmikart, Oleksii.Rozumnyi, TheAlex).
 //   const T = await buildTruck(THREE, ctx, { paint: 'half', edge: .3, drain: 0, masking: true, letters: 'under', ribbon: true, wear: .6 });
 //   place(THREE, scene, ctx, T, [x, y, 0], yawDeg);  T.setPaint({ edge, drain, paint, masking, letters, ribbon });  T.setWheels(metres);  T.setBeacon(on, deg);
+//   round 3: T.setPaint({ drainWipe: 0..1 })  (dusk drain front nose -> tail; null = whole truck)   T.setPaint({ wipe: 0..1, from: lime, to: red })  (repaint nose -> tail)
+//   T.update() (paint frame; buildTruck now keeps it itself)   buildToyTruck(THREE, { grey })   buildLost(THREE, 'red_ball' | 'lost_wagon' | ...)  .setGrey(k)
 //   T.setDoor(deg);  T.setBell(deg);  T.anchors.{cab_door, door_handle, pump_panel, rear_step, bell, beacon, nose, ribbon_bow} (truck-local Vector3, three axes)
 //   film.json held3d: { obj: 'spray_gun', module: 'sets/assets.js', builder: 'buildSprayGun', grip: 'handle', anchor: 'grip', tip: 'tip', scale: 1 }
 //   const C = buildCompressor(THREE, ctx);  const H = buildAirHose(THREE, ctx, { from: [x, y, z], to: [x, y, z] })   (three-space points, Y up)
@@ -13,7 +15,7 @@ export const place = placeProp;
 const DIR = new URL('../assets_prod/out/', import.meta.url).href;   // sets/ and assets_prod/ are siblings in the episode folder
 export const COLORS = { red: '#D3141C', lemon: '#E3EA22', dusk: '#4B4753', roof: '#F3EFE2', soot: '#2b2521', primer: '#7d7a74' };
 const PAINT_GLSL = `
-uniform vec3 uColA, uColB; uniform float uEdge, uDrain, uDrainA, uDrainB, uWear, uRoofOn, uUnder; uniform sampler2D uWearMap;
+uniform vec3 uColA, uColB; uniform float uEdge, uDrain, uDrainA, uDrainB, uWear, uRoofOn, uUnder, uDrainEdge; uniform sampler2D uWearMap;
 varying vec3 vRP; varying vec3 vRN;
 float h31(vec3 p){ p = fract(p * .1031); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
 float vnoise(vec3 p){ vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
@@ -34,7 +36,9 @@ void phfdPaint(vec3 P, vec3 N, out vec3 col, out float rough, out float cover){
   float nearE = step(P.x, uEdge - .2) * step(uEdge - 1.1, P.x), inz = step(P.z, zs) * step(ze - .02, P.z);
   float run = on * step(fx, width) * nearE * inz;
   cover = max(t, max(dots, run));
-  vec3 A = mix(uColA, ${'DUSKV'}, uDrain * uDrainA), B = mix(uColB, ${'DUSKV'}, uDrain * uDrainB);
+  // round 3: the drain WIPES nose to tail (paint_nodes.py DRAIN_SOFT .4): full where x < uDrainEdge - .4, none beyond uDrainEdge + .4 (99 = whole truck)
+  float dr = uDrain * (1. - smoothstep(-.4, .4, P.x - uDrainEdge));
+  vec3 A = mix(uColA, ${'DUSKV'}, dr * uDrainA), B = mix(uColB, ${'DUSKV'}, dr * uDrainB);
   vec3 cc = mix(A, B, cover);
   float roof = step(2.12, P.z) * step(P.x, -.80) * uRoofOn; cc = mix(cc, ${'ROOFV'}, roof);
   vec3 w = pow(abs(N), vec3(4.)); w /= (w.x + w.y + w.z + 1e-5); vec3 q = P * .5;
@@ -79,7 +83,7 @@ export async function buildTruck(THREE, ctx = {}, opts = {}) {
   const gl = await truckGltf(!!opts.light), group = new THREE.Group(); group.name = 'phfd_truck';
   const s = gl.scene.clone(true); group.add(s);
   const [wearMap, paper, kraft] = await Promise.all([tex(THREE, 'wear.png', false), tex(THREE, 'newspaper.png', true), tex(THREE, 'kraft.png', true)]);   // awaited: a still rendered before the load showed black paper
-  const U = { uColA: { value: new THREE.Color(COLORS.red) }, uColB: { value: new THREE.Color(COLORS.red) }, uEdge: { value: 99 }, uDrain: { value: 0 }, uDrainA: { value: 1 }, uDrainB: { value: 1 },
+  const U = { uColA: { value: new THREE.Color(COLORS.red) }, uColB: { value: new THREE.Color(COLORS.red) }, uEdge: { value: 99 }, uDrain: { value: 0 }, uDrainA: { value: 1 }, uDrainB: { value: 1 }, uDrainEdge: { value: 99 },
     uWear: { value: opts.wear ?? .6 }, uRoofOn: { value: 1 }, uUnder: { value: 0 }, uWearMap: { value: wearMap }, uInvRoot: { value: new THREE.Matrix4() }, uPaper: { value: paper } };
   const mats = {}, masked = [], ribbon = [], nodes = {}, anchors = {}; let tris = 0;
   s.traverse(o => {
@@ -101,11 +105,20 @@ export async function buildTruck(THREE, ctx = {}, opts = {}) {
     if (env) { for (const m of [...new Set([...glbMats, ...Object.values(mats), paperMat])]) if (!m.envMap) { m.envMap = env; m.envMapIntensity = .9; m.needsUpdate = true; } envDone = true; } };
   const any = s.getObjectByProperty('isMesh', true); const inv = U.uInvRoot.value;
   any.onBeforeRender = (r, scene) => { group.updateMatrixWorld(); inv.copy(group.matrixWorld).invert(); giveEnv(scene); };
+  // ROUND 3 FIX (S1 f272, LECONS): the paint frame was set only in the FIRST mesh's onBeforeRender; when that mesh was culled (off screen) uInvRoot
+  // stayed identity and the paint was computed in world space. Now the truck's own group keeps it: every world-matrix update of the group (the renderer
+  // calls scene.updateMatrixWorld each frame) refreshes the inverse. The stretches' workaround (calling that first mesh's onBeforeRender) stays harmless.
+  const O3 = THREE.Object3D.prototype;
+  group.updateMatrixWorld = function (force) { O3.updateMatrixWorld.call(this, force); inv.copy(this.matrixWorld).invert(); };
+  group.updateWorldMatrix = function (up, down) { O3.updateWorldMatrix.call(this, up, down); inv.copy(this.matrixWorld).invert(); };
+  s.traverse(o => { if (o.isMesh && o !== any && (o.material === mats.paint || o.material === mats.letters) && !o.onBeforeRender.phfd) { const f = () => inv.copy(group.matrixWorld).invert(); f.phfd = 1; o.onBeforeRender = f; } });
+  const update = () => { group.updateMatrixWorld(true); };
   const state = {};
   function setPaint(o = {}) {
+    if (o.wipe != null) o = { ...o, paint: 'half', a: o.to || COLORS.red, b: o.from || COLORS.lemon, edge: -4.3 + 8.6 * o.wipe };   // round 3: repaint nose -> tail
     Object.assign(state, o); const st = state.paint || 'red', A = state.a || (st === 'lemon' ? COLORS.lemon : COLORS.red), B = state.b || (st === 'red' ? COLORS.red : COLORS.lemon);
     U.uColA.value.set(A); U.uColB.value.set(B); U.uEdge.value = st === 'half' ? (state.edge ?? .3) : (st === 'lemon' ? -99 : 99);
-    U.uDrain.value = state.drain ?? 0; U.uDrainA.value = A.toUpperCase() === COLORS.red ? 1 : 0; U.uDrainB.value = B.toUpperCase() === COLORS.red ? 1 : 0;
+    U.uDrain.value = state.drain ?? 0; U.uDrainEdge.value = state.drainWipe == null ? 99 : -4.3 + 8.6 * state.drainWipe; U.uDrainA.value = A.toUpperCase() === COLORS.red ? 1 : 0; U.uDrainB.value = B.toUpperCase() === COLORS.red ? 1 : 0;
     U.uWear.value = state.wear ?? .6; U.uUnder.value = state.letters === 'under' ? 1 : 0; U.uRoofOn.value = state.roof === false ? 0 : 1;
     for (const [m, orig] of masked) m.material = state.masking ? ((m.userData.mask || (m.parent && m.parent.userData.mask)) === 2 ? kraftMat : paperMat) : orig;
     for (const r of ribbon) r.visible = !!state.ribbon;
@@ -121,17 +134,23 @@ export async function buildTruck(THREE, ctx = {}, opts = {}) {
   const setExtras = ({ sirens = 4, beaconRow = true, priceCard } = {}) => { for (let k = 1; k <= 4; k++) if (nodes['siren_' + k]) nodes['siren_' + k].visible = k <= sirens;
     if (nodes.beacon_bar) nodes.beacon_bar.visible = !!beaconRow; if (nodes.price_card && priceCard != null) nodes.price_card.visible = !!priceCard; };
   const letterMats = Object.values(mats).filter(m => m.name !== 'body_paint');
-  const setLetters = async (which = 'truck_letters') => { const t = await tex(THREE, which + '.png', true); t.flipY = false; for (const m of letterMats) { m.map = t; m.needsUpdate = true; } };
+  // round 3: the period plate (the download's "LIBAU" is gone from the GLB: PINE HOLLOW F.D. 1) follows the town: DALLAS on the '_dal' letter sets
+  const plateMats = []; s.traverse(o => { if (o.isMesh && o.material && o.material.name === 'packardplatesand_badges' && !plateMats.includes(o.material)) plateMats.push(o.material); });
+  const setLetters = async (which = 'truck_letters') => { const t = await tex(THREE, which + '.png', true); t.flipY = false; for (const m of letterMats) { m.map = t; m.needsUpdate = true; }
+    const pt = await tex(THREE, which.includes('_dal') ? 'badges_dallas.png' : 'badges_pine.png', true); pt.flipY = false;
+    for (const m of plateMats) { if (!m.userData.phfdOwn) { const k = m.clone(); k.userData.phfdOwn = 1; s.traverse(o => { if (o.isMesh && o.material === m) o.material = k; }); plateMats[plateMats.indexOf(m)] = k; } }
+    for (const m of plateMats) { m.map = pt; m.needsUpdate = true; } };
   const setAge = (age = 1) => { s.traverse(o => { if (!o.isMesh || Object.values(mats).includes(o.material) || o.material.metalness < .5 || o.userData.phfdOld) return;
     o.material = o.material.clone(); o.userData.phfdOld = 1; o.material.roughness = Math.min(.6, o.material.roughness + .22 * age); o.material.color.multiply(new THREE.Color(1 - .25 * age, 1 - .3 * age, 1 - .42 * age)); }); U.uWear.value = .6 + .4 * age; };
   const setDoor = deg => { if (nodes.door_driver) nodes.door_driver.rotation.y = -deg * Math.PI / 180; };  // opens outward (+Z, the driver's side)
   const setBell = deg => { if (nodes.bell_swing) nodes.bell_swing.rotation.z = -deg * Math.PI / 180; };
   setPaint({ paint: 'red', masking: false, letters: 'over', ribbon: false, ...opts }); setBeacon(!!opts.beacon, 0);
-  setExtras({ sirens: opts.sirens ?? 4, beaconRow: opts.beaconRow ?? true, priceCard: opts.priceCard ?? true });
+  // round 3: truck_light.glb now carries the sirens and the beacon row (S3, S6 at medium distance); a light truck shows them only when asked
+  setExtras({ sirens: opts.sirens ?? (opts.light ? 0 : 4), beaconRow: opts.beaconRow ?? !opts.light, priceCard: opts.priceCard ?? true });
   if (opts.letters_set) await setLetters(opts.letters_set); if (opts.age) setAge(opts.age);
   group.updateMatrixWorld(true);
   const an = {}; for (const [k, o] of Object.entries(anchors)) an[k] = group.worldToLocal(o.getWorldPosition(new THREE.Vector3()));
-  return { group, setPaint, setWheels, setBeacon, setDoor, setBell, setExtras, setLetters, setAge, anchors: an, nodes, tris: Math.round(tris), parts: [], state };
+  return { group, setPaint, setWheels, setBeacon, setDoor, setBell, setExtras, setLetters, setAge, update, anchors: an, nodes, tris: Math.round(tris), parts: [], state };
 }
 
 // ---------------------------------------------------------------- props: loaded once at import (held3d builders are called synchronously)
@@ -188,7 +207,37 @@ const PROP2 = {};
 export async function buildProp2(THREE, name, opts = {}) {
   const gl = await (PROP2[name] ||= loader().loadAsync(DIR + name + '.glb')); const g = new THREE.Group(); g.name = 'phfd_' + name; const s = gl.scene.clone(true); g.add(s); let tris = 0;
   s.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; const ge = o.geometry; tris += (ge.index ? ge.index.count : ge.attributes.position.count) / 3; } });
-  const an = nodeAnchors(THREE, g); propEnv(THREE, g); return { group: g, anchors: an, parts: [], tris: Math.round(tris) };
+  const an = nodeAnchors(THREE, g); propEnv(THREE, g); return { group: g, anchors: an, parts: [], tris: Math.round(tris), setGrey: greyable(THREE, g) };
+}
+// ---------------------------------------------------------------- round 3: the dusk GREY state (S6: the lost things, the red ball, the toy in his fist)
+// setGrey(k): k 0 = own colours, 1 = drained to the grey-plum (the twin of assets_prod/scripts/props_api.py set_grey). Each instance gets its own materials.
+const GREY_TINT = '#a49aac';   // luminance x this tint (the Blender twin: DUSK #6a6470 x 2.4)
+export function greyable(THREE, g) {
+  const U = { uGrey: { value: 0 }, uGreyTint: { value: new THREE.Color(GREY_TINT) } }; let done = false;
+  const patch = () => { if (done) return; done = true; const seen = new Map();
+    g.traverse(o => { if (!o.isMesh) return; const one = m => { if (seen.has(m)) return seen.get(m); const k = m.clone(); const prev = m.onBeforeCompile;
+      k.onBeforeCompile = (sh, r) => { if (prev) prev.call(k, sh, r); Object.assign(sh.uniforms, U);
+        sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uGrey; uniform vec3 uGreyTint;')
+          .replace('#include <map_fragment>', '#include <map_fragment>\n{ float l = dot(diffuseColor.rgb, vec3(.299, .587, .114)); diffuseColor.rgb = mix(diffuseColor.rgb, l * uGreyTint, uGrey); }'); };
+      k.customProgramCacheKey = () => 'phfd_grey_' + (m.customProgramCacheKey ? m.customProgramCacheKey() : ''); seen.set(m, k); return k; };
+      o.material = Array.isArray(o.material) ? o.material.map(one) : one(o.material); }); };
+  return k => { patch(); U.uGrey.value = Math.max(0, Math.min(1, k)); };
+}
+// the five lost things + the red ball of S6 (assets_prod/scripts/bl_props3.py; credits assets/ASSETS.md). Async (loaded on first use), each with setGrey.
+// name: 'red_ball' | 'lost_wagon' | 'lost_kite' | 'lost_boot' | 'lost_watering_can' | 'lost_tricycle'   opts.grey: start value
+export async function buildLost(THREE, name, opts = {}) { const P = await buildProp2(THREE, name, opts); if (opts.grey != null) P.setGrey(opts.grey); return P; }
+// the toy truck (assets_prod/scripts/bl_toy.py: 18 cm pressed tin, tin tabs, missing front-right hubcap, bent ladder; 1.4 MB, preloaded below so the
+// held3d builder is sync): film.json held3d { obj: 'toy_truck', module: 'sets/assets.js', builder: 'buildToyTruck', ... }. T.setGrey(k) (S6: dulls in his fist).
+const TOYG = await loader().loadAsync(DIR + 'toy_truck.glb');
+export function buildToyTruck(THREE, opts = {}) {
+  const g = new THREE.Group(); g.name = 'phfd_toy_truck'; const s = TOYG.scene.clone(true); g.add(s);
+  if (opts.length) s.scale.multiplyScalar(opts.length / .18);
+  const paint = new THREE.MeshPhysicalMaterial({ color: COLORS.red, roughness: .32, metalness: .15, clearcoat: 1, clearcoatRoughness: .08 }); paint.name = 'toy_tin_red';
+  s.traverse(o => { if (!o.isMesh) return; o.castShadow = !opts.inHand; o.receiveShadow = true; const nm = o.material && o.material.name || '';
+    if (nm === 'body_paint') o.material = paint; else if (nm === 'letters_gold') { o.material = o.material.clone(); o.material.transparent = true; } });
+  propEnv(THREE, g); g.userData.paint = paint;
+  const setGrey = greyable(THREE, g); if (opts.grey != null) setGrey(opts.grey);
+  return { group: g, grip: new THREE.Vector3(0, -.004, 0), tip: new THREE.Vector3(-.06, .07, 0), paint, setGrey, anchors: {}, parts: [] };
 }
 // the held props of the cast: sync builders for film.json held3d (GLBs preloaded here)
 const [BOTTLE, MUGG] = await Promise.all([loader().loadAsync(DIR + 'milk_bottle.glb'), loader().loadAsync(DIR + 'mug.glb')]);
@@ -198,4 +247,4 @@ function held(THREE, gl, name, opts) { const g = new THREE.Group(); g.name = 'ph
   return { group: g, grip: an.grip || an.handle || new THREE.Vector3(), anchors: an, parts: [] }; }
 export const buildMilkBottle = (THREE, opts = {}) => held(THREE, BOTTLE, 'milk_bottle', opts);
 export const buildMug = (THREE, opts = {}) => held(THREE, MUGG, 'mug', opts);
-export const BUILDERS = { buildTruck, buildSprayGun, buildCompressor, buildAirHose, buildProp2, buildMilkBottle, buildMug };
+export const BUILDERS = { buildTruck, buildSprayGun, buildCompressor, buildAirHose, buildProp2, buildMilkBottle, buildMug, buildToyTruck, buildLost };

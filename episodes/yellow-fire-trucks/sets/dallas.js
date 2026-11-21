@@ -6,6 +6,7 @@
 //   boards: { n: 1|2|3, ladder: bool | 'side', stool: bool, painters: bool, leaves: 0-4, ground: 0-4 }   story state of the tally (default n 3, ladder, painters; S5 rows 30-32: n 1, no ladder)
 //     FIX 2: ladder 'side' = leaning on the stack's west edge (UP TO 3x and RED read in the wide; anchors ladder_side_foot / ladder_side_top);
 //     ground = torn YEAR leaves lying on the concrete (default 3 as before; YEAR 4 lies by the red truck's nose). setLadder(v) / setGround(k) at run time.
+//   env: false = no painted studio sky on the set's metals (FIX 2: on by default, ladder/galvanised read black without it)
 //   air: 1 (default) | 0.5 | 0   FIX 2 air life: noon dust motes over the apron, chalk dust at the boards, flies at the cooler (per-frame drift in update)
 //   red / lime: buildTruck opts over the defaults (red: paint 'red'; lime: paint 'lemon'); trucks: false = none; truckFull: true = the full trucks in lite
 //   card: { png, pos, h, face } a flat cast stand-in (detail gate only)
@@ -37,6 +38,7 @@ export async function build(THREE, scene, film, ctx) {
     if (/^tpl_grass|^tpl_wild_rooibos/.test(ge.name || o.name)) o.castShadow = false;   // straw cards: no shadow-map cost in the kit
     if (/^lamp_/.test(n)) { m.emissiveIntensity = 2; m.needsUpdate = true; }
     if (m.map) m.map.anisotropy = 4;
+    if (m.metalness > .5 && !m.envMap && pl.env !== false) { m.envMap = studioEnv(THREE); m.envMapIntensity = 1.0; }   // FIX 2: metal read black (no env map in the kit)
   });
   const b = { n: 3, ladder: true, stool: false, painters: true, leaves: 0, ...(pl.boards || {}) };
   const vis = (k, on) => nodes[k].forEach(o => { o.visible = on; });
@@ -72,7 +74,13 @@ export async function build(THREE, scene, film, ctx) {
 }
 
 // ---------------------------------------------------------------- FIX 2 air life (seeded, procedural; the same drift maths as town.js airLife). Plan metres -> three via V.
-let DOT = null;
+let DOT = null, ENV = null;
+function studioEnv(THREE) {                 // FIX 2: a painted noon sky + pale apron horizon as the reflection of the set's metals (same idea as prop_kit.js studioEnv)
+  if (ENV) return ENV; const c = document.createElement('canvas'); c.width = 256; c.height = 128; const x = c.getContext('2d'), gr = x.createLinearGradient(0, 0, 0, 128);
+  gr.addColorStop(0, '#8fb4ee'); gr.addColorStop(.46, '#e9eef4'); gr.addColorStop(.52, '#d6d8d6'); gr.addColorStop(1, '#8a8a86'); x.fillStyle = gr; x.fillRect(0, 0, 256, 128);
+  x.fillStyle = '#fffbea'; x.fillRect(150, 8, 20, 20);
+  ENV = new THREE.CanvasTexture(c); ENV.mapping = THREE.EquirectangularReflectionMapping; ENV.colorSpace = THREE.SRGBColorSpace; return ENV;
+}
 function dotTex(THREE) {
   if (DOT) return DOT; const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(.4, 'rgba(255,255,255,.55)'); r.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64);

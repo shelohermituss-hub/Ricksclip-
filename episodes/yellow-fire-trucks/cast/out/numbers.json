@@ -979,10 +979,10 @@
   "top_px": 480,
   "ground_px": 1440,
   "face": {
-   "n": 6399,
+   "n": 6330,
    "coloured_share": 0,
-   "grey_share": 0.0545,
-   "darkest_skin": 43
+   "grey_share": 0.0728,
+   "darkest_skin": 44
   }
  },
  "heroShopEye_34": {
