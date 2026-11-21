@@ -57,6 +57,69 @@ cam.data.lens = C['lens_mm']; cam.data.sensor_fit = 'VERTICAL'; cam.data.sensor_
 r = sc.render; r.resolution_x, r.resolution_y = C['res']
 CAMP = Vector(C['loc'])
 
+# ---------------- LIBRARY nature (CB_RULES section 3 point 1b + THE ASSET LIBRARY): rick_tree + rick_grass replace the set's trees and lawn
+sys.path.insert(0, os.path.join(ROOT, 'library', 'trees')); sys.path.insert(0, os.path.join(ROOT, 'library', 'grass'))
+import rick_tree as RT_, rick_grass as G
+OLD_TREES = []
+for o in list(sc.objects):
+    if o.name.startswith(('far_tree_', 'hero_tree')):
+        if not o.name.endswith('_fill'): OLD_TREES.append((o.name, o.matrix_world.translation.copy(), o.dimensions.z))
+        bpy.data.objects.remove(o)
+for n in ('grass_near_blades', 'lawn_hair'):
+    if bpy.data.objects.get(n): bpy.data.objects.remove(bpy.data.objects[n])
+LAWN_M = G.lawn_material()
+soil = bpy.data.objects.get('lawn_soil')
+if soil: soil.data.materials.clear(); soil.data.materials.append(LAWN_M)
+NATURE = []
+for name, pos, hgt in OLD_TREES:
+    if name.startswith('hero_tree'):
+        h = 9.5; t_ = RT_.make_tree('yard_tree', height=h, crown_width=7.8 * h / 8, n_clumps=28, seed=3, lod='near', crown_height=h * .64)
+        t_.location = (pos.x, pos.y, 0); HERO_TREE = t_
+    else:
+        dist = (pos.xy - CAMP.xy).length; lod = 'mid' if dist < 30 else 'far'
+        seed = sum(map(ord, name)); shp = [(7.8, 28, .64), (6.2, 18, .72), (7.4, 22, .74)][seed % 3]
+        t_ = RT_.make_tree(name.replace('far_tree', 'lib_tree'), height=hgt, crown_width=shp[0] * hgt / 8, n_clumps=shp[1], seed=seed, lod=lod, crown_height=hgt * shp[2])
+        t_.location = (pos.x, pos.y, 0); t_.rotation_euler.z = (seed % 628) / 100
+    NATURE.append(t_)
+bpy.context.view_layer.update()
+SMi = Matrix(json.load(open(os.path.join(EP, 'set', 'set_meta.json')))['root_matrix_world']); SMinv = SMi.inverted()
+def on_lawn(p):
+    l = SMinv @ Vector((p[0], p[1], 0))
+    if abs(l.x) < 1.85 and -11.8 < l.y < 9.2: return False
+    if 1.7 < l.x < 2.5 and -2.6 < l.y < 2.9: return False
+    return l.y > -9.0
+# a band of tall tufts in front of the lens (lawn only, never on the drive)
+fwd = Vector((-math.sin(math.radians(C['look_dir_deg']['heading_from_+Y'])), math.cos(math.radians(C['look_dir_deg']['heading_from_+Y'])), 0)); side = Vector((fwd.y, -fwd.x, 0))
+rnd_ = random.Random(7); band = []
+for _ in range(900):
+    d = 1.0 + 1.5 * rnd_.random(); q = CAMP.xy.to_3d() + fwd * d + side * ((rnd_.random() * 2 - 1) * d * .45); q.z = 0
+    if on_lawn(q): band.append((q.x, q.y, 0.0))
+TUFTS = [G.tufts(band, height=.26, lod='near', seed=7, name='tufts_lens')]
+# both drive edges, on the lawn side
+L0 = [tuple(SMi @ Vector((-1.75, y, 0)))[:2] for y in (-8.8, 9.0)]; R0 = [tuple(SMi @ Vector((1.75, y, 0)))[:2] for y in (-8.8, 9.0)]
+TUFTS.append(G.tufts([p for p in G.scatter_band(L0, width=.7, density=7, offset=.45, seed=3) if on_lawn(p)], height=.4, seed=3, name='tufts_drive_l'))
+TUFTS.append(G.tufts([p for p in G.scatter_band(R0, width=.7, density=7, offset=-.45, seed=4) if on_lawn(p)], height=.4, seed=4, name='tufts_drive_r'))
+TUFTS.append(G.tufts_around(HERO_TREE, r_in=.05, r_out=1.3, density=9, seed=5, name='tufts_trunk'))
+fence = bpy.data.objects.get('picket_fence')
+if fence:
+    fl = [fence.matrix_world @ v.co for v in fence.data.vertices if (fence.matrix_world @ v.co).z < .05]
+    rnd_.shuffle(fl); TUFTS.append(G.tufts([(v.x + rnd_.uniform(-.12, .12), v.y + rnd_.uniform(-.12, .12), 0) for v in fl[:260]], height=.35, seed=9, name='tufts_fence'))
+def lawn_bounce(m):
+    # what the lawn and blades give as bounce light is greyed (camera rays keep the full green): shadows stay blue-violet
+    if not m or not m.use_nodes or m.node_tree.nodes.get('st_bounce'): return
+    nt = m.node_tree; bs = [n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED' or n.type == 'BSDF_DIFFUSE']
+    for b in bs:
+        ci = b.inputs['Base Color'] if 'Base Color' in b.inputs else b.inputs['Color']
+        if not ci.links: continue
+        src = ci.links[0].from_socket; hs = nt.nodes.new('ShaderNodeHueSaturation'); hs.name = 'st_bounce'
+        lp_ = nt.nodes.new('ShaderNodeLightPath'); mm = nt.nodes.new('ShaderNodeMapRange'); mm.inputs[3].default_value = .2; mm.inputs[4].default_value = 1.0
+        nt.links.new(lp_.outputs['Is Camera Ray'], mm.inputs[0]); nt.links.new(mm.outputs[0], hs.inputs['Saturation'])
+        nt.links.new(src, hs.inputs['Color']); nt.links.new(hs.outputs['Color'], ci)
+for o in [soil] + TUFTS:
+    if o:
+        for m in o.data.materials: lawn_bounce(m)
+print('LIBRARY', 'trees', len(NATURE), 'hero tris', HERO_TREE['tris'], 'tufts', [(t.name, len(t.data.polygons)) for t in TUFTS])
+
 # ---------------- sun
 S = LAY['sun']; sxy = Vector((S['to_sun_xy'][0], S['to_sun_xy'][1], 0)).normalized(); el = math.radians(S['elevation_deg'])
 to_sun = Vector((sxy.x * math.cos(el), sxy.y * math.cos(el), math.sin(el)))
@@ -180,10 +243,13 @@ KP = Vector(LAY['kid']['pos']); BK = (KP - CAMP); BK.z = 0; BK.normalize(); RT =
 gb0 = card_pt('kid', nz['grip_back_px'], 0.0)
 pts = [[1.08, 4.84, 0.28], [1.08, 4.7, 0.06], [1.1, 4.58, 0.011], [1.22, 4.45, 0.011], [1.26, 4.4, 0.011], [1.2, 4.32, 0.011], [0.75, 4.75, 0.011],
        list(KP + BK * 0.35 + RT * 0.55 + Vector((0, 0, .011))), list(KP + BK * 0.3 + RT * 0.05 + Vector((0, 0, .011))),
-       list(KP + BK * 1.05 + Vector((0, 0, .36))), list(CAMP + (gb0 - CAMP) * (((gb0 - CAMP).length + 1.0) / (gb0 - CAMP).length) - Vector((0, 0, .05))),
-       list(O - D * 0.07), list(O)]
-rad = [1, 1, 1, .7, .45, .7, 1, 1, 1, 1, 1, 1, 1]
+       list(KP + BK * 1.05 + Vector((0, 0, .36)))]
+RAY = lambda k: list(CAMP + (O - CAMP) * k)
+pts += [RAY(1.32), RAY(1.16), RAY(1.06), list(O)]
+rad = [1, 1, 1, .7, .45, .7] + [1] * (len(pts) - 6)
 hose, nparts = HT.make_hose(pts, radii=rad, coll=HCOLL)
+for p in nparts: bpy.data.objects.remove(p)
+nparts = HT._nozzle(O, D, HCOLL, HT.mat("brass", (0.95, 0.68, 0.3), metallic=1.0, rough=0.18), HT.mat("black_rubber", (0.03, 0.03, 0.035), rough=0.6))
 for p in nparts: p.matrix_world = Matrix.Translation(O) @ Matrix.Scale(NSC, 4) @ Matrix.Translation(-O) @ p.matrix_world
 TIP = O + D * 0.15 * NSC
 # arc: parabola from TIP to grandpa whose start slope equals the barrel's (bisection on the apex height)
@@ -199,6 +265,18 @@ APEX = max((lo + hi) / 2, max(TIP.z, G_TGT.z) + .35)
 WS = HT.make_water(list(TIP), list(G_TGT), APEX, coll=WCOLL, mat=WATER, n_drops=90, seed=11)
 arc_o = bpy.data.objects.get('water_arc')
 if arc_o: dm = arc_o.modifiers.new('thicker', 'DISPLACE'); dm.mid_level = 0.0; dm.strength = 0.012
+CORE = bpy.data.materials.new('st_water_core'); CORE.use_nodes = True; cb = CORE.node_tree.nodes['Principled BSDF']
+cb.inputs['Base Color'].default_value = (0.42, 0.68, 1.0, 1); cb.inputs['Roughness'].default_value = 0.04; cb.inputs['Transmission Weight'].default_value = 0.2
+cb.inputs['Subsurface Weight'].default_value = 0.5; cb.inputs['Subsurface Radius'].default_value = (0.01, 0.015, 0.02); cb.inputs['Coat Weight'].default_value = 1.0
+cb.inputs['IOR'].default_value = 1.333
+h_ = APEX; a0_, a1_ = math.sqrt(max(h_ - TIP.z, 0)), math.sqrt(max(h_ - G_TGT.z, 0)); sk_ = a0_ + a1_; tp_ = a0_ / max(sk_, 1e-6)
+def PAR(t): q = TIP.lerp(G_TGT, t); q.z = h_ - sk_ * sk_ * (t - tp_) ** 2; return q
+t_end = 0.42 / max(WS['arc_length_m'], .5)
+ccu = bpy.data.curves.new('water_core', 'CURVE'); ccu.dimensions = '3D'; ccu.bevel_depth = 0.016; ccu.bevel_resolution = 4; ccu.use_fill_caps = True
+csp = ccu.splines.new('POLY'); csp.points.add(15)
+for i in range(16):
+    q = PAR(t_end * i / 15); csp.points[i].co = (q.x, q.y, q.z, 1); csp.points[i].radius = 1.0 - .45 * (i / 15) ** 1.5
+core_o = bpy.data.objects.new('water_core', ccu); ccu.materials.append(CORE); HT._link(core_o, WCOLL)
 # spray mist at the splash: fine droplets that catch the sun
 random.seed(5)
 for i in range(160):
@@ -245,7 +323,7 @@ shd = N.new('ShaderNodeMapRange'); shd.inputs[1].default_value = .57; shd.inputs
 cc = N.new('ShaderNodeMix'); cc.data_type = 'RGBA'; L.new(shd.outputs[0], cc.inputs['Factor']); cc.inputs['A'].default_value = lin('#bcd6f6'); cc.inputs['B'].default_value = lin('#ffffff')
 sky = N.new('ShaderNodeMix'); sky.data_type = 'RGBA'; L.new(cm2.outputs[0], sky.inputs['Factor']); L.new(ramp.outputs[0], sky.inputs['A']); L.new(cc.outputs['Result'], sky.inputs['B'])
 bg_cam = N.new('ShaderNodeBackground'); L.new(sky.outputs['Result'], bg_cam.inputs[0]); bg_cam.inputs[1].default_value = 2 ** (-EXPO)
-bg_fill = N.new('ShaderNodeBackground'); bg_fill.inputs[0].default_value = lin(RL['fill_col']); bg_fill.inputs[1].default_value = float(os.environ.get('FILL', RL['fill']))
+bg_fill = N.new('ShaderNodeBackground'); bg_fill.inputs[0].default_value = lin(os.environ.get('FILLCOL', '#a6b6f2')); bg_fill.inputs[1].default_value = float(os.environ.get('FILL', RL['fill']))
 lp = N.new('ShaderNodeLightPath'); orr = N.new('ShaderNodeMath'); orr.operation = 'MAXIMUM'; L.new(lp.outputs['Is Camera Ray'], orr.inputs[0]); L.new(lp.outputs['Is Glossy Ray'], orr.inputs[1])
 ms = N.new('ShaderNodeMixShader'); L.new(orr.outputs[0], ms.inputs[0]); L.new(bg_fill.outputs[0], ms.inputs[1]); L.new(bg_cam.outputs[0], ms.inputs[2])
 wo = N.new('ShaderNodeOutputWorld'); L.new(ms.outputs[0], wo.inputs['Surface'])
@@ -286,6 +364,15 @@ go = N.new('NodeGroupOutput'); tree.interface.new_socket('Image', in_out='OUTPUT
 # ---------------- numbers
 from bpy_extras.object_utils import world_to_camera_view as w2c
 def scr(p): v = w2c(sc, cam, Vector(p)); return [round(v.x, 3), round(1 - v.y, 3), round(v.z, 2)]
+dgc = bpy.context.evaluated_depsgraph_get(); TRI = {}; tot = 0
+for inst in dgc.object_instances:
+    ob = inst.object
+    if ob.type != 'MESH' or not ob.visible_camera: continue
+    k = ob.data.name
+    if k not in TRI:
+        me_ = ob.data; me_.calc_loop_triangles(); TRI[k] = len(me_.loop_triangles)
+    tot += TRI[k]
+print('TRIS_RENDERED', tot)
 print('SCREEN', json.dumps({'tip': scr(TIP), 'target': scr(G_TGT), 'grip_back': scr(gb_), 'grip_front': scr(card_pt('kid', nz['grip_front_px'])),
                             'mailbox': scr(mb.location) if mb else None, 'nozzle_O': scr(O)}))
 
