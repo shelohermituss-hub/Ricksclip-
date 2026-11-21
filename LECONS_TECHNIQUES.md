@@ -16,6 +16,28 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Contours Freestyle à 90 s par image sur le processeur (projet privé car_science) — FERMÉ
+- Problème : la passe Freestyle (2 800 objets + arbres) prenait 90 s par image, soit 3 h pour 376 images.
+- Cause réelle : le calcul de la carte des vues de Freestyle tourne sur un seul fil.
+- Correction : passe Workbench en « couleur d'objet » (objets à contour colorés, le reste noir), puis silhouettes calculées en numpy.
+- Garde-fou : lines_wb2.py. Limite : pas de lignes de pli, seulement des silhouettes.
+- Preuve : 0,33 à 1,1 s par image.
+
+## 2026-11-21 — Workbench rendu image par image depuis Python : 35 s par image — FERMÉ
+- Problème : chaque appel de rendu renvoyait toute la scène.
+- Correction : poser l'état de chaque image en clés d'animation, puis faire un seul rendu d'animation par série d'images.
+- Preuve : 35 s → 0,4 s par image.
+
+## 2026-11-21 — Caméra suivie à l'intérieur d'un arbre de rue (S4, début) — FERMÉ
+- Correction : l'assemblage cache tout objet dont la boîte contient la caméra, sur ces images-là seulement.
+- Garde-fou : lignes CAMERA_INSIDE dans le journal d'assemblage.
+- Preuve : f160 après la correction.
+
+## 2026-11-21 — Mesure du rendu sur la RTX 4090 (720x1280, Cycles 64 échantillons + OIDN, OPTIX)
+- 1re image d'un lieu : 8,3 à 8,7 s (chargement du décor). Images suivantes : 5,0 à 5,4 s ; moyenne 5,1 s sur 376 images.
+- Machine : 43 min de 17:59 à 18:42, environ 0,65 $, supprimée à la fin (liste des machines vide, vérifiée par le lead).
+- Garde-fou : image d'essai à 1 % avec « DEVICE OPTIX » exigé avant le rendu long (render.sh).
+
 ## 2026-11-21 — Une machine RunPod arrêtée n'a pas pu redémarrer : sa carte graphique avait été donnée à un autre (projet privé car_science) — FERMÉ
 - Problème : podResume refusé toute la session (« not enough free GPUs on the host machine ») ; l'assistant est passé en silence au processeur en 360x640, environ 1 h 20 de rendu de secours en basse qualité.
 - Cause réelle : chez RunPod, arrêter une machine libère sa carte ; au redémarrage, rien ne garantit qu'une carte soit libre sur ce serveur. Je ne l'avais pas vérifié avant de compter dessus ; et la consigne ne disait pas de s'arrêter en cas d'échec.
