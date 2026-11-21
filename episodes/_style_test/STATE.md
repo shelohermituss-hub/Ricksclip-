@@ -40,3 +40,24 @@ Car centre (0.9, 10.6), front (grille, 2 headlamps, chrome bumper) to the lens, 
 27.6 % of frame height, x .16, visible 1.0. Grandpa at(car, 1.55 fwd, 1.3 side) beside the front fender, x .77, bucket at his feet x .82.
 Concrete #a7a6a3, EXPO -0.7: graded near drive clean (no blotches). Final p1 .059 p50 .427 p99 .967 mean .461 contrast .189 sat .450.
 Mailbox moved to the left edge (no blockout re-render; LAYOUT re-run). Bike is outside the frame at this lens (props-hero may skip it).
+
+## Round 3: ASSEMBLY + FINAL (look/assemble.py; `blender -b --factory-startup --python look/assemble.py -- info|preview|final [png]`)
+- Appends set/set.blend (SET_style_test; Line names read from a second append, then deleted) + props.blend (car, bucket, chamois, reel, mailbox,
+  bike); sponge/water/hose re-made here: hose via props/hose_tool.make_hose to the kid's back fist (nozzle x1.35+, barrel through both fists),
+  water via make_water from the nozzle tip to grandpa (apex from the barrel slope), 90 drops + 160 mist droplets, arc thickened 12 mm.
+- Cards: cast/*.png, emission 2^-EXPO; kid split at px row 1080: upper card pushed 0.9 m back along the lens rays (same picture) so nozzle and
+  water start sit in front of him; fist overlay card in front of the nozzle; shadow cards (full figure), contact patches (grandpa .8 dark).
+- Mailbox moved to set-local (2.5, -4.0) (right lawn, right edge). Leaves: HSV hue .46 sat 1.3 value 1.7 on island_tree_02_leaves.
+  Foam: opaque white, bubbles x1.9 (lens sees the hood edge-on). Water: transmission .6, coat 1, SSS .25, IOR 1.333.
+- Final: look/final/st_raw.png, 64 spp + OIDN, 1080x1920, Cycles CPU: render 378 s, lines 12 s, wall 474 s (with the 80 s load).
+  STYLE_TEST.png (graded DAY + lines), STYLE_TEST_preview.png (= prev/asm4_final), STYLE_TEST_numbers.json.
+- Final numbers: p1 .077 p50 .438 p99 .990 mean .442 contrast .202 sat .422 shadows .169/.177/.154 (target .061/.467/.966/.480/.208/.381,
+  .134/.153/.178); lines on 4.5 % of pixels. Raw p99 .993 (< .995 guard).
+## Weak (final)
+- Water arc: its first ~30 cm after the tip vanish against the bright house (thin glass): reads as starting above the hood.
+- A short green hose loop shows beside the nozzle (segment going back along the lens ray). Shadows rgb warm-green (lawn), not blue-violet.
+- Tree crown fills the top half (layout); sky only top-left. Foam reads as a few white heaps on the hood only.
+## Lessons
+5. Water leaving a card-held nozzle is hidden by the card when it heads into depth. Fix: split the card at the knees, push the upper part
+   back along the lens rays (scale about the camera). Guard: zoom the nozzle area. Proof: prev/asm3 vs asm4.
+6. Appending a second collection that holds the same objects duplicates them (.001). Fix: read names, strip suffixes, delete the copies.

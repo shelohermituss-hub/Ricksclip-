@@ -16,6 +16,15 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Image test du style Rick : six pièges d'assemblage Blender (episodes/_style_test) — FERMÉ
+- Personnage caché derrière la voiture : une caméra à 0,9 m est sous la ligne du capot (1,04 m), tout ce qui est derrière sous ~1,05 m disparaît. Correction : personnage sur la pelouse devant. Garde-fou : le mode info d'assemble.py écrit la part visible de chaque carte (> 0,8 exigé). Preuve : 0,21 → 0,94.
+- Voiture tournée à l'envers : rot_z +a tourne l'avant -Y vers +X, l'inverse du plan. Correction : rot_z = -YAW. Garde-fou : coins de la voiture à l'écran (l'avant doit être à gauche).
+- Blender 5.3 : le nœud File Output écrit un dossier `<prefix>_/pass_mask.png`, pas `<prefix>_mask0001.png`. Garde-fou : chercher le fichier avant l'étalonnage.
+- L'étalonnage vers les cibles DAY fait des taches sur un sol clair et uni. Correction : béton plus sombre (#a7a6a3) et exposition -0,7. Garde-fou : regarder le sol proche après l'étalonnage.
+- L'eau qui sort d'une lance tenue par une carte est cachée par la carte quand elle part en profondeur. Correction : couper la carte aux genoux et reculer le haut le long des rayons de la caméra (même taille à l'écran). Preuve : asm3 → asm4.
+- Ajouter deux fois une collection qui contient les mêmes objets les duplique (.001). Correction : supprimer les copies après l'ajout.
+- Mesure : 1080x1920, 64 échantillons + OIDN, sur le processeur ici : 378 s de rendu, 80 s de chargement, 12 s de contour (32 M de triangles avec les arbres).
+
 ## 2026-11-21 — Contours Freestyle à 90 s par image sur le processeur (projet privé car_science) — FERMÉ
 - Problème : la passe Freestyle (2 800 objets + arbres) prenait 90 s par image, soit 3 h pour 376 images.
 - Cause réelle : le calcul de la carte des vues de Freestyle tourne sur un seul fil.
