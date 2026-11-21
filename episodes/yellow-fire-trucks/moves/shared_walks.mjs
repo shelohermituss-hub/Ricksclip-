@@ -154,6 +154,10 @@ export const USES = {
   s7_cv_march: { stretch: 's7', who: 'chiefVisitor', A: 1647, back: { pose: 'm:../../ep_s7/cv_s7@3.8', at: 1690 }, P0: [6.82, 9.89, 0.12], P1: [5.75, 9.35, 0.12], cam: [6.67, 8.0, 1.41],
     kind: 'walk', view: '34', n: 5, T: 6, a: 2, G: 43, lift: 40, stomp: 6, lean: -4, head: -2, home: [-26, 26], hands: armsThumbs,
     end: { rot: -4, head: -3 }, farArmFront: false },
+  // S8 rows 55-57 (S8 builder 2026-11-21): the Chief's proud parade march up the white yard line into his own pumper's nose; the last plant is the bump on "into" (1876)
+  s8_ch_march: { stretch: 's8', who: 'chief', A: 1794, P0: [4.2, 14.2, 0.14], P1: [4.2, 17.95, 0.14], cam: [10.2, 16.4, 1.25],
+    kind: 'walk', view: 'side', n: 8, T: 10, a: 2, G: 82, lift: 40, stomp: 6, lean: -4, head: -6, home: [-26, 26], hands: armsThumbs,
+    end: { rot: -4, head: -6 }, farArmFront: false },
   // S5 rows 33-34: the Clerk climbs the ladder from the stool top: three stages with a pause, hands on the rails, feet on the treads, hat tip at the top
   s5_cl_climb: { stretch: 's5', who: 'clerk', A: 1147, climb: true, rung: .3, ladder: { x: -0.1, y0: 6.95, y1: 8.33, top: 7.5, zb: 0.12, z0: 0.72, off: 0.24 }, view: '34', stages: [2, 2, 2], T: 4, pause: 4, a: 2, handStart: 4, tipAt: 6, G: 64 },
 };
@@ -163,7 +167,7 @@ export const tables = (k, ch) => tabOf(k, ch);
 
 const STY = Object.keys(USES).map(k => ({ key: k, name: k, blurb: USES[k].kind || 'climb', pose: poseOf(k, USES[k].view === 'side' ? 'side' : 'side') }));
 const STF = Object.keys(USES).map(k => ({ key: k, name: k, blurb: USES[k].kind || 'climb', pose: poseOf(k, USES[k].view === 'side' ? 'front' : USES[k].view) }));
-export const N = 80;
+export const N = 100;   // S8 builder 2026-11-21: was 80; s8_ch_march runs 82 f (the gate reads every move to N)
 export default { title: 'FIRETRUCKS shared locked-feet moves (side)', dur: N / 30, styles: STY };
 export const front = { title: 'FIRETRUCKS shared locked-feet moves (front / 3/4)', dur: N / 30, styles: STF };
 // motion-gate plan (moves/tools/check_motion_ep.mjs): frames from the move start
@@ -172,6 +176,7 @@ export const PLAN = {
   s2_he_walk: { who: 'hero', view: 'side', strikes: [], holds: [[43, 44, 'at the door']], acting: [0, 33] },
   s6_kid_run: { who: 'kid', view: '34', strikes: [], holds: [[29, 30, 'stopped, head tilted']], acting: [0, 28] },
   s7_cv_march: { who: 'chiefVisitor', view: '34', strikes: [], holds: [[41, 43, 'planted']], acting: [0, 40] },
+  s8_ch_march: { who: 'chief', view: 'side', strikes: [], holds: [], acting: [0, 82] },
   s5_cl_climb: { who: 'clerk', view: '34', strikes: [], holds: [[61, 64, 'at the top, hat tipped back']], acting: [0, 60] },
 };
 export const BW = { dz: 0 };   // the motion gate reads BW.dz (a sloped walk); these walks are on flat ground

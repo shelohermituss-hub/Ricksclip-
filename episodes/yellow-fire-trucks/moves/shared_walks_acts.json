@@ -1345,6 +1345,917 @@
    "note": "back to the stretch move, its clock offset so it plays its own film frames"
   }
  ],
+ "s8_ch_march": [
+  {
+   "who": "chief",
+   "at": 1794,
+   "pose": "m:../../shared_walks/s8_ch_march",
+   "dir": 1,
+   "note": "shared_walks s8_ch_march: locked-feet move starts (no face key in this act: the body would start one frame late)"
+  },
+  {
+   "who": "chief",
+   "at": 1793,
+   "pos": [
+    4.199,
+    14.2316,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1794,
+   "pos": [
+    4.199,
+    14.2472,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1795,
+   "pos": [
+    4.199,
+    14.2661,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1796,
+   "pos": [
+    4.199,
+    14.2883,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1797,
+   "pos": [
+    4.199,
+    14.3133,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1798,
+   "pos": [
+    4.199,
+    14.3403,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1799,
+   "pos": [
+    4.199,
+    14.3687,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1800,
+   "pos": [
+    4.199,
+    14.3987,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1801,
+   "pos": [
+    4.199,
+    14.431,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1802,
+   "pos": [
+    4.1991,
+    14.4665,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1803,
+   "pos": [
+    4.1991,
+    14.5052,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1804,
+   "pos": [
+    4.1991,
+    14.5473,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1805,
+   "pos": [
+    4.1991,
+    14.5927,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1806,
+   "pos": [
+    4.1991,
+    14.6416,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1807,
+   "pos": [
+    4.1992,
+    14.6937,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1808,
+   "pos": [
+    4.1992,
+    14.7478,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1809,
+   "pos": [
+    4.1992,
+    14.8023,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1810,
+   "pos": [
+    4.1992,
+    14.8562,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1811,
+   "pos": [
+    4.1992,
+    14.9093,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1812,
+   "pos": [
+    4.1993,
+    14.9622,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1813,
+   "pos": [
+    4.1993,
+    15.0151,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1814,
+   "pos": [
+    4.1993,
+    15.0681,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1815,
+   "pos": [
+    4.1993,
+    15.121,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1816,
+   "pos": [
+    4.1994,
+    15.1744,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1817,
+   "pos": [
+    4.1994,
+    15.2287,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1818,
+   "pos": [
+    4.1994,
+    15.2834,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1819,
+   "pos": [
+    4.1994,
+    15.3381,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1820,
+   "pos": [
+    4.1995,
+    15.3919,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1821,
+   "pos": [
+    4.1995,
+    15.445,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1822,
+   "pos": [
+    4.1995,
+    15.498,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1823,
+   "pos": [
+    4.1995,
+    15.5509,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1824,
+   "pos": [
+    4.1995,
+    15.6038,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1825,
+   "pos": [
+    4.1996,
+    15.6567,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1826,
+   "pos": [
+    4.1996,
+    15.7101,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1827,
+   "pos": [
+    4.1996,
+    15.7644,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1828,
+   "pos": [
+    4.1996,
+    15.8192,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1829,
+   "pos": [
+    4.1997,
+    15.8738,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1830,
+   "pos": [
+    4.1997,
+    15.9277,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1831,
+   "pos": [
+    4.1997,
+    15.9808,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1832,
+   "pos": [
+    4.1997,
+    16.0337,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1833,
+   "pos": [
+    4.1997,
+    16.0866,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1834,
+   "pos": [
+    4.1998,
+    16.1395,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1835,
+   "pos": [
+    4.1998,
+    16.1924,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1836,
+   "pos": [
+    4.1998,
+    16.2458,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1837,
+   "pos": [
+    4.1998,
+    16.3001,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1838,
+   "pos": [
+    4.1999,
+    16.3549,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1839,
+   "pos": [
+    4.1999,
+    16.4095,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1840,
+   "pos": [
+    4.1999,
+    16.4634,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1841,
+   "pos": [
+    4.1999,
+    16.5165,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1842,
+   "pos": [
+    4.2,
+    16.5694,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1843,
+   "pos": [
+    4.2,
+    16.6223,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1844,
+   "pos": [
+    4.2,
+    16.6752,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1845,
+   "pos": [
+    4.2,
+    16.7282,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1846,
+   "pos": [
+    4.2,
+    16.7816,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1847,
+   "pos": [
+    4.2001,
+    16.8358,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1848,
+   "pos": [
+    4.2001,
+    16.8906,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1849,
+   "pos": [
+    4.2001,
+    16.9452,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1850,
+   "pos": [
+    4.2001,
+    16.9991,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1851,
+   "pos": [
+    4.2002,
+    17.0522,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1852,
+   "pos": [
+    4.2002,
+    17.1051,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1853,
+   "pos": [
+    4.2002,
+    17.158,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1854,
+   "pos": [
+    4.2002,
+    17.211,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1855,
+   "pos": [
+    4.2002,
+    17.2639,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1856,
+   "pos": [
+    4.2003,
+    17.3173,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1857,
+   "pos": [
+    4.2003,
+    17.3716,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1858,
+   "pos": [
+    4.2003,
+    17.4263,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1859,
+   "pos": [
+    4.2003,
+    17.4803,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1860,
+   "pos": [
+    4.2004,
+    17.5324,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1861,
+   "pos": [
+    4.2004,
+    17.5814,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1862,
+   "pos": [
+    4.2004,
+    17.6271,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1863,
+   "pos": [
+    4.2004,
+    17.6695,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1864,
+   "pos": [
+    4.2004,
+    17.7086,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1865,
+   "pos": [
+    4.2004,
+    17.7444,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1866,
+   "pos": [
+    4.2005,
+    17.7774,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1867,
+   "pos": [
+    4.2005,
+    17.808,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1868,
+   "pos": [
+    4.2005,
+    17.8363,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1869,
+   "pos": [
+    4.2005,
+    17.8618,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1870,
+   "pos": [
+    4.2005,
+    17.8841,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1871,
+   "pos": [
+    4.2005,
+    17.9031,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1872,
+   "pos": [
+    4.2005,
+    17.9188,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1873,
+   "pos": [
+    4.2005,
+    17.9311,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  },
+  {
+   "who": "chief",
+   "at": 1874,
+   "pos": [
+    4.2005,
+    17.9402,
+    0.14
+   ],
+   "move_s": 0.0334,
+   "linear": true
+  }
+ ],
  "s5_cl_climb": [
   {
    "who": "clerk",

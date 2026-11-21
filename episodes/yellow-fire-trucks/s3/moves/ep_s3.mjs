@@ -43,16 +43,16 @@ function mkOut(t, ch) { const f = F(t) + 668, S = ch.sh[1], L = ch.armL, Wd = ch
   const back = 8 * (snap(f - W.saw, 5) - snap(f - W.saw - 5, 5)), upL = snap(f - W.it, 6), cap = snap(f - W.it - 1, 6);
   const head = 4 * (1 - breath) + shake + back - 16 * upL + ring(f, W.it + 6, 3, 10);
   const hang = [{ wx: -Wd * .55, wy: ch.hipY + 8 }, { wx: Wd * .6, wy: ch.hipY + 6 }];
-  const arms = [{ wx: -Wd * .6 - .78 * L, wy: S - .02 * L }, { wx: Wd * .6 + .78 * L, wy: S - .05 * L }];
+  const arms = [{ wx: -Wd * .75 - 1.05 * L, wy: S + .1 * L }, { wx: Wd * .75 + 1.05 * L, wy: S + .08 * L }];   // fix round: fully wide, straight out a little under the shoulders (palms up), past the reach so the rig straightens the arm
   const mix = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   const h0 = mix(hang[0], arms[0], wide);
   const h1 = mix(mix(hang[1], arms[1], wide), { wx: Wd * .25, wy: S - .95 * L }, cap);
   return { view: '34', dir: 1, x: 0, y: -5 * breath + ant, rot: -3 * breath - 4 * upL, head,
-    feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], farArmFront: true, hands: [{ ...h0, bow: .3 }, { ...h1, bow: .3, over: true }], held: [] }; }
+    feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], farArmFront: true, hands: [{ ...h0, bow: .3 * (1 - wide) + .05 }, { ...h1, bow: .3 * (1 - wide) + .05, over: true }], held: [] }; }
 
 // ---- SCEPTIC m:sc_cab (3/4, in the red truck's cab, driver's window on the south side), rows 16-21. Act at f566 (hidden while the truck races: far and small).
 //   566-568 both fists on the wheel, arms half crossed; 569 "hit": a small jolt forward (6 px), then still: unimpressed (one brow, the face)
-//   680 leans out of the window (film.json moves the card 0.4 m south) and looks DOWN at the Milkman: rot 14, head 10 (snap 10); DEAD STILL to the end
+//   680 leans toward the window (seated driver card, pos fixed in the seat) and looks DOWN at the Milkman: rot 14, head 10 (snap 10); DEAD STILL to the end
 function scCab(t, ch) { const f = F(t) + 566, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const jolt = snap(f - W.hit, 3) - snap(f - W.hit - 3, 8), lean = snap(f - 680, 10);
   return { view: '34', dir: 1, x: 6 * jolt, y: 0, rot: 3 * jolt + 14 * lean, head: 10 * lean + ring(f, W.hit + 3, 3, 9),

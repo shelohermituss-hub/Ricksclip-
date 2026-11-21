@@ -13,8 +13,8 @@ const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 const Z = .14;   // the yard concrete top (town anchors carry z 0.14): every story position is on it
-export const S8 = { EVENING: 1768, BEAUT: 1820, RED: 1830, WALKED: 1857, INTO: 1876, POV: [1830, 1868], hit: [4.2, 18.05, Z + 1.62], lampOverBay1: [-3.0, 15.2, 4.2] };
-export const DRAIN = f => sm((f - S8.EVENING) / 9);
+export const S8 = { EVENING: 1768, BEAUT: 1820, RED: 1830, WALKED: 1857, INTO: 1876, POV: [1828, 1863], hit: [4.2, 18.05, Z + 1.62], lampOverBay1: [-3.0, 15.2, 4.2] };
+export const WIPE = f => sm((f - 1764) / 20);   // assets.js round 3: drainWipe 0..1 runs nose -> tail; the door (about 0.3 of the length) greys on "evening" 1768-1777
 function softTex(THREE) { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.45, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
 function lidTex(THREE, top) {   // a lid: dark at the frame edge, soft into the picture
@@ -59,9 +59,7 @@ export async function build(THREE, scene, film, ctx) {
   for (let i = 0; i < 7; i++) { const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), lineMat.clone()); m.renderOrder = 19; scene.add(m); lines.push(m); }
   const hit = V(S8.hit);
   function update(f, t, R) {
-    if (chief) chief.setPaint({ drain: DRAIN(f) });
-    // WORKAROUND (assets.js, not edited; LECONS 2026-11-20 S1): the paint frame uInvRoot is set only in a truck's FIRST mesh onBeforeRender; culled = wrong paint
-    for (const tk of [hero, chief]) { if (!tk) continue; const m0 = tk.group.getObjectByProperty('isMesh', true); if (m0 && m0.onBeforeRender) m0.onBeforeRender(null, scene); }
+    if (chief) chief.setPaint({ drain: 1, drainWipe: WIPE(f) });   // (the s1 paint-frame workaround is gone: assets.js sets its own paint frame since round 3)
     const b = f - S8.INTO; if (chief && chief.setBell) chief.setBell(b > 0 && b < 40 ? 28 * Math.exp(-b / 9) * Math.sin(b * .55) : 0);
     // steam over the mug
     let mug = null; scene.traverse(o => { if (!mug && o.name === 'phfd_mug' && o.visible) mug = o; });

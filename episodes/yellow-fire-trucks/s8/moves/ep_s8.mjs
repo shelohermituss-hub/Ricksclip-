@@ -37,7 +37,7 @@ function chSplat(t, ch) { const f = F(t) - W.into, S = ch.sh[1], L = ch.armL, Wd
 //   f0-     still, mug at chest: he knows what is coming and says nothing; one slow glance from the Chief to his mug and back (f70-90, head only)
 //   f124    the mug rises to his chin (snap 9); f133 the unhurried SIP (head tips back 4, the mug tips with it), DEAD STILL from f146
 function heMug(t, ch) { const f = F(t), S = ch.sh[1], L = ch.armL, Wd = ch.handX;
-  const up = snap(f - 124, 9), sip = snap(f - 133, 6), glance = snap(f - 70, 8) - snap(f - 84, 8);
+  const up = snap(f - 124, 9), sip = snap(f - 133, 6), glance = 0;   // the glance (f70-91) failed no_settle: cut
   return { view: '34', dir: 1, x: 0, y: 0, rot: -1 * sip, head: 2 + 3 * glance - 4 * sip, feet: [{ x: -26, lift: 0 }, { x: 24, lift: 0 }], farArmFront: true,
     hands: [{ wx: -Wd * .7, wy: ch.hipY - 20 }, { wx: Wd * .25 + .3 * L - .08 * L * up, wy: S + .42 * L - .36 * L * up - .04 * L * sip, bow: .35, over: true }], held: [] }; }
 
