@@ -46,3 +46,5 @@ episodes/*/sets/*/logs/
 episodes/*/sets/*/proof/bl/
 episodes/*/sets/*/proof/kit/
 episodes/*/sets/*/proof/fix/
+episodes/*/s[0-9]*/frame_checks.txt
+episodes/*/s[0-9]*/checks.txt
