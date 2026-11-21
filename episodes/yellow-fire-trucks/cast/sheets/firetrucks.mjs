@@ -103,15 +103,19 @@ const headMirror = Object.assign(PP => { const v = PP.view, y = PP.brimY + 6, w 
   if (v === 'back') return [band];
   const disc = (x, rx) => `<ellipse cx="${f(x)}" cy="${f(y - 34)}" rx="${f(rx)}" ry="30" fill="#d9dde4" stroke="${INK}" stroke-width="5"/><ellipse cx="${f(x - rx * .25)}" cy="${f(y - 42)}" rx="${f(rx * .35)}" ry="9" fill="#ffffff" opacity=".8"/><ellipse cx="${f(x)}" cy="${f(y - 34)}" rx="${f(rx * .2)}" ry="6" fill="${INK}"/><rect x="${f(x - 5)}" y="${f(y - 8)}" width="10" height="10" fill="#8a8f9a" stroke="${INK}" stroke-width="3"/>`;
   return v === 'side' ? [band, disc(w * .55, 12)] : [band, disc(PP.v34 ? 18 : 0, 30)]; }, { label: 'Head mirror on a band (ENT / eye doctor)', era: '1900s-1980s' });
-// FIX 2 (2026-11-21, S2 row 11 "eye"): the same head mirror swung DOWN on its knuckle over his RIGHT eye (screen left in front): a short steel stalk from the
-// band to the disc, the disc tipped (narrower than wide) so its centre hole sits on the eye; the LEFT lens of the round glasses stays fully clear (signature).
-// Head space: eyes at about x +-40, y -19 (char2d front; 3/4 slides them by +18 toward the turn); side: the near eye at about x 52.
-const headMirrorDown = Object.assign(PP => { const v = PP.view, y = PP.brimY + 6, w = PP.widthAt(y) + 2, band = `<path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="${INK}" stroke-width="16" stroke-linecap="round"/><path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="#3a3940" stroke-width="9" stroke-linecap="round"/>`;
-  if (v === 'back') return [band];
-  const [ex, ey, rx, ry] = v === 'side' ? [56, -22, 13, 33] : PP.v34 ? [-40 * .9 + 18, -20, 30, 36] : [-40, -20, 34, 36], kx = v === 'side' ? 6 : ex * .55;
-  const stalk = `<path d="M${f(kx)},${f(y - 4)} L${f(ex + (v === 'side' ? -2 : 6))},${f(ey - ry + 6)}" stroke="${INK}" stroke-width="13" stroke-linecap="round"/><path d="M${f(kx)},${f(y - 4)} L${f(ex + (v === 'side' ? -2 : 6))},${f(ey - ry + 6)}" stroke="#8a8f9a" stroke-width="6" stroke-linecap="round"/><circle cx="${f(kx)}" cy="${f(y - 4)}" r="9" fill="#8a8f9a" stroke="${INK}" stroke-width="4"/>`;
-  const disc = `<ellipse cx="${f(ex)}" cy="${f(ey)}" rx="${f(rx)}" ry="${f(ry)}" fill="#d9dde4" stroke="${INK}" stroke-width="5"/><ellipse cx="${f(ex - rx * .3)}" cy="${f(ey - ry * .4)}" rx="${f(rx * .34)}" ry="${f(ry * .22)}" fill="#ffffff" opacity=".85"/><ellipse cx="${f(ex + rx * .12)}" cy="${f(ey + 2)}" rx="${f(Math.max(4, rx * .2))}" ry="7" fill="${INK}"/>`;
-  return [band, stalk, disc]; }, { label: 'Head mirror on a band, swung DOWN over the right eye', era: '1900s-1980s' });
+// FIX 2 (2026-11-21, S2 row 11 "eye"): the same head mirror swung DOWN on its knuckle over his RIGHT eye (screen left in front, the near eye in side R).
+// The band stays a head piece (hair layer); the knuckle, stalk and disc are drawn in faceTop AFTER the glasses (the hair layer sits under the face), in the
+// face layer's own coordinates, so the rig slides them with the eyes in 3/4 and side: right eye at x -40 (front, 3/4), x 51 (side), y -19.
+// The disc rides a little HIGH (centre y -27) so the bottom rim of the right lens peeks out under it, and the LEFT lens stays fully clear (signature).
+const headBand = Object.assign(PP => { const y = PP.brimY + 6, w = PP.widthAt(y) + 2;
+  return [`<path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="${INK}" stroke-width="16" stroke-linecap="round"/><path d="M${f(-w)},${f(y)} Q0,${f(y - 16)} ${f(w)},${f(y)}" fill="none" stroke="#3a3940" stroke-width="9" stroke-linecap="round"/>`]; }, { label: 'Head mirror band (mirror down)', era: '1900s-1980s' });
+const mirrorDownTop = spec => { const ft = spec.faceTop; return { ...spec, faceTop: Hh => { const prev = ft ? ft(Hh) : [], rv = Hh.view || 'front', dir = Hh.dir || 1; if (rv === 'back') return prev;
+  const side = rv === 'side', [ex, ey, rx, ry] = side ? [51, -27, 15, 31] : [-40, -27, 31, 31], [kx, ky] = side ? [30, -64] : [-12, -62];
+  const steel = (d, w) => `<path d="${d}" fill="none" stroke="${INK}" stroke-width="${w + 7}" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#8a8f9a" stroke-width="${w}" stroke-linecap="round"/>`;
+  const o = [steel(`M${kx},${ky} L${f(ex + (side ? -4 : 12))},${f(ey - ry + 4)}`, 6), `<circle cx="${kx}" cy="${ky}" r="9" fill="#8a8f9a" stroke="${INK}" stroke-width="4"/>`,
+    `<ellipse cx="${ex}" cy="${ey}" rx="${rx}" ry="${ry}" fill="#d9dde4" stroke="${INK}" stroke-width="5"/>`, `<ellipse cx="${f(ex - rx * .32)}" cy="${f(ey - ry * .42)}" rx="${f(rx * .34)}" ry="${f(ry * .2)}" fill="#ffffff" opacity=".85"/>`,
+    `<path d="M${f(ex + rx * .45)},${f(ey + ry * .2)} a${f(rx * .7)},${f(ry * .7)} 0 0,1 ${f(-rx * .6)},${f(ry * .55)}" fill="none" stroke="#b9bec8" stroke-width="3"/>`, `<ellipse cx="${ex}" cy="${ey + 5}" rx="${f(Math.max(4.5, rx * .19))}" ry="6.5" fill="${INK}"/>`];
+  return [...prev, `<g transform="translate(${f(Hh.cx)},${f(Hh.hy)})${dir < 0 ? ' scale(-1,1)' : ''}">${o.join('')}</g>`]; } }; };
 // the THIN painter's brush behind the ear = the kit's ear pencil piece in brush colours (wood handle, grey bristle tip)
 const BRUSH_EAR = 'earPencil';
 // library hats with their gold badge / star turned silver (no yellow on any person); shape and main colour untouched
@@ -143,7 +147,7 @@ export const CAST = [
   // THE HERO (thin, tall): big round wire glasses = fixed signature; teal turtleneck = the film's signature colour
   person({ name: 'hero', label: 'The Fireman-Eye-Doctor (yard)', size: 'thin', outfit: 'ytHeroYard', outfitPal: { a: TEAL, b: BLK, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, hat: HELM_HERO, hatDrop: -14 }),
   person({ name: 'heroShop', label: 'The Fireman-Eye-Doctor (eye shop)', size: 'thin', outfit: 'ytHeroShop', outfitPal: { a: WHITE, b: TEAL, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, pieces: [headMirror] }),
-  person({ name: 'heroShopEye', label: 'The Fireman-Eye-Doctor (eye shop, head mirror DOWN over the right eye: S2 row 11)', size: 'thin', outfit: 'ytHeroShop', outfitPal: { a: WHITE, b: TEAL, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, pieces: [headMirrorDown] }),
+  mirrorDownTop(person({ name: 'heroShopEye', label: 'The Fireman-Eye-Doctor (eye shop, head mirror DOWN over the right eye: S2 row 11)', size: 'thin', outfit: 'ytHeroShop', outfitPal: { a: WHITE, b: TEAL, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE, pieces: [headBand] })),
   person({ name: 'heroBare', label: 'The Fireman-Eye-Doctor (no helmet, last picture option)', size: 'thin', outfit: 'ytHeroYard', outfitPal: { a: TEAL, b: BLK, c: BLK } }, 'sidePart', H_HERO, { face: HERO_FACE }),
   // THE CHIEF (fat, short): white helmet + grey walrus moustache
   person({ name: 'chief', label: 'The Chief', size: 'fat', outfit: 'ytChief', outfitPal: { a: NAVY, b: BLKD, c: NAVYD } }, 'buzz', H_CHIEF, { face: CHIEF_FACE, hat: HELM_CHIEF, hatDrop: -10 }),

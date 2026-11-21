@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # S1 fix round cycle: changed frames only (render_frames.sh, one process), then checks, mp4, sheets. Log logs/fix_s1.log, end S1_FIX_END.
 cd "$(dirname "$0")"; ROOT=../../..; t0=$(date +%s)
-: > logs/frames.log; bash render_frames.sh 48-288; grep -c failed logs/frames.log; grep MISSING logs/frames.log
+: > logs/frames.log; bash render_frames.sh 0-288; grep -c failed logs/frames.log; grep MISSING logs/frames.log
 echo "render $(( $(date +%s) - t0 )) s, frames $(ls frames | wc -l)"
 bash $ROOT/tools/run_stretch.sh film.json 0-288
 timeout 900 node $ROOT/tools/camsafe/validate.mjs film.json > camsafe.txt 2>&1; grep -E "CAMERA-SAFE" camsafe.txt

@@ -27,7 +27,7 @@ const six = w => V6.map(v => `${w}_${v}`);
 const FX = [['hero', 'k:aim', 'front'], ['hero', 'k:glanceCam', '34'], ['hero', 'k:proud', '34'], ['heroShop', 'k:think', '34'], ['chief', 'k:chiefShout', 'front'], ['chief', 'k:chiefShout', '34'], ['chief', 'k:proudShut', '34'],
   ['rookie', 'k:peekOne', 'front'], ['rookie', 'k:lipBite', '34'], ['rookie', 'k:browUp', '34'], ['milkman', 'k:frozenWide', 'front'], ['sceptic', 'k:browUp', '34'], ['oldTimer', 'k:sleepy', '34'], ['kid', 'k:confused', '34'], ['clerk', 'k:concentrate', '34']];
 const fxIds = FX.map(([w, fc, v]) => T(w, { view: v, face: fc, tag: fc.slice(2) }));
-const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'drive', face: 'k:concentrate', tag: 'drive' })));   // FIX 3: seated drivers, fists forward on the rim
+const DV = ['front', '34', '34L', 'side'], drvIds = BEFORE ? [] : DRV.flatMap(w => DV.map(v => T(w, { view: v, pose: 'drive', face: 'standard', tag: 'drive' })));   // FIX 3: seated drivers, fists forward on the rim
 if (!BEFORE) T('heroShopEye', { view: '34', face: 'k:concentrate', tag: 'concentrate' });
 const PT = (process.env.CAST_POSETEST || '').split(',').filter(Boolean), ptIds = PT.flatMap(pz => ['front', '34'].map(v => T('scepticDriver', { view: v, pose: pz, tag: 'pt_' + pz.replace(/\W/g, '_') })));   // scratch: compare plain kit poses on a driver
 const rows = [
@@ -42,7 +42,7 @@ const rows = [
   ...(PT.length ? [{ h: 330, label: 'POSE TEST ' + PT.join(' '), ids: ptIds }] : []),
   { h: 330, label: 'PAINTER fat (signature: rag out of the back pocket: side + back)  |  crowd firemen 3/4 and back  |  black fill', ids: [...six('painterFat'), 'crew1_34', 'crew2_back', 'crew3_34', 'SIL:milkman_front', 'SIL:kid_front', 'SIL:clerk_front'] },
 ];
-const faces = [{ h: 300, ids: ['hero_front', 'hero_34', 'hero_side', 'hero_back', 'heroShop_front', 'heroShop_34'] }, { h: 300, ids: ['hero_front_aim', 'hero_34_glanceCam', 'hero_34_proud', 'heroShop_34_think', 'chief_front_chiefShout', 'chief_34_proudShut'] },
+const faces = [{ h: 300, ids: ['heroShopEye_front', 'heroShopEye_34', 'heroShopEye_34L', 'heroShopEye_side', 'heroShopEye_34_concentrate', 'heroShop_34'] }, { h: 300, ids: ['hero_front', 'hero_34', 'hero_side', 'hero_back', 'heroShop_front', 'heroShop_34'] }, { h: 300, ids: ['hero_front_aim', 'hero_34_glanceCam', 'hero_34_proud', 'heroShop_34_think', 'chief_front_chiefShout', 'chief_34_proudShut'] },
   { h: 300, ids: ['chief_front', 'chief_34', 'chief_side', 'chief_back', 'chiefDown_front', 'chief_34_chiefShout'] }, { h: 300, ids: ['rookie_front_peekOne', 'rookie_34_lipBite', 'rookieDown_front', 'milkman_front_frozenWide', 'sceptic_34_browUp', 'clerk_34_concentrate'] }];
 const LINE = ['chief', 'oldTimer', 'rookie', 'hero', 'sceptic', 'milkman', 'kid', 'clerk', 'painterThin', 'painterFat'];
 const html = `<html><body style="margin:0;background:#fff"><canvas id="sheet"></canvas><canvas id="faces"></canvas><canvas id="line"></canvas><script>
