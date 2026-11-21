@@ -1,4 +1,19 @@
-# S8 STATE: THE PAYOFF, BOARD round 1 (S8 stretch builder, 2026-11-21). Frames 1754-1898 (58.45-63.25 s), script line 14, plan rows 54-58, yard, DUSK.
+# S8 STATE: THE PAYOFF, FIX ROUND 1 (same builder, 2026-11-21). Frames 1754-1898, line 14, rows 54-58, yard DUSK. BOARD.jpg = v2 (half size, key_v2/).
+## FIX ROUND: NOT done / wrong
+- Plan window still FAILS: p90 29.4 px/f (<= 22), peak 29.8 (plan_check.txt). One take now, no cut; but door push + pull back + push into the eyes +
+  whip out = 3 fast moves in 145 f; p90 allows ~14 fast frames. The door station is flowed through (push in, drain, pull back, no rest). Needs a lead call:
+  drop one move, or accept the window FAIL for this stretch.
+- f1890 last frame: the chiefDown card faces LEFT, away from his truck, and stands upright: he does not read as flat against it. Check dir/view in the act.
+- f1806 (row 55): the Chief is NOT in the picture (the pull-back via point frames the hero and the pumper). Row 55 fails.
+- POV f1840/f1851: the pumper still reads clearly (bays 0.15 + full drain); not "almost nothing". Fist and arm are flat overlay shapes.
+- frame_checks/check.mjs NOT run (time box). camsafe: 11178 checks, FAIL 0, WARN 1.
+## FIX ROUND: done
+- Door push opens S8, drain wipe nose->tail on "evening" (drainWipe), seen red f1762 -> grey f1772 (gold kept). Workaround removed (assets.js own paint frame).
+- Chief march = moves/shared_walks.mjs use s8_ch_march (added by me, N 80 -> 100; gate twos 0 linear 0 slide 0). Pasted per SHARED_WALKS.md.
+- Hero no longer cut by the edge (f1890, f1806). Last frame: hero left, Chief at the grey pumper nose, lemon truck + firemen back left, pumper visible.
+- he_mug glance cut (no_settle). bays: 0.15 in places.yard.
+
+## ROUND 1 (kept for history): BOARD round 1 (S8 stretch builder, 2026-11-21). Frames 1754-1898 (58.45-63.25 s), script line 14, plan rows 54-58, yard, DUSK.
 ## NOT done / wrong (seen or measured)
 - film_plan.py check --window 1754-1898: 17 FAIL, 8 WARN (plan_check.txt). WINDOW p90 64.2 px/f (FAIL <= 22), peak 68.4. NOT 0 FAIL. The plan's 4 framings
   (close door -> wide -> his eyes -> wide) do not fit 145 f under camera v2 (it wants 89 f + 138 f of travel, room 29 + 30). A framing must go: CAMERA_NOTE.md, 3 options.
@@ -40,7 +55,6 @@
   default grab is a compositor screenshot with a 30 s limit. Fix: --grab canvas. Guard: the line in this file's render command. Proof: f1890 written. FERMÉ
 - 2026-11-21 Problem: motion gate crashed (sig[a] undefined). Cause: the gate looks ~20 f past a strike; N ended at the stretch end. Fix: N = 165 in
   ep_s8.mjs. Guard: comment at N. Proof: motion_gate.txt exit 0. FERMÉ
-- Render command: node ../../../templates/threejs_film/render_gpu.mjs film.json --frames <list> --scale 1 --grab canvas --stills-dir "$PWD/key"
 ## Checks
 - camsafe validate: 11177 checks, PASS 11177, FAIL 0 (camsafe.txt). frame_checks/check.mjs: NOT run (time box over; it renders, one process at a time).
 - motion gate: motion_gate.txt (above). film_plan check: plan_check.txt (above).

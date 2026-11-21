@@ -13,8 +13,8 @@ Z = 0.14                                  # the yard concrete top
 F0, F1 = 1754, 1898
 CH_A, CH_B = [4.2, 14.2, Z], [4.2, 17.95, Z]     # the march runs ON the white yard line (x 4.2, y 7.9 -> 18.55 = the pumper's nose)
 CH_HIT = [4.2, 18.12, Z]                  # flat against the nose (nose at y 18.55; the fat body is ~0.4 m deep)
-HERO = [6.3, 16.75, Z]                   # front left of the wide (east camera looking west), mug at his chest
-OLD, ROOK, SCEP = [-0.6, 18.0, Z], [-0.3, 18.7, Z], [-0.9, 19.3, Z]   # by the lemon truck (bay 1 truck, side at x -3.0)
+HERO = [5.3, 16.4, Z]                   # front left of the wide (east camera looking west), mug at his chest
+OLD, ROOK, SCEP = [-1.2, 15.4, Z], [-0.8, 16.1, Z], [-1.4, 16.8, Z]   # by the lemon truck (bay 1 truck, side at x -3.0)
 M = lambda k: 'm:../../ep_s8/' + k
 W = dict(that=1759, evening=1768, chief=1787, marched=1794, out=1803, his=1815, beautiful=1820, red=1830, truck=1840, and_=1849, walked=1857, straight=1864, into=1876, it=1886)
 
@@ -42,7 +42,7 @@ held3d = [dict(who='hero', obj='mug', module='sets/assets.js', builder='buildMug
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0025, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
-WIDE_POS, WIDE_AIM = [8.2, 16.7, 1.25], [-2.0, 18.6, 1.25]   # east of the line looking west: lemon truck straight behind the Chief, pumper nose at his right
+WIDE_POS, WIDE_AIM = [8.4, 15.6, 1.25], [-1.0, 19.9, 1.25]   # east of the line looking west: lemon truck straight behind the Chief, pumper nose at his right
 stations = [
     st(F0, [7.0, 17.55, 1.32], [5.2, 19.85, 1.14], 28, 'pumper', 'C', 'ROW 54 (PLACE, M09 push, blend on motion from the S7 stillness): the push into the wet red door of the home pumper', hold=0.0, shows=['door']),
     st(1778, [6.2, 18.92, 1.3], [5.2, 19.88, 1.14], 32, 'pumper', 'C', 'ROW 54: lands on the door panel; the drain wipe crosses it on "evening" (1766-1784), gold letters keep their gold', hold=0.45, shows=['door']),

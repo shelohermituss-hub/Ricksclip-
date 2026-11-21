@@ -307,6 +307,7 @@
    "who": "milkman",
    "at": 662,
    "visible": true,
+   "pose": "m:../../ep_s3/mk_out",
    "note": "row 19: small in front of the huge truck, cap askew"
   },
   {
@@ -349,6 +350,7 @@
    "who": "sceptic",
    "at": 566,
    "visible": true,
+   "pose": "m:../../ep_s3/sc_cab",
    "note": "row 16: at the wheel of the stopped truck (hidden while it races: far, small, inside a dark cab)"
   },
   {
@@ -544,16 +546,16 @@
     {
      "at": 752,
      "pos": [
-      22.2,
-      -2.0,
-      0.25
+      22.5,
+      -2.2,
+      0.22
      ],
      "aim": [
-      24.3,
-      -4.0,
-      1.6
+      25.0,
+      -4.3,
+      2.7
      ],
-     "lens": 18,
+     "lens": 16,
      "subject": "truck",
      "framing": "W",
      "purpose": "ROW 21 EXTREME \"it\" (the tilt lands on the word): low and wide, the truck he never saw fills the frame and goes out of the top",

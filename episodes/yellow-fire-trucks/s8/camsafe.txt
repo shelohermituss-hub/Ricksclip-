@@ -1,2 +1,5 @@
-CAMERA-SAFE  s8  camsafe on  11177 checks: PASS 11177  WARN 0  FAIL 0
+CAMERA-SAFE  s8  camsafe on  11178 checks: PASS 11177  WARN 1  FAIL 0
+  STEEP          1
+  f1855 hero WARN  yaw 45 pitch 66.4  WARN STEEP: camera 66 deg down
+      FIX: lower the camera to 60 deg or less unless the plan wants the top-down
 report -> /home/user/Ricksclip-/episodes/yellow-fire-trucks/s8/out/plan/camsafe_report.json

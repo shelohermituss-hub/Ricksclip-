@@ -30,14 +30,14 @@ function mkVan(t, ch) { const f = F(t) + 474, S = ch.sh[1], L = ch.armL, Wd = ch
   return { view: '34', dir: 1, x: -10 * jolt, y: -10 * freeze + dip(f, W.hit, 5, 4), rot: lean - 6 * jolt, head,
     feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: false, hands: [{ ...h0, bow: .35 }, { ...h1, bow: .35, over: true }], held: [] }; }
 
-// ---- MILKMAN m:mk_out (3/4, climbed out, standing small in front of the huge truck), rows 19-21. Act at f668 (he steps out between 660 and 670).
+// ---- MILKMAN m:mk_out (3/4, climbed out, standing small in front of the huge truck), rows 19-21. Act at f662 (the standing puppet appears; the move restarts at that act).
 //   668-689 cap askew (head tilt 4), arms hanging, bottle low in the far fist; small, careful
 //   690 "said": turns to the lens and draws breath (chest up: y -5, rot -3, snap 8)
 //   721 "I": BOTH ARMS WIDE, palms up (snap 6 after a 3 f dip): the bottle goes out with the far arm; held through "never"
 //   734 "never": eyes to the lens (face), head shakes 3 times (734-745)
 //   745 "saw": a half look back over his shoulder (head 8, snap 5) and back (snap 5 at 750)
 //   755 "it": the snap round and UP: head back -16, the near knuckle pushes the cap back (hand to the brow, snap 6); DEAD STILL from 765 (mouth shut)
-function mkOut(t, ch) { const f = F(t) + 668, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
+function mkOut(t, ch) { const f = F(t) + 662, S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const breath = snap(f - W.said, 8), wide = snap(f - W.I, 6) - snap(f - W.it, 8) * .55, ant = dip(f, W.I - 3, 4, 3);
   const shake = f > W.never && f < W.saw ? 4 * Math.sin((f - W.never) / 11 * Math.PI * 3) : 0;
   const back = 8 * (snap(f - W.saw, 5) - snap(f - W.saw - 5, 5)), upL = snap(f - W.it, 6), cap = snap(f - W.it - 1, 6);
