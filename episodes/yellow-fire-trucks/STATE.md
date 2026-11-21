@@ -47,3 +47,4 @@
 - 2026-11-21 USER APPROVED THE WHOLE-FILM DRAFT (the one gate, draft/FILM_DRAFT_v1.mp4): "Le brouillon du film entier est bon pour moi". Next: the stretch fix/polish rounds with the shared fixes; first 1-2 CINEMATIC KEY FRAMES (Blender, Ultra light pass + colour + grade) asked by the user the same message.
 - 2026-11-21 11:27 RunPod pod hgzl1ofwdbcmrt (RTX 4090, secure cloud, $0.89/h) created for the two cinematic key frames; frame A rendered there in 50 s (OptiX, 512 spp, 1080x1920). Delete the pod by 12:27 at the latest.
 - 2026-11-21 11:55 RunPod pod hgzl1ofwdbcmrt TERMINATED (about 30 min used, about $0.45). Key frame B rendered there on the pod CPU by mistake (lesson).
+- 2026-11-21 15:33 PERMANENT RunPod pod 6q4dqq11pklkom (RTX 4090, $0.89/h running, 80 GB volume at /workspace; STOP it when idle, do not terminate). Client: tools/runpod/pod.py (address+token in tools/runpod/.pod.json, git-ignored).

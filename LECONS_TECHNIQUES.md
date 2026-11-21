@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — Le client Python de la machine RunPod recevait 403 alors que curl passait (proxy RunPod) — FERMÉ
+- Problème : HTTP 403 à chaque appel de tools/runpod/pod.py, alors que curl obtenait 200 sur la même adresse avec le même jeton.
+- Cause réelle : le proxy de RunPod refuse l'User-Agent par défaut « Python-urllib » (même piège que Poly Haven le même jour).
+- Correction : pod.py envoie un User-Agent explicite.
+- Garde-fou : tout client HTTP en Python de ce dépôt envoie un User-Agent explicite.
+- Preuve : `python tools/runpod/pod.py health` renvoie « ok blender=Blender 5.3.0 ».
+
 ## 2026-11-21 — Les personnages glissaient d'un plan à l'autre à travers une coupe (kit, film_plan.py) — OUVERT pour l'outil
 - Problème : le personnage traversait l'image en grand entre deux plans et restait hors de la voiture.
 - Cause réelle : film_plan.bake_performance fait glisser tout changement de position (`pos`) sur 0,5 s, même à travers une coupe franche vers un autre lieu.
