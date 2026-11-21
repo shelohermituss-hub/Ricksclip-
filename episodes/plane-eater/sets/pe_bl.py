@@ -20,7 +20,7 @@ def use(c): CUR['c'] = c
 def link(o):
     (CUR['c'] or bpy.context.scene.collection).objects.link(o); return o
 
-def pmat(name, col, rough=.5, metal=0., emit=None, es=0., alpha=None, coat=0., img=None, bump=0., noise=0.):
+def pmat(name, col, rough=.5, metal=0., emit=None, es=0., alpha=None, coat=0., img=None, bump=0., noise=0., emit_only=False):
     """Principled material; img = PNG path (base colour from it, multiplied by col if col given); bump = Cycles-only noise bump strength."""
     if name in bpy.data.materials: return bpy.data.materials[name]
     m = bpy.data.materials.new(name); m.use_nodes = True; N = m.node_tree.nodes; Lk = m.node_tree.links; b = N['Principled BSDF']
@@ -30,7 +30,8 @@ def pmat(name, col, rough=.5, metal=0., emit=None, es=0., alpha=None, coat=0., i
     if emit: b.inputs['Emission Color'].default_value = lin(emit); b.inputs['Emission Strength'].default_value = es
     if img:
         t = N.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(img); t.interpolation = 'Linear'
-        Lk.new(t.outputs[0], b.inputs['Base Color'])
+        if not emit_only: Lk.new(t.outputs[0], b.inputs['Base Color'])
+        else: b.inputs['Base Color'].default_value = (0.02, 0.02, 0.02, 1)
         if emit: Lk.new(t.outputs[0], b.inputs['Emission Color'])
     if alpha is not None:
         b.inputs['Alpha'].default_value = alpha
