@@ -38,3 +38,20 @@ Kit: 615,888 tris (241 k set + 94 x 4 k trucks), 600 meshes, load 1.5-2.4 s. Kit
 - Lead: Pine Hollow is placed in the Ozarks (lon -91.55, lat 36.3, north Arkansas / south Missouri line): OK or move it (map_geo.CITIES). Saturation fix wanted? (stronger tints).
 - Effects: lime mist row 24, glint wave row 25, heat shimmer on the sand (row 28). Background painter: nothing (indoor table; the sky is only seen past the table edge in lows).
 - Stretch builder: the S3->S4 join needs the town to cross-fade to the printed plan at Pine Hollow (anchors pine_hollow_station; the plan's MAIN ST runs E-W through the dot).
+## FIX 2 (2026-11-21) - sheet FIX2_SHEET.jpg (8 tiles, looked at), numbers proof/fix2/numbers.json; run fix2_run.sh (3 rounds a/b/c; build -> out_tmp/, renamed)
+- NOT done: Blender saturation station_open .263 (< .30): a third of that frame is the grey-blue world sky (LOOK, lead); the others pass (wide .319, dallas .329,
+  pine_sink .321, cities_field .325; before .186-.258). Field stations are all one model without signs; the S4 builder must call add_field / places.field.
+  WARNING to S4: between 02:33 and 02:39 out/map_truck_tiny.glb was a shattered truck (see LECONS); a kit render of S4 made in that window must be redone.
+- Done, seen: 1 print tints about x3 (state tints, water, paper cream), card walls warm tan, roofs warm slate. 2 dense pop-up field: make_field.py -> out/map_field.json
+  (260 small stations, scale .5-.68, on land, >= .62 m apart, >= .8 m from a city); kit places.<name>.field: true | n (instanced: station parts, doors with the
+  wave, tiny lime trucks with the paint wave), Blender MA.add_field(scene) (linked copies, map_station 'FIELD', driven by set_doors / set_paint). Camera
+  counts (projection, 9:16, lens on 36 mm tall): S4 B as planned (3.45,-.3,.78)->(2.85,1.9,.05) 24 mm: 4 city stations -> 26 with the field (table edge shows at the
+  top); (3.0,-.3,4.0)->(2.85,1.9,.05) 24 mm: 35, no table edge (proof cam cities_field). No camera shows more than 14 without the field.
+  3 kit metals get a painted studio env map (brass compass reads brass, tile 7). 4 map.js setStation(i | 'CITY', { paint, door }) + stations(); setStation(i, null) clears.
+- Kit cost with field: +260 x (station + 2 doors + 2 trucks of 6,000 tris): 4.6 s/f at load 3.3 (cities_field).
+## FIX 2 LECONS (LECONS format)
+- 2026-11-21 The rebuilt tiny truck came out in shards (kit bays). Cause: assets_prod truck_light grew to 37,236 tris (02:15) and one COLLAPSE decimate to 4,000
+  tore it. Fix: bl_map_lite planar dissolve 4 deg, then collapse only above 6,000 (37,236 -> 6,000). Guard: TINY_DEC line in logs/fix2_lite.log; look at a kit
+  close after any assets_prod change. Proof: FIX2_SHEET tile 7 (kit dallas: whole lime trucks). FERME
+- 2026-11-21 Doubling pastel tints only moved Blender saturation .19 -> .25. Cause: the closes are mostly cream station walls and grey sky, not print. Fix: tints x3
+  + warm card walls. Guard: measure saturation per tile (fix2_sheet.py). Proof: 4 of 5 tiles >= .30. FERME for the set; station_open OUVERT (sky, lead).

@@ -16,6 +16,54 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-21 — problem: the Dallas trucks kept the ENGINE No (yellow-fire-trucks, dallas, fix 2) — FERMÉ
+- problem: the Dallas trucks kept the ENGINE No. 1 letters (log LETTERS_FAIL, key "truck_letters_dal14" not found). Cause: truck_api.append_truck appends the TRUCK collection only; the extra letter images live in truck.blend with a fake user and do not come along. Fix: dallas_api.link_trucks loads assets_prod/out/<letters>.png, packs it, then set_letters. Guard: build_dallas.sh prints any LETTERS_FAIL line. Proof: run 2 has none, DALLAS FIRE DEPT. on the doors. FERMÉ
+
+## 2026-11-21 — problem: kit "second frame" seconds came out negative (-2 (yellow-fire-trucks, dallas, fix 2) — OUVERT
+- problem: kit "second frame" seconds came out negative (-2.1 s). Cause: the time is (frames 0,1) - (frame 0) of two separate runs, and the shared CPU (load 14 on 4 cores) changes the page load time between runs by more than a frame. Fix: none yet; read the numbers as noise when the load is high. Guard: write the load average next to timings (`uptime` in run_kit.sh: TO ADD). OUVERT
+
+## 2026-11-21 — The far landmarks (tank, derrick, skyline) were in the set but never in a frame (yellow-fire-trucks, dallas, fix 2) — FERMÉ
+- The far landmarks (tank, derrick, skyline) were in the set but never in a frame. Cause: placed by plan only; from a 1.3 m camera 18 m from a 6.3 m roof, anything under 16 deg up hides (a 38 m tank at 163 m is 13 deg). Fix: place far things by the elevation test against the roof and the sign from the shot cameras. Guard: the s5/s7 cams in dallas_cams.json are proof tiles. Proof: FIX2_SHEET tiles 2, 3, 6, 7. FERME
+
+## 2026-11-21 — The apron read warm sand after a grey tint (yellow-fire-trucks, dallas, fix 2) — FERMÉ
+- The apron read warm sand after a grey tint. Cause: tint() keeps 25-50 % of the source colour and the Poly Haven concrete is brown (85/60/41). Fix: keep .1 + pull the grain to the mean. Guard: tex_dallas prints nothing: check the texture mean (python one-liner in STATE) before a build. Proof: tiles 2/3. FERME
+
+## 2026-11-21 — Kit street-lamp halo a third of the sky wide; making the sprite and the lens emission smal (yellow-fire-trucks, town, fix 2) — FERMÉ
+- Kit street-lamp halo a third of the sky wide; making the sprite and the lens emission smaller changed nothing (mean diff 1/255). Cause: the post bloom (quarter-res blur, 168 px radius) fed by the globe lit by the lamp's own PointLight 0.3 m away (inverse square). Fix: town.js globe base black + emissive only, light .9 m lower. Guard: comment in town.js; test a halo with post.bloom 0 and the place option at 0 before changing art. Proof: proof/kit/stills/t_bloom0 vs t_glow0 vs du_crossing_lite (sky patch 161 -> 82). FERME
+
+## 2026-11-21 — A swing seen from the north read as one rope (yellow-fire-trucks, town, fix 2) — FERMÉ
+- A swing seen from the north read as one rope. Cause: both ropes on the camera axis (y -19.3 / -18.7) and the seat end-on. Fix: ropes along x. Guard: build hanging/flat props facing the shot cameras listed in the CAMERA_NOTE. Proof: FIX2_SHEET tiles 3 and 7. FERME
+
+## 2026-11-21 — A sed appended a '#' comment in the middle of the iris line and ate `iris (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- A sed appended a '#' comment in the middle of the iris line and ate `iris.data.materials.append(chrome)`. Cause: REGLES 4 trap again. Fix: comment on its own line. Guard: `grep -n "; *#" scripts/*.py` before every render (it caught this one). Proof: the chrome lip shows in bl_irisopen.png. FERMÉ
+
+## 2026-11-21 — The socket asset joined to an empty list (IndexError) (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- The socket asset joined to an empty list (IndexError). Cause: the filter `'chain' in name` also matched the asset's own name pull_chain_light_socket. Fix: `name.endswith('_chain')`. Guard: join() fails loudly on an empty list. Proof: SRC_housing built, LAMPS line in logs/build.log. FERMÉ
+
+## 2026-11-21 — ReferenceError after bpy (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- ReferenceError after bpy.ops.object.join. Cause: the joined objects are deleted; the loop then read their names. Fix: list the non-mesh objects before the join. Guard: in join(). Proof: logs/build.log LAMPROOM_DONE. FERMÉ
+
+## 2026-11-21 — Lamps at emission 9 clipped in the Standard view: red read salmon, lemon read white (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- Lamps at emission 9 clipped in the Standard view: red read salmon, lemon read white. Fix: E_ON 3.0 in lamproom_api. Guard: the constant's comment. Proof: bl_allon.png round 2, red reads red. FERMÉ
+
+## 2026-11-21 — Mirror chrome reads black where nothing bright is in front (Blender reflector bowl; every  (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- Mirror chrome reads black where nothing bright is in front (Blender reflector bowl; every kit chrome without an env map). Fix: brushed reflector (rough .2) + a dim violet fill (160 W blew it white, 9 W kept); kit caps metalness .55. Proof: bl_entry.png / kit entry, round 3. FERMÉ
+
+## 2026-11-21 — Cabinet tint never took: nodes (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- Cabinet tint never took: nodes.get('Principled BSDF') was None on the glTF material. Fix: find by type, log CABINET_TINT. Guard: the log line. Proof: tile 4. FERME
+
+## 2026-11-21 — Darker deck tint changed nothing: metal  (yellow-fire-trucks, lamproom, fix 2) — FERMÉ
+- Darker deck tint changed nothing: metal .6 mirrored the lamps. Fix: metal 0, rough x1.8. Guard: check metal first. Proof: band std .198 -> .047. FERME
+
+## 2026-11-21 — Window images are stored 'out/window_* (yellow-fire-trucks, lamproom, fix 2) — OUVERT
+- Window images are stored 'out/window_*.png' relative to the CWD: Blender must run from sets/lamproom. Guard: IMGPATHS print. OUVERT (pack for RunPod).
+
+## 2026-11-21 — The rebuilt tiny truck came out in shards (kit bays) (yellow-fire-trucks, map, fix 2) — FERMÉ
+- The rebuilt tiny truck came out in shards (kit bays). Cause: assets_prod truck_light grew to 37,236 tris (02:15) and one COLLAPSE decimate to 4,000 tore it. Fix: bl_map_lite planar dissolve 4 deg, then collapse only above 6,000 (37,236 -> 6,000). Guard: TINY_DEC line in logs/fix2_lite.log; look at a kit close after any assets_prod change. Proof: FIX2_SHEET tile 7 (kit dallas: whole lime trucks). FERME
+
+## 2026-11-21 — Doubling pastel tints only moved Blender saturation  (yellow-fire-trucks, map, fix 2) — OUVERT
+- Doubling pastel tints only moved Blender saturation .19 -> .25. Cause: the closes are mostly cream station walls and grey sky, not print. Fix: tints x3 + warm card walls. Guard: measure saturation per tile (fix2_sheet.py). Proof: 4 of 5 tiles >= .30. FERME for the set; station_open OUVERT (sky, lead).
+
 ## 2026-11-21 — Truck paint computed in world space when the truck's first mesh is off screen (yellow-fire-trucks, assets.js) — FERMÉ
 - Problème : S1 f272, the lemon rear of the hero rendered aged red; every stretch (S1, S2, S3, S5, S7, S8) copied a workaround.
 - Cause réelle : uInvRoot (the paint frame) was refreshed only in the FIRST mesh's onBeforeRender; three.js skips onBeforeRender of a culled mesh, so the inverse stayed identity.

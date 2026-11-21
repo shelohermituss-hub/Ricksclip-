@@ -13,9 +13,9 @@ SERIF = '/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf'; BOLD 
 STATES = G.load_states(os.path.join(A, 'us-atlas', 'states-10m.json'))
 PAPER = Image.open(os.path.join(A, 'acg', 'Paper001', 'Paper001_2K-JPG_Color.jpg')).convert('L')
 # palette: no red, no yellow, no teal on a set (LOOK_BIBLE). Water cornflower-pale, land pastel 1970s tints, highways navy.
-CREAM = (241, 230, 204); WATER = (160, 196, 246); WATER_LINE = (140, 170, 222); GREYLAND = (226, 221, 207)
-# FIX 2: tints about twice as strong (Blender saturation measured 0.19-0.26 under the bleached noon; the floor is 0.30). Still no red, yellow or teal.
-TINTS = [(252, 200, 168), (200, 232, 170), (244, 190, 226), (246, 230, 186), (192, 214, 250), (246, 214, 166)]
+CREAM = (240, 226, 194); WATER = (138, 182, 246); WATER_LINE = (140, 170, 222); GREYLAND = (226, 221, 207)
+# FIX 2: tints about three times as strong (round b; round a x2 gave .22-.29) (Blender saturation measured 0.19-0.26 under the bleached noon; the floor is 0.30). Still no red, yellow or teal.
+TINTS = [(250, 178, 138), (178, 228, 140), (240, 164, 214), (246, 220, 158), (166, 198, 252), (246, 198, 136)]
 NAVY = (39, 54, 90); INK = (31, 35, 56); BROWN = (132, 86, 58); ROAD = (150, 138, 126); PLUM = (122, 104, 140); RIVER = (96, 136, 214); PENCIL = (88, 86, 92)
 COFFEE = (150, 104, 66)
 STATIONS = G.stations(); SNAMES = [s[0] for s in STATIONS]
@@ -264,12 +264,13 @@ for k in range(1, 12): dd.line([(0, k * 21), (256, k * 21)], fill=(196, 194, 188
 for k in range(5): dd.rectangle([18 + k * 46, 66, 50 + k * 46, 82], fill=(70, 86, 120), outline=(39, 54, 90), width=2)
 dd.rectangle([0, 0, 255, 255], outline=NAVY, width=7); dd.rectangle([0, 244, 255, 255], fill=(60, 58, 60)); dd.rectangle([110, 226, 146, 234], fill=(150, 150, 150))
 dr.save(os.path.join(OUT, 'door.png'))
-wl = Image.new('RGB', (512, 512), (234, 216, 172)); dw = ImageDraw.Draw(wl); r2 = random.Random(2)
+# FIX 2 round c: card walls warmer tan (234,216,172 -> 236,198,146) and roofs warm slate: the closes are mostly station (Blender saturation < .30)
+wl = Image.new('RGB', (512, 512), (236, 198, 146)); dw = ImageDraw.Draw(wl); r2 = random.Random(2)
 for j in range(32):
     for i in range(9):
-        x0 = i * 60 - (30 if j % 2 else 0); v = r2.randint(-10, 8); dw.rectangle([x0 + 2, j * 16 + 2, x0 + 58, j * 16 + 14], fill=(234 + v, 216 + v, 172 + v))
+        x0 = i * 60 - (30 if j % 2 else 0); v = r2.randint(-10, 8); dw.rectangle([x0 + 2, j * 16 + 2, x0 + 58, j * 16 + 14], fill=(236 + v, 198 + v, 146 + v))
 wl.filter(ImageFilter.GaussianBlur(.6)).save(os.path.join(OUT, 'wall.png'))
-rf = Image.fromarray((np.random.RandomState(9).rand(256, 256, 1) * 34 + np.array([150, 144, 132])).clip(0, 255).astype(np.uint8)); rf.save(os.path.join(OUT, 'roof.png'))
+rf = Image.fromarray((np.random.RandomState(9).rand(256, 256, 1) * 34 + np.array([150, 128, 108])).clip(0, 255).astype(np.uint8)); rf.save(os.path.join(OUT, 'roof.png'))
 json.dump(dict(insets=INS, cells=CELLS, stations=[[c, round(x, 3), round(y, 3)] for c, x, y in STATIONS], cities={c: [round(v[0], 3), round(v[1], 3)] for c, v in CITYXY.items()}),
           open(os.path.join(OUT, 'tex_meta.json'), 'w'), indent=1)
 print('TEX_END')

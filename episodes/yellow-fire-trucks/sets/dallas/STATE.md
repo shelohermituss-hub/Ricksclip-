@@ -1,13 +1,8 @@
 # STATE: PLACE B, DALLAS FIRE DEPT. STATION 14 yard, hot noon (set-builder, round 1, 2026-11-21). Sheet: DALLAS_SHEET.jpg (8 tiles, looked at).
 ## NOT done / still wrong (seen in the sheet)
+- (round 1 items fixed in FIX 2 removed: UP TO 3x/ladder, far layer, apron, sign, still switch. See FIX 2 below.)
 - No Rick frame in the repo: no side-by-side, no 90 % close-up detail check per object. Numbers only against the 11i floor.
-- UP TO 3x is NOT readable in the wide and boards views: the sectioned ladder leans over the middle of the red stack and covers it (and the RED head in the wide).
-  Fix next round: ladder to the stack's left edge (LF x - .45) or the chalk words on the right half. Row 34 (CLOSE on UP TO 3x) needs its own camera check.
-- Far layer does not show: water tank (30,165), derrick (-42,240) and the skyline sit outside or behind the wide frame (or melt into the sky): no camera proves them yet.
-- The apron reads warm sandy, not pale grey concrete (yard tint #d9d3c5 under a #fff3d0 sun); big empty apron foreground in the wide (edge .159/.148).
-- DALLAS FIRE DEPT. on the front band is half hidden by the red stack from the wide (boards stand centred in front of the bay pier). Readable from the side views.
 - boards tile edge .137 (Blender) / .124 (kit): mostly sky (not a gate tile, below .14). Station walls are still plain stucco between the pilasters.
-- World micro motion (halyard, grass, pump jacks, leaves) and air life NOT rigged (list in ../dallas_DRESSING.md); no place.still switch in dallas.js yet (STORY says so).
 - Plasters on the trucks (props-hero anchors) not placed; painters' cans/ladders not looked at in a tile (painters camera not rendered). No phone-size check written.
 - Kit seconds per frame are not trustworthy this round: load average 14 on 4 CPUs (other helpers); second frame 1.5-6.8 s, one negative value (-2.1).
 ## Built (files)
@@ -54,13 +49,8 @@
   all three read from the S5 and S7 cameras (cams s5, s7 in dallas_cams.json). DALLAS FIRE DEPT. is a roof sign (10.4 x 1.3 m, centre z 9.7) clear of the boards in S5.
   4 dallas.js still: true | [t0, t1] (frozen, no jump) over the new air life; update(f, t) returned. 5 boards.ground 0-4 (default 3 as before; gl4 by the red nose).
   Kit metals get a painted noon env (ladder read black). Anchors: all 28 old names kept; MOVED (needed by the fix): sign_front, water_tank, derrick, far_skyline.
-| tile | edge | bright | sat | s/f (load) |
-|---|---|---|---|---|
-| BL wide BEFORE | .159 | .779 | .238 | 95.6 (~14) |
-| BL S5 cam after | .296 | .666 | .159 | 15.5 (3.5) |
-| BL S7 cam after | .176 | .791 | .149 | 15.2 (3.5) |
-| BL boards before / after | .137 / .180 | .665 / .643 | .296 / .276 | 63.7 (~14) / 16.7 (3.1) |
-| KIT lite S5 / S7 / boards after | .294 / .182 / .168 | .548 / .690 / .559 | .325 / .231 / .391 | 3.3 / 3.1 / 3.1 (4.3) |
+- Numbers (edge / bright / sat / s per frame @ load): BL wide before .159/.779/.238/95.6@14; BL S5 .296/.666/.159/15.5@3.5; BL S7 .176/.791/.149/15.2@3.5;
+  BL boards .137->.180; KIT lite S5 .294/.548/.325/3.3@4.3, S7 .182/.690/.231/3.1, boards .168/.559/.391/3.1. Full list: proof/fix2/numbers.json.
 - For stretch builders: S5/S7 wrappers must call the returned update(f, t) for the air life; S7 passes still: [57.667, 58.467]; S5 row 34 may pass ladder: 'side'.
 ## FIX 2 LECONS (LECONS format)
 - 2026-11-21 The far landmarks (tank, derrick, skyline) were in the set but never in a frame. Cause: placed by plan only; from a 1.3 m camera 18 m from a 6.3 m

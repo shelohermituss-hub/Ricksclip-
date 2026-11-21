@@ -58,7 +58,13 @@ for o in ms: o.select_set(True)
 bpy.context.view_layer.objects.active = ms[0]
 for o in ms: o.matrix_world = o.matrix_world.copy()
 bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM'); bpy.ops.object.join(); j = bpy.context.object; j.name = 'tiny_truck'
-m = j.modifiers.new('dec', 'DECIMATE'); m.ratio = 4000 / max(1, tris(j.data)); bpy.ops.object.modifier_apply(modifier='dec')
+# FIX 2: assets_prod's truck_light grew (2026-11-21 02:15) and one COLLAPSE pass to 4000 tris shattered the tiny truck (kit bays showed shards).
+# Now: planar dissolve (4 deg) first, then a gentle collapse only above 6000 tris. Guard: TINY_DEC line in the log (before -> after).
+import math
+n0 = tris(j.data); m = j.modifiers.new('pl', 'DECIMATE'); m.decimate_type = 'DISSOLVE'; m.angle_limit = math.radians(4); bpy.ops.object.modifier_apply(modifier='pl')
+if tris(j.data) > 6000:
+    m = j.modifiers.new('dec', 'DECIMATE'); m.ratio = max(.05, 6000 / tris(j.data)); m.use_collapse_triangulate = True; bpy.ops.object.modifier_apply(modifier='dec')
+print('TINY_DEC', n0, '->', tris(j.data))
 for o in list(bpy.data.objects):
     if o != j: bpy.data.objects.remove(o)
 j.select_set(True)

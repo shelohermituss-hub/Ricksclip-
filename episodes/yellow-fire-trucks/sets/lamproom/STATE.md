@@ -1,11 +1,10 @@
 # STATE: PLACE D, THE LAMP ROOM BEHIND THE EYE (set-builder, signature round 1, 2026-11-21). Sheet: LAMPROOM_SHEET.jpg (8 tiles, looked at).
 ## NOT done / still weak (seen in the sheet)
+- (round 1 items fixed in FIX 2 removed: caption band, cabinet tint, window size.)
 - No Rick frame in the repo (no refs/ for this film): no side-by-side, no close-up 90 % detail pair. Numbers only.
 - Window = a flat picture (town.blend rendered from the kerb, 640 px) 6 m behind the iris: parallax only from the iris/camera move; the exit flight needs the
   camera-director to blend into the real town park after exit_point. The toy in the hero's fist does not go grey (card art, cast dept).
 - Not checked in a moving clip: the wave timing (4 posed steps), the flicker, the iris ease. Single frames only.
-- Captions band (71.5 %) falls on the catwalk/relay-box top line, not on plain dark dome (lamps are bright everywhere above the deck).
-- Fuse cabinet (power_box_01) reads pale grey-green: the plum tint did not take (its base colour is not a direct texture link). Door open.
 - Kit: no environment map, so chrome/brass are softened (metalness cap); the kit room is darker and warmer than Blender; bulbs are coded spheres.
 - Air life not built (no dust motes, no mist pass); no sparks/clack on the lever drop (vfx, sound).
 - Blender preview time is high on this shared CPU: 35-142 s per 540x960 tile (load average 8-20 from other helpers).
@@ -26,16 +25,7 @@ Wave groups: red lamps by angle round the axis from top-left, clockwise as seen 
 Headlamp match: pumper headlamp glass (truck frame) centre x -3.50, y +-0.52, z 1.31, r 0.109 m. At CAM_ENTRY the entry ring fills 89 % of the frame width
 (r 0.445 of width, centred); the pupil there is r 0.103 of width. At CAM_ROOM the pupil centre is at 40 % from the top, r 0.164 (closed) / 0.271 (open) of width.
 ## Numbers (proof/numbers.json; 540x960; Blender Cycles CPU 16 spp + OIDN, Standard; kit second frame)
-| tile | s/frame | edge | colours (5-bit, >=20 px) | brightness |
-|---|---|---|---|---|
-| Blender all on | 142.2 | .244 | 1684 | .260 |
-| Blender wave 2 | 102.2 | .245 | 1635 | .246 |
-| Blender red off, truck grey | 95.2 | .245 | 1427 | .236 |
-| Blender iris open | 45.6 | .283 | 1692 | .289 |
-| Blender entry ring | 34.8 | .151 | 1107 | .239 |
-| kit all on / red off / entry | 2.8 / 1.3 / 3.0 | .168 / .165 / .101 | 1083 / 937 / 672 | .173 / .141 / .177 |
-Room tiles: edge above the 0.14 floor and Rick's ~0.087; brightness .24-.29 (LR is a dark room: no 0.31 dusk floor stated for LR; the lead decides).
-The truck in the window greys at wave >= 2 by default (grey param overrides).
+- Round 1 numbers: proof/numbers.json and LAMPROOM_SHEET.jpg (Blender 35-142 s/tile at load 8-20); FIX 2 numbers below and proof/fix2/numbers.json.
 ## LECONS (LECONS format; the lead copies into LECONS_TECHNIQUES.md)
 - 2026-11-21 A sed appended a '#' comment in the middle of the iris line and ate `iris.data.materials.append(chrome)`. Cause: REGLES 4 trap again. Fix: comment on its
   own line. Guard: `grep -n "; *#" scripts/*.py` before every render (it caught this one). Proof: the chrome lip shows in bl_irisopen.png. FERMÉ
@@ -52,3 +42,15 @@ The truck in the window greys at wave >= 2 by default (grey param overrides).
 - Camera-director: entry = push into the headlamp until its glass is 89 % of frame width, blend to CAM_ENTRY, fly forward through the ring to CAM_ROOM, exit
   forward past exit_point and blend to the park. Lead: OK that the match is headlamp rim -> entry ring (the pupil is small inside it at that moment).
 - VFX/sound: spark + relay clack per wave step. Cast: grey state of the toy in the hero card. Background-painter: nothing (no sky in this set).
+## FIX 2 (2026-11-21) - sheet FIX2_SHEET.jpg (8 tiles, cyan = caption line 71.5 %), numbers proof/fix2/numbers.json; runs fix2_run.sh (+ round c by hand, same steps)
+- NOT done: the caption band is plain and darker but not BLACK (Blender band mean .184, std .047; kit .081 / .031); the meter left the lid and now stands small
+  on the deck east of the box (reads as a dark box); red-off tile is round b (deck not yet matte). Window picture is a flat plane still (no parallax).
+  Not checked in a moving clip: the S6 travel CAM_ROOM -> (0, 6.6, .15) frame by frame (CAM_EXIT at y 3.0 = the worst point by the maths: no edge).
+- Done, seen: 1 caption band: relay box legs .26 -> .02 (lid line ~75 %), meter moved to the deck, deck tint #1d1a24 matte (rough x1.8, metal 0; metal .6
+  mirrored the lamps), cabinet scale 2.2 -> 1.8 and nearer (top below the line). Band 68-75 %: mean .250 -> .184, std .198 -> .047 (Blender).
+  2 window plane 9 -> 15 m; bl_window lens 28 -> 16.8 (= 28 x 9/15) at 1068 px, so the middle 9 m is the same view: CAM_EXIT shows no edge (tile 5, 8).
+  3 cabinet tint now takes (log CABINET_TINT linked power_box_01): the BSDF is found by type. Anchors and cams unchanged; relay_box anchor z follows the box.
+## FIX 2 LECONS (LECONS format, short)
+- 2026-11-21 Cabinet tint never took: nodes.get('Principled BSDF') was None on the glTF material. Fix: find by type, log CABINET_TINT. Guard: the log line. Proof: tile 4. FERME
+- 2026-11-21 Darker deck tint changed nothing: metal .6 mirrored the lamps. Fix: metal 0, rough x1.8. Guard: check metal first. Proof: band std .198 -> .047. FERME
+- 2026-11-21 Window images are stored 'out/window_*.png' relative to the CWD: Blender must run from sets/lamproom. Guard: IMGPATHS print. OUVERT (pack for RunPod).
