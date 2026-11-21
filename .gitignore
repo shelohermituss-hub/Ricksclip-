@@ -66,3 +66,4 @@ episodes/*/cine/runpod/*/out/
 # Rick reference videos and frames: PRIVATE, never committed, never in a film or a published page
 references/video/
 references/frames/
+episodes/*/cine/style/*_raw.png
