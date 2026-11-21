@@ -43,9 +43,9 @@ print('CAM', [round(x, 3) for x in co.location], 'lens', round(co.data.lens, 2))
 
 # ---- ULTRA light for this framing. The lamps are the light: lemon-green and blue stay lit, red is off (set_state put the red fills to 0).
 # The pupil window's dusk becomes a soft COOL source once the picture is grey (the set's window_light was warm #f0a878 for the red state).
-wl = bpy.data.objects['window_light']; wl.data.color = lin('#b4b6e0')[:3]; wl.data.energy = wl.data.energy * 1.15
+wl = bpy.data.objects['window_light']; wl.data.color = lin('#b4b6e0')[:3]; wl.data.energy = wl.data.energy * .5
 # a wide soft cool spill from the pupil down onto the deck and the relay box (the window is the only daylight in the room)
-ld = bpy.data.lights.new('cine_window_spill', 'AREA'); ld.shape = 'DISK'; ld.size = 3.2; ld.energy = 30.; ld.color = lin('#9ea6dc')[:3]
+ld = bpy.data.lights.new('cine_window_spill', 'AREA'); ld.shape = 'DISK'; ld.size = 3.2; ld.energy = 18.; ld.color = lin('#9ea6dc')[:3]
 o = bpy.data.objects.new('cine_window_spill', ld); sc.collection.objects.link(o); o.location = (0, 4.6, .4)
 o.rotation_euler = (Vector((0, -1.5, -3.4)) - o.location).to_track_quat('-Z', 'Y').to_euler()
 # warm lemon kicker low on the left (the lit lemon rows behind the relay box): the box lid and the levers get a warm edge
