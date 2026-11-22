@@ -16,3 +16,12 @@ Draft: half size, 291 + 64 frames, about 1 s/frame (software). Mp4s in reference
 
 ## For the set builder
 - NO GO button is 0.54 m right of the director: his arm cannot reach it from the anchor (move him or the pedestal ~0.25 m closer).
+
+## Round 2 (2026-11-22; time box 50 min, used about 60)
+Done: director card_scale 0.8 x 0.93 (slimmer); controllers 0.25 m behind the desk (collide 0 FAIL); controllers hidden to f131, rise f131-139, his f142 cheat via card_scale 0.6
++ marks 0.31 m apart raised 0.58 m, gliding to the real marks f150-176; walk 149-179 with rig cycle() planted feet against a linear glide (director foot slide gone from frame_checks);
+calm faces (k:open, k:surprised at NO GO); shot 10 k:open -> k:afGrit, shout mouths every 3 f, lunge 1.6 m, director mark 0.8 m nearer the lens, camera bump down f840-845 (whip station);
+pull-back f120-180 one travel (142 is a via point), roll -4 -> about -7 -> level; captions from his own groups (caps_his.json, swap 3 f before his swap frames, scale 1.0);
+kit light: night preset + blue-violet light_over. Set: NO GO pedestal -0.25 m, NO FLUSHING box 60 % (sets/mc/STATE.md).
+Checks: film_plan mc3 11 FAIL / mc10 11 FAIL (same generic gates as round 1); collide 0/0 FAIL; frame_checks mc3 10 FAIL, mc10 6 FAIL; camsafe mc3 55 FAIL (f129-133 hidden cards still counted), mc10 0;
+check_objects mc3 24 FAIL, mc10 16 FAIL (not worked on).

@@ -59,3 +59,7 @@ Still wrong, worst first
 5. Side monitors and the right counter books are small and partly out of frame; the director-side pedestal heights (box 1.42 m) not yet checked against his stand-in size.
 6. NO GO letters: ours lighter/thinner outline than his; OFF COURSE white letters slightly narrower than his (his 75 % of the screen); map continents are generic shapes, not his exact outlines.
 7. Space panel shows a placeholder (by design); his inset sits a little narrower.
+
+## Change by the mc stretch builder (round 2, 2026-11-22, lead's order)
+- NO GO pedestal moved 0.25 m toward the director: scripts/bl_mc.py NX 1.44 -> 1.19 (the pedestal x is in bl_mc.py, not in params_mc.json). Rebuilt with build_mc.sh (BUILT mc 77 objects 17 movers).
+- NO FLUSHING TONIGHT box: scripts/tex_mc.py make_noflush x 0.12-0.90 -> 0.20-0.80 of the screen (60 % wide, dark screen around), letters 150 -> 118, header 38 -> 30.
