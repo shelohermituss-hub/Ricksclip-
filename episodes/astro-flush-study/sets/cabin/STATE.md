@@ -29,6 +29,14 @@ magazine (with its black straw), drink_ball (red/white ball + straw), clipboard,
 bag_navigator, bag_commander, bag_new_guy (full) / bag_new_guy_open (empty; swapped by `bag_new_guy`), all origins at the hook (`sway_deg` 2.5),
 bay_door (`open`: slides 1.25 m into the end wall), cabin_monitor_pic.
 
+## Round 3 (staging fixes)
+- Sleeping bags rebuilt: collar opening at z 2.05, body 1.45 m (bottom z 0.6), centred on the card plane y 1.0 (back half behind the card, front below the collar covers the chest), headrest pad behind the head, hook straps to the rail, dark collar opening.
+  Meta movers bag_*: `head` [x, 1.0, 2.32], `card_y` 1.0, `collar_z` 2.05. Night stand-ins stand there (heads free).
+  bag_new_guy_open: back half in the light lining, lower front kept, upper front flap folded down 165 deg over it.
+- Day: second light `key_floor` (spot at 1.45, 1.3, 5.0, from the right-back, high) lights ONLY the floor by Blender light linking; the front sun `key_day` lights everything but the floor. Floor shadows now fall down-left toward the camera, quilt shadows stay. Kit: no light linking in three.js, key_floor is dimmed x0.35 there.
+- Night cams refit with two head points (f430) and the new bag bottom (f460): rms f430 10.0 px, f460 14.8 px.
+- Kit re-run after the rebuild: day and night both load (95 meshes, 143k tris), same names.
+
 ## Round 2 (coordinator's 5 points)
 - Cameras by fit: `scripts/fit_cams_cabin.py` (5-13 points measured by hand on his frames, least squares on position, yaw, pitch, roll and lens, with a 10 px/degree prior on the lens; f300 is level and fits position only; `--write` stores the cams in params).
   Model changes where the residual was high: monitor 2.35-4.85 m, rail top 1.61 m, monitor label at the frame's bottom edge and 0.1 m left of centre, HEAD sign 0.11 m lower, the day duffels 0.17-0.2 m lower, hatch 0.1 m higher;

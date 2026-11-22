@@ -130,7 +130,7 @@ EDGE = {'belly': 0, 'side_lo_p': 1, 'side_up_p': 2, 'shoulder_p': 3, 'top': 4, '
 def frame(i, x0=0.):
     a, b = Vector(PROF[i]), Vector(PROF[(i + 1) % 8]); d = b - a; L = d.length; v = d / L
     return Vector((x0, a.x, a.y)), Vector((1, 0, 0)), Vector((0, v.x, v.y)), Vector((0, v.y, -v.x)), L
-WIN_X = [1.25] + [3.3 + 1.45 * k for k in range(9)]; WIN_Z = -.15; WW, WH_, WR, WT = .5, .76, .12, .12   # round 3: sizes measured on f880/f40
+WIN_X = [1.25] + [3.3 + 1.45 * k for k in range(9)]; WIN_Z = -.15; WW, WH_, WR, WT = .5, .76, .12, .10   # round 6: frame .10 (f880 fit)   # round 3: sizes measured on f880/f40
 PORTS = {'porthole_a': 0, 'porthole_b': 2}                           # window index (from aft) of the real openings
 def win_v(i, z):
     o, U, V, N, L = frame(i); return (z - o.z) / V.z
@@ -156,7 +156,7 @@ def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
 for side in (1, -1):
     iu = EDGE['side_up_p' if side > 0 else 'side_up_n']; vc = win_v(iu, WIN_Z)
     holes = [(x - WW / 2, x + WW / 2, vc - WH_ / 2, vc + WH_ / 2) for x in WIN_X]
-    hull_face(iu, 'hull_side', holes=holes); hull_face(EDGE['side_lo_p' if side > 0 else 'side_lo_n'], 'hull_side')
+    hull_face(iu, 'hull_side', pw=1.15, ph=.65, holes=holes); hull_face(EDGE['side_lo_p' if side > 0 else 'side_lo_n'], 'hull_side', pw=1.15, ph=.6)   # round 6: smaller side panels (f880)
 hull_face(EDGE['belly'], 'hull_belly', pw=1.3, ph=1.2); hull_face(EDGE['top'], 'hull_top', pw=2.2, ph=.95)
 hull_face(EDGE['shoulder_p'], 'hull_top', pw=2.2, ph=1.0); hull_face(EDGE['shoulder_n'], 'hull_top', pw=2.2, ph=1.0)
 # belt stripe + sill on both sides (z -1.39..-1.0 stripe, sill under it), roof dashes, LODESTAR on both shoulders
@@ -178,26 +178,26 @@ for side in (1, -1):
         Mw = MF((x, side * (HW + .07), WIN_Z), (side, 0, 0), (0, 0, 1), (0, side, 0))
         arring(br_, WW, WH_, WR, WT, .16, Mw, lip=.04)
         arring(bi_, WW - .08, WH_ - .08, WR - .04, .06, .34, Mw @ Matrix.Translation((0, 0, -.2)), lip=.015)
-        for bu, bv in ((-1, -1), (1, -1), (-1, 1), (1, 1), (0, -1.1), (0, 1.1)):
-            px = bu * (WW / 2 + WT * .45) * (.9 if bv in (1, -1) and bu else 1); pz = bv * (WH_ / 2 + WT * .45) * (1 if bu else .97)
-            alathe(bb_, [(.04, 0), (.04, .035)], 6, Mw @ Matrix.Translation((px, pz, .08)))
+        for bu, bv in ((-1, -1), (1, -1), (-1, 1), (1, 1), (0, -1), (0, 1)):   # round 6 (f880 fit): small bolts near the outer edge, corners 15 cm in
+            px = bu * (WW / 2 + WT - .045); pz = bv * (WH_ / 2 + WT - (.15 if bu else .055))
+            alathe(bb_, [(.022, 0), (.022, .025)], 8, Mw @ Matrix.Translation((px, pz, .08)))
         name = [n for n, i in PORTS.items() if i == k and side > 0]
         if not name:
             abox(bg_, .62, .06, .86, MT((x, side * (HW - .42), WIN_Z)), bev=0)
             abox(bf_, .3, .02, .5, MT((x, side * (HW - .385), WIN_Z + .05)), bev=0)
 obj('window_rings', br_, 'port_ring', smooth=True); obj('window_bevels', bi_, 'port_bevel', smooth=True); obj('window_bolts', bb_, 'bolt_white', smooth=True)
 obj('window_glow', bg_, 'win_glow'); obj('window_glow_inner', bf_, mat('win_glow_inner', col='#d9a865', es=1.1, emit='#d9a865'))
-def stub_room(name, x):
+def stub_room(name, x, y1=-.5, px=.15, pw=.55, ph=.8):
     """the lit room behind a porthole (seen through the real opening): cream walls, a red rail, a small inner porthole on the back wall."""
-    bw, bf = B(), B(); y0, y1, z0, z1 = HW - .1, -.5, -1.25, 1.75; RW = 1.3
+    bw, bf = B(), B(); y0, z0, z1 = HW - .1, -1.25, 1.75; RW = 1.3
     abox(bw, RW, .1, z1 - z0, MT((x, y1, (z0 + z1) / 2)), bev=0)
     for s in (1, -1): abox(bw, .1, y0 - y1, z1 - z0, MT((x + s * RW / 2, (y0 + y1) / 2, (z0 + z1) / 2)), bev=0)
     abox(bw, RW, y0 - y1, .1, MT((x, (y0 + y1) / 2, z1)), bev=0); abox(bf, RW, y0 - y1, .1, MT((x, (y0 + y1) / 2, z0)), bev=0)
     obj(name + '_room_walls', bw, 'stub_wall'); obj(name + '_room_floor', bf, 'stub_floor')
-    bm = B(); arring(bm, .55, .8, .2, .1, .08, MF((x + .15, y1 + .07, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
-    bm = B(); aquad(bm, .58, .83, MF((x + .15, y1 + .06, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
+    bm = B(); arring(bm, pw, ph, min(.2, pw * .36), pw * .18, .08, MF((x + px, y1 + .07, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
+    bm = B(); aquad(bm, pw + .03, ph + .03, MF((x + px, y1 + .06, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
     ANCH[name] = [x, HW + .15, WIN_Z]; ANCH[name + '_card'] = [x - .1, HW - .7, z0 + .05]
-for n, k in PORTS.items(): stub_room(n, WIN_X[k])
+stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=HW - 1.25, px=-.06, pw=.24, ph=.36)   # round 6: shot 11 room shallow, small inner porthole right of centre
 # hazard box (the waste vent from outside) on the stripe under porthole_b, a loose wrench drifting by the stripe (mover)
 xh = WIN_X[PORTS['porthole_b']]; box('hazard_box', (.46, .12, .46), (xh + .55, HW + .17, -1.2), 'hazard_y', bev=.02)
 box('hazard_box_core', (.34, .03, .34), (xh + .55, HW + .235, -1.2), 'black', bev=.01); cyl('hazard_lens', .09, .04, (xh + .55, HW + .26, -1.2), mat('hazard_lens', col='#3a6070', rough=.2), rot=(90, 0, 0))
@@ -330,27 +330,28 @@ while z < HW - .25:
     for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * hw, z - .35), .07, 4)
     z += .26
 obj('ck_slats', bm, 'ck_slat')
-for k, y in enumerate((-1.05, 1.05)):                              # 2 pairs of black rods with an orange glowing tube + round tip
-    for dy in (-.07, .07):
-        cyl('lamp_rod_%d_%d' % (k, dy > 0), .025, 1.15, (22.9, y + dy, HW - .1 - .58), 'lamp_rod', seg=8)
-    cyl('lamp_tube_%d' % k, .07, .42, (22.9, y, HW - 1.45), 'lamp_tube', seg=12)
-    bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=.09); obj('lamp_tip_%d' % k, bm, 'lamp_tip', (22.9, y, HW - 1.72), smooth=True)
-ANCH['lamps'] = [[22.9, -1.05, HW - 1.6], [22.9, 1.05, HW - 1.6]]
-bm = B(); abeam(bm, (22.9, -1.05, HW - 1.75), (22.9, -1.05, HW - 2.3), .005); obj('toy_string', bm, 'lamp_rod')
+LX, LT, LB = 23.4, (.40, 1.93), (.52, 1.2)                         # round 6 (f600 fit): short lamps over the navigator, rods splay out a little
+for k, s in enumerate((-1, 1)):                                     # 2 pairs of black rods with an orange glowing tube + round tip
+    for dy in (-.06, .06):
+        bm = B(); abeam(bm, (LX, s * LT[0] + dy, LT[1]), (LX, s * (LB[0] - .03) + dy, LB[1] + .3), .022, 8); obj('lamp_rod_%d_%d' % (k, dy > 0), bm, 'lamp_rod', smooth=True)
+    bm = B(); abeam(bm, (LX, s * (LB[0] - .025), LB[1] + .36), (LX, s * LB[0], LB[1] + .06), .06, 12); obj('lamp_tube_%d' % k, bm, 'lamp_tube', smooth=True)
+    bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=.075); obj('lamp_tip_%d' % k, bm, 'lamp_tip', (LX, s * LB[0], LB[1]), smooth=True)
+ANCH['lamps'] = [[LX, -LB[0], LB[1] + .1], [LX, LB[0], LB[1] + .1]]
+bm = B(); abeam(bm, (LX, -LB[0], LB[1] - .05), (LX, -LB[0] - .1, LB[1] - .6), .005); obj('toy_string', bm, 'lamp_rod')
 bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=10, v_segments=6, radius=.07, matrix=Matrix.Translation((0, 0, .06))); abox(bm, .1, .07, .12, MT((0, 0, -.06)), bev=.02)
-obj('hanging_toy', bm, 'toy_white', (22.9, -1.05, HW - 2.4), mover={'swing': 'about the string top'})
+obj('hanging_toy', bm, 'toy_white', (LX, -LB[0] - .1, LB[1] - .7), mover={'swing': 'about the string top'})
 for k, s in enumerate((-1, 1)):                                     # pilot seats near the front, facing +X
-    x, y = 24.75, s * .78
-    box('seat_pan_%d' % k, (.75, .78, .16), (x, y, FLZ + .62), 'seat', bev=.04); box('seat_back_%d' % k, (.2, .78, 1.45), (x - .42, y, FLZ + 1.35), 'seat', bev=.06, rot=(0, -8, 0))
-    box('seat_base_%d' % k, (.3, .3, .55), (x, y, FLZ + .28), 'ck_floor', bev=.02)
+    x, y = 25.0, s * .62                                            # round 6 (f600 fit): seats lower and closer together, back top at z -.25
+    box('seat_pan_%d' % k, (.6, .55, .12), (x, y, FLZ + .38), 'seat', bev=.04); box('seat_back_%d' % k, (.18, .55, .62), (x - .38, y, -.56), 'seat', bev=.06, rot=(0, -8, 0))
+    box('seat_base_%d' % k, (.25, .25, .32), (x, y, FLZ + .16), 'ck_floor', bev=.02)
     bm = B()
-    for dy in (-.18, .18): abox(bm, .03, .09, 1.2, MT((x - .3, y + dy, FLZ + 1.37), (0, -8, 0)), bev=.005)
-    abox(bm, .02, .09, .5, MT((x + .02, y - .12, FLZ + .71), (35, 0, 0)), bev=0); abox(bm, .02, .09, .5, MT((x + .02, y + .12, FLZ + .71), (-35, 0, 0)), bev=0)
+    for dy in (-.13, .13): abox(bm, .03, .07, .5, MT((x - .28, y + dy, -.56), (0, -8, 0)), bev=.005)
+    abox(bm, .02, .07, .35, MT((x + .02, y - .09, FLZ + .45), (35, 0, 0)), bev=0); abox(bm, .02, .07, .35, MT((x + .02, y + .09, FLZ + .45), (-35, 0, 0)), bev=0)
     obj('seat_stripes_%d' % k, bm, 'seat_stripe')
-box('centre_console', (.6, .4, .75), (24.95, 0, FLZ + .38), 'console', bev=.03)
+box('centre_console', (.5, .35, .5), (25.1, 0, FLZ + .25), 'console', bev=.03)
 bm = B()
-for k in range(5): abox(bm, .05, .05, .03, MT((25.25, -.12 + k * .06, FLZ + .76)), bev=0)
-obj('centre_console_lights', bm, 'lt_red'); cyl('centre_lever', .02, .35, (25.0, .1, FLZ + .9), 'lamp_rod', seg=8); cyl('centre_lever_cap', .05, .07, (25.0, .1, FLZ + 1.08), 'lever_cap', seg=10)
+for k in range(5): abox(bm, .05, .05, .03, MT((25.3, -.12 + k * .06, FLZ + .51)), bev=0)
+obj('centre_console_lights', bm, 'lt_red'); cyl('centre_lever', .02, .3, (25.1, .1, FLZ + .63), 'lamp_rod', seg=8); cyl('centre_lever_cap', .05, .07, (25.1, .1, FLZ + .79), 'lever_cap', seg=10)
 bm = B(); alathe(bm, [(.55, 0), (.55, 1.6), (.45, 1.85), (.2, 1.97), (0, 2.0)], 20, Matrix.Scale(1, 4) @ Matrix.Diagonal((.32, 1, 1, 1)))
 obj('nav_chair', bm, 'nav_chair', (22.45, 0, FLZ), smooth=True)
 pic('nav_chair_emblem', .55, .55, MF((22.45 + .19, 0, FLZ + 1.45), (0, 1, 0), (0, 0, 1), (1, 0, 0)), 'emblem.png', es=1.5)
@@ -361,14 +362,14 @@ for s in (1, -1):                                                  # side consol
     for row in range(3):
         for k in range(9): abox(bm[cl[(row * 9 + k * 7) % 4]], .1, .02, .07, MT((22.15 + k * .17, s * 1.59, FLZ + .7 + row * .13)), bev=0)
     for c in cl: obj('side_console_n_' + c, bm[c], c)
-bm = B(); alathe(bm, [(.0, 0), (.6, 0), (.6, .05), (.55, .25), (.4, .45), (.0, .55)], 16, Matrix.Diagonal((1, .55, 1, 1))); obj('red_half_round', bm, 'red_half', (22.4, -1.2, FLZ), smooth=True)
-box('red_half_block', (.3, .25, .2), (22.4, -1.2, FLZ + .6), 'black', bev=.02)
-box('blue_box_table', (.6, .6, .7), (22.0, 1.5, FLZ + .35), 'console', bev=.02); box('blue_box', (.42, .42, .42), (22.0, 1.5, FLZ + .91), 'blue_box', bev=.03)
+bm = B(); alathe(bm, [(.0, 0), (.6, 0), (.6, .05), (.55, .25), (.4, .45), (.0, .55)], 16, Matrix.Diagonal((1, .55, 1, 1))); obj('red_half_round', bm, 'red_half', (22.6, -1.3, FLZ), smooth=True)
+box('red_half_block', (.3, .25, .2), (22.6, -1.3, FLZ + .6), 'black', bev=.02)
+box('blue_box_table', (.6, .6, .36), (22.4, 1.0, FLZ + .18), 'console', bev=.02); box('blue_box', (.42, .42, .3), (22.4, 1.0, FLZ + .51), 'blue_box', bev=.03)   # round 6 (f600 fit)
 pic('wall_badge', .36, .36, MF((22.2, inner_y(22.2, .5) - .12, .5), (1, 0, 0), (0, 0, 1), (0, -1, 0)), 'badge.png', es=1.2)
 # floating things (movers): the navigator's brown cup, a book, a pencil, a juice box
 for nm, size, loc, rot, mc in (('float_cup', (.12, .12, .16), (23.55, .35, .1), (10, 20, 0), mat('cup_brown', col='#7a4a2a', rough=.7)),
                                ('float_book', (.3, .22, .05), (23.8, -1.1, .9), (30, 15, 40), mat('book_blue', col='#2a4fb0', rough=.8)),
-                               ('float_pencil', (.24, .02, .02), (24.1, 1.0, 1.2), (0, 30, 60), mat('pencil_yellow', col='#f1c81e', rough=.6)),
+                               ('float_pencil', (.24, .02, .02), (22.3, -1.6, 1.5), (0, 30, 60), mat('pencil_yellow', col='#f1c81e', rough=.6)),
                                ('float_juice', (.1, .07, .16), (23.3, -.7, 1.5), (20, -15, 10), 'juice')):
     box(nm, size, loc, mc, bev=.012, rot=rot, mover={'drift': 'kit floats it'})
 # star map sheet taped on the inside of the front glass (shot 8): picture + 2 tape strips
@@ -406,8 +407,8 @@ for a in (-.72, -.45, .38, .82):
 obj('radio_dials', bd, 'knob', smooth=True); obj('radio_dial_marks', bm_, 'dial_mark')
 bt, bgd, bl_ = B(), B(), B()
 for k in range(9):
-    a = -.68 + k * .17; abox(bt, .07, .07, .03, UPM @ Matrix.Translation((a, -.26, .04)), bev=.005); acyl(bt, .008, .07, UPM @ Matrix.Translation((a, -.26, .08)), seg=6)
-    if k in (5, 7): abox(bgd, .08, .09, .06, UPM @ Matrix.Translation((a, -.25, .08)) @ Matrix.Rotation(.5, 4, 'X'), bev=.008)
+    a = -.62 + k * .15; abox(bt, .07, .07, .03, UPM @ Matrix.Translation((a, -.26, .04)), bev=.005); acyl(bt, .008, .07, UPM @ Matrix.Translation((a, -.26, .08)), seg=6)
+    if k in (2, 7): abox(bgd, .08, .09, .06, UPM @ Matrix.Translation((a, -.25, .08)) @ Matrix.Rotation(.5, 4, 'X'), bev=.008)
     abox(bl_, .08, .012, .004, UPM @ Matrix.Translation((a, -.35, .032)), bev=0)
 for a in (-.72, -.45, .38, .82): abox(bl_, .1, .012, .004, UPM @ Matrix.Translation((a, -.06 if abs(a) > .6 else -.1, .032)), bev=0)
 obj('radio_toggles', bt, 'black'); obj('radio_toggle_guards', bgd, 'toggle_guard'); obj('radio_dash_labels', bl_, 'dash_label')
@@ -416,27 +417,27 @@ bm = B(); abox(bm, .1, .07, .16, Matrix.Translation(U(.84, .43, .12)), bev=.008)
 bm = B(); abeam(bm, R(.82, .1, .02), R(.86, .5, .35), .02, 8); obj('glow_rod', bm, 'glow_rod')
 # the radio set: wedge box, sloped face toward the cockpit (-Y) and up; face picture, display digits (one plane per state), lamp, grille, 2 knobs
 RD = R(-.25, .3, 0); RSM = Matrix.Translation(RD)
-bm = B(); vs = [(-.24, -.2, 0), (.24, -.2, 0), (.24, .2, 0), (-.24, .2, 0), (-.24, -.12, .2), (.24, -.12, .2), (.24, .2, .3), (-.24, .2, .3)]
+bm = B(); vs = [(-.27, -.27, 0), (.27, -.27, 0), (.27, .2, 0), (-.27, .2, 0), (-.27, -.12, .28), (.27, -.12, .28), (.27, .2, .36), (-.27, .2, .36)]   # round 6: taller face (f790 fit)
 V_ = [bm.verts.new(RSM @ Vector(v)) for v in vs]
 for f in ((0, 1, 2, 3), (4, 7, 6, 5), (0, 4, 5, 1), (1, 5, 6, 2), (2, 6, 7, 3), (3, 7, 4, 0)): bm.faces.new([V_[i] for i in f])
 bmesh.ops.bevel(bm, geom=bm.edges[:], offset=.01, segments=2, affect='EDGES'); obj('radio_body', bm, 'radio_body')
-FA = Vector((0, -.12 - (-.2), .2)).normalized()                     # slope direction (up the face)
+FA = Vector((0, .15, .28)).normalized()                     # slope direction (up the face)
 FN = Vector((1, 0, 0)).cross(FA)
-FC = RD + Vector((0, -.16, .1))
+FC = RD + Vector((0, -.195, .14))
 FM_ = MF(FC + FN * .012, (1, 0, 0), FA, FN)
-bm = B(); arring(bm, .44, .2, .01, .012, .01, FM_, lip=.003); obj('radio_face_edge', bm, 'radio_edge')
-pic('radio_face', .46, .2, FM_ @ Matrix.Translation((0, .01, .003)), 'radio_face.png', es=1.0)
+bm = B(); arring(bm, .5, .3, .01, .012, .01, FM_, lip=.003); obj('radio_face_edge', bm, 'radio_edge')
+pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=1.0)
 for k in range(4):
-    pic('radio_digits_%d' % k, .2, .077, FM_ @ Matrix.Translation((-.03, .028, .006 + .0005 * k)), 'radio_digits_%d.png' % k, es=2.2, alpha=False, mover={'state': 'digits %d' % k})
+    pic('radio_digits_%d' % k, .22, .085, FM_ @ Matrix.Translation((-.04, .035, .006 + .0005 * k)), 'radio_digits_%d.png' % k, es=2.2, alpha=False, mover={'state': 'digits %d' % k})
 bm = B()
-for k in range(7): abox(bm, .11, .006, .004, FM_ @ Matrix.Translation((0, -.02 - k * .011, .004)), bev=0)
+for k in range(7): abox(bm, .12, .007, .004, FM_ @ Matrix.Translation((.02, -.035 - k * .014, .004)), bev=0)
 obj('radio_grille', bm, 'black')
-for nm, a, v in (('radio_knob_vol', -.15, -.05), ('radio_knob_freq', .15, -.05)):
-    bm = B(); alathe(bm, [(.045, 0), (.045, .03), (.035, .045), (0, .045)], 18, FM_ @ Matrix.Translation((a, v, 0))); obj(nm, bm, 'knob', smooth=True)
+for nm, a, v in (('radio_knob_vol', -.15, -.09), ('radio_knob_freq', .15, -.09)):
+    bm = B(); alathe(bm, [(.055, 0), (.055, .035), (.043, .052), (0, .052)], 18, FM_ @ Matrix.Translation((a, v, 0))); obj(nm, bm, 'knob', smooth=True)
 for nm, mn in (('comm_lamp_on', 'comm_lamp_on'), ('comm_lamp_off', 'comm_lamp_off')):
-    bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=.024, matrix=FM_ @ Matrix.Translation((.18, .065, .008))); obj(nm, bm, mn, smooth=True, mover={'state': 'comm'})
-ANCH['comm_lamp'] = list(FM_ @ Vector((.18, .065, .05))); ANCH['radio'] = list(RD)
-for k, a in enumerate((-.08, .06)):                                 # twin T levers on a grey block behind the radio
+    bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=.03, matrix=FM_ @ Matrix.Translation((.19, .1, .008))); obj(nm, bm, mn, smooth=True, mover={'state': 'comm'})
+ANCH['comm_lamp'] = list(FM_ @ Vector((.19, .1, .05))); ANCH['radio'] = list(RD)
+for k, a in enumerate((-.23, -.12)):                                # round 6: twin T levers over the radio's left half on a grey block behind the radio
     box('lever_block_%d' % k, (.12, .1, .08), tuple(R(-.25 + a, .52, .04)), 'lever_block', bev=.01)
     cyl('lever_stem_%d' % k, .012, .2, tuple(R(-.25 + a, .52, .18)), 'lever_stem', seg=8)
     cyl('lever_grip_%d' % k, .025, .12, tuple(R(-.25 + a, .52, .29)), 'black', rot=(90, 0, 0), seg=10)
@@ -521,9 +522,9 @@ def standin(name, col, h, loc, rz, hm='sd_head'):
 NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
-standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] - .25, pb[1] + .2, -1.2), 0)
-standin('standin_navigator_s7', NV, 1.66, (24.2, 0, FLZ + .6), 90)
-ANCH['navigator_s7'] = [24.2, 0, FLZ + .6]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] - .25, pb[1] + .2, -1.2]
+standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .3, pb[1] + .35, -1.2), 0)   # round 6: left of the opening (screen), beside the inner porthole
+standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.53), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
+ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .3, pb[1] + .35, -1.2]
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)
@@ -532,9 +533,9 @@ def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     if rot: o.rotation_euler = [math.radians(a) for a in rot]
     return o
 light('sun_key', (0, 0, 50), (1, 1, 1), 4.5, 1.0, 'SUN'); light('sun_fill', (0, 0, 40), (.35, .45, 1.), .25, 10., 'SUN')
-for k, p in enumerate(ANCH['lamps']): light('lamp_light_%d' % k, (p[0], p[1], .45), (1., .72, .4), 60, .08)
+for k, p in enumerate(ANCH['lamps']): light('lamp_light_%d' % k, (p[0], p[1], p[2] - .25), (1., .72, .4), 60, .08)
 light('ck_fill', (23.6, 0, .6), (.5, .55, 1.), 25, .6); light('comm_light', tuple(Vector(ANCH['comm_lamp']) + Vector((0, -.1, .08))), (1., .12, .08), 0, .05)
-light('mfd_light', tuple(U(-.02, .1, .35)), (1., .2, .2), 0, .1); light('room_light_a', (WIN_X[0], .3, 1.4), (1., .95, .88), 120, .4); light('room_light_b', (WIN_X[4], .3, 1.4), (1., .95, .88), 120, .4)
+light('mfd_light', tuple(U(-.02, .1, .35)), (1., .2, .2), 0, .1); light('room_light_a', (WIN_X[0], .3, 1.4), (1., .95, .88), 120, .4); light('room_light_b', (WIN_X[PORTS['porthole_b']], HW - .8, 1.4), (1., .95, .88), 120, .4)
 light('flame_light', (FLX - 3, 0, 0), (.7, .55, 1.), 0, 2.)
 ww = light('wall_wash', (XB + 1.3, 0, HW - .35), (1., .74, .45), 0, .15, 'SPOT', rot=(0, -62, 0)); ww.data.spot_size = math.radians(95); ww.data.spot_blend = .6
 root = bpy.data.objects.new('ship_root', None); SET.objects.link(root); MOVERS['ship_root'] = {'loc': [0, 0, 0], 'rot': [0, 0, 0], 'state': 'ship [x,y,z,rx,ry,rz]'}
@@ -543,7 +544,7 @@ for o in list(SET.objects) + list(STAND.objects) + list(LIGHTS.objects):
 w = bpy.data.worlds.new('ship_world'); w.use_nodes = True; SC.world = w; w.node_tree.nodes['Background'].inputs[0].default_value = (0, 0, .004, 1)
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
 ANCH.update({'cockpit_centre': [23.6, 0, 0], 'collar': [-1.2, 0, 0], 'lodestar': [8.6, HW + .065, .62], 'bow_tip': [XN, 0, FZ], 'tail_end': [NZX, 0, 0],
-             'porthole_a': [WIN_X[0], HW + .15, WIN_Z], 'porthole_b': [WIN_X[4], HW + .15, WIN_Z]})
+             'porthole_a': [WIN_X[0], HW + .15, WIN_Z], 'porthole_b': [WIN_X[PORTS['porthole_b']], HW + .15, WIN_Z]})
 ANCH = {k: [round(float(c), 4) for c in v] if not isinstance(v[0], list) else [[round(c, 4) for c in p] for p in v] for k, v in ANCH.items()}
 import ship_api as api
 META = {'place': 'ship', 'units': 'Blender metres, Z up; ship axis X, nose +X, porthole side +Y; everything ship = child of ship_root',

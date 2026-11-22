@@ -46,5 +46,5 @@ Do not commit. Time box in your task. If a tool or the set fails, stop and say s
 4. Character moves (`acts` with `pos`): `"ease": "inout"` (eased start and landing) and at least 10 frames per metre-ish; never `move_s` under 0.3 for a lunge (his lunge builds over 12 frames).
 5. Pose keys in moves: smoothstep over 6 frames minimum, starting 2 f before the key (ep_mc.mjs `snap`/`tr`); never a 2-3 frame fast-out snap (48 % of the move in one frame = check_objects JUMP).
 6. Set movers by the set's `motion` block (sets/mc.js): screen cross-fades where HE fades (`screen_fade`), light colour eased into a new mood (`mood_fade`), objects rise by translation not from scale 0 (`box_rise`), hinged parts eased over 8-10 f (`cover`). Keep a hard swap only where his own frame swaps hard (1 -> GO screen, the red NO GO flash at f264).
-7. Keep `"tween": {"ones": true}`; cards that appear behind furniture: make them visible a few frames before they rise.
+7. Keep `"tween": {"ones": true}`. Open: card heads rising from behind furniture still read as a head JUMP at the first rise frame (mc3 f131-132), cause not found yet.
 8. Proof every cycle: fluidity rows ours/his on the same range (ours <= his on pops and jerk), check_objects FAIL 0 or each explained with his frame.

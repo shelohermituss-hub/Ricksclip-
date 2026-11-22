@@ -13,7 +13,7 @@ def _vis(n, on):
     if o: o.hide_render = o.hide_viewport = not on
 def _lerp(a, b, u): return [x + (y - x) * u for x, y in zip(a, b)]
 LIGHTS = {  # watts per light (sun: W/m2) and the world (colour, strength) for each kind
-    'day':   {'key_day': 4.6, 'fill_day': 25, 'world': ((.09, .05, .03), .03), 'bounces': 0, 'head_glow': 0},
+    'day':   {'key_day': 4.6, 'key_floor': 1800, 'fill_day': 25, 'world': ((.09, .05, .03), .03), 'bounces': 0, 'head_glow': 0},
     'night': {'pool_1': 1000, 'pool_2': 1000, 'pool_3': 1000, 'pool_4': 1000, 'pool_5': 1000, 'pool_6': 1000, 'sky_glow_1': 25, 'sky_glow_2': 25, 'bag_fill': 130, 'end_wash': 140,
               'floor_light_glow': 6, 'toilet_room_lamp': 120, 'world': ((.005, .008, .16), .8), 'bounces': 4, 'head_glow': .9},
 }

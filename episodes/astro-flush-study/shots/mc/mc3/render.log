@@ -12,3 +12,4 @@ film: 411 frames at 30 fps, 540x960, cast director, ctlGreen, ctlBlue, ctlDark
 [page] poses.mjs: unknown pose "m:../../ep_mc/guido3", using stand
 [page] puppets.mjs: move "../../ep_mc/dir3" not loaded
 [page] poses.mjs: unknown pose "m:../../ep_mc/dir3", using stand
+stills: 291 frames in 282.5 s = 971 ms/frame (draw 904 + grab 66) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/mc/mc3/out/stills

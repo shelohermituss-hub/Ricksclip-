@@ -287,29 +287,49 @@ for x in (XL + .5, (EX + XL) / 2, EX - .5): abox(bm, .04, .09, .04, MT((x, BY - 
 obj('bay_rail', bm, mat('chrome', rough=.2, metal=1.), smooth=True)
 # sleeping bags: each one object hung from its hooks (origin = the hook point, so a sway turns it about the rail); colour body, lighter collar,
 # headrest pad with a black strap, black zip line down the middle. bag_new_guy (full) and bag_new_guy_open (empty, flap open) swap by state.
-BAGW, BAGH = .78, 1.70
-def bag_parts(col, flat=1., open_=False):
-    body, collar, head, strap, zipl = B(), B(), B(), B(), B()
-    R = BAGW / 2; prof = [(R * .62, -BAGH), (R * .9, -BAGH + .12), (R, -BAGH + .45), (R * .98, -.55), (R * .9, -.32)]
-    alathe(body, prof, 24, MT((0, -.2 * flat, 0)), ey=.42 * flat)
-    for v in body.verts:      # broad soft folds: a slow wave round the bag that drifts with height (no texture, geometry only)
-        k = 1 + .07 * math.sin(3 * math.atan2(v.co.x, v.co.y + .2 * flat) + 3.5 * v.co.z) + .04 * math.sin(5.5 * v.co.z); v.co.x *= k; v.co.y = -.2 * flat + (v.co.y + .2 * flat) * k
-    alathe(collar, [(R * .9, -.33), (R * .96, -.29), (R * .96, -.2), (R * .88, -.16)], 24, MT((0, -.2 * flat, 0)), ey=.45 * flat)
-    alathe(zipl, [(R * .78, -.205), (R * .78, -.2)], 24, MT((0, -.2 * flat, 0)), ey=.38 * flat)   # the collar opening round the head: dark ellipse
-    abox(head, .5, .1, .34, MT((0, -.07, -.05)), bev=.04)
-    abox(strap, .52, .11, .04, MT((0, -.07, -.06)), bev=.005)
-    for s in (1, -1): acyl(strap, .012, .12, MT((s * .2, -.03, .1)), 8)
-    if not open_: abox(zipl, .012, .02, BAGH - .45, MT((0, -.2 * flat - R * .42 * flat - .002, -BAGH / 2 - .2)), bev=0)
-    return body, collar, head, strap, zipl
+BAGW, BAGLEN = .78, 1.45
+HOOK_Y, HOOK_Z = BY - .06, RZ + .02             # bag origin = the hook point on the rail
+CARD_Y, COLLAR_Z, HEAD_Z = 1.0, 2.05, 2.32       # stager's fit: sleepers' head centres z 2.24-2.40 on the plane y 1.0; the collar opening sits just under the head
+T, YC = COLLAR_Z - HOOK_Z, CARD_Y - HOOK_Y       # collar height and card plane, local to the hook
+def ahalf(bm, prof, seg, M, ey, a0, a1):
+    """part of a lathe (open strip) between angles a0..a1 (radians) round local Z, rows (radius, z)."""
+    rings = [[bm.verts.new(M @ Vector((math.cos(a0 + (a1 - a0) * k / seg) * p[0], math.sin(a0 + (a1 - a0) * k / seg) * p[0] * ey, p[1]))) for k in range(seg + 1)] for p in prof]
+    for a, b in zip(rings, rings[1:]):
+        for k in range(seg): bm.faces.new((a[k], a[k + 1], b[k + 1], b[k]))
+def folds(bm):
+    for v in bm.verts:      # broad soft folds: a slow wave round the bag that drifts with height (no texture, geometry only)
+        k = 1 + .07 * math.sin(3 * math.atan2(v.co.x, v.co.y - YC) + 3.5 * v.co.z) + .04 * math.sin(5.5 * v.co.z); v.co.x *= k; v.co.y = YC + (v.co.y - YC) * k
+R = BAGW / 2; EY = .42
+PROF = [(R * .62, T - BAGLEN), (R * .9, T - BAGLEN + .12), (R, T - BAGLEN + .4), (R * .98, T - .35), (R * .92, T)]
+MB = MT((0, YC, 0))
+def pad_parts():
+    head, strap = B(), B()
+    abox(head, .5, .08, .4, MT((0, YC + R * EY - .02, T + .2)), bev=.035)                  # headrest pad behind the head (between the card plane and the wall)
+    abox(strap, .52, .09, .045, MT((0, YC + R * EY - .02, T + .26)), bev=.005)
+    for s in (1, -1): acyl(strap, .014, abs(T + .4) + .04, MT((s * .2, YC + R * EY - .02, (T + .4) / 2)), 8)   # hook straps up to the rail
+    return head, strap
 for n, (x, col) in BAGS.items():
-    b, c_, h, s, z = bag_parts(col)
-    multi(n, [(b, mat(col, rough=.75, emit=PAL['bag_green_rim'], es=.12) if col == 'bag_green' else mat(col, rough=.75)), (c_, mat(col + '_collar', col=PAL['bag_green_lining'] if col == 'bag_green' else PAL['headrest'], rough=.8)), (h, mat('headrest', rough=.8)),
-              (s, mat('strap_black')), (z, mat('strap_black'))], (x, BY - .06, RZ + .02), smooth=True, mover={'sway_deg': 2.5})
-b, c_, h, s, z = bag_parts('bag_green', flat=.55, open_=True)
-fl = B(); R = BAGW / 2
-alathe(fl, [(R * .9, -BAGH + .1), (R, -BAGH + .45), (R * .95, -.6)], 16, MT((-.18, -.42, 0), (0, 0, -35)), ey=.18)
-multi('bag_new_guy_open', [(b, mat('bag_green_lining', rough=.8)), (c_, mat('bag_green_collar')), (h, mat('headrest')), (s, mat('strap_black')), (fl, mat('bag_green'))],
-      (BAGS['bag_new_guy'][0], BY - .06, RZ + .02), smooth=True, mover={'sway_deg': 2.5})
+    body, collar, opening, zipl = B(), B(), B(), B()
+    alathe(body, PROF, 24, MB, ey=EY, caps=False); folds(body)
+    alathe(collar, [(R * .86, T - .05), (R * .97, T - .02), (R * .97, T + .03), (R * .84, T + .04)], 24, MB, ey=EY + .02)
+    alathe(opening, [(R * .84, T - .01), (R * .84, T)], 24, MB, ey=EY - .03)                 # the collar opening round the head: dark ellipse
+    abox(zipl, .012, .02, BAGLEN - .45, MT((0, YC - R * EY - .006, T - BAGLEN / 2 - .1)), bev=0)
+    hd, st = pad_parts()
+    multi(n, [(body, mat(col, rough=.75, emit=PAL['bag_green_rim'], es=.12) if col == 'bag_green' else mat(col, rough=.75)), (collar, mat(col + '_collar', col=PAL['bag_green_lining'] if col == 'bag_green' else PAL['headrest'], rough=.8)),
+              (hd, mat('headrest', rough=.8)), (st, mat('strap_black')), (opening, mat('strap_black')), (zipl, mat('strap_black'))], (x, HOOK_Y, HOOK_Z), smooth=True,
+          mover={'sway_deg': 2.5, 'head': [x, CARD_Y, HEAD_Z], 'card_y': CARD_Y, 'collar_z': COLLAR_Z})
+# the empty green bag, peeled open: back half shows the light lining, lower front stays, the upper front flap hangs down folded over it
+back, low, flap, collar = B(), B(), B(), B()
+ahalf(back, PROF, 14, MB, EY, 0, math.pi); folds(back)
+MID = T - BAGLEN * .5
+ahalf(low, [p for p in PROF if p[1] <= MID] + [(R, MID)], 14, MB, EY, math.pi, 2 * math.pi); folds(low)
+FL = [(R, MID), (R * .98, T - .35), (R * .92, T)]
+HINGE = Vector((0, YC - R * EY, MID))
+ahalf(flap, FL, 14, Matrix.Translation(HINGE) @ Matrix.Rotation(math.radians(-165), 4, 'X') @ Matrix.Translation(-HINGE) @ MB, EY, math.pi, 2 * math.pi)
+ahalf(collar, [(R * .86, T - .05), (R * .97, T - .02), (R * .97, T + .03), (R * .84, T + .04)], 14, MB, EY + .02, 0, math.pi)
+hd, st = pad_parts()
+multi('bag_new_guy_open', [(back, mat('bag_green_lining', rough=.8)), (low, mat('bag_green')), (flap, mat('bag_green')), (collar, mat('bag_green_collar')), (hd, mat('headrest')), (st, mat('strap_black'))],
+      (BAGS['bag_new_guy'][0], HOOK_Y, HOOK_Z), smooth=True, mover={'sway_deg': 2.5, 'head': [BAGS['bag_new_guy'][0], CARD_Y, HEAD_Z], 'card_y': CARD_Y, 'collar_z': COLLAR_Z})
 # kid drawing "MY DAD" taped above the commander's bag
 pic('bay_kid_drawing', .39, .31, (BX + .55, BY - .045, RZ - .1), (90, 0, 3), 'kid_drawing_dad.png')
 bm = B()
@@ -371,9 +391,9 @@ def standin(name, col, h, loc, rz=0):
     return o
 SI = [('standin_commander_4', 'standin_commander', 1.76, (-1.05, .7, .75), ['4', '4a']), ('standin_newguy_4', 'standin_newguy', 1.70, (0., .7, .5), ['4']),
       ('standin_navigator_4', 'standin_navigator', 1.66, (1.22, .7, .85), ['4', '4a']), ('standin_newguy_4a', 'standin_newguy', 1.70, (0., .55, .3), ['4a']),
-      ('standin_navigator_5', 'standin_navigator', 1.66, (BAGS['bag_navigator'][0], BY - .32, .75), ['5a', '5b', '5c']),
-      ('standin_commander_5', 'standin_commander', 1.76, (BAGS['bag_commander'][0], BY - .32, .72), ['5a', '5b', '5c']),
-      ('standin_newguy_5bag', 'standin_newguy', 1.70, (BAGS['bag_new_guy'][0], BY - .32, .78), ['5a']),
+      ('standin_navigator_5', 'standin_navigator', 1.66, (BAGS['bag_navigator'][0], CARD_Y, HEAD_Z + .31 - 1.66), ['5a', '5b', '5c']),
+      ('standin_commander_5', 'standin_commander', 1.76, (BAGS['bag_commander'][0], CARD_Y, HEAD_Z + .31 - 1.76), ['5a', '5b', '5c']),
+      ('standin_newguy_5bag', 'standin_newguy', 1.70, (BAGS['bag_new_guy'][0], CARD_Y, HEAD_Z + .31 - 1.70), ['5a']),
       ('standin_newguy_5out', 'standin_newguy', 1.70, (BAGS['bag_new_guy'][0] + .45, BY - .65, 1.05), ['5b']),
       ('standin_newguy_5door', 'standin_newguy', 1.70, (EX - 1.0, -.35, .55), ['5c'])]
 STANDINS = {}
@@ -390,6 +410,7 @@ def light(name, loc, col, watts, radius=.1, kind='POINT', aim=None, spot=None):
 # day: one hard key from the front, high, slightly right of the camera (shadows down-left on the quilt and the floor); a faint warm bounce
 light('key_day', (6.0, -6.0, 8.0), (1., .97, .92), 4.2, .6, 'SUN', aim=(0, 1.5, 0))
 light('fill_day', (3.0, -3.0, 4.5), (1., .85, .7), 0, 2., 'AREA', aim=(0, 1.5, 1.2))
+light('key_floor', (1.45, 1.3, 5.0), (1., .97, .92), 0, .05, 'SPOT', aim=(-.9, -1.2, 0), spot=150)
 # night: warm reading-light pools on the wall panels (one per panel column), cool glow under the skylights, front fill on the bags, end wall wash, floor light, toilet room lamp
 for k in range(6):
     x = XL + .5 + k * .93; light('pool_%d' % (k + 1), (x, BY - .5, 3.7), (1., .45, .15), 0, .05, 'SPOT', aim=(x, BY, 2.95), spot=40)
@@ -405,7 +426,7 @@ ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['
              'galley_table': [GX, GY, GT], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .55, .3],
              'bay_wall_centre': [BX, BY, 0], 'bag_navigator': [BAGS['bag_navigator'][0], BY - .06, RZ + .02], 'bag_commander': [BAGS['bag_commander'][0], BY - .06, RZ + .02],
              'bag_new_guy': [BAGS['bag_new_guy'][0], BY - .06, RZ + .02], 'bay_door': [EX, DOOR['y'], 0], 'bay_floor_light': [EX - .55, DOOR['y'] + .1, 0],
-             'newguy_s5_bag': [BAGS['bag_new_guy'][0], BY - .32, .78], 'newguy_s5_door': [EX - 1.0, -.35, .55], 'toilet_room_beyond': [EX + 1.5, DOOR['y'], 0]})
+             'newguy_s5_bag': [BAGS['bag_new_guy'][0], CARD_Y, HEAD_Z + .31 - 1.70], 'newguy_s5_door': [EX - 1.0, -.35, .55], 'toilet_room_beyond': [EX + 1.5, DOOR['y'], 0]})
 ANCH = {k: [round(v, 4) for v in p] for k, p in ANCH.items()}
 cz = MON['z'] + .02; MONPIC = {'object': 'cabin_monitor_pic', 'placeholder': 'tex/monitor_placeholder.png', 'w': PICW, 'h': PICH, 'aspect': '9:16 portrait',
      'centre': [MON['x'], round(PIC_Y, 4), cz], 'normal': [0, -1, 0], 'corners_bl_br_tr_tl': [[MON['x'] - PICW / 2, round(PIC_Y, 4), round(cz - PICH / 2, 4)], [MON['x'] + PICW / 2, round(PIC_Y, 4), round(cz - PICH / 2, 4)],
@@ -432,6 +453,11 @@ json.dump(META, open(os.path.join(OUT, 'cabin_meta.json'), 'w'), indent=1)
 SC.render.engine = 'CYCLES'; SC.cycles.samples = 16; SC.cycles.use_denoising = True; SC.view_settings.view_transform = 'Standard'; SC.view_settings.look = 'None'
 SC.render.resolution_x, SC.render.resolution_y = 540, 960; SC.cycles.max_bounces = 6
 for n in ('cabin_ceiling', 'cabin_shell'): bpy.data.objects[n].visible_shadow = False
+for n, st in (('key_day', 'EXCLUDE'), ('key_floor', 'INCLUDE')):      # light linking: key_day lights all but the floor, key_floor lights only the floor
+    LLF = bpy.data.collections.new('ll_' + n)
+    for m in ('cabin_floor', 'cabin_floor_dots'): LLF.objects.link(bpy.data.objects[m])
+    bpy.data.objects[n].light_linking.receiver_collection = LLF
+    for c in LLF.collection_objects: c.light_linking.link_state = st
 tris = sum(len(o.data.polygons) for o in SET.objects if o.type == 'MESH')
 for o in bpy.data.objects: o.select_set(False)
 for o in SET.objects: o.select_set(True)

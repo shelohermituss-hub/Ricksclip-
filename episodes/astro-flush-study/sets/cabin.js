@@ -53,7 +53,7 @@ export async function build(THREE, scene, film, ctx) {
   function setState(s = {}) {
     Object.assign(S, s); if (typeof S.door === 'string') S.door = { open: 1, closed: 0 }[S.door] ?? 1;
     const K = META.light_kinds[S.mode] || META.light_kinds.day;
-    for (const [n, l] of Object.entries(lights)) l.intensity = (K[n] ?? 0) * (l.isDirectionalLight ? SS : LS);
+    for (const [n, l] of Object.entries(lights)) l.intensity = (K[n] ?? 0) * (l.isDirectionalLight ? SS : LS) * (n === 'key_floor' ? .35 : 1);   // no light linking in three.js: key_floor (floor only in Blender) also hits the wall here, so it is dimmed
     hemi.color.setRGB(...K.world[0]).convertLinearToSRGB(); hemi.intensity = K.world[1] * 2;
     for (const [n, st] of Object.entries(META.variants)) { const o = N(n); if (o) o.visible = st.includes(S.bag_new_guy); }
     for (const [o, m] of MV) {
