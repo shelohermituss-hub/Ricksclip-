@@ -180,6 +180,23 @@
     1.47
    ],
    "note": "row 19 \"found\": a jolt back, he sees the tiny plane"
+  },
+  {
+   "who": "doctor",
+   "at": 562,
+   "face": "k:shocked",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 20 \"stomach\": eyes wide as the camera goes into the film"
+  },
+  {
+   "who": "doctor",
+   "at": 572,
+   "visible": false,
+   "note": "the camera is inside the film from here (he is behind the lens); row 23 (next stretch) brings him back on the double take"
   }
  ],
  "kicks": [
@@ -263,23 +280,23 @@
      "subject": "doctor",
      "framing": "W",
      "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, M00 living rest then M02 push in): the doctor in 3/4 at the left leaning in to the glowing film, his hand on the clip bar; the film with the tiny bite-Cessna big at the right; the box flickers twice",
-     "hold": 0.5,
+     "hold": 0.7,
      "creep": 0.0028,
      "shows": [
       "film"
      ]
     },
     {
-     "at": 556,
+     "at": 558,
      "pos": [
-      0.3,
-      0.7,
-      1.48
+      0.32,
+      0.45,
+      1.5
      ],
      "aim": [
-      -0.1,
+      -0.16,
       2.05,
-      1.4
+      1.38
      ],
      "lens": 22,
      "subject": "doctor",

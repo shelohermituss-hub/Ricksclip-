@@ -20,26 +20,17 @@ export function buildJug(T) { THREE_ ||= T; const g = part('water_jug', /^jug/);
 export function buildTumbler(T) { THREE_ ||= T; const g = part('water_jug', /^tumbler/); g.position.set(-.22, -.05, 0); return wrap(g, .02); }
 export function buildTongs(T) { THREE_ ||= T; const g = clone('sugar_tongs'); const b = part('metal_bites', /^bite_2/); b.position.set(-.04, -.005, .03); b.scale.setScalar(.8); g.add(b);
   live.tongsBite = b; return wrap(g, .12); }
-// the four list bites: built here (small, clean, flat paint; the Blender pass rebuilds them from the lock)
+// the four list bites (fix 1): the props-hero bites (props/out/metal_bites.glb bite_0..5, 3-4 cm squares, 1.5 mm sheet, cut aluminium edges, rivets)
+// repainted with the look of the part they come from, held 2.6x (a bite is still neat and small next to his cartoon head, but it must read on a phone)
 function mat(T, c, r = .35, m = 0) { return new T.MeshStandardMaterial({ color: c, roughness: r, metalness: m }); }
-export function buildWingSlice(T) { THREE_ ||= T; const g = new T.Group();
-  const s = new T.Mesh(new T.BoxGeometry(.16, .012, .1), mat(T, '#f3f4f1', .25)); s.position.x = .08; g.add(s);
-  const st = new T.Mesh(new T.BoxGeometry(.16, .013, .025), mat(T, '#1d3461', .3)); st.position.set(.08, 0, .02); g.add(st);
-  const bite = new T.Mesh(new T.CylinderGeometry(.03, .03, .016, 16), mat(T, '#b8bcc2', .28, 1)); bite.position.set(.16, 0, 0); g.add(bite);   // the bitten crescent (bare aluminium)
-  return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.16, 0, 0) }; }
-export function buildHub(T) { THREE_ ||= T; const g = new T.Group();
-  const tire = new T.Mesh(new T.TorusGeometry(.075, .028, 12, 28), mat(T, '#26272b', .62)); tire.position.x = .09; g.add(tire);
-  const hub = new T.Mesh(new T.CylinderGeometry(.055, .055, .05, 24), mat(T, '#c9ccd1', .22, 1)); hub.rotation.x = Math.PI / 2; hub.position.x = .09; g.add(hub);
-  return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.17, 0, 0) }; }
-export function buildCushion(T) { THREE_ ||= T; const g = new T.Group();
-  const c = new T.Mesh(new T.BoxGeometry(.18, .06, .14), mat(T, '#7a4a2c', .55)); c.position.x = .09; g.add(c);
-  const sp = new T.Mesh(new T.TorusGeometry(.012, .003, 6, 12), mat(T, '#c9ccd1', .2, 1)); sp.position.set(.17, .04, 0); g.add(sp); live.spring = sp;
-  return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.18, 0, 0) }; }
-export function buildTire(T) { THREE_ ||= T; const g = new T.Group();
-  const tire = new T.Mesh(new T.TorusGeometry(.09, .035, 12, 28, Math.PI * 1.3), mat(T, '#26272b', .62)); tire.position.x = .02; tire.rotation.z = -Math.PI * .65; g.add(tire);
-  const strand = new T.Mesh(new T.CylinderGeometry(.012, .018, 1, 10), mat(T, '#2b2c30', .55)); strand.rotation.z = Math.PI / 2; strand.position.x = .11; strand.scale.set(1, .02, 1); g.add(strand); live.strand = strand;
-  return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.12, 0, 0) }; }
-
+function bite(T, name, paint, extra) { const g = new T.Group(), b = part('metal_bites', new RegExp('^' + name + '($|_)')); const box = new T.Box3().setFromObject(b), c = box.getCenter(new T.Vector3());
+  b.position.sub(c); b.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); if (paint[o.name] || paint['*']) o.material.color.set(paint[o.name] || paint['*']); if (paint.metal && !/rivet|stripe/.test(o.name)) { o.material.metalness = paint.metal; o.material.roughness = .25; } } });
+  const holder = new T.Group(); holder.add(b); holder.rotation.x = Math.PI / 2; holder.position.x = .05; holder.scale.setScalar(2.6); g.add(holder); if (extra) extra(g);
+  return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.1, 0, 0) }; }
+export function buildWingSlice(T) { THREE_ ||= T; return bite(T, 'bite_2', { '*': '#f3f4f1', bite_2_stripe: '#1d3461' }); }                        // white skin + the navy stripe
+export function buildHub(T) { THREE_ ||= T; return bite(T, 'bite_3', { '*': '#c9ccd1', metal: 1 }, g => { const ty = new T.Mesh(new T.TorusGeometry(.05, .014, 10, 24, Math.PI), mat(T, '#26272b', .62)); ty.position.x = .05; ty.rotation.x = Math.PI / 2; g.add(ty); }); }   // cast hub + a half ring of tyre
+export function buildCushion(T) { THREE_ ||= T; return bite(T, 'bite_4', { '*': '#2f5fb0' }, g => { const sp = new T.Mesh(new T.TorusGeometry(.012, .003, 6, 12), mat(T, '#c9ccd1', .2, 1)); sp.position.set(.08, .03, 0); g.add(sp); live.spring = sp; }); }   // blue seat foam + its spring
+export function buildTire(T) { THREE_ ||= T; const r = bite(T, 'bite_5', { '*': '#232428' }); for (const o of r.group.children) o.traverse(m => { if (m.isMesh) m.material.roughness = .7; }); live.tireG = r.group; return r; }   // black rubber
 const HELD = [['oil', 283, 316], ['jug', 318, 343], ['tumbler', 344, 362]];     // the static copy hides while it is in a hand (film frames)
 export async function build(THREE, scene, film, ctx) {
   THREE_ = THREE; const V = p => ctx.B2T(p);
@@ -49,7 +40,7 @@ export async function build(THREE, scene, film, ctx) {
   const plane = clone('cessna150_sliced'); plane.position.copy(V(ANCH(base, 'cessna_spot'))); plane.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } }); scene.add(plane);
   const put = (g, p, yawDeg = 0) => { g.position.copy(V(p)); g.rotation.y = yawDeg * Math.PI / 180; g.traverse(o => { if (o.isMesh) o.castShadow = o.receiveShadow = true; }); scene.add(g); return g; };
   const st = { oil: put(clone('oil_glass'), SPOT.oil), jug: put(part('water_jug', /^jug/), SPOT.jug, 180), tumbler: put(part('water_jug', /^tumbler/), [SPOT.tumbler[0] - .22, SPOT.tumbler[1], .78]) };
-  const sc = put(clone('kitchen_scale'), SPOT.scale, -30);       // dial (-Y) turned toward the lens side (south-east)
+  const sc = put(clone('kitchen_scale'), SPOT.scale, 154);       // fix 1: dial (-Y) faces the row-13 lens north-east of the table (his face behind the scale)
   live.needle = node(sc, /^scale_needle$/)[0];
   // the bites waiting on the main plate: a neat stack of squares + the four list pieces before they are taken
   const pile = put(clone('metal_bites'), [3.36, -0.47, .8], 20); pile.scale.setScalar(.9);
@@ -57,6 +48,11 @@ export async function build(THREE, scene, film, ctx) {
   // crumbs of white paint on the wing snap (row 14): 10 tiny chips, seeded
   let s = 14; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
   for (let i = 0; i < 10; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(.008, .002, .008), mat(THREE, i % 3 ? '#f3f4f1' : '#1d3461', .3)); m.userData.v = [rnd() - .2, rnd() * .6, rnd() - .5]; m.visible = false; scene.add(m); live.crumbs.push(m); }
+  // the chair (fix 1): pulled out to y -1.20 (S1 state, he stands behind it at -1.45), tucked in with him to -1.0 by 281 (the act glide)
+  const chair = []; scene.traverse(o => { if (/^chair_/.test(o.name)) chair.push(o); });
+  // the gum strand (fix 1): from the tire in his hand to his mouth (MOUTH = his near-hand grip at the bite, f478, from --held)
+  const strand = new THREE.Mesh(new THREE.CylinderGeometry(.012, .02, 1, 10), mat(THREE, '#2b2c30', .6)); strand.visible = false; scene.add(strand);
+  const MOUTH = V(MOUTH_P), tmp = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
   const needle0 = live.needle ? live.needle.rotation.clone() : null;
   return { anchors: { ...base.anchors, ...SPOT }, update: (f, t) => { base.update && base.update(f, t);
     for (const [k, a, b] of HELD) st[k].visible = !(f >= a && f <= b);
@@ -65,8 +61,12 @@ export async function build(THREE, scene, film, ctx) {
     if (live.needle) { live.needle.rotation.copy(needle0); live.needle.rotateZ(-(lb - 2) * 75 * Math.PI / 180); }
     onScale.visible = f >= 363; onScale.position.copy(V([SPOT.scale[0], SPOT.scale[1], f < 365 ? .97 + (365 - f) * .015 : .905 - .01 * Math.exp(-(f - 365) / 2) * Math.abs(Math.cos((f - 365) * 1.2))]));
     if (live.tongsBite) live.tongsBite.visible = f < 364;
-    // the tire strand: stretches like gum 480-488 (to 0.42 m), snaps back on 489
-    if (live.strand) { const L = f < 480 ? .02 : f < 489 ? .02 + .4 * Math.min(1, (f - 480) / 8) ** .8 : Math.max(.02, .42 * Math.exp(-(f - 489) * 1.6)); live.strand.scale.y = L; live.strand.position.x = .11 + L / 2; }
+    { const u = f < 266 ? 0 : f >= 281 ? 1 : (f - 266) / 15, k = u * u * (3 - 2 * u), dy = -0.20 * (1 - k); for (const o of chair) o.position.z = -dy; }
+    // the tire strand: from the tire to his mouth while he pulls (480-488), snaps back on 489 (gone by 492)
+    strand.visible = false;
+    if (live.tireG && f >= 479 && f <= 491 && live.tireG.parent) { live.tireG.updateWorldMatrix(true, false); live.tireG.getWorldPosition(tmp);
+      const m = f <= 488 ? MOUTH.clone() : MOUTH.clone().lerp(tmp, Math.min(1, (f - 488) / 3)), d = tmp.clone().sub(m), L = d.length();
+      if (L > .02) { strand.visible = true; strand.position.copy(m).addScaledVector(d, .5); strand.scale.set(1 - .5 * Math.min(1, L / .5), L, 1 - .5 * Math.min(1, L / .5)); strand.quaternion.setFromUnitVectors(up, d.normalize()); } }
     // the seat spring boings out on 452, pushed back in 460
     if (live.spring) { const o = f < 452 ? 0 : f < 460 ? .05 * Math.min(1, (f - 452) / 2) + .008 * Math.sin((f - 452) * 2.4) : Math.max(0, .05 - (f - 460) * .012); live.spring.position.y = .04 + o; }
     // crumbs: fly out from the bite point on 407, fall, land on the cloth by 420
@@ -74,4 +74,5 @@ export async function build(THREE, scene, film, ctx) {
       m.position.copy(V([3.55 + v[0] * .25 * Math.min(u, .5), -0.78 + v[2] * .2 * Math.min(u, .5), Math.max(.785, 1.12 + v[1] * .3 * u - 4.9 * u * u)])); m.rotation.set(i + f * .3, i * 2, 0); });
   } };
 }
+export let MOUTH_P = [3.47, -0.88, 1.3];
 const ANCH = (b, k) => (b.anchors && b.anchors[k]) || [0, 0, .03];

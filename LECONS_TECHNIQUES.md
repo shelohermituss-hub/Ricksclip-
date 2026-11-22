@@ -484,3 +484,31 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Fix (draft): cabin.js "wild": ["8A","8B"] hides the upper seat backs of the row in front, as a film crew pulls a row. Michel's tray table then hangs on its arms.
 - Guard: SET_CHANGES.md; Blender final to decide (wild back only where the lens is, or a longer pitch in that row).
 - Proof: episodes/plane-eater/s5/key/dbg3.jpg (blocked) vs dbg4.jpg (both men read).
+
+## 2026-11-22 — apron.js would not load in the kit (plane-eater S1, first kit run of the apron) — FERMÉ
+- Problem: sets/apron.js imported GLTFLoader from '../../yellow-fire-trucks/assets_prod/vendor/'.
+- Cause: the kit's render server serves only the stretch folder (/ep); a path that leaves the film folder is a 404.
+- Fix: './vendor/GLTFLoader.js' (the copy in sets/vendor/, as xray.js and cabin.js); noted in episodes/plane-eater/sets/SET_CHANGES.md.
+- Guard: every set module imports only from its own folder; the stretch folder symlinks sets/<place>.js, sets/<place>/ and sets/vendor/.
+- Proof: episodes/plane-eater/s1/logs/t1.log prints PE_APRON (997,733 tris) and the frames render.
+
+## 2026-11-22 — held3d "tip_at" aims the prop but does not move the fist on an episode move (plane-eater S1) — FERMÉ (workaround)
+- Problem: the salt shaker / tongs with tip_at stayed at the move's hand (render --held: grip 1.70 m, target 2.12 m); only the prop turned.
+- Cause: film.js h3Hat writes state.hat, which plain kit poses read (poses.mjs); a move pose (m:...) draws its own hands and ignores hat.
+- Fix: with a move pose, put the fist with the move's hand targets (check with `render_gpu.mjs film.json --held <frames>`), and use tip_at only
+  to aim the working end; do not use tip_at to aim a shaker that must point DOWN (it turns the cap up toward the point).
+- Guard: `--held` on 3-5 frames after the first test render; the motion gate's arm_over_reach for targets past the arm.
+- Proof: episodes/plane-eater/s1/out/plan/held3d.json (f0 shaker grip 1.94 m after moving the fist with the move).
+- Also: in a move written facing +x, hands[0] was drawn as the card's 'R' hand and hands[1] as 'L' for this cast (held3d hand names follow that).
+
+## 2026-11-22 plane-eater S2: three kit traps of a stretch folder
+- Problem: sets/apron.js did not load from a stretch folder (404). Cause: it imported GLTFLoader from ../../yellow-fire-trucks/..., outside the folder
+  render_gpu.mjs serves (/ep = the film.json folder). Fix: './vendor/GLTFLoader.js' (sets/vendor). Guard: a set module imports only from its own folder.
+  Proof: PE_APRON loads (1397 meshes, 997,733 tris).
+- Problem: camsafe LEGS_DISAGREE x237 on a seated episode move with legs3d. Cause: film_plan apply_looks gives the true view only to m:sit_chair/
+  m:sit_floor (LEGS3D_MOVES); an episode move that exports legs3d gets the cheated "open to lens" view while its 3D legs show the true direction.
+  Fix: give every act of that character "look_full": true. Guard: any episode move exporting legs3d -> look_full on its acts.
+- Problem: camera v2 stations reached 30-90 frames after their "at" (close-ups never landed on their word). Cause: v2 caps screen speed, so a
+  2 m flight to a station 1.3 m from the subject needs more frames than the gap; holds on the previous station push it later.
+  Fix: fewer stations, hold 0 on the station before a push, measure the arrival frame from out/plan/camera_baked.json before rendering.
+  Guard/proof: S2 fix 1: oil close 290-306, dial 358-381, tire 460-490 (were 336, 454, 494).

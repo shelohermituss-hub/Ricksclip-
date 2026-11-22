@@ -1,0 +1,124 @@
+{
+ "_about": "moves/tools/check_motion_ep.mjs, animator 2026-11-14",
+ "moves": [
+  {
+   "move": "mi_hook",
+   "view": "side",
+   "frames": 257,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 4,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [
+    {
+     "hold": "grin to the lens, dead still",
+     "frames": [
+      141,
+      149
+     ],
+     "max_px_per_frame": 0
+    },
+    {
+     "hold": "proud, dead still",
+     "frames": [
+      249,
+      256
+     ],
+     "max_px_per_frame": 0
+    }
+   ],
+   "snaps": [
+    {
+     "name": "napkin tug \"Lunch\" f125",
+     "f0": 125,
+     "ch": "h1y",
+     "to": "max",
+     "end": 134,
+     "share": [
+      34,
+      83,
+      100,
+      76,
+      4
+     ]
+    },
+    {
+     "name": "nod \"bites\" f235",
+     "f0": 235,
+     "ch": "head",
+     "to": "max",
+     "end": 247,
+     "share": [
+      52,
+      86,
+      96,
+      100,
+      87
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 77.81,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 24.8
+  },
+  {
+   "move": "ow_polish",
+   "view": "side",
+   "frames": 257,
+   "twos": 0,
+   "two_frames": [],
+   "linear": 0,
+   "linear_runs": [],
+   "stops": 0,
+   "no_settle": 0,
+   "creep": 0,
+   "holds": [],
+   "snaps": [
+    {
+     "name": "jolt \"whole\" f185",
+     "f0": 185,
+     "ch": "head",
+     "to": "min",
+     "end": 199,
+     "share": [
+      31,
+      79,
+      96,
+      100,
+      93
+     ]
+    }
+   ],
+   "rick_snap": [
+    5,
+    16,
+    31,
+    48,
+    66
+   ],
+   "contact": {
+    "knee_off_spot_px": 0,
+    "planted_foot_slide_px": 0,
+    "arm_over_reach_px": 0,
+    "leg_stretch_px": 0,
+    "off_built_ground_px": 0
+   },
+   "drawings_per_second_acting": 30
+  }
+ ]
+}

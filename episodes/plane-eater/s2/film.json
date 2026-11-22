@@ -70,19 +70,20 @@
    "kind": "day",
    "light": "day",
    "light_over": {
-    "top": "#0f79e8",
-    "hor": "#1a86f2",
-    "sun": "#ffe2c0",
-    "si": 3.2,
-    "amb": "#b4c3f0",
-    "ai": 1.3,
+    "top": "#1a86f2",
+    "hor": "#cfe6ff",
+    "sun": "#fff6e6",
+    "si": 4.6,
+    "amb": "#e6edf7",
+    "ai": 2.0,
     "dir": [
      3.54,
      7.66,
      5.34
-    ]
+    ],
+    "tint": "#ffffff"
    },
-   "air": 1,
+   "air": 0.3,
    "wind": 1
   }
  },
@@ -134,24 +135,58 @@
    "at": 0,
    "pos": [
     3.4,
-    -1.0,
+    -1.45,
     0.03
    ],
-   "pose": "m:../../ep_s2/mi_table",
-   "face": "k:standard",
+   "pose": "m:../../ep_s2a/mi_stand",
+   "face": "k:proud",
    "look": [
     3.4,
     -0.2,
     0.9
    ],
-   "note": "rows 10-18: one seated move, every act on its word (moves/ep_s2.mjs)"
+   "look_full": true,
+   "note": "row 10: standing at the pulled-out chair (S1 last state)"
+  },
+  {
+   "who": "michel",
+   "at": 262,
+   "pos": [
+    3.4,
+    -1.2,
+    0.03
+   ],
+   "pose": "m:../../ep_s2/mi_table",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 10: drops onto the seat"
+  },
+  {
+   "who": "michel",
+   "at": 266,
+   "pos": [
+    3.4,
+    -1.0,
+    0.03
+   ],
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 10: tucks the chair in (15 f glide = the scoot), then one seated move for rows 10-18"
   },
   {
    "who": "owner",
    "at": 0,
    "pos": [
-    1.35,
-    2.05,
+    1.15,
+    -2.2,
     0.03
    ],
    "view": "34",
@@ -170,6 +205,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 11 glass"
   },
   {
@@ -181,6 +217,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "sniff"
   },
   {
@@ -192,6 +229,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "nod"
   },
   {
@@ -203,6 +241,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 13: the scale judges him, one approving brow"
   },
   {
@@ -214,6 +253,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 14"
   },
   {
@@ -225,6 +265,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "crack"
   },
   {
@@ -236,6 +277,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 15"
   },
   {
@@ -247,6 +289,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "doughnut bite"
   },
   {
@@ -258,6 +301,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 16"
   },
   {
@@ -269,6 +313,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "sandwich bite"
   },
   {
@@ -280,6 +325,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "row 17 even"
   },
   {
@@ -291,6 +337,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "the tire fights back"
   },
   {
@@ -302,6 +349,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "chews hard"
   },
   {
@@ -313,6 +361,7 @@
     -0.2,
     0.9
    ],
+   "look_full": true,
    "note": "swallowed, triumphant"
   },
   {
@@ -516,12 +565,12 @@
   {
    "at": 283,
    "look": "warm_up",
-   "note": "row 11: the oil glass glows amber in a dapple spot"
+   "note": "row 11: the oil glass glows amber"
   },
   {
    "at": 407,
    "look": "warm_up",
-   "note": "row 14: afternoon, sun lower and warmer"
+   "note": "row 14: afternoon, warmer"
   },
   {
    "at": 489,
@@ -565,14 +614,14 @@
     {
      "at": 257,
      "pos": [
-      1.46,
-      -3.98,
-      1.75
+      6.13,
+      0.4,
+      1.55
      ],
      "aim": [
-      2.9,
-      -0.9,
-      1.0
+      3.3,
+      -1.1,
+      1.1
      ],
      "lens": 26,
      "subject": "michel",
@@ -582,40 +631,40 @@
      "creep": 0.0035
     },
     {
-     "at": 290,
+     "at": 270,
      "pos": [
-      6.5,
-      -3.21,
+      5.7,
+      0.01,
       1.45
      ],
      "aim": [
       3.35,
-      -0.75,
-      1.15
+      -0.85,
+      1.12
      ],
      "lens": 26,
      "subject": "michel",
      "framing": "W",
      "purpose": "ROW 10 land (M09 end): the set table in the wing shade, Michel sat and tucked in, the sliced Cessna behind him, the owner far back",
-     "hold": 0.3,
+     "hold": 0.0,
      "creep": 0.0035,
      "shows": [
       "table"
      ]
     },
     {
-     "at": 305,
+     "at": 296,
      "pos": [
-      5.55,
-      -2.23,
-      1.35
+      4.76,
+      -0.52,
+      1.32
      ],
      "aim": [
-      3.5,
-      -0.8,
-      1.2
+      3.45,
+      -0.85,
+      1.28
      ],
-     "lens": 32,
+     "lens": 30,
      "subject": "michel",
      "framing": "M",
      "purpose": "ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back",
@@ -626,40 +675,18 @@
      ]
     },
     {
-     "at": 345,
+     "at": 366,
      "pos": [
-      5.63,
-      -2.76,
-      1.4
+      3.95,
+      0.25,
+      0.98
      ],
      "aim": [
-      3.4,
-      -0.75,
-      1.15
+      3.55,
+      -0.6,
+      1.1
      ],
      "lens": 28,
-     "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 12 (ACT, rest): jug glugs into the tumbler, he drinks",
-     "hold": 0.4,
-     "creep": 0.0035,
-     "shows": [
-      "jug"
-     ]
-    },
-    {
-     "at": 375,
-     "pos": [
-      4.6,
-      -1.74,
-      1.18
-     ],
-     "aim": [
-      3.6,
-      -0.55,
-      1.0
-     ],
-     "lens": 36,
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 13 (EXPLAIN, M02 push in on the dial): the needle swings past and settles on \"2 lb / 900 g\", his raised brow at the top",
@@ -670,35 +697,16 @@
      ]
     },
     {
-     "at": 410,
+     "at": 448,
      "pos": [
-      5.84,
-      -2.71,
+      5.69,
+      -0.64,
       1.4
      ],
      "aim": [
       3.4,
       -0.8,
-      1.15
-     ],
-     "lens": 28,
-     "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 14 (ACT list 1, M13 lateral truck starts): the wing slice cracks, white crumbs",
-     "hold": 0.0,
-     "creep": 0.0035
-    },
-    {
-     "at": 452,
-     "pos": [
-      6.35,
-      -1.81,
-      1.4
-     ],
-     "aim": [
-      3.4,
-      -0.85,
-      1.15
+      1.1
      ],
      "lens": 28,
      "subject": "michel",
@@ -708,18 +716,18 @@
      "creep": 0.0035
     },
     {
-     "at": 484,
+     "at": 466,
      "pos": [
-      5.48,
-      -1.98,
-      1.42
+      4.89,
+      -0.65,
+      1.3
      ],
      "aim": [
       3.45,
-      -0.9,
+      -0.8,
       1.25
      ],
-     "lens": 34,
+     "lens": 28,
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back",
@@ -730,16 +738,16 @@
      ]
     },
     {
-     "at": 519,
+     "at": 512,
      "pos": [
-      5.48,
-      -2.2,
-      1.2
+      5.32,
+      -0.45,
+      1.18
      ],
      "aim": [
       3.4,
       -1.0,
-      0.95
+      0.98
      ],
      "lens": 30,
      "subject": "michel",

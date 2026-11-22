@@ -9,7 +9,7 @@ A, C = meta['anchors'], meta['cams']
 cast = {'doctor': dict(keys['cast']['doctor'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s3/' + k
 FILM = A['film_hero']['c']                                   # (0.11, 2.085, 1.47): the signature film on panel 1
-DOC = [-0.22, 1.42, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
+DOC = [-0.22, 1.30, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
 P = meta['slide_path']
 def along(u):
     n = len(P) - 1; f = min(max(u, 0), 1) * n; i = min(int(f), n - 1); k = f - i
@@ -20,7 +20,7 @@ acts = [
     dict(who='doctor', at=541, face='k:think', look=FILM, note='row 19 "and": pushes the half-moon glasses down his nose'),
     dict(who='doctor', at=550, face='k:surprised', look=FILM, note='row 19 "found": a jolt back, he sees the tiny plane'),
     dict(who='doctor', at=562, face='k:shocked', look=FILM, note='row 20 "stomach": eyes wide as the camera goes into the film'),
-    dict(who='doctor', at=572, visible=False, note='the camera is inside the film from here (he is behind the lens); row 23 (next stretch) brings him back on the double take'),
+    dict(who='doctor', at=563, visible=False, note='the camera is inside the film from here (he is behind the lens); row 23 (next stretch) brings him back on the double take'),
 ]
 
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):

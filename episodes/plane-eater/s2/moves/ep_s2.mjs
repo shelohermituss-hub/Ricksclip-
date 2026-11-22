@@ -34,17 +34,17 @@ const OFF = { mi_table: 0, ow_watch: 0 };                    // both acts start 
 const REST = { f: .42, d: .62 }, MOUTH = { f: .3, d: -.12 }, NOSE = { f: .32, d: -.2 };
 const P2 = (keys, f) => { const v = tr(keys.map(k => [k[0], [k[1].f, k[1].d], k[2]]), f); return { f: v[0], d: v[1] }; };
 function miTable(t, ch) { const f = F(t) + OFF.mi_table, S = ch.sh[1], L = ch.armL;
-  const sit = snap(f - 257, 10), y0 = seatY(ch) - 14 * (1 - sit) + dip(f, 266, 6, 5) + dip(f, 272, 4, 4);
+  const sit = snap(f - 262, 6), y0 = seatY(ch) - 30 * (1 - sit) + dip(f, 266, 6, 5) + dip(f, 274, 4, 4);   // fix 1: drops onto the seat at 262, two tuck bumps 266 / 274
   // near hand (R): the busy one
   const swirl = f > 288 && f < 300 ? .035 : 0, ang = (f - 288) * 2 * Math.PI / 4;
-  let R = P2([[0, { f: .18, d: .78 }], [257, { f: .12, d: .82 }, 6], [276, REST, 8], [283, { f: .5, d: .32 }, 8], [300, NOSE, 10], [313, { f: .48, d: .4 }, 8], [316, REST, 6],
+  let R = P2([[0, { f: .18, d: .78 }], [257, { f: .3, d: .6 }, 4], [266, { f: .1, d: .75 }, 4], [276, REST, 8], [283, { f: .5, d: .32 }, 8], [300, NOSE, 10], [313, { f: .48, d: .4 }, 8], [316, REST, 6],
     [318, { f: .56, d: .28 }, 6], [324, { f: .62, d: .2 }, 8], [341, { f: .55, d: .45 }, 8], [345, REST, 6],
     [352, { f: .62, d: .3 }, 8], [365, { f: .62, d: .24 }, 3], [369, { f: .62, d: .3 }, 6], [384, REST, 10],
     [398, MOUTH, 9], [409, { f: .45, d: .25 }, 8], [420, MOUTH, 8], [430, { f: .45, d: .25 }, 8], [444, MOUTH, 7], [453, { f: .44, d: .3 }, 8],
     [470, MOUTH, 8], [480, { f: .78, d: .05 }, 8], [489, { f: .4, d: .02 }, 2], [492, REST, 12]], f);
   if (swirl) R = { f: R.f + swirl * Math.cos(ang), d: R.d + swirl * Math.sin(ang) };
   // far hand (L)
-  const Lh = P2([[0, { f: .1, d: .8 }], [257, { f: .08, d: .84 }, 6], [276, { f: .36, d: .66 }, 8], [344, { f: .4, d: .4 }, 6], [348, MOUTH, 8], [358, { f: .36, d: .66 }, 8],
+  const Lh = P2([[0, { f: .1, d: .8 }], [257, { f: .25, d: .62 }, 4], [266, { f: .05, d: .78 }, 4], [276, { f: .36, d: .66 }, 8], [344, { f: .4, d: .4 }, 6], [348, MOUTH, 8], [358, { f: .36, d: .66 }, 8],
     [456, { f: .5, d: .38 }, 6], [460, { f: .52, d: .34 }, 3], [466, { f: .36, d: .66 }, 8],
     [509, { f: .16, d: .7 }, 6]], f);
   const pat = f > 509 ? 5 * (dip(f, 512, 1, 4) + dip(f, 517, 1, 4)) : 0;
