@@ -1,0 +1,412 @@
+{
+ "title": "The Man Who Ate An Airplane, S3 THE X-RAY (line 5, rows 19-22, frames 519-638), DRAFT",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 519,
+ "end": 639,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "doctor": {
+   "puppet": "cast:plane_eater/doctor",
+   "height": 1.64,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.3,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "xray": {
+   "set": "xray",
+   "kind": "am",
+   "light": "day",
+   "xray": {
+    "keys": [
+     {
+      "f": 505,
+      "flicker": 1,
+      "puff": 0
+     },
+     {
+      "f": 519,
+      "flicker": 1
+     },
+     {
+      "f": 521,
+      "flicker": 0
+     },
+     {
+      "f": 524,
+      "flicker": 0.85
+     },
+     {
+      "f": 527,
+      "flicker": 0
+     },
+     {
+      "f": 584,
+      "puff": 0
+     },
+     {
+      "f": 593,
+      "puff": 1
+     },
+     {
+      "f": 622,
+      "ride": 0
+     },
+     {
+      "f": 660,
+      "ride": 1
+     }
+    ]
+   },
+   "kit3d": {
+    "envGround": "#a9c4bd"
+   }
+  }
+ },
+ "props": {
+  "film": {
+   "pos": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "kind": "the signature X-ray film: a tiny Cessna built of square bites inside the belly"
+  },
+  "mini": {
+   "pos": [
+    28.464,
+    -0.2,
+    -2.221
+   ],
+   "kind": "the mini bite-Cessna"
+  },
+  "lining": {
+   "pos": [
+    30.6,
+    -0.2,
+    -2.6
+   ],
+   "kind": "the stomach lining / mattress"
+  }
+ },
+ "acts": [
+  {
+   "who": "doctor",
+   "at": 519,
+   "pos": [
+    -0.36,
+    1.78,
+    0.0
+   ],
+   "view": "34",
+   "dir": 1,
+   "pose": "m:../../ep_s3/dr_lean",
+   "face": "k:concentrate",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"x -RAYED\": hand on the clip bar, the box flickers, he leans in"
+  },
+  {
+   "who": "doctor",
+   "at": 541,
+   "face": "k:think",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"and\": pushes the half-moon glasses down his nose"
+  },
+  {
+   "who": "doctor",
+   "at": 550,
+   "face": "k:surprised",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"found\": a jolt back, he sees the tiny plane"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 592,
+   "amp": 2
+  }
+ ],
+ "fx": [
+  {
+   "at": 528,
+   "kind": "glint",
+   "pos": [
+    0.16,
+    2.065,
+    1.52
+   ],
+   "note": "row 19 \"-rayed\": a glint runs over the tiny Cessna on the film"
+  },
+  {
+   "at": 592,
+   "kind": "glow",
+   "pos": [
+    30.6,
+    -0.2,
+    -2.55
+   ],
+   "note": "row 21 THICK: the lining glows as it puffs"
+  },
+  {
+   "at": 630,
+   "kind": "shine",
+   "pos": [
+    28.979,
+    -0.2,
+    -2.421
+   ],
+   "note": "row 22: oil sparkle behind the sliding plane"
+  },
+  {
+   "at": 636,
+   "kind": "shine",
+   "pos": [
+    29.751,
+    -0.2,
+    -2.588
+   ],
+   "note": "row 22: oil sparkle trail"
+  }
+ ],
+ "moods": [
+  {
+   "at": 573,
+   "look": "cold_blue",
+   "note": "row 20: the cut into the X-ray world rides a cyan-blue wash"
+  },
+  {
+   "at": 592,
+   "look": "flash_white",
+   "note": "row 21 POWER 2 cyan-white flash on THICK"
+  }
+ ],
+ "takes": [
+  {
+   "id": "clinic",
+   "place": "xray",
+   "stations": [
+    {
+     "at": 519,
+     "pos": [
+      0.62,
+      0.62,
+      1.52
+     ],
+     "aim": [
+      -0.02,
+      2.05,
+      1.36
+     ],
+     "lens": 22,
+     "subject": "doctor",
+     "framing": "W",
+     "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, M00 living rest then M02 push in): the doctor in 3/4 at the left leaning in to the glowing film, his hand on the clip bar; the film with the tiny bite-Cessna big at the right; the box flickers twice",
+     "hold": 0.5,
+     "creep": 0.0028,
+     "shows": [
+      "film"
+     ]
+    },
+    {
+     "at": 556,
+     "pos": [
+      0.24,
+      1.36,
+      1.5
+     ],
+     "aim": [
+      0.1,
+      2.1,
+      1.47
+     ],
+     "lens": 26,
+     "subject": "doctor",
+     "framing": "M",
+     "purpose": "ROW 19 \"found a\" (push in over the doctor's shoulder): the film fills most of the frame, the Cessna of square bites and F-MIAM readable, his glasses and clip hand at the left edge",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "film"
+     ]
+    },
+    {
+     "at": 573,
+     "pos": [
+      0.11,
+      1.8,
+      1.47
+     ],
+     "aim": [
+      0.11,
+      2.2,
+      1.47
+     ],
+     "lens": 26,
+     "subject": "film",
+     "framing": "C",
+     "purpose": "ROW 20 \"STOMACH\" (M07 fly into the object): the film fills the lens, the cut into the X-ray world sits on the film grain",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "film"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inside",
+   "place": "xray",
+   "stations": [
+    {
+     "at": 574,
+     "pos": [
+      28.55,
+      -3.75,
+      1.05
+     ],
+     "aim": [
+      30.55,
+      -0.25,
+      -1.75
+     ],
+     "lens": 20,
+     "subject": "lining",
+     "framing": "W",
+     "purpose": "ROW 20 \"STOMACH lining\" (IMPOSSIBLE VIEW, M07 continued, eased): we come out of the film into the cartoon X-ray world: cyan ribs and spine as bands on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "lining",
+      "mini"
+     ]
+    },
+    {
+     "at": 592,
+     "pos": [
+      30.2,
+      -1.25,
+      -2.15
+     ],
+     "aim": [
+      30.9,
+      -0.1,
+      -2.85
+     ],
+     "lens": 22,
+     "subject": "lining",
+     "framing": "C",
+     "purpose": "ROW 21 \"so THICK\" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, cyan-white flash, then steady glow",
+     "hold": 0.5,
+     "creep": 0.0028,
+     "shows": [
+      "lining"
+     ]
+    },
+    {
+     "at": 626,
+     "pos": [
+      28.344,
+      -0.42,
+      -2.2
+     ],
+     "aim": [
+      29.784,
+      -0.2,
+      -2.693
+     ],
+     "lens": 20,
+     "subject": "mini",
+     "framing": "C",
+     "purpose": "ROW 22 \"SLID\" (SIGNATURE peak, M14 ride with the moving thing): the bite-Cessna at the lens, navy stripe, propeller humming, it starts down the runway",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "mini"
+     ]
+    },
+    {
+     "at": 638,
+     "pos": [
+      29.794,
+      -0.5,
+      -2.56
+     ],
+     "aim": [
+      31.094,
+      -0.2,
+      -2.8400000000000003
+     ],
+     "lens": 20,
+     "subject": "mini",
+     "framing": "C",
+     "purpose": "ROW 22 \"through\" (M14 ride, the camera rides with it): the plane slides along the oily lining, the sparkle trail behind it; the ride continues into the next stretch",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "mini"
+     ]
+    }
+   ]
+  }
+ ]
+}

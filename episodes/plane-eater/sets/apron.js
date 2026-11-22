@@ -7,7 +7,7 @@
 //   wind: 1 (default)               the windsock sways (out of phase with the grass); signs, plaque and poster stay still and flat (CB 2026-11-13)
 // Returns anchors (plan metres, Z up): cessna_spot, apron_centre, hangar_door_gap, hangar_mouth, hangar_sign, hazard_plaque, poster_1978, owner_polish_spot,
 //   table_centre, table_seat, oil_glass, water_jug, scale_spot, salt_spot, chair, owner_deckchair, windsock, fence_gate, tree_table, lens_band_hook.
-import { GLTFLoader } from '../../yellow-fire-trucks/assets_prod/vendor/GLTFLoader.js';
+import { GLTFLoader } from './vendor/GLTFLoader.js';
 const DIR = new URL('./apron/out/', import.meta.url).href;
 const META = await (await fetch(DIR + 'apron_meta.json')).json();
 export const LIGHT = META.light;
