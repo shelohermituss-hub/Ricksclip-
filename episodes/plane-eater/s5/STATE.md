@@ -1,4 +1,15 @@
-# S5 STATE: THE ENDING (PICTURE_PLAN rows 35-38, line 8b, film 31.44-34.04 s = frames 943-1021). DRAFT round 1, 2026-11-22. Half size (540x960).
+# S5 STATE: THE ENDING (PICTURE_PLAN rows 35-38, line 8b, film 31.44-34.04 s = frames 943-1021). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX ROUND 1 (lead's 5 points) - result
+- (1) PARTLY: seated like sit_chair with SEAT_M .52 (the pan top) and pos z 0 (floor), they face along the seat: camsafe 2044 PASS / 0 FAIL (LEGS 0).
+  frame_checks still 7 FAIL: Michel feet sunk -7 cm (f0-961) / float 18 cm at f1021, owner hips over seat_0B_back 30 % at f1021 (his lean), Michel's body
+  into the meal tray 10 % on the strike, the two cards overlap 31 % (35 cm apart in the seats).
+- (2) PARTLY: the end station looks out of window L_8 and the whole wing is moved by cabin.js "wing_offset" so its bite sits on that ray; the wing reads
+  through the window but the BITE does NOT read at this size (a sliver). The owner's wipe is a lean and a reach toward the window with the rag:
+  he cannot reach it from the aisle seat (Michel sits between), so no real wipe.
+- (3) PARTLY: last frame from further back (wild row also 16A/16B): both men whole in frame, but the owner covers half of Michel.
+- (4) DONE: fork and knife in hand from f943 (no pop), silver material (pe_props.js). Still small at half size.
+- (5) PARTLY: foil lifted higher (cabin.js foil_raise .16, hand above the shoulder); it still reads weakly.
+## Round 1 notes (before the fix round)
 ## NOT done / failing
 - SEATING is wrong: both men read too tall, their bottoms above the cushions, the 3D legs dangle in front of the seat. frame_checks: feet sunk (owner -18 cm,
   michel -4.7 cm), owner hips hover 6.5 % above seat_0B; camsafe 47 FAIL LEGS_DISAGREE (the 3D legs point where he faces, not along the seat, when the
