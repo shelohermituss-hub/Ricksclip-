@@ -1,8 +1,2 @@
-CAMERA-SAFE  s5  camsafe on  2044 checks: PASS 1996  WARN 1  FAIL 47
-  LEGS_DISAGREE  47
-  FLICKER        1
-  f943 owner FAIL  yaw 87.2 pitch 7.7  FAIL LEGS_DISAGREE: 3D legs point where he faces (87 deg) but the body is drawn 3/4
-      FIX: set film.json "camsafe": true (sitting with 3D legs then takes the true view)
-  f1008 michel WARN  yaw 0 pitch 1.1  WARN FLICKER: view 3/4 -> front again 1 frames after the last change
-      FIX: ease the camera through the switch angle, or hold the view (act key "view") for this move
+CAMERA-SAFE  s5  camsafe on  2044 checks: PASS 2044  WARN 0  FAIL 0
 report -> /home/user/Ricksclip-/episodes/plane-eater/s5/out/plan/camsafe_report.json

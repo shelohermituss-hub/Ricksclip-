@@ -9,7 +9,7 @@ const F = t => Math.round(t * 30 * 1000) / 1000, A0 = 943, SEAT_M = .52;   // th
 export const N = 79;
 export const W = { honestly: 943, still0: 955, still1: 968, still: 969, better: 977, than: 985, airline: 991, food: 1001, end: 1021 };
 const seatY = ch => { const top = ch.hy - 100 * ch.K, k = 1.7 / (G - top); return G - SEAT_M / k - 640 + 4; };   // body bottom on the seat (sit_chair.mjs)
-export const legs3d = { r: .022, pts: [[.075, SEAT_M + .04, .0], [.085, SEAT_M + .045, .22], [.09, SEAT_M - .02, .28], [.095, .05, .32], [.1, .03, .43]] };   // thighs along the pan to its front edge (x .26), shins to the floor, feet under the tray
+export const legs3d = { r: .022, pts: [[.075, SEAT_M + .04, .0], [.085, SEAT_M + .045, .22], [.09, SEAT_M - .02, .28], [.095, .1, .32], [.1, .09, .43]] };   // thighs along the pan to its front edge (x .26), shins to the floor, feet under the tray
 export const chair3d = { seat: SEAT_M };
 const mix = (a, b, u) => ({ f: a.f + (b.f - a.f) * u, d: a.d + (b.d - a.d) * u });
 
@@ -42,7 +42,7 @@ function owWary(t, ch) { const f = F(t) + A0;
   const reach = snap(f - 1009, 6), wipe = f > 1014 ? .07 * Math.sin((f - 1014) * 1.6) : 0;
   let near = mix({ f: .35, d: .62 }, { f: .28 + rub, d: -.38 }, rubIn); near = mix(near, { f: 1.0 + wipe, d: -.28 }, reach);   // row 38: leans over and wipes the window, rag at eye height
   const far = { f: .2, d: .66 };
-  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 12 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
+  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 5 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
     hands: [{ ...far, bow: .4 }, { ...near, bow: .3, over: rubIn > .5 || reach > .5 }], held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
