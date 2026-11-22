@@ -187,17 +187,17 @@ for side in (1, -1):
             abox(bf_, .3, .02, .5, MT((x, side * (HW - .385), WIN_Z + .05)), bev=0)
 obj('window_rings', br_, 'port_ring', smooth=True); obj('window_bevels', bi_, 'port_bevel', smooth=True); obj('window_bolts', bb_, 'bolt_white', smooth=True)
 obj('window_glow', bg_, 'win_glow'); obj('window_glow_inner', bf_, mat('win_glow_inner', col='#d9a865', es=1.1, emit='#d9a865'))
-def stub_room(name, x, y1=-.5, px=.15, pw=.55, ph=.8):
+def stub_room(name, x, y1=-.5, px=.15, pw=.55, ph=.8, pz=-.1):
     """the lit room behind a porthole (seen through the real opening): cream walls, a red rail, a small inner porthole on the back wall."""
     bw, bf = B(), B(); y0, z0, z1 = HW - .1, -1.25, 1.75; RW = 1.3
     abox(bw, RW, .1, z1 - z0, MT((x, y1, (z0 + z1) / 2)), bev=0)
     for s in (1, -1): abox(bw, .1, y0 - y1, z1 - z0, MT((x + s * RW / 2, (y0 + y1) / 2, (z0 + z1) / 2)), bev=0)
     abox(bw, RW, y0 - y1, .1, MT((x, (y0 + y1) / 2, z1)), bev=0); abox(bf, RW, y0 - y1, .1, MT((x, (y0 + y1) / 2, z0)), bev=0)
     obj(name + '_room_walls', bw, 'stub_wall'); obj(name + '_room_floor', bf, 'stub_floor')
-    bm = B(); arring(bm, pw, ph, min(.2, pw * .36), pw * .18, .08, MF((x + px, y1 + .07, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
-    bm = B(); aquad(bm, pw + .03, ph + .03, MF((x + px, y1 + .06, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
+    bm = B(); arring(bm, pw, ph, min(.2, pw * .36), pw * .18, .08, MF((x + px, y1 + .07, pz), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
+    bm = B(); aquad(bm, pw + .03, ph + .03, MF((x + px, y1 + .06, pz), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
     ANCH[name] = [x, HW + .15, WIN_Z]; ANCH[name + '_card'] = [x - .1, HW - .7, z0 + .05]
-stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=HW - 1.25, px=-.06, pw=.24, ph=.36)   # round 6: shot 11 room shallow, small inner porthole right of centre
+stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=HW - 1.25, px=-.03, pw=.24, ph=.36, pz=-.2)   # round 6: shot 11 room shallow, small inner porthole right of centre
 # hazard box (the waste vent from outside) on the stripe under porthole_b, a loose wrench drifting by the stripe (mover)
 xh = WIN_X[PORTS['porthole_b']]; box('hazard_box', (.46, .12, .46), (xh + .55, HW + .17, -1.2), 'hazard_y', bev=.02)
 box('hazard_box_core', (.34, .03, .34), (xh + .55, HW + .235, -1.2), 'black', bev=.01); cyl('hazard_lens', .09, .04, (xh + .55, HW + .26, -1.2), mat('hazard_lens', col='#3a6070', rough=.2), rot=(90, 0, 0))
@@ -394,15 +394,15 @@ bm = B(); abox(bm, 2.0, 1.05, .06, UPM, bev=.015); obj('radio_upper_panel', bm, 
 def upic(name, w, h, a, v, png, es=1.):
     return pic(name, w, h, UPM @ Matrix.Translation((a, v, .045)), png, es=es, alpha=False)
 MA, MV = -.08, .14                                                  # round 6 (f790 fit): MFD centre on the panel
-mfo = upic('mfd_on', .46, .34, MA, MV, 'mfd_on.png', 1.4); mff = upic('mfd_off', .46, .34, MA, MV, 'mfd_off.png', 1.4)
+mfo = upic('mfd_on', .66, .48, MA, MV, 'mfd_on.png', 1.4); mff = upic('mfd_off', .66, .48, MA, MV, 'mfd_off.png', 1.4)   # round 6: MFD 1.4x (f790)
 MOVERS['mfd_on'] = {'state': 'comm on'}; MOVERS['mfd_off'] = {'state': 'comm off'}
-bm = B(); arring(bm, .46, .34, .02, .05, .04, UPM @ Matrix.Translation((MA, MV, .03)), lip=.01); obj('mfd_bezel', bm, 'bezel')
+bm = B(); arring(bm, .66, .48, .02, .06, .04, UPM @ Matrix.Translation((MA, MV, .03)), lip=.01); obj('mfd_bezel', bm, 'bezel')
 bm = B()
 for s in (1, -1):
-    for k in range(5): abox(bm, .045, .045, .03, UPM @ Matrix.Translation((MA + s * .29, MV - .14 + k * .07, .04)), bev=.005)
+    for k in range(5): abox(bm, .055, .055, .03, UPM @ Matrix.Translation((MA + s * .4, MV - .2 + k * .1, .04)), bev=.005)
 obj('mfd_keys', bm, 'bezel'); upic('sband_display', .3, .25, .78, .2, 'sband.png', 1.3)
 bd, bm_ = B(), B()
-DIALS = ((-.7, .38), (-.6, -.05), (.3, .3), (.5, -.02))             # round 6 (f790 fit): 2 left of the MFD (high, low), 2 right (high near it, low further out)
+DIALS = ((-.75, .38), (-.65, -.05), (.4, .34), (.62, -.02))             # round 6 (f790 fit): 2 left of the MFD (high, low), 2 right (high near it, low further out)
 for a, v in DIALS:
     alathe(bd, [(.11, 0), (.11, .03), (.09, .05), (0, .05)], 20, UPM @ Matrix.Translation((a, v, .03)))
     abox(bm_, .012, .085, .01, UPM @ Matrix.Translation((a, v + .04, .085)) @ Matrix.Rotation(rnd.uniform(-.8, .8), 4, 'Z'), bev=0)
@@ -414,8 +414,8 @@ for k in range(9):
     abox(bl_, .08, .012, .004, UPM @ Matrix.Translation((a, -.35, .032)), bev=0)
 for a, v in DIALS: abox(bl_, .1, .012, .004, UPM @ Matrix.Translation((a, v - .15, .032)), bev=0)
 obj('radio_toggles', bt, 'black'); obj('radio_toggle_guards', bgd, 'toggle_guard'); obj('radio_dash_labels', bl_, 'dash_label')
-bm = B(); abox(bm, .3, .06, .06, UPM @ Matrix.Translation((.84, .43, .03)), bev=.01); obj('juice_box_brow_base', bm, 'panel_up')
-bm = B(); abox(bm, .1, .07, .16, Matrix.Translation(U(.84, .43, .12)), bev=.008); obj('juice_box', bm, 'juice'); bm = B(); abeam(bm, U(.86, .43, .2), U(.88, .43, .3), .006); obj('juice_straw', bm, 'juice_red')
+bm = B(); abox(bm, .3, .06, .06, UPM @ Matrix.Translation((.84, .58, .03)), bev=.01); obj('juice_box_brow_base', bm, 'panel_up')
+bm = B(); abox(bm, .1, .07, .16, Matrix.Translation(U(.84, .58, .12)), bev=.008); obj('juice_box', bm, 'juice'); bm = B(); abeam(bm, U(.86, .58, .2), U(.88, .58, .3), .006); obj('juice_straw', bm, 'juice_red')
 bm = B(); abeam(bm, R(.82, .1, .02), R(.86, .5, .35), .02, 8); obj('glow_rod', bm, 'glow_rod')
 # the radio set: wedge box, sloped face toward the cockpit (-Y) and up; face picture, display digits (one plane per state), lamp, grille, 2 knobs
 RD = R(-.25, .3, 0); RYAW = Matrix.Rotation(math.radians(20), 4, 'Z'); RSM = Matrix.Translation(RD) @ RYAW   # round 6 (f790 fit): radio turned 20 deg toward the cockpit
@@ -428,7 +428,7 @@ XR = RYAW.to_3x3() @ Vector((1, 0, 0)); FN = XR.cross(FA)
 FC = RD + RYAW.to_3x3() @ Vector((0, -.195, .14))
 FM_ = MF(FC + FN * .012, XR, FA, FN)
 bm = B(); arring(bm, .5, .3, .01, .012, .01, FM_, lip=.003); obj('radio_face_edge', bm, 'radio_edge')
-pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=1.0)
+pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=.4)
 for k in range(4):
     pic('radio_digits_%d' % k, .22, .085, FM_ @ Matrix.Translation((-.04, .035, .006 + .0005 * k)), 'radio_digits_%d.png' % k, es=2.2, alpha=False, mover={'state': 'digits %d' % k})
 bm = B()
@@ -524,9 +524,9 @@ def standin(name, col, h, loc, rz, hm='sd_head'):
 NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
-standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .45, pb[1] + .35, -1.45), 0)   # round 6: left of the opening (screen), beside the inner porthole
+standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .47, pb[1] + .45, -1.5), 0)   # round 6: left of the opening (screen), beside the inner porthole
 standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.53), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
-ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .45, pb[1] + .35, -1.45]
+ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .47, pb[1] + .45, -1.5]
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)

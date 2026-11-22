@@ -1,0 +1,2731 @@
+{
+ "title": "astro-flush toilet, shot 12 + 12->13 + 13 (f1007-1199, rendered from f998)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "caps_his.json",
+ "start": 998,
+ "end": 1200,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "commander": {
+   "puppet": "cast:astro_flush/commander",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 1.0,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 0.35,
+  "vignette": 0
+ },
+ "places": {
+  "toilet": {
+   "set": "toilet_stage",
+   "kind": "interior",
+   "light": "night",
+   "light_over": {
+    "tint": "#e6e8ff"
+   },
+   "toilet": {
+    "light": "wide",
+    "glow": 0,
+    "door": 1,
+    "keys": [
+     {
+      "f": 990,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 991,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 992,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 993,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 994,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 995,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 996,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 997,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 998,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 999,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1000,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1001,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1002,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1003,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1004,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1005,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1006,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1007,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1008,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1009,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1010,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1011,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1012,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1013,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1014,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1015,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1016,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1017,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1018,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1019,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1020,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1021,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1022,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1023,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1024,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1025,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1026,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1027,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1028,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1029,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1030,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1031,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1032,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1033,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1034,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1035,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1036,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1037,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1038,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1039,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1040,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1041,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1042,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1043,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1044,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1045,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1046,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1047,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1048,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1049,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1050,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1051,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1052,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1053,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1054,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1055,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1056,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1057,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1058,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1059,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1060,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1061,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1062,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1063,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1064,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1065,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1066,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1067,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1068,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1069,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1070,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1071,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1072,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1073,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1074,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1075,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1076,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1077,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1078,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1079,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1080,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1081,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1082,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1083,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1084,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1085,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1086,
+      "light": "wide",
+      "glow": 0.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1087,
+      "light": "wide",
+      "glow": 0.104,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1088,
+      "light": "wide",
+      "glow": 0.352,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1089,
+      "light": "wide",
+      "glow": 0.648,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1090,
+      "light": "wide",
+      "glow": 0.896,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1091,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1092,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1093,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1094,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1095,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1096,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1097,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1098,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1099,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1100,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 1101,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0135,
+      "paper": 0
+     },
+     {
+      "f": 1102,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0271,
+      "paper": 0
+     },
+     {
+      "f": 1103,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0406,
+      "paper": 0
+     },
+     {
+      "f": 1104,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0542,
+      "paper": 0
+     },
+     {
+      "f": 1105,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0677,
+      "paper": 0
+     },
+     {
+      "f": 1106,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0813,
+      "paper": 0
+     },
+     {
+      "f": 1107,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.0948,
+      "paper": 0
+     },
+     {
+      "f": 1108,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1084,
+      "paper": 0
+     },
+     {
+      "f": 1109,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1219,
+      "paper": 0
+     },
+     {
+      "f": 1110,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1355,
+      "paper": 0
+     },
+     {
+      "f": 1111,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.149,
+      "paper": 0
+     },
+     {
+      "f": 1112,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1626,
+      "paper": 0
+     },
+     {
+      "f": 1113,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1761,
+      "paper": 0
+     },
+     {
+      "f": 1114,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.1897,
+      "paper": 0
+     },
+     {
+      "f": 1115,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2032,
+      "paper": 0
+     },
+     {
+      "f": 1116,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2168,
+      "paper": 0
+     },
+     {
+      "f": 1117,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2303,
+      "paper": 0
+     },
+     {
+      "f": 1118,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2439,
+      "paper": 0
+     },
+     {
+      "f": 1119,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2574,
+      "paper": 0
+     },
+     {
+      "f": 1120,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.271,
+      "paper": 0
+     },
+     {
+      "f": 1121,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2845,
+      "paper": 0
+     },
+     {
+      "f": 1122,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.2981,
+      "paper": 0
+     },
+     {
+      "f": 1123,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3116,
+      "paper": 0
+     },
+     {
+      "f": 1124,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3252,
+      "paper": 0
+     },
+     {
+      "f": 1125,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3387,
+      "paper": 0
+     },
+     {
+      "f": 1126,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3523,
+      "paper": 0
+     },
+     {
+      "f": 1127,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3658,
+      "paper": 0
+     },
+     {
+      "f": 1128,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3794,
+      "paper": 0
+     },
+     {
+      "f": 1129,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.3929,
+      "paper": 0
+     },
+     {
+      "f": 1130,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.4065,
+      "paper": 0
+     },
+     {
+      "f": 1131,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0,
+      "pulse": 0.42,
+      "paper": 0
+     },
+     {
+      "f": 1132,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.0554,
+      "pulse": 0.4432,
+      "paper": 0
+     },
+     {
+      "f": 1133,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.1983,
+      "pulse": 0.4663,
+      "paper": 0
+     },
+     {
+      "f": 1134,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.3936,
+      "pulse": 0.4895,
+      "paper": 0
+     },
+     {
+      "f": 1135,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.6064,
+      "pulse": 0.5126,
+      "paper": 0
+     },
+     {
+      "f": 1136,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.8017,
+      "pulse": 0.5358,
+      "paper": 0
+     },
+     {
+      "f": 1137,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 0.9446,
+      "pulse": 0.5589,
+      "paper": 0
+     },
+     {
+      "f": 1138,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.5821,
+      "paper": 0
+     },
+     {
+      "f": 1139,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.6053,
+      "paper": 0
+     },
+     {
+      "f": 1140,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.6284,
+      "paper": 0
+     },
+     {
+      "f": 1141,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.6516,
+      "paper": 0
+     },
+     {
+      "f": 1142,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.6747,
+      "paper": 0
+     },
+     {
+      "f": 1143,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.6979,
+      "paper": 0
+     },
+     {
+      "f": 1144,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.7211,
+      "paper": 0
+     },
+     {
+      "f": 1145,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.7442,
+      "paper": 0
+     },
+     {
+      "f": 1146,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.7674,
+      "paper": 0
+     },
+     {
+      "f": 1147,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.7905,
+      "paper": 0
+     },
+     {
+      "f": 1148,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8137,
+      "paper": 0
+     },
+     {
+      "f": 1149,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8368,
+      "paper": 0
+     },
+     {
+      "f": 1150,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.86,
+      "paper": 0
+     },
+     {
+      "f": 1151,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8678,
+      "paper": 0
+     },
+     {
+      "f": 1152,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8756,
+      "paper": 0
+     },
+     {
+      "f": 1153,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8833,
+      "paper": 0
+     },
+     {
+      "f": 1154,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8911,
+      "paper": 0
+     },
+     {
+      "f": 1155,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.8989,
+      "paper": 0
+     },
+     {
+      "f": 1156,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9067,
+      "paper": 0
+     },
+     {
+      "f": 1157,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9144,
+      "paper": 0
+     },
+     {
+      "f": 1158,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9222,
+      "paper": 0
+     },
+     {
+      "f": 1159,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.93,
+      "paper": 0
+     },
+     {
+      "f": 1160,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9378,
+      "paper": 0
+     },
+     {
+      "f": 1161,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9456,
+      "paper": 0
+     },
+     {
+      "f": 1162,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9533,
+      "paper": 0
+     },
+     {
+      "f": 1163,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9611,
+      "paper": 0
+     },
+     {
+      "f": 1164,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9689,
+      "paper": 0
+     },
+     {
+      "f": 1165,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9767,
+      "paper": 0
+     },
+     {
+      "f": 1166,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9844,
+      "paper": 0
+     },
+     {
+      "f": 1167,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 0.9922,
+      "paper": 0
+     },
+     {
+      "f": 1168,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1169,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1170,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1171,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1172,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1173,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1174,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1175,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1176,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1177,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1178,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1179,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1180,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1181,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1182,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1183,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1184,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1185,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1186,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1187,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1188,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1189,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1190,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1191,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1192,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1193,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1194,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1195,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1196,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1197,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1198,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1199,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     },
+     {
+      "f": 1200,
+      "light": "wide",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 1.0,
+      "hatch": 1.0,
+      "pulse": 1.0,
+      "paper": 0
+     }
+    ]
+   },
+   "stage": {
+    "explode": {
+     "f": 1097,
+     "n": 7,
+     "delay": 0.35,
+     "order": [
+      "toilet_base",
+      "toilet_flange",
+      "toilet_gasket",
+      "toilet_bolt_1",
+      "toilet_bolt_2",
+      "toilet_bolt_3",
+      "toilet_bolt_4",
+      "explode_ring_1",
+      "toilet_bowl",
+      "explode_ring_2",
+      "toilet_seat",
+      "toilet_hinge_peg_l",
+      "toilet_hinge_peg_r",
+      "explode_ring_3",
+      "toilet_lid",
+      "toilet_tank",
+      "toilet_flush_lever",
+      "explode_ring_4",
+      "toilet_tank_lid",
+      "toilet_flush_button"
+     ],
+     "float": 0.015
+    }
+   }
+  }
+ },
+ "takes": [
+  {
+   "id": "s12",
+   "place": "toilet",
+   "stations": [
+    {
+     "pos": [
+      0.2,
+      -1.6,
+      0.5
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 19.74,
+     "roll": 0,
+     "at": 0,
+     "hold": 32.333333333333336,
+     "creep": 0,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "pre-roll (never rendered); travel leaves f970"
+    },
+    {
+     "pos": [
+      0.2,
+      -1.57,
+      0.5
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 19.92,
+     "roll": 0,
+     "at": 1007,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "f1007 clean: wide dark room, commander in the doorway, new guy, toilet; pushing in"
+    },
+    {
+     "pos": [
+      0.2,
+      -1.45,
+      0.5
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.45,
+     "roll": 0,
+     "at": 1030,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "pinned pass: cam f1030 fitted"
+    },
+    {
+     "pos": [
+      0.2946,
+      -1.1385,
+      0.5728
+     ],
+     "aim": [
+      0.6646,
+      4.2115,
+      1.8228
+     ],
+     "lens": 21.45,
+     "roll": 0,
+     "at": 1050,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "pinned pass: push faster, slight pan right"
+    },
+    {
+     "pos": [
+      0.4308,
+      -0.7908,
+      0.654
+     ],
+     "aim": [
+      1.0308,
+      4.5592,
+      1.904
+     ],
+     "lens": 21.45,
+     "roll": 0,
+     "at": 1065,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "pinned pass: push faster; the commander slides out left by f1074"
+    },
+    {
+     "pos": [
+      0.5465,
+      -0.4558,
+      0.7323
+     ],
+     "aim": [
+      1.2965,
+      4.8942,
+      1.9823
+     ],
+     "lens": 21.45,
+     "roll": -0.4,
+     "at": 1077,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "M",
+     "purpose": "peak of the push; reverses into the pull back without a stop"
+    },
+    {
+     "pos": [
+      -0.5,
+      -0.9,
+      0.6
+     ],
+     "aim": [
+      0.75,
+      3.9,
+      1.9
+     ],
+     "lens": 21.45,
+     "roll": -1.2,
+     "at": 1105,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "pinned pass: cam f1105 fitted: room above for the exploded toilet"
+    },
+    {
+     "pos": [
+      -0.15,
+      -0.8,
+      0.5
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.8
+     ],
+     "lens": 21.45,
+     "roll": -0.4,
+     "at": 1114,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: f1114 the fast pan left starts"
+    },
+    {
+     "pos": [
+      0.6,
+      -0.6,
+      0.35
+     ],
+     "aim": [
+      -2.2,
+      3.9,
+      1.1
+     ],
+     "lens": 21.45,
+     "roll": 3,
+     "at": 1125,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: cam f1125 fitted: glowing hose on the floor leads left to the wall"
+    },
+    {
+     "pos": [
+      0.15,
+      -0.05,
+      0.33
+     ],
+     "aim": [
+      -1.95,
+      1.55,
+      0.12
+     ],
+     "lens": 21.45,
+     "roll": 6,
+     "at": 1131,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: low on the hose, WASTE LINE hatch ahead (opens f1132-1138)"
+    },
+    {
+     "pos": [
+      -0.95,
+      0.9,
+      0.3
+     ],
+     "aim": [
+      -2.1,
+      1.55,
+      -0.1
+     ],
+     "lens": 21.84,
+     "roll": 11,
+     "at": 1135,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: the dive at the open hatch"
+    },
+    {
+     "pos": [
+      -1.6,
+      1.45,
+      0.1
+     ],
+     "aim": [
+      -2.0,
+      1.5,
+      -1.2
+     ],
+     "lens": 22.63,
+     "roll": 15,
+     "at": 1137,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: at the hatch mouth, turning down (through the floor slab in one frame: no opening behind the hatch in the set)"
+    },
+    {
+     "pos": [
+      -1.72,
+      1.4,
+      -0.45
+     ],
+     "aim": [
+      -0.6,
+      1.42,
+      -1.1
+     ],
+     "lens": 23.46,
+     "roll": 18,
+     "at": 1140,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: under the floor"
+    },
+    {
+     "pos": [
+      -1.45,
+      1.3,
+      -0.62
+     ],
+     "aim": [
+      0.5,
+      1.42,
+      -1.05
+     ],
+     "lens": 23.89,
+     "roll": 21,
+     "at": 1145,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: under the floor, turned to fly along the hose"
+    },
+    {
+     "pos": [
+      0.28,
+      1.2,
+      -0.28
+     ],
+     "aim": [
+      1.75,
+      1.55,
+      -1.3
+     ],
+     "lens": 24.77,
+     "roll": 25,
+     "at": 1154,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: cam f1150 (set params) put at f1154 so the flight keeps one speed: flange in the middle, WASTE VENT top right"
+    },
+    {
+     "pos": [
+      1.0857,
+      1.365,
+      -0.621
+     ],
+     "aim": [
+      2.145,
+      1.5,
+      -0.92
+     ],
+     "lens": 24.77,
+     "roll": 17,
+     "at": 1166,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: constant-speed flight to the flange, then it accelerates"
+    },
+    {
+     "pos": [
+      1.645,
+      1.5,
+      -0.89
+     ],
+     "aim": [
+      2.345,
+      1.5,
+      -0.9
+     ],
+     "lens": 24.77,
+     "roll": 8,
+     "at": 1175,
+     "travel": 6.833333333333333,
+     "hold": 0,
+     "creep": 0,
+     "subject": null,
+     "framing": "C",
+     "purpose": "into the flange: it fills the frame (his nozzle 100 % at f1176)"
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "place": "toilet",
+   "stations": [
+    {
+     "pos": [
+      0,
+      -33.6,
+      0
+     ],
+     "aim": [
+      0,
+      -26.2,
+      0
+     ],
+     "lens": 21.45,
+     "roll": 0,
+     "at": 1176,
+     "hold": 0,
+     "min_hold": 0,
+     "creep": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "f1176 inside the tube (cut in the dark of the nozzle), already flying"
+    },
+    {
+     "pos": [
+      0,
+      -28.3,
+      0
+     ],
+     "aim": [
+      0,
+      -26.5,
+      0
+     ],
+     "lens": 21.45,
+     "roll": -8,
+     "at": 1190,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "W",
+     "purpose": "pinned pass: cam f1190 fitted: rings, core at the centre"
+    },
+    {
+     "pos": [
+      0,
+      -27.6,
+      0
+     ],
+     "aim": [
+      0,
+      -26.2,
+      0
+     ],
+     "lens": 21.45,
+     "roll": -12,
+     "at": 1199,
+     "travel": 0.7666666666666667,
+     "hold": 0.2,
+     "creep": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "on toward the core, spinning"
+    }
+   ]
+  }
+ ],
+ "card_scale": {
+  "newguy": [
+   [
+    0,
+    1.3,
+    1.3
+   ],
+   [
+    2000,
+    1.3,
+    1.3
+   ]
+  ],
+  "commander": [
+   [
+    0,
+    1.25,
+    1.25
+   ],
+   [
+    2000,
+    1.25,
+    1.25
+   ]
+  ]
+ },
+ "acts": [
+  {
+   "who": "commander",
+   "at": 0,
+   "pos": [
+    -0.65,
+    3.75,
+    0
+   ],
+   "pose": "m:../../ep_toilet/cmd12",
+   "look": [
+    0.2,
+    -1.45,
+    1.3
+   ],
+   "note": "doorway, arms crossed, glare"
+  },
+  {
+   "who": "commander",
+   "at": 1100,
+   "visible": false,
+   "note": "out of frame since f1074 (camera move); hidden"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "pos": [
+    0.3,
+    3.2,
+    0
+   ],
+   "pose": "m:../../ep_toilet/ng12",
+   "look": [
+    0.2,
+    -1.45,
+    1.3
+   ],
+   "note": "scared, innocent smile, explains"
+  },
+  {
+   "who": "newguy",
+   "at": 1072,
+   "pos": [
+    0.42,
+    3.1500000000000004,
+    0
+   ],
+   "move_s": 0.7,
+   "ease": "inout",
+   "look": [
+    -0.5,
+    -0.9,
+    1.3
+   ],
+   "note": "slides to centre f1072-1093, eased"
+  },
+  {
+   "who": "newguy",
+   "at": 1121,
+   "visible": false,
+   "note": "left the frame right with the pan (his f1120); no characters after"
+  }
+ ]
+}

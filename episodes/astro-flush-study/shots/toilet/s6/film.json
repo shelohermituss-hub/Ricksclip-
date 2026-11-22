@@ -1,0 +1,810 @@
+{
+ "title": "astro-flush toilet, shot 6 (f500-530, rendered f495-537)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "caps_his.json",
+ "start": 495,
+ "end": 538,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 1.0,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "toilet": {
+   "set": "toilet_stage",
+   "kind": "interior",
+   "light": "night",
+   "light_over": {
+    "tint": "#d8dcff"
+   },
+   "toilet": {
+    "light": "night",
+    "glow": 0.55,
+    "door": 0,
+    "keys": [
+     {
+      "f": 480,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 481,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 482,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 483,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 484,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 485,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 486,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 487,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 488,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 489,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 490,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 491,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 492,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 493,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 494,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 495,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 496,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 497,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 498,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 499,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 500,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 501,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 502,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 503,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 504,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 505,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 506,
+      "light": "night",
+      "glow": 0.55,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 507,
+      "light": "night",
+      "glow": 1.075,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 508,
+      "light": "night",
+      "glow": 1.6,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 509,
+      "light": "night",
+      "glow": 1.6,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 510,
+      "light": "night",
+      "glow": 1.5742,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 511,
+      "light": "night",
+      "glow": 1.5063,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 512,
+      "light": "night",
+      "glow": 1.4102,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 513,
+      "light": "night",
+      "glow": 1.3,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 514,
+      "light": "night",
+      "glow": 1.1898,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 515,
+      "light": "night",
+      "glow": 1.0938,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 516,
+      "light": "night",
+      "glow": 1.0258,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 517,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 518,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 519,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 520,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 521,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 522,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 523,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 524,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 525,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 526,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 527,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 528,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 529,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 530,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 531,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 532,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 533,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 534,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 535,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 536,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 537,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     },
+     {
+      "f": 538,
+      "light": "night",
+      "glow": 1.0,
+      "exploded": 0.0,
+      "door": 0.0,
+      "hatch": 0.0,
+      "pulse": 0.0,
+      "paper": 0
+     }
+    ]
+   },
+   "stage": {
+    "lever": [
+     [
+      505,
+      0
+     ],
+     [
+      508,
+      -28
+     ],
+     [
+      514,
+      -28
+     ],
+     [
+      520,
+      0
+     ]
+    ]
+   }
+  }
+ },
+ "takes": [
+  {
+   "id": "s6",
+   "place": "toilet",
+   "stations": [
+    {
+     "pos": [
+      -0.5164,
+      2.7765,
+      0.7077
+     ],
+     "aim": [
+      1.7836,
+      3.0265,
+      1.1577
+     ],
+     "lens": 29.96,
+     "roll": 0,
+     "at": 0,
+     "hold": 16.166666666666668,
+     "creep": 0,
+     "subject": "newguy",
+     "framing": "C",
+     "purpose": "pre-roll (never rendered); the travel leaves f485"
+    },
+    {
+     "pos": [
+      -0.405,
+      2.7886,
+      0.7295
+     ],
+     "aim": [
+      1.895,
+      3.0386,
+      1.1795
+     ],
+     "lens": 29.96,
+     "roll": 0,
+     "at": 500,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "C",
+     "purpose": "f500 clean: new guy big at the left, glowing toilet lower right"
+    },
+    {
+     "pos": [
+      -0.3,
+      2.8,
+      0.75
+     ],
+     "aim": [
+      2.0,
+      3.05,
+      1.2
+     ],
+     "lens": 29.96,
+     "roll": 0,
+     "at": 515,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "C",
+     "purpose": "pinned pass: cam f515 fitted"
+    },
+    {
+     "pos": [
+      -0.2508,
+      2.8053,
+      0.7596
+     ],
+     "aim": [
+      2.0492,
+      3.0553,
+      1.2096
+     ],
+     "lens": 29.96,
+     "roll": 0,
+     "at": 537,
+     "travel": 1.7333333333333334,
+     "hold": 0.3,
+     "creep": 0,
+     "subject": "newguy",
+     "framing": "C",
+     "purpose": "slow push on through the dissolve out f531-537"
+    }
+   ]
+  }
+ ],
+ "card_scale": {
+  "newguy": [
+   [
+    0,
+    1.0,
+    1.0
+   ],
+   [
+    2000,
+    1.0,
+    1.0
+   ]
+  ]
+ },
+ "acts": [
+  {
+   "who": "newguy",
+   "at": 0,
+   "pos": [
+    1.45,
+    3.15,
+    0
+   ],
+   "pose": "m:../../ep_toilet/ng6",
+   "look": [
+    -0.3,
+    2.8,
+    1.3
+   ],
+   "note": "wince, flush snap 507-508, relief, sweat"
+  }
+ ]
+}

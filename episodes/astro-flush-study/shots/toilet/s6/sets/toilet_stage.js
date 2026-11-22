@@ -1,0 +1,1 @@
+../../stage/toilet_stage.js

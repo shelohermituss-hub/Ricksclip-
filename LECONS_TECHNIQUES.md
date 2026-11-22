@@ -621,3 +621,12 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - OPEN: ctl head JUMP at the first rise frame f131-132 (not visibility, not the rise ease; cause not found); a bloom flare from a ceiling light enters
   in one frame at f131; mc10 lunge still 4 frames over 3x OUR median because our whole shot moves 3.5x less than his (his camera push accelerates
   f803-838); faces and views inside moves still swap in one frame (f179, f192, f224); Blender mc_api.frame_state does not have the `motion` block yet.
+
+## 2026-11-22 astro-flush toilet stretch: set keys with holes, camera through a wall, a dive through a solid floor
+- Problem 1: sets/toilet.js eases a value only between two keys that BOTH carry it; a key without "pulse" makes the pulse hold, then jump at the next key that has it.
+  Fix: make_film.py writes every value on every frame (keys_per_frame). Guard: never write sparse toilet.js keys. Proof: s12 film.json keys f990-1200 complete.
+- Problem 2: the shot-1 pull-back passes the porthole wall (the camera is inside the wall slab for 2 frames). Fix: shots/toilet/stage/toilet_stage.js pushes
+  R.camera.near to the plane x = -1.88 for frames <= 34 (the set builder's cam f33 "clip"), .05 after. Guard: the wrapper resets near every frame.
+- Problem 3: the dive through the WASTE LINE hatch: the set has no opening behind the hatch down to the under-floor bay; the camera crosses the floor slab
+  (black frames f1137-1139). Not fixed in the kit (no geometry from the stretch): asked of the set builder in shots/toilet/STATE.md.
+- Problem 4: post bloom 1 + the wide key light beside the toilet = a white blob over the middle of every shot-12 frame. Guard: bloom .35 on the wide light kind.

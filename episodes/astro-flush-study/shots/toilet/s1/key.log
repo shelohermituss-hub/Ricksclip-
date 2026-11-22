@@ -1,0 +1,10 @@
+[page] Failed to load resource: the server responded with a status of 404 (Not Found)
+[page] AF_TOILET {"meshes":112,"glb_tris":93438,"load_ms":214}
+WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab fast
+film: 42 frames at 30 fps, 540x960, cast newguy
+still /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/stills/f_00000.png
+[page] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+still /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/stills/f_00012.png
+still /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/stills/f_00033.png
+still /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/stills/f_00037.png
+stills: 4 frames in 20.3 s = 5084 ms/frame (draw 4997 + grab 87) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/stills

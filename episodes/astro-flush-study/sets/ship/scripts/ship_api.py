@@ -26,7 +26,7 @@ DEFAULT = {'light': 'space', 'sun_dir': None, 'flame': 0, 'preglow': 0, 'glitter
            'earth_glare': [.5, -.7, .3, 0.], 'earth_rot': [75, 0, 30], 'earth_term': [-.6, .6, 0.], 'fans': 1}
 LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each, cockpit fill W, room lights W, world colour
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
-    'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 220, 'ck_fill': 60, 'rooms': 120},
+    'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 110, 'ck_fill': 60, 'rooms': 120},
     'map':   {'sun': ((.45, -.6, .65), (1., .78, .6), .6), 'fill': .05, 'lamps': 8, 'ck_fill': 0, 'rooms': 0},
     'radio': {'sun': ((.45, -.6, .65), (1., .78, .6), 0.), 'fill': 0., 'lamps': 3, 'ck_fill': 0, 'rooms': 0},
 }
@@ -37,7 +37,7 @@ def set_light(scene, kind, sun_dir=None, sun_k=1.):
     for n in ('lamp_light_0', 'lamp_light_1'): _o(n).data.energy = L['lamps']
     _o('ck_fill').data.energy = L['ck_fill']
     for n in ('room_light_a', 'room_light_b'): _o(n).data.energy = L['rooms']
-    lamp_es = {'space': 1., 'warm': 1., 'map': .35, 'radio': .25}[kind]
+    lamp_es = {'space': 1., 'warm': .3, 'map': .35, 'radio': .25}[kind]
     _emit('lamp_tube', 6. * lamp_es); _emit('lamp_tip', 9. * lamp_es)
 def set_state(scene, **kw):
     S = json.loads(scene.get('ship_state', '{}')) or dict(DEFAULT); S.update(kw); scene['ship_state'] = json.dumps(S); M = meta()
@@ -69,7 +69,7 @@ def set_state(scene, **kw):
     gc = float(S['glitter_ck'])
     for k in range(3): _vis('glitter_cockpit_%d' % k, gc > k / 3)
     c = int(S['comm']); _vis('comm_lamp_on', c); _vis('comm_lamp_off', not c); _vis('mfd_on', c); _vis('mfd_off', not c)
-    _o('comm_light').data.energy = 25. * c if S['light'] in ('radio', 'map', 'warm') else 0.
+    _o('comm_light').data.energy = (9. if S['light'] == 'radio' else 25.) * c if S['light'] in ('radio', 'map', 'warm') else 0.
     _o('mfd_light').data.energy = (6. if c else 1.5) if S['light'] == 'radio' else 0.
     for k in range(4): _vis('radio_digits_%d' % k, int(S['digits']) == k)
     sm = float(S['starmap']); _vis('star_map_sheet', sm > 0); _vis('star_map_tape', sm > 0); _emit('pic_starmap', 2.5 * sm)
