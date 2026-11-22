@@ -56,3 +56,12 @@ NOT done: (3) closes land but do not READ:
   the held oil glass / bites / tire are hidden behind his body or too small at f300 and f485; the gum strand is not visible; the dial close (f375) reads.
   frame_checks 11 FAIL: michel seat hover 38.6 % (f0-237, before window), owner feet float 5 cm (apron slab top above z .03), owner cut by edges in the
   dial and tire closes, michel feet sunk -7 cm at f512. Draft: draft.mp4 (8.77 s, voice), KEYFRAMES.jpg, S2_strip_4fps.jpg.
+
+## ROUND 2 (2026-11-22, lead: closes show the object, owner never cut, feet, frame_checks 0 FAIL in window; cap 45 min, took about 75 min)
+- FOUND + FIXED: every Michel hand act was 262 f late (the kit restarts a move's clock on each pose change); OFF.mi_table = 262. LECONS.
+- FOUND, OPEN (kit): held3d puts props 0.3-0.5 m below the drawn hand of this seated legs3d card. Workaround: held3d off; hand_at pins the near hand on
+  world points (HAND_WIN in make_film.py) and s2_apron.js shows the prop there: oil glass big at his nose (f304 reads), bites held up, tire + gum strand to MOUTH_P.
+- Result: camsafe 1040 PASS / 0 FAIL. frame_checks inside 257-519: 2 FAIL (owner cut by the right edge f466-480, the tire close); f0-235 FAILs are before the window.
+  Michel's feet at f512: PASS now (reframed above the chair ring).
+- Still below the lead's ask: the bites read as dark squares (the repaint does not show: check bite() materials), the scale blocks Michel in the f375-400
+  rest (the camera reaches the row-14 station late), the jug/tumbler/tongs are not in his hand (held3d off), no sound, the owner is off screen except the cut.
