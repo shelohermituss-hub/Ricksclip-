@@ -106,8 +106,11 @@ const rank = { FAIL: 0, WARN: 1, PASS: 2 }, shown = has('--all') ? table : [tabl
 console.log(['result', 'track', 'frames', 'moving', 'max cm/f', 'max deg/f', 'held', 'jump', 'pop'].map((h, i) => pad(h, wd[i])).join(' '));
 for (const r of [...shown].sort((a, b) => (a.kind === 'camera' ? -1 : b.kind === 'camera' ? 1 : rank[a.result] - rank[b.result]))) console.log([r.result, r.track, r.frames, r.moving, (r.max_m_per_frame * 100).toFixed(2), r.max_deg_per_frame.toFixed(2), r.held, r.jump, r.pop].map((c, i) => pad(c, wd[i])).join(' '));
 if (hidden) console.log(`... ${hidden} moving objects with PASS not shown (--all shows them; all are in motion_objects.json)`);
-const ev = [...fails, ...warns].sort((a, b) => rank[a.level] - rank[b.level] || a.f0 - b.f0), MAXL = +val('--lines', 40);
-for (const e of ev.slice(0, MAXL)) console.log(`${e.level} ${e.rule.padEnd(4)} ${e.track}  ${fr(e.f0, e.f1)}  ${e.text}`); if (ev.length > MAXL) console.log(`... ${ev.length - MAXL} more in motion_objects.json`);
+// one line per (rule, track): the first event in full, then how many and where
+const lines = new Map(); for (const e of [...fails, ...warns].sort((a, b) => rank[a.level] - rank[b.level] || a.f0 - b.f0)) { const k = e.level + e.rule + e.track; if (!lines.has(k)) lines.set(k, []); lines.get(k).push(e); }
+const MAXL = +val('--lines', 40), LL = [...lines.values()];
+for (const g of LL.slice(0, MAXL)) { const e = g[0]; console.log(`${e.level} ${e.rule.padEnd(4)} ${e.track}  ${fr(e.f0, e.f1)}  ${e.text}` + (g.length > 1 ? `  [${g.length} times: ${g.slice(0, 12).map(x => fr(x.f0, x.f1)).join(' ')}${g.length > 12 ? ' ...' : ''}]` : '')); }
+if (LL.length > MAXL) console.log(`... ${LL.length - MAXL} more lines in motion_objects.json`);
 for (const s of summary.notes) console.log('note: ' + s);
 console.log(`${fails.length} FAIL, ${warns.length} WARN on ${table.filter(r => r.result !== 'PASS').length} of ${table.length} tracks (${secs} s, page scan ${(D.stats.scan_ms / 1000).toFixed(1)} s = ${D.stats.ms_per_frame} ms/frame)  ->  ${path.join(OUT, 'motion_objects.json')}`);
 process.exit(fails.length ? 1 : 0);

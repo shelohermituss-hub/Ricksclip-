@@ -25,6 +25,9 @@
   // an oriented box: centre c, unit axes u[3], half sizes h[3]
   const obbOf = (m, min, max) => { const e = m.elements, ax = [0, 1, 2].map(i => new THREE.Vector3(e[i * 4], e[i * 4 + 1], e[i * 4 + 2])), ln = ax.map(a => a.length() || 1e-9);
     return { c: new THREE.Vector3((min.x + max.x) / 2, (min.y + max.y) / 2, (min.z + max.z) / 2).applyMatrix4(m), u: ax.map((a, i) => a.clone().divideScalar(ln[i])), h: [(max.x - min.x) / 2 * ln[0], (max.y - min.y) / 2 * ln[1], (max.z - min.z) / 2 * ln[2]] }; };
+  // the standing volume of a character: the card leans to the lens (several cm off the vertical at head height), a body does not. Same feet, same width and height, world up, pairDepth thick.
+  const upright = B => { if (Math.abs(B.u[0].y) > .2 || B.u[1].y < .5) return { c: B.c, u: B.u, h: [B.h[0], B.h[1], C.pairDepth / 2] };   // a lying or turned card keeps its own frame
+    const up = new THREE.Vector3(0, 1, 0), r = B.u[0].clone().setY(0).normalize(), n = new THREE.Vector3().crossVectors(r, up); return { c: B.c.clone().addScaledVector(B.u[1], -B.h[1]).addScaledVector(up, B.h[1]), u: [r, up, n], h: [B.h[0], B.h[1], C.pairDepth / 2] }; };
   const proj = (b, a) => b.h[0] * Math.abs(b.u[0].dot(a)) + b.h[1] * Math.abs(b.u[1].dot(a)) + b.h[2] * Math.abs(b.u[2].dot(a));
   const tv = new THREE.Vector3(), cr = new THREE.Vector3();
   const pen = (A, B) => { tv.subVectors(B.c, A.c); let best = Infinity; const test = a => { const l = a.length(); if (l < 1e-6) return true; const n = a.divideScalar(l), o = proj(A, n) + proj(B, n) - Math.abs(tv.dot(n)); if (o <= 0) return false; if (o < best) best = o; return true; };
@@ -56,7 +59,8 @@
       const A = art(m.material.map); if (!A.ok) continue; const hgt = A.y1 - A.y0;
       const full = obbOf(m.matrixWorld, L(A.x0, A.y1, -C.depth / 2), L(A.x1, A.y0, C.depth / 2)), up = obbOf(m.matrixWorld, L(A.x0, A.y1 - C.lowSkip * hgt, -C.depth / 2), L(A.x1, A.y0, C.depth / 2));
       const cs = [[A.x0, A.y0], [A.x1, A.y0], [A.x0, A.y1], [A.x1, A.y1]].map(([x, y]) => screen(L(x, y).applyMatrix4(m.matrixWorld))), ctr = screen(full.c);
-      bodies.push({ who, cd, m, A, full, up, box: aabb(up), rect: cs.every(c => c[2] > .05) ? [Math.min(...cs.map(c => c[0])), Math.min(...cs.map(c => c[1])), Math.max(...cs.map(c => c[0])), Math.max(...cs.map(c => c[1]))] : null, z: ctr[2] }); }
+      if (C.debug) (out.debug ||= []).push({ f, who, A: { x0: A.x0, x1: A.x1, y0: A.y0, y1: A.y1, n: A.pts.length }, rect: cs, z: ctr[2], h: full.h });
+      bodies.push({ who, cd, m, A, full, up, pair: upright(full), box: aabb(up), rect: cs.every(c => c[2] > .05) ? [Math.min(...cs.map(c => c[0])), Math.min(...cs.map(c => c[1])), Math.max(...cs.map(c => c[0])), Math.max(...cs.map(c => c[1]))] : null, z: ctr[2] }); }
     // ---- BODY_IN_OBJECT
     for (const B of bodies) { nrm.set(0, 0, 1).transformDirection(B.m.matrixWorld); nb.copy(nrm).negate();
       for (const s of S) { const o = s.o; if (!visW(o)) continue; bx.copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld); if (!bx.intersectsBox(B.box)) continue;
@@ -71,13 +75,14 @@
         else if (share >= C.inWarn) hit(f, 'BODY_IN_OBJECT', 'WARN', B.who, s.nm, share * 100, `${Math.round(share * 100)} % of the body is inside it (boxes overlap ${Math.round(p * 100)} cm)`);
         else hit(f, 'BODY_IN_BOX', C.boxFail ? 'FAIL' : 'WARN', B.who, s.nm, p * 100, `the body box is ${Math.round(p * 100)} cm into its box, but no drawn body point is inside the mesh (open or hollow part, or only the box corner)`); } }
     // ---- BODY_IN_BODY: close in depth AND overlapping on screen
-    for (let i = 0; i < bodies.length; i++) for (let j = i + 1; j < bodies.length; j++) { const a = bodies[i], b = bodies[j]; if (!a.rect || !b.rect) continue; const dz = Math.abs(a.z - b.z); if (dz > C.pairDepth) continue;
+    for (let i = 0; i < bodies.length; i++) for (let j = i + 1; j < bodies.length; j++) { const a = bodies[i], b = bodies[j]; if (!a.rect || !b.rect) continue; const dz = Math.abs(a.z - b.z), p3 = pen(a.pair, b.pair); if (p3 <= C.pen) continue;   // their volumes (card width, pairDepth thick) must meet in the world by over 5 cm
       const w = Math.min(a.rect[2], b.rect[2]) - Math.max(a.rect[0], b.rect[0]), h = Math.min(a.rect[3], b.rect[3]) - Math.max(a.rect[1], b.rect[1]); if (w <= 0 || h <= 0) continue;
-      const ar = r => (r[2] - r[0]) * (r[3] - r[1]), ov = w * h / Math.max(1e-9, Math.min(ar(a.rect), ar(b.rect))); if (ov >= C.pairOverlap) hit(f, 'BODY_IN_BODY', 'FAIL', a.who, b.who, ov * 100, `body boxes overlap ${Math.round(ov * 100)} % of the smaller one on screen and are ${Math.round(dz * 100)} cm apart in depth`); }
+      const ar = r => (r[2] - r[0]) * (r[3] - r[1]), ov = w * h / Math.max(1e-9, Math.min(ar(a.rect), ar(b.rect))); if (ov >= C.pairOverlap) hit(f, 'BODY_IN_BODY', 'FAIL', a.who, b.who, ov * 100, `body boxes overlap ${Math.round(ov * 100)} % of the smaller one on screen and their volumes are ${Math.round(p3 * 100)} cm into each other (${Math.round(dz * 100)} cm apart in depth)`); }
     // ---- PROP_IN_BODY: the centre of a held prop's box inside another character's volume
     for (const hd of held) { if (!visW(hd.g) || hd.g.parent == null) continue; bx.setFromObject(hd.g); if (bx.isEmpty()) continue; const c = bx.getCenter(new THREE.Vector3()), own = [hd.E.hd.who, hd.E.hd.with];
       if (!out.held.includes(hd.E.hd.obj)) out.held.push(hd.E.hd.obj);
-      for (const B of bodies) if (!own.includes(B.who) && inObb(B.full, c)) hit(f, 'PROP_IN_BODY', 'FAIL', hd.E.hd.obj + ' (held by ' + own.filter(Boolean).join('+') + ')', B.who, 0, `the centre of the prop's box is inside the body volume of ${B.who}`); }
+      if (C.debug) for (const B of bodies) { tv.subVectors(c, B.pair.c); (out.debug ||= []).push({ f, prop: hd.E.hd.obj, c: c.toArray(), who: B.who, d: B.pair.u.map(u => tv.dot(u)), h: B.pair.h, pc: B.pair.c.toArray() }); }
+      for (const B of bodies) if (!own.includes(B.who) && inObb(B.pair, c)) hit(f, 'PROP_IN_BODY', 'FAIL', hd.E.hd.obj + ' (held by ' + own.filter(Boolean).join('+') + ')', B.who, 0, `the centre of the prop's box is inside the body volume of ${B.who}`); }
     // ---- FLOATING / SUNK: declared resting props
     for (const [pn, sn] of Object.entries(C.resting || {})) { const po = findObj(sc, pn), so = findObj(sc, sn); if (!po || !so) { const k = `${pn} on ${sn}: ${!po ? 'prop' : 'support'} not found in place ${Object.keys(R.places).find(k => R.places[k] === pl)}`; if (!out.notes.includes(k)) out.notes.push(k); continue; }
       if (!visW(po) || !visW(so)) continue; const pb = new THREE.Box3().setFromObject(po), sb = new THREE.Box3().setFromObject(so); if (pb.isEmpty() || sb.isEmpty()) continue;

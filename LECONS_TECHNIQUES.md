@@ -591,3 +591,12 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - 2026-11-22 (same) RunPod package rendered magenta cards: image-sequence paths set as '//seq/..' were resolved against the SET blend, then
   save_as(relative_remap) rebased them to ../../sets/... Fix: set the absolute path to the copied folder, let relative_remap write //seq/...;
   old packages: look/film/runpod_kit/fix_seq_paths.py. Guard: package_all.sh renders one frame; LOOK at one at PCT 25. FERMÉ
+
+## 2026-11-22 — Two check tools for the moving film (tools/motion_objects, tools/collide): three traps met while building them — FERMÉ
+- "Two characters overlap in depth AND on screen" gave a false FAIL on the clean example (kid and lady 55 cm apart side by side, f0-118): seen from an
+  oblique lens their screen boxes overlap 67 % and their lens depths differ by 1 cm. Cause: lens depth + screen boxes is not a 3D test. Fix: the pair must
+  first meet in the WORLD (card-width boxes 30 cm thick, over 5 cm into each other), then the screen overlap. Guard: the clean example gives 0 rows.
+- False HELD on hands: `window.handWorld` rounds to 0.1 mm, so slow hand drift reads as frozen-moving-frozen. Fix: a hold counts only between steps over
+  2 mm/frame for hands (0.5 mm for the rest) and over 25 % of the median speed around. Guard: example film = 0 HELD.
+- A thin body box follows the card's tilt to the lens: at 1.5 m height the card plane is several cm off the vertical, so a prop centre at the right place
+  missed a 16 cm thick box. Measured: 21 cm off at 1.47 m (lady, low close lens). Fix: prop-in-body and body-in-body use an UPRIGHT volume on the card's feet, 30 cm thick. Proof: broken copy, `PROP_IN_BODY stick / lady f112-120`.

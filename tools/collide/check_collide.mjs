@@ -16,7 +16,7 @@ const T0 = Date.now(), FILM = path.resolve(A[0]), EP = path.dirname(FILM), film 
 if (!fs.existsSync(path.join(EP, 'out', 'plan', 'camera_baked.json'))) { console.error('No out/plan/camera_baked.json beside the film. Run: python tools/film_plan.py check ' + A[0]); process.exit(2); }
 const win = /^(\d+)-(\d+)$/.exec(val('--window', '')), STEP = Math.max(1, Math.round(+val('--step', 2))), co = film.collide || {};
 const cfg = { f0: win ? +win[1] : 0, f1: win ? +win[2] : 1e9, step: STEP, ignore: co.ignore || [], floor: co.floor || [], resting: co.resting || {},
-  depth: +val('--depth', 0.16), lowSkip: 0.06, pen: +val('--pen', 0.05), inFail: +val('--in-fail', 0.10), inWarn: 0.03, boxFail: has('--box-fail'), pairDepth: +val('--pair-depth', 0.30), pairOverlap: +val('--pair-overlap', 0.25), restTol: +val('--rest-tol', 0.02),
+  depth: +val('--depth', 0.16), lowSkip: 0.06, pen: +val('--pen', 0.05), inFail: +val('--in-fail', 0.10), inWarn: 0.03, boxFail: has('--box-fail'), debug: has('--debug'), pairDepth: +val('--pair-depth', 0.30), pairOverlap: +val('--pair-overlap', 0.25), restTol: +val('--rest-tol', 0.02),
   skipName: val('--skip', 'sky|dome|cone|beam|haze|fog|dust|glow|halo|smoke|spark|cloud|backdrop|mote|rain|snow'), seatName: val('--seat', 'seat|stool|bench|saddle|sofa|couch') };
 const LOCKED = path.join(KIT, '..', 'vector2d_characters', 'code');
 let pup = val('--puppets'); if (!pup && film.puppet_pkg) pup = [].concat(film.puppet_pkg).map(p => path.resolve(EP, p)).map(p => fs.existsSync(p) ? p : /vector2d_characters/.test(p) ? LOCKED : p).join(',');
@@ -34,6 +34,7 @@ const rows = []; for (const hs of groups.values()) { hs.sort((a, b) => a.f - b.f
 const rank = { FAIL: 0, WARN: 1, INFO: 2 }; rows.sort((a, b) => rank[a.result] - rank[b.result] || a.f0 - b.f0);
 const n = s => rows.filter(r => r.result === s).length, secs = +((Date.now() - T0) / 1000).toFixed(1);
 const restSum = {}; for (const r of D.resting) { const k = r.prop + ' on ' + r.support, e = restSum[k] || (restSum[k] = { frames: 0, min_cm: Infinity, max_cm: -Infinity, how: r.how }); e.frames++; e.min_cm = Math.min(e.min_cm, r.gap_cm); e.max_cm = Math.max(e.max_cm, r.gap_cm); }
+if (D.debug) fs.writeFileSync(path.join(OUT, 'collide_debug.json'), JSON.stringify(D.debug));
 const summary = { film: FILM, window: [F[0], F[F.length - 1]], step: STEP, frames_checked: F.length, cast: D.cast, held_props: D.held, fail: n('FAIL'), warn: n('WARN'), info: n('INFO'), resting: restSum, set_meshes: D.skipped, notes: D.notes, seconds: secs, scan_seconds: +(D.scan_ms / 1000).toFixed(1), numbers: cfg };
 fs.mkdirSync(OUT, { recursive: true }); fs.writeFileSync(path.join(OUT, 'collide.json'), JSON.stringify({ summary, rows }, null, 1));
 const pad = (s, w) => String(s).length > w ? String(s).slice(0, w - 1) + '~' : String(s).padEnd(w), wd = [6, 15, 22, 26, 10, 78], fr = r => r.f0 === r.f1 ? 'f' + r.f0 : `f${r.f0}-${r.f1}`;
