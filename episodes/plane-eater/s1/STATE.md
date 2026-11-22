@@ -40,3 +40,12 @@ render_s1.sh (whole cycle), keyframes.py, sheets.py, sheet.py; frames/ (git-igno
   the wing top reads grey-blue, not white; in the saw close (f182-205) the wing crosses his face and the hacksaw is hidden behind it; in the plate
   close the tongs are not visible (the bite on the plate is tiny). Row 8 wide removed (camera speed). Next round: hand targets per view for the front
   drawing (verify with render --held), shaker tip_at off, saw/tongs scale 2x and framed below the wing line.
+
+## FIX ROUND 2 (lead, 2026-11-22)
+- Done: hand_at (kit st.tgt) blended into mi_hook for the salt, saw and tongs fists; saw x2.8, tongs x3.4; wing_L/aileron/flap with a little sun-coloured
+  emission (reads WHITE now); trunk 0.55 m; row 8 is take s1b: an eased 8 f blend f200-207 (blend.sh) from the saw close into a wide REST (whole plane,
+  owner jolting), then a push to the plate close (f256). Plan 0 FAIL, p90 19.9; frame_checks 0 FAIL 3 WARN 53 PASS; camsafe 513/1 WARN/0 FAIL; gate 0.
+- STILL BELOW RICK: f0 the shaker is still at his mouth: `render --hands michel:0-1` shows tgt [-187, 115] rig px (above his head) and the fist
+  clamped short of it: the wing-tip point is beyond the arm in card space from this high lens. Saw close: the hacksaw is still hidden behind the wing.
+  Next: draw the salting arm at full reach UP-LEFT in the front drawing (or move Michel 0.2 m nearer and lower the target to 2.10), frame the saw
+  close from below the wing line (lens about 1.7 m) so the blade shows under the leading edge.
