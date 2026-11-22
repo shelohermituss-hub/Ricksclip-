@@ -273,7 +273,7 @@ for k, x in enumerate(SKY):
     abox(bm, .035, SKH, .05, M @ Matrix.Translation((0, 0, .06)), bev=0); abox(bm, SKW, .035, .05, M @ Matrix.Translation((0, 0, .06)), bev=0)
     obj('bay_skylight_frame_%d' % (k + 1), bm, mat('porthole_frame', rough=.5), smooth=True)
     bm = B(); aquad(bm, SKW + .1, SKH + .1, M @ Matrix.Translation((0, 0, .14)) @ Matrix.Rotation(math.pi, 4, 'X'))
-    obj('bay_skylight_glow_%d' % (k + 1), bm, mat('skylight', emit=PAL['skylight'], es=1.0))
+    obj('bay_skylight_glow_%d' % (k + 1), bm, mat('skylight', emit=PAL['skylight'], es=.75))
 # portholes between the bags: thick frame, stars behind, a small latch plate in the middle of the glass
 for k, x in enumerate(PORTS):
     M = MF((x, BY - .02, PZ), (1, 0, 0), (0, 0, 1), (0, 1, 0))
@@ -370,7 +370,7 @@ def standin(name, col, h, loc, rz=0):
         if f.center.z > h - .63: f.material_index = 1
     return o
 SI = [('standin_commander_4', 'standin_commander', 1.76, (-1.05, .7, .75), ['4', '4a']), ('standin_newguy_4', 'standin_newguy', 1.70, (0., .7, .5), ['4']),
-      ('standin_navigator_4', 'standin_navigator', 1.66, (1.22, .7, .85), ['4', '4a']), ('standin_newguy_4a', 'standin_newguy', 1.70, (0., .1, .3), ['4a']),
+      ('standin_navigator_4', 'standin_navigator', 1.66, (1.22, .7, .85), ['4', '4a']), ('standin_newguy_4a', 'standin_newguy', 1.70, (0., .55, .3), ['4a']),
       ('standin_navigator_5', 'standin_navigator', 1.66, (BAGS['bag_navigator'][0], BY - .32, .75), ['5a', '5b', '5c']),
       ('standin_commander_5', 'standin_commander', 1.76, (BAGS['bag_commander'][0], BY - .32, .72), ['5a', '5b', '5c']),
       ('standin_newguy_5bag', 'standin_newguy', 1.70, (BAGS['bag_new_guy'][0], BY - .32, .78), ['5a']),
@@ -402,7 +402,7 @@ w = bpy.data.worlds.new('cabin_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
 ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['z'] + .02], 'head_sign': [1.58, WY, 3.35], 'hatch': [HATCH['x'], WY - .1, HATCH['z']],
-             'galley_table': [GX, GY, GT], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .1, .3],
+             'galley_table': [GX, GY, GT], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .55, .3],
              'bay_wall_centre': [BX, BY, 0], 'bag_navigator': [BAGS['bag_navigator'][0], BY - .06, RZ + .02], 'bag_commander': [BAGS['bag_commander'][0], BY - .06, RZ + .02],
              'bag_new_guy': [BAGS['bag_new_guy'][0], BY - .06, RZ + .02], 'bay_door': [EX, DOOR['y'], 0], 'bay_floor_light': [EX - .55, DOOR['y'] + .1, 0],
              'newguy_s5_bag': [BAGS['bag_new_guy'][0], BY - .32, .78], 'newguy_s5_door': [EX - 1.0, -.35, .55], 'toilet_room_beyond': [EX + 1.5, DOOR['y'], 0]})

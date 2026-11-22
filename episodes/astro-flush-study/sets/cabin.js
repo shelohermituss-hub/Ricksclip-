@@ -26,7 +26,7 @@ export async function build(THREE, scene, film, ctx) {
   const N = n => root.getObjectByName(n), mats = {};
   root.traverse(o => {
     if (!o.isMesh) return; const g = o.geometry; tris += (g.index ? g.index.count : g.attributes.position.count) / 3;
-    o.castShadow = o.receiveShadow = !/(ceiling|monitor_pic|skylight_glow|porthole_stars|floor_dots|floor_holes|toilet_room)/.test(o.name);
+    o.castShadow = o.receiveShadow = !/(ceiling|cabin_shell|monitor_pic|skylight_glow|porthole_stars|floor_dots|floor_holes|toilet_room)/.test(o.name);
     for (const m of [].concat(o.material)) { if (m.name) mats[m.name] = m; if (m.emissive && (m.emissive.getHex() !== 0 || m.emissiveMap)) m.toneMapped = false; }
   });
   // kit bloom adds the halo: emission lower than Blender's (same as toilet.js)
