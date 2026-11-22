@@ -28,7 +28,9 @@ def mat(name, col=None, rough=None, metal=None, emit=None, es=None, alpha=None, 
     b.inputs['Metallic'].default_value = P.get('metal', 0.) if metal is None else metal
     b.inputs['Specular IOR Level'].default_value = P.get('spec', .5 if b.inputs['Roughness'].default_value < .6 else .2)
     es = P.get('emit', 0.) if es is None else es
-    if es: b.inputs['Emission Color'].default_value = lin(emit or P.get('ehex') or col or P.get('hex')); b.inputs['Emission Strength'].default_value = es
+    ec = emit or P.get('ehex') or col or P.get('hex')
+    if es and ec: b.inputs['Emission Color'].default_value = lin(ec)
+    if es: b.inputs['Emission Strength'].default_value = es
     a = P.get('alpha') if alpha is None else alpha
     if a is not None: b.inputs['Alpha'].default_value = a
     if png:
@@ -215,9 +217,7 @@ for i in range(8):
     else: apoly(bo, quad, .07)
     abeam(bbar, RA[i], RF[i], .06)
 for i in range(8): abeam(bbar, RA[i], RA[(i + 1) % 8], .07); abeam(bbar, RF[i], RF[(i + 1) % 8], .06)
-apoly(bo, [RF[0], RF[1], RF[2], RF[7]][::-1], .07); apoly(bgl, [RF[2], RF[3], RF[4], RF[5], RF[6], RF[7]][::-1])
-for t in (.5,): abeam(bbar, RF[2].lerp(RF[7], t), RF[4].lerp(RF[5], t), .045)
-abeam(bbar, RF[2].lerp(RF[3], .5), RF[7].lerp(RF[6], .5), .045)
+apoly(bgl, [RF[0], RF[1], RF[2], RF[7]][::-1]); apoly(bgl, [RF[2], RF[3], RF[4], RF[5], RF[6], RF[7]][::-1])
 obj('nose_skin', bo, 'hull_side'); obj('canopy_glass', bgl, 'glass'); obj('canopy_bars', bbar, 'canopy_bar', smooth=True)
 bm = B()
 for t in (.25, .5, .75): abeam(bm, RA[4].lerp(RF[4], t) + Vector((0, 0, .075)), RA[5].lerp(RF[5], t) + Vector((0, 0, .075)), .02)
@@ -367,7 +367,8 @@ bm = B()
 for s in (1, -1): abox(bm, .01, .22, .07, MT((sx - .005, s * .44, scz + .56), (s * 40, 0, 0)), bev=0)
 obj('star_map_tape', bm, 'tape', mover={'follows': 'star_map_sheet'})
 # ================================================================== G. RADIO STATION on the +Y wall (desk, lower panel, sloped upper panel, radio)
-RX, RY = 23.4, .8; RM = MF((RX, RY, -.3), (1, 0, 0), (0, 1, 0), (0, 0, 1))   # local: a along +X, b toward the wall (+Y), z up; origin = desk top front centre
+# radio frame, local: a along +X, b toward the wall (+Y), z up, origin at the desk top front centre
+RX, RY = 23.4, .8; RM = MF((RX, RY, -.3), (1, 0, 0), (0, 1, 0), (0, 0, 1))
 def R(a, b, z): return RM @ Vector((a, b, z))
 box('radio_desk', (1.7, .62, .08), tuple(R(0, .31, -.04)), 'desk', bev=.015); box('radio_desk_front', (1.7, .06, .9), tuple(R(0, .0, -.5)), 'panel_low', bev=.015)
 box('radio_lower_panel', (1.7, .06, .5), tuple(R(0, .6, .25)), 'panel_low', bev=.01)
@@ -434,7 +435,7 @@ cyl('mic_stand', .04, .08, tuple(R(.2, .25, .04)), 'mic'); box('mic', (.07, .05,
 def earth_mats():
     m = bpy.data.materials.new('earth'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
     t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png'))
-    nt.links.new(t.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .55
+    nt.links.new(t.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
     b.inputs['Roughness'].default_value = .45; b.inputs['Specular IOR Level'].default_value = .6; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
     lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 2.2
@@ -443,10 +444,10 @@ def earth_mats():
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])
     MATS['earth_rim'] = r
 earth_mats()
-bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1., calc_uvs=True); eo = obj('earth', bm, 'earth', (0, -3000, -2600), (0, 0, 0), c=WORLD, smooth=True, mover={'state': 'earth [x,y,z,R] per shot'})
+bm = B(); bm.loops.layers.uv.verify(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1., calc_uvs=True); eo = obj('earth', bm, 'earth', (0, -3000, -2600), (0, 0, 0), c=WORLD, smooth=True, mover={'state': 'earth [x,y,z,R] per shot'})
 eo.scale = (1500,) * 3; MOVERS['earth']['scale'] = 1500
 bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1.035); ro = obj('earth_rim', bm, 'earth_rim', c=WORLD, smooth=True); ro.parent = eo
-bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=20000., calc_uvs=True); bmesh.ops.reverse_faces(bm, faces=bm.faces[:])
+bm = B(); bm.loops.layers.uv.verify(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=20000., calc_uvs=True); bmesh.ops.reverse_faces(bm, faces=bm.faces[:])
 sky = bpy.data.objects.new('sky_dome', bpy.data.meshes.new('sky_dome')); bm.to_mesh(sky.data); bm.free(); WORLD.objects.link(sky)
 sm = mat('sky_stars', png='stars.png', emit_png=True, es=1., rough=1.); sm.node_tree.nodes['Image Texture'].extension = 'REPEAT'; sky.data.materials.append(sm)
 sky.visible_diffuse = sky.visible_glossy = sky.visible_shadow = False

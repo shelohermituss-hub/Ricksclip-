@@ -1,5 +1,5 @@
 """tex_toilet.py: PIL pictures for the toilet place (lettering word for word from LOOK_INVENTORY A3/H3). python3 tex_toilet.py -> ../tex/*.png"""
-import os, random, math
+import math, os, random
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
 T = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tex'); os.makedirs(T, exist_ok=True)
 def font(sz, bold=True):
@@ -14,14 +14,14 @@ def stars(d, w, h, n, seed):
 # ---- window view, day: navy space + stars, Earth limb in the lower half (ocean, haze rim, clouds)
 W, H = 2048, 1536
 im = Image.new('RGB', (W, H), '#010019'); d = ImageDraw.Draw(im); stars(d, W, H, 700, 1)
-cx, cy, R = W * .5, H * .62 + 4200, 4200
+cx, cy, R = W * .4, H * .56 + 1900, 1900     # round 2: a curved limb (was a flat band, R 4200)
 glow = Image.new('RGB', (W, H), (0, 0, 0)); g = ImageDraw.Draw(glow)
-g.ellipse((cx - R - 26, cy - R - 26, cx + R + 26, cy + R + 26), fill='#a2f8fe'); glow = glow.filter(ImageFilter.GaussianBlur(22))
+g.ellipse((cx - R - 26, cy - R - 26, cx + R + 26, cy + R + 26), fill='#a2f8fe'); glow = glow.filter(ImageFilter.GaussianBlur(34))
 im = Image.composite(glow, im, glow.convert('L').point(lambda v: min(255, v * 2)))
 d = ImageDraw.Draw(im); d.ellipse((cx - R, cy - R, cx + R, cy + R), fill='#7bc9f7'); d.ellipse((cx - R, cy - R + 46, cx + R, cy + R + 46), fill='#5593f3')
 cl = Image.new('L', (W, H), 0); c = ImageDraw.Draw(cl); r = random.Random(4)
 for _ in range(70):
-    x, y = r.random() * W, H * .66 + r.random() * H * .34; n = r.randint(4, 9)
+    x = r.random() * W; y = cy - math.sqrt(max(0, R * R - (x - cx) ** 2)) + 90 + r.random() * H * .4; n = r.randint(4, 9)
     for k in range(n):
         s = r.randint(18, 60); yy = y + r.randint(-18, 18)
         c.ellipse((x + k * 38 - s, yy - s * .45, x + k * 38 + s, yy + s * .45), fill=255)

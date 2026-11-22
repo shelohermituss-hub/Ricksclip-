@@ -14,5 +14,5 @@ os.makedirs(os.path.join(HERE, '..', 'out', 'stills'), exist_ok=True)
 for k in keys:
     c = P['cams'][k]; api.set_state(sc, **P['proofs'][k])
     d = Vector(c['look']) - Vector(c['loc']); q = d.to_track_quat('-Z', 'Y'); cam.rotation_mode = 'XYZ'; e = q.to_euler(); cam.location = c['loc']; cam.rotation_euler = e
-    cam.rotation_euler.rotate_axis('Z', math.radians(c.get('roll', 0))); cam.data.lens = 18 / math.tan(math.radians(c['vfov']) / 2)
+    cam.rotation_euler.rotate_axis('Z', math.radians(c.get('roll', 0))); cam.data.lens = 18 / math.tan(math.radians(c['vfov']) / 2); cam.data.clip_start = c.get('clip', .02)
     sc.render.filepath = os.path.join(HERE, '..', 'out', 'stills', 'toilet_%s.png' % k); bpy.ops.render.render(write_still=True); print('STILL', k)

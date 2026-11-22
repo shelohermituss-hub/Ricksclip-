@@ -246,7 +246,7 @@ def part(name, bm, m, loc, rot=(0, 0, 0), ex=None, exrot=None, smooth=True, scal
     o = obj(name, bm, m, loc, rot, smooth=smooth, mover=mv)
     if scale: o.scale = [scale[0]] * 3
     return o
-EXX = TX - .12     # exploded parts line up over the bowl centre
+EXX = TX - .35     # exploded parts line up over a point in front of the bowl (round 2: off the window wall)
 bm = B(); alathe(bm, [(.20, -.15, 0, .15), (.20, -.10, 0, .15), (.15, .05, .02, .115), (.17, .15, 0, .14)], 28)
 part('toilet_base', bm, PORC, (TX, TY, .15), ex=(EXX, TY, .50))
 bm = B(); alathe(bm, [(.17, -.14, 0, .14), (.25, -.03, -.02, .21), (.285, .07, -.02, .245), (.29, .13, -.02, .25), (.235, .13, -.02, .195), (.19, .0, -.02, .15), (.08, -.08, -.02, .07)], 32)
@@ -349,7 +349,7 @@ while y < TB1 - .01:
     L = .55 if k % 2 == 0 else .35; alathe(ba if k % 2 == 0 else bb_, [(TR, y), (TR, min(TB1, y + L))], 40, MTB, caps=False)
     if k % 4 == 0: alathe(blt, [(TR - .004, y - .012), (TR - .012, y), (TR - .004, y + .012)], 40, MTB, caps=False)
     y += L; k += 1
-obj('tube_wall_a', ba, mat('tube_a', rough=.35), smooth=True); obj('tube_wall_b', bb_, mat('tube_b', rough=.35), smooth=True); obj('tube_rings_light', blt, mat('tube_light', rough=.4), smooth=True)
+obj('tube_wall_a', ba, mat('tube_a', rough=.65), smooth=True); obj('tube_wall_b', bb_, mat('tube_b', rough=.65), smooth=True); obj('tube_rings_light', blt, mat('tube_light', rough=.4), smooth=True)
 bm = B(); alathe(bm, [(TR, TB1), (.36, TB1 + .25), (.2, TB1 + .3)], 40, MTB, caps=False); obj('tube_end_cone', bm, mat('tube_b'), smooth=True)
 bm = B(); acyl(bm, TR + .02, .04, MTB @ Matrix.Translation((0, 0, TB0 - .02)), 40); obj('tube_cap', bm, mat('tube_b'))     # closes the entry end: no world light in the tube
 bm = B(); alathe(bm, [(.23, TB1 + .26), (.23, TB1 + .22), (.16, TB1 + .22), (.16, TB1 + .3)], 32, MTB, close=True); obj('tube_core_ring', bm, mat('nozzle_ring'), smooth=True)
@@ -371,9 +371,9 @@ def light(name, loc, col, watts, radius=.1, kind='POINT'):
     d = bpy.data.lights.new(name, kind); d.color = col; d.energy = watts; d.shadow_soft_size = radius; o = bpy.data.objects.new(name, d); o.location = loc; LIGHTS.objects.link(o); return o
 light('key_day', (-1.3, 3.2, 3.1), (1., .97, .92), 2600, .35); light('fill_day', (-1.2, .2, 1.6), (.55, .62, 1.), 500, .8); light('warm_top', (1.5, 2.5, 3.2), (1., .78, .62), 90, .1)
 light('night_fill', (-.6, 2.6, 2.6), (.12, .16, 1.), 420, .8)
-light('key_wide', (1.55, 3.3, 3.1), (1., .98, .95), 3800, .04, 'SPOT'); _k = bpy.data.objects['key_wide']; _k.rotation_euler = (Vector((-.3, 1.2, 0)) - _k.location).to_track_quat('-Z', 'Y').to_euler(); _k.data.spot_size = math.radians(120); _k.data.spot_blend = .25; light('fill_wide', (-1.2, -.8, 2.2), (.6, .68, 1.), 380, .8); light('door_light', (DOOR['x'], 4.6, 1.9), (.8, .88, 1.), 160, .2)
-light('toilet_glow_light', (TX - .1, TY, .75), (.75, .88, 1.), 0, .25); light('pulse_light', tuple(path[0]), (.6, 1., 1.), 0, .05)
-light('bay_fill', (0, 2.8, -.5), (.5, .8, 1.), 8, .5); light('tube_core_light', (0, TB1 - .25, 0), (.6, .95, 1.), 1.5, .1)
+light('key_wide', (1.85, 3.75, 1.55), (1., .98, .95), 3800, .03, 'SPOT'); _k = bpy.data.objects['key_wide']; _k.rotation_euler = (Vector((-1.2, .2, 0)) - _k.location).to_track_quat('-Z', 'Y').to_euler(); _k.data.spot_size = math.radians(120); _k.data.spot_blend = .25; light('fill_wide', (-1.2, -.8, 2.2), (.6, .68, 1.), 380, .8); light('door_light', (DOOR['x'], 4.6, 1.9), (.8, .88, 1.), 160, .2)
+light('toilet_glow_light', (TX - .1, TY, .75), (.55, .75, 1.), 0, .25); light('pulse_light', tuple(path[0]), (.85, 1., 1.), 0, .05)
+light('bay_fill', (.6, 1.2, -.6), (1., .85, .55), 30, .5); light('tube_core_light', (0, TB1 - .25, 0), (.6, .95, 1.), 1.5, .1)
 w = bpy.data.worlds.new('toilet_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
