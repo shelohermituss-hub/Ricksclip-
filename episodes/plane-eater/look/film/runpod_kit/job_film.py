@@ -5,6 +5,18 @@ File Output), thin-outline id pass (lines_key.py, lists in the .blend text RICK_
 import bpy, os, sys, time, json
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import lines_key as LK
+# pod fix (lead 2026-11-22): image paths baked absolute to the build machine -> point every image under /seq/ or /tex/ at THIS folder
+_n = 0
+for _im in bpy.data.images:
+    _fp = _im.filepath.replace('\\', '/')
+    for _key in ('/seq/', '/tex/', '/cards/'):
+        if _key in _fp and not os.path.exists(bpy.path.abspath(_im.filepath)):
+            _new = os.path.join(HERE, _key.strip('/'), _fp.split(_key, 1)[1])
+            if os.path.exists(_new): _im.filepath = _new; _im.reload(); _n += 1
+            break
+_missing = [i.filepath for i in bpy.data.images if i.source in ('FILE', 'SEQUENCE') and i.filepath and not i.packed_file and not os.path.exists(bpy.path.abspath(i.filepath))]
+print('IMAGES remapped', _n, 'still missing', len(_missing), _missing[:5], flush=True)
+if _missing and os.environ.get('ALLOW_MISSING') != '1': print('MISSING_IMAGES: stop', flush=True); sys.exit(4)
 A = sys.argv[sys.argv.index('--') + 1:]; F0, F1 = int(A[0]), int(A[1]); STEP = int(A[2]) if len(A) > 2 else 1
 sc = bpy.context.scene; r = sc.render; p = bpy.context.preferences.addons['cycles'].preferences; dev = None
 for t in ('OPTIX', 'CUDA'):

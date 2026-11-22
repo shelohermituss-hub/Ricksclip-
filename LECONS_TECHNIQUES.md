@@ -16,6 +16,14 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-22 — Cartes magenta sur RunPod : chemins d'images absolus dans le paquet (plane-eater) — FERMÉ
+- Problème : sur la machine RunPod, les personnages sortaient en aplats magenta (images de cartes introuvables). Vu seulement parce que le lead a téléchargé et regardé 3 images d'essai avant de lancer le film.
+- Cause réelle : les séquences d'images des cartes gardaient le chemin absolu de la machine de construction (/home/user/...) ; le test du paquet ici passait puisque ces chemins existent ici.
+- Correction : job_film.py remappe au démarrage toute image sous /seq/, /tex/ ou /cards/ vers le dossier du paquet, écrit « IMAGES remapped N still missing 0 » et S'ARRÊTE (exit 4) s'il manque une image.
+- Garde-fou : (1) ce contrôle dans le job ; (2) règle : avant tout rendu long sur RunPod, télécharger et REGARDER au moins une image d'essai par morceau (pas seulement lire « DEVICE OPTIX ») ; (3) un paquet se teste depuis une copie déplacée hors de son dossier d'origine.
+- Preuve : journaux des 5 morceaux « still missing 0 », planche d'essai de 5 images correctes.
+- Mesure RTX 4090 (720x1280, bruit adaptatif .1, 48 échantillons max) : image seule avec chargement 7 à 10 s ; 3 images de suite 19 s.
+
 ## 2026-11-21 — Fonction de lumière copiée qui sortait trop tôt (plane-eater, accessoires) — FERMÉ
 - Problème : l'image sortait dans la mauvaise transformation de couleur et en 1920x1080, alors que la passe de contour était en 900x1600 : les contours tombaient à côté des objets.
 - Cause : une fonction de réglage de la lumière copiée d'un autre script faisait un return avant les réglages de rendu (taille, vue Standard).
