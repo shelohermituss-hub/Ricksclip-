@@ -12,6 +12,25 @@ Read this first in the Claude Code session on CB's PC. It replaces the cloud ses
 | next film | **a NEW video** (the astro-flush study is stopped). Topic to choose with CB. |
 | fallback | the three.js kit (`templates/threejs_film`) stays as fallback until the Unity kit has made one whole film. |
 
+## THE LOOK: realistic video game, like Rick (CB 2026-11-22: « je veux un look jeux vidéo réaliste ? Comme rick »)
+- The target is Rick's picture: a clean, realistic real-time game look (believable shapes, real-looking metal, glass, wood and trees, soft enveloping light,
+  real shadows, low contrast, clean saturated colours), with our flat 2D characters standing in it. Not low-poly toy blocks, not photo-scan grime.
+- The written recipe is CB_RULES section 3 "THE RICK RECIPE" (materials, light, thin outline on objects only, grade) and "THE ASSET LIBRARY": apply both in URP.
+- ASSETS, in this order, for every set and object: (1) `library/LIBRARY.md` (what we already built); (2) a ready asset that matches the look: Unity Asset Store
+  (CB adds it to his account, free or paid with his OK), Poly Haven / ambientCG (realistic CC0 models and PBR textures), Kenney / Quaternius (CC0, simpler:
+  use for background or props only if they fit the recipe after a material pass); (3) build it ourselves (Blender by script or Unity ProBuilder) only when
+  nothing fits, at the same realism, and add it to the library. Every download is logged (source, licence) in LIBRARY.md.
+- Ready assets are adapted, never dropped in raw: scale to the scene, materials re-tuned to the recipe (palette, roughness, the thin outline), so the whole film
+  reads as one world.
+
+## CHARACTER MOVES (Mixamo)
+- Mixamo needs CB's Adobe login: **CB downloads the clips** (FBX, "Without Skin" after the first one, 30 fps), the session cannot. The session gives CB the
+  exact list for each film from the script's acts, before the animation step; clips go in the Unity project (`Assets/Mixamo/`), their names in `unity_kit/MOVES.md`.
+- Starter set to fetch once (covers most acts): Idle, Breathing Idle, Nervous Idle (Look Around), Walking, Running, Sneaking, Jump, Falling Idle (floating),
+  Waving, Pointing, Talking (2-3 variants), Shrugging, Thinking, Laughing, Surprised / Shocked, Scared (Terrified), Angry (Yelling), Arms Crossed (Standing),
+  Clapping, Victory, Sitting Idle, Sitting Talking, Typing, Picking Up, Pushing, Turn 90 Left / Right, Defeated, Head Nod Yes, Shaking Head No.
+- A move no clip covers is keyed by hand on the rig (the motion rules of STRETCH_BRIEF still hold: ease in/out, no held frames, no jumps).
+
 ## What is already proven (do not redo)
 - `unity_test/README.md` (shot 11 of the study, end section "Résultat"): glTF -> Unity conversion `(x,y,z) -> (-x,y,z)`, quaternion `(qx,-qy,-qz,qw)`,
   camera `* Euler(0,180,0)`; 0.003 px error on 700 points. Render 69 ms per frame, 164 ms with the PNG write, on the 940MX.
