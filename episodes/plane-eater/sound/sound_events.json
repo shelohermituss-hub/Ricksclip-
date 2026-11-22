@@ -3,10 +3,10 @@
  "fps": 30,
  "frames": 1022,
  "shift": {},
- "music_under_db": -17.0,
+ "music_under_db": -15.0,
  "music_gap_db": -10.0,
  "amb_trim_db": 3.5,
- "sfx_trim_db": 2.0,
+ "sfx_trim_db": 4.0,
  "music": {
   "theme": "Fluffing a Duck",
   "lead_s": 0.5,
@@ -212,8 +212,8 @@
   {"row": "36", "s": "s5", "at": "f:977", "what": "owner leans away from the sliding meal", "pan": -0.3, "clips": [["cloth3", -32]]},
   {"row": "37", "s": "s5", "at": "f:991", "what": "knife and fork up over the tray table (fx glint 993)", "pan": 0.1, "clips": [["shing", -24], ["sparkle", -30, {"off": 2}]]},
   {"row": "37", "s": "s5", "at": "f:1001", "what": "POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank)", "bus": "hit", "pan": 0.05, "clips": [["chomp", -14], ["crunch", -18], ["clank", -24]]},
-  {"row": "37", "s": "s5", "at": "f:1003", "what": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks)", "pan": -0.3, "clips": [["rag", -31], ["squeak", -33, {"off": 4}], ["squeak", -34, {"off": 10}], ["squeak", -35, {"off": 15}]]},
-  {"row": "38", "s": "s5", "at": "f:1007", "what": "chews the tray table, happy", "pan": 0.1, "clips": [["chew", -29], ["chew", -31, {"off": 5}]]},
-  {"row": "38", "s": "s5", "at": "f:1015", "what": "slow smug wink: sparkle ting", "pan": 0.15, "clips": [["wink", -27]]}
+  {"row": "37", "s": "s5", "at": "f:1003", "what": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks)", "pan": -0.3, "clips": [["rag", -30], ["squeak", -29, {"off": 4}], ["squeak", -29, {"off": 10}], ["squeak", -30, {"off": 15}]]},
+  {"row": "38", "s": "s5", "at": "f:1007", "what": "chews the tray table, happy", "pan": 0.1, "clips": [["chew", -26], ["chew", -27, {"off": 5}]]},
+  {"row": "38", "s": "s5", "at": "f:1015", "what": "slow smug wink: sparkle ting", "pan": 0.15, "clips": [["wink", -22]]}
  ]
 }

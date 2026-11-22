@@ -6,47 +6,47 @@
  "ebur128": {
   "I": -16.0,
   "LRA": 1.4,
-  "TP": -4.0
+  "TP": -3.6
  },
  "target": {
   "I": -16.0,
   "TP_max": -1.0
  },
- "master_gain_db": 1.0,
+ "master_gain_db": 0.9,
  "limiter_max_db": 0.0,
  "rms_while_speaking_dbfs": {
-  "voice": -19.0,
-  "sfx": -38.2,
-  "amb": -31.7,
-  "music": -34.3
+  "voice": -19.1,
+  "sfx": -36.7,
+  "amb": -31.8,
+  "music": -32.6
  },
  "windows_under_6db": 2,
  "windows_speaking": 56,
  "worst_half_seconds": [
   [
-   2.7,
+   1.8,
    14.5
   ],
   [
-   5.2,
+   4.5,
    10.0
   ],
   [
-   7.5,
+   6.6,
    23.0
   ],
   [
-   7.5,
-   11.5
+   6.9,
+   4.0
   ],
   [
-   7.8,
-   4.0
+   6.9,
+   11.5
   ]
  ],
  "loop": {
-  "jump": 0.000722,
-  "typical": 0.005387,
+  "jump": 0.001369,
+  "typical": 0.010666,
   "click_free": true
  },
  "cues": 186,

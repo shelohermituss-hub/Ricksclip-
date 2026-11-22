@@ -2233,7 +2233,7 @@
   {
    "frame": 1003,
    "clip": "rag",
-   "db": -31,
+   "db": -30,
    "pan": -0.3,
    "bus": "sfx",
    "s": "s5",
@@ -2243,7 +2243,7 @@
   {
    "frame": 1007,
    "clip": "squeak",
-   "db": -33,
+   "db": -29,
    "pan": -0.3,
    "bus": "sfx",
    "s": "s5",
@@ -2253,7 +2253,7 @@
   {
    "frame": 1013,
    "clip": "squeak",
-   "db": -34,
+   "db": -29,
    "pan": -0.3,
    "bus": "sfx",
    "s": "s5",
@@ -2263,7 +2263,7 @@
   {
    "frame": 1018,
    "clip": "squeak",
-   "db": -35,
+   "db": -30,
    "pan": -0.3,
    "bus": "sfx",
    "s": "s5",
@@ -2273,7 +2273,7 @@
   {
    "frame": 1007,
    "clip": "chew",
-   "db": -29,
+   "db": -26,
    "pan": 0.1,
    "bus": "sfx",
    "s": "s5",
@@ -2283,7 +2283,7 @@
   {
    "frame": 1012,
    "clip": "chew",
-   "db": -31,
+   "db": -27,
    "pan": 0.1,
    "bus": "sfx",
    "s": "s5",
@@ -2293,7 +2293,7 @@
   {
    "frame": 1015,
    "clip": "wink",
-   "db": -27,
+   "db": -22,
    "pan": 0.15,
    "bus": "sfx",
    "s": "s5",
@@ -2471,8 +2471,8 @@
    }
   ]
  },
- "music_under_db": -17.0,
+ "music_under_db": -15.0,
  "music_gap_db": -10.0,
  "amb_trim_db": 3.5,
- "sfx_trim_db": 2.0
+ "sfx_trim_db": 4.0
 }

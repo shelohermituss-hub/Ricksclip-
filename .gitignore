@@ -98,3 +98,7 @@ episodes/*/s*/passes/
 episodes/*/s*/frames*/
 episodes/*/s*/stills*/
 episodes/*/s*/frames_*/
+episodes/*/sound/clips/
+episodes/*/sound/synth/
+episodes/*/sound/out/stems/
+episodes/*/sound/*preview*.mp3

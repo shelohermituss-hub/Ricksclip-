@@ -11,7 +11,7 @@
 import bpy, sys, os, json, math, random, time, shutil
 from mathutils import Vector, Matrix, Quaternion
 HERE = os.path.dirname(os.path.abspath(__file__)); LOOK = os.path.dirname(HERE); EP = os.path.dirname(LOOK); ROOT = os.path.dirname(os.path.dirname(EP))
-sys.path[:0] = [LOOK, os.path.join(ROOT, 'templates'), os.path.join(EP, 'sets', 'apron', 'scripts'), os.path.join(ROOT, 'library', 'grass')]
+sys.path[:0] = [HERE, LOOK, os.path.join(ROOT, 'templates'), os.path.join(EP, 'sets', 'apron', 'scripts'), os.path.join(ROOT, 'library', 'grass')]
 import pe_look as PL
 from blender_look import from_lock as FL, lock2 as L2
 A = sys.argv[sys.argv.index('--') + 1:]; ST = A[0]; MODE = A[1] if len(A) > 1 else 'info'
@@ -47,11 +47,12 @@ new_set = set(new); keep = set()
 for o in new:
     r = o
     while r is not None:
-        if r.name.split('.')[0].startswith(KEEP): keep.add(o); break
+        if r.name.split('.')[0].startswith(KEEP) or (int(r.get('lock_id', -1)) in moving_ids and r.name.split('.')[0].startswith(tuple(CFG.get('keep_moving', ['s1_', 's2_', 's3_', 's4_', 's5_'])))): keep.add(o); break
         r = r.parent if r.parent in new_set else None
 keepall = {o for o in new if o in keep or any(c in keep for c in o.children_recursive)}
 drop = [o for o in new if o not in keepall]; kept = list(keepall)
 bpy.data.batch_remove(drop)
+print('LOCKIDS', sum(1 for o in kept if 'lock_id' in o.keys()), [ (o.name, o.get('lock_id')) for o in new if o.name.startswith(('s1_bite','s1_cut'))][:4] if False else '')
 print('KEPT', len(kept), sorted({root_of(o).name for o in kept})[:40], flush=True)
 mv = L2.motion(LOCK, PLACE, kept); print('MOTION', {k: v for k, v in mv.items() if k != 'missing'}, 'missing', mv.get('missing', [])[:10])
 

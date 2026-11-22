@@ -5,11 +5,11 @@
 | gate | target | measured | |
 |---|---|---|---|
 | integrated loudness | -16 LUFS | -16.0 LUFS | PASS |
-| true peak | at most -1 dBTP | -4.0 dBTP | PASS |
+| true peak | at most -1 dBTP | -3.6 dBTP | PASS |
 | loudness range | report | 1.4 LU | |
-| voice on top while speaking | 12 dB over music, 8 dB over sfx and beds | voice -19.0, music -34.3, sfx -38.2, beds -31.7 dBFS | PASS |
+| voice on top while speaking | 12 dB over music, 8 dB over sfx and beds | voice -19.1, music -32.6, sfx -36.7, beds -31.8 dBFS | PASS |
 | voice vs the rest, 0.5 s windows | under 6 dB in at most 8 % | 2 of 56 | PASS |
-| loop, last frame into frame 0 | click-free | step 0.00072 vs 0.00539 usual | PASS |
+| loop, last frame into frame 0 | click-free | step 0.00137 vs 0.01067 usual | PASS |
 
 ## Cues (186)
 | frame | s | clip | dB | bus | why |
@@ -193,13 +193,13 @@
 | 1001 | 33.37 | `chomp` | -14 | hit | POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001] |
 | 1001 | 33.37 | `crunch` | -18 | hit | POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001] |
 | 1001 | 33.37 | `clank` | -24 | hit | POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001] |
-| 1003 | 33.43 | `rag` | -31 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
-| 1007 | 33.57 | `squeak` | -33 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
-| 1007 | 33.57 | `chew` | -29 | sfx | chews the tray table, happy [f:1007] |
-| 1012 | 33.73 | `chew` | -31 | sfx | chews the tray table, happy [f:1007] |
-| 1013 | 33.77 | `squeak` | -34 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
-| 1015 | 33.83 | `wink` | -27 | sfx | slow smug wink: sparkle ting [f:1015] |
-| 1018 | 33.93 | `squeak` | -35 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
+| 1003 | 33.43 | `rag` | -30 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
+| 1007 | 33.57 | `squeak` | -29 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
+| 1007 | 33.57 | `chew` | -26 | sfx | chews the tray table, happy [f:1007] |
+| 1012 | 33.73 | `chew` | -27 | sfx | chews the tray table, happy [f:1007] |
+| 1013 | 33.77 | `squeak` | -29 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
+| 1015 | 33.83 | `wink` | -22 | sfx | slow smug wink: sparkle ting [f:1015] |
+| 1018 | 33.93 | `squeak` | -30 | sfx | owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003] |
 
 ## Clip sources
 | key | file |

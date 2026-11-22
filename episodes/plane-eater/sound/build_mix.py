@@ -148,7 +148,7 @@ sys.argv = [os.path.join(KIT, 'mix.py'), EP, VER] + (['--recut'] if '--recut' in
 code = 0
 try: runpy.run_path(os.path.join(KIT, 'mix.py'), run_name='__main__')
 except SystemExit as ex: code = ex.code if isinstance(ex.code, int) else (0 if ex.code is None else 1)
-shutil.copyfile(os.path.join(HERE, 'mix_%s.wav' % VER), os.path.join(HERE, 'mix.wav'))
+os.replace(os.path.join(HERE, 'mix_%s.wav' % VER), os.path.join(HERE, 'mix.wav'))   # one copy only: mix.wav
 
 # ---------------------------------------------------------------- 4. coverage: every picture event has a cue within 2 frames
 SH = EV.get('shift', {}); cf = sorted(c['frame'] + SH.get(c['s'], 0) for c in cues); miss = []; nchk = 0
