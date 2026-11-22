@@ -1,4 +1,11 @@
 # S3 STATE: THE X-RAY (PICTURE_PLAN rows 19-22, line 5, film 17.30-21.28 s = frames 519-638). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX ROUND 2 (lead: simplify) - result
+- Five passes, four dissolves on the move (blend.py, passes.json): A1 clinic wide 519-565 -> A2 film close -> B1 X-ray world/lining -> B2 ride -> C back out.
+  Each pass a slow drift: window camera p90 18.4 px/f (PASS <= 22). frame_checks 0 FAIL / 3 WARN (wall 3 %). camsafe 584 PASS / 1 FAIL.
+- The Doctor is whole in frame through row 19 (A1) and whole for the double take (C, f628-638, jaw drop).
+- NOT met: his fist does not touch the film (hand_at 519-600 given; the hand stays up by his head; he stands about 0.4 m from the film).
+  In the wide he is small and the tiny plane on the film does not read; f519 is a closer framing than f520+ (first-frame jump of pass A1, not found).
+- Cushions: round puffs (accepted for the draft).
 ## FIX ROUND 1 (lead's 4 points) - result
 - (2) DONE: no hard cut. Two DISSOLVES ON THE MOVE (blend.py): 568-577 the push into the film (pass A, film_A.json) into the X-ray world (pass B),
   628-637 the world back out to the clinic (pass C). film.json (cut-based) is only for the checks.

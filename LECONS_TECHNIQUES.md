@@ -512,3 +512,16 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   2 m flight to a station 1.3 m from the subject needs more frames than the gap; holds on the previous station push it later.
   Fix: fewer stations, hold 0 on the station before a push, measure the arrival frame from out/plan/camera_baked.json before rendering.
   Guard/proof: S2 fix 1: oil close 290-306, dial 358-381, tire 460-490 (were 336, 454, 494).
+
+## 2026-11-22 plane-eater S4: two more kit traps of a stretch that starts late in the film
+- Problem: the first camera station of a take (at f660) was baked 7 m off its pos (camera inside the Cessna / next to the subject). Cause: the first
+  station's REST starts at frame 0 of the film (take _f0 = 0), so the default creep (0.003 / f) pushes it toward the aim for 660 frames before the
+  stretch begins. Fix: "creep": 0.0 on the first station of a late stretch (or give it its own small creep). Guard: read out/plan/camera_baked.json
+  at the start frame before rendering. Proof: S4 f660 pos (1.55, -2.04) -> (9.4, -2.9) = the station.
+- Problem: a pass rendered the right set with another pass's camera (all frames the same, camera stuck). Cause: film_A.json and film_B.json of one
+  stretch folder bake into the SAME out/plan/; render_gpu reads the last bake. Fix: bake each film right before its own render (render_s4.sh). Guard:
+  never run film_plan check/bake on one film while another film of the folder renders.
+- Also: v2 middle stations closer than the move "wants" are flowed through as via points (never reached). A station with "travel": <s> is a
+  hand-set travel and is reached on its frame (speed capped at 60 px/f, WARN under 1 s): use it for fast beat-to-beat stretches.
+- Also: a held3d builder that HIDES the unwanted meshes of a glb keeps them in Box3.setFromObject, so re-centring put the spinner 2 m off the hand;
+  remove them (removeFromParent) instead.
