@@ -1,0 +1,63 @@
+{
+ "mix": "mix_v1.wav",
+ "frames": 1022,
+ "fps": 30,
+ "seconds": 34.067,
+ "ebur128": {
+  "I": -16.0,
+  "LRA": 1.4,
+  "TP": -4.0
+ },
+ "target": {
+  "I": -16.0,
+  "TP_max": -1.0
+ },
+ "master_gain_db": 1.0,
+ "limiter_max_db": 0.0,
+ "rms_while_speaking_dbfs": {
+  "voice": -19.0,
+  "sfx": -38.2,
+  "amb": -31.7,
+  "music": -34.3
+ },
+ "windows_under_6db": 2,
+ "windows_speaking": 56,
+ "worst_half_seconds": [
+  [
+   2.7,
+   14.5
+  ],
+  [
+   5.2,
+   10.0
+  ],
+  [
+   7.5,
+   23.0
+  ],
+  [
+   7.5,
+   11.5
+  ],
+  [
+   7.8,
+   4.0
+  ]
+ ],
+ "loop": {
+  "jump": 0.000722,
+  "typical": 0.005387,
+  "click_free": true
+ },
+ "cues": 186,
+ "beds": 7,
+ "power": 4,
+ "music": "Kevin MacLeod - Fluffing a Duck.mp3",
+ "gates": {
+  "loudness": true,
+  "true_peak": true,
+  "voice_on_top": true,
+  "windows": true,
+  "loop": true
+ }
+}

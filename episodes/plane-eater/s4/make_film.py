@@ -101,6 +101,11 @@ filmB = dict(base, title='The Man Who Ate An Airplane, S4 TWO YEARS / DESSERT / 
     takes=[{'id': p[0], 'place': 'apron', 'stations': p[3]} for p in PASSES])
 json.dump(filmA, open(os.path.join(HERE, 'film_A.json'), 'w'), indent=1)
 for p in PASSES:
-    F = copy.deepcopy(filmB); F['takes'] = [{'id': p[0], 'place': 'apron', 'stations': p[3]}]; json.dump(F, open(os.path.join(HERE, 'film_%s.json' % p[0]), 'w'), indent=1)
+    F = copy.deepcopy(filmB); F['takes'] = [{'id': p[0], 'place': 'apron', 'stations': p[3]}];
+    if p[0] == 'B2':   # fix round 3: the close on Michel uses the seated card without 3D legs
+        for x in F['acts']:
+            if x.get('pose') == 'm:../../ep_s4/mi_s4': x['pose'] = 'm:../../ep_s4n/mi_s4'
+    if p[0] == 'B1': F['places']['apron']['hide_near_tree'] = True   # fix round 3: no crown blob over the time-lapse wide
+    json.dump(F, open(os.path.join(HERE, 'film_%s.json' % p[0]), 'w'), indent=1)
 json.dump(filmB, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 print('film_A.json (%d acts) + film_B.json = film.json (%d acts, %d held3d, %d stations) written' % (len(actsA), len(actsB), len(held3d), len(stB)))

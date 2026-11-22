@@ -1,0 +1,2478 @@
+{
+ "fps": 30,
+ "frames": 1022,
+ "shift": {},
+ "clips": {
+  "salt": {
+   "file": "casino-audio__dice-shake-1",
+   "dur": 0.35,
+   "hp": 2500,
+   "rate": 1.3,
+   "fade": 0.1
+  },
+  "grain": {
+   "file": "interface-sounds__tick_002",
+   "hp": 3000
+  },
+  "sparkle": {
+   "file": "interface-sounds__glass_002",
+   "rate": 1.4,
+   "hp": 2000
+  },
+  "sparkle2": {
+   "file": "interface-sounds__glass_004",
+   "rate": 1.3,
+   "hp": 1500,
+   "fade": 0.3
+  },
+  "sparkle3": {
+   "file": "interface-sounds__glass_005",
+   "rate": 1.6,
+   "hp": 2500
+  },
+  "rag": {
+   "file": "rpg-audio__cloth2",
+   "hp": 600,
+   "rate": 1.3
+  },
+  "rag2": {
+   "file": "rpg-audio__cloth4",
+   "hp": 600,
+   "rate": 1.2
+  },
+  "napkin": {
+   "file": "rpg-audio__clothBelt2",
+   "rate": 1.25,
+   "hp": 300,
+   "dur": 0.4
+  },
+  "whip": {
+   "file": "interface-sounds__minimize_005",
+   "rate": 0.8
+  },
+  "cloth": {
+   "file": "rpg-audio__cloth1",
+   "lp": 5000
+  },
+  "cloth3": {
+   "file": "rpg-audio__cloth3"
+  },
+  "saw1": {
+   "file": "rpg-audio__drawKnife2",
+   "rate": 1.25,
+   "hp": 1500
+  },
+  "saw2": {
+   "file": "rpg-audio__knifeSlice2",
+   "rate": 1.3,
+   "hp": 1500,
+   "dur": 0.3
+  },
+  "tin_tick": {
+   "file": "impactTin_medium_000",
+   "rate": 1.2
+  },
+  "knee": {
+   "file": "impactSoft_medium_001"
+  },
+  "tongs": {
+   "file": "rpg-audio__metalClick",
+   "rate": 1.3,
+   "hp": 1000
+  },
+  "china": {
+   "file": "impactPlate_light_000",
+   "rate": 1.2
+  },
+  "chair_down": {
+   "file": "impactWood_light_001"
+  },
+  "chair_scoot": {
+   "file": "rpg-audio__creak2",
+   "rate": 1.25,
+   "dur": 0.4
+  },
+  "glass_tap": {
+   "file": "impactGlass_light_000"
+  },
+  "jug_set": {
+   "file": "impactWood_light_003",
+   "rate": 0.9
+  },
+  "glug": {
+   "file": "synth/pe_synth_glug"
+  },
+  "gulp": {
+   "file": "interface-sounds__drop_002",
+   "rate": 0.7
+  },
+  "gulp2": {
+   "file": "interface-sounds__drop_003",
+   "rate": 0.6
+  },
+  "clink": {
+   "file": "impactMetal_light_001",
+   "rate": 1.3
+  },
+  "clink2": {
+   "file": "impactMetal_light_002",
+   "rate": 1.4
+  },
+  "clink3": {
+   "file": "impactTin_medium_002",
+   "rate": 1.2
+  },
+  "needle": {
+   "file": "synth/pe_synth_needle"
+  },
+  "scale_tick": {
+   "file": "interface-sounds__tick_004"
+  },
+  "crack": {
+   "file": "impactTin_medium_001",
+   "rate": 0.9
+  },
+  "crunch": {
+   "file": "sci-fi-sounds__explosionCrunch_000",
+   "rate": 1.5,
+   "hp": 600,
+   "dur": 0.35,
+   "fade": 0.15
+  },
+  "crunch2": {
+   "file": "sci-fi-sounds__explosionCrunch_002",
+   "rate": 1.7,
+   "hp": 800,
+   "dur": 0.3,
+   "fade": 0.15
+  },
+  "chew": {
+   "file": "sci-fi-sounds__explosionCrunch_001",
+   "rate": 2.0,
+   "hp": 1200,
+   "dur": 0.14,
+   "fade": 0.08
+  },
+  "chop": {
+   "file": "rpg-audio__chop"
+  },
+  "hub_bite": {
+   "file": "impactMetal_medium_001"
+  },
+  "foam": {
+   "file": "impactSoft_heavy_001",
+   "lp": 3000
+  },
+  "boing": {
+   "file": "synth/pe_synth_boing.wav"
+  },
+  "boing_hi": {
+   "file": "synth/pe_synth_boing_hi"
+  },
+  "push": {
+   "file": "rpg-audio__metalLatch",
+   "rate": 1.2
+  },
+  "stretch": {
+   "file": "rpg-audio__creak1",
+   "rate": 0.55,
+   "dur": 0.6,
+   "lp": 3000
+  },
+  "snap": {
+   "file": "impactPunch_medium_002",
+   "rate": 1.2
+  },
+  "rubber_chew": {
+   "file": "rpg-audio__creak3",
+   "rate": 0.8,
+   "dur": 0.2
+  },
+  "putt": {
+   "file": "synth/pe_synth_putt"
+  },
+  "pat": {
+   "file": "impactSoft_medium_003",
+   "lp": 2500
+  },
+  "lb_clunk": {
+   "file": "interface-sounds__switch_003",
+   "rate": 0.8
+  },
+  "flicker": {
+   "file": "interface-sounds__glitch_002"
+  },
+  "flicker2": {
+   "file": "interface-sounds__glitch_004"
+  },
+  "tick_small": {
+   "file": "interface-sounds__tick_001"
+  },
+  "whoosh_in": {
+   "file": "interface-sounds__maximize_005",
+   "rate": 0.6
+  },
+  "whoosh_out": {
+   "file": "interface-sounds__minimize_005",
+   "rate": 0.6
+  },
+  "whoosh_soft": {
+   "file": "interface-sounds__maximize_004",
+   "rate": 0.65,
+   "lp": 4000
+  },
+  "floomp": {
+   "file": "impactSoft_heavy_000",
+   "rate": 0.65,
+   "lp": 2500
+  },
+  "floomp_air": {
+   "file": "rpg-audio__clothBelt.ogg",
+   "rate": 0.55,
+   "lp": 2000
+  },
+  "slide": {
+   "file": "casino-audio__card-slide-1",
+   "rate": 0.7
+  },
+  "prop_tiny": {
+   "file": "sci-fi-sounds__engineCircular_000",
+   "rate": 1.9,
+   "hp": 300,
+   "dur": 1.6,
+   "fade": 0.4
+  },
+  "riser": {
+   "file": "synth/pe_synth_riser"
+  },
+  "gust": {
+   "file": "synth/pe_synth_wind",
+   "dur": 1.2,
+   "fade": 0.5
+  },
+  "pop": {
+   "file": "interface-sounds__pluck_001"
+  },
+  "pop2": {
+   "file": "interface-sounds__drop_004"
+  },
+  "lamps": {
+   "file": "interface-sounds__switch_001",
+   "rate": 0.75
+  },
+  "latch": {
+   "file": "rpg-audio__metalLatch"
+  },
+  "bell": {
+   "file": "impactBell_heavy_004",
+   "rate": 1.9,
+   "hp": 800,
+   "fade": 0.4
+  },
+  "bikebell": {
+   "file": "impactBell_heavy_002",
+   "rate": 2.7,
+   "hp": 1500,
+   "fade": 0.3
+  },
+  "trolley": {
+   "file": "casino-audio__dice-shake-2",
+   "rate": 0.7,
+   "lp": 3000,
+   "dur": 1.2,
+   "fade": 0.4
+  },
+  "squeak_w": {
+   "file": "rpg-audio__creak3",
+   "rate": 1.5
+  },
+  "cart": {
+   "file": "casino-audio__chips-collide-1",
+   "rate": 0.8
+  },
+  "tv_on": {
+   "file": "interface-sounds__switch_005",
+   "rate": 0.9
+  },
+  "tv_whine": {
+   "file": "digital-audio__tone1",
+   "hp": 6000,
+   "rate": 1.5
+  },
+  "creak_wob": {
+   "file": "rpg-audio__creak1",
+   "rate": 0.9
+  },
+  "creak_wob2": {
+   "file": "rpg-audio__creak2",
+   "dur": 0.5
+  },
+  "thud": {
+   "file": "impactWood_heavy_000"
+  },
+  "plate": {
+   "file": "impactPlate_medium_000",
+   "rate": 1.1
+  },
+  "cloche": {
+   "file": "rpg-audio__metalPot2",
+   "rate": 1.2,
+   "hp": 500,
+   "fade": 0.4
+  },
+  "shutter": {
+   "file": "ui-audio__switch7",
+   "rate": 0.9
+  },
+  "flashpop": {
+   "file": "impactGlass_light_003",
+   "rate": 0.8,
+   "lp": 6000
+  },
+  "flashwhine": {
+   "file": "digital-audio__highUp",
+   "hp": 2500,
+   "rate": 0.8
+  },
+  "cert_bite": {
+   "file": "impactTin_medium_003"
+  },
+  "step1": {
+   "file": "footstep_concrete_000"
+  },
+  "step2": {
+   "file": "footstep_concrete_001"
+  },
+  "step3": {
+   "file": "footstep_concrete_002"
+  },
+  "step4": {
+   "file": "footstep_concrete_003"
+  },
+  "foil": {
+   "file": "casino-audio__cards-pack-open-1",
+   "rate": 1.1
+  },
+  "sniff": {
+   "file": "synth/pe_synth_sniff"
+  },
+  "scrape": {
+   "file": "casino-audio__card-shove-1",
+   "rate": 0.8
+  },
+  "plip": {
+   "file": "interface-sounds__drop_001"
+  },
+  "shing": {
+   "file": "rpg-audio__drawKnife3",
+   "rate": 1.2,
+   "hp": 1200
+  },
+  "chomp": {
+   "file": "impactPlate_heavy_000",
+   "rate": 1.3,
+   "hp": 300
+  },
+  "clank": {
+   "file": "sci-fi-sounds__impactMetal_000",
+   "rate": 1.2
+  },
+  "squeak": {
+   "file": "synth/pe_synth_squeak"
+  },
+  "wink": {
+   "file": "interface-sounds__glass_004",
+   "rate": 1.25,
+   "fade": 0.4
+  },
+  "amb_wind": {
+   "file": "synth/pe_synth_wind",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_prop": {
+   "file": "synth/pe_synth_prop_far",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_room": {
+   "file": "synth/pe_synth_room",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_lightbox": {
+   "file": "synth/pe_synth_lightbox",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_xray": {
+   "file": "sci-fi-sounds__spaceEngineLow_000",
+   "lp": 500,
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_crickets": {
+   "file": "synth/pe_synth_crickets",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_cabin": {
+   "file": "synth/pe_synth_cabin",
+   "raw": 1,
+   "fade": 0
+  },
+  "amb_jet": {
+   "file": "sci-fi-sounds__spaceEngineLarge_000",
+   "lp": 350,
+   "raw": 1,
+   "fade": 0
+  }
+ },
+ "cues": [
+  {
+   "frame": 0,
+   "clip": "salt",
+   "db": -27,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt shaker shakes over the wing tip (frame 0 = loop point) [f:0]"
+  },
+  {
+   "frame": 9,
+   "clip": "salt",
+   "db": -29,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt shaker shakes over the wing tip (frame 0 = loop point) [f:0]"
+  },
+  {
+   "frame": 18,
+   "clip": "salt",
+   "db": -28,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt shaker shakes over the wing tip (frame 0 = loop point) [f:0]"
+  },
+  {
+   "frame": 27,
+   "clip": "salt",
+   "db": -30,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt shaker shakes over the wing tip (frame 0 = loop point) [f:0]"
+  },
+  {
+   "frame": 3,
+   "clip": "grain",
+   "db": -36,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 7,
+   "clip": "grain",
+   "db": -38,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 15,
+   "clip": "grain",
+   "db": -36,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 19,
+   "clip": "grain",
+   "db": -39,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 25,
+   "clip": "grain",
+   "db": -37,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 34,
+   "clip": "grain",
+   "db": -38,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "salt grains bounce on the aluminium [f:3]"
+  },
+  {
+   "frame": 20,
+   "clip": "sparkle",
+   "db": -31,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "fx glint: sun catches the salted tip [f:20]"
+  },
+  {
+   "frame": 8,
+   "clip": "rag",
+   "db": -38,
+   "pan": -0.5,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "owner polishes the propeller far back (rag running gag) [f:8]"
+  },
+  {
+   "frame": 30,
+   "clip": "rag2",
+   "db": -39,
+   "pan": -0.5,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "owner polishes the propeller far back (rag running gag) [f:8]"
+  },
+  {
+   "frame": 52,
+   "clip": "rag",
+   "db": -39,
+   "pan": -0.5,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "owner polishes the propeller far back (rag running gag) [f:8]"
+  },
+  {
+   "frame": 74,
+   "clip": "rag2",
+   "db": -40,
+   "pan": -0.5,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "1",
+   "why": "owner polishes the propeller far back (rag running gag) [f:8]"
+  },
+  {
+   "frame": 62,
+   "clip": "cloth3",
+   "db": -34,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "3",
+   "why": "he stops salting, turns along the wing (clothes) [f:62]"
+  },
+  {
+   "frame": 121,
+   "clip": "napkin",
+   "db": -15,
+   "pan": 0.1,
+   "bus": "hit",
+   "s": "s1",
+   "row": "5",
+   "why": "POWER 1 LUNCH!: napkin snapped tight in the collar [f:121]"
+  },
+  {
+   "frame": 118,
+   "clip": "whip",
+   "db": -24,
+   "pan": 0.1,
+   "bus": "hit",
+   "s": "s1",
+   "row": "5",
+   "why": "POWER 1 LUNCH!: napkin snapped tight in the collar [f:121]",
+   "pre": 1
+  },
+  {
+   "frame": 124,
+   "clip": "sparkle2",
+   "db": -23,
+   "pan": 0.3,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "5",
+   "why": "fx glint on his fork tines [f:124]"
+  },
+  {
+   "frame": 152,
+   "clip": "cloth",
+   "db": -32,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "6",
+   "why": "he kneels at the fuselage, saw up [f:152]"
+  },
+  {
+   "frame": 158,
+   "clip": "knee",
+   "db": -31,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "6",
+   "why": "he kneels at the fuselage, saw up [f:152]"
+  },
+  {
+   "frame": 173,
+   "clip": "saw1",
+   "db": -26,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 179,
+   "clip": "saw2",
+   "db": -28,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 185,
+   "clip": "saw1",
+   "db": -27,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 191,
+   "clip": "saw2",
+   "db": -28,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 197,
+   "clip": "saw1",
+   "db": -27,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 199,
+   "clip": "tin_tick",
+   "db": -34,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "7",
+   "why": "hacksaw on aluminium: tiny pastry-chef strokes [f:173]"
+  },
+  {
+   "frame": 200,
+   "clip": "rag",
+   "db": -33,
+   "pan": -0.45,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "8",
+   "why": "owner sees the cut, polishes faster (denial) [f:187]"
+  },
+  {
+   "frame": 205,
+   "clip": "rag2",
+   "db": -33,
+   "pan": -0.45,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "8",
+   "why": "owner sees the cut, polishes faster (denial) [f:187]"
+  },
+  {
+   "frame": 210,
+   "clip": "rag",
+   "db": -34,
+   "pan": -0.45,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "8",
+   "why": "owner sees the cut, polishes faster (denial) [f:187]"
+  },
+  {
+   "frame": 215,
+   "clip": "rag2",
+   "db": -34,
+   "pan": -0.45,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "8",
+   "why": "owner sees the cut, polishes faster (denial) [f:187]"
+  },
+  {
+   "frame": 205,
+   "clip": "tongs",
+   "db": -29,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "9",
+   "why": "sugar tongs pick ONE tiny bite [f:205]"
+  },
+  {
+   "frame": 235,
+   "clip": "china",
+   "db": -22,
+   "pan": 0.25,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "9",
+   "why": "the bite clinks on the china plate (f235) [w:bites.]"
+  },
+  {
+   "frame": 236,
+   "clip": "clink2",
+   "db": -32,
+   "pan": 0.25,
+   "bus": "sfx",
+   "s": "s1",
+   "row": "9",
+   "why": "the bite clinks on the china plate (f235) [w:bites.]"
+  },
+  {
+   "frame": 262,
+   "clip": "chair_down",
+   "db": -27,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "10",
+   "why": "he drops onto the seat, tucks the chair in [f:262]"
+  },
+  {
+   "frame": 266,
+   "clip": "chair_scoot",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "10",
+   "why": "he drops onto the seat, tucks the chair in [f:262]"
+  },
+  {
+   "frame": 283,
+   "clip": "glass_tap",
+   "db": -28,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "11",
+   "why": "picks up the oil wine glass [f:283]"
+  },
+  {
+   "frame": 300,
+   "clip": "sniff",
+   "db": -33,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "11",
+   "why": "sniffs the oil like wine [f:300]"
+  },
+  {
+   "frame": 318,
+   "clip": "jug_set",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "12",
+   "why": "the big jug lifted and GLUGS into the tumbler (SYNTH glug) [f:318]"
+  },
+  {
+   "frame": 321,
+   "clip": "glug",
+   "db": -21,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "12",
+   "why": "the big jug lifted and GLUGS into the tumbler (SYNTH glug) [f:318]"
+  },
+  {
+   "frame": 344,
+   "clip": "glass_tap",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "12",
+   "why": "tumbler up, he drinks (gulps) [f:344]"
+  },
+  {
+   "frame": 351,
+   "clip": "gulp",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "12",
+   "why": "tumbler up, he drinks (gulps) [f:344]"
+  },
+  {
+   "frame": 358,
+   "clip": "gulp",
+   "db": -32,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "12",
+   "why": "tumbler up, he drinks (gulps) [f:344]"
+  },
+  {
+   "frame": 346,
+   "clip": "tongs",
+   "db": -32,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "tongs back in hand [f:345]"
+  },
+  {
+   "frame": 361,
+   "clip": "clink",
+   "db": -25,
+   "pan": 0.05,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "bites drop on the kitchen scale (f361-369) [w:pounds]"
+  },
+  {
+   "frame": 365,
+   "clip": "clink3",
+   "db": -27,
+   "pan": 0.05,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "bites drop on the kitchen scale (f361-369) [w:pounds]"
+  },
+  {
+   "frame": 369,
+   "clip": "clink2",
+   "db": -26,
+   "pan": 0.05,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "bites drop on the kitchen scale (f361-369) [w:pounds]"
+  },
+  {
+   "frame": 366,
+   "clip": "needle",
+   "db": -24,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "the scale needle swings past, wobbles, settles on 2 lb (SYNTH needle) [w:pounds]"
+  },
+  {
+   "frame": 378,
+   "clip": "scale_tick",
+   "db": -28,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "13",
+   "why": "the scale needle swings past, wobbles, settles on 2 lb (SYNTH needle) [w:pounds]"
+  },
+  {
+   "frame": 396,
+   "clip": "tin_tick",
+   "db": -33,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "picks up the wing slice [f:396]"
+  },
+  {
+   "frame": 407,
+   "clip": "crack",
+   "db": -18,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "WINGS: wing slice snapped like a cracker (fx glint) [f:407]"
+  },
+  {
+   "frame": 407,
+   "clip": "crunch",
+   "db": -22,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "WINGS: wing slice snapped like a cracker (fx glint) [f:407]"
+  },
+  {
+   "frame": 408,
+   "clip": "chop",
+   "db": -27,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "WINGS: wing slice snapped like a cracker (fx glint) [f:407]"
+  },
+  {
+   "frame": 412,
+   "clip": "chew",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "chews the wing slice, belly putt-putt (SYNTH putt) [f:412]"
+  },
+  {
+   "frame": 417,
+   "clip": "chew",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "chews the wing slice, belly putt-putt (SYNTH putt) [f:412]"
+  },
+  {
+   "frame": 422,
+   "clip": "putt",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "14",
+   "why": "chews the wing slice, belly putt-putt (SYNTH putt) [f:412]"
+  },
+  {
+   "frame": 418,
+   "clip": "clink",
+   "db": -33,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "picks up the wheel hub [f:418]"
+  },
+  {
+   "frame": 428,
+   "clip": "hub_bite",
+   "db": -20,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "WHEELS: hub bitten like a doughnut [f:428]"
+  },
+  {
+   "frame": 428,
+   "clip": "crunch2",
+   "db": -23,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "WHEELS: hub bitten like a doughnut [f:428]"
+  },
+  {
+   "frame": 433,
+   "clip": "chew",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "chews the hub, putt-putt [f:433]"
+  },
+  {
+   "frame": 438,
+   "clip": "chew",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "chews the hub, putt-putt [f:433]"
+  },
+  {
+   "frame": 442,
+   "clip": "putt",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "15",
+   "why": "chews the hub, putt-putt [f:433]"
+  },
+  {
+   "frame": 442,
+   "clip": "cloth3",
+   "db": -32,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "16",
+   "why": "picks up the seat cushion [f:442]"
+  },
+  {
+   "frame": 451,
+   "clip": "foam",
+   "db": -22,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "16",
+   "why": "SEATS: cushion bitten like a sandwich, a spring boings out (SYNTH boing), pushed back in [f:451]"
+  },
+  {
+   "frame": 451,
+   "clip": "crunch",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "16",
+   "why": "SEATS: cushion bitten like a sandwich, a spring boings out (SYNTH boing), pushed back in [f:451]"
+  },
+  {
+   "frame": 455,
+   "clip": "boing",
+   "db": -22,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "16",
+   "why": "SEATS: cushion bitten like a sandwich, a spring boings out (SYNTH boing), pushed back in [f:451]"
+  },
+  {
+   "frame": 462,
+   "clip": "push",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "16",
+   "why": "SEATS: cushion bitten like a sandwich, a spring boings out (SYNTH boing), pushed back in [f:451]"
+  },
+  {
+   "frame": 468,
+   "clip": "rubber_chew",
+   "db": -33,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "picks up the tire [f:468]"
+  },
+  {
+   "frame": 478,
+   "clip": "stretch",
+   "db": -22,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "EVEN THE TIRES: bites, the rubber stretches like gum [f:478]"
+  },
+  {
+   "frame": 489,
+   "clip": "snap",
+   "db": -16,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "rubber SNAP back against his cheeks, cheeks wobble (kick, fx glint) [f:489]"
+  },
+  {
+   "frame": 490,
+   "clip": "boing_hi",
+   "db": -23,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "rubber SNAP back against his cheeks, cheeks wobble (kick, fx glint) [f:489]"
+  },
+  {
+   "frame": 494,
+   "clip": "rubber_chew",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "chews hard (rubber squeaks), swallows, belly putt [f:494]"
+  },
+  {
+   "frame": 499,
+   "clip": "rubber_chew",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "chews hard (rubber squeaks), swallows, belly putt [f:494]"
+  },
+  {
+   "frame": 504,
+   "clip": "rubber_chew",
+   "db": -32,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "chews hard (rubber squeaks), swallows, belly putt [f:494]"
+  },
+  {
+   "frame": 506,
+   "clip": "gulp2",
+   "db": -27,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "chews hard (rubber squeaks), swallows, belly putt [f:494]"
+  },
+  {
+   "frame": 510,
+   "clip": "putt",
+   "db": -29,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "17",
+   "why": "chews hard (rubber squeaks), swallows, belly putt [f:494]"
+  },
+  {
+   "frame": 511,
+   "clip": "pat",
+   "db": -25,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "18",
+   "why": "he pats his belly (into the match dissolve) [w:Doctors]"
+  },
+  {
+   "frame": 516,
+   "clip": "pat",
+   "db": -27,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s2",
+   "row": "18",
+   "why": "he pats his belly (into the match dissolve) [w:Doctors]"
+  },
+  {
+   "frame": 512,
+   "clip": "whoosh_soft",
+   "db": -31,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "18",
+   "why": "match dissolve belly -> X-ray film: soft whoosh [f:512]"
+  },
+  {
+   "frame": 519,
+   "clip": "lb_clunk",
+   "db": -23,
+   "pan": -0.15,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "the light box clunks on and flickers twice, then holds [f:519]"
+  },
+  {
+   "frame": 522,
+   "clip": "flicker",
+   "db": -27,
+   "pan": -0.15,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "the light box clunks on and flickers twice, then holds [f:519]"
+  },
+  {
+   "frame": 526,
+   "clip": "flicker2",
+   "db": -28,
+   "pan": -0.15,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "the light box clunks on and flickers twice, then holds [f:519]"
+  },
+  {
+   "frame": 528,
+   "clip": "sparkle3",
+   "db": -27,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "fx glint runs over the tiny bite-Cessna on the film [f:528]"
+  },
+  {
+   "frame": 541,
+   "clip": "tick_small",
+   "db": -31,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "Doctor pushes his half-moon glasses down [f:541]"
+  },
+  {
+   "frame": 550,
+   "clip": "cloth",
+   "db": -28,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "19",
+   "why": "Doctor jolts back: he sees the tiny plane [f:550]"
+  },
+  {
+   "frame": 560,
+   "clip": "whoosh_in",
+   "db": -23,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "20",
+   "why": "fly into the X-ray film [f:560]"
+  },
+  {
+   "frame": 592,
+   "clip": "floomp",
+   "db": -13,
+   "pan": 0.0,
+   "bus": "hit",
+   "s": "s3",
+   "row": "21",
+   "why": "POWER 2 THICK: the lining PUFFS into a mattress, floomp (kick, fx glow) [f:592]"
+  },
+  {
+   "frame": 592,
+   "clip": "floomp_air",
+   "db": -20,
+   "pan": 0.0,
+   "bus": "hit",
+   "s": "s3",
+   "row": "21",
+   "why": "POWER 2 THICK: the lining PUFFS into a mattress, floomp (kick, fx glow) [f:592]"
+  },
+  {
+   "frame": 595,
+   "clip": "sparkle2",
+   "db": -26,
+   "pan": 0.0,
+   "bus": "hit",
+   "s": "s3",
+   "row": "21",
+   "why": "POWER 2 THICK: the lining PUFFS into a mattress, floomp (kick, fx glow) [f:592]"
+  },
+  {
+   "frame": 606,
+   "clip": "prop_tiny",
+   "db": -31,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "22",
+   "why": "the tiny Cessna's propeller hums as it starts down the runway [f:606]",
+   "len": 1.0
+  },
+  {
+   "frame": 622,
+   "clip": "slide",
+   "db": -23,
+   "pan": 0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "22",
+   "why": "the mini Cessna SLIDES down the mattress runway [w:slid]"
+  },
+  {
+   "frame": 630,
+   "clip": "sparkle3",
+   "db": -31,
+   "pan": 0.3,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "22",
+   "why": "fx shine: oil sparkle trail behind the plane [f:630]"
+  },
+  {
+   "frame": 636,
+   "clip": "sparkle",
+   "db": -33,
+   "pan": 0.3,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "22",
+   "why": "fx shine: oil sparkle trail behind the plane [f:630]"
+  },
+  {
+   "frame": 617,
+   "clip": "whoosh_out",
+   "db": -26,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "23",
+   "why": "camera backs out of the film [f:617]"
+  },
+  {
+   "frame": 633,
+   "clip": "whip",
+   "db": -25,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "23",
+   "why": "Doctor DOUBLE TAKE: head snaps back, glasses slide to the nose tip [f:633]"
+  },
+  {
+   "frame": 636,
+   "clip": "tick_small",
+   "db": -30,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s3",
+   "row": "23",
+   "why": "Doctor DOUBLE TAKE: head snaps back, glasses slide to the nose tip [f:633]"
+  },
+  {
+   "frame": 660,
+   "clip": "whoosh_soft",
+   "db": -29,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "dissolve light box -> apron daylight [f:660]"
+  },
+  {
+   "frame": 662,
+   "clip": "tongs",
+   "db": -33,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 666,
+   "clip": "chew",
+   "db": -32,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 672,
+   "clip": "chew",
+   "db": -33,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 678,
+   "clip": "chew",
+   "db": -33,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 684,
+   "clip": "chew",
+   "db": -34,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 690,
+   "clip": "chew",
+   "db": -34,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 696,
+   "clip": "chew",
+   "db": -34,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "24",
+   "why": "fork back in hand, he eats on (time-lapse chewing) [f:662]"
+  },
+  {
+   "frame": 672,
+   "clip": "riser",
+   "db": -23,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "TWO YEARS time-lapse: seasons race (SYNTH riser + whooshes) [w:years]"
+  },
+  {
+   "frame": 681,
+   "clip": "whoosh_soft",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "TWO YEARS time-lapse: seasons race (SYNTH riser + whooshes) [w:years]"
+  },
+  {
+   "frame": 690,
+   "clip": "whoosh_soft",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "TWO YEARS time-lapse: seasons race (SYNTH riser + whooshes) [w:years]"
+  },
+  {
+   "frame": 698,
+   "clip": "whoosh_soft",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "TWO YEARS time-lapse: seasons race (SYNTH riser + whooshes) [w:years]"
+  },
+  {
+   "frame": 686,
+   "clip": "gust",
+   "db": -24,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "winter: a snowy wind gust (SYNTH wind) [f:686]",
+   "len": 1.0
+  },
+  {
+   "frame": 679,
+   "clip": "pop",
+   "db": -29,
+   "pan": 0.45,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "owner's beard grows: pop per size (S, M, L, XL) [f:679]",
+   "rate": 0.8
+  },
+  {
+   "frame": 686,
+   "clip": "pop",
+   "db": -29,
+   "pan": 0.45,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "owner's beard grows: pop per size (S, M, L, XL) [f:679]",
+   "rate": 0.95
+  },
+  {
+   "frame": 694,
+   "clip": "pop",
+   "db": -29,
+   "pan": 0.45,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "owner's beard grows: pop per size (S, M, L, XL) [f:679]",
+   "rate": 1.1
+  },
+  {
+   "frame": 701,
+   "clip": "pop",
+   "db": -28,
+   "pan": 0.45,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "25",
+   "why": "owner's beard grows: pop per size (S, M, L, XL) [f:679]",
+   "rate": 1.3
+  },
+  {
+   "frame": 704,
+   "clip": "clink2",
+   "db": -32,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "26",
+   "why": "picks the spinner [f:704]"
+  },
+  {
+   "frame": 713,
+   "clip": "pop2",
+   "db": -22,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "26",
+   "why": "pops the last piece (spinner) like a cherry; owner's jaw drops (fx glint) [f:713]"
+  },
+  {
+   "frame": 714,
+   "clip": "sparkle",
+   "db": -29,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "26",
+   "why": "pops the last piece (spinner) like a cherry; owner's jaw drops (fx glint) [f:713]"
+  },
+  {
+   "frame": 715,
+   "clip": "creak_wob2",
+   "db": -34,
+   "pan": 0.45,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "26",
+   "why": "pops the last piece (spinner) like a cherry; owner's jaw drops (fx glint) [f:713]"
+  },
+  {
+   "frame": 718,
+   "clip": "rag2",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "26",
+   "why": "dabs his mouth with the napkin [f:718]"
+  },
+  {
+   "frame": 730,
+   "clip": "lamps",
+   "db": -25,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "dusk: the hangar work lamps snap on [f:730]"
+  },
+  {
+   "frame": 732,
+   "clip": "latch",
+   "db": -31,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "dusk: the hangar work lamps snap on [f:730]"
+  },
+  {
+   "frame": 737,
+   "clip": "tick_small",
+   "db": -32,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "picks up the silver bell [f:737]"
+  },
+  {
+   "frame": 740,
+   "clip": "bell",
+   "db": -19,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "DESSERT?: he rings the little silver bell (fx glint) [f:740]"
+  },
+  {
+   "frame": 746,
+   "clip": "bell",
+   "db": -23,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "DESSERT?: he rings the little silver bell (fx glint) [f:740]"
+  },
+  {
+   "frame": 748,
+   "clip": "trolley",
+   "db": -28,
+   "pan": -0.25,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "the dessert trolley rolls in from the hangar doors [f:748]"
+  },
+  {
+   "frame": 752,
+   "clip": "squeak_w",
+   "db": -33,
+   "pan": -0.25,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "the dessert trolley rolls in from the hangar doors [f:748]"
+  },
+  {
+   "frame": 762,
+   "clip": "squeak_w",
+   "db": -34,
+   "pan": -0.25,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "27",
+   "why": "the dessert trolley rolls in from the hangar doors [f:748]"
+  },
+  {
+   "frame": 768,
+   "clip": "bikebell",
+   "db": -25,
+   "pan": -0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "28",
+   "why": "BIKES tier: bicycle bells, cream swirl [w:Bikes,]"
+  },
+  {
+   "frame": 772,
+   "clip": "bikebell",
+   "db": -27,
+   "pan": -0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "28",
+   "why": "BIKES tier: bicycle bells, cream swirl [w:Bikes,]"
+  },
+  {
+   "frame": 770,
+   "clip": "whoosh_soft",
+   "db": -33,
+   "pan": -0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "28",
+   "why": "BIKES tier: bicycle bells, cream swirl [w:Bikes,]"
+  },
+  {
+   "frame": 796,
+   "clip": "cart",
+   "db": -24,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "29",
+   "why": "CARTS tier: nested shopping carts rattle [w:carts,]"
+  },
+  {
+   "frame": 798,
+   "clip": "clink",
+   "db": -28,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "29",
+   "why": "CARTS tier: nested shopping carts rattle [w:carts,]"
+  },
+  {
+   "frame": 801,
+   "clip": "cart",
+   "db": -27,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "29",
+   "why": "CARTS tier: nested shopping carts rattle [w:carts,]"
+  },
+  {
+   "frame": 818,
+   "clip": "tv_on",
+   "db": -25,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "30",
+   "why": "TVs tier: screens click on to test stripes [w:TVs,]"
+  },
+  {
+   "frame": 820,
+   "clip": "tv_whine",
+   "db": -37,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "30",
+   "why": "TVs tier: screens click on to test stripes [w:TVs,]",
+   "len": 0.4
+  },
+  {
+   "frame": 823,
+   "clip": "tv_on",
+   "db": -28,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "30",
+   "why": "TVs tier: screens click on to test stripes [w:TVs,]"
+  },
+  {
+   "frame": 826,
+   "clip": "creak_wob",
+   "db": -24,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "the coffin cake topper wobbles (27.52-28.04) [w:and#5]"
+  },
+  {
+   "frame": 835,
+   "clip": "creak_wob2",
+   "db": -26,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "the coffin cake topper wobbles (27.52-28.04) [w:and#5]"
+  },
+  {
+   "frame": 830,
+   "clip": "china",
+   "db": -32,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "plate up in his hand [f:830]"
+  },
+  {
+   "frame": 845,
+   "clip": "whip",
+   "db": -28,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "the coffin falls [f:845]"
+  },
+  {
+   "frame": 850,
+   "clip": "thud",
+   "db": -18,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "COFFIN caught on his plate one-handed (kick) [f:850]"
+  },
+  {
+   "frame": 850,
+   "clip": "plate",
+   "db": -24,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "31",
+   "why": "COFFIN caught on his plate one-handed (kick) [f:850]"
+  },
+  {
+   "frame": 862,
+   "clip": "cloche",
+   "db": -24,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "a hand lifts the silver cloche: the BOOK OF RECORDS [f:860]"
+  },
+  {
+   "frame": 866,
+   "clip": "shutter",
+   "db": -27,
+   "pan": -0.4,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "the first flashbulb pops in the dark doorway (fx glint) [f:866]"
+  },
+  {
+   "frame": 866,
+   "clip": "flashpop",
+   "db": -31,
+   "pan": -0.4,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "the first flashbulb pops in the dark doorway (fx glint) [f:866]"
+  },
+  {
+   "frame": 868,
+   "clip": "flashwhine",
+   "db": -40,
+   "pan": -0.4,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "the first flashbulb pops in the dark doorway (fx glint) [f:866]"
+  },
+  {
+   "frame": 876,
+   "clip": "step1",
+   "db": -31,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "owner walks to the cradle: footsteps on concrete [f:876]"
+  },
+  {
+   "frame": 884,
+   "clip": "step2",
+   "db": -32,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "owner walks to the cradle: footsteps on concrete [f:876]"
+  },
+  {
+   "frame": 892,
+   "clip": "step3",
+   "db": -31,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "owner walks to the cradle: footsteps on concrete [f:876]"
+  },
+  {
+   "frame": 900,
+   "clip": "step4",
+   "db": -32,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "32",
+   "why": "owner walks to the cradle: footsteps on concrete [f:876]"
+  },
+  {
+   "frame": 880,
+   "clip": "shutter",
+   "db": -27,
+   "pan": 0.35,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "33",
+   "why": "flashbulb; certificate in his hand [f:880]"
+  },
+  {
+   "frame": 880,
+   "clip": "flashpop",
+   "db": -31,
+   "pan": 0.35,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "33",
+   "why": "flashbulb; certificate in his hand [f:880]"
+  },
+  {
+   "frame": 882,
+   "clip": "tick_small",
+   "db": -33,
+   "pan": 0.35,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "33",
+   "why": "flashbulb; certificate in his hand [f:880]"
+  },
+  {
+   "frame": 894,
+   "clip": "shutter",
+   "db": -18,
+   "pan": -0.3,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 894,
+   "clip": "shutter",
+   "db": -19,
+   "pan": 0.35,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 894,
+   "clip": "flashpop",
+   "db": -20,
+   "pan": 0.0,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 896,
+   "clip": "flashpop",
+   "db": -23,
+   "pan": -0.5,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 898,
+   "clip": "flashpop",
+   "db": -23,
+   "pan": 0.5,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 897,
+   "clip": "flashwhine",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "hit",
+   "s": "s4",
+   "row": "33",
+   "why": "POWER 3 STRANGEST: every flashbulb fires at once (kick) [f:894]"
+  },
+  {
+   "frame": 912,
+   "clip": "cert_bite",
+   "db": -19,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "DIET: bites the corner of the metal frame like a medal (fx shine) [f:912]"
+  },
+  {
+   "frame": 912,
+   "clip": "crunch2",
+   "db": -26,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "DIET: bites the corner of the metal frame like a medal (fx shine) [f:912]"
+  },
+  {
+   "frame": 913,
+   "clip": "sparkle3",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "DIET: bites the corner of the metal frame like a medal (fx shine) [f:912]"
+  },
+  {
+   "frame": 918,
+   "clip": "shutter",
+   "db": -28,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "flashbulb pops one by one [f:918]"
+  },
+  {
+   "frame": 918,
+   "clip": "flashpop",
+   "db": -32,
+   "pan": -0.2,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "flashbulb pops one by one [f:918]"
+  },
+  {
+   "frame": 930,
+   "clip": "shutter",
+   "db": -29,
+   "pan": 0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "flashbulb pops one by one [f:918]"
+  },
+  {
+   "frame": 930,
+   "clip": "flashpop",
+   "db": -33,
+   "pan": 0.3,
+   "bus": "sfx",
+   "s": "s4",
+   "row": "34",
+   "why": "flashbulb pops one by one [f:918]"
+  },
+  {
+   "frame": 940,
+   "clip": "whoosh_soft",
+   "db": -30,
+   "pan": 0.0,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "35",
+   "why": "match dissolve: flash glare -> airliner window [f:940]"
+  },
+  {
+   "frame": 945,
+   "clip": "foil",
+   "db": -23,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "35",
+   "why": "lifts the foil off the airline meal [w:Honestly,]"
+  },
+  {
+   "frame": 956,
+   "clip": "sniff",
+   "db": -25,
+   "pan": 0.05,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "35",
+   "why": "STILLNESS 31.82-32.28: the sniff (SYNTH sniff) [f:956]"
+  },
+  {
+   "frame": 969,
+   "clip": "scrape",
+   "db": -24,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "slides the grey meal aside with one finger; a pea rolls off [f:969]"
+  },
+  {
+   "frame": 975,
+   "clip": "grain",
+   "db": -32,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "slides the grey meal aside with one finger; a pea rolls off [f:969]",
+   "rate": 0.7
+  },
+  {
+   "frame": 979,
+   "clip": "grain",
+   "db": -33,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "slides the grey meal aside with one finger; a pea rolls off [f:969]",
+   "rate": 0.7
+  },
+  {
+   "frame": 982,
+   "clip": "grain",
+   "db": -34,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "slides the grey meal aside with one finger; a pea rolls off [f:969]",
+   "rate": 0.7
+  },
+  {
+   "frame": 986,
+   "clip": "plip",
+   "db": -29,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "slides the grey meal aside with one finger; a pea rolls off [f:969]"
+  },
+  {
+   "frame": 977,
+   "clip": "cloth3",
+   "db": -32,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "36",
+   "why": "owner leans away from the sliding meal [f:977]"
+  },
+  {
+   "frame": 991,
+   "clip": "shing",
+   "db": -24,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "knife and fork up over the tray table (fx glint 993) [f:991]"
+  },
+  {
+   "frame": 993,
+   "clip": "sparkle",
+   "db": -30,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "knife and fork up over the tray table (fx glint 993) [f:991]"
+  },
+  {
+   "frame": 1001,
+   "clip": "chomp",
+   "db": -14,
+   "pan": 0.05,
+   "bus": "hit",
+   "s": "s5",
+   "row": "37",
+   "why": "POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001]"
+  },
+  {
+   "frame": 1001,
+   "clip": "crunch",
+   "db": -18,
+   "pan": 0.05,
+   "bus": "hit",
+   "s": "s5",
+   "row": "37",
+   "why": "POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001]"
+  },
+  {
+   "frame": 1001,
+   "clip": "clank",
+   "db": -24,
+   "pan": 0.05,
+   "bus": "hit",
+   "s": "s5",
+   "row": "37",
+   "why": "POWER 4 FOOD: the CHOMP out of the plastic tray table (kick, fx clank) [f:1001]"
+  },
+  {
+   "frame": 1003,
+   "clip": "rag",
+   "db": -31,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003]"
+  },
+  {
+   "frame": 1007,
+   "clip": "squeak",
+   "db": -33,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003]"
+  },
+  {
+   "frame": 1013,
+   "clip": "squeak",
+   "db": -34,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003]"
+  },
+  {
+   "frame": 1018,
+   "clip": "squeak",
+   "db": -35,
+   "pan": -0.3,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "37",
+   "why": "owner rubs his eyes with the yellow rag, then wipes the window (squeaks) [f:1003]"
+  },
+  {
+   "frame": 1007,
+   "clip": "chew",
+   "db": -29,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "38",
+   "why": "chews the tray table, happy [f:1007]"
+  },
+  {
+   "frame": 1012,
+   "clip": "chew",
+   "db": -31,
+   "pan": 0.1,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "38",
+   "why": "chews the tray table, happy [f:1007]"
+  },
+  {
+   "frame": 1015,
+   "clip": "wink",
+   "db": -27,
+   "pan": 0.15,
+   "bus": "sfx",
+   "s": "s5",
+   "row": "38",
+   "why": "slow smug wink: sparkle ting [f:1015]"
+  }
+ ],
+ "beds": [
+  {
+   "frame": 0,
+   "place": "APRON morning: wind over the grass, a Cessna circuit far off",
+   "layers": [
+    [
+     "amb_wind",
+     -31
+    ],
+    [
+     "amb_prop",
+     -40
+    ]
+   ],
+   "s": "s1"
+  },
+  {
+   "frame": 514,
+   "place": "X-RAY ROOM: room tone + light-box buzz (from the belly match dissolve)",
+   "layers": [
+    [
+     "amb_room",
+     -33
+    ],
+    [
+     "amb_lightbox",
+     -41
+    ]
+   ],
+   "s": "s3"
+  },
+  {
+   "frame": 565,
+   "place": "INSIDE THE X-RAY FILM: soft low drone",
+   "layers": [
+    [
+     "amb_xray",
+     -35
+    ],
+    [
+     "amb_lightbox",
+     -48
+    ]
+   ],
+   "s": "s3"
+  },
+  {
+   "frame": 619,
+   "place": "X-RAY ROOM again (camera backs out)",
+   "layers": [
+    [
+     "amb_room",
+     -33
+    ],
+    [
+     "amb_lightbox",
+     -41
+    ]
+   ],
+   "s": "s3"
+  },
+  {
+   "frame": 664,
+   "place": "APRON, the two years (dissolve 662-672)",
+   "layers": [
+    [
+     "amb_wind",
+     -31
+    ],
+    [
+     "amb_prop",
+     -42
+    ]
+   ],
+   "s": "s4"
+  },
+  {
+   "frame": 726,
+   "place": "APRON at DUSK: lighter wind, crickets",
+   "layers": [
+    [
+     "amb_wind",
+     -35
+    ],
+    [
+     "amb_crickets",
+     -41
+    ]
+   ],
+   "s": "s4"
+  },
+  {
+   "frame": 942,
+   "place": "AIRLINER CABIN: jet roar and hum",
+   "layers": [
+    [
+     "amb_cabin",
+     -30
+    ],
+    [
+     "amb_jet",
+     -40
+    ]
+   ],
+   "s": "s5",
+   "xf": 0.3
+  }
+ ],
+ "power": [
+  {
+   "frame": 121,
+   "hold": 8,
+   "s": "s1",
+   "why": "POWER 1 LUNCH!: 8 quiet frames, napkin snap"
+  },
+  {
+   "frame": 592,
+   "hold": 6,
+   "s": "s3",
+   "why": "POWER 2 THICK: the lining puffs into a mattress, floomp"
+  },
+  {
+   "frame": 894,
+   "hold": 6,
+   "s": "s4",
+   "why": "POWER 3 STRANGEST: every flashbulb at once"
+  },
+  {
+   "frame": 1001,
+   "hold": 8,
+   "s": "s5",
+   "why": "POWER 4 FOOD: the chomp into the tray table"
+  }
+ ],
+ "music": {
+  "theme": "Fluffing a Duck",
+  "lead_s": 0.5,
+  "sections": [
+   {
+    "name": "statement: the bouncy theme from bar 1 (hook to the tires)",
+    "film_s": 0.0,
+    "src_s": 0.0
+   },
+   {
+    "name": "low: the X-ray room, the same theme slowed 0.8 and dark (low-passed), -4 dB",
+    "film_s": 16.98,
+    "src_s": 19.0,
+    "slow": 0.8,
+    "lp": 1300,
+    "db": -4.0
+   },
+   {
+    "name": "return: the theme back in full; the track's last BUM (61.05 s) lands on FOOD (33.38)",
+    "film_s": 22.3,
+    "src_s": 49.95
+   }
+  ],
+  "end_fade_s": [
+   33.75,
+   34.05
+  ],
+  "lifts": [
+   {
+    "t0": 31.82,
+    "t1": 32.28,
+    "db": -7.0,
+    "why": "STILLNESS: the sniff"
+   }
+  ]
+ },
+ "music_under_db": -17.0,
+ "music_gap_db": -10.0,
+ "amb_trim_db": 3.5,
+ "sfx_trim_db": 2.0
+}

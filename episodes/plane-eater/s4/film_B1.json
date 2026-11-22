@@ -109,7 +109,8 @@
     "tint": "#ffffff"
    },
    "air": 0.3,
-   "wind": 1
+   "wind": 1,
+   "hide_near_tree": true
   }
  },
  "props": {

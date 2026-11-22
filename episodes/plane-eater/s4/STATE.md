@@ -66,3 +66,8 @@ Done: makeCoffin() in sets/s4_apron.js = classic six-sided coffin, warm varnishe
 top (sits on the TV tier; the glb box was inside the TV cabinet), shrinks to 0.62 m in the fall onto his plate (same model on the plate and on the cloth).
 B3 end station re-aimed at the tower top (f838 shows the coffin). The owner at the cradle moved to (1.6, -1.3) and B4/B5 aims shifted left: he stands
 left of Michel, never behind his head. Re-rendered B3-B5 only. Weak: the coffin on the held plate stands upright (plate orientation in the hand).
+
+## FIX ROUND 3 (lead: tree blob + legs, 20 min cap)
+Done: film_B1 sets places.apron.hide_near_tree (s4_apron.js hides the 3 near-tree meshes within 4.5 m of tree_table, above 2.2 m) for the time-lapse
+wide; film_B2 (f705-745) plays moves/ep_s4n.mjs = the same seated move with invisible 3D legs (seated card only). Re-rendered B1 + B2 only, blend, mp4.
+film.json (the checks' cut version) still uses ep_s4 with legs for B2's frames.

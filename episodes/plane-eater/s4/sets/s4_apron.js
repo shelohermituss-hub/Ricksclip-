@@ -68,6 +68,9 @@ export async function build(THREE, scene, film, ctx) {
   // the kit's lights / sky / fog (film.js baseLight) to drive the seasons
   let hemi = null, sun = null, sky = null; scene.traverse(o => { if (o.isHemisphereLight) hemi = o; if (o.isDirectionalLight) sun = o; if (o.isMesh && o.geometry && o.geometry.type === 'SphereGeometry' && o.geometry.parameters.radius === 400) sky = o; });
   const sun0 = sun ? sun.position.clone() : null;
+  if ((ctx.place || {}).hide_near_tree) { const tc = V([7.0, -4.9, 0]), b = new THREE.Box3(), c = new THREE.Vector3(); let n = 0;   // fix round 3: the near tree (tree_table) out of the time-lapse wide
+    scene.traverse(o => { if (o.isMesh && o.visible) { b.setFromObject(o); b.getCenter(c); if (Math.hypot(c.x - tc.x, c.z - tc.z) < 4.5 && b.max.y > 2.2 && b.max.x - b.min.x < 12) { o.visible = false; n++; } } });
+    console.warn('S4 hide_near_tree: ' + n + ' meshes'); }
   const lawnM = new Map(), leafM = new Map(), lampM = [], deck = [];
   scene.traverse(o => { if (!o.isMesh) return; const n = (o.material && o.material.name) || '';
     if (/^lawn|lawn_mown|grass|tuft/.test(n) || /^lawn|tufts/.test(o.name)) lawnM.set(o.material, o.material.color.clone());
