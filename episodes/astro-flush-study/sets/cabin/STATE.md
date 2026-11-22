@@ -29,22 +29,31 @@ magazine (with its black straw), drink_ball (red/white ball + straw), clipboard,
 bag_navigator, bag_commander, bag_new_guy (full) / bag_new_guy_open (empty; swapped by `bag_new_guy`), all origins at the hook (`sway_deg` 2.5),
 bay_door (`open`: slides 1.25 m into the end wall), cabin_monitor_pic.
 
-## Numbers, round 3 (ours / his, 540x960)
+## Round 2 (coordinator's 5 points)
+- Cameras by fit: `scripts/fit_cams_cabin.py` (5-13 points measured by hand on his frames, least squares on position, yaw, pitch, roll and lens, with a 10 px/degree prior on the lens; f300 is level and fits position only; `--write` stores the cams in params).
+  Model changes where the residual was high: monitor 2.35-4.85 m, rail top 1.61 m, monitor label at the frame's bottom edge and 0.1 m left of centre, HEAD sign 0.11 m lower, the day duffels 0.17-0.2 m lower, hatch 0.1 m higher;
+  in the bay, blue bag +0.1, green bag -0.1, right porthole +0.1, corner/end wall 0.35 m nearer the green bag (EX = BX + 2.15), door 0.35 m farther from the corner, rail over the door 0.8 m long, grab bar 1.9 m tall, kid drawing lower (at the rail).
+  RMS after: f300 3.9 px, f330 2.9, f390 6.7, f430 9.6, f460 13.7, f490 17.5.
+- Day: 0 diffuse bounces, a dim warm world, a small warm fill from the key side, sun 4.6. Night: orange pools at 1000 W, stand-in heads glow (0.9), lime story bag #38b52c with a mint glow and a light lining.
+- Day details: dots 6 cm at 11 cm pitch, darker and wider panel seams, galley table moved into f330, `cabin_shell` (ceiling, sides, front and back cover; no shadows) so a wide kit lens shows no sky. Checked in the kit at 24 mm.
+- Bags: broad folds (a slow radial wave), a dark collar opening round the head.
+
+## Numbers, round 2 (ours / his, 540x960)
 
 | frame | mean L ours / his | p1 | p99 | mean sat |
 |---|---|---|---|---|
-| f300 | 0.448 / 0.441 | 0.101 / 0.003 | 0.904 / 0.999 | 0.279 / 0.376 |
-| f330 | 0.518 / 0.515 | 0.066 / 0.003 | 0.897 / 0.995 | 0.232 / 0.294 |
-| f390 | 0.511 / 0.500 | 0.073 / 0.003 | 0.899 / 0.997 | 0.241 / 0.318 |
-| f430 | 0.084 / 0.121 | 0.005 / 0.006 | 0.712 / 0.968 | 0.865 / 0.801 |
-| f460 | 0.113 / 0.157 | 0.002 / 0.006 | 0.652 / 0.973 | 0.838 / 0.782 |
-| f490 | 0.129 / 0.140 | 0.004 / 0.003 | 0.807 / 0.972 | 0.854 / 0.808 |
+| f300 | 0.389 / 0.441 | 0.004 / 0.003 | 0.916 / 0.999 | 0.297 / 0.376 |
+| f330 | 0.506 / 0.515 | 0.007 / 0.003 | 0.920 / 0.995 | 0.245 / 0.294 |
+| f390 | 0.484 / 0.500 | 0.005 / 0.003 | 0.922 / 0.997 | 0.265 / 0.318 |
+| f430 | 0.133 / 0.121 | 0.007 / 0.006 | 0.847 / 0.968 | 0.818 / 0.801 |
+| f460 | 0.190 / 0.157 | 0.006 / 0.006 | 1.000 / 0.973 | 0.788 / 0.782 |
+| f490 | 0.142 / 0.140 | 0.006 / 0.003 | 1.000 / 0.972 | 0.850 / 0.808 |
 
-## Still wrong after round 3, worst first
-1. Day shadows are not dark enough: on the quilt ours are mid grey-brown, his are near black (p1 0.07 vs 0.003). This is with 1 diffuse bounce and a world at 0.05. The light bouncing off the bright floor fills them. Next: make the floor and quilt not light each other, or add a negative fill.
-2. Night f430 / f460: too dark (L 0.08-0.11 vs 0.12-0.16) and no bright whites (p99 0.65-0.71 vs 0.97; his whites come mostly from the faces). The warm pools now show but read purple, not warm #654d58. The empty green bag reads grey-green; his is a lit lime with a bright mint rim.
-3. f300 framing: the monitor is narrower than his at the same height (his 67 % of the width), so his monitor may be wider than 1.4 m, or the lens differs during the move. The close new guy stand-in is placed by eye.
-4. f460 camera: moved right, but his frame still shows more of the blue end wall at the right and the commander's head cut at the left edge.
-5. Day: the floor dots read as fine noise at 540 px. His dot grid is coarser and clearer. The upper wall is flatter than his (his panels have a soft gradient and darker seams). The galley table is only partly in frame.
-6. Kit: with a 24 mm test lens the empty space above the cabin wall (sky colour) shows at the top. The cabin has no closed ceiling over the camera side, so long lenses only. The floor is lighter than in Blender.
-7. Sleeping bag shapes are simple lathes: no broad folds, and no collar opening around the head.
+## Still wrong after round 2, worst first
+1. f490: fit RMS 17.5 px. The camera solves high and looking down (z 2.65, pitch -13), and in ours the door and the stand-in fill much more of the frame than in his. The door, rail and toilet-room layout are still guessed. His door opening also shows shelves, which we do not have.
+2. f460: fit RMS 13.7 px, and the frame is too bright (0.19 vs 0.16). The end wall takes about 45 % of our frame against about 30 % of his. The empty green bag reads as a flat slab, not his peeled-open bag.
+3. Day saturation is still low (0.25-0.30 vs 0.29-0.38). His wall is a cooler blue-grey and his quilt is warmer. Our p99 is 0.92: no lit white reaches 0.99, because his whites are the faces. f300 is dark (0.39 vs 0.44) because the close stand-in card covers the lit quilt.
+4. Day shadow shapes: ours fall nearly straight back. His fall further down-left, with long floor shadows toward the camera. That probably needs a second, higher light that we do not have.
+5. f430: the camera solves 3.5 m high and looking down 15 degrees, so the skylights read bigger than his. The warm pools are now warm, but they are rounder and brighter at the top than his.
+6. The floor dots are now clear but bigger and harder than his. The upper wall has no soft gradient, because flat colours plus a sun give none.
+7. Kit: the floor is still lighter than in Blender, and the kit has no 0-bounce setting, so its shadows are lighter.

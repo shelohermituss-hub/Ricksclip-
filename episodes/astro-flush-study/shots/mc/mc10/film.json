@@ -5,7 +5,7 @@
   1080,
   1920
  ],
- "words": "refs/words_ref.json",
+ "words": "caps_his.json",
  "start": 803,
  "end": 867,
  "camera": {
@@ -70,7 +70,7 @@
   "hat_shadow": 0,
   "lights": []
  },
- "caption_rick_scale": 0.75,
+ "caption_rick_scale": 1.0,
  "post": {
   "dof": 0.0,
   "dust": 0.0,
@@ -81,7 +81,16 @@
   "mc": {
    "set": "mc",
    "kind": "interior",
-   "light": "interior",
+   "light": "night",
+   "light_over": {
+    "top": "#2a2f8a",
+    "hor": "#4b3f9e",
+    "sun": "#b4b0ff",
+    "si": 1.0,
+    "amb": "#6a62c8",
+    "ai": 1.1,
+    "tint": "#ffffff"
+   },
    "mc": {
     "keys": "reference",
     "ref_f0": 0
@@ -139,21 +148,63 @@
      "subject": "director",
      "framing": "M",
      "purpose": "f803 hard cut: director centre, OFF COURSE behind his head; steady push in to f866 (z ~1.07 per 0.5 s)"
+    },
+    {
+     "at": 845,
+     "pos": [
+      1.0,
+      -17.3083,
+      1.3467
+     ],
+     "aim": [
+      0.6,
+      0,
+      2.8000000000000003
+     ],
+     "lens": 55.0,
+     "roll": 0,
+     "hold": 1.0,
+     "travel": 0.2,
+     "whip": true,
+     "creep": 0,
+     "drift": [
+      0.0,
+      0.47,
+      -0.1
+     ],
+     "drift_aim": 0,
+     "subject": "director",
+     "framing": "M",
+     "purpose": "f840-845 the picture bumps 3 % down with the lunge, then the push goes on"
     }
    ]
   }
  ],
+ "card_scale": {
+  "director": [
+   [
+    0,
+    0.8,
+    0.93
+   ],
+   [
+    900,
+    0.8,
+    0.93
+   ]
+  ]
+ },
  "acts": [
   {
    "who": "director",
    "at": 0,
    "pos": [
     0.9,
-    -13.21,
-    0.0
+    -14.010000000000002,
+    0
    ],
    "pose": "m:../../ep_mc/dir10",
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     0.9,
     -19.21,
@@ -177,7 +228,7 @@
    "at": 838,
    "pos": [
     0.9500000000000001,
-    -14.21,
+    -14.81,
     0
    ],
    "move_s": 0.13,
@@ -191,7 +242,7 @@
   {
    "who": "director",
    "at": 842,
-   "face": "k:furious",
+   "face": "k:afGrit",
    "look": [
     0.9,
     -19.21,
@@ -204,14 +255,14 @@
    "at": 0,
    "pos": [
     -1.188,
-    -11.6,
+    -11.35,
     0
    ],
    "pose": "m:../../ep_mc/fao10",
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     -1.188,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "round eyes"
@@ -219,10 +270,10 @@
   {
    "who": "ctlGreen",
    "at": 845,
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     -1.188,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "845 CAPCOM ducks"
@@ -232,14 +283,14 @@
    "at": 0,
    "pos": [
     -0.565,
-    -11.6,
+    -11.35,
     0
    ],
    "pose": "m:../../ep_mc/capcom10",
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     -0.565,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "round eyes"
@@ -247,10 +298,10 @@
   {
    "who": "ctlBlue",
    "at": 845,
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     -0.565,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "845 CAPCOM ducks"
@@ -260,14 +311,14 @@
    "at": 0,
    "pos": [
     0.058,
-    -11.6,
+    -11.35,
     0
    ],
    "pose": "m:../../ep_mc/guido10",
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     0.058,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "round eyes"
@@ -275,10 +326,10 @@
   {
    "who": "ctlDark",
    "at": 845,
-   "face": "k:shocked",
+   "face": "k:open",
    "look": [
     0.058,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "845 CAPCOM ducks"

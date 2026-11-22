@@ -197,7 +197,7 @@ for s in (1, -1):
 obj('cabin_roof_braces', bm, mat('roof_brace', rough=.6), smooth=True)
 bm = B(); abox(bm, 8.4, 10.5, .2, MT((0, WY - 4.6, CTOP + 1.6)), bev=0)
 for s in (1, -1): abox(bm, .2, 10.5, CTOP + 1.8, MT((s * 3.45, WY - 4.6, (CTOP + 1.8) / 2)), bev=0)
-abox(bm, 8.4, .2, CTOP + 1.8, MT((0, WY - 9.8, (CTOP + 1.8) / 2)), bev=0); obj('cabin_shell', bm, mat('ceiling'))
+abox(bm, 8.4, .2, CTOP + 1.8, MT((0, WY - 9.8, (CTOP + 1.8) / 2)), bev=0); abox(bm, 8.4, .2, CTOP + 1.8, MT((0, WY + .35, (CTOP + 1.8) / 2)), bev=0); obj('cabin_shell', bm, mat('ceiling'))
 # wall monitor: dark frame, small camera on top centre, label plate under it, green LED bottom right, the picture plane fed by the stretch builder
 MY = WY - .045
 box('cabin_monitor_frame', (MON['w'], .09, MON['h']), (MON['x'], MY, MON['z']), mat('screen_frame', rough=.45), bev=.02)

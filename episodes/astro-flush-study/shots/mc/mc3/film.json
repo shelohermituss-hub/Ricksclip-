@@ -5,7 +5,7 @@
   1080,
   1920
  ],
- "words": "refs/words_ref.json",
+ "words": "caps_his.json",
  "start": 120,
  "end": 411,
  "camera": {
@@ -70,7 +70,7 @@
   "hat_shadow": 0,
   "lights": []
  },
- "caption_rick_scale": 0.75,
+ "caption_rick_scale": 1.0,
  "post": {
   "dof": 0.0,
   "dust": 0.0,
@@ -81,7 +81,16 @@
   "mc": {
    "set": "mc",
    "kind": "interior",
-   "light": "interior",
+   "light": "night",
+   "light_over": {
+    "top": "#2a2f8a",
+    "hor": "#4b3f9e",
+    "sun": "#b4b0ff",
+    "si": 1.0,
+    "amb": "#6a62c8",
+    "ai": 1.1,
+    "tint": "#ffffff"
+   },
    "mc": {
     "keys": "reference",
     "ref_f0": 0
@@ -126,7 +135,7 @@
       4.4122
      ],
      "lens": 58.88,
-     "roll": 0,
+     "roll": -4,
      "hold": 0,
      "min_hold": 0,
      "creep": 0,
@@ -148,14 +157,11 @@
      ],
      "lens": 58.88,
      "roll": 0,
-     "travel_roll": -2.5,
-     "hold": 0.07,
-     "min_hold": 0,
-     "creep": 0.002,
+     "hold": 0,
+     "creep": 0,
      "framing": "W",
-     "travel": 0.73,
      "subject": "ctlBlue",
-     "purpose": "f142 pull back + drop: orbit map wall, clocks, three heads at the bottom (cam f140 fitted)"
+     "purpose": "via (no stop): orbit map wall, clocks, three heads at the bottom (cam f140 fitted)"
     },
     {
      "at": 180,
@@ -171,7 +177,8 @@
      ],
      "lens": 58.88,
      "roll": 0,
-     "travel_roll": 3.0,
+     "travel": 2.0,
+     "travel_roll": -5.0,
      "hold": 3.0,
      "creep": 0,
      "drift": [
@@ -180,10 +187,9 @@
       0.0
      ],
      "drift_aim": 0,
-     "travel": 1.2,
      "subject": "director",
      "framing": "M",
-     "purpose": "f180 settled: screen top half, director centre right, slow push in"
+     "purpose": "one pull-back f120-180 (roll -4 -> about -7 -> level), then settled: slow push in"
     },
     {
      "at": 283,
@@ -242,8 +248,8 @@
     -13.21,
     0.0
    ],
-   "move_s": 0.97,
-   "linear": false,
+   "move_s": 1.0,
+   "linear": true,
    "look": [
     0.9,
     -19.21,
@@ -253,8 +259,8 @@
   },
   {
    "who": "director",
-   "at": 176,
-   "face": "k:talk",
+   "at": 178,
+   "face": "k:browUp",
    "look": [
     0.9,
     -19.21,
@@ -332,28 +338,67 @@
    "who": "ctlGreen",
    "at": 0,
    "pos": [
-    -1.188,
-    -11.6,
-    0
+    -1.195,
+    -11.35,
+    0.58
    ],
    "pose": "m:../../ep_mc/fao3",
+   "visible": false,
    "look": [
     -1.188,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "behind the console, float"
+   "note": "hidden behind the desk until the camera is level"
   },
   {
    "who": "ctlGreen",
-   "at": 244,
+   "at": 131,
+   "visible": true,
+   "look": [
+    -1.188,
+    -17.35,
+    1.4
+   ],
+   "note": "heads rise in from the bottom f131-139 (his f134-138)"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 150,
+   "pos": [
+    -1.188,
+    -11.35,
+    0
+   ],
+   "move_s": 0.85,
+   "look": [
+    -1.188,
+    -17.35,
+    1.4
+   ],
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 176,
+   "face": "k:open",
+   "look": [
+    -1.188,
+    -17.35,
+    1.4
+   ],
+   "note": "heads turn to the director"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 264,
    "face": "k:surprised",
    "look": [
     -1.188,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "eyes big, look at the director"
+   "note": "mild surprise at NO GO"
   },
   {
    "who": "ctlGreen",
@@ -361,7 +406,7 @@
    "face": "k:standard",
    "look": [
     -1.188,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "quiet in the monitor"
@@ -370,28 +415,67 @@
    "who": "ctlBlue",
    "at": 0,
    "pos": [
-    -0.565,
-    -11.6,
-    0
+    -0.885,
+    -11.35,
+    0.58
    ],
    "pose": "m:../../ep_mc/capcom3",
+   "visible": false,
    "look": [
     -0.565,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "behind the console, float"
+   "note": "hidden behind the desk until the camera is level"
   },
   {
    "who": "ctlBlue",
-   "at": 244,
+   "at": 131,
+   "visible": true,
+   "look": [
+    -0.565,
+    -17.35,
+    1.4
+   ],
+   "note": "heads rise in from the bottom f131-139 (his f134-138)"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 150,
+   "pos": [
+    -0.565,
+    -11.35,
+    0
+   ],
+   "move_s": 0.85,
+   "look": [
+    -0.565,
+    -17.35,
+    1.4
+   ],
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 176,
+   "face": "k:open",
+   "look": [
+    -0.565,
+    -17.35,
+    1.4
+   ],
+   "note": "heads turn to the director"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 264,
    "face": "k:surprised",
    "look": [
     -0.565,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "eyes big, look at the director"
+   "note": "mild surprise at NO GO"
   },
   {
    "who": "ctlBlue",
@@ -399,7 +483,7 @@
    "face": "k:standard",
    "look": [
     -0.565,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "quiet in the monitor"
@@ -408,28 +492,67 @@
    "who": "ctlDark",
    "at": 0,
    "pos": [
-    0.058,
-    -11.6,
-    0
+    -0.575,
+    -11.35,
+    0.58
    ],
    "pose": "m:../../ep_mc/guido3",
+   "visible": false,
    "look": [
     0.058,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "behind the console, float"
+   "note": "hidden behind the desk until the camera is level"
   },
   {
    "who": "ctlDark",
-   "at": 244,
+   "at": 131,
+   "visible": true,
+   "look": [
+    0.058,
+    -17.35,
+    1.4
+   ],
+   "note": "heads rise in from the bottom f131-139 (his f134-138)"
+  },
+  {
+   "who": "ctlDark",
+   "at": 150,
+   "pos": [
+    0.058,
+    -11.35,
+    0
+   ],
+   "move_s": 0.85,
+   "look": [
+    0.058,
+    -17.35,
+    1.4
+   ],
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+  },
+  {
+   "who": "ctlDark",
+   "at": 176,
+   "face": "k:open",
+   "look": [
+    0.058,
+    -17.35,
+    1.4
+   ],
+   "note": "heads turn to the director"
+  },
+  {
+   "who": "ctlDark",
+   "at": 264,
    "face": "k:surprised",
    "look": [
     0.058,
-    -17.6,
+    -17.35,
     1.4
    ],
-   "note": "eyes big, look at the director"
+   "note": "mild surprise at NO GO"
   },
   {
    "who": "ctlDark",
@@ -437,10 +560,90 @@
    "face": "k:standard",
    "look": [
     0.058,
-    -17.6,
+    -17.35,
     1.4
    ],
    "note": "quiet in the monitor"
   }
- ]
+ ],
+ "card_scale": {
+  "director": [
+   [
+    0,
+    0.8,
+    0.93
+   ],
+   [
+    900,
+    0.8,
+    0.93
+   ]
+  ],
+  "ctlGreen": [
+   [
+    0,
+    0.6,
+    0.6
+   ],
+   [
+    150,
+    0.6,
+    0.6
+   ],
+   [
+    176,
+    1,
+    1
+   ],
+   [
+    900,
+    1,
+    1
+   ]
+  ],
+  "ctlBlue": [
+   [
+    0,
+    0.6,
+    0.6
+   ],
+   [
+    150,
+    0.6,
+    0.6
+   ],
+   [
+    176,
+    1,
+    1
+   ],
+   [
+    900,
+    1,
+    1
+   ]
+  ],
+  "ctlDark": [
+   [
+    0,
+    0.6,
+    0.6
+   ],
+   [
+    150,
+    0.6,
+    0.6
+   ],
+   [
+    176,
+    1,
+    1
+   ],
+   [
+    900,
+    1,
+    1
+   ]
+  ]
+ }
 }
