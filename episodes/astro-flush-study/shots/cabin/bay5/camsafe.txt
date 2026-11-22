@@ -1,5 +1,2 @@
-CAMERA-SAFE  bay5  camsafe on  1500 checks: PASS 1494  WARN 0  FAIL 6
-  VIEW_MISMATCH  6
-  f474 newguy FAIL  yaw 27.6 pitch -2.2  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_cab/ng5)
-      FIX: set film.json "camsafe": true (moves then draw the asked view)
+CAMERA-SAFE  bay5  camsafe on  1500 checks: PASS 1500  WARN 0  FAIL 0
 report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/plan/camsafe_report.json

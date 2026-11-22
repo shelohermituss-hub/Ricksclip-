@@ -1,0 +1,14 @@
+frame_checks: bay5/film.json  451 of 500 frames (rests f0-398)  cast navigator, commander, newguy
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   navigator      f0-398       body_in_mesh  96 %      f6        399/399    inside cabin/bag_navigator/bag_navigator_1: torso-hips-th~
+FAIL   commander      f0-398       body_side     50 %      f29       399/399    cut by the right edge                                     
+FAIL   commander      f0-398       body_in_mesh  73 %      f75       399/399    inside cabin/bag_commander/bag_commander_1: torso-hips-th~
+FAIL   navigator      f0-398       feet          13.5 cm   f113      399/399    2 of 2 feet float, nearest cabin/bag_navigator/bag_naviga~
+FAIL   commander      f0-398       head_cut      64 %      f251      399/399    cut by the right edge                                     
+FAIL   commander      f0-398       feet          13.2 cm   f398      399/399    2 of 2 feet float, nearest cabin/bag_commander/bag_comman~
+FAIL   commander      f399-498 mo~ body_in_mesh  83 %      f467      35/35      inside cabin/bag_commander/bag_commander_1: torso-hips-th~
+FAIL   newguy         f399-498 mo~ body_in_mesh  93 %      f417      18/42      inside cabin/bag_new_guy/bag_new_guy_1: torso-hips-thighs~
+FAIL   navigator      f399-498 mo~ body_in_mesh  96 %      f429      18/18      inside cabin/bag_navigator/bag_navigator_1: torso-hips-th~
+FAIL   newguy         f499 (last)  feet          81 cm     f499      1/1        2 of 2 feet float, nearest cabin/bay_floor                
+WARN   newguy         f399-498 mo~ slide         1.2 %     f455      1/27       the planted foot slides 1.2 cm per frame across the pictu~
+10 FAIL, 1 WARN, 12 PASS (72 s, scan 62.2 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/frame_checks.md, 10 crops in /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/frame_checks
