@@ -79,6 +79,16 @@
     "keys": [
      {
       "f": 500,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -110,6 +120,16 @@
      },
      {
       "f": 501,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -141,6 +161,16 @@
      },
      {
       "f": 502,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -172,6 +202,16 @@
      },
      {
       "f": 503,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -203,6 +243,16 @@
      },
      {
       "f": 504,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -234,6 +284,16 @@
      },
      {
       "f": 505,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -265,6 +325,16 @@
      },
      {
       "f": 506,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -296,6 +366,16 @@
      },
      {
       "f": 507,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -327,6 +407,16 @@
      },
      {
       "f": 508,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -358,6 +448,16 @@
      },
      {
       "f": 509,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -389,6 +489,16 @@
      },
      {
       "f": 510,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -420,6 +530,16 @@
      },
      {
       "f": 511,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -451,6 +571,16 @@
      },
      {
       "f": 512,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -482,6 +612,16 @@
      },
      {
       "f": 513,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -513,6 +653,16 @@
      },
      {
       "f": 514,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -544,6 +694,16 @@
      },
      {
       "f": 515,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -575,6 +735,16 @@
      },
      {
       "f": 516,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -606,6 +776,16 @@
      },
      {
       "f": 517,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -637,6 +817,16 @@
      },
      {
       "f": 518,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -668,6 +858,16 @@
      },
      {
       "f": 519,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -699,6 +899,16 @@
      },
      {
       "f": 520,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -730,6 +940,16 @@
      },
      {
       "f": 521,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -761,6 +981,16 @@
      },
      {
       "f": 522,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -792,6 +1022,16 @@
      },
      {
       "f": 523,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -823,6 +1063,16 @@
      },
      {
       "f": 524,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -854,6 +1104,16 @@
      },
      {
       "f": 525,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -885,6 +1145,16 @@
      },
      {
       "f": 526,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -916,6 +1186,16 @@
      },
      {
       "f": 527,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -947,6 +1227,16 @@
      },
      {
       "f": 528,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -978,6 +1268,16 @@
      },
      {
       "f": 529,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1009,6 +1309,16 @@
      },
      {
       "f": 530,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1040,6 +1350,16 @@
      },
      {
       "f": 531,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1071,6 +1391,16 @@
      },
      {
       "f": 532,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1102,6 +1432,16 @@
      },
      {
       "f": 533,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1133,6 +1473,16 @@
      },
      {
       "f": 534,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1164,6 +1514,16 @@
      },
      {
       "f": 535,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1195,6 +1555,16 @@
      },
      {
       "f": 536,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1226,6 +1596,16 @@
      },
      {
       "f": 537,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1257,6 +1637,16 @@
      },
      {
       "f": 538,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1288,6 +1678,16 @@
      },
      {
       "f": 539,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1319,6 +1719,16 @@
      },
      {
       "f": 540,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1350,6 +1760,16 @@
      },
      {
       "f": 541,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1381,6 +1801,16 @@
      },
      {
       "f": 542,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1412,6 +1842,16 @@
      },
      {
       "f": 543,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1443,6 +1883,16 @@
      },
      {
       "f": 544,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1474,6 +1924,16 @@
      },
      {
       "f": 545,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1505,6 +1965,16 @@
      },
      {
       "f": 546,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1536,6 +2006,16 @@
      },
      {
       "f": 547,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1567,6 +2047,16 @@
      },
      {
       "f": 548,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1598,6 +2088,16 @@
      },
      {
       "f": 549,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1629,6 +2129,16 @@
      },
      {
       "f": 550,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1660,6 +2170,16 @@
      },
      {
       "f": 551,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1691,6 +2211,16 @@
      },
      {
       "f": 552,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1722,6 +2252,16 @@
      },
      {
       "f": 553,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1753,6 +2293,16 @@
      },
      {
       "f": 554,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1784,6 +2334,16 @@
      },
      {
       "f": 555,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1815,6 +2375,16 @@
      },
      {
       "f": 556,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1846,6 +2416,16 @@
      },
      {
       "f": 557,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1877,6 +2457,16 @@
      },
      {
       "f": 558,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1908,6 +2498,16 @@
      },
      {
       "f": 559,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1939,6 +2539,16 @@
      },
      {
       "f": 560,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1970,10 +2580,20 @@
      },
      {
       "f": 561,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.0215,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2001,10 +2621,20 @@
      },
      {
       "f": 562,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.0428,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2032,10 +2662,20 @@
      },
      {
       "f": 563,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.0637,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2063,10 +2703,20 @@
      },
      {
       "f": 564,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.0844,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2094,10 +2744,20 @@
      },
      {
       "f": 565,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.1048,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2125,10 +2785,20 @@
      },
      {
       "f": 566,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.1249,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2156,10 +2826,20 @@
      },
      {
       "f": 567,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.1447,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2187,10 +2867,20 @@
      },
      {
       "f": 568,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.1642,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2218,10 +2908,20 @@
      },
      {
       "f": 569,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.1835,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2249,10 +2949,20 @@
      },
      {
       "f": 570,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2025,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2280,10 +2990,20 @@
      },
      {
       "f": 571,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2212,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2311,10 +3031,20 @@
      },
      {
       "f": 572,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2396,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2342,10 +3072,20 @@
      },
      {
       "f": 573,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2578,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2373,10 +3113,20 @@
      },
      {
       "f": 574,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2757,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2404,10 +3154,20 @@
      },
      {
       "f": 575,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.2933,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2435,10 +3195,20 @@
      },
      {
       "f": 576,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3107,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2466,10 +3236,20 @@
      },
      {
       "f": 577,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3278,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2497,10 +3277,20 @@
      },
      {
       "f": 578,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3446,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2528,10 +3318,20 @@
      },
      {
       "f": 579,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3612,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2559,10 +3359,20 @@
      },
      {
       "f": 580,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3775,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2590,10 +3400,20 @@
      },
      {
       "f": 581,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.3936,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2621,10 +3441,20 @@
      },
      {
       "f": 582,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.4094,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2652,10 +3482,20 @@
      },
      {
       "f": 583,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.4249,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2683,10 +3523,20 @@
      },
      {
       "f": 584,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.4402,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2714,10 +3564,20 @@
      },
      {
       "f": 585,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0,
+      "glitter_ck": 0.4552,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2745,10 +3605,20 @@
      },
      {
       "f": 586,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0005,
+      "glitter_ck": 0.47,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2776,10 +3646,20 @@
      },
      {
       "f": 587,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0021,
+      "glitter_ck": 0.4846,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2807,10 +3687,20 @@
      },
      {
       "f": 588,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0047,
+      "glitter_ck": 0.4988,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2838,10 +3728,20 @@
      },
      {
       "f": 589,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0082,
+      "glitter_ck": 0.5129,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2869,10 +3769,20 @@
      },
      {
       "f": 590,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0127,
+      "glitter_ck": 0.5267,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2900,10 +3810,20 @@
      },
      {
       "f": 591,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0182,
+      "glitter_ck": 0.5402,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2931,10 +3851,20 @@
      },
      {
       "f": 592,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0245,
+      "glitter_ck": 0.5535,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2962,10 +3892,20 @@
      },
      {
       "f": 593,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0317,
+      "glitter_ck": 0.5666,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -2993,10 +3933,20 @@
      },
      {
       "f": 594,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0397,
+      "glitter_ck": 0.5794,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3024,10 +3974,20 @@
      },
      {
       "f": 595,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0486,
+      "glitter_ck": 0.592,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3055,10 +4015,20 @@
      },
      {
       "f": 596,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0582,
+      "glitter_ck": 0.6044,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3086,10 +4056,20 @@
      },
      {
       "f": 597,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0686,
+      "glitter_ck": 0.6165,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3117,10 +4097,20 @@
      },
      {
       "f": 598,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0797,
+      "glitter_ck": 0.6284,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3148,10 +4138,20 @@
      },
      {
       "f": 599,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.0915,
+      "glitter_ck": 0.6401,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3179,10 +4179,20 @@
      },
      {
       "f": 600,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.6,
+       0.65
+      ],
+      "sun_k": 1.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.104,
+      "glitter_ck": 0.6515,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3210,10 +4220,20 @@
      },
      {
       "f": 601,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.45,
+       -0.5995,
+       0.65
+      ],
+      "sun_k": 1.0009,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.1171,
+      "glitter_ck": 0.6627,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3241,10 +4261,20 @@
      },
      {
       "f": 602,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4501,
+       -0.598,
+       0.6501
+      ],
+      "sun_k": 1.0037,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.1308,
+      "glitter_ck": 0.6737,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3272,10 +4302,20 @@
      },
      {
       "f": 603,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4502,
+       -0.5955,
+       0.6502
+      ],
+      "sun_k": 1.0082,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.1452,
+      "glitter_ck": 0.6845,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3303,10 +4343,20 @@
      },
      {
       "f": 604,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4504,
+       -0.592,
+       0.6504
+      ],
+      "sun_k": 1.0145,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.16,
+      "glitter_ck": 0.695,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3334,10 +4384,20 @@
      },
      {
       "f": 605,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4506,
+       -0.5876,
+       0.6506
+      ],
+      "sun_k": 1.0225,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.1754,
+      "glitter_ck": 0.7054,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3365,10 +4425,20 @@
      },
      {
       "f": 606,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4508,
+       -0.5824,
+       0.6508
+      ],
+      "sun_k": 1.0321,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.1913,
+      "glitter_ck": 0.7155,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3396,10 +4466,20 @@
      },
      {
       "f": 607,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4511,
+       -0.5762,
+       0.6511
+      ],
+      "sun_k": 1.0433,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2077,
+      "glitter_ck": 0.7254,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3427,10 +4507,20 @@
      },
      {
       "f": 608,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4514,
+       -0.5692,
+       0.6514
+      ],
+      "sun_k": 1.056,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2245,
+      "glitter_ck": 0.735,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3458,10 +4548,20 @@
      },
      {
       "f": 609,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4518,
+       -0.5614,
+       0.6518
+      ],
+      "sun_k": 1.0702,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2417,
+      "glitter_ck": 0.7445,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3489,10 +4589,20 @@
      },
      {
       "f": 610,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4521,
+       -0.5527,
+       0.6521
+      ],
+      "sun_k": 1.0859,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2593,
+      "glitter_ck": 0.7537,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3520,10 +4630,20 @@
      },
      {
       "f": 611,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4526,
+       -0.5433,
+       0.6526
+      ],
+      "sun_k": 1.103,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2772,
+      "glitter_ck": 0.7628,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3551,10 +4671,20 @@
      },
      {
       "f": 612,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.453,
+       -0.5332,
+       0.653
+      ],
+      "sun_k": 1.1215,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.2955,
+      "glitter_ck": 0.7716,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3582,10 +4712,20 @@
      },
      {
       "f": 613,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4535,
+       -0.5223,
+       0.6535
+      ],
+      "sun_k": 1.1413,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.3141,
+      "glitter_ck": 0.7803,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3613,10 +4753,20 @@
      },
      {
       "f": 614,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4541,
+       -0.5107,
+       0.6541
+      ],
+      "sun_k": 1.1623,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.3329,
+      "glitter_ck": 0.7887,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3644,10 +4794,20 @@
      },
      {
       "f": 615,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4546,
+       -0.4985,
+       0.6546
+      ],
+      "sun_k": 1.1846,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.352,
+      "glitter_ck": 0.7969,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3675,10 +4835,20 @@
      },
      {
       "f": 616,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4552,
+       -0.4856,
+       0.6552
+      ],
+      "sun_k": 1.208,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.3713,
+      "glitter_ck": 0.8049,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3706,10 +4876,20 @@
      },
      {
       "f": 617,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4558,
+       -0.4721,
+       0.6558
+      ],
+      "sun_k": 1.2326,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.3908,
+      "glitter_ck": 0.8128,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3737,10 +4917,20 @@
      },
      {
       "f": 618,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4565,
+       -0.458,
+       0.6565
+      ],
+      "sun_k": 1.2582,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.4104,
+      "glitter_ck": 0.8204,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3768,10 +4958,20 @@
      },
      {
       "f": 619,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4571,
+       -0.4433,
+       0.6571
+      ],
+      "sun_k": 1.2849,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.4302,
+      "glitter_ck": 0.8278,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3799,10 +4999,20 @@
      },
      {
       "f": 620,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4578,
+       -0.4281,
+       0.6578
+      ],
+      "sun_k": 1.3125,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.4501,
+      "glitter_ck": 0.8351,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3830,10 +5040,20 @@
      },
      {
       "f": 621,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4585,
+       -0.4124,
+       0.6585
+      ],
+      "sun_k": 1.3411,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.47,
+      "glitter_ck": 0.8421,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3861,10 +5081,20 @@
      },
      {
       "f": 622,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4593,
+       -0.3962,
+       0.6593
+      ],
+      "sun_k": 1.3706,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.49,
+      "glitter_ck": 0.849,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3892,10 +5122,20 @@
      },
      {
       "f": 623,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.46,
+       -0.3795,
+       0.66
+      ],
+      "sun_k": 1.4009,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.51,
+      "glitter_ck": 0.8557,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3923,10 +5163,20 @@
      },
      {
       "f": 624,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4608,
+       -0.3624,
+       0.6608
+      ],
+      "sun_k": 1.432,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.53,
+      "glitter_ck": 0.8621,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3954,10 +5204,20 @@
      },
      {
       "f": 625,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4616,
+       -0.3449,
+       0.6616
+      ],
+      "sun_k": 1.4639,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.5499,
+      "glitter_ck": 0.8685,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -3985,10 +5245,20 @@
      },
      {
       "f": 626,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4624,
+       -0.327,
+       0.6624
+      ],
+      "sun_k": 1.4964,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.5698,
+      "glitter_ck": 0.8746,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4016,10 +5286,20 @@
      },
      {
       "f": 627,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4632,
+       -0.3087,
+       0.6632
+      ],
+      "sun_k": 1.5297,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.5896,
+      "glitter_ck": 0.8805,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4047,10 +5327,20 @@
      },
      {
       "f": 628,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4641,
+       -0.2901,
+       0.6641
+      ],
+      "sun_k": 1.5635,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.6092,
+      "glitter_ck": 0.8863,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4078,10 +5368,20 @@
      },
      {
       "f": 629,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4649,
+       -0.2712,
+       0.6649
+      ],
+      "sun_k": 1.5979,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.6287,
+      "glitter_ck": 0.8919,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4109,10 +5409,20 @@
      },
      {
       "f": 630,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4658,
+       -0.252,
+       0.6658
+      ],
+      "sun_k": 1.6328,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.648,
+      "glitter_ck": 0.8973,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4140,10 +5450,20 @@
      },
      {
       "f": 631,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4667,
+       -0.2325,
+       0.6667
+      ],
+      "sun_k": 1.6682,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.6671,
+      "glitter_ck": 0.9026,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4171,10 +5491,20 @@
      },
      {
       "f": 632,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4676,
+       -0.2128,
+       0.6676
+      ],
+      "sun_k": 1.704,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.6859,
+      "glitter_ck": 0.9077,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4202,10 +5532,20 @@
      },
      {
       "f": 633,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4685,
+       -0.1929,
+       0.6685
+      ],
+      "sun_k": 1.7402,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7045,
+      "glitter_ck": 0.9126,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4233,10 +5573,20 @@
      },
      {
       "f": 634,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4694,
+       -0.1728,
+       0.6694
+      ],
+      "sun_k": 1.7767,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7228,
+      "glitter_ck": 0.9173,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4264,10 +5614,20 @@
      },
      {
       "f": 635,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4703,
+       -0.1526,
+       0.6703
+      ],
+      "sun_k": 1.8135,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7407,
+      "glitter_ck": 0.9219,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4295,10 +5655,20 @@
      },
      {
       "f": 636,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4713,
+       -0.1322,
+       0.6713
+      ],
+      "sun_k": 1.8505,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7583,
+      "glitter_ck": 0.9264,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4326,10 +5696,20 @@
      },
      {
       "f": 637,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4722,
+       -0.1118,
+       0.6722
+      ],
+      "sun_k": 1.8877,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7755,
+      "glitter_ck": 0.9306,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4357,10 +5737,20 @@
      },
      {
       "f": 638,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4731,
+       -0.0912,
+       0.6731
+      ],
+      "sun_k": 1.9251,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.7923,
+      "glitter_ck": 0.9348,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4388,10 +5778,20 @@
      },
      {
       "f": 639,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4741,
+       -0.0706,
+       0.6741
+      ],
+      "sun_k": 1.9625,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.8087,
+      "glitter_ck": 0.9387,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4419,10 +5819,20 @@
      },
      {
       "f": 640,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.475,
+       -0.05,
+       0.675
+      ],
+      "sun_k": 2.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.8246,
+      "glitter_ck": 0.9425,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4450,10 +5860,20 @@
      },
      {
       "f": 641,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4759,
+       -0.0294,
+       0.6759
+      ],
+      "sun_k": 2.0375,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.84,
+      "glitter_ck": 0.9462,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4481,10 +5901,20 @@
      },
      {
       "f": 642,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4769,
+       -0.0088,
+       0.6769
+      ],
+      "sun_k": 2.0749,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.8548,
+      "glitter_ck": 0.9497,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4512,10 +5942,20 @@
      },
      {
       "f": 643,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4778,
+       0.0118,
+       0.6778
+      ],
+      "sun_k": 2.1123,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.8692,
+      "glitter_ck": 0.9531,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4543,10 +5983,20 @@
      },
      {
       "f": 644,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4787,
+       0.0322,
+       0.6787
+      ],
+      "sun_k": 2.1495,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.8829,
+      "glitter_ck": 0.9563,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4574,10 +6024,20 @@
      },
      {
       "f": 645,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4797,
+       0.0526,
+       0.6797
+      ],
+      "sun_k": 2.1865,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.896,
+      "glitter_ck": 0.9594,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4605,10 +6065,20 @@
      },
      {
       "f": 646,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4806,
+       0.0728,
+       0.6806
+      ],
+      "sun_k": 2.2233,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9085,
+      "glitter_ck": 0.9623,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4636,10 +6106,20 @@
      },
      {
       "f": 647,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4815,
+       0.0929,
+       0.6815
+      ],
+      "sun_k": 2.2598,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9203,
+      "glitter_ck": 0.9651,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4667,10 +6147,20 @@
      },
      {
       "f": 648,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4824,
+       0.1128,
+       0.6824
+      ],
+      "sun_k": 2.296,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9314,
+      "glitter_ck": 0.9678,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4698,10 +6188,20 @@
      },
      {
       "f": 649,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4833,
+       0.1325,
+       0.6833
+      ],
+      "sun_k": 2.3318,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9418,
+      "glitter_ck": 0.9704,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4729,10 +6229,20 @@
      },
      {
       "f": 650,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4842,
+       0.152,
+       0.6842
+      ],
+      "sun_k": 2.3672,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9514,
+      "glitter_ck": 0.9728,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4760,10 +6270,20 @@
      },
      {
       "f": 651,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4851,
+       0.1712,
+       0.6851
+      ],
+      "sun_k": 2.4021,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9603,
+      "glitter_ck": 0.9751,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4791,10 +6311,20 @@
      },
      {
       "f": 652,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4859,
+       0.1901,
+       0.6859
+      ],
+      "sun_k": 2.4365,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9683,
+      "glitter_ck": 0.9773,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4822,10 +6352,20 @@
      },
      {
       "f": 653,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4868,
+       0.2087,
+       0.6868
+      ],
+      "sun_k": 2.4703,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9755,
+      "glitter_ck": 0.9793,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4853,10 +6393,20 @@
      },
      {
       "f": 654,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4876,
+       0.227,
+       0.6876
+      ],
+      "sun_k": 2.5036,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9818,
+      "glitter_ck": 0.9812,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4884,10 +6434,20 @@
      },
      {
       "f": 655,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4884,
+       0.2449,
+       0.6884
+      ],
+      "sun_k": 2.5361,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9873,
+      "glitter_ck": 0.9831,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4915,10 +6475,20 @@
      },
      {
       "f": 656,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4892,
+       0.2624,
+       0.6892
+      ],
+      "sun_k": 2.568,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9918,
+      "glitter_ck": 0.9848,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4946,10 +6516,20 @@
      },
      {
       "f": 657,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.49,
+       0.2795,
+       0.69
+      ],
+      "sun_k": 2.5991,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9953,
+      "glitter_ck": 0.9864,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -4977,10 +6557,20 @@
      },
      {
       "f": 658,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4907,
+       0.2962,
+       0.6907
+      ],
+      "sun_k": 2.6294,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9979,
+      "glitter_ck": 0.9879,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5008,10 +6598,20 @@
      },
      {
       "f": 659,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4915,
+       0.3124,
+       0.6915
+      ],
+      "sun_k": 2.6589,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 0.9995,
+      "glitter_ck": 0.9892,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5039,10 +6639,20 @@
      },
      {
       "f": 660,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4922,
+       0.3281,
+       0.6922
+      ],
+      "sun_k": 2.6875,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9905,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5070,10 +6680,20 @@
      },
      {
       "f": 661,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4929,
+       0.3433,
+       0.6929
+      ],
+      "sun_k": 2.7151,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9917,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5101,10 +6721,20 @@
      },
      {
       "f": 662,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4935,
+       0.358,
+       0.6935
+      ],
+      "sun_k": 2.7418,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9928,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5132,10 +6762,20 @@
      },
      {
       "f": 663,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4942,
+       0.3721,
+       0.6942
+      ],
+      "sun_k": 2.7674,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9938,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5163,10 +6803,20 @@
      },
      {
       "f": 664,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4948,
+       0.3856,
+       0.6948
+      ],
+      "sun_k": 2.792,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9947,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5194,10 +6844,20 @@
      },
      {
       "f": 665,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4954,
+       0.3985,
+       0.6954
+      ],
+      "sun_k": 2.8154,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9955,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5225,10 +6885,20 @@
      },
      {
       "f": 666,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4959,
+       0.4107,
+       0.6959
+      ],
+      "sun_k": 2.8377,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9962,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5256,10 +6926,20 @@
      },
      {
       "f": 667,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4965,
+       0.4223,
+       0.6965
+      ],
+      "sun_k": 2.8587,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9969,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5287,10 +6967,20 @@
      },
      {
       "f": 668,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.497,
+       0.4332,
+       0.697
+      ],
+      "sun_k": 2.8785,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9975,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5318,10 +7008,20 @@
      },
      {
       "f": 669,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4974,
+       0.4433,
+       0.6974
+      ],
+      "sun_k": 2.897,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.998,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5349,10 +7049,20 @@
      },
      {
       "f": 670,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4979,
+       0.4527,
+       0.6979
+      ],
+      "sun_k": 2.9141,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9984,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5380,10 +7090,20 @@
      },
      {
       "f": 671,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4982,
+       0.4614,
+       0.6982
+      ],
+      "sun_k": 2.9298,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9988,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5411,10 +7131,20 @@
      },
      {
       "f": 672,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4986,
+       0.4692,
+       0.6986
+      ],
+      "sun_k": 2.944,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9991,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5442,10 +7172,20 @@
      },
      {
       "f": 673,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4989,
+       0.4762,
+       0.6989
+      ],
+      "sun_k": 2.9567,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9994,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5473,10 +7213,20 @@
      },
      {
       "f": 674,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4992,
+       0.4824,
+       0.6992
+      ],
+      "sun_k": 2.9679,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9996,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5504,10 +7254,20 @@
      },
      {
       "f": 675,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4994,
+       0.4876,
+       0.6994
+      ],
+      "sun_k": 2.9775,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9997,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5535,10 +7295,20 @@
      },
      {
       "f": 676,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4996,
+       0.492,
+       0.6996
+      ],
+      "sun_k": 2.9855,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9999,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5566,10 +7336,20 @@
      },
      {
       "f": 677,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4998,
+       0.4955,
+       0.6998
+      ],
+      "sun_k": 2.9918,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
-      "glitter_ck": 1.0,
+      "glitter_ck": 0.9999,
       "comm": 0,
       "digits": 0,
       "starmap": 0.0,
@@ -5597,6 +7377,16 @@
      },
      {
       "f": 678,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.4999,
+       0.498,
+       0.6999
+      ],
+      "sun_k": 2.9963,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5628,6 +7418,16 @@
      },
      {
       "f": 679,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.4995,
+       0.7
+      ],
+      "sun_k": 2.9991,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5659,6 +7459,16 @@
      },
      {
       "f": 680,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5690,6 +7500,16 @@
      },
      {
       "f": 681,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5721,6 +7541,16 @@
      },
      {
       "f": 682,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5752,6 +7582,16 @@
      },
      {
       "f": 683,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5783,6 +7623,16 @@
      },
      {
       "f": 684,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5814,6 +7664,16 @@
      },
      {
       "f": 685,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5845,6 +7705,16 @@
      },
      {
       "f": 686,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5876,6 +7746,16 @@
      },
      {
       "f": 687,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5907,6 +7787,16 @@
      },
      {
       "f": 688,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5938,6 +7828,16 @@
      },
      {
       "f": 689,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -5969,6 +7869,16 @@
      },
      {
       "f": 690,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6000,6 +7910,16 @@
      },
      {
       "f": 691,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6031,6 +7951,16 @@
      },
      {
       "f": 692,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6062,6 +7992,16 @@
      },
      {
       "f": 693,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6093,6 +8033,16 @@
      },
      {
       "f": 694,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6124,6 +8074,16 @@
      },
      {
       "f": 695,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6155,6 +8115,16 @@
      },
      {
       "f": 696,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6186,6 +8156,16 @@
      },
      {
       "f": 697,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6217,6 +8197,16 @@
      },
      {
       "f": 698,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6248,6 +8238,16 @@
      },
      {
       "f": 699,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6279,6 +8279,16 @@
      },
      {
       "f": 700,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6310,6 +8320,16 @@
      },
      {
       "f": 701,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6341,6 +8361,16 @@
      },
      {
       "f": 702,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6372,6 +8402,16 @@
      },
      {
       "f": 703,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6403,6 +8443,16 @@
      },
      {
       "f": 704,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6434,6 +8484,16 @@
      },
      {
       "f": 705,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6465,6 +8525,16 @@
      },
      {
       "f": 706,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6496,6 +8566,16 @@
      },
      {
       "f": 707,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6527,6 +8607,16 @@
      },
      {
       "f": 708,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6558,6 +8648,16 @@
      },
      {
       "f": 709,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6589,6 +8689,16 @@
      },
      {
       "f": 710,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6620,6 +8730,16 @@
      },
      {
       "f": 711,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6651,6 +8771,16 @@
      },
      {
       "f": 712,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6682,6 +8812,16 @@
      },
      {
       "f": 713,
+      "light": "space",
+      "shot": 7,
+      "radio_desk": 0,
+      "wash": 0.001,
+      "sun_dir": [
+       0.5,
+       0.5,
+       0.7
+      ],
+      "sun_k": 3.0,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -6856,14 +8996,14 @@
     },
     {
      "pos": [
-      32.264,
-      2.0499,
-      2.786
+      29.788,
+      1.4623,
+      2.7167
      ],
      "aim": [
-      20.4984,
-      0.21,
-      -0.2252
+      20.9784,
+      0.15,
+      -0.1052
      ],
      "lens": 44.55,
      "roll": 5.0,
@@ -6877,8 +9017,8 @@
     {
      "pos": [
       31.498,
-      2.494,
-      2.646
+      2.994,
+      4.046
      ],
      "aim": [
       22.6,
@@ -6892,13 +9032,13 @@
      "pin": true,
      "subject": "navigator",
      "framing": "W",
-     "purpose": "by eye: f680 (the set's by-eye cam f680 read too far/high in the kit: 42 % closer); roll 12 (board total 14, not the cam's 30)"
+     "purpose": "pinned pass: META cams.f680 (round 8; its note: kit roll 12 = META -12)"
     },
     {
      "pos": [
-      31.7563,
-      2.6167,
-      2.7231
+      31.5913,
+      3.0626,
+      4.0765
      ],
      "aim": [
       22.6,

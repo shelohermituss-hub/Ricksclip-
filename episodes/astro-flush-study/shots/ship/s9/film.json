@@ -72,6 +72,8 @@
     "keys": [
      {
       "f": 745,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -103,6 +105,8 @@
      },
      {
       "f": 746,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -134,6 +138,8 @@
      },
      {
       "f": 747,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -165,6 +171,8 @@
      },
      {
       "f": 748,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -196,6 +204,8 @@
      },
      {
       "f": 749,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -227,6 +237,8 @@
      },
      {
       "f": 750,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -258,6 +270,8 @@
      },
      {
       "f": 751,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -289,6 +303,8 @@
      },
      {
       "f": 752,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -320,6 +336,8 @@
      },
      {
       "f": 753,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -351,6 +369,8 @@
      },
      {
       "f": 754,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -382,6 +402,8 @@
      },
      {
       "f": 755,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -413,6 +435,8 @@
      },
      {
       "f": 756,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -444,6 +468,8 @@
      },
      {
       "f": 757,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -475,6 +501,8 @@
      },
      {
       "f": 758,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -506,6 +534,8 @@
      },
      {
       "f": 759,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -537,6 +567,8 @@
      },
      {
       "f": 760,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -568,6 +600,8 @@
      },
      {
       "f": 761,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -599,6 +633,8 @@
      },
      {
       "f": 762,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -630,6 +666,8 @@
      },
      {
       "f": 763,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -661,6 +699,8 @@
      },
      {
       "f": 764,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -692,6 +732,8 @@
      },
      {
       "f": 765,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -723,6 +765,8 @@
      },
      {
       "f": 766,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -754,6 +798,8 @@
      },
      {
       "f": 767,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -785,6 +831,8 @@
      },
      {
       "f": 768,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -816,6 +864,8 @@
      },
      {
       "f": 769,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -847,6 +897,8 @@
      },
      {
       "f": 770,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -878,6 +930,8 @@
      },
      {
       "f": 771,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -909,6 +963,8 @@
      },
      {
       "f": 772,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -940,6 +996,8 @@
      },
      {
       "f": 773,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -971,6 +1029,8 @@
      },
      {
       "f": 774,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1002,6 +1062,8 @@
      },
      {
       "f": 775,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1033,6 +1095,8 @@
      },
      {
       "f": 776,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1064,6 +1128,8 @@
      },
      {
       "f": 777,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1095,6 +1161,8 @@
      },
      {
       "f": 778,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1126,6 +1194,8 @@
      },
      {
       "f": 779,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1157,6 +1227,8 @@
      },
      {
       "f": 780,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1188,6 +1260,8 @@
      },
      {
       "f": 781,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1219,6 +1293,8 @@
      },
      {
       "f": 782,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1250,6 +1326,8 @@
      },
      {
       "f": 783,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1281,6 +1359,8 @@
      },
      {
       "f": 784,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1312,6 +1392,8 @@
      },
      {
       "f": 785,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1343,6 +1425,8 @@
      },
      {
       "f": 786,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1374,6 +1458,8 @@
      },
      {
       "f": 787,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1405,6 +1491,8 @@
      },
      {
       "f": 788,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1436,6 +1524,8 @@
      },
      {
       "f": 789,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1467,6 +1557,8 @@
      },
      {
       "f": 790,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1498,6 +1590,8 @@
      },
      {
       "f": 791,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1529,6 +1623,8 @@
      },
      {
       "f": 792,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1560,6 +1656,8 @@
      },
      {
       "f": 793,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1591,6 +1689,8 @@
      },
      {
       "f": 794,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1622,6 +1722,8 @@
      },
      {
       "f": 795,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1653,6 +1755,8 @@
      },
      {
       "f": 796,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1684,6 +1788,8 @@
      },
      {
       "f": 797,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1715,6 +1821,8 @@
      },
      {
       "f": 798,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1746,6 +1854,8 @@
      },
      {
       "f": 799,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1777,6 +1887,8 @@
      },
      {
       "f": 800,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1808,6 +1920,8 @@
      },
      {
       "f": 801,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1839,6 +1953,8 @@
      },
      {
       "f": 802,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,
@@ -1870,6 +1986,8 @@
      },
      {
       "f": 803,
+      "light": "radio",
+      "shot": 9,
       "flame": 0.0,
       "preglow": 0.0,
       "glitter": 0.0,

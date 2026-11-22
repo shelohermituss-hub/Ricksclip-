@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""ship stretch (astro-flush-study): writes s2, s7, s8, s9, s11 film.json. Film frame f = his reference frame f: each film starts at f0 (camera parked on
+"""ship stretch (astro-flush-study), ROUND 2 (2026-11-22): on the set's round 8 meta (cams f990 on the +Y side, f680, fan sign, anchor newguy_s11,
+light kinds per shot from META.proofs, flame keys from preglow so ignition has no scale pop, glitter per-sparkle fade).
+ship stretch (astro-flush-study): writes s2, s7, s8, s9, s11 film.json. Film frame f = his reference frame f: each film starts at f0 (camera parked on
 a pre-roll station, never rendered), "start" = first rendered frame. Cameras = sets/ship/out/ship_meta.json cams (fitted to his frames, f680 by eye) as
 pinned pass stations of ONE travel per shot (MOTION RULES 1-3); the other stations are by eye on the board rows (marked "by eye").
 Set movers by name: ship.js keys written for EVERY frame + stage/ship_stage.js (Earth on its camera ray, sky follows, lamp pulse, floating props)."""
@@ -11,7 +13,9 @@ C = META['cams']; A = META['anchors']; PR = META['proofs']
 CARD = json.load(open(os.path.join(H, 'card_scale.json'))) if os.path.exists(os.path.join(H, 'card_scale.json')) else {}
 lens = lambda vfov: round(18 / math.tan(math.radians(vfov) / 2), 2)
 R4 = lambda v: [round(x, 4) for x in v]
-def cam(c, **k): return {**dict(pos=R4(c['loc']), aim=R4(c['look']), lens=lens(c['vfov']), roll=c.get('roll', 0)), **k}
+KR = lambda c: KSIGN * c.get('roll', 0)   # round 2: fitted rolls: kit roll = + META roll, checked in picture on f70 (the - sign tilted the ship and horizon 18 deg CW of his)
+KSIGN = 1
+def cam(c, **k): return {**dict(pos=R4(c['loc']), aim=R4(c['look']), lens=lens(c['vfov']), roll=round(KR(c), 3)), **k}
 def st(pos, aim, vfov, roll=0, **k): return dict(pos=R4(pos), aim=R4(aim), lens=lens(vfov), roll=round(roll, 3), **k)
 add = lambda a, b, s=1: [a[i] + b[i] * s for i in range(3)]
 sub = lambda a, b: [a[i] - b[i] for i in range(3)]
@@ -61,31 +65,36 @@ ER0 = [101.2, 267.1, 314.1]
 pa = A['porthole_a']
 def pa_cam(d, dx=0, dz=0): return [pa[0] + dx, pa[1] + d, pa[2] + dz]
 c40, c70, c110 = cam(C['f40']), cam(C['f70']), cam(C['f110'])
-d70 = sub(C['f70']['look'], C['f70']['loc'])
+d70 = sub(C['f70']['look'], C['f70']['loc']); R70 = KR(C['f70'])
 S2 = [st(pa_cam(.75), [pa[0], pa[1] - 10, pa[2]], 45, at=0, hold=0, creep=0, subject=None, framing="C", purpose="pre-roll (never rendered); the travel leaves f17"),
       st(pa_cam(1.15, .05), [pa[0] + .05, pa[1] - 10, pa[2] - .1], 45, at=29, hold=0, pin=True, subject=None, framing="C", purpose="by eye: f29 porthole_a fills the frame (lead feeds the room); pull-back already moving"),
       st(pa_cam(4.6, .6, -.25), [pa[0] + .1, pa[1] - 10, pa[2] - 1.6], 45, at=36, hold=0, pin=True, subject=None, framing="M", purpose="by eye: f36 porthole 25 % of H, Earth below, sliding (content moves right)"),
       dict(c40, at=40, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f40 fitted (LODESTAR on the hull)"),
-      st(add(C['f70']['loc'], d70, 5.2), add(C['f70']['look'], d70, 5.2), 45, 7.6, at=58, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f58 ship 30 % of W, closing on the f70 framing"),
+      st(add(C['f70']['loc'], d70, 5.2), add(C['f70']['look'], d70, 5.2), 45, R70 - 1.6, at=58, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f58 ship 30 % of W, closing on the f70 framing"),
       dict(c70, at=70, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f70 fitted (his rest f60-74: here a slow drift, rule 3)"),
-      st(lerp(C['f70']['loc'], C['f110']['loc'], .3), lerp(C['f70']['look'], [0, 0, 0], .55), 43, 6.5, at=88, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f88 following the turning ship, rolling (r -1.4, -3.6 per 0.5 s)"),
-      dict(c110, roll=2.0, at=110, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f110 (set's), ship tiny, flame 25 % of W; roll carried on"),
-      st(add(C['f110']['loc'], [-14, 40, 10]), [-4, -2, -14], 40, 0.0, at=140, travel=round((140 - 17) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
+      st(lerp(C['f70']['loc'], C['f110']['loc'], .3), lerp(C['f70']['look'], [0, 0, 0], .55), 43, R70 - 2.7, at=88, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f88 following the turning ship, rolling (r -1.4, -3.6 per 0.5 s)"),
+      dict(c110, roll=round(R70 - 7.2, 3), at=110, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f110 (set's), ship tiny, flame 25 % of W; roll carried on"),
+      st(add(C['f110']['loc'], [-14, 40, 10]), [-4, -2, -14], 40, R70 - 9.2, at=140, travel=round((140 - 17) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
          purpose="by eye: f119 full-frame space + flame (ship upper centre); still moving at f140 for the lead's join")]
 E2 = [[40] + earth_world(C['f40'], PR['f40']['earth_screen']), [70] + earth_world(C['f70'], PR['f70']['earth_screen']), [110] + earth_world(C['f110'], PR['f110']['earth_screen'])]
 E2 = [[0] + E2[0][1:]] + E2 + [[200] + E2[-1][1:]]
+SPACE_SUN = META['light_kinds']['space']['sun'][0]; WARM_SUN = META['light_kinds']['warm']['sun'][0]
+FW2 = 1.0   # round 2: flame_w for his f110 plume (set default 1.5 = the short fat blob)
 POSE_AWAY = META['ship_poses']['shot2_f110_away']
 def sk2(f):
     u = ss((f - 75) / 38); ux = max(0, (f - 113) / 27) * .25
     ship = [0, 0, 0, 0, POSE_AWAY[4] * (u + ux), POSE_AWAY[5] * (u + ux)]
-    fl = ss((f - 96) / 6) * (.55 + .45 * ss((f - 101) / 17)); fl *= 1 + .05 * math.sin(f * 1.9) + .03 * math.sin(f * 3.7) if fl > 0 else 1
+    # round 2: preglow f84-94 (META.frames), flame eased in from f94 over 8 f (ship.js flame_scale: length max(.06 pg, f^.8), no scale-0 pop), full f101-118
+    fl = ss((f - 94) / 8) * (.55 + .45 * ss((f - 101) / 17)); fl *= 1 + .05 * math.sin(f * 1.9) + .03 * math.sin(f * 3.7) if fl > 0 else 1
     g = ss((f - 40) / 30)
-    return dict(flame=round(fl, 4), preglow=ss((f - 86) / 8), glitter=0.0, glitter_ck=0.0, comm=0, digits=0, starmap=0.0, ship=ship, fans=0, fan=0.0,
+    return dict(light='space', shot=2, sun_dir=lerp(PR['f40']['sun_dir'], SPACE_SUN, ss((f - 40) / 40)), flame_w=max(.001, FW2 * ss((f - 82) / 8)), flame=round(fl, 4), preglow=ss((f - 84) / 10), glitter=0.0, glitter_ck=0.0, comm=0, digits=0, starmap=0.0, ship=ship, fans=0, fan=0.0,
                 earth_rot=[ER0[0], ER0[1], ER0[2] + .06 * (f - 29)], earth_glare=lerp([.3, -.78, .08, 2.2][:3], [.6, -.72, .08], g) + [2.2])
 F2 = base("astro-flush ship, shot 2 (f36-119, rendered f29-140)", 29, 141, (), keys_per_frame(0, 141, sk2), {"earth": E2, "sky_follow": True})
 F2["takes"] = [{"id": "s2", "place": "ship", "stations": S2}]; F2["acts"] = []
 
 # ================= shot 7 (f538-705, render f531-712): crane down over the cockpit roof, push in on the navigator, pull out and around the nose with roll.
+L7 = 'space'   # round 2 test
+C680_UP = [0, .5, 1.4]   # round 2 by eye: lift the f680 cam above the canopy roof line (his: outside, glass faces and the roof's top seen)
 c600 = C['f600']; c680 = C['f680']; dv = unit(sub(c600['look'], c600['loc']))
 NAV = A['navigator_s7']
 p555 = add(c600['loc'], dv, -.55)
@@ -93,12 +102,14 @@ S7 = [st(add(p555, [.2, 0, 1.9]), [22.5, 0, 1.8], 45, .8, at=0, hold=0, creep=0,
       st(add(p555, [.15, 0, 1.25]), [22.0, -.02, .9], 45, .6, at=540, hold=0, pin=True, subject="navigator", framing="M", purpose="by eye: f540 above the roof tilting down, navigator low"),
       st(p555, add(c600['look'], [0, 0, .05]), 45, .4, at=555, hold=0, pin=True, subject="navigator", framing="M", purpose="by eye: f555 her eye level, frontal; slow push in to f600"),
       dict(cam(c600), at=600, hold=0, pin=True, subject="navigator", framing="M", purpose="pinned pass: cam f600 fitted; pull back + roll start"),
-      st(lerp(c600['loc'], c680['loc'], .45), lerp(c600['look'], c680['look'], .6), 44, 5.0, at=630, hold=0, pin=True, subject="navigator", framing="W", purpose="by eye: f630 rising to her upper left, canopy frame enters"),
-      st(lerp(c680['loc'], [23.9, 0, .5], .42), [22.6, .3, -.1], 40, 12.0, at=680, hold=0, pin=True, subject="navigator", framing="W", purpose="by eye: f680 (the set's by-eye cam f680 read too far/high in the kit: 42 % closer); roll 12 (board total 14, not the cam's 30)"),
-      st(add(lerp(c680['loc'], [23.9, 0, .5], .42), sub(c680['loc'], c600['loc']), .03), [22.6, .3, -.1], 40, 14.0, at=712, travel=round((712 - 519) / 30, 4), hold=0.2, creep=0, subject="navigator", framing="W",
+      st(add(lerp(c600['loc'], c680['loc'], .45), C680_UP, .45), lerp(c600['look'], c680['look'], .6), 44, 5.0, at=630, hold=0, pin=True, subject="navigator", framing="W", purpose="by eye: f630 rising to her upper left, canopy frame enters"),
+      dict(cam(dict(c680, loc=add(c680['loc'], C680_UP))), roll=-c680['roll'], at=680, hold=0, pin=True, subject="navigator", framing="W", purpose="pinned pass: META cams.f680 (round 8; its note: kit roll 12 = META -12)"),
+      st(add(add(c680['loc'], C680_UP), sub(c680['loc'], c600['loc']), .03), c680['look'], 40, -c680['roll'] + 2.0, at=712, travel=round((712 - 519) / 30, 4), hold=0.2, creep=0, subject="navigator", framing="W",
          purpose="easing out, almost still, never fully")]
-def sk7(f):
-    return dict(flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=round(ss((f - 585) / 75), 4), comm=0, digits=0, starmap=0.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=round(20 + .4 * f, 3),
+def sk7(f):   # round 2: light 'warm', wall wash off (META.proofs.f600 wash .001), sun to the f680 proof; glitter_ck .67 at f600 -> 1 at f680 (proofs)
+    u = max(0., min(1., (f - 560) / 120)); w = ss((f - 600) / 80)
+    return dict(light=L7, shot=7, radio_desk=0, wash=PR['f600']['wash'], sun_dir=lerp(WARM_SUN, PR['f680']['sun_dir'], w), sun_k=1 + (PR['f680']['sun_k'] - 1) * w,
+                flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=round(1 - (1 - u) ** 2.6, 4), comm=0, digits=0, starmap=0.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=round(20 + .4 * f, 3),
                 earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
 F7 = base("astro-flush ship, shot 7 (f538-705, rendered f531-712)", 531, 713, ("navigator",), keys_per_frame(500, 713, sk7),
           {"earth": [[0, 0, -3000, -2600, 1500]], "sky_follow": True,
@@ -117,7 +128,7 @@ S8 = [st(add(c740['loc'], d8, -.26), c740['look'], 42, .3, at=0, hold=0, creep=0
       dict(cam(c740), at=740, hold=0, pin=True, subject=None, framing="C", purpose="pinned pass: cam f740 (set's)"),
       st(add(c740['loc'], [.04, .07, 0]), add(c740['look'], [0, -.1, 0]), 42, -5.5, at=770, travel=round((770 - 696) / 30, 4), hold=0.2, creep=0, subject=None, framing="C",
          purpose="by eye: drift, picture slides right and rolls (r -5.5)")]
-def sk8(f): return dict(flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=1.0, comm=0, digits=0, starmap=1.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=0.0, earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
+def sk8(f): return dict(light='map', shot=8, flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=1.0, comm=0, digits=0, starmap=1.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=0.0, earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
 F8 = base("astro-flush ship, shot 8 (f713-762, rendered f706-770)", 706, 771, (), keys_per_frame(690, 771, sk8), {"earth": [[0, 0, -3000, -2600, 1500]], "sky_follow": True})
 F8["takes"] = [{"id": "s8", "place": "ship", "stations": S8}]; F8["acts"] = []
 
@@ -128,29 +139,44 @@ S9 = [st(add(c790['loc'], d9, -.12), c790['look'], 90, -1.2, at=0, hold=0, creep
       dict(cam(c790), at=790, hold=0, pin=True, subject=None, framing="C", purpose="pinned pass: cam f790 fitted"),
       st(add(add(c790['loc'], d9, .04), [-.005, 0, -.004]), c790['look'], 90, -1.65, at=802, travel=round((802 - 752) / 30, 4), hold=0.2, creep=0, subject=None, framing="C",
          purpose="steady push to the hard cut 802/803")]
-def sk9(f): return dict(flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=1.0, comm=1 if f >= 772 else 0, digits=0 if f < 772 else (1 if f < 783 else (2 if f < 794 else 3)),
+def sk9(f): return dict(light='radio', shot=9, flame=0.0, preglow=0.0, glitter=0.0, glitter_ck=1.0, comm=1 if f >= 772 else 0, digits=0 if f < 772 else (1 if f < 783 else (2 if f < 794 else 3)),
                         starmap=1.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=0.0, earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
 F9 = base("astro-flush ship, shot 9 (f771-802, rendered f763-802)", 763, 803, (), keys_per_frame(745, 803, sk9), {"earth": [[0, 0, -3000, -2600, 1500]], "sky_follow": True, "lamp_pulse": [14, .35]})
 F9["takes"] = [{"id": "s9", "place": "ship", "stations": S9}]; F9["acts"] = []
 
 # ================= shot 11 (f867-997, render f867-1006): porthole_b + new guy, pull back along the hull past LODESTAR, whole ship with glitter, roll +22.
 c880, c990 = C['f880'], C['f990']; d11 = unit(sub(c880['look'], c880['loc']))
-S11 = [st(add(c880['loc'], d11, .55), add(c880['look'], d11, .55), 20, -.4, at=0, hold=0, creep=0, subject="newguy", framing="C", purpose="pre-roll; travel leaves f855 (near rest f867-875, slow creep)"),
-       st(add(c880['loc'], d11, .45), add(c880['look'], d11, .45), 20, -.3, at=867, hold=0, pin=True, subject="newguy", framing="C", purpose="by eye: porthole frontal 30 %, new guy head 18 %"),
-       dict(cam(c880), roll=1.5, at=880, hold=0, pin=True, subject=None, framing="C", purpose="pinned pass: cam f880 fitted; pull back starts f876"),
-       st([2.5, 17.0, -2.5], [9.0, 2.4, 0.6], 36, 4.0, at=900, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f900 track along the hull from below: windows row, LODESTAR above, stripe below"),
-       st([20.0, 22.0, 6.0], [4.0, 0.0, 0.0], 45, 7.0, at=930, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f930 hull recedes upper left, tail + fans enter (rising over to the f990 side)"),
-       st(lerp(c990['loc'], [32, 6, 34], .35), lerp(c990['look'], [30, 2, 28], .3), 45, 9.0, at=960, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f960 whole ship on the diagonal, easing out"),
-       dict(cam(c990), at=990, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f990 fitted (roll 9.5 of the fit + 12 of the travel ... see STATE)"),
-       st(add(c990['loc'], sub(c990['loc'], c990['look']), .02), c990['look'], 45, 9.6, at=1006, travel=round((1006 - 855) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
+ROLL990_WRAP = -360.0   # 0: the travel turns the picture one way to -189.15; 360: the other way to 170.85 (chosen in picture)
+NG_CARD = 0.6
+EROLL = -1
+NG_DZ = 0.5   # round 2 by eye: at card .6 the anchor put his head at the porthole's lower edge
+ST900 = ([8.0, 7.5, -1.0], [8.6, 2.4, 0.3], 45, -2.0)
+ST930 = ([18.0, 22.0, -9.0], [10.0, 2.0, 0.0], 45, -15.0)
+d990 = unit(sub(c990['look'], c990['loc'])); ST960 = (add(c990['loc'], d990, 4.0), add(c990['look'], d990, 4.0), 45, KR(c990) - 360 + 6.0)
+# round 2: f990 = META cams.f990 (round 8, porthole +Y side, below, Blender roll 189.15 -> kit -189.15): the picture turns ~180 deg over f900-990 as in his
+# frames (f911 roof up, hull level; f951 roof lower right, nose lower right). Stations f900-960 by eye on that path.
+R880, R990 = KR(c880), KR(c990) + ROLL990_WRAP   # 189.15 - 360 = -170.85: the picture turns one way (content clockwise) as his
+def path11(u): return lerp(c880['loc'], c990['loc'], u)
+S11 = [st(add(c880['loc'], d11, .55), add(c880['look'], d11, .55), 20, R880, at=0, hold=0, creep=0, subject="newguy", framing="C", purpose="pre-roll; travel leaves f855 (near rest f867-875, slow creep)"),
+       st(add(c880['loc'], d11, .45), add(c880['look'], d11, .45), 20, R880, at=867, hold=0, pin=True, subject="newguy", framing="C", purpose="by eye: porthole frontal 30 %, new guy head 18 %"),
+       dict(cam(c880), at=880, hold=0, pin=True, subject=None, framing="C", purpose="pinned pass: cam f880 fitted; pull back starts f876"),
+       st(*ST900, at=900, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f900 track along the hull from below: windows row, LODESTAR above, stripe below"),
+       st(*ST930, at=930, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f930 hull descends to the right, tail + fans enter left"),
+       st(*ST960, at=960, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f960 whole ship on the diagonal, easing in to f990"),
+       dict(cam(c990), roll=round(R990, 3), at=990, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: META cams.f990 (round 8)"),
+       st(add(c990['loc'], sub(c990['loc'], c990['look']), .02), c990['look'], 45, R990 + .1, at=1006, travel=round((1006 - 855) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
           purpose="his rest f992-1001: here a creep (rule 3)")]
-E11 = [[0] + earth_world(c990, PR['f990']['earth_screen'])]
-def sk11(f): return dict(flame=0.0, preglow=0.0, glitter=1.0, glitter_ck=1.0, comm=0, digits=0, starmap=0.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=round(49 + .5 * (f - 990), 3),
-                         earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
+E11 = [[0] + earth_world(dict(c990, roll=EROLL * c990['roll']), PR['f990']['earth_screen'])]
+P880, P990 = PR['f880'], PR['f990']
+def sk11(f):   # round 2: space light, sun f880 proof -> f990 proof over f895-965; glitter trail fades in sparkle by sparkle f935-968 (META.frames glitter_trail 950-998); fan -44 at f990
+    w = ss((f - 895) / 70)
+    return dict(light='space', shot=11, sun_dir=lerp(P880['sun_dir'], P990['sun_dir'], w), sun_k=P880['sun_k'] + (1 - P880['sun_k']) * w, earth_term=P990['earth_term'],
+                flame=0.0, preglow=0.0, glitter=round(ss((f - 935) / 33), 4), glitter_ck=1.0, flame_w=0.001, comm=0, digits=0, starmap=0.0, ship=[0, 0, 0, 0, 0, 0], fans=1,
+                fan=round(P990['fan'] - .5 * (f - 990), 3), earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
 F11 = base("astro-flush ship, shot 11 (f867-997, rendered f867-1006)", 867, 1007, ("newguy",), keys_per_frame(840, 1007, sk11), {"earth": E11, "sky_follow": True})
 F11["takes"] = [{"id": "s11", "place": "ship", "stations": S11}]
-s11 = CARD.get('s11', 0.7); F11["card_scale"] = {"newguy": [[0, s11, s11], [2000, s11, s11]]}
-NG = [A['porthole_b'][0], 1.7, -1.14]   # round 1: the anchor newguy_s11 put the head 30 %+ and cut at the porthole edge; centred on porthole_b, deeper, card .7
+s11 = CARD.get('s11', NG_CARD); F11["card_scale"] = {"newguy": [[0, s11, s11], [2000, s11, s11]]}
+NG = add(A['newguy_s11'], [0, 0, NG_DZ])   # round 2: META anchor (round 8: head centred in porthole_b at 18 % of the frame)
 F11["acts"] = [dict(who="newguy", at=0, pos=NG, pose="m:../../ep_ship/ng11", look=[NG[0], 9, NG[2] + 1.2], note="nervous smile, sweat drop, small worried bob"),
                dict(who="newguy", at=875, pos=[NG[0] + .9, NG[1] - .1, NG[2]], move_s=0.4, ease="inout", look=[NG[0] + .9, 9, NG[2] + 1.2], note="f876-884 slides sideways out of the window (his 8 f; 12 f eased)"),
                dict(who="newguy", at=890, visible=False, note="out of view"), dict(who="newguy", at=867, face="k:afSweat", note="nervous smile, sweat drop")]

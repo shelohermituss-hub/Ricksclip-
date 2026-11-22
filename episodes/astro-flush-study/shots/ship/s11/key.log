@@ -1,9 +1,4 @@
 [page] Failed to load resource: the server responded with a status of 404 (Not Found)
-[page] AF_SHIP {"meshes":3,"glb_tris":306232,"load_ms":213}
+[page] AF_SHIP {"meshes":3,"glb_tris":314272,"load_ms":199}
 WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab fast
-film: 1007 frames at 30 fps, 378x672, cast newguy
-still /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/stills/f_00867.png
-[page] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
-still /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/stills/f_00930.png
-still /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/stills/f_00990.png
-stills: 3 frames in 4.9 s = 1626 ms/frame (draw 1596 + grab 30) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/stills
+film: 1007 frames at 30 fps, 540x960, cast newguy
