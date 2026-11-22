@@ -1,0 +1,5 @@
+CAMERA-SAFE  s1  camsafe on  514 checks: PASS 513  WARN 1  FAIL 0
+  FLICKER        1
+  f63 michel WARN  yaw -92.8 pitch 21.6  WARN FLICKER: view side -> 3/4 again 6 frames after the last change
+      FIX: ease the camera through the switch angle, or hold the view (act key "view") for this move
+report -> /home/user/Ricksclip-/episodes/plane-eater/s1/out/plan/camsafe_report.json
