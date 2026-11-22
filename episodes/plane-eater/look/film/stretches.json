@@ -7,8 +7,7 @@
   "keys": [
    0,
    20,
-   60,
-   121
+   60
   ],
   "window": [
    0,
@@ -102,18 +101,17 @@
     1.77
    ]
   },
-  "sat_kmax": 1.7,
+  "sat_kmax": 1.5,
   "tint": {
    "apron_slab": [
-    "#d9c7a8",
+    "#e2d6c4",
     1.0
    ],
    "hangar_wall": [
-    "#b9dca8",
-    0.5
+    "#c9dcc0",
+    0.35
    ]
-  },
-  "sky_fill": 0.6
+  }
  },
  "s2": {
   "place": "apron",
