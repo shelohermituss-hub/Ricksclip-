@@ -1,5 +1,105 @@
 {
- "s1": {"place": "apron", "set_blend": "sets/apron/out/apron.blend", "light": "apron_day", "expo": -0.1, "keep": ["s1_", "pe_cessna"], "keys": [0, 20, 121], "window": [0, 256], "grade": ["DAY", 0.5], "fix": ["salt_grains"]},
- "s2": {"place": "apron", "set_blend": "sets/apron/out/apron.blend", "light": "apron_day", "expo": -0.1, "keep": ["s2_", "pe_cessna"], "keys": [365, 478], "window": [257, 519], "grade": ["DAY", 0.5], "fix": []},
- "s4": {"place": "apron", "set_blend": "sets/apron/out/apron.blend", "light": "apron_day", "expo": -0.1, "keep": ["s4_", "pe_cessna"], "keys": [690, 850, 905], "window": [660, 942], "grade": ["DAY", 0.5], "fix": []}
+ "s1": {
+  "place": "apron",
+  "set_blend": "sets/apron/out/apron.blend",
+  "light": "apron_day",
+  "expo": -0.1,
+  "keys": [
+   0,
+   20,
+   121
+  ],
+  "window": [
+   0,
+   256
+  ],
+  "grade": [
+   "DAY",
+   0.5
+  ],
+  "fix": [
+   "kit_paint",
+   "salt_fix",
+   "salt_grains"
+  ],
+  "paint": {
+   "trunk_front": {
+    "tex": "tex_s1_trunk_front.png"
+   },
+   "trunk_slat": {
+    "col": "#7a4a2a",
+    "rough": 0.5
+   },
+   "trunk_end": {
+    "col": "#7a4a2a",
+    "rough": 0.5
+   },
+   "trunk_lid": {
+    "col": "#7a4a2a",
+    "rough": 0.5
+   },
+   "brass_corner": {
+    "col": "#d9a94a",
+    "metal": 0.9,
+    "rough": 0.3
+   },
+   "lock_plate": {
+    "col": "#d9a94a",
+    "metal": 0.9,
+    "rough": 0.3
+   },
+   "buckle": {
+    "col": "#d9a94a",
+    "metal": 0.9,
+    "rough": 0.3
+   },
+   "strap": {
+    "col": "#5a3320",
+    "rough": 0.7
+   },
+   "side_handle": {
+    "col": "#5a3320",
+    "rough": 0.7
+   }
+  }
+ },
+ "s2": {
+  "place": "apron",
+  "set_blend": "sets/apron/out/apron.blend",
+  "light": "apron_day",
+  "expo": -0.1,
+  "keys": [
+   365,
+   478
+  ],
+  "window": [
+   257,
+   519
+  ],
+  "grade": [
+   "DAY",
+   0.5
+  ],
+  "fix": []
+ },
+ "s4": {
+  "place": "apron",
+  "set_blend": "sets/apron/out/apron.blend",
+  "light": "apron_day",
+  "expo": -0.1,
+  "keys": [
+   690,
+   850,
+   905
+  ],
+  "window": [
+   639,
+   942
+  ],
+  "grade": [
+   "DAY",
+   0.5
+  ],
+  "fix": []
+ }
 }

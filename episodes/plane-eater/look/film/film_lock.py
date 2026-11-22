@@ -38,22 +38,68 @@ for o in list(sc.objects):
 # ---------------- the stretch's own pieces from the kit set (trunk, side table, plate, bites, the plane in this stretch's state ...)
 before = set(bpy.data.objects)
 bpy.ops.import_scene.gltf(filepath=os.path.join(LOCK, 'sets', PLACE + '.glb'))
-new = [o for o in bpy.data.objects if o not in before]; KEEP = tuple(CFG['keep']); MV = json.load(open(os.path.join(LOCK, 'motion', PLACE + '.json')))
+new = [o for o in bpy.data.objects if o not in before]; MV = json.load(open(os.path.join(LOCK, 'motion', PLACE + '.json')))
 moving_ids = {int(k) for k in MV['nodes']}
 def root_of(o):
     while o.parent is not None and o.parent in new_set: o = o.parent
     return o
-new_set = set(new); keep = set()
+new_set = set(new); keep = set(); BASE = CFG.get('base_root', 'villebrune_apron'); HELDPART = ('shaker_', 'fork_', 'hacksaw', 'tongs_', 'rag', 'held3d', 'pe_salt', 'pe_fork', 'pe_hacksaw', 'pe_sugar', 'pe_owner')
+def chain(o):
+    c = [o]
+    while c[-1].parent is not None and c[-1].parent in new_set: c.append(c[-1].parent)
+    return c
+replaced = []
 for o in new:
-    r = o
-    while r is not None:
-        if r.name.split('.')[0].startswith(KEEP) or (int(r.get('lock_id', -1)) in moving_ids and r.name.split('.')[0].startswith(tuple(CFG.get('keep_moving', ['s1_', 's2_', 's3_', 's4_', 's5_'])))): keep.add(o); break
-        r = r.parent if r.parent in new_set else None
-keepall = {o for o in new if o in keep or any(c in keep for c in o.children_recursive)}
+    ch = chain(o); names = [x.name.split('.')[0] for x in ch]
+    if any(nm.startswith(HELDPART) for nm in names): continue                 # held props are rebuilt from held_all.json
+    if names[-1] != BASE and o.type != 'LIGHT': keep.add(o); continue          # the stretch's own pieces (and the plane in this stretch's state)
+    if int(o.get('lock_id', -1)) in moving_ids and o.type == 'MESH':           # a base-set part that moves in this stretch (chair pulled out ...): the kit copy
+        keep.add(o); old = bpy.data.objects.get(names[0])
+        if old is not None and old not in new_set: replaced.append(old.name); old.hide_render = True; old.hide_viewport = True
+keepall = {o for o in new if o in keep}
+for o in keepall:                                                              # free kept nodes from parents that go, without moving them
+    if o.parent is not None and o.parent not in keepall: mw = o.matrix_world.copy(); o.parent = None; o.matrix_world = mw
 drop = [o for o in new if o not in keepall]; kept = list(keepall)
 bpy.data.batch_remove(drop)
+print('REPLACED', replaced[:20])
 print('LOCKIDS', sum(1 for o in kept if 'lock_id' in o.keys()), [ (o.name, o.get('lock_id')) for o in new if o.name.startswith(('s1_bite','s1_cut'))][:4] if False else '')
 print('KEPT', len(kept), sorted({root_of(o).name for o in kept})[:40], flush=True)
+# the lock glb carries colours only (no texture maps): kept pieces that come from a props-hero or set .blend take that file's own materials
+# again by object name (the Cessna paint with the navy stripe and F-MIAM, the glass, the scale dial, the bites ...)
+MATSRC = [os.path.join(EP, 'props', 'out', f) for f in ('cessna150.blend', 'cessna150_sliced.blend', 'cessna150_wingoff.blend', 'props2.blend')]
+SRC = {}
+for path in MATSRC:
+    if not os.path.exists(path): continue
+    with bpy.data.libraries.load(path, link=False) as (src, dst): dst.meshes = list(src.meshes); names = list(src.objects)
+    with bpy.data.libraries.load(path, link=False) as (src, dst): dst.objects = list(src.objects)
+    for ob in dst.objects:
+        if ob is not None and ob.type == 'MESH' and ob.name.split('.')[0] not in SRC: SRC[ob.name.split('.')[0]] = [m for m in ob.data.materials]
+    bpy.data.batch_remove([ob for ob in dst.objects if ob is not None])
+nmat = 0
+for o in kept:
+    if o.type == 'MESH' and o.name in bpy.data.objects:
+        ms = SRC.get(o.name.split('.')[0])
+        if ms and len(ms) == len(o.data.materials) and all(ms):
+            for i, m in enumerate(ms): o.data.materials[i] = m
+            nmat += 1
+print('MATS_FROM_BLENDS', nmat, 'of', sum(1 for o in kept if o.type == 'MESH'))
+# per-frame visibility + matrices of the stretch's script-driven pieces (look/film/dump_nodes.sh), where the lock has only one state
+DUMPF = os.path.join(LOCK, 'nodes_dump.json')
+if os.path.exists(DUMPF):
+    DU = json.load(open(DUMPF)); ids = L2.by_id(kept); Cm = Matrix(((1, 0, 0, 0), (0, 0, -1, 0), (0, 1, 0, 0), (0, 0, 0, 1))); Ci = Cm.inverted(); nd = 0
+    for lid, r in DU['nodes'].items():
+        o = ids.get(int(lid))
+        if o is None: continue
+        mw = o.matrix_world.copy(); o.parent = None; o.matrix_world = mw; o.rotation_mode = 'QUATERNION'; prev = None; nd += 1
+        for i, (v, m) in enumerate(zip(r['v'], r['m'])):
+            f = DU['f0'] + i; M = Matrix([m[0:4], m[4:8], m[8:12], m[12:16]]).transposed(); W = Cm @ M @ Ci
+            lo, q, sc_ = W.decompose()
+            if prev is not None and q.dot(prev) < 0: q.negate()
+            prev = q; o.location = lo; o.rotation_quaternion = q; o.scale = sc_; o.hide_render = not v
+            for p_ in ('location', 'rotation_quaternion', 'scale', 'hide_render'): o.keyframe_insert(p_, frame=f)
+        for fc in FL._fcurves(o.animation_data.action):
+            for kp in fc.keyframe_points: kp.interpolation = 'CONSTANT' if fc.data_path == 'hide_render' else 'LINEAR'
+    print('DUMP_APPLIED', nd, 'of', len(DU['nodes']))
 mv = L2.motion(LOCK, PLACE, kept); print('MOTION', {k: v for k, v in mv.items() if k != 'missing'}, 'missing', mv.get('missing', [])[:10])
 
 # ---------------- camera + cards from the lock
@@ -87,8 +133,15 @@ for who in LJ['cards']:
 
 # ---------------- held 3D props on every frame (grip -> tip from the kit), props-hero parts, ink fists
 HELD = json.load(open(os.path.join(LOCK, 'held_all.json'))) if os.path.exists(os.path.join(LOCK, 'held_all.json')) else []
-TIPS = {'salt_shaker': (0, 0, .072), 'fork': (.20, 0, 0), 'hacksaw': (.26, 0, 0), 'sugar_tongs': (.115, 0, 0), 'rag': (0, 0, .15), 'knife': (.257, 0, 0)}
-ALIASC = {'rag': 'owner_rag_spanner'}
+# obj -> props-hero part: collection in props2.blend, object-name filter, tip in the kit builder's units (scale = kit length / this), offset, colour
+import re
+PARTS = {'salt_shaker': dict(c='salt_shaker', tip=(0, 0, .072)), 'fork': dict(c='fork', tip=(.20, 0, 0)), 'hacksaw': dict(c='hacksaw', tip=(.26, 0, 0)),
+         'sugar_tongs': dict(c='sugar_tongs', tip=(.115, 0, 0)), 'rag': dict(c='owner_rag_spanner', rx='^rag', tip=(0, 0, .15)), 'knife': dict(c='knife', tip=(.257, 0, 0)),
+         'oil_glass': dict(c='oil_glass', tip=(.02, 0, 0)), 'water_jug': dict(c='water_jug', rx='^jug', tip=(.25, 0, 0), off=(.12, 0, -.17)),
+         'tumbler': dict(c='water_jug', rx='^tumbler', tip=(.02, 0, 0), off=(-.22, 0, -.05)),
+         'wing_slice': dict(c='metal_bites', rx='^bite_2', tip=(.1, 0, 0), col='#f3f4f1'), 'wheel_hub': dict(c='metal_bites', rx='^bite_3', tip=(.1, 0, 0), col='#c9ccd1'),
+         'seat_cushion': dict(c='metal_bites', rx='^bite_4', tip=(.1, 0, 0), col='#2f5fb0'), 'tire': dict(c='metal_bites', rx='^bite_5', tip=(.1, 0, 0), col='#232428')}
+PARTS.update(CFG.get('parts', {}))
 INKM = bpy.data.materials.new('ink_fist'); INKM.use_nodes = True; nb = INKM.node_tree.nodes['Principled BSDF']; nb.inputs['Base Color'].default_value = PL.lin('#2a1e24'); nb.inputs['Roughness'].default_value = .6
 nb.inputs['Emission Color'].default_value = PL.lin('#2a1e24'); nb.inputs['Emission Strength'].default_value = 1.0
 groups = {}
@@ -96,13 +149,20 @@ for r in HELD: groups.setdefault((r['who'], r['obj']), []).append(r)
 ALLF = [c['f'] for c in FR]; PROPS = {}
 with bpy.data.libraries.load(PL.PROPS2, link=False) as (src, dst): avail = list(src.collections)
 for (who, obj), rows in groups.items():
-    cname = ALIASC.get(obj, obj)
+    pt = PARTS.get(obj, dict(c=obj, tip=(.1, 0, 0))); cname = pt['c']
     if cname not in avail: print('HELD_SKIP no part', obj); continue
     e, coll = PL.prop(sc, cname, (0, 0, 0))
-    if obj == 'rag':
+    if pt.get('rx'):
         for o in list(coll.all_objects):
-            if 'spanner' in o.name: bpy.data.objects.remove(o)
-    tip = Vector(TIPS.get(obj, (.1, 0, 0))); byf = {r['f']: r for r in rows}; e.rotation_mode = 'QUATERNION'
+            if not re.match(pt['rx'], o.name): bpy.data.objects.remove(o)
+    if pt.get('off'):
+        for o in coll.all_objects:
+            if o.parent == e: o.location = Vector(o.location) + Vector(pt['off'])
+    if pt.get('col'):
+        cm = bpy.data.materials.new('held_' + obj); cm.use_nodes = True; cm.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = PL.lin(pt['col'])
+        for o in coll.all_objects:
+            if o.type == 'MESH' and not o.name.endswith(('_stripe',)): o.data = o.data.copy(); o.data.materials.clear(); o.data.materials.append(cm)
+    tip = Vector(pt['tip']); byf = {r['f']: r for r in rows}; e.rotation_mode = 'QUATERNION'
     fists = [bpy.data.objects.new('FIST_%s_%s_%d' % (who, obj, i), None) for i in range(1)]
     bpy.ops.mesh.primitive_uv_sphere_add(radius=1, segments=16, ring_count=8); fs_ = bpy.context.object; fs_.name = 'FIST_%s_%s' % (who, obj); fs_.data.materials.append(INKM)
     fs_.pass_index = 1; fs_.visible_shadow = False; PL.CAST.append(fs_)
@@ -125,11 +185,14 @@ print('HELD', {f'{w}:{o}': len(v) for (w, o), v in groups.items()})
 
 # ---------------- stretch fixes the kit could not make (CFG['fix'])
 import film_fixes as FX
-FX.apply(sc, CFG, dict(PROPS=PROPS, CARDS=CARDS, FR=FR, EX=EX, TO_SUN=TO_SUN, LOCK=LOCK, EP=EP, LOOK=LOOK))
+KX = dict(KEPT={o.name for o in kept if o.name in bpy.data.objects}, PROPS=PROPS, CARDS=CARDS, FR=FR, EX=EX, TO_SUN=TO_SUN, LOCK=LOCK, EP=EP, LOOK=LOOK)
+if MODE == 'hats':
+    os.makedirs(os.path.join(HERE, 'fix_' + ST), exist_ok=True); FX.hats(sc, CFG, KX, os.path.join(HERE, 'fix_' + ST, 'hats.json')); sys.exit(0)
+FX.apply(sc, CFG, KX)
 
 # ---------------- render settings, outline objects
 fo = PL.render_setup(sc, int(os.environ.get('W', 540)), int(os.environ.get('H', 960)), int(os.environ.get('SPP', 24)), bounces=5 if PLACE == 'apron' else 6)
-sc.render.fps = LJ.get('fps', 30); sc.frame_start, sc.frame_end = FR[0]['f'], FR[-1]['f']
+sc.render.fps = LJ.get('fps', 30); sc.frame_start, sc.frame_end = CFG['window']
 NOLINE = tuple(CFG.get('noline', [])) + ('lawn', 'apron_slab', 'hangar_floor', 'runway_mow', 'taxi_', 'fields_', 'hill_', 'tufts', 'clad_', 'hangar_wall', 'hangar_pier',
           'hangar_header', 'gable_infill', 'air_mote', 'glass', 'win_glass', 'door_glass', 'office_wall', 'office_clad', 'roof', 'cloth_top', 'oil_in', 'jug_water',
           'tree', 'poplar', 'Card_', 'SHADOWCARD_', 'CONTACT_', 'contact', 'salt_', 'DAPPLE', 'shaker_glass', 'shaker_salt', 'FIST_', 'floor', 'lino', 'wall', 'ceil', 'sky', 'cloud')
@@ -148,7 +211,8 @@ def render_frames(frames, od):
 
 if MODE == 'info':
     for f in [int(x) for x in (A[2].split(',') if len(A) > 2 else [str(FR[0]['f'])])]:
-        sc.frame_set(f); print('INFO_F', f, json.dumps({w: PL.screen(sc, k['object'].matrix_world.translation) for w, k in CARDS.items()}),
+        sc.frame_set(f); print('HIDE', f, [(o.name, o.hide_render, o.visible_get()) for o in sc.objects if o.name.startswith('Card_michel')], [(m.name, m.node_tree.nodes['seq'].image.name, m.node_tree.nodes['seq'].image_user.frame_current if hasattr(m.node_tree.nodes['seq'].image_user,'frame_current') else '', m.node_tree.nodes['seq'].image_user.frame_offset) for m in bpy.data.materials if m.name.startswith('Card_michel')])
+        print('INFO_F', f, json.dumps({w: PL.screen(sc, k['object'].matrix_world.translation) for w, k in CARDS.items()}),
                                json.dumps({f'{w}:{o}': PL.screen(sc, v[0].matrix_world.translation) for (w, o), v in PROPS.items()}))
 elif MODE == 'keys':
     od = A[3] if len(A) > 3 else os.path.join(LOOK, 'film', 'keys'); T = render_frames([int(x) for x in A[2].split(',')], od)
@@ -169,5 +233,10 @@ elif MODE == 'package':
     for lib in list(bpy.data.libraries): bpy.data.libraries.remove(lib)
     sc.render.filepath = '//out/f_####'
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(od, 'scene.blend'), compress=True, relative_remap=True)
-    json.dump(dict(stretch=ST, place=PLACE, frames=[FR[0]['f'], FR[-1]['f']], n=len(FR), keys=CFG.get('keys', []), res=[1080, 1920], fps=sc.render.fps), open(os.path.join(od, 'frames.json'), 'w'), indent=1)
+    json.dump(dict(stretch=ST, place=PLACE, frames=CFG['window'], n=CFG['window'][1] - CFG['window'][0] + 1, keys=CFG.get('keys', []), grade=CFG.get('grade', ['DAY', .5]), res=[1080, 1920], fps=sc.render.fps), open(os.path.join(od, 'frames.json'), 'w'), indent=1)
+    KIT = os.path.join(HERE, 'runpod_kit'); YC = os.path.join(ROOT, 'episodes', 'yellow-fire-trucks', 'cine')
+    for src in (os.path.join(KIT, 'job_film.py'), os.path.join(KIT, 'render.sh'), os.path.join(YC, 'finish_key.py'), os.path.join(YC, 'rick_targets.json'),
+                os.path.join(ROOT, 'tools', 'grade_rick.py'), os.path.join(ROOT, 'tools', 'measure', 'rick_grade_study.py'),
+                os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'composite.py'), os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'lines_key.py')):
+        shutil.copy2(src, od)
     print('PACKAGE', od)
