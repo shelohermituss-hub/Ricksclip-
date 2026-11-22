@@ -28,7 +28,7 @@ LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each,
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
     'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 110, 'ck_fill': 60, 'rooms': 120},
     'map':   {'sun': ((.45, -.6, .65), (1., .78, .6), .6), 'fill': .05, 'lamps': 8, 'ck_fill': 0, 'rooms': 0},
-    'radio': {'sun': ((.45, -.6, .65), (1., .78, .6), 0.), 'fill': 0., 'lamps': 3, 'ck_fill': 0, 'rooms': 0},
+    'radio': {'sun': ((.45, -.6, .65), (1., .78, .6), 0.), 'fill': 0., 'lamps': 3, 'ck_fill': 14, 'rooms': 0},
 }
 def set_light(scene, kind, sun_dir=None, sun_k=1.):
     L = LIGHTS[kind]; d, col, e = L['sun']; s = _o('sun_key'); e = e * sun_k

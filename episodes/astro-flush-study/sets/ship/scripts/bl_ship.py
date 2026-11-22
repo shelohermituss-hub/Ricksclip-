@@ -211,7 +211,7 @@ box('hazard_box_core', (.34, .03, .34), (xh + .55, HW + .235, -1.2), 'black', be
 bm = B(); abox(bm, .5, .05, .08, MT((0, 0, 0)), bev=.01); alathe(bm, [(.08, -.025), (.08, .025)], 6, MT((.27, 0, 0), (90, 0, 0))); alathe(bm, [(.06, -.025), (.06, .025)], 6, MT((-.26, 0, 0), (90, 0, 0)))
 obj('wrench', bm, 'wrench', (12.4, HW + 1.1, -1.75), (20, 10, 35), mover={'drift': [.15, .05, .03, 25]})
 # ------------------------------------------------------------------ round 7 nose (his f560-f700): solid roof slab overhanging a big glass box, solid skirt under it
-GZ0, GZ1 = -1.25, 2.0; GF0, GF1 = 26.4, 25.9; GW, GC, GCD = 1.1, 2.05, .7      # glass floor/top z; front pane x at bottom/top (sloped back); front half width, side half width, chamfer depth
+GZ0, GZ1 = -1.25, 2.0; GF0, GF1 = 26.4, 25.9; GW, GC, GCD = .6, 1.95, 1.0      # glass floor/top z; front pane x at bottom/top (sloped back); front half width, side half width, chamfer depth
 def gpt(s, k, z):
     xf = GF0 + (GF1 - GF0) * (z - GZ0) / (GZ1 - GZ0)
     return Vector(((xf, s * GW, z), (xf - GCD, s * GC, z), (XB, s * GC, z))[k])
@@ -341,7 +341,7 @@ while z < GZ1 - .15:                                                 # chevron s
 for k in range(14):                                                  # diagonal slats on the floor
     x = XB + .3 + k * .3; abeam(bm, (x, -IW + .2, FLZ + .04), (x + .5, IW - .2, FLZ + .04), .025, 4)
 obj('ck_slats', bm, 'ck_slat')
-LX, LT, LB = 23.4, (.40, 1.93), (.52, 1.2)                         # round 6 (f600 fit): short lamps over the navigator, rods splay out a little
+LX, LT, LB = 23.4, (.40, 1.93), (.55, 1.2)                         # round 6 (f600 fit): short lamps over the navigator, rods splay out a little
 for k, s in enumerate((-1, 1)):                                     # 2 pairs of black rods with an orange glowing tube + round tip
     for dy in (-.06, .06):
         bm = B(); abeam(bm, (LX, s * LT[0] + dy, LT[1]), (LX, s * (LB[0] - .03) + dy, LB[1] + .3), .022, 8); obj('lamp_rod_%d_%d' % (k, dy > 0), bm, 'lamp_rod', smooth=True)
@@ -373,9 +373,9 @@ for s in (1, -1):                                                  # side consol
     for row in range(3):
         for k in range(9): abox(bm[cl[(row * 9 + k * 7) % 4]], .1, .02, .07, MT((22.15 + k * .17, s * 1.59, FLZ + .7 + row * .13)), bev=0)
     for c in cl: obj('side_console_n_' + c, bm[c], c)
-bm = B(); alathe(bm, [(.0, 0), (.6, 0), (.6, .05), (.55, .25), (.4, .45), (.0, .55)], 16, Matrix.Diagonal((1, .55, 1, 1))); obj('red_half_round', bm, 'red_half', (22.6, -1.3, FLZ), smooth=True)
-box('red_half_block', (.3, .25, .2), (22.6, -1.3, FLZ + .6), 'black', bev=.02)
-box('blue_box_table', (.6, .6, .36), (22.4, 1.0, FLZ + .18), 'console', bev=.02); box('blue_box', (.42, .42, .3), (22.4, 1.0, FLZ + .51), 'blue_box', bev=.03)   # round 6 (f600 fit)
+bm = B(); alathe(bm, [(.0, 0), (.6, 0), (.6, .05), (.55, .25), (.4, .45), (.0, .55)], 16, Matrix.Diagonal((1, .55, 1, 1))); obj('red_half_round', bm, 'red_half', (22.6, -1.2, FLZ), smooth=True)
+box('red_half_block', (.3, .25, .2), (22.6, -1.2, FLZ + .6), 'black', bev=.02)
+box('blue_box_table', (.6, .6, .36), (22.4, .84, FLZ + .18), 'console', bev=.02); box('blue_box', (.42, .42, .3), (22.4, .84, FLZ + .51), 'blue_box', bev=.03)   # round 6 (f600 fit)
 pic('wall_badge', .36, .36, MF((XB + .2, 1.2, .45), (0, 1, 0), (0, 0, 1), (1, 0, 0)), 'badge.png', es=1.2)   # round 7: on the back wall, right (f560)
 # floating things (movers): the navigator's brown cup, a book, a pencil, a juice box
 for nm, size, loc, rot, mc in (('float_cup', (.12, .12, .16), (23.55, .35, .1), (10, 20, 0), mat('cup_brown', col='#7a4a2a', rough=.7)),
@@ -385,9 +385,9 @@ for nm, size, loc, rot, mc in (('float_cup', (.12, .12, .16), (23.55, .35, .1), 
     box(nm, size, loc, mc, bev=.012, rot=rot, mover={'drift': 'kit floats it'})
 # star map sheet taped on the inside of the front glass (shot 8): picture + 2 tape strips
 scz = .75; sx = GF0 + (GF1 - GF0) * (scz - GZ0) / (GZ1 - GZ0) - .07; ANCH['star_map'] = [sx, 0, scz]   # round 7: smaller, lower (f740)
-pic('star_map_sheet', .5, .62, MF((sx, 0, scz), (0, -1, 0), (0, 0, 1), (-1, 0, 0)), 'starmap.png', es=2.5, mover={'state': 'starmap 0-1'})
+pic('star_map_sheet', .6, .74, MF((sx, 0, scz), (0, -1, 0), (0, 0, 1), (-1, 0, 0)), 'starmap.png', es=2.5, mover={'state': 'starmap 0-1'})
 bm = B()
-for s in (1, -1): abox(bm, .01, .13, .045, MT((sx - .005, s * .24, scz + .3), (s * 40, 0, 0)), bev=0)
+for s in (1, -1): abox(bm, .01, .15, .05, MT((sx - .005, s * .29, scz + .36), (s * 40, 0, 0)), bev=0)
 obj('star_map_tape', bm, 'tape', mover={'follows': 'star_map_sheet'})
 # ================================================================== G. RADIO STATION on the +Y wall (desk, lower panel, sloped upper panel, radio)
 # radio frame, local: a along +X, b toward the wall (+Y), z up, origin at the desk top front centre
@@ -536,8 +536,8 @@ NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
 standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .40, pb[1] + .45, -1.5), 0)   # round 6: left of the opening (screen), beside the inner porthole
-standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.53), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
-ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .40, pb[1] + .45, -1.5]
+standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.46), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
+ANCH['navigator_s7'] = [23.9, 0, -.46]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .40, pb[1] + .45, -1.5]
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)
