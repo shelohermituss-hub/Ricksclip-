@@ -128,9 +128,9 @@
      "8B"
     ],
     "wing_offset": [
-     -2.698,
+     -0.816,
      0,
-     -0.894
+     -0.616
     ],
     "foil_raise": 0.16
    },
@@ -442,16 +442,16 @@
     {
      "at": 1021,
      "pos": [
-      1.65,
-      0.18,
-      1.38
+      1.05,
+      0.25,
+      1.28
      ],
      "aim": [
-      0.25,
-      1.15,
-      0.92
+      0.22,
+      1.22,
+      0.9
      ],
-     "lens": 16,
+     "lens": 13,
      "subject": "michel",
      "framing": "W",
      "purpose": "ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0",
