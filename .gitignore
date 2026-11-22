@@ -121,3 +121,6 @@ episodes/astro-flush-study/shots/**/out/
 episodes/astro-flush-study/shots/**/frames*/
 episodes/astro-flush-study/shots/**/stills*/
 episodes/astro-flush-study/voice/*.wav
+# rebuilt by sets/ship/scripts/make_earth_stars.py
+episodes/astro-flush-study/sets/ship/tex/earth.png
+episodes/astro-flush-study/sets/ship/tex/stars.png
