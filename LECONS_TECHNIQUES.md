@@ -630,3 +630,6 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Problem 3: the dive through the WASTE LINE hatch: the set has no opening behind the hatch down to the under-floor bay; the camera crosses the floor slab
   (black frames f1137-1139). Not fixed in the kit (no geometry from the stretch): asked of the set builder in shots/toilet/STATE.md.
 - Problem 4: post bloom 1 + the wide key light beside the toilet = a white blob over the middle of every shot-12 frame. Guard: bloom .35 on the wide light kind.
+- Problem 5 (OPEN): a face-only act (`{who, at, face}`) seems to restart the episode move's clock (t from the act's frame), so the move's own face and hand
+  keys jump back to their f0 values after every face act (s6: the new guy keeps the f0 wince face; s12 hand JUMPs at face-act frames). Faces returned from
+  the move without face acts did not show either (s1 first draft: flat face at f20). Cause not confirmed; check puppets.mjs moveOf (t per run) before the next round.

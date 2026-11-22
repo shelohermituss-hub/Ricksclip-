@@ -1,46 +1,17 @@
-collide: bay5/film.json  frames 0-498 every 2 (250 checked)  cast navigator, commander, newguy  held 3D props: none
-set cabin: 125 meshes tested; not tested: 1 no name, 4 effect / sky name
+collide: bay5/film.json  frames 411-499 every 2 (45 checked)  cast navigator, commander, newguy  held 3D props: none
+set cabin: 100 meshes tested; not tested: 1 no name, 25 collide.ignore, 4 effect / sky name
 resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
 result rule            who / what             against                    frames     what                                                                          
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f0-498     48 % of the body is inside it (boxes overlap 27 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bay_wall_backing     f0-440     50 % of the body is inside it (boxes overlap 30 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bay_wall_backing     f0-446     64 % of the body is inside it (boxes overlap 33 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f0-8       13 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bay_wall_backing     f0-442     60 % of the body is inside it (boxes overlap 36 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f12-28     12 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f54-90     14 % of the body is inside it (boxes overlap 27 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f98-452    55 % of the body is inside it (boxes overlap 32 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f346-348   10 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f352       10 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f364-402   11 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f430-498   55 % of the body is inside it (boxes overlap 24 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f436-446   17 % of the body is inside it (boxes overlap 21 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f444-448   20 % of the body is inside it (boxes overlap 20 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f446       10 % of the body is inside it (boxes overlap 25 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f448       28 % of the body is inside it (boxes overlap 15 cm)                           
-FAIL   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f450       12 % of the body is inside it (boxes overlap 26 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f466-472   11 % of the body is inside it (boxes overlap 25 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f478-486   22 % of the body is inside it (boxes overlap 18 cm)                           
-FAIL   BODY_IN_OBJECT  commander              cabin/bay_wall_backing     f486-498   44 % of the body is inside it (boxes overlap 29 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f486-498   29 % of the body is inside it (boxes overlap 17 cm)                           
-FAIL   BODY_IN_OBJECT  navigator              cabin/bag_navigator/bag_n~ f490       10 % of the body is inside it (boxes overlap 18 cm)                           
-WARN   BODY_IN_BOX     navigator              cabin/bag_navigator/bag_n~ f0-434     the body box is 15 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     navigator              cabin/bag_navigator/bag_n~ f0-428     the body box is 13 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     navigator              cabin/bag_navigator/bag_n~ f0-438     the body box is 15 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_OBJECT  navigator              cabin/bay_wall_panels      f0-108     5 % of the body is inside it (boxes overlap 31 cm)                            
-WARN   BODY_IN_BOX     navigator              cabin/bay_wall_rivets      f0-448     the body box is 29 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_OBJECT  commander              cabin/bag_commander/bag_c~ f0-126     6 % of the body is inside it (boxes overlap 21 cm)                            
-WARN   BODY_IN_OBJECT  commander              cabin/bay_wall_panels      f0-2       3 % of the body is inside it (boxes overlap 27 cm)                            
-WARN   BODY_IN_BOX     commander              cabin/bay_wall_rivets      f0-450     the body box is 24 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     newguy                 cabin/bag_new_guy/bag_new~ f0-416     the body box is 8 cm into its box, but no drawn body point is inside the mesh~
-WARN   BODY_IN_BOX     newguy                 cabin/bag_new_guy/bag_new~ f0-414     the body box is 7 cm into its box, but no drawn body point is inside the mesh~
-WARN   BODY_IN_BOX     newguy                 cabin/bay_porthole_frame_2 f0-406     the body box is 8 cm into its box, but no drawn body point is inside the mesh~
-WARN   BODY_IN_OBJECT  newguy                 cabin/bay_wall_panels      f0-444     5 % of the body is inside it (boxes overlap 26 cm)                            
-WARN   BODY_IN_BOX     newguy                 cabin/bay_wall_rivets      f0-450     the body box is 30 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     commander              cabin/bay_wall_panels      f4-30      the body box is 27 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f10        10 % of the body is inside it (boxes overlap 26 cm)                           
-WARN   BODY_IN_OBJECT  newguy                 cabin/bag_new_guy/bag_new~ f30-52     9 % of the body is inside it (boxes overlap 26 cm)                            
-WARN   BODY_IN_OBJECT  commander              cabin/bay_wall_panels      f32-60     3 % of the body is inside it (boxes overlap 27 cm)                            
-WARN   BODY_IN_BOX     commander              cabin/bay_wall_panels      f62-66     the body box is 27 cm into its box, but no drawn body point is inside the mes~
-... 109 more in collide.json
-22 FAIL, 127 WARN (34.7 s, scan 29.7 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/collide.json
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_backing    f411-421   the body box is 12 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_panels     f411-423   the body box is 13 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_rivets     f411-419   the body box is 11 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/bay_porthole_frame_2 f411-451   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/bay_rail             f411-413   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/bay_rail             f423-471   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/bay_rail             f445-449   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_panels     f449-499   the body box is 22 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_backing    f451-499   the body box is 21 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/bay_slant_rivets     f453-499   the body box is 20 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/float_crisps/float_~ f457       the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              cabin/bay_rail             f485-499   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+0 FAIL, 12 WARN (7.3 s, scan 2.9 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/collide.json
