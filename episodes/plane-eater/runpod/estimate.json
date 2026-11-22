@@ -1,48 +1,55 @@
 {
- "note": "CPU-measured ratio (this machine, same frame, PCT 33): new settings (720x1280, adaptive .1, max 48 spp, 4 bounces, simplify 2K, camera culling) vs the first package (1080x1920, .02, 64 spp): s1 .19, s2 .20, s4 .19, s5 .21, s3 ~.12. GPU = CPU x .155 (the car scene: CPU 37 s at 1080p 32 spp, 4090 5.1 s at 720p 64 spp). NOT a pod measure: measure 3 frames on the pod first.",
- "cpu_new_s_at_pct33": {
-  "s1": 5.34,
-  "s2": 5.38,
-  "s3": 7.81,
-  "s4": 5.47,
-  "s5": 9.69
- },
+ "note": "ESTIMATE, not a pod measure. CPU ratio measured here (same frames, PCT 33): new settings 0.19-0.21x of the first package (s3 ~0.12x); GPU = CPU x 0.155 (car scene: CPU 37 s 1080p 32 spp, 4090 5.1 s 720p 64 spp). +1 s/frame for the Workbench lines pass. Pod does BEAUTY ONLY (beauty + cast mask + lines id); grade, fx, overlay and the mix run here after the download (look/film/post_film.py). Measure 3 frames on the pod first.",
+ "settings": "720x1280 (upscaled to 1080x1920 in post), adaptive noise .1, max 48 spp, OIDN, 4 bounces, simplify 2K, camera culling, persistent data",
  "stretches": {
-  "s1": [
-   0,
-   256,
-   257,
-   "6-8"
-  ],
-  "s2": [
-   257,
-   519,
-   263,
-   "6-9"
-  ],
-  "s3": [
-   520,
-   638,
-   119,
-   "6-11"
-  ],
-  "s4": [
-   639,
-   942,
-   304,
-   "5-7"
-  ],
-  "s5": [
-   943,
-   1021,
-   79,
-   "10-16"
-  ]
+  "s1": {
+   "frames": 257,
+   "window": [
+    0,
+    256
+   ],
+   "s_per_frame_4090": "7-9"
+  },
+  "s2": {
+   "frames": 263,
+   "window": [
+    257,
+    519
+   ],
+   "s_per_frame_4090": "7-10"
+  },
+  "s3": {
+   "frames": 119,
+   "window": [
+    520,
+    638
+   ],
+   "s_per_frame_4090": "7-12"
+  },
+  "s4": {
+   "frames": 304,
+   "window": [
+    639,
+    942
+   ],
+   "s_per_frame_4090": "6-8"
+  },
+  "s5": {
+   "frames": 79,
+   "window": [
+    943,
+    1021
+   ],
+   "s_per_frame_4090": "11-17"
+  }
  },
- "est_s_per_frame_4090": "5-9 (apron, x-ray), 10-16 (cabin) + about 1 s lines pass",
  "total_frames": 1022,
- "total_hours_4090": "1.5-2.7",
- "previous_estimate_hours": "7.2-14.3",
+ "render_hours": "2.0-2.8",
+ "setup_upload_download_hours": 0.35,
+ "total_pod_hours": "2.3-3.2",
+ "price_per_hour_usd": 0.89,
+ "cost_usd": "2.08-2.82",
+ "vs_cap": "the 40-50 min cap is NOT enough for all 1022 frames at these settings: 2.3-3.2 h pod time needed (or 2-4 pods in parallel, or noise .15 on s3/s5)",
  "packages_GB": 1.2,
- "pack_test_2026-11-22": "all 5 packages: 1 key frame at PCT 25 SPP 8 on CPU, finals looked at (look/film/pkg_test/sheet.jpg): cards, props, salt stream, snow, cabin OK"
+ "pack_test": "2026-11-22: all 5 packages, 1 key frame each at PCT 25 SPP 8 on CPU through post_film (grade, fx, overlay captions): look/film/pkg_test/sheet.jpg"
 }

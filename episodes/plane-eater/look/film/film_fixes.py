@@ -262,3 +262,21 @@ def lunch_lines(sc, cfg, K):
     for f in (121, 122, 123):
         sc.frame_set(f); c = w2c(sc, sc.camera, K['CARDS']['michel']['object'].matrix_world @ Vector((0, 0, 1.2))); out[f] = dict(kind='focus', c=[c.x, 1 - c.y], two_tone=f == 122)
     json.dump(out, open(os.path.join(od, 's1_fx.json'), 'w')); print('LUNCH_LINES', out)
+
+def tint_mats(sc, cfg, K):
+    """stretches.json 'tint': object-name prefix -> [hex, factor]: the base colour of those objects' materials multiplied toward a tint (S1: the
+    apron concrete a little warmer and the hangar floor with it, so the day frame carries colour at the source instead of a grade boost)."""
+    done = set()
+    for pre, (hx, fac) in cfg.get('tint', {}).items():
+        n = 0
+        for o in sc.objects:
+            if o.type != 'MESH' or not o.name.startswith(pre): continue
+            for m in o.data.materials:
+                if not m or not m.use_nodes or m.name in done: continue
+                b = next((x for x in m.node_tree.nodes if x.type == 'BSDF_PRINCIPLED'), None)
+                if b is None: continue
+                ci = b.inputs['Base Color']; mx = m.node_tree.nodes.new('ShaderNodeMix'); mx.data_type = 'RGBA'; mx.blend_type = 'MULTIPLY'; mx.inputs['Factor'].default_value = fac
+                if ci.links: m.node_tree.links.new(ci.links[0].from_socket, mx.inputs['A'])
+                else: mx.inputs['A'].default_value = ci.default_value
+                mx.inputs['B'].default_value = tuple(_hx(hx)) + (1,); m.node_tree.links.new(mx.outputs['Result'], ci); done.add(m.name); n += 1
+        print('TINT', pre, hx, fac, n)

@@ -25,6 +25,7 @@ t0 = time.time()
 if CFG['light'] == 'apron_day':
     import apron_api as AA
     AA.EXPO_DAY = CFG.get('expo', -0.1); AA.set_light(sc, 'day')
+    if CFG.get('sky_fill'): sc.world.node_tree.nodes['sky_fill'].inputs['Strength'].default_value = CFG['sky_fill']   # S1: less blue lift on the concrete shade
     sun = bpy.data.objects['apron_sun']; TO_SUN = (sun.matrix_world.to_3x3() @ Vector((0, 0, 1))).normalized()
     for o in sc.objects:
         if o.type == 'MESH' and o.name.startswith(('lawn', 'apron_slab', 'tufts', 'grass', 'runway_mow', 'taxi_', 'hangar_floor')):
@@ -143,7 +144,13 @@ for ad in (cam.animation_data, cam.data.animation_data):
     if ad and ad.action:
         for fc in FL._fcurves(ad.action):
             for k in fc.keyframe_points: k.interpolation = 'LINEAR'
-cam.data.dof.use_dof = False                                                         # characters never blur; DOF is a later per-shot pass
+cam.data.dof.use_dof = False
+if CFG.get('cam_offset') or os.environ.get('CAM_OFF'):                           # a reframe the lead asked for (S5: both heads readable)
+    co_ = [float(x) for x in os.environ['CAM_OFF'].split(',')] if os.environ.get('CAM_OFF') else CFG['cam_offset']
+    for fc in FL._fcurves(cam.animation_data.action):
+        if fc.data_path == 'location':
+            for kp in fc.keyframe_points:
+                if CFG['window'][0] <= kp.co[0] <= CFG['window'][1]: kp.co[1] += co_[fc.array_index]                                                         # characters never blur; DOF is a later per-shot pass
 CARDS = {}
 OFF = CFG.get('card_offset', {})
 for who in LJ['cards']:

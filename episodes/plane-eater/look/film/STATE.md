@@ -32,3 +32,7 @@ Estimate runpod/estimate.json: 1022 frames, 18-90 s/frame on a 4090 (not measure
 - Speed: job_film 720x1280 + upscale, adaptive .1 / 48 spp, 4 bounces, simplify 2K, camera culling, persistent data: CPU 0.19-0.21x (s3 0.12x).
   Estimate 5-9 s/frame (s5 10-16) on a 4090, 1.5-2.7 h for 1022 frames (runpod/estimate.json). All 5 packages re-tested and looked at (pkg_test/sheet.jpg).
 - Still weak: S1 floor dapple reads blue/orange after the grade; S5 f1001 owner half hidden; S3 world sat .52/.75; keys are 540 previews.
+## Round 4 (2026-11-22): overlay 1022 frames at 1080x1920 (<s>/out/overlay, 10-60 s a stretch); post_film.py = finish + fx + overlay + mix.wav -> mp4
+(pod does beauty only: render.sh FINISH=0 default). S5 camera offset (-0.2, 0, +0.15) in the window: both heads read at 969/1001. S1 colour at the source
+(tint_mats: concrete #d9c7a8, hangar walls #b9dca8 x.5, sky fill .6) + boost cap 1.7: S1 sat .33-.35 (floor reads orange/green: loud). Packages re-tested
+through post (pkg_test/sheet.jpg). Estimate runpod/estimate.json: 2.0-2.8 h render, 2.3-3.2 h pod, $2.1-2.8 at $0.89/h: above a 40-50 min cap.

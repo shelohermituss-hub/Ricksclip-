@@ -20,6 +20,7 @@
   ],
   "fix": [
    "kit_paint",
+   "tint_mats",
    "hook_cam",
    "salt_fix",
    "salt_grains",
@@ -101,7 +102,18 @@
     1.77
    ]
   },
-  "sat_kmax": 1.5
+  "sat_kmax": 1.7,
+  "tint": {
+   "apron_slab": [
+    "#d9c7a8",
+    1.0
+   ],
+   "hangar_wall": [
+    "#b9dca8",
+    0.5
+   ]
+  },
+  "sky_fill": 0.6
  },
  "s2": {
   "place": "apron",
@@ -237,12 +249,11 @@
    "cabin_window"
   ],
   "base_dump": true,
-  "card_offset": {
-   "owner": [
-    0,
-    0.2,
-    0
-   ]
-  }
+  "card_offset": {},
+  "cam_offset": [
+   -0.2,
+   0,
+   0.15
+  ]
  }
 }
