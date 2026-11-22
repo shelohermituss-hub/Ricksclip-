@@ -145,7 +145,7 @@
    "at": 519,
    "pos": [
     -0.22,
-    1.42,
+    1.3,
     0.0
    ],
    "view": "34",
@@ -194,7 +194,7 @@
   },
   {
    "who": "doctor",
-   "at": 572,
+   "at": 563,
    "visible": false,
    "note": "the camera is inside the film from here (he is behind the lens); row 23 (next stretch) brings him back on the double take"
   }
