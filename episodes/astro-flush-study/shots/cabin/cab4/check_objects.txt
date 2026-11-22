@@ -2,18 +2,24 @@ motion_objects: cab4/film.json  frames 0-422  17 tracks (camera, 3 characters, 4
 CAMERA moves on 35 % of the frames (148 of 422 steps)
 CUT  none
 result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
-PASS   CAMERA                             423     148     15.10     0.62       0     0     0   
-PASS   commander.feet                     423     66      8.52      0.00       0     0     0   
-PASS   commander.head                     423     118     11.15     0.00       0     0     0   
-PASS   commander.handR                    423     422     8.79      0.00       0     0     0   
-PASS   commander.handL                    423     420     8.84      0.00       0     0     0   
-PASS   newguy.feet                        423     68      7.11      0.00       0     0     0   
-PASS   newguy.head                        423     133     9.24      0.00       0     0     0   
-PASS   newguy.handR                       423     420     6.95      0.00       0     0     0   
-PASS   newguy.handL                       423     419     6.91      0.00       0     0     0   
-PASS   navigator.feet                     423     50      1.03      0.00       0     0     0   
-PASS   navigator.head                     423     116     8.81      0.00       0     0     0   
-PASS   navigator.handR                    423     418     4.33      0.00       0     0     0   
-PASS   navigator.handL                    423     421     6.10      0.00       0     0     0   
-... 4 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
-0 FAIL, 0 WARN on 0 of 17 tracks (37.8 s, page scan 28.2 s = 66.7 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/motion_objects.json
+PASS   CAMERA                             423     148     15.23     0.62       0     0     0   
+FAIL   navigator.handR                    423     421     80.05     0.00       0     1     0   
+FAIL   navigator.handL                    423     421     78.66     0.00       0     1     0   
+FAIL   cabin/clipboard                    423     421     80.05     0.00       0     1     0   
+FAIL   cabin/pencil                       423     421     78.66     0.00       0     1     0   
+PASS   commander.feet                     423     82      7.53      0.00       0     0     0   
+PASS   commander.head                     423     116     8.87      0.00       0     0     0   
+PASS   commander.handR                    423     419     8.25      0.00       0     0     0   
+PASS   commander.handL                    423     420     8.34      0.00       0     0     0   
+PASS   newguy.feet                        423     80      3.25      0.00       0     0     0   
+PASS   newguy.head                        423     127     12.46     0.00       0     0     0   
+PASS   newguy.handR                       423     419     8.98      0.00       0     0     0   
+PASS   newguy.handL                       423     416     7.95      0.00       0     0     0   
+PASS   navigator.feet                     423     50      0.94      0.00       0     0     0   
+PASS   navigator.head                     423     116     6.97      0.00       0     0     0   
+... 2 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
+FAIL JUMP navigator.handR  f318  80.1 cm in one step at f318, the steps around it run at 1.03 cm/frame (median)
+FAIL JUMP navigator.handL  f318  78.7 cm in one step at f318, the steps around it run at 1.42 cm/frame (median)
+FAIL JUMP cabin/clipboard  f318  80.1 cm in one step at f318, the steps around it run at 1.03 cm/frame (median)
+FAIL JUMP cabin/pencil  f318  78.7 cm in one step at f318, the steps around it run at 1.42 cm/frame (median)
+4 FAIL, 0 WARN on 4 of 17 tracks (28.7 s, page scan 20.7 s = 48.9 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/motion_objects.json

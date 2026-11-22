@@ -1,0 +1,4 @@
+cab4 f284-410 ours: {'frames': 127, 'held': 0.0, 'pops': 0.119, 'jerk': 0.0627, 'chroma_roughness': 0.0042} FAIL
+cab4 f284-410 his : {'frames': 127, 'held': 0.0079, 'pops': 0.246, 'jerk': 0.0951, 'chroma_roughness': 0.0061} FAIL
+bay5 f423-494 ours: {'frames': 72, 'held': 0.0, 'pops': 0.0, 'jerk': 0.0746, 'chroma_roughness': 0.0056} FAIL
+bay5 f423-494 his : {'frames': 72, 'held': 0.0, 'pops': 0.0, 'jerk': 0.0675, 'chroma_roughness': 0.0046} FAIL

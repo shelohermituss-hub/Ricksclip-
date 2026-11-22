@@ -8,6 +8,8 @@
 //     ribbon: { f: [f0, f1], pivot: [x, y, z], hide: f }                   paper_ribbon is drawn into the bowl (scaled about pivot, eased) and hidden from "hide"
 //     explode: { f: f0, n: frames, delay: frames, order: [names...], float: m }  every toilet part with an "exploded" target goes rest -> exploded on its own
 //                                delay (ease out), then hangs with a slow float (amplitude m)
+//     floor: { from: F0, to: F1, z: Z }   frames F0..F1: near plane pushed past the floor slab (Blender z from Z to 0) while the camera dives down through it
+//     pulse_light: [[f, k], ...]  toilet_pulse_light intensity and hose_pulse glow scaled by k (smoothstep between keys): no blown-out white at the flange
 //   }
 import { build as buildToilet, ANCHORS, CAMS, MOVERS, FRAMES } from './toilet.js';
 export { ANCHORS, CAMS, MOVERS, FRAMES };
@@ -24,13 +26,16 @@ export async function build(THREE, scene, film, ctx) {
   function update(f, t, R) {
     B.update(f, t, R);
     // camera near plane (the pull-back through the porthole wall)
-    if (R && R.camera) { const c = R.camera, nr = ST.near && f <= ST.near.to ? Math.max(.05, ST.near.x - c.position.x) : .05; if (Math.abs(c.near - nr) > 1e-6) { c.near = nr; c.updateProjectionMatrix(); } }
+    if (R && R.camera) { const c = R.camera; let nr = ST.near && f <= ST.near.to ? Math.max(.05, ST.near.x - c.position.x) : .05;
+      if (ST.floor && f >= ST.floor.from && f <= ST.floor.to) { const fw = new THREE.Vector3(); c.getWorldDirection(fw); const top = 0.02 - c.position.y, bot = ST.floor.z - .02 - c.position.y;   // three y = Blender z
+        if (c.position.y > ST.floor.z - .02 && fw.y < -.05) nr = Math.max(nr, Math.min(4, (c.position.y - ST.floor.z + .02) / -fw.y)); } if (Math.abs(c.near - nr) > 1e-6) { c.near = nr; c.updateProjectionMatrix(); } }
     // exploded view, part by part
     if (ST.explode) { const E = ST.explode;
       for (const [n, m] of EX) { const o = N(n); if (!o) continue; const k = Math.max(0, order.indexOf(n)), u = eo((f - E.f - k * (E.delay ?? 1)) / (E.n ?? 7));
         const fl = u >= 1 ? (E.float ?? .015) * Math.sin(2 * Math.PI * (f - E.f) / 50 + k * 1.7) : 0, fr = u >= 1 ? 2.5 * Math.sin(2 * Math.PI * (f - E.f) / 64 + k) : 0;
         o.position.copy(V(m.loc)).lerp(V(m.exploded.loc), u); o.position.y += fl * u; o.quaternion.copy(Q(m.rot)).slerp(Q([m.exploded.rot[0], m.exploded.rot[1] + fr, m.exploded.rot[2]]), u);
         const s0 = m.scale || [1, 1, 1], s1 = m.exploded.scale || s0; o.scale.set(lerp(s0[0], s1[0], u), lerp(s0[2], s1[2], u), lerp(s0[1], s1[1], u)); } }
+    if (ST.pulse_light) { const k = keyed(ST.pulse_light, f), L = N('toilet_pulse_light'), hp = N('hose_pulse'); if (L) L.intensity *= k; if (hp) hp.scale.setScalar(Math.max(.05, k)); }
     // flush lever
     if (ST.lever) { const o = N('toilet_flush_lever'); if (o) o.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(AXY, keyed(ST.lever, f) * D2R)); }
     // floating paper roll, then pulled to the bowl

@@ -1,0 +1,5 @@
+[page] AF_SHIP {"meshes":3,"glb_tris":306232,"load_ms":243}
+WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab fast
+film: 803 frames at 30 fps, 378x672, cast 
+[page] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+stills: 40 frames in 38.3 s = 956 ms/frame (draw 909 + grab 48) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s9/out/stills

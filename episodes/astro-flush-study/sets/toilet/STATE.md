@@ -40,3 +40,18 @@ door_leaf (`open`), hatch_panel (`open`), paper_roll_float, paper_ribbon, hose_p
 5. Shot 1 day (f5 L 0.45 vs 0.35, f33 0.39 vs 0.31): still lighter than his; the floor whites are bright all over, not only where the key hits. Earth is now a curved limb with a rim glow, but has too many flat clouds and too little blue.
 6. f1190 tube: navy and cyan now (sat 0.74 vs 0.66), but too dark (L 0.10 vs 0.17); the core is a white disc, his is a cyan glow; his has lighter ring bands.
 7. Wide f1030: long hard shadows toward the lens now, but the whole frame is darker than his (0.27 vs 0.32), and the shelf/toilet corner is dark. f1105: the exploded stack sits right but is a little low and blown white at the top.
+
+## REQUESTS FROM STAGING (toilet stretch, 2026-11-22; shots/toilet/STATE.md)
+1. ONE MOVE HATCH -> TUBE (his f1132-1199 is one camera, no cut):
+   a. An opening behind the WASTE LINE hatch (hatch at Blender (-1.8, 1.55, 0.2)): a shaft at least 0.5 x 0.5 m going down from the hatch mouth to the
+      under-floor bay (bay floor z -1.7), lit (bay_fill reaches it), so the camera can pitch down through it (now it crosses the floor slab f1137-1141; hidden by
+      a near-plane trick in the stage wrapper).
+   b. A tube entry AT the flange: the WASTE VENT flange (1.745, 1.5, -0.9) open in its centre (dark ring + bore 0.25 m wide) leading into the tube interior
+      (rings, core) placed on the flange axis (+x) right behind it, instead of the tube 30 m away at y -26..-34. Then the camera flies through the flange into
+      the tube with no cut (his nozzle fills the frame at f1176, rings from f1178).
+   c. Until then staging keeps the cut at f1176, inside the dark of the flange.
+2. Bowl swirl for shot 1 (his f24-28) and a ribbon with its own pivot at the roll (now world-placed at the origin: it can only be scaled into the bowl).
+3. Shot 6: glow strip lights along the floor and a halo around the toilet (his f500-530).
+4. The wide key light by the toilet blooms into a white blob in the kit (bloom lowered to .35 in s12); the pulse light blows the flange out white at f1170
+   (staging scales it to .12 from f1162 through the wrapper).
+5. A face smug + ONE sweat drop (his f512-530) is not in the cast (stand-in k:nervousSmile) - for the character artist.

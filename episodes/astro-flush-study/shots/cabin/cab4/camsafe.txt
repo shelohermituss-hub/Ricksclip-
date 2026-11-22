@@ -1,5 +1,8 @@
-CAMERA-SAFE  cab4  camsafe on  1269 checks: PASS 983  WARN 286  FAIL 0
-  STEEP          286
-  f0 newguy WARN  yaw 6.9 pitch 71.2  WARN STEEP: camera 71 deg down
-      FIX: lower the camera to 60 deg or less unless the plan wants the top-down
+CAMERA-SAFE  cab4  camsafe on  1269 checks: PASS 689  WARN 6  FAIL 574
+  STEEP          293
+  VIEW_MISMATCH  287
+  f0 newguy FAIL  yaw 18.5 pitch 84.8  FAIL STEEP: camera 85 deg down: a standing card reads as a cut-out lying flat
+      FIX: lower the camera to 60 deg or less, or use a lying / top drawing (lie_cam) if he is on the floor
+  f0 navigator FAIL  yaw -24.4 pitch 58.7  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_cab/nav4)
+      FIX: set film.json "camsafe": true (moves then draw the asked view)
 report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/plan/camsafe_report.json

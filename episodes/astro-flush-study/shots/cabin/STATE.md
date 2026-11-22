@@ -54,3 +54,8 @@ Render: half size, 2.0 s/f (cab4 139 f), 1.5 s/f (bay5 89 f). Draft mp4s: refere
   commander afEyeRoll all through; navigator smug. FOUND: the kit plays the MOVE's face here (f320/f390 showed the move's surprised / laugh, not the act's): moves and acts now carry the same keys.
 - Render: render_r3.sh (waits for any earlier render_all, both drafts, then the four checks).
 - round 3 FOUND: render_gpu reads out/plan/camera_baked.json + performance_baked.json; after make_film.py run film_plan.py check, or the render plays the old acts (round 3's first full render did).
+- Sizes are calibrated by eye on face-ball WIDTH (grid crops ours / his, 540 px wide): the plan maths (VIS, card tip) is off by up to 30 %; CAL in make_film.py holds the per-frame factors.
+  The automatic white-blob measure fails on his light walls (blobs merge); do not trust it for shot 4.
+- bay5 jerk 0.075 (his 0.068): top frames f493 (eased landing after the f490 pin + caption "and"), f477-480 (view front -> 3/4 swap at f472 + caption), f452-453 (green bag full -> empty hard swap).
+- cab4: commander / navigator look at fixed side points (commander +3 m x, navigator -5 m x, 1 m toward the lens): the look AT the new guy ran through the lens line
+  f284-317 (camsafe VIEW_MISMATCH) and flipped the navigator's 3/4 at f318 (80 cm hand / clipboard JUMP). Navigator scale 1.0 (his marks off the quilt); upright for commander + navigator until f300 (+14 f) = no lean into the quilt under the high pull-back cam.

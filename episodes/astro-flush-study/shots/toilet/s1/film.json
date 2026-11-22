@@ -23,6 +23,7 @@
   "face_frames": 0,
   "ones": true
  },
+ "move_face": true,
  "puppet_pkg": [
   "moves",
   "cast",
@@ -251,7 +252,7 @@
       "door": 0.0,
       "hatch": 0.0,
       "pulse": 0.0,
-      "paper": 1
+      "paper": 0
      },
      {
       "f": 18,
@@ -261,7 +262,7 @@
       "door": 0.0,
       "hatch": 0.0,
       "pulse": 0.0,
-      "paper": 1
+      "paper": 0
      },
      {
       "f": 19,
@@ -271,7 +272,7 @@
       "door": 0.0,
       "hatch": 0.0,
       "pulse": 0.0,
-      "paper": 1
+      "paper": 0
      },
      {
       "f": 20,
@@ -512,19 +513,19 @@
     },
     "lever": [
      [
-      7,
+      6,
       0
      ],
      [
-      10,
+      12,
       -28
      ],
      [
-      16,
+      17,
       -28
      ],
      [
-      22,
+      25,
       0
      ]
     ],
@@ -540,8 +541,8 @@
       25
      ],
      "pull": [
-      12,
-      17
+      11,
+      20
      ],
      "to": [
       1.36,
@@ -551,15 +552,15 @@
     },
     "ribbon": {
      "f": [
-      17,
-      25
+      20,
+      28
      ],
      "pivot": [
       1.36,
       2.6,
       0.5199999999999999
      ],
-     "hide": 26
+     "hide": 29
     }
    }
   }
@@ -581,17 +582,17 @@
       0.92
      ],
      "lens": 34.58,
-     "roll": 0,
+     "roll": 0.0,
      "at": 0,
      "hold": 0,
-     "creep": 0,
      "subject": "newguy",
      "framing": "M",
-     "purpose": "f0 frame 0 = the hook: new guy smug beside the toilet; slow push in starts"
+     "purpose": "f0 frame 0 = the hook: new guy smug beside the toilet; slow push in starts",
+     "creep": 0
     },
     {
      "pos": [
-      -1.6393,
+      -1.7774,
       2.9,
       0.95
      ],
@@ -601,19 +602,19 @@
       0.92
      ],
      "lens": 34.58,
-     "roll": 0,
-     "at": 15,
+     "roll": 0.0,
+     "at": 2,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "M",
-     "purpose": "pinned pass: push in eases to z1.02"
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      -1.589,
+      -1.7493,
       2.9,
-      0.96
+      0.95
      ],
      "aim": [
       2.0,
@@ -621,73 +622,373 @@
       0.92
      ],
      "lens": 34.58,
-     "roll": 0,
-     "at": 29,
+     "roll": 0.0,
+     "at": 4,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "M",
-     "purpose": "pinned pass: pull-back starts f29"
-    },
-    {
-     "pos": [
-      -2.05,
-      2.9,
-      1.0
-     ],
-     "aim": [
-      2.0,
-      2.86,
-      0.89
-     ],
-     "lens": 36.1,
-     "roll": 0,
-     "at": 31,
-     "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "W",
-     "purpose": "pinned pass: camera crosses the porthole wall (near plane keeps the room)"
-    },
-    {
-     "pos": [
-      -3.2,
-      2.9,
-      1.05
-     ],
-     "aim": [
-      2.0,
-      2.85,
-      0.85
-     ],
-     "lens": 36.91,
-     "roll": 0,
-     "at": 33,
-     "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "W",
-     "purpose": "pinned pass: cam f33 fitted (room small, side walls enter)"
-    },
-    {
-     "pos": [
-      -7.3,
-      2.85,
-      1.25
-     ],
-     "aim": [
-      2.0,
-      2.85,
-      1.25
-     ],
-     "lens": 31.18,
-     "roll": 0,
-     "at": 37,
-     "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: cam f37 fitted, outside: the room through the porthole"
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.7231,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 6,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6992,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 8,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.678,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 10,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6599,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 12,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6452,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 14,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6339,
+      2.9,
+      0.95
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 16,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6233,
+      2.9,
+      0.9503
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 18,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6135,
+      2.9,
+      0.9509
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 20,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6047,
+      2.9,
+      0.9519
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 22,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.5975,
+      2.9,
+      0.9534
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 24,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.5922,
+      2.9,
+      0.9556
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 26,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.5894,
+      2.9,
+      0.9583
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.92
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 28,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.6749,
+      2.9,
+      0.9704
+     ],
+     "aim": [
+      2.0,
+      2.855,
+      0.9093
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 30,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -2.4036,
+      2.9,
+      1.0159
+     ],
+     "aim": [
+      2.0,
+      2.855,
+      0.8657
+     ],
+     "lens": 34.58,
+     "roll": 0.0,
+     "at": 32,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -4.1224,
+      2.8922,
+      1.098
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      0.9125
+     ],
+     "lens": 34.32,
+     "roll": 0.0,
+     "at": 34,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -6.3287,
+      2.8578,
+      1.2143
+     ],
+     "aim": [
+      2.0,
+      2.85,
+      1.1875
+     ],
+     "lens": 33.02,
+     "roll": 0.0,
+     "at": 36,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -8.123,
+      2.909,
+      1.2691
+     ],
+     "aim": [
+      2.0,
+      2.8801,
+      1.25
+     ],
+     "lens": 32.09,
+     "roll": 0.0,
+     "at": 38,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -9.5827,
+      3.2895,
+      1.2959
+     ],
+     "aim": [
+      2.0,
+      3.0715,
+      1.25
+     ],
+     "lens": 31.44,
+     "roll": 0.0,
+     "at": 40,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -701,14 +1002,14 @@
       1.25
      ],
      "lens": 31.18,
-     "roll": 0,
+     "roll": 0.0,
      "at": 41,
-     "travel": 1.3666666666666667,
      "hold": 0.2,
-     "creep": 0,
      "subject": null,
      "framing": "W",
-     "purpose": "f41 still pulling back on the porthole axis, sliding (content moves right); the lead joins the ship shot here"
+     "purpose": "f41 still pulling back on the porthole axis, sliding (content moves right); the lead joins the ship shot here",
+     "travel": 1.3666666666666667,
+     "creep": 0
     }
    ]
   }
@@ -743,18 +1044,6 @@
     1.3
    ],
    "note": "smug, flushes f8-10, laughs"
-  },
-  {
-   "who": "newguy",
-   "at": 0,
-   "face": "k:smug",
-   "note": "If you"
-  },
-  {
-   "who": "newguy",
-   "at": 9,
-   "face": "k:laugh",
-   "note": "snap f8-10: closed happy eyes, laughing mouth (flush f11)"
   }
  ]
 }

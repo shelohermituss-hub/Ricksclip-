@@ -88,6 +88,18 @@
     "amp": 0.06,
     "period": 9
    },
+   "upright": [
+    {
+     "who": "commander",
+     "f1": 300,
+     "n": 14
+    },
+    {
+     "who": "navigator",
+     "f1": 300,
+     "n": 14
+    }
+   ],
    "held": [
     {
      "obj": "magazine",
@@ -331,13 +343,13 @@
   "navigator": [
    [
     0,
-    1.15,
-    1.15
+    1.0,
+    1.0
    ],
    [
     900,
-    1.15,
-    1.15
+    1.0,
+    1.0
    ]
   ]
  },
@@ -351,7 +363,11 @@
     0.58
    ],
    "pose": "m:../../ep_cab/cmd4",
-   "look": "newguy",
+   "look": [
+    2.137,
+    0.036,
+    1.4
+   ],
    "note": "floating, weightless (bob in the move); turned to the new guy"
   },
   {
@@ -370,7 +386,11 @@
    ],
    "move_s": 1.0,
    "ease": "inout",
-   "look": "newguy",
+   "look": [
+    2.137,
+    0.036,
+    1.4
+   ],
    "note": "his f300 mark -> his f330 mark under the pull-back, eased over 30 f"
   },
   {
@@ -383,19 +403,27 @@
    ],
    "move_s": 1.8,
    "ease": "inout",
-   "look": "newguy",
+   "look": [
+    2.137,
+    0.036,
+    1.4
+   ],
    "note": "slow float drift to his f390 mark, eased"
   },
   {
    "who": "navigator",
    "at": 0,
    "pos": [
-    1.277,
-    1.162,
-    0.375
+    1.174,
+    0.394,
+    0.521
    ],
    "pose": "m:../../ep_cab/nav4",
-   "look": "newguy",
+   "look": [
+    -3.826,
+    -0.606,
+    1.4
+   ],
    "note": "floating, weightless (bob in the move); turned to the new guy"
   },
   {
@@ -408,27 +436,31 @@
    "who": "navigator",
    "at": 335,
    "pos": [
-    1.104,
-    1.029,
-    0.537
+    0.904,
+    0.393,
+    0.664
    ],
    "move_s": 1.8,
    "ease": "inout",
-   "look": "newguy",
+   "look": [
+    -3.826,
+    -0.606,
+    1.4
+   ],
    "note": "slow float drift to his f390 mark, eased"
   },
   {
    "who": "newguy",
    "at": 0,
    "pos": [
-    0.089,
-    0.335,
-    0.101
+    0.071,
+    -0.231,
+    0.323
    ],
    "pose": "m:../../ep_cab/ng4",
    "look": [
-    0.089,
-    -5.665,
+    0.071,
+    -6.231,
     1.4
    ],
    "note": "floating, faces the lens"
@@ -450,8 +482,8 @@
    "move_s": 1.0,
    "ease": "inout",
    "look": [
-    0.089,
-    -5.665,
+    0.071,
+    -6.231,
     1.4
    ],
    "note": "his f300 mark -> his f330 mark under the pull-back, eased over 30 f"
@@ -473,8 +505,8 @@
    "move_s": 1.8,
    "ease": "inout",
    "look": [
-    0.089,
-    -5.665,
+    0.071,
+    -6.231,
     1.4
    ],
    "note": "slow float drift to his f390 mark, eased"

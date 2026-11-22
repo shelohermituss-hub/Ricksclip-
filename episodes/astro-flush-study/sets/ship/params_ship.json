@@ -134,12 +134,14 @@
    "spec": 0.5
   },
   "ck_slat": {
-   "hex": "#5a5056",
-   "rough": 0.85
+   "hex": "#403f46",
+   "rough": 0.85,
+   "note": "round 8 (was #5a5056: beige zebra under the warm lamps)"
   },
   "ck_wall": {
-   "hex": "#2d2a38",
-   "rough": 0.85
+   "hex": "#34343a",
+   "rough": 0.9,
+   "note": "round 8: dark grey, low contrast with the slats (his f600)"
   },
   "ck_roof": {
    "hex": "#171624",
@@ -175,15 +177,16 @@
    "rough": 0.5
   },
   "lamp_tube": {
-   "hex": "#efcb9c",
+   "hex": "#141418",
    "rough": 0.5,
-   "emit": 6.0,
-   "ehex": "#ffb060"
+   "note": "round 8: dark rod end, no glow"
   },
   "lamp_tip": {
-   "hex": "#ffe983",
+   "hex": "#ffa050",
    "rough": 0.5,
-   "emit": 9.0
+   "emit": 14.0,
+   "ehex": "#ff7a1a",
+   "note": "round 8: small orange glowing end"
   },
   "console": {
    "hex": "#36313f",
@@ -429,18 +432,18 @@
   },
   "f680": {
    "loc": [
-    36.0,
-    4.6,
-    2.8
+    31.498,
+    2.494,
+    2.646
    ],
    "look": [
-    22.2,
+    22.6,
     0.3,
     -0.1
    ],
-   "vfov": 34,
-   "roll": 30,
-   "fit": "by eye round 7; the 6-point fit stays at 34 px (fits.f680)"
+   "vfov": 40.0,
+   "roll": -12.0,
+   "fit": "round 8: the stager s kit by-eye cam (42 % closer than round 7); kit roll 12 = Blender roll -12 (film.js turns the picture the other way)"
   },
   "f740": {
    "loc": [
@@ -487,6 +490,21 @@
   },
   "f990": {
    "loc": [
+    51.765,
+    37.866,
+    -48.449
+   ],
+   "look": [
+    45.784,
+    32.885,
+    -42.17
+   ],
+   "vfov": 45.0,
+   "roll": 189.15,
+   "fit_rms_px": 25.8
+  },
+  "f990_ny": {
+   "loc": [
     51.183,
     -38.29,
     50.278
@@ -498,7 +516,23 @@
    ],
    "vfov": 45.0,
    "roll": 9.48,
-   "fit_rms_px": 24.9
+   "fit_rms_px": 24.9,
+   "note": "round 7 fit on the -Y side (kept for reference; round 8 f990 is on the porthole side)"
+  },
+  "f680_r7": {
+   "loc": [
+    36.0,
+    4.6,
+    2.8
+   ],
+   "look": [
+    22.2,
+    0.3,
+    -0.1
+   ],
+   "vfov": 34,
+   "roll": 30,
+   "fit": "by eye round 7; the 6-point fit stays at 34 px (fits.f680)"
   }
  },
  "proofs": {
@@ -651,9 +685,9 @@
    "shot": 0,
    "glitter": 1,
    "sun_dir": [
-    0.3,
-    -0.35,
-    0.85
+    0.45,
+    0.5,
+    -0.55
    ],
    "earth_emit": 1.0,
    "earth_screen": [
@@ -662,7 +696,7 @@
     3000,
     1.4
    ],
-   "fan": 49,
+   "fan": -44,
    "sky_rot": 250,
    "earth_term": [
     -0.6,
@@ -1010,25 +1044,26 @@
      70,
      452,
      -1.4,
-     -10,
+     10,
      0
     ],
     [
      300,
      375,
      -1.4,
-     10,
+     -10,
      0
     ],
     [
      285,
      525,
      8.6,
-     -2.33,
+     2.395,
      0.62
     ]
    ],
-   "vfov": 45
+   "vfov": 45,
+   "note": "round 8: refit on the porthole (+Y) side, below and in front of the nose (fans labelled the other way round, LODESTAR +Y)"
   },
   "f790": {
    "pts": [

@@ -1,22 +1,22 @@
-  PASS camera   at rest (< 2 px/f), % of frames                            99.6           target >= 30 (Rick median 32, range 6-58)
+  PASS camera   at rest (< 2 px/f), % of frames                            100.0          target >= 30 (Rick median 32, range 6-58)
   FAIL camera   rests per 10 s                                             0.56           target 2.2-4.5, aim 3 (Rick 3.1, range 0.9-4.7; the plan reads about 1 higher than the picture). CB 2026-11-10: the scene decides, but the camera must flow like his
          FIX: break long travels with a resting station on the next noun
   PASS camera   rest length median, s                                      17.93          target >= 0.6 (Rick 0.62); one in ten >= 1.8
-  PASS camera   longest travel, s                                          0.07           target 3-7 in a film of 30 s or more: at least one long flowing move (Rick's long travels: median 3.0, upper quarter 4.8-9.5; Railroads and Roller Coasters 4.7)
+  PASS camera   longest travel, s                                          0.0            target 3-7 in a film of 30 s or more: at least one long flowing move (Rick's long travels: median 3.0, upper quarter 4.8-9.5; Railroads and Roller Coasters 4.7)
   FAIL camera   speed median px/f                                          0.0            target about 4 (Rick 4.1, middle half 2.5-6.1)
          FIX: too calm: raise the creep on the rests, add a drift, or lengthen the travels
-  FAIL camera   speed p90 px/f                                             0.0            target about 23 (Rick 23, range 9.8-33.8)
+  FAIL camera   speed p90 px/f                                             0.9            target about 23 (Rick 23, range 9.8-33.8)
          FIX: the travels crawl: cover more distance or take fewer frames (set travel on the station)
-  FAIL camera   dead still (reads under 0.3 px/f when measured), % of frames 93.7           target <= 21, aim 9 (Rick 9.3, range 1-29)
+  FAIL camera   dead still (reads under 0.3 px/f when measured), % of frames 89.8           target <= 21, aim 9 (Rick 9.3, range 1-29)
          FIX: the rests are parked: raise creep on those stations or add a drift
-  PASS camera   speed peak px/f                                            2.0            target <= 60 outside planned whips
+  PASS camera   speed peak px/f                                            1.6            target <= 60 outside planned whips
   PASS camera   cuts per 10 s                                              0.0            target <= 0.9, aim 0.4 (Rick 0.4; CB: fewer cuts)
-  PASS camera   tilt while resting, deg                                    0              target level (<= 0.5); tilt only inside a move (Rick: 0 % of holds)
-  PASS camera   roll rate peak deg/f                                       0              target <= 1.1 (Rick p99 1.08)
+  PASS camera   tilt while resting, deg                                    0.0            target level (<= 0.5); tilt only inside a move (Rick: 0 % of holds)
+  PASS camera   roll rate peak deg/f                                       0.0            target <= 1.1 (Rick p99 1.08)
   PASS camera   lens outside 16-55 mm on non-insert frames, %              0.0            target wide and close: about 24 mm = 73 deg tall (Rick, measured); long lenses only for object inserts
   PASS camera   travels that swing the view over 120 deg                   0              target 0: lay the places along the travel direction so the camera never turns back
-  WARN camera   camera v2 notes (flowed-through stations, short travels, capped whips) 2              target 0
-         FIX: s6 station 1 (f500): hold 0, the camera flows through it as a via point; s6 station 2 (f515): hold 0, the camera flows through it as a via point
+  WARN camera   camera v2 notes (flowed-through stations, short travels, capped whips) 18             target 0
+         FIX: s6 station 1 (f483): hold 0, the camera flows through it as a via point; s6 station 2 (f486): hold 0, the camera flows through it as a via point; s6 station 3 (f489): hold 0, the camera flows through it as a via point; s6 station 4 (f492): hold 0, the camera flows through it as a via point; s6 station 5 (f495): hold 0, the camera flows through it as a via point; s6 station 6 (f498): hold 0, the camera flows through it as a via point; s6 station 7 (f501): hold 0, the camera flows through it as a via point; s6 station 8 (f504): hold 0, the camera flows through it as a via point; s6 station 9 (f507): hold 0, the camera flows through it as a via point; s6 station 10 (f510): hold 0, the camera flows through it as a via point
   PASS camera   word stations not at rest on their word                    0              target 0: key nouns land with the camera at rest, 0-6 f before the word (CB's rule)
   PASS framing  first face, s                                              0.0            target <= 1.5 (Rick median 0.0)
   PASS framing  face on screen, first 5 s, %                               100.0          target >= 50 (Rick 55-63)
@@ -25,25 +25,29 @@
   PASS framing  frames with a face, %                                      100.0          target 45-68 (Rick 55, range 23-66): about a third of the film belongs to the world and the story object
   PASS framing  head width / frame width, median                           0.39           target about 0.25 (Rick 0.25, range 0.16-0.52)
   PASS framing  head width / frame width, p90                              0.39           target <= 0.55
+  FAIL framing  whole-body rests: figure height / frame height, median     0.81           target about 0.45 (his head width of 0.25 at puppet proportions)
+         FIX: the whole body no longer fits with air around it: pull back
+  FAIL framing  whole-body rests: feet height (0 = top), median            1.05           target 0.80-0.95: feet near the bottom, at most a fifth of the frame is empty floor
+         FIX: lower the aim: the feet leave the frame
   WARN framing  head centre height, median (0 = top)                       0.38           target 0.45 (Rick 0.39-0.51), above the caption band
          FIX: raise or lower the aim point so faces sit just above centre
   PASS framing  head centres inside the caption band, % of all heads on screen 0.0            target <= 3 (Rick 2.7)
   PASS framing  face frames with the head cut by the edge, %               0.0            target <= 13 (Rick 13)
   PASS framing  face frames where the whole body fits, %                   91.0           target >= 65 (Rick 68)
   PASS camera   at rest while a face is on screen, %                       100.0          target >= 40 (Rick 41): rest on faces, move on places and objects
-  FAIL framing  shot mix W/M/C/P/O, % of time                              0/0/100/0/0    target whole body 45, medium 20, close <= 7, place 15, object insert <= 15 (Rick)
+  FAIL framing  shot mix W/M/C/P/O, % of time                              10/0/90/0/0    target whole body 45, medium 20, close <= 7, place 15, object insert <= 15 (Rick)
          FIX: object inserts and close-ups are the two that run over
   PASS framing  world-led frames (place + object framing), % of time       0              target 25-40 (Rick: place 15 + object up to 15; his 3D films are about half world-led by eye)
   PASS framing  medium shots, % of time                                    0              target about 20 (Rick): the middle size is the dull one
   PASS world    places in the film                                         1              target >= 4, aim 5-8 at 55 s or more (Rick's 3D films: 5-8 places)
   PASS world    share of the film in its most used light, %                100            target <= 75: 2-3 kinds of light per film (day, golden, morning, night, interior); the light changes at the turn of the story
-  WARN framing  same framing on the same subject in a row (stations)       4              target <= 3
+  FAIL framing  same framing on the same subject in a row (stations)       18             target <= 3
          FIX: change the shot size, or put someone else in the picture
   WARN story    sentences table                                            missing        target film.json needs 'sentences' so the story gates can run
          FIX: add one row per sentence: words [first, last], subject, nouns
-  FAIL acting   pose or face changes per 10 s on screen                    1.7            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
+  FAIL acting   pose or face changes per 10 s on screen                    0.0            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
          FIX: add an act (face, pose, turn, step, prop beat) on the content words
-  FAIL acting   longest fully frozen figure with a resting camera, s       16.0           target <= 3 unless something else moves
+  FAIL acting   longest fully frozen figure with a resting camera, s       17.9           target <= 3 unless something else moves
          FIX: newguy: add a face change, or let the camera creep / another character act
   PASS acting   held props without a hand                                  0              target 0: every held prop is attached to a hand on every frame
   PASS acting   camera goes around a figure but its view never changes     0              target 0: a pure camera move never turns a character; the view follows the camera (act key look / look_full)
@@ -51,4 +55,4 @@
          FIX: add a glint, glow, stamp, coin or dust hit on the key nouns
   FAIL acting   mood (light / colour) changes per minute                   0.0            target >= 12, in-shot on the word (Rick 13.7, range 3.9-15.5)
          FIX: add light or colour shifts on the turn, the proof and the payoff
-RESULT: 9 FAIL, 4 WARN of 40 gates. Baked files and plan_report.md in /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s6/out/plan
+RESULT: 12 FAIL, 3 WARN of 42 gates. Baked files and plan_report.md in /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s6/out/plan

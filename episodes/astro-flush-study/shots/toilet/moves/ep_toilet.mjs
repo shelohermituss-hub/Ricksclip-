@@ -16,7 +16,7 @@ const talk = (f, a, b, on, off) => f >= on && f < off ? (Math.floor((f - on) / 3
 // ---- NEW GUY shot 1: left of the toilet, faces the lens; his right hand on the hip (screen-left), screen-right arm out to the flush lever.
 // f0-7 smug ("If you"); f8-10 presses the lever (hand down) and snaps to closed happy eyes + open laughing mouth ("flush" f11); held to f41, small bob.
 function ng1(t, ch) { const f = F(t);
-  const R = P2([[0, { f: .85, d: .3 }], [9, { f: .9, d: .5 }, 6], [18, { f: .85, d: .36 }, 8]], f);
+  const R = P2([[0, { f: .85, d: .3 }], [8, { f: .9, d: .5 }, 6], [18, { f: .85, d: .36 }, 10]], f);
   const face = step([[0, 'k:smug'], [9, 'k:laugh']], f);
   const head = tr([[0, -3], [9, 5, 6]], f) + tilt(f, 5, 1.5), rot = tr([[0, 2], [9, -2, 6]], f) + tilt(f, 21, 1);
   return { view: 'front', dir: 1, x: 0, y: bob(f, 0, 5, 44), rot, head, feet: dangle(f, 0, 6), farArmFront: true,
@@ -25,17 +25,17 @@ function ng1(t, ch) { const f = F(t);
 // ---- NEW GUY shot 6 (night, close): f500-506 wince, screen-right arm to the lever; f507-508 SNAP: wide eyes, small "o" mouth (flush);
 // ~f510 recoil (eyes shut); f512-530 relaxed smile, brows up, screen-left arm up holding the wall rail; one sweat drop all shot.
 function ng6(t, ch) { const f = F(t);
-  const R = P2([[0, { f: .7, d: .45 }], [506, { f: .8, d: .62 }, 6], [513, { f: .4, d: .6 }, 8]], f);
-  const L = P2([[0, { f: .3, d: .6 }], [512, { f: .55, d: -.85 }, 8]], f);
-  const face = step([[0, 'k:nervous'], [507, 'k:afSweat'], [510, 'k:nervous'], [513, 'k:nervousSmile']], f);
+  const R = P2([[0, { f: .7, d: .45 }], [504, { f: .8, d: .62 }, 6], [514, { f: .4, d: .6 }, 12]], f);
+  const L = P2([[0, { f: .3, d: .6 }], [512, { f: .55, d: -.85 }, 14]], f);
+  const face = step([[0, 'k:nervous'], [507, 'k:afSweat'], [513, 'k:nervousSmile']], f);
   const head = tr([[0, 4], [507, -4, 6], [510, 7, 6], [513, -3, 8]], f) + tilt(f, 9, 1.4), rot = tr([[0, 0], [510, -4, 6], [516, 2, 8]], f) + tilt(f, 30, 1);
   return { view: 'front', dir: 1, x: 0, y: bob(f, 7, 5, 48), rot, head, feet: dangle(f, 3, 20), farArmFront: true,
     hands: [{ f: L.f, d: L.d, bow: .3 }, { f: R.f, d: R.d, bow: .2 }], face, blink: null, held: [] }; }
 
 // ---- COMMANDER shot 12: in the blue doorway, arms crossed, glare; ~f1062-1070 leans to the new guy (screen right), then the camera leaves him.
 function cmd12(t, ch) { const f = F(t);
-  const face = step([[0, 'k:annoyed'], [1040, 'k:angry']], f);
-  const rot = tr([[0, 0], [1062, 7, 8], [1076, 3, 10]], f) + tilt(f, 40, 1.1), head = tr([[0, 0], [1062, 6, 8], [1076, 2, 10]], f) + tilt(f, 9, 1.4);
+  const face = 'k:angry';
+  const rot = tr([[0, 0], [1062, 7, 12], [1078, 3, 12]], f) + tilt(f, 40, 1.1), head = tr([[0, 0], [1062, 6, 8], [1076, 2, 10]], f) + tilt(f, 9, 1.4);
   return { view: 'front', dir: 1, x: 0, y: bob(f, 17, 5, 52), rot, head, feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: true,
     hands: [{ f: -.35, d: .38, bow: .2, over: true }, { f: -.35, d: .32, bow: .2, over: true }], face, blink: blinkAt(t, 2.9, .7), held: [] }; }
 
@@ -43,15 +43,15 @@ function cmd12(t, ch) { const f = F(t);
 // ~f1054-1066 hand on hip, explaining ("Well," f1061); f1074-1094 slides to centre (act pos), smug half-lids ("a spaceship toilet");
 // ~f1098 turns in profile to the toilet coming apart and points ("doesn't" f1099); f1102-1113 back to the lens, shrug smile ("have pipes.").
 function ng12(t, ch) { const f = F(t);
-  const L = P2([[0, { f: .15, d: .95 }], [1038, { f: .2, d: .85 }, 6], [1054, { f: .35, d: .55 }, 8], [1102, { f: .9, d: -.15 }, 6]], f);
-  const R = P2([[0, { f: .15, d: .95 }], [1038, { f: .2, d: .85 }, 6], [1054, { f: .7, d: .1 }, 8], [1068, { f: .35, d: .55 }, 8], [1097, { f: 1.0, d: -.05 }, 6], [1102, { f: .9, d: -.15 }, 6]], f);
-  let face = step([[0, 'k:afSweat'], [1038, 'k:happy'], [1054, 'k:smug'], [1074, 'k:smug'], [1097, 'k:browUp'], [1102, 'k:happy']], f);
-  face = talk(f, 'k:talk', 'k:smug', 1056, 1068) || face;
-  const view = f >= 1097 && f < 1102 ? '34' : 'front';
-  const head = tr([[0, 0], [1038, 4, 6], [1054, -3, 8], [1074, 3, 8], [1097, 8, 6], [1102, 0, 6]], f) + tilt(f, 3, 1.5);
+  const L = P2([[0, { f: .15, d: .95 }], [1038, { f: .2, d: .85 }, 6], [1050, { f: .35, d: .55 }, 14], [1100, { f: .8, d: -.1 }, 12]], f);
+  const R = P2([[0, { f: .15, d: .95 }], [1038, { f: .2, d: .85 }, 6], [1052, { f: .6, d: .2 }, 14], [1068, { f: .4, d: .5 }, 14], [1090, { f: .95, d: -.05 }, 12], [1104, { f: .85, d: -.12 }, 10]], f);
+  let face = step([[0, 'k:afSweat'], [1038, 'k:happy'], [1054, 'k:smug'], [1097, 'k:skeptical'], [1104, 'k:happy']], f);
+  face = talk(f, 'k:talk', 'k:smug', 1059, 1068) || face;
+  const view = 'front';   // round 2: no one-frame view swap (front -> 34 jumped both hands); the profile look is a head turn
+  const head = tr([[0, 0], [1038, 4, 6], [1054, -3, 10], [1074, 3, 10], [1096, 12, 8], [1104, 0, 8]], f) + tilt(f, 3, 1.5);
   const rot = tr([[0, 0], [1054, 3, 8], [1074, -2, 8], [1102, 0, 6]], f) + tilt(f, 15, 1);
   return { view, dir: 1, x: 0, y: bob(f, 3, 5, 46), rot, head, feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: true,
-    hands: [{ f: L.f, d: L.d, bow: f >= 1054 && f < 1097 ? -.9 : .2 }, { f: R.f, d: R.d, bow: .2 }], face, blink: face === 'k:smug' ? blinkAt(t, 2.4, .3) : null, held: [] }; }
+    hands: [{ f: L.f, d: L.d, bow: tr([[0, .2], [1050, -.9, 14], [1100, .2, 12]], f) }, { f: R.f, d: R.d, bow: .2 }], face, blink: face === 'k:smug' ? blinkAt(t, 2.4, .3) : null, held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
 const STY = [sty('ng1', ng1, 'new guy shot 1: smug, flushes, laughs'), sty('ng6', ng6, 'new guy shot 6: wince, flush snap, relief, sweat'),

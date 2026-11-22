@@ -204,7 +204,7 @@ def stub_room(name, x, y1=-.5, px=.15, pw=.55, ph=.8, pz=-.1):
     for zz in (-.75, -.3, .55, 1.0): abox(bm, RW - .12, .004, .008, MT((x, y1 + .052, zz)), bev=0)
     obj(name + '_room_lines', bm, mat('stub_line', col='#9a978e', rough=.8, es=.3, emit='#9a978e'))
     ANCH[name] = [x, HW + .15, WIN_Z]; ANCH[name + '_card'] = [x - .1, HW - .7, z0 + .05]
-stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=HW - 1.25, px=-.03, pw=.24, ph=.36, pz=-.2)   # round 6: shot 11 room shallow, small inner porthole right of centre
+stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=-1.25, px=-.03, pw=.36, ph=.54, pz=-.05)   # round 6: shot 11 room shallow, small inner porthole right of centre
 # hazard box (the waste vent from outside) on the stripe under porthole_b, a loose wrench drifting by the stripe (mover)
 xh = WIN_X[PORTS['porthole_b']] - 1.5; box('hazard_box', (.46, .12, .46), (xh + .55, HW + .17, -1.2), 'hazard_y', bev=.02)   # round 7: moved aft, out of the f880 view
 box('hazard_box_core', (.34, .03, .34), (xh + .55, HW + .235, -1.2), 'black', bev=.01); cyl('hazard_lens', .09, .04, (xh + .55, HW + .26, -1.2), mat('hazard_lens', col='#3a6070', rough=.2), rot=(90, 0, 0))
@@ -302,32 +302,74 @@ for nm, prof, mn in (('flame_core', [(1.0, 0), (1.25, 2), (1.1, 10), (.6, 19), (
                      ('flame_halo', [(1.7, -.3), (4.4, 5), (4.6, 18), (3.3, 32), (.3, 43)], ('flame_halo', PRM['flame']['halo'], 3., .4)),
                      ('flame_glow', [(2.0, -.6), (5.8, 6), (6.2, 20), (4.6, 36), (.4, 48)], ('flame_glow', '#8a6ee7', 1.5, .25))):
     bm = B(); alathe(bm, prof, 28, M_ENG); obj(nm, bm, flame_mat(mn[0], mn[1], mn[2], mn[3] or 1., prof[-1][1]), (FLX, 0, 0), smooth=True, mover={'state': 'flame 0-1 scales x (length) and y,z (width)'})
-# ================================================================== GLITTER (movers: trail from the tail, puff at the collar, cloud around the cockpit)
-def sparkle(bm, p, s, big=False):
-    if not big:
-        tips = [Vector(p) + Vector(d) * s for d in ((1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1))]
-        vs = [bm.verts.new(t) for t in tips]
-        for a in (0, 1):
-            for b in (2, 3):
-                for c in (4, 5): bm.faces.new((vs[a], vs[b], vs[c]))
-        return
-    T = [Vector(d) for d in ((1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1))]; vt = [bm.verts.new(Vector(p) + t * s * 2.6) for t in T]
-    for sx in (1, -1):
-        for sy in (1, -1):
-            for sz in (1, -1):
-                vi = bm.verts.new(Vector(p) + Vector((sx, sy, sz)) * s * .3); a, b, c = vt[0 if sx > 0 else 1], vt[2 if sy > 0 else 3], vt[4 if sz > 0 else 5]
-                bm.faces.new((a, vi, b)); bm.faces.new((b, vi, c)); bm.faces.new((c, vi, a))
-def cloud(name, n, sampler, s0, s1, loc, seed, parent_ship=True, c=None):
-    r = random.Random(seed); bm = B()
-    for k in range(n): sparkle(bm, sampler(r), r.uniform(s0, s1) * (2.2 if r.random() < .1 else 1), big=r.random() < .1)
-    return obj(name, bm, 'glitter', loc, c=c, mover={'state': 'glitter 0-1'})
-def trail(r, k, L=46.):
-    t = (k + r.random()) / 4; w = .6 + t * 13; return (-t * L, r.gauss(0, w * .5), r.gauss(0, w * .5) + t * 4)
-for k in range(4):
-    cloud('glitter_trail_%d' % k, 110, lambda r, k=k: trail(r, k), .1, .22, (FLX - 2, 0, 0), 20 + k)
-cloud('glitter_collar', 160, lambda r: (r.gauss(0, 1.2), r.gauss(0, 1.8), r.gauss(0, 1.5) + 2.5), .04, .09, (-1.5, 0, 0), 31)
-for k in range(3):                                                 # around the canopy for shot 7 (on in 3 steps: 'glitter_ck')
-    cloud('glitter_cockpit_%d' % k, 420, lambda r: (r.uniform(-3, 9), r.uniform(-7, 7), r.uniform(-4, 6)), .008, .02, (XN, 0, 0), 40 + k)
+# ================================================================== GLITTER (round 8: MANY SMALL sparkles, faded in by a per-sparkle phase, shimmer by 'twinkle')
+# Each sparkle = 3 crossed flat 4-point stars (reads as a 4-point star from any side). Size from the distance it is seen at (fitted cams): most 1-3 px at
+# 1080 wide, ~8 % bigger with a small cross glow (longer thin arms). Colour attribute 'glit' (float, per point): R = phase 0..1 (the state at which it fades
+# in), G = brightness, B = twinkle seed. Material 'glitter' (trail + collar, state glitter) / 'glitter_ck' (canopy, state glitter_ck): ship_api sets the
+# nodes glit_state / glit_twinkle; the kit (ship.js) does the same in an unlit shader. Objects keep their names (_0.._3 / _0.._2 = phase bands).
+CAMS_FIT = [Vector(c['loc']) for c in PRM.get('cams', {}).values()]
+def glit_mat(name):
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear(); N_ = nt.nodes.new; L_ = nt.links.new
+    o = N_('ShaderNodeOutputMaterial'); ca = N_('ShaderNodeVertexColor'); ca.layer_name = 'glit'; sp = N_('ShaderNodeSeparateColor'); L_(ca.outputs[0], sp.inputs[0])
+    def V(nm, v): n = N_('ShaderNodeValue'); n.name = n.label = nm; n.outputs[0].default_value = v; return n.outputs[0]
+    def M(op, a, b_=None, clamp=False):
+        n = N_('ShaderNodeMath'); n.operation = op; n.use_clamp = clamp
+        for i, v in enumerate((a, b_)):
+            if v is None: continue
+            if isinstance(v, (int, float)): n.inputs[i].default_value = v
+            else: L_(v, n.inputs[i])
+        return n.outputs[0]
+    st, tw = V('glit_state', 0.), V('glit_twinkle', 0.)
+    fade = M('MULTIPLY', M('SUBTRACT', M('MULTIPLY', st, 1.15), sp.outputs[0]), 6.67, clamp=True)            # 0 -> 1 over .15 of the state after its phase
+    shim = M('ADD', .55, M('MULTIPLY', .45, M('SINE', M('MULTIPLY', M('ADD', tw, sp.outputs[2]), 6.2832))))  # .1 .. 1
+    k = M('MULTIPLY', M('MULTIPLY', fade, shim), sp.outputs[1])
+    em = N_('ShaderNodeEmission'); em.inputs[0].default_value = (1., .97, .92, 1.); L_(M('MULTIPLY', k, 40.), em.inputs[1])
+    tr = N_('ShaderNodeBsdfTransparent'); mx = N_('ShaderNodeMixShader'); L_(M('MINIMUM', M('MULTIPLY', k, 3.), 1.), mx.inputs[0]); L_(tr.outputs[0], mx.inputs[1]); L_(em.outputs[0], mx.inputs[2]); L_(mx.outputs[0], o.inputs[0])
+    MATS[name] = m; return m
+def star4(bm, cl, p, s, arm, glow, col, look=None):
+    """a flat 4-point star at p facing the point look (its nearest fitted camera; 3 crossed stars when look is None): arm = tip length,
+    s = waist half width (thin when glow: a small cross glow)."""
+    p = Vector(p)
+    if look is not None:
+        n = (Vector(look) - p).normalized(); X = n.orthogonal().normalized(); planes = ((X, n.cross(X)),)
+    else: planes = ((Vector((1, 0, 0)), Vector((0, 1, 0))), (Vector((0, 1, 0)), Vector((0, 0, 1))), (Vector((1, 0, 0)), Vector((0, 0, 1))))
+    for X, Y in planes:
+        c = bm.verts.new(p); tips = [p + X * arm, p + Y * arm, p - X * arm, p - Y * arm]
+        w = s * (.35 if glow else .55); mids = [p + (X + Y) * w, p + (Y - X) * w, p - (X + Y) * w, p + (X - Y) * w]
+        ring = [bm.verts.new(v) for pair in zip(tips, mids) for v in pair]
+        for i in range(8): bm.faces.new((c, ring[i], ring[(i + 1) % 8]))
+        for v in [c] + ring: cl[v] = col
+def glit_cloud2(names, n, sampler, px_at, loc, seed, mname, phase_rng=(0, 1)):
+    r = random.Random(seed); bms = [B() for _ in names]; cols = [[] for _ in names]; kept = 0; tries = 0
+    while kept < n and tries < n * 20:
+        tries += 1; q = Vector(sampler(r)); w = q + Vector(loc)
+        if any((w - c).length < 3. for c in CAMS_FIT): continue
+        ph = r.uniform(*phase_rng); band = min(len(names) - 1, int((ph - phase_rng[0]) / (phase_rng[1] - phase_rng[0] + 1e-9) * len(names)))
+        big = r.random() < .08; px = (4. + 3. * r.random()) if big else (1. + 2. * r.random() ** 1.6)
+        mpp, look = px_at(w); arm = px * mpp * (1.9 if big else .75); bri = 1. if big else r.uniform(.55, 1.); col = (ph, bri, r.random(), 1.)
+        bm = bms[band]; n0 = len(bm.verts); d = {}
+        star4(bm, d, q, px * mpp * .5, arm, big, col, None if look is None else look - Vector(loc)); cols[band].extend([col] * (len(bm.verts) - n0)); kept += 1
+    for nm, bm, cl in zip(names, bms, cols):
+        bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:]); me = bpy.data.meshes.new(nm); bm.to_mesh(me); bm.free()
+        o = bpy.data.objects.new(nm, me); me.materials.append(MATS.get(mname) or glit_mat(mname)); o.location = loc; SET.objects.link(o)
+        a = me.color_attributes.new('glit', 'FLOAT_COLOR', 'POINT'); me.color_attributes.active_color = a; me.color_attributes.render_color_index = 0
+        for i, c in enumerate(cl): a.data[i].color = c
+        MOVERS[nm] = dict(loc=[round(v, 4) for v in loc], rot=[0, 0, 0], state=('glitter_ck' if 'cockpit' in nm else 'glitter') + ' 0-1 (per-sparkle phase) + twinkle')
+def mpp_from(cams):
+    cs = [Vector(PRM['cams'][k]['loc']) for k in cams if k in PRM.get('cams', {})]
+    def f(w):   # -> metres per px at w (1080x1920: one px = 2 d tan(vfov/2) / 1920), and the nearest cam (the star faces it)
+        if not cs: return .01, None
+        c = min(cs, key=lambda c: (w - c).length); return (w - c).length * math.tan(math.radians(22.5)) * 2 / 1920, c
+    return f
+def trail(r, L=46.):
+    t = r.random() ** .8; w = .8 + t * 22; return (-t * L - .5, r.gauss(0, w * .45), r.gauss(0, w * .45) + t * 3.5)
+glit_cloud2(['glitter_trail_%d' % k for k in range(4)], 1400, trail, mpp_from(['f990', 'f110', 'f70']), (FLX - 2, 0, 0), 20, 'glitter')
+glit_cloud2(['glitter_collar'], 220, lambda r: (r.gauss(0, 1.2), r.gauss(0, 1.8), r.gauss(0, 1.5) + 2.5), mpp_from(['f990', 'f70', 'f40']), (-1.5, 0, 0), 31, 'glitter', (.5, .75))
+def ck_pt(r):
+    while True:                                                    # round 8: a shell around the canopy (outside the glass), denser near it
+        p = Vector((r.uniform(-4.5, 10), r.uniform(-7, 7), r.uniform(-4.5, 6.5)))
+        if not (-4.9 < p.x < .3 and abs(p.y) < GC + .25 and GZ0 - .3 < p.z < HW + .2): return p   # not inside the nose
+glit_cloud2(['glitter_cockpit_%d' % k for k in range(3)], 1600, ck_pt, mpp_from(['f600', 'f680']), (XN, 0, 0), 40, 'glitter_ck')
 # ================================================================== F. COCKPIT INTERIOR (inside the nose, real geometry)
 FLZ = GZ0; IW = GC - .06                                              # round 7: interior fits the glass box
 bm = B(); apoly(bm, [(XB + .05, -IW, FLZ), (XB + .05, IW, FLZ), (GF0 - GCD - .05, IW, FLZ), (GF0 - .08, GW - .05, FLZ), (GF0 - .08, -GW + .05, FLZ), (GF0 - GCD - .05, -IW, FLZ)][::-1], .05)
@@ -346,8 +388,8 @@ LX, LT, LB = 23.4, (.40, 1.93), (.55, 1.2)                         # round 6 (f6
 for k, s in enumerate((-1, 1)):                                     # 2 pairs of black rods with an orange glowing tube + round tip
     for dy in (-.06, .06):
         bm = B(); abeam(bm, (LX, s * LT[0] + dy, LT[1]), (LX, s * (LB[0] - .03) + dy, LB[1] + .3), .022, 8); obj('lamp_rod_%d_%d' % (k, dy > 0), bm, 'lamp_rod', smooth=True)
-    bm = B(); abeam(bm, (LX, s * (LB[0] - .025), LB[1] + .36), (LX, s * LB[0], LB[1] + .06), .06, 12); obj('lamp_tube_%d' % k, bm, 'lamp_tube', smooth=True)
-    bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=12, v_segments=8, radius=.075); obj('lamp_tip_%d' % k, bm, 'lamp_tip', (LX, s * LB[0], LB[1]), smooth=True)
+    bm = B(); abeam(bm, (LX, s * (LB[0] - .025), LB[1] + .36), (LX, s * LB[0], LB[1] + .06), .03, 12); obj('lamp_tube_%d' % k, bm, 'lamp_tube', smooth=True)   # round 8: dark rod end (his f600)
+    bm = B(); alathe(bm, [(.0, -.16), (.026, -.15), (.03, 0), (.028, .02)], 12); obj('lamp_tip_%d' % k, bm, 'lamp_tip', (LX, s * LB[0], LB[1] + .04), smooth=True)   # round 8: only a small orange glowing end
 ANCH['lamps'] = [[LX, -LB[0], LB[1] + .1], [LX, LB[0], LB[1] + .1]]
 bm = B(); abeam(bm, (LX, -LB[0], LB[1] - .05), (LX, -LB[0] - .1, LB[1] - .6), .005); obj('toy_string', bm, 'lamp_rod')
 bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=10, v_segments=6, radius=.07, matrix=Matrix.Translation((0, 0, .06))); abox(bm, .1, .07, .12, MT((0, 0, -.06)), bev=.02)
@@ -390,6 +432,7 @@ pic('star_map_sheet', .6, .74, MF((sx, 0, scz), (0, -1, 0), (0, 0, 1), (-1, 0, 0
 bm = B()
 for s in (1, -1): abox(bm, .01, .15, .05, MT((sx - .005, s * .29, scz + .36), (s * 40, 0, 0)), bev=0)
 obj('star_map_tape', bm, 'tape', mover={'follows': 'star_map_sheet'})
+_PRE_RADIO = set(o.name for o in SET.objects)
 # ================================================================== G. RADIO STATION on the +Y wall (desk, lower panel, sloped upper panel, radio)
 # radio frame, local: a along +X, b toward the wall (+Y), z up, origin at the desk top front centre
 RX, RY = 23.4, .8; RM = MF((RX, RY, -.3), (1, 0, 0), (0, 1, 0), (0, 0, 1))
@@ -457,6 +500,7 @@ for k, a in enumerate((-.23, -.12)):                                # round 6: t
     cyl('lever_grip_%d' % k, .025, .12, tuple(R(-.25 + a, .52, .29)), 'black', rot=(90, 0, 0), seg=10)
     for s in (1, -1): cyl('lever_cap_%d_%d' % (k, s > 0), .028, .02, tuple(R(-.25 + a, .52 + s * .07, .29)), 'lever_cap', rot=(90, 0, 0), seg=10)
 cyl('mic_stand', .04, .08, tuple(R(.2, .25, .04)), 'mic'); box('mic', (.07, .05, .14), tuple(R(.2, .25, .15)), 'mic', bev=.02)
+RADIO_GROUP = sorted(o.name for o in SET.objects if o.name not in _PRE_RADIO)   # round 8: state radio_desk 0 (and shot 7) hides the whole station
 # ================================================================== WORLD: Earth (painted map + bright rim), sky dome (stars), all world objects
 def earth_mats():
     """round 4: nearly unlit Earth (as his): the painted map (make_earth_stars.py, clouds inside) is the emission; a dim diffuse base keeps a crescent when
@@ -536,9 +580,16 @@ def standin(name, col, h, loc, rz, hm='sd_head'):
 NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
-standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .40, pb[1] + .45, -1.5), 0)   # round 6: left of the opening (screen), beside the inner porthole
+def head_in_port(cam, port, frac, H=1.70, heads=2.93):
+    """round 8: feet place of a card whose head centre sits on the camera ray through the porthole opening centre, at the distance where the head
+    (H / heads tall) is frac of the frame height (his f867-875: 18 %)."""
+    c = PRM['cams'][cam]; C = Vector(c['loc']); O = Vector((WIN_X[PORTS[port]], HW + .07, WIN_Z)); hd = H / heads
+    d = hd / (frac * 2 * math.tan(math.radians(c['vfov']) / 2)); P = C + (O - C).normalized() * d
+    return [round(P.x, 3), round(P.y, 3), round(P.z - (H - hd / 2), 3)]
+NG11 = head_in_port('f880', 'porthole_b', .18)
+standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, tuple(NG11), 0)   # round 8: head centred in porthole_b's opening, 18 % of the f880 frame
 standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.46), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
-ANCH['navigator_s7'] = [23.9, 0, -.46]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .40, pb[1] + .45, -1.5]
+ANCH['navigator_s7'] = [23.9, 0, -.46]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = NG11
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)
@@ -564,7 +615,10 @@ import ship_api as api
 META = {'place': 'ship', 'units': 'Blender metres, Z up; ship axis X, nose +X, porthole side +Y; everything ship = child of ship_root',
         'hull': {'body_x': [0, XB], 'nose_x': [XB, XN], 'half_width': HW, 'windows_x': WIN_X, 'window_z': WIN_Z, 'portholes': {k: WIN_X[v] for k, v in PORTS.items()}},
         'anchors': ANCH, 'cams': PRM.get('cams', {}), 'ship_poses': PRM.get('ship_poses', {}), 'kit_pictures': {'earth': 'earth_kit.jpg', 'sky_dome': 'stars_kit.jpg'}, 'proofs': PRM.get('proofs', {}), 'movers': MOVERS, 'standins': STANDINS,
-        'state_default': api.DEFAULT, 'light_kinds': api.LIGHTS,
+        'state_default': api.DEFAULT, 'light_kinds': api.LIGHTS, 'lamp_emit': api.LAMP_ES, 'wash': api.WASH, 'groups': {'radio_station': RADIO_GROUP},
+        'lights': {o.name: {'loc': [round(v, 4) for v in o.location], 'type': o.data.type, 'color': [round(v, 4) for v in o.data.color], 'radius': round(o.data.shadow_soft_size, 3),
+                            'dir': [round(v, 4) for v in (o.rotation_euler.to_matrix() @ Vector((0, 0, -1)))], 'spot': [round(o.data.spot_size, 4), round(o.data.spot_blend, 3)] if o.data.type == 'SPOT' else None}
+                   for o in LIGHTS.objects if not o.name.startswith('sun_')},
         'frames': {'shot2': [36, 119], 'ship_turns': 75, 'preglow': [84, 94], 'flame_on': [96, 100], 'flame_full': [100, 118], 'shot7': [538, 705],
                    'glitter_ck_on': [585, 660], 'lens_star': [690, 704], 'shot8': [713, 762], 'starmap_in': 709, 'shot9': [771, 802], 'comm_incoming': 772,
                    'digits_scramble': [769, 800], 'shot11': [867, 997], 'newguy_leaves_porthole': [876, 884], 'glitter_trail': [950, 998]}, 'palette': PAL}
@@ -577,7 +631,7 @@ for o in list(SET.objects) + list(WORLD.objects): o.select_set(True)
 # the kit loads earth_kit.jpg / stars_kit.jpg (written by make_tex.py) beside the GLB: the GLB carries tiny stand-in pictures only
 BIG = {n: MATS[n].node_tree.nodes['Image Texture'].image for n in ('earth', 'sky_stars')}; tiny = bpy.data.images.new('kit_stub', 8, 4)
 for n in BIG: MATS[n].node_tree.nodes['Image Texture'].image = tiny
-bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'ship_lite.glb'), use_selection=True, export_apply=True, export_yup=True, export_lights=False, export_cameras=False)
+bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'ship_lite.glb'), use_selection=True, export_apply=True, export_yup=True, export_lights=False, export_cameras=False, export_vertex_color='ACTIVE')   # round 8: glitter carries its 'glit' colour (phase, brightness, seed)
 for n, im in BIG.items(): MATS[n].node_tree.nodes['Image Texture'].image = im
 api._M.clear(); api.set_state(SC)
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'ship.blend'))

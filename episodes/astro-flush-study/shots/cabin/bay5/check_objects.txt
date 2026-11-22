@@ -11,13 +11,13 @@ PASS   navigator.handR                    500     497     2.62      0.00       0
 PASS   navigator.handL                    500     493     2.30      0.00       0     0     0   
 PASS   commander.feet                     500     0       0.00      0.00       0     0     0   
 PASS   commander.head                     500     0       0.00      0.00       0     0     0   
-PASS   commander.handR                    500     492     2.56      0.00       0     0     0   
-PASS   commander.handL                    500     491     2.94      0.00       0     0     0   
-PASS   newguy.feet                        500     34      14.02     0.00       0     0     0   
-PASS   newguy.head                        500     34      14.02     0.00       0     0     0   
-PASS   newguy.handR                       500     493     12.00     0.00       0     0     0   
-PASS   newguy.handL                       500     496     13.32     0.00       0     0     0   
+PASS   commander.handR                    500     496     2.34      0.00       0     0     0   
+PASS   commander.handL                    500     491     2.71      0.00       0     0     0   
+PASS   newguy.feet                        500     34      10.96     0.00       0     0     0   
+PASS   newguy.head                        500     34      10.96     0.00       0     0     0   
+PASS   newguy.handR                       500     495     11.21     0.00       0     0     0   
+PASS   newguy.handL                       500     496     11.34     0.00       0     0     0   
 ... 7 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
 WARN POP  cabin/bag_new_guy  f453  turns invisible inside the camera frame with no scale or opacity ramp
 WARN POP  cabin/bag_new_guy_open  f453  turns visible inside the camera frame with no scale or opacity ramp
-0 FAIL, 2 WARN on 2 of 22 tracks (28 s, page scan 23.6 s = 47.3 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/motion_objects.json
+0 FAIL, 2 WARN on 2 of 22 tracks (29.3 s, page scan 23.7 s = 47.5 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/motion_objects.json

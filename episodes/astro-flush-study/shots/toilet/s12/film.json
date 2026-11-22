@@ -23,6 +23,7 @@
   "face_frames": 0,
   "ones": true
  },
+ "move_face": true,
  "puppet_pkg": [
   "moves",
   "cast",
@@ -1484,7 +1485,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.0,
+      "hatch": 0.043,
       "pulse": 0.4065,
       "paper": 0
      },
@@ -1494,7 +1495,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.0,
+      "hatch": 0.1562,
       "pulse": 0.42,
       "paper": 0
      },
@@ -1504,7 +1505,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.0554,
+      "hatch": 0.3164,
       "pulse": 0.4432,
       "paper": 0
      },
@@ -1514,7 +1515,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.1983,
+      "hatch": 0.5,
       "pulse": 0.4663,
       "paper": 0
      },
@@ -1524,7 +1525,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.3936,
+      "hatch": 0.6836,
       "pulse": 0.4895,
       "paper": 0
      },
@@ -1534,7 +1535,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.6064,
+      "hatch": 0.8438,
       "pulse": 0.5126,
       "paper": 0
      },
@@ -1544,7 +1545,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.8017,
+      "hatch": 0.957,
       "pulse": 0.5358,
       "paper": 0
      },
@@ -1554,7 +1555,7 @@
       "glow": 1.0,
       "exploded": 0.0,
       "door": 1.0,
-      "hatch": 0.9446,
+      "hatch": 1.0,
       "pulse": 0.5589,
       "paper": 0
      },
@@ -2191,10 +2192,29 @@
     ]
    },
    "stage": {
+    "floor": {
+     "from": 1134,
+     "to": 1142,
+     "z": -0.25
+    },
+    "pulse_light": [
+     [
+      1150,
+      1
+     ],
+     [
+      1162,
+      0.12
+     ],
+     [
+      1200,
+      0.12
+     ]
+    ],
     "explode": {
-     "f": 1097,
-     "n": 7,
-     "delay": 0.35,
+     "f": 1095,
+     "n": 10,
+     "delay": 0.3,
      "order": [
       "toilet_base",
       "toilet_flange",
@@ -2229,43 +2249,703 @@
    "stations": [
     {
      "pos": [
-      0.2,
-      -1.6,
-      0.5
+      -0.05,
+      -1.68,
+      0.36
      ],
      "aim": [
       0.45,
       3.9,
       1.75
      ],
-     "lens": 19.74,
-     "roll": 0,
-     "at": 0,
-     "hold": 32.333333333333336,
-     "creep": 0,
+     "lens": 20.71,
+     "roll": 0.0,
+     "at": 960,
+     "hold": 0,
      "subject": "newguy",
      "framing": "W",
-     "purpose": "pre-roll (never rendered); travel leaves f970"
+     "purpose": "pre-roll (never rendered); travel leaves f970",
+     "creep": 0
     },
     {
      "pos": [
-      0.2,
-      -1.57,
-      0.5
+      -0.0446,
+      -1.6798,
+      0.3616
      ],
      "aim": [
       0.45,
       3.9,
       1.75
      ],
-     "lens": 19.92,
-     "roll": 0,
-     "at": 1007,
+     "lens": 20.75,
+     "roll": 0.0,
+     "at": 962,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
+     "subject": null,
      "framing": "W",
-     "purpose": "f1007 clean: wide dark room, commander in the doorway, new guy, toilet; pushing in"
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.039,
+      -1.6792,
+      0.3633
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.78,
+     "roll": 0.0,
+     "at": 964,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0334,
+      -1.6781,
+      0.3653
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.82,
+     "roll": 0.0,
+     "at": 966,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0276,
+      -1.6767,
+      0.3674
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.85,
+     "roll": 0.0,
+     "at": 968,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0216,
+      -1.6748,
+      0.3697
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.89,
+     "roll": 0.0,
+     "at": 970,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0156,
+      -1.6726,
+      0.3722
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.92,
+     "roll": 0.0,
+     "at": 972,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0094,
+      -1.6699,
+      0.3749
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.95,
+     "roll": 0.0,
+     "at": 974,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0031,
+      -1.6669,
+      0.3778
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 20.98,
+     "roll": 0.0,
+     "at": 976,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0032,
+      -1.6634,
+      0.3808
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.01,
+     "roll": 0.0,
+     "at": 978,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0098,
+      -1.6596,
+      0.384
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.04,
+     "roll": 0.0,
+     "at": 980,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0164,
+      -1.6554,
+      0.3874
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.07,
+     "roll": 0.0,
+     "at": 982,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0231,
+      -1.6508,
+      0.3908
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.1,
+     "roll": 0.0,
+     "at": 984,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0299,
+      -1.6458,
+      0.3945
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.13,
+     "roll": 0.0,
+     "at": 986,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0368,
+      -1.6405,
+      0.3982
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.16,
+     "roll": 0.0,
+     "at": 988,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0439,
+      -1.6348,
+      0.4022
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.18,
+     "roll": 0.0,
+     "at": 990,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.051,
+      -1.6288,
+      0.4062
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.21,
+     "roll": 0.0,
+     "at": 992,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0582,
+      -1.6223,
+      0.4103
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.23,
+     "roll": 0.0,
+     "at": 994,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0655,
+      -1.6156,
+      0.4146
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.25,
+     "roll": 0.0,
+     "at": 996,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0728,
+      -1.6084,
+      0.419
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.27,
+     "roll": 0.0,
+     "at": 998,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0803,
+      -1.601,
+      0.4235
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.29,
+     "roll": 0.0,
+     "at": 1000,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0878,
+      -1.5932,
+      0.4281
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.31,
+     "roll": 0.0,
+     "at": 1002,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0954,
+      -1.585,
+      0.4328
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.33,
+     "roll": 0.0,
+     "at": 1004,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1031,
+      -1.5765,
+      0.4376
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.35,
+     "roll": 0.0,
+     "at": 1006,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1109,
+      -1.5677,
+      0.4424
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.36,
+     "roll": 0.0,
+     "at": 1008,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1187,
+      -1.5586,
+      0.4474
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.38,
+     "roll": 0.0,
+     "at": 1010,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1266,
+      -1.5491,
+      0.4524
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.39,
+     "roll": 0.0,
+     "at": 1012,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1345,
+      -1.5393,
+      0.4575
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.4,
+     "roll": 0.0,
+     "at": 1014,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1425,
+      -1.5292,
+      0.4626
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.41,
+     "roll": 0.0,
+     "at": 1016,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1506,
+      -1.5188,
+      0.4678
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.42,
+     "roll": 0.0,
+     "at": 1018,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1587,
+      -1.5081,
+      0.4731
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.43,
+     "roll": 0.0,
+     "at": 1020,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1669,
+      -1.4971,
+      0.4784
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.44,
+     "roll": 0.0,
+     "at": 1022,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1751,
+      -1.4857,
+      0.4837
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.44,
+     "roll": 0.0,
+     "at": 1024,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1834,
+      -1.4741,
+      0.4891
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1026,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1917,
+      -1.4622,
+      0.4946
+     ],
+     "aim": [
+      0.45,
+      3.9,
+      1.75
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1028,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -2279,13 +2959,193 @@
       1.75
      ],
      "lens": 21.45,
-     "roll": 0,
+     "roll": 0.0,
      "at": 1030,
      "hold": 0,
-     "pin": true,
      "subject": "newguy",
      "framing": "W",
-     "purpose": "pinned pass: cam f1030 fitted"
+     "purpose": "pinned pass: cam f1030 fitted",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2083,
+      -1.4347,
+      0.5057
+     ],
+     "aim": [
+      0.4533,
+      3.9053,
+      1.7512
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1032,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2165,
+      -1.4138,
+      0.5117
+     ],
+     "aim": [
+      0.4626,
+      3.9204,
+      1.7548
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1034,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2248,
+      -1.3883,
+      0.5182
+     ],
+     "aim": [
+      0.4772,
+      3.9436,
+      1.7602
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1036,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2332,
+      -1.3587,
+      0.525
+     ],
+     "aim": [
+      0.4964,
+      3.9735,
+      1.7672
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1038,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.242,
+      -1.3258,
+      0.5322
+     ],
+     "aim": [
+      0.5193,
+      4.0087,
+      1.7754
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1040,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2511,
+      -1.2905,
+      0.5398
+     ],
+     "aim": [
+      0.5453,
+      4.0477,
+      1.7845
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1042,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2609,
+      -1.2533,
+      0.5476
+     ],
+     "aim": [
+      0.5736,
+      4.0889,
+      1.7942
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1044,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2713,
+      -1.2151,
+      0.5557
+     ],
+     "aim": [
+      0.6034,
+      4.131,
+      1.804
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1046,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2825,
+      -1.1766,
+      0.5641
+     ],
+     "aim": [
+      0.634,
+      4.1723,
+      1.8136
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1048,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -2299,213 +3159,1013 @@
       1.8228
      ],
      "lens": 21.45,
-     "roll": 0,
+     "roll": 0.0,
      "at": 1050,
      "hold": 0,
-     "pin": true,
      "subject": "newguy",
      "framing": "W",
-     "purpose": "pinned pass: push faster, slight pan right"
+     "purpose": "pinned pass: push faster, slight pan right",
+     "pin": true
     },
     {
      "pos": [
-      0.4308,
-      -0.7908,
-      0.654
+      0.3085,
+      -1.0992,
+      0.582
      ],
      "aim": [
-      1.0308,
-      4.5592,
-      1.904
+      0.6999,
+      4.2508,
+      1.832
      ],
      "lens": 21.45,
-     "roll": 0,
-     "at": 1065,
+     "roll": 0.0,
+     "at": 1052,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
+     "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: push faster; the commander slides out left by f1074"
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      0.5465,
-      -0.4558,
-      0.7323
+      0.3248,
+      -1.0569,
+      0.5919
      ],
      "aim": [
-      1.2965,
-      4.8942,
-      1.9823
+      0.7434,
+      4.2931,
+      1.8419
      ],
      "lens": 21.45,
-     "roll": -0.4,
-     "at": 1077,
+     "roll": 0.0,
+     "at": 1054,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "M",
-     "purpose": "peak of the push; reverses into the pull back without a stop"
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      -0.5,
-      -0.9,
-      0.6
+      0.3427,
+      -1.0121,
+      0.6023
      ],
      "aim": [
-      0.75,
+      0.7929,
+      4.3379,
+      1.8523
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1056,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.3619,
+      -0.9651,
+      0.6133
+     ],
+     "aim": [
+      0.8463,
+      4.3849,
+      1.8633
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1058,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.3817,
+      -0.9165,
+      0.6246
+     ],
+     "aim": [
+      0.9012,
+      4.4335,
+      1.8746
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1060,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4017,
+      -0.8667,
+      0.6363
+     ],
+     "aim": [
+      0.9555,
+      4.4833,
+      1.8863
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1062,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4213,
+      -0.8162,
+      0.6481
+     ],
+     "aim": [
+      1.0069,
+      4.5338,
+      1.8981
+     ],
+     "lens": 21.45,
+     "roll": 0.0,
+     "at": 1064,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4409,
+      -0.7629,
+      0.6605
+     ],
+     "aim": [
+      1.0555,
+      4.5871,
+      1.9105
+     ],
+     "lens": 21.45,
+     "roll": -0.005,
+     "at": 1066,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4647,
+      -0.6956,
+      0.6763
+     ],
+     "aim": [
+      1.1114,
+      4.6544,
+      1.9263
+     ],
+     "lens": 21.45,
+     "roll": -0.045,
+     "at": 1068,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4903,
+      -0.6215,
+      0.6936
+     ],
+     "aim": [
+      1.1702,
+      4.7285,
+      1.9436
+     ],
+     "lens": 21.45,
+     "roll": -0.113,
+     "at": 1070,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.5144,
+      -0.5509,
+      0.7101
+     ],
+     "aim": [
+      1.2247,
+      4.7991,
+      1.9601
+     ],
+     "lens": 21.45,
+     "roll": -0.197,
+     "at": 1072,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.5337,
+      -0.4938,
+      0.7234
+     ],
+     "aim": [
+      1.268,
+      4.8562,
+      1.9734
+     ],
+     "lens": 21.45,
+     "roll": -0.285,
+     "at": 1074,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.5449,
+      -0.4604,
+      0.7312
+     ],
+     "aim": [
+      1.293,
+      4.8896,
+      1.9812
+     ],
+     "lens": 21.45,
+     "roll": -0.366,
+     "at": 1076,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.5426,
+      -0.4575,
+      0.7321
+     ],
+     "aim": [
+      1.2954,
+      4.8905,
+      1.9822
+     ],
+     "lens": 21.45,
+     "roll": -0.432,
+     "at": 1078,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.513,
+      -0.47,
+      0.7301
+     ],
+     "aim": [
+      1.2869,
+      4.8624,
+      1.9813
+     ],
+     "lens": 21.45,
+     "roll": -0.5,
+     "at": 1080,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4583,
+      -0.4932,
+      0.7264
+     ],
+     "aim": [
+      1.2707,
+      4.8104,
+      1.9795
+     ],
+     "lens": 21.45,
+     "roll": -0.572,
+     "at": 1082,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.383,
+      -0.5252,
+      0.721
+     ],
+     "aim": [
+      1.2473,
+      4.7389,
+      1.9769
+     ],
+     "lens": 21.45,
+     "roll": -0.647,
+     "at": 1084,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.2916,
+      -0.564,
+      0.7141
+     ],
+     "aim": [
+      1.2175,
+      4.6521,
+      1.9734
+     ],
+     "lens": 21.45,
+     "roll": -0.724,
+     "at": 1086,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.1889,
+      -0.6076,
+      0.7058
+     ],
+     "aim": [
+      1.182,
+      4.5544,
+      1.9691
+     ],
+     "lens": 21.45,
+     "roll": -0.799,
+     "at": 1088,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0792,
+      -0.6541,
+      0.6963
+     ],
+     "aim": [
+      1.1416,
+      4.4503,
+      1.9639
+     ],
+     "lens": 21.45,
+     "roll": -0.873,
+     "at": 1090,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0327,
+      -0.7017,
+      0.6856
+     ],
+     "aim": [
+      1.0968,
+      4.3439,
+      1.9579
+     ],
+     "lens": 21.45,
+     "roll": -0.943,
+     "at": 1092,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.1424,
+      -0.7482,
+      0.6741
+     ],
+     "aim": [
+      1.0485,
+      4.2398,
+      1.9511
+     ],
+     "lens": 21.45,
+     "roll": -1.008,
+     "at": 1094,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2451,
+      -0.7918,
+      0.6617
+     ],
+     "aim": [
+      0.9973,
+      4.1421,
+      1.9436
+     ],
+     "lens": 21.45,
+     "roll": -1.066,
+     "at": 1096,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3365,
+      -0.8306,
+      0.6487
+     ],
+     "aim": [
+      0.9439,
+      4.0553,
+      1.9352
+     ],
+     "lens": 21.45,
+     "roll": -1.116,
+     "at": 1098,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4118,
+      -0.8626,
+      0.6352
+     ],
+     "aim": [
+      0.889,
+      3.9838,
+      1.9261
+     ],
+     "lens": 21.45,
+     "roll": -1.155,
+     "at": 1100,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4665,
+      -0.8858,
+      0.6213
+     ],
+     "aim": [
+      0.8334,
+      3.9318,
+      1.9162
+     ],
+     "lens": 21.45,
+     "roll": -1.183,
+     "at": 1102,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4961,
+      -0.8983,
+      0.6071
+     ],
+     "aim": [
+      0.7777,
+      3.9037,
+      1.9056
+     ],
+     "lens": 21.45,
+     "roll": -1.198,
+     "at": 1104,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4976,
+      -0.8984,
+      0.592
+     ],
+     "aim": [
+      0.7227,
       3.9,
-      1.9
+      1.8929
      ],
      "lens": 21.45,
-     "roll": -1.2,
-     "at": 1105,
+     "roll": -1.186,
+     "at": 1106,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
+     "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: cam f1105 fitted: room above for the exploded toilet"
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      -0.15,
+      -0.4808,
+      -0.8861,
+      0.5719
+     ],
+     "aim": [
+      0.666,
+      3.9,
+      1.8706
+     ],
+     "lens": 21.45,
+     "roll": -1.083,
+     "at": 1108,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4541,
+      -0.864,
+      0.5483
+     ],
+     "aim": [
+      0.5993,
+      3.9,
+      1.8385
+     ],
+     "lens": 21.45,
+     "roll": -0.901,
+     "at": 1110,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4248,
+      -0.8345,
+      0.5235
+     ],
+     "aim": [
+      0.5136,
+      3.9,
+      1.7978
+     ],
+     "lens": 21.45,
+     "roll": -0.665,
+     "at": 1112,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4,
       -0.8,
       0.5
      ],
      "aim": [
-      0.45,
+      0.4,
       3.9,
-      1.8
+      1.75
      ],
      "lens": 21.45,
      "roll": -0.4,
      "at": 1114,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: f1114 the fast pan left starts"
+     "purpose": "pinned pass: f1114 the fast pan left starts",
+     "pin": true
     },
     {
      "pos": [
-      0.6,
-      -0.6,
-      0.35
+      -0.3779,
+      -0.7444,
+      0.4779
      ],
      "aim": [
-      -2.2,
+      0.0861,
       3.9,
-      1.1
+      1.6862
      ],
      "lens": 21.45,
-     "roll": 3,
-     "at": 1125,
+     "roll": -0.039,
+     "at": 1116,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: cam f1125 fitted: glowing hose on the floor leads left to the wall"
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      0.15,
-      -0.05,
-      0.33
+      -0.3537,
+      -0.6553,
+      0.4557
+     ],
+     "aim": [
+      -0.487,
+      3.9,
+      1.5975
+     ],
+     "lens": 21.45,
+     "roll": 0.479,
+     "at": 1118,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3308,
+      -0.5412,
+      0.4336
+     ],
+     "aim": [
+      -1.1576,
+      3.9,
+      1.4845
+     ],
+     "lens": 21.45,
+     "roll": 1.117,
+     "at": 1120,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3123,
+      -0.4101,
+      0.4118
+     ],
+     "aim": [
+      -1.7641,
+      3.9,
+      1.3478
+     ],
+     "lens": 21.45,
+     "roll": 1.839,
+     "at": 1122,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3015,
+      -0.2704,
+      0.3905
+     ],
+     "aim": [
+      -2.1448,
+      3.9,
+      1.1882
+     ],
+     "lens": 21.45,
+     "roll": 2.609,
+     "at": 1124,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3117,
+      -0.1266,
+      0.3699
+     ],
+     "aim": [
+      -2.1815,
+      3.7259,
+      0.9788
+     ],
+     "lens": 21.45,
+     "roll": 3.399,
+     "at": 1126,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3932,
+      0.0409,
+      0.3506
+     ],
+     "aim": [
+      -2.075,
+      2.725,
+      0.6205
+     ],
+     "lens": 21.45,
+     "roll": 4.282,
+     "at": 1128,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.5252,
+      0.2387,
+      0.3308
+     ],
+     "aim": [
+      -1.9685,
+      1.7241,
+      0.2529
+     ],
+     "lens": 21.45,
+     "roll": 5.359,
+     "at": 1130,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.7031,
+      0.4843,
+      0.31
+     ],
+     "aim": [
+      -1.9812,
+      1.55,
+      0.0346
+     ],
+     "lens": 21.48,
+     "roll": 6.793,
+     "at": 1132,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.0022,
+      0.8045,
+      0.2881
+     ],
+     "aim": [
+      -2.1187,
+      1.55,
+      -0.0986
+     ],
+     "lens": 21.7,
+     "roll": 8.856,
+     "at": 1134,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.3072,
+      1.0891,
+      0.225
+     ],
+     "aim": [
+      -2.123,
+      1.5111,
+      -0.4353
+     ],
+     "lens": 22.05,
+     "roll": 11.252,
+     "at": 1136,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.55,
+      1.3,
+      0.05
      ],
      "aim": [
       -1.95,
-      1.55,
-      0.12
-     ],
-     "lens": 21.45,
-     "roll": 6,
-     "at": 1131,
-     "hold": 0,
-     "pin": true,
-     "subject": null,
-     "framing": "W",
-     "purpose": "pinned pass: low on the hose, WASTE LINE hatch ahead (opens f1132-1138)"
-    },
-    {
-     "pos": [
-      -0.95,
-      0.9,
-      0.3
-     ],
-     "aim": [
-      -2.1,
-      1.55,
-      -0.1
-     ],
-     "lens": 21.84,
-     "roll": 11,
-     "at": 1135,
-     "hold": 0,
-     "pin": true,
-     "subject": null,
-     "framing": "W",
-     "purpose": "pinned pass: the dive at the open hatch"
-    },
-    {
-     "pos": [
-      -1.6,
-      1.45,
-      0.1
-     ],
-     "aim": [
-      -2.0,
-      1.5,
-      -1.2
+      1.4,
+      -1.0
      ],
      "lens": 22.63,
-     "roll": 15,
-     "at": 1137,
+     "roll": 14.0,
+     "at": 1138,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: at the hatch mouth, turning down (through the floor slab in one frame: no opening behind the hatch in the set)"
+     "purpose": "pinned pass: pitching down through the hatch (near plane past the floor slab)",
+     "pin": true
     },
     {
      "pos": [
-      -1.72,
-      1.4,
-      -0.45
+      -1.5936,
+      1.3689,
+      -0.2642
      ],
      "aim": [
-      -0.6,
-      1.42,
-      -1.1
+      -1.3194,
+      1.4148,
+      -1.2134
      ],
-     "lens": 23.46,
-     "roll": 18,
+     "lens": 23.22,
+     "roll": 16.667,
      "at": 1140,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: under the floor"
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      -1.45,
-      1.3,
-      -0.62
+      -1.5403,
+      1.3729,
+      -0.4929
      ],
      "aim": [
-      0.5,
+      -0.4487,
+      1.42,
+      -1.1981
+     ],
+     "lens": 23.63,
+     "roll": 19.487,
+     "at": 1142,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -1.25,
+      1.34,
+      -0.6
+     ],
+     "aim": [
+      0.4,
       1.42,
       -1.05
      ],
      "lens": 23.89,
-     "roll": 21,
-     "at": 1145,
+     "roll": 22.0,
+     "at": 1144,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: under the floor, turned to fly along the hose"
+     "purpose": "pinned pass: along the hose",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.8886,
+      1.3014,
+      -0.55
+     ],
+     "aim": [
+      0.8843,
+      1.4403,
+      -1.0891
+     ],
+     "lens": 24.17,
+     "roll": 23.188,
+     "at": 1146,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4382,
+      1.2552,
+      -0.44
+     ],
+     "aim": [
+      1.2835,
+      1.485,
+      -1.175
+     ],
+     "lens": 24.45,
+     "roll": 24.14,
+     "at": 1148,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.0113,
+      1.2163,
+      -0.33
+     ],
+     "aim": [
+      1.5785,
+      1.5297,
+      -1.2609
+     ],
+     "lens": 24.68,
+     "roll": 24.771,
+     "at": 1150,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -2519,13 +4179,133 @@
       -1.3
      ],
      "lens": 24.77,
-     "roll": 25,
-     "at": 1154,
+     "roll": 25.0,
+     "at": 1152,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: cam f1150 (set params) put at f1154 so the flight keeps one speed: flange in the middle, WASTE VENT top right"
+     "purpose": "pinned pass: cam f1150 (set params) at f1155 so the flight keeps one speed: flange in the middle, WASTE VENT top right",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.4466,
+      1.2059,
+      -0.2923
+     ],
+     "aim": [
+      1.8418,
+      1.5472,
+      -1.2799
+     ],
+     "lens": 24.77,
+     "roll": 24.739,
+     "at": 1154,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.5806,
+      1.2218,
+      -0.3255
+     ],
+     "aim": [
+      1.9137,
+      1.5401,
+      -1.2278
+     ],
+     "lens": 24.77,
+     "roll": 24.02,
+     "at": 1156,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.6913,
+      1.2454,
+      -0.3745
+     ],
+     "aim": [
+      1.9705,
+      1.5303,
+      -1.1561
+     ],
+     "lens": 24.77,
+     "roll": 22.942,
+     "at": 1158,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.7879,
+      1.274,
+      -0.4338
+     ],
+     "aim": [
+      2.0172,
+      1.5197,
+      -1.0771
+     ],
+     "lens": 24.77,
+     "roll": 21.602,
+     "at": 1160,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.8796,
+      1.3051,
+      -0.4982
+     ],
+     "aim": [
+      2.0586,
+      1.5099,
+      -1.0032
+     ],
+     "lens": 24.77,
+     "roll": 20.1,
+     "at": 1162,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.9758,
+      1.3363,
+      -0.5624
+     ],
+     "aim": [
+      2.0996,
+      1.5028,
+      -0.9467
+     ],
+     "lens": 24.77,
+     "roll": 18.533,
+     "at": 1164,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -2539,13 +4319,93 @@
       -0.92
      ],
      "lens": 24.77,
-     "roll": 17,
+     "roll": 17.0,
      "at": 1166,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: constant-speed flight to the flange, then it accelerates"
+     "purpose": "pinned pass: constant-speed flight to the flange, then it accelerates",
+     "pin": true
+    },
+    {
+     "pos": [
+      1.2067,
+      1.3925,
+      -0.6766
+     ],
+     "aim": [
+      2.1932,
+      1.5,
+      -0.9128
+     ],
+     "lens": 24.77,
+     "roll": 15.37,
+     "at": 1168,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      1.3298,
+      1.4217,
+      -0.7349
+     ],
+     "aim": [
+      2.2392,
+      1.5,
+      -0.9069
+     ],
+     "lens": 24.77,
+     "roll": 13.484,
+     "at": 1170,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      1.4547,
+      1.4522,
+      -0.7955
+     ],
+     "aim": [
+      2.2831,
+      1.5,
+      -0.9026
+     ],
+     "lens": 24.77,
+     "roll": 11.396,
+     "at": 1172,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      1.5812,
+      1.4838,
+      -0.8581
+     ],
+     "aim": [
+      2.3249,
+      1.5,
+      -0.9003
+     ],
+     "lens": 24.77,
+     "roll": 9.158,
+     "at": 1174,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
@@ -2559,14 +4419,14 @@
       -0.9
      ],
      "lens": 24.77,
-     "roll": 8,
+     "roll": 8.0,
      "at": 1175,
-     "travel": 6.833333333333333,
      "hold": 0,
-     "creep": 0,
      "subject": null,
      "framing": "C",
-     "purpose": "into the flange: it fills the frame (his nozzle 100 % at f1176)"
+     "purpose": "into the flange: it fills the frame (his nozzle 100 % at f1176)",
+     "travel": 7.166666666666667,
+     "creep": 0
     }
    ]
   },
@@ -2576,65 +4436,264 @@
    "stations": [
     {
      "pos": [
-      0,
+      0.0,
       -33.6,
-      0
+      0.0
      ],
      "aim": [
-      0,
+      0.0,
       -26.2,
-      0
+      0.0
      ],
      "lens": 21.45,
-     "roll": 0,
+     "roll": 0.0,
      "at": 1176,
      "hold": 0,
-     "min_hold": 0,
-     "creep": 0,
      "subject": null,
      "framing": "W",
-     "purpose": "f1176 inside the tube (cut in the dark of the nozzle), already flying"
+     "purpose": "f1176 inside the tube (cut in the dark of the nozzle), already flying",
+     "creep": 0
     },
     {
      "pos": [
-      0,
-      -28.3,
-      0
+      0.0,
+      -32.5113,
+      0.0
      ],
      "aim": [
-      0,
-      -26.5,
-      0
+      0.0,
+      -26.2971,
+      0.0
      ],
      "lens": 21.45,
-     "roll": -8,
+     "roll": -1.275,
+     "at": 1178,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -31.5036,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.3712,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -2.505,
+     "at": 1180,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -30.5946,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.4254,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -3.692,
+     "at": 1182,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -29.802,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.4624,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -4.834,
+     "at": 1184,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -29.1436,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.4852,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -5.932,
+     "at": 1186,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -28.637,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.4968,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -6.988,
+     "at": 1188,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -28.3,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.5,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -8.0,
      "at": 1190,
      "hold": 0,
-     "pin": true,
      "subject": null,
      "framing": "W",
-     "purpose": "pinned pass: cam f1190 fitted: rings, core at the centre"
+     "purpose": "pinned pass: cam f1190 fitted: rings, core at the centre",
+     "pin": true
     },
     {
      "pos": [
-      0,
-      -27.6,
-      0
+      0.0,
+      -28.0627,
+      0.0
      ],
      "aim": [
-      0,
-      -26.2,
-      0
+      0.0,
+      -26.4811,
+      0.0
      ],
      "lens": 21.45,
-     "roll": -12,
-     "at": 1199,
-     "travel": 0.7666666666666667,
-     "hold": 0.2,
-     "creep": 0,
+     "roll": -8.968,
+     "at": 1192,
+     "hold": 0,
      "subject": null,
      "framing": "W",
-     "purpose": "on toward the core, spinning"
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -27.856,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.429,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -9.89,
+     "at": 1194,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -27.6994,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.3508,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -10.767,
+     "at": 1196,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -27.6118,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.2536,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -11.6,
+     "at": 1198,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      0.0,
+      -27.6,
+      0.0
+     ],
+     "aim": [
+      0.0,
+      -26.2,
+      0.0
+     ],
+     "lens": 21.45,
+     "roll": -12.0,
+     "at": 1199,
+     "hold": 0.2,
+     "subject": null,
+     "framing": "W",
+     "purpose": "on toward the core, spinning",
+     "travel": 0.7666666666666667,
+     "creep": 0
     }
    ]
   }
@@ -2643,25 +4702,25 @@
   "newguy": [
    [
     0,
-    1.3,
-    1.3
+    1.0,
+    1.0
    ],
    [
     2000,
-    1.3,
-    1.3
+    1.0,
+    1.0
    ]
   ],
   "commander": [
    [
     0,
-    1.25,
-    1.25
+    1.0,
+    1.0
    ],
    [
     2000,
-    1.25,
-    1.25
+    1.0,
+    1.0
    ]
   ]
  },
@@ -2720,60 +4779,6 @@
     1.3
    ],
    "note": "slides to centre f1072-1093, eased"
-  },
-  {
-   "who": "commander",
-   "at": 0,
-   "face": "k:annoyed",
-   "note": "glare"
-  },
-  {
-   "who": "commander",
-   "at": 1040,
-   "face": "k:angry",
-   "note": "flush?"
-  },
-  {
-   "who": "newguy",
-   "at": 0,
-   "face": "k:afSweat",
-   "note": "stiff, scared"
-  },
-  {
-   "who": "newguy",
-   "at": 1038,
-   "face": "k:happy",
-   "note": "innocent smile, flush? f1040"
-  },
-  {
-   "who": "newguy",
-   "at": 1054,
-   "face": "k:smug",
-   "note": "explaining"
-  },
-  {
-   "who": "newguy",
-   "at": 1058,
-   "face": "k:talk",
-   "note": "Well, f1061"
-  },
-  {
-   "who": "newguy",
-   "at": 1066,
-   "face": "k:smug",
-   "note": "a spaceship toilet"
-  },
-  {
-   "who": "newguy",
-   "at": 1097,
-   "face": "k:browUp",
-   "note": "turns to the toilet coming apart, points"
-  },
-  {
-   "who": "newguy",
-   "at": 1102,
-   "face": "k:happy",
-   "note": "shrug smile, have pipes."
   },
   {
    "who": "newguy",

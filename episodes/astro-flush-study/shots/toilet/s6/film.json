@@ -23,6 +23,7 @@
   "face_frames": 0,
   "ones": true
  },
+ "move_face": true,
  "puppet_pkg": [
   "moves",
   "cast",
@@ -335,7 +336,7 @@
      {
       "f": 506,
       "light": "night",
-      "glow": 0.55,
+      "glow": 0.6828,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -345,7 +346,7 @@
      {
       "f": 507,
       "light": "night",
-      "glow": 1.075,
+      "glow": 0.975,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -355,7 +356,7 @@
      {
       "f": 508,
       "light": "night",
-      "glow": 1.6,
+      "glow": 1.2672,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -365,7 +366,7 @@
      {
       "f": 509,
       "light": "night",
-      "glow": 1.6,
+      "glow": 1.4,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -375,7 +376,7 @@
      {
       "f": 510,
       "light": "night",
-      "glow": 1.5742,
+      "glow": 1.3888,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -385,7 +386,7 @@
      {
       "f": 511,
       "light": "night",
-      "glow": 1.5063,
+      "glow": 1.3584,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -395,7 +396,7 @@
      {
       "f": 512,
       "light": "night",
-      "glow": 1.4102,
+      "glow": 1.3136,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -405,7 +406,7 @@
      {
       "f": 513,
       "light": "night",
-      "glow": 1.3,
+      "glow": 1.2592,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -415,7 +416,7 @@
      {
       "f": 514,
       "light": "night",
-      "glow": 1.1898,
+      "glow": 1.2,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -425,7 +426,7 @@
      {
       "f": 515,
       "light": "night",
-      "glow": 1.0938,
+      "glow": 1.1408,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -435,7 +436,7 @@
      {
       "f": 516,
       "light": "night",
-      "glow": 1.0258,
+      "glow": 1.0864,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -445,7 +446,7 @@
      {
       "f": 517,
       "light": "night",
-      "glow": 1.0,
+      "glow": 1.0416,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -455,7 +456,7 @@
      {
       "f": 518,
       "light": "night",
-      "glow": 1.0,
+      "glow": 1.0112,
       "exploded": 0.0,
       "door": 0.0,
       "hatch": 0.0,
@@ -667,19 +668,19 @@
    "stage": {
     "lever": [
      [
-      505,
+      504,
       0
      ],
      [
-      508,
+      510,
       -28
      ],
      [
-      514,
+      515,
       -28
      ],
      [
-      520,
+      523,
       0
      ]
     ]
@@ -703,74 +704,394 @@
       1.1577
      ],
      "lens": 29.96,
-     "roll": 0,
-     "at": 0,
-     "hold": 16.166666666666668,
-     "creep": 0,
-     "subject": "newguy",
-     "framing": "C",
-     "purpose": "pre-roll (never rendered); the travel leaves f485"
-    },
-    {
-     "pos": [
-      -0.405,
-      2.7886,
-      0.7295
-     ],
-     "aim": [
-      1.895,
-      3.0386,
-      1.1795
-     ],
-     "lens": 29.96,
-     "roll": 0,
-     "at": 500,
+     "roll": 0.0,
+     "at": 480,
      "hold": 0,
-     "pin": true,
      "subject": "newguy",
      "framing": "C",
-     "purpose": "f500 clean: new guy big at the left, glowing toilet lower right"
+     "purpose": "pre-roll (never rendered); the travel leaves f485",
+     "creep": 0
     },
     {
      "pos": [
-      -0.3,
-      2.8,
-      0.75
+      -0.5017,
+      2.7781,
+      0.7106
      ],
      "aim": [
-      2.0,
-      3.05,
-      1.2
+      1.7983,
+      3.0281,
+      1.1606
      ],
      "lens": 29.96,
-     "roll": 0,
-     "at": 515,
+     "roll": 0.0,
+     "at": 483,
      "hold": 0,
-     "pin": true,
-     "subject": "newguy",
-     "framing": "C",
-     "purpose": "pinned pass: cam f515 fitted"
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
     },
     {
      "pos": [
-      -0.2508,
-      2.8053,
-      0.7596
+      -0.4862,
+      2.7798,
+      0.7136
      ],
      "aim": [
-      2.0492,
-      3.0553,
-      1.2096
+      1.8138,
+      3.0298,
+      1.1636
      ],
      "lens": 29.96,
-     "roll": 0,
+     "roll": 0.0,
+     "at": 486,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.47,
+      2.7815,
+      0.7168
+     ],
+     "aim": [
+      1.83,
+      3.0315,
+      1.1668
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 489,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4531,
+      2.7834,
+      0.7201
+     ],
+     "aim": [
+      1.8469,
+      3.0334,
+      1.1701
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 492,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4355,
+      2.7853,
+      0.7235
+     ],
+     "aim": [
+      1.8645,
+      3.0353,
+      1.1735
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 495,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.4174,
+      2.7873,
+      0.7271
+     ],
+     "aim": [
+      1.8826,
+      3.0373,
+      1.1771
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 498,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3986,
+      2.7893,
+      0.7308
+     ],
+     "aim": [
+      1.9014,
+      3.0393,
+      1.1808
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 501,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3776,
+      2.7916,
+      0.7348
+     ],
+     "aim": [
+      1.9224,
+      3.0416,
+      1.1848
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 504,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3553,
+      2.794,
+      0.7392
+     ],
+     "aim": [
+      1.9447,
+      3.044,
+      1.1892
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 507,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.333,
+      2.7964,
+      0.7436
+     ],
+     "aim": [
+      1.967,
+      3.0464,
+      1.1936
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 510,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.3123,
+      2.7987,
+      0.7476
+     ],
+     "aim": [
+      1.9877,
+      3.0487,
+      1.1976
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 513,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2943,
+      2.8006,
+      0.7511
+     ],
+     "aim": [
+      2.0057,
+      3.0506,
+      1.2011
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 516,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2776,
+      2.8024,
+      0.7544
+     ],
+     "aim": [
+      2.0224,
+      3.0524,
+      1.2044
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 519,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2616,
+      2.8042,
+      0.7575
+     ],
+     "aim": [
+      2.0384,
+      3.0542,
+      1.2075
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 522,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2464,
+      2.8058,
+      0.7605
+     ],
+     "aim": [
+      2.0536,
+      3.0558,
+      1.2105
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 525,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2321,
+      2.8074,
+      0.7633
+     ],
+     "aim": [
+      2.0679,
+      3.0574,
+      1.2133
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 528,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2188,
+      2.8088,
+      0.7659
+     ],
+     "aim": [
+      2.0812,
+      3.0588,
+      1.2159
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 531,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.2067,
+      2.8101,
+      0.7683
+     ],
+     "aim": [
+      2.0933,
+      3.0601,
+      1.2183
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
+     "at": 534,
+     "hold": 0,
+     "subject": null,
+     "framing": "W",
+     "purpose": "curve point",
+     "pin": true
+    },
+    {
+     "pos": [
+      -0.1958,
+      2.8113,
+      0.7704
+     ],
+     "aim": [
+      2.1042,
+      3.0613,
+      1.2204
+     ],
+     "lens": 29.96,
+     "roll": 0.0,
      "at": 537,
-     "travel": 1.7333333333333334,
      "hold": 0.3,
-     "creep": 0,
      "subject": "newguy",
      "framing": "C",
-     "purpose": "slow push on through the dissolve out f531-537"
+     "purpose": "slow push on through the dissolve out f531-537",
+     "travel": 1.9,
+     "creep": 0
     }
    ]
   }
@@ -805,30 +1126,6 @@
     1.3
    ],
    "note": "wince, flush snap 507-508, relief, sweat"
-  },
-  {
-   "who": "newguy",
-   "at": 0,
-   "face": "k:nervous",
-   "note": "wince"
-  },
-  {
-   "who": "newguy",
-   "at": 507,
-   "face": "k:afSweat",
-   "note": "SNAP: wide eyes, o mouth, one drop"
-  },
-  {
-   "who": "newguy",
-   "at": 510,
-   "face": "k:nervous",
-   "note": "recoil"
-  },
-  {
-   "who": "newguy",
-   "at": 513,
-   "face": "k:nervousSmile",
-   "note": "relaxed smile, one sweat drop"
   }
  ]
 }

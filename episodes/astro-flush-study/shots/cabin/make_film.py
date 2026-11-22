@@ -23,10 +23,10 @@ HT = {w: CAST['cast'][w]['height'] for w in ('newguy', 'commander', 'navigator')
 VIS = {'newguy': 1.12, 'commander': 1.22, 'navigator': 1.18}        # visible head (hair / cap) / drawn ball: calibrated on our render (CAL)
 CAL = json.load(open(os.path.join(H, 'cal.json'))) if os.path.exists(os.path.join(H, 'cal.json')) else {}
 CAL.setdefault('newguy@490', [.04, 0, 1.0])
-# round 3: face widths measured ours/his on the r3 test stills (f330 commander -17 %, new guy -9 %; f390 new guy -12 %; f300 new guy -19 % and 10 points too high)
+# round 3: face widths measured ours/his on the r3 test stills (f330 commander -17 %, new guy -9 %; f390 new guy -12 %; f300 new guy -19 % and 10 points too high; then -26 % on the re-baked render: 1.66)
 # second pass on the re-baked render (face widths ours/his: f330 commander +29 %, new guy +14 %, navigator +14 %; f390 commander +7 %, new guy +25 %, navigator +16 %)
 for k_, v_ in {'commander@330': [0, 0, .91], 'newguy@330': [0, 0, .95], 'navigator@330': [0, 0, .88], 'commander@390': [0, 0, .93], 'newguy@390': [0, 0, .90], 'navigator@390': [0, 0, .86],
-               'newguy@300': [0, -.10, 1.23]}.items(): CAL.setdefault(k_, v_)     # round 3 (lead's sheet): new guy at f490 was 12 % small and 4 points right
+               'newguy@300': [0, -.10, 1.66]}.items(): CAL.setdefault(k_, v_)   # f300 new guy was -26 % at 1.23;     # round 3 (lead's sheet): new guy at f490 was 12 % small and 4 points right
 def ray_y(c, sx, sy, y):
     a = unproject(c, sx, sy, 1.0); o = c['loc']; t = (y - o[1]) / (a[1] - o[1]); return [o[i] + (a[i] - o[i]) * t for i in range(3)], t
 def need(f, who, y):
@@ -57,6 +57,7 @@ S4_300 = {w_: round(need(300, w_, Y300)[1], 3) for w_ in ('newguy', 'commander')
 F4 = base("astro-flush cabin, shot 4 (f284-410, + dissolve f411-422)", 284, 423, ("commander", "newguy", "navigator"))
 F4["places"] = {"cabin": {"set": "cab_stage", "kind": "interior", "light": "day", "light_over": {"tint": "#ffffff"},
     "cabin": {"mode": "day", "door": 1, "sway": 0}, "monitor_live": {"amp": 0.06, "period": 9},
+    "upright": [dict(who="commander", f1=300, n=14), dict(who="navigator", f1=300, n=14)],   # round 3: no tip toward the high pull-back camera before f300 (cards leaned into the quilt)
     "held": [dict(obj="magazine", who="newguy", hand=0, off=[0, 0, -.05], spin=[0, 0, -8], toss=dict(f=391, v=[-1.1, -.35, 1.0], spin=[220, 140, 380], carry=1.0)),
              dict(obj="drink_ball", who="newguy", hand=1, off=[0, 0, .02], toss=dict(f=394, v=[-.25, -.05, .10], spin=[20, 40, 30], carry=1.0)),
              dict(obj="clipboard", who="navigator", hand=0, off=[0, 0, -.12], spin=[0, 0, -10]),
@@ -76,13 +77,16 @@ F4["takes"] = [{"id": "s4", "place": "cabin", "stations": [
 Y4 = .45
 # round 3 (lead): NO scale change in the shot (round 2 grew two cards 37-54 % over f300-318). One scale per character; his head size on every
 # measured frame comes from DEPTH along his head ray (place_d). Commander 1.0 / new guy 1.05 keep the f300 marks off the quilt (y < 1.1).
-S4C = {'commander': 1.0, 'newguy': 1.05, 'navigator': S4}
+S4C = {'commander': 1.0, 'newguy': 1.05, 'navigator': 1.0}   # navigator 1.15 -> 1.0: same size by depth, his marks 0.7 m off the quilt (collide)
 P4 = {w_: {f: place_d(f, w_, S4C[w_]) for f in (330, 390)} for w_ in ('commander', 'newguy', 'navigator')}
 for w_ in ('newguy', 'commander'): P4[w_][300] = place_d(300, w_, S4C[w_])
 F4["card_scale"] = {w_: [[0, s_, s_], [900, s_, s_]] for w_, s_ in S4C.items()}
 F4["acts"] = []
-for w_, mv, lk in (('commander', 'cmd4', 'newguy'), ('newguy', 'ng4', None), ('navigator', 'nav4', 'newguy')):
-    p = P4[w_]; first = p.get(300, p[330]); L_ = lk or LOOK(first)
+# round 3: commander / navigator look at a FIXED point beside them toward the new guy's side (a look AT the new guy ran through the lens line
+# f284-317: camsafe asked front, and the navigator's 3/4 flipped at f318 = 80 cm hand jump)
+SIDE = {'commander': 3.0, 'navigator': -5.0}
+for w_, mv, lk in (('commander', 'cmd4', 'side'), ('newguy', 'ng4', None), ('navigator', 'nav4', 'side')):
+    p = P4[w_]; first = p.get(300, p[330]); L_ = [round(first[0] + SIDE[w_], 3), round(first[1] - 1.0, 3), 1.4] if lk else LOOK(first)
     F4["acts"] += [dict(who=w_, at=0, pos=first, pose="m:../../ep_cab/" + mv, look=L_, note="floating, weightless (bob in the move); turned to the new guy" if lk else "floating, faces the lens")]
     if 300 in p: F4["acts"] += [dict(who=w_, at=300, pos=p[330], move_s=1.0, ease="inout", look=L_, note="his f300 mark -> his f330 mark under the pull-back, eased over 30 f")]
     F4["acts"] += [dict(who=w_, at=335, pos=p[390], move_s=1.8, ease="inout", look=L_, note="slow float drift to his f390 mark, eased")]

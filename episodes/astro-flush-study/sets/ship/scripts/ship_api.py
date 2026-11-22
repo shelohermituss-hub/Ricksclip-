@@ -23,7 +23,10 @@ def _emit(mat, strength, col=None):
     if col: b.inputs['Emission Color'].default_value = col
 DEFAULT = {'light': 'space', 'sun_dir': None, 'flame': 0, 'preglow': 0, 'glitter': 0, 'glitter_ck': 0, 'comm': 0, 'digits': 0, 'starmap': 0, 'shot': 0,
            'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0, 'sun_k': 1., 'sky_rot': 0, 'wash': 0,
-           'earth_glare': [.5, -.7, .3, 0.], 'earth_rot': [75, 0, 30], 'earth_term': [-.6, .6, 0.], 'fans': 1}
+           'earth_glare': [.5, -.7, .3, 0.], 'earth_rot': [75, 0, 30], 'earth_term': [-.6, .6, 0.], 'fans': 1,
+           'twinkle': 0., 'radio_desk': 1, 'flame_w': 1.5}   # round 8: twinkle = shimmer time (cycles; film: f / 20), radio_desk 0 hides the radio station, flame_w = plume width factor
+LAMP_ES = {'space': 1., 'warm': .5, 'map': .05, 'radio': .3}   # round 8: lamp end glow per kind (x lamp_tip emission 14)
+WASH = {'warm': 140., 'space': 60.}                             # round 8: wall wash W per kind (450 made the slats a beige zebra)
 LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each, cockpit fill W, room lights W, world colour
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
     'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 110, 'ck_fill': 60, 'rooms': 120},
@@ -37,13 +40,17 @@ def set_light(scene, kind, sun_dir=None, sun_k=1.):
     for n in ('lamp_light_0', 'lamp_light_1'): _o(n).data.energy = L['lamps']
     _o('ck_fill').data.energy = L['ck_fill']
     for n in ('room_light_a', 'room_light_b'): _o(n).data.energy = L['rooms']
-    lamp_es = {'space': 1., 'warm': .3, 'map': .03, 'radio': .25}[kind]
-    _emit('lamp_tube', 6. * lamp_es); _emit('lamp_tip', 9. * lamp_es)
+    _emit('lamp_tube', 0.); _emit('lamp_tip', 14. * LAMP_ES[kind])   # round 8: dark rods, only the small orange end glows
+def flame_scale(f, pg, fw=1.):
+    """round 8: plume (length, width) scale. preglow 0-1 alone grows a short soft stub at the nozzle (6 % long); flame 0-1 then grows length
+    (f^.8) and width (.3 + .7 f) continuously. fw widens the plume (his f110: ~25 % of the frame width)."""
+    L = max(.06 * pg, f ** .8 if f > 0 else 0.); W = (.3 + .7 * max(f, .25 * pg)) * fw
+    return max(L, .001), max(W, .001)
 def set_state(scene, **kw):
     S = json.loads(scene.get('ship_state', '{}')) or dict(DEFAULT); S.update(kw); scene['ship_state'] = json.dumps(S); M = meta()
     set_light(scene, S['light'], S.get('sun_dir'), float(S.get('sun_k', 1.)))
     _o('sky_dome').rotation_euler = (0, 0, math.radians(float(S.get('sky_rot', 0))))
-    w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or {'warm': 450., 'space': 200.}.get(S['light'], 0.)
+    w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or WASH.get(S['light'], 0.)
     sh = S['ship']; r = _o('ship_root'); r.location = sh[:3]; r.rotation_euler = [math.radians(a) for a in sh[3:6]]
     e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; eo.rotation_euler = [math.radians(a) for a in (S.get('earth_rot') or DEFAULT['earth_rot'])]   # round 5: per shot
     ee = float(S.get('earth_emit', 1.)); _emit('earth', ee)   # round 4: the map is the emission (unlit look); a dim lit base shows when earth_emit is low
@@ -58,16 +65,15 @@ def set_state(scene, **kw):
         tx, ty, tk = (list(S.get('earth_term') or DEFAULT['earth_term']) + [0, 0, 0])[:3]; td = (R3 @ Vector((tx, ty, .5))).normalized()
         for i in range(3): nn['term_dir'].inputs[i].default_value = td[i]
         nn['term_k'].outputs[0].default_value = tk
-    f = float(S['flame'])
-    for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):
-        o = _o(n); o.scale = (max(f, .001), .45 + .55 * f, .45 + .55 * f); o.hide_render = o.hide_viewport = f <= .001
+    f, pg = float(S['flame']), float(S['preglow'])
+    for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):   # round 8: NO visibility switch: length and width grow continuously
+        o = _o(n); lx, wd = flame_scale(f, pg, float(S.get('flame_w', 1.))); o.scale = (lx, wd, wd); o.hide_render = o.hide_viewport = False
     _o('flame_light').data.energy = 60000 * f
-    pg = max(float(S['preglow']), 1. if f > 0 else 0.); _emit('nozzle_glow', 8. * pg)
-    g = float(S['glitter'])
-    for k in range(4): _vis('glitter_trail_%d' % k, g > k / 4)
-    _vis('glitter_collar', g >= .5)
-    gc = float(S['glitter_ck'])
-    for k in range(3): _vis('glitter_cockpit_%d' % k, gc > k / 3)
+    _emit('nozzle_glow', 8. * max(pg, min(1., f * 4)))
+    for mn, key in (('glitter', 'glitter'), ('glitter_ck', 'glitter_ck')):   # round 8: per-sparkle phase fade + shimmer (material nodes), all objects stay on
+        m = bpy.data.materials.get(mn)
+        if m: m.node_tree.nodes['glit_state'].outputs[0].default_value = float(S[key]); m.node_tree.nodes['glit_twinkle'].outputs[0].default_value = float(S.get('twinkle', 0.))
+    for n in ['glitter_trail_%d' % k for k in range(4)] + ['glitter_collar'] + ['glitter_cockpit_%d' % k for k in range(3)]: _vis(n, True)
     c = int(S['comm']); _vis('comm_lamp_on', c); _vis('comm_lamp_off', not c); _vis('mfd_on', c); _vis('mfd_off', not c)
     _o('comm_light').data.energy = (9. if S['light'] == 'radio' else 25.) * c if S['light'] in ('radio', 'map', 'warm') else 0.
     _o('mfd_light').data.energy = (6. if c else 1.5) if S['light'] == 'radio' else 0.
@@ -78,4 +84,9 @@ def set_state(scene, **kw):
     for n in ('solar_fan_p', 'solar_fan_n', 'solar_fan_p_spokes', 'solar_fan_n_spokes', 'solar_boom_p', 'solar_boom_n'): _vis(n, int(S.get('fans', 1)))
     shot = int(S.get('shot', 0))
     for n, shots in M['standins'].items(): _vis(n, shot in shots)
+    if shot == 7 or not int(S.get('radio_desk', 1)):                       # round 8: no radio desk at the right of f600
+        for n in M.get('groups', {}).get('radio_station', []): _vis(n, False)
+    elif M.get('groups'):
+        for n in M['groups']['radio_station']:
+            if not n.startswith(('comm_lamp_', 'mfd_o', 'radio_digits_')): _vis(n, True)
     return S

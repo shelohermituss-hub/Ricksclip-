@@ -2,16 +2,11 @@ collide: bay5/film.json  frames 411-499 every 2 (45 checked)  cast navigator, co
 set cabin: 100 meshes tested; not tested: 1 no name, 25 collide.ignore, 4 effect / sky name
 resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
 result rule            who / what             against                    frames     what                                                                          
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_backing    f411-421   the body box is 12 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_panels     f411-423   the body box is 13 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_rivets     f411-419   the body box is 11 cm into its box, but no drawn body point is inside the mes~
 WARN   BODY_IN_BOX     newguy                 cabin/bay_porthole_frame_2 f411-451   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
 WARN   BODY_IN_BOX     newguy                 cabin/bay_rail             f411-413   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
 WARN   BODY_IN_BOX     navigator              cabin/bay_rail             f423-471   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
 WARN   BODY_IN_BOX     newguy                 cabin/bay_rail             f445-449   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_panels     f449-499   the body box is 22 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_backing    f451-499   the body box is 21 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     commander              cabin/bay_slant_rivets     f453-499   the body box is 20 cm into its box, but no drawn body point is inside the mes~
-WARN   BODY_IN_BOX     newguy                 cabin/float_crisps/float_~ f457       the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/float_crisps/float_~ f457-477   the body box is 13 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/float_crisps/float_~ f459-477   the body box is 9 cm into its box, but no drawn body point is inside the mesh~
 WARN   BODY_IN_BOX     commander              cabin/bay_rail             f485-499   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
-0 FAIL, 12 WARN (7.3 s, scan 2.9 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/collide.json
+0 FAIL, 7 WARN (7.2 s, scan 2.6 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/collide.json
