@@ -452,3 +452,14 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   episodes/plane-eater/cast/sheets/plane_eater.mjs, hw = body half width per size). Guard: render_cast.mjs flags an owner tile without rag pixels
   (back included). Also: never use the `behind` hook for an accessory, it switches off the near-leg-over-body rule (char2d nearOver needs !S.behind).
   Proof: cast/CAST_SHEET.jpg back tiles, numbers rag > 0 on owner_back. FERMÉ
+- 2026-11-21 (plane-eater look card) The cabin window showed flat grey-blue, never the clouds. Cause: sets/cabin `fuselage_skin_outer` has NO window
+  holes (ray_cast from the lens through window_glass_L_0 hits the outer skin at y 1.93). Fix in the look scene: outer skin + window glass + shades
+  visible_camera False (they still light and shadow) and a lens-only sky + cumulus card 2.2 m outside the window (look/look_cabin.py). Guard: a
+  ray_cast from the lens through each window centre must reach the sky or a cloud, not a cabin mesh. Proof: look/prev/C_win.png. Set builder to cut the holes. FERMÉ
+- 2026-11-21 (same) A held 3D prop sat end-on to the lens (glass shaker read as a blue ring). Cause: the tilt was about the card's X axis (toward the
+  lens). Fix: tilt held props about the card NORMAL (local Y after the yaw) so the turn stays in the picture plane; place the card from the fist
+  (pe_look.place_card_hand) and push the prop back along the lens ray, scaled by the same ratio, so the fist overlay closes on it. Guard: crop the
+  fist at 5x before the sheet. Proof: look/prev/A_p2 vs A_p3. FERMÉ
+- 2026-11-21 (same) Kit sit_chair cards stand 1.65 m tall (only the legs bend), so a seated card towers over a seat. Fix: lower the card foot
+  (-0.17 m in the cabin) and cut its alpha below the cushion top (object Z > seat) so no drawn shins lie on the seat. Guard: head top within
+  1.25-1.35 m for a seated 1.80 m man. Proof: look/prev/C_t6 vs C_p2. FERMÉ

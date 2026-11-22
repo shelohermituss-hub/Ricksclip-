@@ -1,0 +1,167 @@
+{
+ "scale": 1.5,
+ "pad": {
+  "x0": -300,
+  "y0": -420,
+  "w": 1400,
+  "h": 1940
+ },
+ "card_rig": {
+  "W": 800,
+  "H": 1500,
+  "CX": 400,
+  "GY": 1440
+ },
+ "michel_salt": {
+  "who": "michel",
+  "view": "34",
+  "dir": -1,
+  "face": "standard",
+  "pose": "pe_hat",
+  "height_m": 1.8,
+  "rig_px_tall": 929.6629974670859,
+  "ground_px": [
+   1050,
+   2790
+  ],
+  "hands": {
+   "R": [
+    662.3,
+    1570.8
+   ],
+   "L": [
+    1392.8,
+    1653.3
+   ]
+  },
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "fist_r_px": 36,
+  "sh": {
+   "R": [
+    947.3,
+    1833.4
+   ],
+   "L": [
+    1152.7,
+    1833.4
+   ]
+  }
+ },
+ "doctor_clip": {
+  "who": "doctor",
+  "view": "back",
+  "dir": 1,
+  "face": "standard",
+  "pose": "pe_hat",
+  "height_m": 1.64,
+  "rig_px_tall": 970.0890770618197,
+  "ground_px": [
+   1050,
+   2790
+  ],
+  "hands": {
+   "R": [
+    1477.3,
+    1549.5
+   ],
+   "L": [
+    1297.7,
+    1564.5
+   ]
+  },
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "fist_r_px": 36,
+  "sh": {
+   "R": [
+    1252.4,
+    1834.6
+   ],
+   "L": [
+    847.6,
+    1834.6
+   ]
+  }
+ },
+ "owner_polish": {
+  "who": "owner",
+  "view": "back",
+  "dir": 1,
+  "face": "standard",
+  "pose": "pe_hat",
+  "height_m": 1.74,
+  "rig_px_tall": 949.8760372644529,
+  "ground_px": [
+   1050,
+   2790
+  ],
+  "hands": {
+   "R": [
+    1387.1,
+    1624.2
+   ],
+   "L": [
+    1297.9,
+    1864.2
+   ]
+  },
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "fist_r_px": 36,
+  "sh": {
+   "R": [
+    1207.1,
+    1834.3
+   ],
+   "L": [
+    892.9,
+    1834.3
+   ]
+  }
+ },
+ "michel_meal": {
+  "who": "michel",
+  "view": "34",
+  "dir": -1,
+  "face": "k:peDisgust",
+  "pose": "pe_hat_sit",
+  "height_m": 1.8,
+  "rig_px_tall": 929.6629974670859,
+  "ground_px": [
+   1050,
+   2790
+  ],
+  "hands": {
+   "R": [
+    692.3,
+    2221.7
+   ],
+   "L": [
+    1182.8,
+    2251.7
+   ]
+  },
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "fist_r_px": 36,
+  "sh": {
+   "R": [
+    947.3,
+    1996.7
+   ],
+   "L": [
+    1152.7,
+    1996.7
+   ]
+  }
+ }
+}

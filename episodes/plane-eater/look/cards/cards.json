@@ -1,0 +1,163 @@
+{
+ "michel_salt": {
+  "file": "michel_salt.png",
+  "who": "michel",
+  "view": "34",
+  "dir": -1,
+  "face": "standard",
+  "size_px": [
+   827,
+   1444
+  ],
+  "m_per_px": 0.0012907903221591706,
+  "foot_point_px": [
+   436,
+   1443
+  ],
+  "hands_px": {
+   "R": [
+    48.299999999999955,
+    223.79999999999995
+   ],
+   "L": [
+    778.8,
+    306.29999999999995
+   ]
+  },
+  "fist_radius_px": 36,
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "height_m": 1.8
+ },
+ "doctor_clip": {
+  "file": "doctor_clip.png",
+  "who": "doctor",
+  "view": "back",
+  "dir": 1,
+  "face": "standard",
+  "size_px": [
+   799,
+   1475
+  ],
+  "m_per_px": 0.0011270442675684923,
+  "foot_point_px": [
+   320,
+   1474
+  ],
+  "hands_px": {
+   "R": [
+    747.3,
+    233.5
+   ],
+   "L": [
+    567.7,
+    248.5
+   ]
+  },
+  "fist_radius_px": 36,
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "height_m": 1.64
+ },
+ "owner_polish": {
+  "file": "owner_polish.png",
+  "who": "owner",
+  "view": "back",
+  "dir": 1,
+  "face": "standard",
+  "size_px": [
+   738,
+   1594
+  ],
+  "m_per_px": 0.0012212119839770702,
+  "foot_point_px": [
+   328,
+   1593
+  ],
+  "hands_px": {
+   "R": [
+    665.0999999999999,
+    427.20000000000005
+   ],
+   "L": [
+    575.9000000000001,
+    667.2
+   ]
+  },
+  "fist_radius_px": 36,
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "height_m": 1.74
+ },
+ "michel_meal": {
+  "file": "michel_meal.png",
+  "who": "michel",
+  "view": "34",
+  "dir": -1,
+  "face": "k:peDisgust",
+  "size_px": [
+   686,
+   1281
+  ],
+  "m_per_px": 0.0012907903221591706,
+  "foot_point_px": [
+   406,
+   1280
+  ],
+  "hands_px": {
+   "R": [
+    48.299999999999955,
+    711.6999999999998
+   ],
+   "L": [
+    538.8,
+    741.6999999999998
+   ]
+  },
+  "fist_radius_px": 36,
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "height_m": 1.8
+ },
+ "doctor_clipM": {
+  "file": "doctor_clipM.png",
+  "who": "doctor",
+  "view": "back",
+  "dir": 1,
+  "face": "standard",
+  "size_px": [
+   799,
+   1475
+  ],
+  "m_per_px": 0.0011270442675684923,
+  "foot_point_px": [
+   479,
+   1474
+  ],
+  "hands_px": {
+   "R": [
+    51.700000000000045,
+    233.5
+   ],
+   "L": [
+    231.29999999999995,
+    248.5
+   ]
+  },
+  "fist_radius_px": 36,
+  "far": {
+   "R": false,
+   "L": false
+  },
+  "height_m": 1.64,
+  "mirrored": true
+ }
+}
