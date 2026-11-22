@@ -42,7 +42,8 @@ def set_state(scene, **kw):
     _o('sky_dome').rotation_euler = (0, 0, math.radians(float(S.get('sky_rot', 0))))
     w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or {'warm': 450., 'space': 200.}.get(S['light'], 0.)
     sh = S['ship']; r = _o('ship_root'); r.location = sh[:3]; r.rotation_euler = [math.radians(a) for a in sh[3:6]]
-    e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; _emit('earth', .12 * float(S.get('earth_emit', 1.)))
+    e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; eo.rotation_euler = (math.radians(75), 0, math.radians(30));   # equator toward the lens (the UV poles pinch)
+    _emit('earth', .12 * float(S.get('earth_emit', 1.)))
     f = float(S['flame'])
     for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):
         o = _o(n); o.scale = (max(f, .001), .45 + .55 * f, .45 + .55 * f); o.hide_render = o.hide_viewport = f <= .001

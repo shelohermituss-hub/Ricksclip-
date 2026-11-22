@@ -1,0 +1,287 @@
+{
+ "title": "astro-flush mc, shot 10 (f803-866)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "refs/words_ref.json",
+ "start": 803,
+ "end": 867,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "director": {
+   "puppet": "cast:astro_flush/director",
+   "height": 1.82,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlGreen": {
+   "puppet": "cast:astro_flush/ctlGreen",
+   "height": 1.62,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlBlue": {
+   "puppet": "cast:astro_flush/ctlBlue",
+   "height": 1.66,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlDark": {
+   "puppet": "cast:astro_flush/ctlDark",
+   "height": 1.68,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 0.75,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "mc": {
+   "set": "mc",
+   "kind": "interior",
+   "light": "interior",
+   "mc": {
+    "keys": "reference",
+    "ref_f0": 0
+   }
+  }
+ },
+ "takes": [
+  {
+   "id": "s10",
+   "place": "mc",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      1.0,
+      -17.96633333333333,
+      1.5566666666666666
+     ],
+     "aim": [
+      0.6,
+      0,
+      2.6
+     ],
+     "lens": 55.0,
+     "roll": 0,
+     "hold": 0.7,
+     "creep": 0,
+     "framing": "M",
+     "purpose": "pre-roll (never rendered)"
+    },
+    {
+     "at": 803,
+     "pos": [
+      1.0,
+      -17.9663,
+      1.5567
+     ],
+     "aim": [
+      0.6,
+      0,
+      2.6
+     ],
+     "lens": 55.0,
+     "roll": 0,
+     "hold": 3.0,
+     "min_hold": 0,
+     "creep": 0,
+     "drift": [
+      0.0,
+      0.47,
+      -0.1
+     ],
+     "drift_aim": 0,
+     "travel": 0.1,
+     "subject": "director",
+     "framing": "M",
+     "purpose": "f803 hard cut: director centre, OFF COURSE behind his head; steady push in to f866 (z ~1.07 per 0.5 s)"
+    }
+   ]
+  }
+ ],
+ "acts": [
+  {
+   "who": "director",
+   "at": 0,
+   "pos": [
+    0.9,
+    -13.21,
+    0.0
+   ],
+   "pose": "m:../../ep_mc/dir10",
+   "face": "k:shocked",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "803 shocked"
+  },
+  {
+   "who": "director",
+   "at": 812,
+   "face": "k:angry",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "drifting"
+  },
+  {
+   "who": "director",
+   "at": 838,
+   "pos": [
+    0.9500000000000001,
+    -14.21,
+    0
+   ],
+   "move_s": 0.13,
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "839-842 lunges to the lens (head 15% -> 21%)"
+  },
+  {
+   "who": "director",
+   "at": 842,
+   "face": "k:furious",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "Who flushed? fist up 842-845"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 0,
+   "pos": [
+    -1.188,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/fao10",
+   "face": "k:shocked",
+   "look": [
+    -1.188,
+    -17.6,
+    1.4
+   ],
+   "note": "round eyes"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 845,
+   "face": "k:shocked",
+   "look": [
+    -1.188,
+    -17.6,
+    1.4
+   ],
+   "note": "845 CAPCOM ducks"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 0,
+   "pos": [
+    -0.565,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/capcom10",
+   "face": "k:shocked",
+   "look": [
+    -0.565,
+    -17.6,
+    1.4
+   ],
+   "note": "round eyes"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 845,
+   "face": "k:shocked",
+   "look": [
+    -0.565,
+    -17.6,
+    1.4
+   ],
+   "note": "845 CAPCOM ducks"
+  },
+  {
+   "who": "ctlDark",
+   "at": 0,
+   "pos": [
+    0.058,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/guido10",
+   "face": "k:shocked",
+   "look": [
+    0.058,
+    -17.6,
+    1.4
+   ],
+   "note": "round eyes"
+  },
+  {
+   "who": "ctlDark",
+   "at": 845,
+   "face": "k:shocked",
+   "look": [
+    0.058,
+    -17.6,
+    1.4
+   ],
+   "note": "845 CAPCOM ducks"
+  }
+ ]
+}

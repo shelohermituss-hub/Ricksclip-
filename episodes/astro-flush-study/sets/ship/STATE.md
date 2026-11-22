@@ -19,27 +19,36 @@ One ship model: body x 0..21.5, nose cockpit x 21.5..26.4 with real interior; ra
 `star_map_sheet` (+ tape), `comm_lamp_on/off`, `mfd_on/off`, `radio_digits_0..3`. Portholes with a real opening: `porthole_a` (aft-most, shot 2) and `porthole_b`
 (6th from the nose, shot 11), each with a lit stub room. Card anchors: `newguy_s2`, `newguy_s11`, `navigator_s7`.
 
-## Numbers (540x960, 16 spp + OIDN; ours / his)
-| frame | mean L ours / his | p1 | p99 | mean sat |
+## Numbers, round 2 (540x960, 16 spp + OIDN; ours / his)
+| frame | mean L | p1 | p99 | mean sat |
 |---|---|---|---|---|
-| f40 | 0.294 / 0.271 | 0.004 / 0.004 | 1.000 / 0.992 | 0.629 / 0.688 |
-| f70 | 0.327 / 0.394 | 0.008 / 0.005 | 1.000 / 0.997 | 0.643 / 0.590 |
-| f110 | 0.214 / 0.132 | 0.008 / 0.005 | 1.000 / 0.996 | 0.748 / 0.782 |
-| f600 | 0.148 / 0.212 | 0.005 / 0.013 | 0.993 / 0.934 | 0.375 / 0.393 |
-| f680 | 0.116 / 0.199 | 0.008 / 0.004 | 0.935 / 0.861 | 0.432 / 0.363 |
-| f740 | 0.112 / 0.078 | 0.007 / 0.004 | 1.000 / 0.989 | 0.677 / 0.804 |
-| f790 | 0.190 / 0.139 | 0.008 / 0.000 | 0.992 / 0.964 | 0.624 / 0.546 |
-| f880 | 0.314 / 0.245 | 0.000 / 0.000 | 1.000 / 0.890 | 0.284 / 0.362 |
-| f990 | 0.143 / 0.064 | 0.057 / 0.005 | 1.000 / 0.772 | 0.473 / 0.881 |
+| f40 | 0.352 / 0.271 | 0.001 / 0.004 | 1.000 / 0.992 | 0.539 / 0.688 |
+| f70 | 0.572 / 0.394 | 0.039 / 0.005 | 1.000 / 0.997 | 0.394 / 0.590 |
+| f110 | 0.119 / 0.132 | 0.032 / 0.005 | 1.000 / 0.996 | 0.612 / 0.782 |
+| f600 | 0.185 / 0.212 | 0.008 / 0.013 | 1.000 / 0.934 | 0.347 / 0.393 |
+| f680 | 0.199 / 0.199 | 0.036 / 0.004 | 1.000 / 0.861 | 0.274 / 0.363 |
+| f740 | 0.102 / 0.078 | 0.001 / 0.004 | 1.000 / 0.989 | 0.696 / 0.804 |
+| f790 | 0.128 / 0.139 | 0.001 / 0.000 | 0.982 / 0.964 | 0.681 / 0.546 |
+| f880 | 0.255 / 0.245 | 0.000 / 0.000 | 0.712 / 0.890 | 0.290 / 0.362 |
+| f990 | 0.098 / 0.064 | 0.049 / 0.005 | 1.000 / 0.772 | 0.548 / 0.881 |
 
-## Still wrong, worst first
-1. Earth has no clouds at this zoom. `earth.png` is too coarse when one cap fills the frame: it reads as a smooth blue and green ball with a cyan rim, where his has big white cloud swirls and a sun glare (f40, f70, f110). Needs a higher-frequency cloud layer, or a separate cloud shell.
-2. f110: the ship flies the wrong way. Its nose points down-left and the flame points up-right; in his the flame goes to the lower right. The flame is also about half his length and too narrow, and too white-violet with a hard edge. The ship needs a yaw/pitch pose for this shot (the `ship` state exists but is not set), not only the camera.
-3. f990: the round solar fans are edge-on, dark and small, where his are big pale-blue discs facing the camera. Their normal should tilt toward the camera (`fan` state or a build change). The sky here is too bright: p1 0.057 against 0.005, from the purple nebula behind. The ship is a bit small, and the glitter trail is a dense white blob where his is sparse.
-4. f680: too dark (L 0.116 against 0.199). The hull does not take the warm grey-tan key (#736870). The glass box reads as black slabs and the nose skin is black, where his is light with a bright interior. The camera is too close and from the wrong height. His has a blue fan behind the roof.
-5. f600: the interior is too dark (0.148 against 0.212). The slats are lit only near the lamps, with no bright fan on the back wall. The chevron slats point down where his are diagonal panels. The glass frame/brow crosses the top third, and the front centre bar has been removed. The navigator card is a stand-in.
-6. f790: the camera looks too steeply down and too close. The juice-box brow (a yellow blob) comes in at the top left. The upper panel is too small in frame, and the radio body is pinkish-grey where his is maroon.
-7. f740: the map is right. The pencil mover floats into the view (the yellow cylinder at the bottom). His sheet is a bit smaller and tinted.
-8. f880: the hull panels are lighter than his and too evenly spaced. The stub room shows the red rail across the opening, where his shows a white wall and a purple inner porthole. The stand-in sits in front of it.
-9. f40: the hull shoulder catches too much light, and our windows are smaller and closer together than his. The LODESTAR letters are thin at this size. The rectangular solar arrays are not in frame where his show at the right edge.
-10. GLB is 11.6 MB because `stars.png` (8192x4096) and `earth.png` are embedded. The kit may want a smaller sky picture.
+## Round 2 changes
+- Earth picture is now 4096x2048 with warped cloud swirls, vivid green land and cyan shallows. The hard sun is tamed by a Hue/Sat value of .62, the rim is thicker (power 6, #bfeaff), and the Earth is turned so its equator faces the lens.
+- The kit gets JPEGs: `out/earth_kit.jpg` and `out/stars_kit.jpg`, both 4096 wide. The GLB carries 8x4 stand-in pictures for the Earth and the sky (6.3 MB, down from 11.6).
+- Windows: 9 a side, 2.3 m apart, opening .55 x .85, frame .26 wide. `porthole_b` is now window index 3 (x 8.3).
+- Hull panels have irregular widths. In the stub room the inner porthole sits in the opening's view and the red rail is low.
+- Flame is longer (5 soft layers up to 48 m, white core). Glitter trail is sparse (110 points per step). Back-wall slats are flipped. There is a warm `wall_wash` spot light, and the radio body is maroon.
+- API: `sun_k`, `sky_rot` and `wash` were added. `still_ship.py` resets the state before every proof; before this, the f110 ship pose leaked into later stills.
+- Ship poses are in params and meta: `ship_poses.shot2_f110_away`.
+- Kit test: a private film in the scratchpad (`kit_test/film.json`, the `sets` link points at the episode's sets), rendered with `render_gpu.mjs --frames 0,12 --scale 0.5 --grab fast`. `ship.js` loads (130,868 tris, 151 ms), and keys switch flame, glitter and comm. `sets/vendor/` holds GLTFLoader.js and BufferGeometryUtils.js, copied from plane-eater.
+
+## Still wrong, worst first (round 2)
+1. Earth at f70 is still blurry and stretched, with flat green land and no cloud detail. That camera sees a small area of the globe, so 4096 is not enough there. Needs a detail cloud layer that tiles, or a separate cloud shell. Also f70 is too bright (0.57 vs 0.39). f40 now reads (clouds, rim, glare) but is still too bright. The sun glare spot is centred, not at the lower right.
+2. Kit: the picture stays a flat blue wash. The kit light preset (here "night") or its post greys the frame, and the stars dome and Earth do not show. The kit's glow sprites on emissive meshes make a huge white halo around the flame and glitter. ship.js does switch states correctly. Needs a space light preset / `light_over` and no glow sprites on flame or glitter.
+3. f110: the flame is still a hard purple spindle with no soft halo and no white core visible. His is a soft wide plume. The Earth corner is too small.
+4. f990: the sky is still too bright (p1 0.049; the nebula is everywhere, so sky_rot does not help; needs a darker region or a sky dim state). The fans are still small and dark-blue edge-on rather than pale-blue discs. The glitter is still clumped near the tail.
+5. f680: the camera is too far and too high, and the interior is cut by the bars. The hull is light grey, not warm tan. Brightness matches (0.199).
+6. f600: the camera is too far and centred on the chair. His is closer, with the navigator head larger and the side glass bars at the frame edges. The wall wash makes a hot spot at the roof.
+7. f880: the porthole frame is too big in frame (the camera is now too close) and too dark grey. The bolts read as dark posts. The room shows the stand-in in front of the inner porthole.
+8. f790: closer to his, but the panel still fills the top half and the radio sits low-left. The cube lever block is too big.
+9. f740 is unchanged (the pencil mover is still in view).

@@ -26,9 +26,9 @@ def earth():
     W, H = 4096, 2048
     land = fbm(W, H, 5, 7, 11); land = (land - land.min()) / (land.max() - land.min())
     yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
-    wx = (fbm(W, H, 8, 4, 21) - 0.5) * 700; wy = (fbm(W, H, 8, 4, 22) - 0.5) * 420
+    wx = (fbm(W, H, 24, 4, 21) - 0.5) * 260; wy = (fbm(W, H, 24, 4, 22) - 0.5) * 160
     sw = np.sin(xx / W * 2 * math.pi * 7 + fbm(W, H, 3, 3, 23) * 9) * 120
-    cl = fbm(W, H, 14, 7, 31); cl = cl[np.clip((yy + wy + sw * .5).astype(int), 0, H - 1), ((xx + wx + sw).astype(int)) % W]
+    cl = fbm(W, H, 40, 6, 31); cl = cl[np.clip((yy + wy + sw * .5).astype(int), 0, H - 1), ((xx + wx + sw).astype(int)) % W]
     cl = (cl - cl.min()) / (cl.max() - cl.min()); fine = fbm(W, H, 64, 4, 33); cl = cl * .72 + fine * .28
     sea1, sea2, cloud, shade = [np.array(hx(c), np.float32) for c in ('#1d5cbc', '#2c78c8', '#f4f8fc', '#a9bfd8')]
     img = np.zeros((H, W, 3), np.float32)

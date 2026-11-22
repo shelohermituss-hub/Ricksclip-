@@ -276,10 +276,10 @@ NZX = TX1 - 3.9; bm = B(); alathe(bm, [(.7, 0), (.75, .4), (1.05, 1.2), (1.45, 1
 bm = B(); alathe(bm, [(.0, .5), (1.0, 1.2), (1.38, 1.85)], 24, M_ENG, caps=False); obj('nozzle_glow', bm, 'nozzle_glow', (NZX, 0, 0), smooth=True, mover={'state': 'preglow 0-1'})
 FLX = NZX - 1.9; ANCH['flame_origin'] = [FLX, 0, 0]; ANCH['nozzle'] = [NZX, 0, 0]
 for nm, prof, mn in (('flame_core', [(1.0, 0), (1.25, 2), (1.1, 10), (.6, 19), (.05, 24)], ('flame_core', PRM['flame']['core'], 14., None)),
-                     ('flame_mid', [(1.3, 0), (2.1, 3), (2.1, 13), (1.4, 24), (.1, 31)], ('flame_mid', PRM['flame']['mid'], 6., .45)),
-                     ('flame_outer', [(1.5, 0), (3.0, 4), (3.1, 16), (2.2, 28), (.2, 37)], ('flame_outer', PRM['flame']['outer'], 4., .25)),
-                     ('flame_halo', [(1.7, -.3), (4.4, 5), (4.6, 18), (3.3, 32), (.3, 43)], ('flame_halo', PRM['flame']['halo'], 4., .14)),
-                     ('flame_glow', [(2.0, -.6), (5.8, 6), (6.2, 20), (4.6, 36), (.4, 48)], ('flame_glow', '#6d51b8', 2.5, .07))):
+                     ('flame_mid', [(1.3, 0), (2.1, 3), (2.1, 13), (1.4, 24), (.1, 31)], ('flame_mid', PRM['flame']['mid'], 2.5, .35)),
+                     ('flame_outer', [(1.5, 0), (3.0, 4), (3.1, 16), (2.2, 28), (.2, 37)], ('flame_outer', PRM['flame']['outer'], 1.6, .2)),
+                     ('flame_halo', [(1.7, -.3), (4.4, 5), (4.6, 18), (3.3, 32), (.3, 43)], ('flame_halo', PRM['flame']['halo'], 1.4, .12)),
+                     ('flame_glow', [(2.0, -.6), (5.8, 6), (6.2, 20), (4.6, 36), (.4, 48)], ('flame_glow', '#6d51b8', 1.0, .06))):
     bm = B(); alathe(bm, prof, 28, M_ENG); obj(nm, bm, mat(mn[0], col='#000000', emit=mn[1], es=mn[2], alpha=mn[3], rough=1.), (FLX, 0, 0), smooth=True, mover={'state': 'flame 0-1 scales x (length) and y,z (width)'})
 # ================================================================== GLITTER (movers: trail from the tail, puff at the collar, cloud around the cockpit)
 def sparkle(bm, p, s, big=False):
@@ -436,11 +436,12 @@ cyl('mic_stand', .04, .08, tuple(R(.2, .25, .04)), 'mic'); box('mic', (.07, .05,
 def earth_mats():
     m = bpy.data.materials.new('earth'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
     t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png'))
-    nt.links.new(t.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
+    hs = nt.nodes.new('ShaderNodeHueSaturation'); hs.inputs['Saturation'].default_value = 1.25; hs.inputs['Value'].default_value = .62   # tames the clouds under the hard sun
+    nt.links.new(t.outputs[0], hs.inputs['Color']); nt.links.new(hs.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
     b.inputs['Roughness'].default_value = .3; b.inputs['Specular IOR Level'].default_value = .9; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
-    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 3.5
-    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#bfeaff'); em.inputs[1].default_value = 5.
+    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 6.
+    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#bfeaff'); em.inputs[1].default_value = 4.
     tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])
     MATS['earth_rim'] = r

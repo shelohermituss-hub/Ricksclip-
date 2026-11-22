@@ -21,13 +21,23 @@ export async function build(THREE, scene, film, ctx) {
     if (o.name === 'sky_dome') { m.side = THREE.BackSide; m.fog = false; }
   });
   const N = n => root.getObjectByName(n), vis = (n, on) => { const o = N(n); if (o) o.visible = !!on; };
-  const shipRoot = N('ship_root'), earth = N('earth'), flames = ['flame_core', 'flame_mid', 'flame_outer', 'flame_halo'].map(N).filter(Boolean);
+  // the GLB carries tiny stand-in pictures for the Earth and the sky (Blender keeps the big ones): load the kit JPEGs written by make_tex.py
+  const TL = new THREE.TextureLoader();
+  for (const [obj, file] of Object.entries(META.kit_pictures || {})) {
+    const o = N(obj); if (!o) continue; const tx = await TL.loadAsync(DIR + file); tx.colorSpace = THREE.SRGBColorSpace; tx.flipY = false;
+    o.traverse(m => { if (m.isMesh) { m.material = m.material.clone(); m.material.map = tx; if (m.material.emissiveMap !== undefined) m.material.emissiveMap = tx; m.material.needsUpdate = true; } });
+  }
+  // the kit camera sees 600 m at most: the 20 km sky dome is shrunk to 500 m, and a far Earth is pulled in along its direction keeping its size in view
+  const sky = N('sky_dome'); if (sky) sky.scale.setScalar(.025);
+  if (P.fog !== true) { scene.fog = null; scene.background = new THREE.Color('#010019'); }   // space: no kit fog (it greys the stars and the hull); film.json places.ship.ship.fog = true keeps it
+  const shipRoot = N('ship_root'), earth = N('earth'), flames = ['flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'].map(N).filter(Boolean);
   const nozzleMat = (N('nozzle_glow') || {}).material, B2T = ctx.B2T;
   const S = Object.assign({}, META.state_default, P);
   function setState(s = {}) {
     Object.assign(S, s);
     if (shipRoot && S.ship) { shipRoot.position.copy(B2T(S.ship.slice(0, 3))); shipRoot.rotation.set(S.ship[3] * D2R, S.ship[5] * D2R, -S.ship[4] * D2R); }
-    if (earth && S.earth) { earth.position.copy(B2T(S.earth.slice(0, 3))); earth.scale.setScalar(S.earth[3]); }
+    if (earth && S.earth) { const p = B2T(S.earth.slice(0, 3)), d = p.length(), k = d > 420 ? 420 / d : 1; earth.position.copy(p.multiplyScalar(k)); earth.scale.setScalar(S.earth[3] * k);
+      earth.rotation.set(75 * D2R, 30 * D2R, 0, 'YXZ'); }   // the api turns the equator toward the lens (Blender x 75, z 30)
     const f = +S.flame; flames.forEach(o => { o.visible = f > .001; o.scale.set(Math.max(f, .001), .45 + .55 * f, .45 + .55 * f); });   // glTF is Y-up: Blender x stays x, the width axes are y and z
     if (nozzleMat) nozzleMat.emissiveIntensity = 8 * Math.max(+S.preglow, f > 0 ? 1 : 0);
     for (let k = 0; k < 4; k++) vis('glitter_trail_' + k, S.glitter > k / 4); vis('glitter_collar', S.glitter >= .5);

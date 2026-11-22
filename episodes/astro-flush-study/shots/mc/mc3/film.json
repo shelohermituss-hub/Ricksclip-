@@ -1,0 +1,446 @@
+{
+ "title": "astro-flush mc, shot 3 (f120-283, monitor tail to f410)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "refs/words_ref.json",
+ "start": 120,
+ "end": 411,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "director": {
+   "puppet": "cast:astro_flush/director",
+   "height": 1.82,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlGreen": {
+   "puppet": "cast:astro_flush/ctlGreen",
+   "height": 1.62,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlBlue": {
+   "puppet": "cast:astro_flush/ctlBlue",
+   "height": 1.66,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlDark": {
+   "puppet": "cast:astro_flush/ctlDark",
+   "height": 1.68,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 0.75,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "mc": {
+   "set": "mc",
+   "kind": "interior",
+   "light": "interior",
+   "mc": {
+    "keys": "reference",
+    "ref_f0": 0
+   }
+  }
+ },
+ "takes": [
+  {
+   "id": "s3",
+   "place": "mc",
+   "stations": [
+    {
+     "at": 0,
+     "pos": [
+      -2.9015,
+      -2.772,
+      4.4122
+     ],
+     "aim": [
+      -2.9015,
+      -0.196,
+      4.4122
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "hold": 0.7,
+     "creep": 0,
+     "subject": null,
+     "framing": "C",
+     "purpose": "pre-roll (never rendered): parked on the panel"
+    },
+    {
+     "at": 120,
+     "pos": [
+      -2.9015,
+      -2.772,
+      4.4122
+     ],
+     "aim": [
+      -2.9015,
+      -0.196,
+      4.4122
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "hold": 0,
+     "min_hold": 0,
+     "creep": 0,
+     "framing": "C",
+     "purpose": "f120 match move from shot 2: the space panel fills the frame",
+     "travel": 0.1
+    },
+    {
+     "at": 142,
+     "pos": [
+      -0.55,
+      -17.5,
+      1.6
+     ],
+     "aim": [
+      -0.75,
+      0,
+      2.6
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "travel_roll": -2.5,
+     "hold": 0.07,
+     "min_hold": 0,
+     "creep": 0.002,
+     "framing": "W",
+     "travel": 0.73,
+     "subject": "ctlBlue",
+     "purpose": "f142 pull back + drop: orbit map wall, clocks, three heads at the bottom (cam f140 fitted)"
+    },
+    {
+     "at": 180,
+     "pos": [
+      1.0,
+      -21.5,
+      1.45
+     ],
+     "aim": [
+      0.6,
+      0,
+      2.6
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "travel_roll": 3.0,
+     "hold": 3.0,
+     "creep": 0,
+     "drift": [
+      0.02,
+      0.5666666666666664,
+      0.0
+     ],
+     "drift_aim": 0,
+     "travel": 1.2,
+     "subject": "director",
+     "framing": "M",
+     "purpose": "f180 settled: screen top half, director centre right, slow push in"
+    },
+    {
+     "at": 283,
+     "pos": [
+      1.0,
+      -19.8,
+      1.45
+     ],
+     "aim": [
+      0.6,
+      0,
+      2.7
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "hold": 4.0,
+     "creep": 0.00015,
+     "drift": [
+      0.03,
+      0.0,
+      0.0
+     ],
+     "drift_aim": 0.5,
+     "travel": 0.43,
+     "subject": "director",
+     "framing": "M",
+     "purpose": "f283 = cam_monitor; holds with a slight drift to f410 (monitor picture of shot 4)"
+    }
+   ]
+  }
+ ],
+ "acts": [
+  {
+   "who": "director",
+   "at": 0,
+   "pos": [
+    2.55,
+    -13.21,
+    0
+   ],
+   "pose": "m:../../ep_mc/dir3",
+   "visible": false,
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "off right until f149"
+  },
+  {
+   "who": "director",
+   "at": 149,
+   "visible": true,
+   "pos": [
+    0.9,
+    -13.21,
+    0.0
+   ],
+   "move_s": 0.97,
+   "linear": false,
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "f150 enters right, bouncy walk to the left, arrives ~f178"
+  },
+  {
+   "who": "director",
+   "at": 176,
+   "face": "k:talk",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "exactly when"
+  },
+  {
+   "who": "director",
+   "at": 224,
+   "face": "k:smug",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "GO: flush."
+  },
+  {
+   "who": "director",
+   "at": 262,
+   "face": "k:concentrate",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "red button 262-264"
+  },
+  {
+   "who": "director",
+   "at": 268,
+   "face": "k:afEyeRoll",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "flat stare"
+  },
+  {
+   "who": "director",
+   "at": 300,
+   "face": "k:annoyed",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "monitor tail: quiet"
+  },
+  {
+   "who": "director",
+   "at": 340,
+   "face": "k:afEyeRoll",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "head shake 330-350"
+  },
+  {
+   "who": "director",
+   "at": 375,
+   "face": "k:skeptical",
+   "look": [
+    0.9,
+    -19.21,
+    1.4
+   ],
+   "note": "monitor tail"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 0,
+   "pos": [
+    -1.188,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/fao3",
+   "look": [
+    -1.188,
+    -17.6,
+    1.4
+   ],
+   "note": "behind the console, float"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 244,
+   "face": "k:surprised",
+   "look": [
+    -1.188,
+    -17.6,
+    1.4
+   ],
+   "note": "eyes big, look at the director"
+  },
+  {
+   "who": "ctlGreen",
+   "at": 300,
+   "face": "k:standard",
+   "look": [
+    -1.188,
+    -17.6,
+    1.4
+   ],
+   "note": "quiet in the monitor"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 0,
+   "pos": [
+    -0.565,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/capcom3",
+   "look": [
+    -0.565,
+    -17.6,
+    1.4
+   ],
+   "note": "behind the console, float"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 244,
+   "face": "k:surprised",
+   "look": [
+    -0.565,
+    -17.6,
+    1.4
+   ],
+   "note": "eyes big, look at the director"
+  },
+  {
+   "who": "ctlBlue",
+   "at": 300,
+   "face": "k:standard",
+   "look": [
+    -0.565,
+    -17.6,
+    1.4
+   ],
+   "note": "quiet in the monitor"
+  },
+  {
+   "who": "ctlDark",
+   "at": 0,
+   "pos": [
+    0.058,
+    -11.6,
+    0
+   ],
+   "pose": "m:../../ep_mc/guido3",
+   "look": [
+    0.058,
+    -17.6,
+    1.4
+   ],
+   "note": "behind the console, float"
+  },
+  {
+   "who": "ctlDark",
+   "at": 244,
+   "face": "k:surprised",
+   "look": [
+    0.058,
+    -17.6,
+    1.4
+   ],
+   "note": "eyes big, look at the director"
+  },
+  {
+   "who": "ctlDark",
+   "at": 300,
+   "face": "k:standard",
+   "look": [
+    0.058,
+    -17.6,
+    1.4
+   ],
+   "note": "quiet in the monitor"
+  }
+ ]
+}
