@@ -87,8 +87,8 @@ export async function build(THREE, scene, film, ctx) {
   silver(cloche);
   const bellOnTable = put(part('cloche_bell', /^bell/), [3.72, -0.62, .78], 0, 1.6); bellOnTable.position.add(V([-.30 * 1.6, 0, 0]).sub(V([0, 0, 0])));
   const cl0 = cloche.position.clone();
-  const plateDown = new THREE.Group(); { const p = clone('plate'); p.scale.setScalar(1.6); plateDown.add(p); const c = part('dessert_trolley', /^coffin_/), h = centred(THREE, c); h.scale.setScalar(1.7); h.position.y = .1; h.rotation.y = .5; plateDown.add(h); }
-  put(plateDown, [3.72, -0.66, .785], 20); plateDown.visible = false;
+  const plateDown = new THREE.Group(); { const p = clone('plate'); p.scale.setScalar(1.6); plateDown.add(p); const c = part('dessert_trolley', /^coffin_/), h = centred(THREE, c); h.scale.setScalar(1.3); h.position.y = .1; h.rotation.y = .5; plateDown.add(h); }
+  put(plateDown, [3.2, -0.45, .785], 20);   // fix: set down on the far-left of the cloth so it never covers the certificate (rows 33-34) plateDown.visible = false;
   // the dessert trolley: x2, more of everything round each tier
   const tro = new THREE.Group(); scene.add(tro); const src = clone('dessert_trolley'), groups = { bike: [], cart: [], tv: [], coffin: [] };
   src.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; const k = /^bike_/.test(o.name) ? 'bike' : /^cart_/.test(o.name) ? 'cart' : /^tv_/.test(o.name) ? 'tv' : /^coffin_/.test(o.name) ? 'coffin' : null; if (k) groups[k].push(o); } });

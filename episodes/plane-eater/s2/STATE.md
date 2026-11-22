@@ -65,3 +65,11 @@ NOT done: (3) closes land but do not READ:
   Michel's feet at f512: PASS now (reframed above the chair ring).
 - Still below the lead's ask: the bites read as dark squares (the repaint does not show: check bite() materials), the scale blocks Michel in the f375-400
   rest (the camera reaches the row-14 station late), the jug/tumbler/tongs are not in his hand (held3d off), no sound, the owner is off screen except the cut.
+
+## FIX_LIST_v1 round (2026-11-22, cap 50 min, took about 85 min)
+- Done: bites = flat-painted props-hero bites, centred on the one visible bite (they were 0.4 m off and edge-on); jug + tumbler + tongs shown at the pinned hand
+  on their words (jug tilts 324-340); one cut on "Wings," (take s2b, north low camera) because v2 crept 90 f from the dial (scale hid Michel to f455);
+  owner moved to (5.2, -3.4): whole and seen in rows 14-17 (wince visible); camsafe 1040 PASS / 0 FAIL.
+- NOT done: the props sit at the hand_at points but the DRAWN near hand is on the other side of his body in the front view (R/L mirror in the front
+  drawing), so the bites float beside his face, not in a fist; the gum strand is not visible (tire square only); frame_checks inside the window: 2 FAIL,
+  owner cut by the left edge f512-519 (the belly settle); the f0-235 FAILs are before the window.
