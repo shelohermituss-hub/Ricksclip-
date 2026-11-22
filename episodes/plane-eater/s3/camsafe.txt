@@ -1,5 +1,2 @@
-CAMERA-SAFE  s3  camsafe on  563 checks: PASS 561  WARN 0  FAIL 2
-  VIEW_MISMATCH  2
-  f561 doctor FAIL  yaw 20.4 pitch 48.2  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_s3/dr_lean)
-      FIX: set film.json "camsafe": true (moves then draw the asked view)
+CAMERA-SAFE  s3  camsafe on  585 checks: PASS 585  WARN 0  FAIL 0
 report -> /home/user/Ricksclip-/episodes/plane-eater/s3/out/plan/camsafe_report.json
