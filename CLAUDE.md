@@ -1,5 +1,7 @@
 # Ricks Clips Animation Skill V1.2.1, cloud edition
 
+> 2026-11-22: CB made **Unity the main engine** and moved the work to a Claude session on his PC. Read `UNITY_KIT_PLAN.md` first; the cloud notes below hold for cloud sessions only.
+
 This repo IS the skill folder ("the skill root", "the PC master" in the rule books). It was made for a Windows PC and was
 reorganised on 2026-11-20 to run in Claude Code cloud sessions. The skill `cartoon-3d-short` and its 17 helper agents are
 installed inside the repo (`.claude/skills/`, `.claude/agents/`), so every new session has them without any install step.
