@@ -80,10 +80,10 @@ film = {
 }
 BANK = 35.0; ca, sa = math.cos(math.radians(BANK)), math.sin(math.radians(BANK)); B0 = [1.25, 6.65, 0.80]   # bite centre measured in cabin_lite.glb
 BB = [B0[0], 1.9 + (B0[1] - 1.9) * ca + (B0[2] - .5) * sa, .5 - (B0[1] - 1.9) * sa + (B0[2] - .5) * ca]          # after the bank about the pivot
-AIMB = BB                                                                                                         # banked about the wing root only: the bite stays on the wing, we look down on it
-WCAB = dict(cab, wing_bank=BANK, wing_offset=[round(AIMB[i] - BB[i], 3) for i in range(3)])
-WIN_ST = [st(1005, WCAM, AIMB, 32, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
-          st(1021, [WCAM[0] + .03, WCAM[1] + .04, WCAM[2]], AIMB, 36, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
+AIMB = [0.85, 3.40, -0.60]                                                                                        # the bite of the window-pass wing panel (sets/cabin.js bite_piece)
+WCAB = dict(cab, hide_wing=True, bite_piece=dict(c=AIMB, r=0.5, bank=-50, sweep=25))
+WIN_ST = [st(1005, WCAM, AIMB, 18, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
+          st(1021, WCAM, AIMB, 19.5, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
 film['takes'].append({'id': 'win', 'place': 'cabin', 'stations': [dict(WIN_ST[0], at=1012), WIN_ST[1]]})
 props['wing']['pos'] = AIMB
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)

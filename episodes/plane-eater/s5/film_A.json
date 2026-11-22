@@ -159,9 +159,9 @@
   },
   "wing": {
    "pos": [
-    1.25,
-    5.963045141278025,
-    -1.978742459380771
+    0.85,
+    3.4,
+    -0.6
    ],
    "kind": "the airliner wing with one bite missing"
   }

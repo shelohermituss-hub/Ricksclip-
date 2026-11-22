@@ -128,13 +128,23 @@
      "8B"
     ],
     "wing_offset": [
-     0.0,
-     0.0,
-     0.0
+     -0.09,
+     0,
+     -0.341
     ],
     "tray_dy": -0.5199999999999999,
     "foil_raise": 0.16,
-    "wing_bank": 35.0
+    "hide_wing": true,
+    "bite_piece": {
+     "c": [
+      0.85,
+      3.4,
+      -0.6
+     ],
+     "r": 0.5,
+     "bank": -50,
+     "sweep": 25
+    }
    },
    "kit3d": {
     "envGround": "#6a7896"
@@ -160,9 +170,9 @@
   },
   "wing": {
    "pos": [
-    1.25,
-    5.963045141278025,
-    -1.978742459380771
+    0.85,
+    3.4,
+    -0.6
    ],
    "kind": "the airliner wing with one bite missing"
   }
@@ -395,11 +405,11 @@
       1.05
      ],
      "aim": [
-      1.25,
-      5.963045141278025,
-      -1.978742459380771
+      0.85,
+      3.4,
+      -0.6
      ],
-     "lens": 32,
+     "lens": 18,
      "subject": "wing",
      "framing": "O",
      "purpose": "ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0",
@@ -412,16 +422,16 @@
     {
      "at": 1021,
      "pos": [
-      0.23,
-      1.74,
+      0.2,
+      1.7,
       1.05
      ],
      "aim": [
-      1.25,
-      5.963045141278025,
-      -1.978742459380771
+      0.85,
+      3.4,
+      -0.6
      ],
-     "lens": 36,
+     "lens": 19.5,
      "subject": "wing",
      "framing": "O",
      "purpose": "ROW 38 last frame: the bitten wing big and clear (slow push)",

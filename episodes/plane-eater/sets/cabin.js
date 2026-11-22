@@ -46,6 +46,17 @@ export async function build(THREE, scene, film, ctx) {
   else if (P.wing_offset) { const d = V(P.wing_offset).sub(V([0, 0, 0])); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) o.position.add(d); }); }
   // S5 fix round 2: "tray_dy" (plan metres along y) moves Michel's tray table, its arms, the meal and the pea to another seat of the row (-0.52 = seat B)
   if (P.tray_dy) { const d = V([0, P.tray_dy, 0]).sub(V([0, 0, 0])); root.traverse(o => { if (/^(tray_table|tray_table_bitten|tray_arm_|meal_|pea_runaway)/.test(o.name) && !/^(tray_table|meal_)/.test((o.parent || {}).name || '') && o.name !== 'tray_table_B_stowed' && o.name !== 'tray_table_recess') o.position.add(d); }); }
+  // fix list v1 (window pass only): "bite_piece": { c, r, bank, sweep } builds a clean wing panel just outside the window with ONE crescent bite in its
+  // leading edge (centre c, plan metres), banked so the lens looks down on it; the far glb wing is hidden ("hide_wing"). Shape: x along the chord, y along the span.
+  if (P.hide_wing) root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name)) o.visible = false; });
+  if (P.bite_piece) { const B = P.bite_piece, r = B.r ?? .45, ts = Math.tan((B.sweep ?? 25) * Math.PI / 180), a = B.inb ?? 2.0, b = B.outb ?? 4.0, c0 = B.chord ?? 2.4, c1 = B.chord_tip ?? 1.4;
+    const sh = new THREE.Shape(); sh.moveTo(a * ts, -a); sh.lineTo(r * ts * .2, -r); sh.absarc(0, 0, r, -Math.PI / 2, Math.PI / 2, true); sh.lineTo(-b * ts, b);
+    sh.lineTo(-b * ts - c1, b); sh.lineTo(a * ts - c0, -a); sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: B.thick ?? .14, bevelEnabled: true, bevelThickness: .02, bevelSize: .02, bevelSegments: 2, curveSegments: 40 });
+    const skin = new THREE.MeshStandardMaterial({ color: '#eef1f5', metalness: .25, roughness: .35 }), cut = new THREE.MeshStandardMaterial({ color: '#8f99a6', metalness: .4, roughness: .3 });
+    const m = new THREE.Mesh(geo, [skin, cut]); m.rotation.x = -Math.PI / 2; m.position.y = -(B.thick ?? .14); m.castShadow = m.receiveShadow = true;
+    const g = new THREE.Group(); g.add(m); g.position.copy(V(B.c)); g.rotation.x = -(B.bank ?? 20) * Math.PI / 180; g.name = 'bite_piece'; scene.add(g);
+  }
   const N = n => root.getObjectByName(n), tray = N('tray_table'), trayB = N('tray_table_bitten'), foilOn = N('meal_foil_on'), foilUp = N('meal_foil_lifted'), pea = N('pea_runaway');
   const pea0 = pea ? pea.position.clone() : null;
   // S5 builder 2026-11-22: "meal" 0..1 = Michel slides the grey meal aside with one finger (row 36, toward the owner's side, 14 cm); all meal_* nodes ride together
