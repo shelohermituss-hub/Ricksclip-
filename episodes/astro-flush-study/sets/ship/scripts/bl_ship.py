@@ -522,9 +522,9 @@ def standin(name, col, h, loc, rz, hm='sd_head'):
 NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
-standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .3, pb[1] + .35, -1.2), 0)   # round 6: left of the opening (screen), beside the inner porthole
+standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .45, pb[1] + .35, -1.45), 0)   # round 6: left of the opening (screen), beside the inner porthole
 standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.53), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
-ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .3, pb[1] + .35, -1.2]
+ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .45, pb[1] + .35, -1.45]
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)

@@ -20,7 +20,7 @@ def base(title, start, end):
         "caption_rick_scale": 1.0,
         "post": {"dof": 0.0, "dust": 0.0, "bloom": 1, "vignette": 0},
         "places": {"mc": {"set": "mc", "kind": "interior", "light": "night", "light_over": {"top": "#2a2f8a", "hor": "#4b3f9e", "sun": "#b4b0ff", "si": 1.0, "amb": "#6a62c8", "ai": 1.1, "tint": "#ffffff"}, "mc": {"keys": "reference", "ref_f0": 0,
-            "motion": {"screen_fade": {"ring": [6, 0], "noflush": [0, 6]}, "mood_fade": {"teal": 8}, "box_rise": [170, 182], "cover": [254, 263]}}}},
+            "motion": {"screen_fade": {"ring": [6, 0], "noflush": [0, 6]}, "mood_fade": {"teal": 8}, "box_rise": [176, 187], "cover": [254, 263]}}}},
     }
 
 A = META['anchors']

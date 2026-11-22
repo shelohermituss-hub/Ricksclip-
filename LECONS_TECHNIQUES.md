@@ -600,3 +600,24 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   2 mm/frame for hands (0.5 mm for the rest) and over 25 % of the median speed around. Guard: example film = 0 HELD.
 - A thin body box follows the card's tilt to the lens: at 1.5 m height the card plane is several cm off the vertical, so a prop centre at the right place
   missed a 16 cm thick box. Measured: 21 cm off at 1.47 m (lady, low close lens). Fix: prop-in-body and body-in-body use an UPRIGHT volume on the card's feet, 30 cm thick. Proof: broken copy, `PROP_IN_BODY stick / lady f112-120`.
+
+## 2026-11-22 — astro-flush mc (shots 3, 10): "not fluid like Rick", traced frame by frame — PARTLY CLOSED
+- Problem: fluidity (held / pops / jerk) mc3 f120-283 ours 0.006 / 0.374 / 0.236 vs his 0.000 / 0.288 / 0.145; mc10 0.000 / 0.081 / 0.166 vs 0.000 / 0.000 / 0.155;
+  check_objects mc3 20 FAIL events (12 tracks), mc10 10.
+- Causes (per-frame change curve ours vs his, same measure, caption band masked): (1) camera: the f142 pass station (hold 0) was placed by uniform
+  picture-speed easing, NOT on its frame: we reached his f140 framing about 15 f late, so f146-177 still changed 7-12x the median where his decays
+  from 4x; the travel also started from rest at f120 (his is already moving, match cut), and the rest-then-13 f "settle" at f270-283 dipped to 0
+  (f271, f283 near-frozen). (2) character moves used fast_in (no ease-in: the controllers' glide and the f839 lunge put 25-40 % in one frame).
+  (3) moves snapped arms in 3 f with 48 % in the first frame (hand JUMPs f237, f250, f258, f270, f813, f846). (4) set swaps in one frame where he
+  fades: map -> ring screen f187, NO FLUSHING banner f274, room light into teal at f224; NO GO box popped from scale 0.01 (f177) and the cover
+  turned 35 deg in one frame (f261; he does that one in 1 f too).
+- Fix: kit `tools/film_plan.py`: station key `"pin": true` on a hold-0 pass station = the travel is ON it on its frame (picture distance over time =
+  monotone cubic through the pins, speed continuous) and its `"roll"` is held there; act key `"ease": "inout"` = eased start and landing
+  (smootherstep). Both default off (old behaviour). Set `sets/mc.js`: `places.mc.mc.motion` {screen_fade, mood_fade, box_rise, cover}, off by default.
+  Film: one travel f108-410 pinned at f120/142/180/283; acts eased; moves snap = smoothstep >= 6 f starting 2 f early.
+- Guard: STRETCH_BRIEF "MOTION RULES FOR THIS FILM"; check_objects every cycle; the curve script compares ours/his per frame.
+- Proof (re-rendered f120-410 and f803-866): mc3 0.000 / 0.319 / 0.177 (his 0.288 / 0.145), mc10 0.000 / 0.063 / 0.163 (his 0.000 / 0.155);
+  check_objects mc3 3 FAIL (ctl heads f132, open), mc10 0; collide 0 / 0; frame_checks mc3 7 (was 10), mc10 6 (same). Mp4s *_r3 in drafts/mc.
+- OPEN: ctl head JUMP at the first rise frame f131-132 (not visibility, not the rise ease; cause not found); a bloom flare from a ceiling light enters
+  in one frame at f131; mc10 lunge still 4 frames over 3x OUR median because our whole shot moves 3.5x less than his (his camera push accelerates
+  f803-838); faces and views inside moves still swap in one frame (f179, f192, f224); Blender mc_api.frame_state does not have the `motion` block yet.
