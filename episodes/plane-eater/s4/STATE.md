@@ -47,3 +47,16 @@
 ## Numbers
 - Pass A 35 frames 1.9 s/f, pass B 283 frames 2.8 s/f (another builder rendering), all 305 frames + blend in 924 s. Checks: about 13 min frame_checks + camsafe.
 - draft.mp4 10.17 s with voice (21.27-31.43 s), KEYFRAMES.jpg (13 keys), strip_4fps.jpg. Test stills key/t1..t6.
+
+## FIX ROUND 1 (FIX_LIST_v1 S4 line, 2026-11-22, cap 60 min, took about 45 min)
+Done: camera = 6 passes joined by dissolves (A 638-672, B1 wide time-lapse 660-712, B2 close 705-745, B3 trolley+tower 738-847, B4 catch+cloche 840-891,
+B5 certificate 884-942; blend.py, render_s4.sh, rerender_b345.sh); window camera p90 31.7 -> 6.0 px/f. The crane stays clear of the tree crown (cameras
+moved north). The deck chair moved to (5.8, -3.7) in front of the wide: the owner and his beard read, one beard puppet at a time (hidden act at 0).
+Michel's legs follow the table (all looks at the table, legs r .034): seated, no spikes toward the lens. His near hand lifts the cloche (held3d
+buildCloche 860-880); the caught plate + coffin go down on the far left of the cloth so the certificate bite (far hand, angle -75) is seen.
+Owner at the cradle (1.4, -0.1) drawn camera-safe (ep_s4b: front export draws 'front', default draws 'side').
+Checks: camsafe 1221 checks 0 FAIL (2 WARN); frame_checks 0 FAIL / 2 WARN (table top 1 % in his torso) - NOTE: only 34 checks on the cut film.json
+(114 on the one-take v1), the cut version samples fewer frames; film_plan window gates PASS (8 FAIL are pre-window frames 0-659 as before).
+NOT done: the coffin on the TOWER TOP still does not read at f838 (B3 framing at 838 is low; the coffin pops at 832 but is not seen). The coffin on his
+plate reads at 850 as an upright brown box (small). The owner at the cradle stands behind Michel's head in B4/B5 (overlap). Tree crown still in the
+top-left of the time-lapse wide (not a camera rise). film_A not checked on its own.
