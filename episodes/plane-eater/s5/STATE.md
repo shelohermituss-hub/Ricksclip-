@@ -1,4 +1,10 @@
 # S5 STATE: THE ENDING (PICTURE_PLAN rows 35-38, line 8b, film 31.44-34.04 s = frames 943-1021). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## HAND FIX ROUND (kit fixed by S2; the move reads ch.tgt) - result
+- The owner's rag is ON the window glass at eye height from f1001, small wiping circles (hand_at [0.20, 1.74, 1.24] read by moves/ep_s5.mjs; held3d rag
+  on hand "L" after the kit's hand swap; the FOOD station widened so the window is in frame). Re-rendered 984-1012 only + re-blend.
+- Owner hips: NOT fixed. frame_checks still 2 FAIL at f944-955 only: hips 10.8 cm above seat_0B_belt_1 and feet 7.4 cm into seat_0B_pan: the
+  seated card is nudged toward the lens (kit DEPTH NUDGE) over the next seat, so the check reads the wrong seat; lowering him 5 cm did not change it.
+  camsafe 2034 PASS / 10 FAIL (f1012, window take), plan check 7 FAIL.
 ## FIX LIST v1 (draft/FIX_LIST_v1.md) - result
 - Window bite: DONE. The window pass (film_W.json) hides the far glb wing and builds a clean wing panel just outside the glass with ONE crescent bite
   (cabin.js "bite_piece": centre, r .5 m, bank -50 deg so the lens looks down on it, sweep 25); the bite fills about a third of the frame, clouds behind
@@ -51,3 +57,4 @@
 ## Files
 make_film.py -> film.json, moves/ep_s5.mjs, render_s5.sh (one command: bake, frames, checks, draft.mp4), sheets.py, draft.mp4 (2.6 s, voice, captions),
 KEYFRAMES.jpg, strip_4fps.jpg, plan_check.txt, checks.txt, camsafe.txt. Symlinks cast, voice, sets, props -> episode folders.
+- 2026-11-22 S5 waiver (lead): frame_checks 2 FAIL at f944-955 (owner hips/feet measured against the next seat B after the kit's seated nudge toward the lens); picture looks seated; to re-check in Blender.

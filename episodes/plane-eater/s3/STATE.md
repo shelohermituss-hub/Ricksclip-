@@ -1,4 +1,8 @@
 # S3 STATE: THE X-RAY (PICTURE_PLAN rows 19-22, line 5, film 17.30-21.28 s = frames 519-638). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## HAND FIX ROUND (kit fixed by S2; the move reads ch.tgt) - result
+- The Doctor's fist is ON the lower-left corner of the film (hand_at [-0.09, 2.07, 1.24], f519-600, read by moves/ep_s3.mjs). The first target (z 1.50)
+  projected 281 px above his shoulder (arm 269 px): out of reach, the rig left the hand at his head; z 1.24 = in reach.
+- Re-rendered pass A1 only (519-565) + re-blend. frame_checks 0 FAIL / 0 WARN, camsafe 584 PASS / 1 FAIL (f566), plan check 6 FAIL.
 ## FIX LIST v1 (draft/FIX_LIST_v1.md) - result
 - Doctor bigger in the wide: PARTLY (camera in to 0.55, 0.10; he is about 1.3x bigger, still a medium-small figure). The first-frame jump is fixed
   (creep on a first station runs from frame 0: creep 0 + drift with ends, LECONS 2026-11-22).
