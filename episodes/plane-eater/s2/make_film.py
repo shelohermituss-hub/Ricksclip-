@@ -9,8 +9,13 @@ F0, F1 = 257, 519                      # "Every" 8.56 s -> the frame before "x" 
 cast = {k: dict(keys['cast'][k], walk_speed=99) for k in ['michel', 'owner']}
 Z = 0.03
 MICHEL = [3.4, -1.0, Z]; MICHEL_ST = [3.4, -1.45, Z]; MICHEL_PULL = [3.4, -1.2, Z]   # fix 1: S1 ends with him standing at the chair                # the floor point under the chair seat (chair_seat x 3.19-3.61, y -0.79..-1.21, top 0.485 m)
-OWNER = [1.15, -2.2, Z]                # fix 1: never behind Michel's head from the ENE lens; out on the sunny apron by the sliced nose, rag in hand                # far back beside the sliced fuselage, behind the wing (row 11 "owner far back, arms crossed")
+OWNER = [1.5, 2.0, -0.02]              # round 2: no spot keeps him whole in the close take (projection search over a 0.5 m grid); behind the camera axis, never cut, feet on the slab
 TABLE_LOOK = [3.4, -0.2, 0.9]
+# round 2: held3d put the props about 0.3-0.5 m BELOW the drawn hand of this seated legs3d card (kit fault, LECONS), so they were hidden behind the chair.
+# Now the drawn near hand is pinned (hand_at) on these points and sets/s2_apron.js shows the prop AT the same point and frame (HAND_WIN is shared via film.json).
+GLASS_LOW, GLASS_AT, BITE_AT, BITE_MOUTH, TIRE_AT = [3.6, -0.72, 0.98], [3.56, -0.8, 1.18], [3.64, -0.76, 1.12], [3.55, -0.86, 1.14], [3.68, -0.58, 1.18]
+HAND_WIN = [(290, 297, GLASS_LOW), (298, 314, GLASS_AT), (395, 403, BITE_AT), (404, 410, BITE_MOUTH), (417, 425, BITE_AT), (426, 432, BITE_MOUTH),
+            (440, 448, BITE_AT), (449, 456, BITE_MOUTH), (470, 477, BITE_AT), (478, 481, BITE_MOUTH), (482, 489, TIRE_AT)]
 M = lambda k: 'm:../../ep_s2/' + k
 acts = [
     dict(who='michel', at=0, pos=MICHEL_ST, pose='m:../../ep_s2a/mi_stand', face='k:proud', look=TABLE_LOOK, look_full=True, note='row 10: standing at the pulled-out chair (S1 last state)'),
@@ -24,7 +29,7 @@ acts = [
     dict(who='owner', at=489, face='k:peDisgust', look='michel', note='row 17 "owner wincing" on the rubber snap'),
     dict(who='owner', at=505, face='k:browUp', look='michel'),
 ]
-H = lambda obj, b, f0, f1, hand='R', grip='point', **kw: dict(who='michel', obj=obj, module='sets/s2_apron.js', builder=b, opts={}, grip=grip, hand=hand, when='always', f0=f0, f1=f1, **kw)
+H = lambda obj, b, f0, f1, hand='R', grip='point', **kw: dict(who='michel', obj=obj, module='sets/s2_apron.js', builder=b, opts={}, grip=grip, hand=hand, when='always', f0=f0, f1=f1, scale=kw.pop('scale', 2.2 if b in ('buildOil', 'buildJug', 'buildTumbler', 'buildTongs') else 1), **kw)
 held3d = [
     H('oil_glass', 'buildOil', 283, 316, grip='handle', note='row 11 "glass": swirl, sniff, nod'),
     H('water_jug', 'buildJug', 318, 343, grip='handle', angle=[[318, -90], [324, -90], [330, -45], [340, -45], [343, -90]], note='row 12 "jug": the glug'),
@@ -40,11 +45,12 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0035, **
 stations = [
     st(F0, [6.13, 0.4, 1.55], [3.3, -1.1, 1.1], 26, 'michel', 'W', 'ROW 10 start (PLACE, M09 travel along a set line): from S1\'s plate the camera rides the wing\'s shadow edge on the cloth toward the table', hold=0.0),
     st(270, [5.7, 0.01, 1.45], [3.35, -0.85, 1.12], 26, 'michel', 'W', 'ROW 10 land (M09 end): the set table in the wing shade, Michel sat and tucked in, the sliced Cessna behind him, the owner far back', hold=0.0, shows=['table']),
-    st(296, [4.76, -0.52, 1.32], [3.45, -0.85, 1.28], 30, 'michel', 'M', 'ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back', hold=0.4, shows=['oil']),
+    st(296, [4.48, -0.56, 1.2], [3.48, -0.88, 1.14], 28, 'michel', 'M', 'ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back', hold=0.4, shows=['oil']),
     st(366, [3.95, 0.25, 0.98], [3.55, -0.6, 1.1], 28, 'michel', 'C', 'ROW 13 (EXPLAIN, M02 push in on the dial): the needle swings past and settles on "2 lb / 900 g", his raised brow at the top', hold=0.6, shows=['scale']),
-    st(448, [5.69, -0.64, 1.4], [3.4, -0.8, 1.1], 28, 'michel', 'M', 'ROWS 15-16 (M13 continues along the bites): hub, cushion and spring', hold=0.0),
-    st(466, [4.89, -0.65, 1.3], [3.45, -0.8, 1.25], 28, 'michel', 'C', 'ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back', hold=0.5, shows=['tire']),
-    st(512, [5.32, -0.45, 1.18], [3.4, -1.0, 0.98], 30, 'michel', 'M', 'ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)', hold=0.2),
+    st(400, [5.08, -1.13, 1.25], [3.5, -0.85, 1.12], 28, 'michel', 'M', 'ROWS 14-15 (M13 truck, close): each bite held up toward the lens', hold=0.0),
+    st(448, [5.07, -1.38, 1.25], [3.45, -0.85, 1.1], 28, 'michel', 'M', 'ROWS 15-16 (M13 continues along the bites): hub, cushion and spring', hold=0.0),
+    st(466, [4.75, -1.2, 0.92], [3.52, -0.8, 1.2], 24, 'michel', 'C', 'ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back', hold=0.5, shows=['tire']),
+    st(512, [5.03, -0.53, 1.2], [3.4, -1.0, 1.08], 30, 'michel', 'M', 'ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)', hold=0.2),
 ]
 props = {
     'table': dict(pos=[3.4, -0.32, 0.8], kind='the white-cloth table under the wing'),
@@ -65,8 +71,9 @@ film = {
     'costume_shade': dict(keys['costume_shade'], keep_drawn_light=True, smooth=40),
     'card_shade': dict(keys['card_shade'], amount=0, rim_amount=0),
     'post': {'dof': 0.0, 'dust': 0.3, 'bloom': 1, 'vignette': 0},
-    'places': {'apron': place}, 'props': props, 'acts': acts, 'held3d': held3d,
+    'places': {'apron': place}, 'props': props, 'acts': acts, 'held3d': [],
     'moods': [dict(at=283, look='warm_up', note='row 11: the oil glass glows amber'), dict(at=407, look='warm_up', note='row 14: afternoon, warmer'), dict(at=489, look='flash_white', note='row 17: rubber snap')],
+    'hand_at': [dict(who='michel', hand='R', f0=a, f1=b, at=p) for a, b, p in HAND_WIN],
     'kicks': [{'at': 489, 'amp': 2}],
     'fx': [dict(at=407, kind='glint', pos=[3.55, -0.78, 1.12], note='row 14: crack of the wing slice'),
            dict(at=489, kind='glint', pos=[3.55, -0.9, 1.2], note='row 17: rubber snap')],

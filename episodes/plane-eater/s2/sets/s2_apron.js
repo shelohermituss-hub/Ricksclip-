@@ -21,11 +21,11 @@ export function buildTumbler(T) { THREE_ ||= T; const g = part('water_jug', /^tu
 export function buildTongs(T) { THREE_ ||= T; const g = clone('sugar_tongs'); const b = part('metal_bites', /^bite_2/); b.position.set(-.04, -.005, .03); b.scale.setScalar(.8); g.add(b);
   live.tongsBite = b; return wrap(g, .12); }
 // the four list bites (fix 1): the props-hero bites (props/out/metal_bites.glb bite_0..5, 3-4 cm squares, 1.5 mm sheet, cut aluminium edges, rivets)
-// repainted with the look of the part they come from, held 2.6x (a bite is still neat and small next to his cartoon head, but it must read on a phone)
+// repainted with the look of the part they come from, held 5.5x (round 2: the lead wants each bite ~1/5 of the close frame) (a bite is still neat and small next to his cartoon head, but it must read on a phone)
 function mat(T, c, r = .35, m = 0) { return new T.MeshStandardMaterial({ color: c, roughness: r, metalness: m }); }
 function bite(T, name, paint, extra) { const g = new T.Group(), b = part('metal_bites', new RegExp('^' + name + '($|_)')); const box = new T.Box3().setFromObject(b), c = box.getCenter(new T.Vector3());
   b.position.sub(c); b.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); if (paint[o.name] || paint['*']) o.material.color.set(paint[o.name] || paint['*']); if (paint.metal && !/rivet|stripe/.test(o.name)) { o.material.metalness = paint.metal; o.material.roughness = .25; } } });
-  const holder = new T.Group(); holder.add(b); holder.rotation.x = Math.PI / 2; holder.position.x = .05; holder.scale.setScalar(2.6); g.add(holder); if (extra) extra(g);
+  const holder = new T.Group(); holder.add(b); holder.rotation.x = Math.PI / 2; holder.position.x = .1; holder.scale.setScalar(5.5); g.add(holder); if (extra) extra(g);
   return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.1, 0, 0) }; }
 export function buildWingSlice(T) { THREE_ ||= T; return bite(T, 'bite_2', { '*': '#f3f4f1', bite_2_stripe: '#1d3461' }); }                        // white skin + the navy stripe
 export function buildHub(T) { THREE_ ||= T; return bite(T, 'bite_3', { '*': '#c9ccd1', metal: 1 }, g => { const ty = new T.Mesh(new T.TorusGeometry(.05, .014, 10, 24, Math.PI), mat(T, '#26272b', .62)); ty.position.x = .05; ty.rotation.x = Math.PI / 2; g.add(ty); }); }   // cast hub + a half ring of tyre
@@ -53,9 +53,18 @@ export async function build(THREE, scene, film, ctx) {
   // the gum strand (fix 1): from the tire in his hand to his mouth (MOUTH = his near-hand grip at the bite, f478, from --held)
   const strand = new THREE.Mesh(new THREE.CylinderGeometry(.012, .02, 1, 10), mat(THREE, '#2b2c30', .6)); strand.visible = false; scene.add(strand);
   const MOUTH = V(MOUTH_P), tmp = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
+  // round 2: props in the pinned hand (film.json hand_at windows): the object sits on the fist point, 6 cm above it
+  const B = n => { const b = (n === 'oil' ? buildOil : n === 'wing' ? buildWingSlice : n === 'hub' ? buildHub : n === 'cushion' ? buildCushion : buildTire)(THREE).group;
+    if (n === 'oil') b.scale.setScalar(2.2); b.traverse(o => { if (o.isMesh) o.castShadow = true; }); b.visible = false; scene.add(b); return b; };
+  const inHand = { oil: B('oil'), wing: B('wing'), hub: B('hub'), cushion: B('cushion'), tire: B('tire') };
+  const WHO = f => f >= 290 && f <= 314 ? 'oil' : f >= 395 && f <= 410 ? 'wing' : f >= 417 && f <= 432 ? 'hub' : f >= 440 && f <= 456 ? 'cushion' : f >= 470 && f <= 489 ? 'tire' : null;
+  const HW = (film.hand_at || []).filter(h => h.who === 'michel');
   const needle0 = live.needle ? live.needle.rotation.clone() : null;
   return { anchors: { ...base.anchors, ...SPOT }, update: (f, t) => { base.update && base.update(f, t);
-    for (const [k, a, b] of HELD) st[k].visible = !(f >= a && f <= b);
+    for (const [k, a, b] of HELD) st[k].visible = !(f >= 290 && f <= 316 && k === 'oil');
+    const w = WHO(f), hw = HW.find(h => f >= h.f0 && f <= h.f1);
+    for (const [k, g] of Object.entries(inHand)) { g.visible = k === w && !!hw; if (g.visible) { g.position.copy(V([hw.at[0], hw.at[1], hw.at[2] + .06])); g.rotation.set(0, -1.2, k === 'oil' ? 0 : .5); } }
+    if (live.tireG !== inHand.tire) live.tireG = inHand.tire;
     // the scale: empty (0 lb) until the bites drop on "pounds" (365); the needle swings past 2 lb to 3.1, wobbles, settles ON 2 lb by 386
     const lb = f < 365 ? 0 : 2 + 1.1 * Math.exp(-(f - 365) / 5) * Math.cos((f - 365) * .55) - 2 * Math.exp(-(f - 365) / 1.2);
     if (live.needle) { live.needle.rotation.copy(needle0); live.needle.rotateZ(-(lb - 2) * 75 * Math.PI / 180); }
@@ -64,7 +73,7 @@ export async function build(THREE, scene, film, ctx) {
     { const u = f < 266 ? 0 : f >= 281 ? 1 : (f - 266) / 15, k = u * u * (3 - 2 * u), dy = -0.20 * (1 - k); for (const o of chair) o.position.z = -dy; }
     // the tire strand: from the tire to his mouth while he pulls (480-488), snaps back on 489 (gone by 492)
     strand.visible = false;
-    if (live.tireG && f >= 479 && f <= 491 && live.tireG.parent) { live.tireG.updateWorldMatrix(true, false); live.tireG.getWorldPosition(tmp);
+    if (live.tireG && f >= 480 && f <= 489 && live.tireG.visible) { live.tireG.updateWorldMatrix(true, false); live.tireG.getWorldPosition(tmp);
       const m = f <= 488 ? MOUTH.clone() : MOUTH.clone().lerp(tmp, Math.min(1, (f - 488) / 3)), d = tmp.clone().sub(m), L = d.length();
       if (L > .02) { strand.visible = true; strand.position.copy(m).addScaledVector(d, .5); strand.scale.set(1 - .5 * Math.min(1, L / .5), L, 1 - .5 * Math.min(1, L / .5)); strand.quaternion.setFromUnitVectors(up, d.normalize()); } }
     // the seat spring boings out on 452, pushed back in 460
@@ -74,5 +83,5 @@ export async function build(THREE, scene, film, ctx) {
       m.position.copy(V([3.55 + v[0] * .25 * Math.min(u, .5), -0.78 + v[2] * .2 * Math.min(u, .5), Math.max(.785, 1.12 + v[1] * .3 * u - 4.9 * u * u)])); m.rotation.set(i + f * .3, i * 2, 0); });
   } };
 }
-export let MOUTH_P = [3.47, -0.88, 1.3];
+export let MOUTH_P = [3.45, -0.92, 1.16];
 const ANCH = (b, k) => (b.anchors && b.anchors[k]) || [0, 0, .03];

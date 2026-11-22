@@ -185,9 +185,9 @@
    "who": "owner",
    "at": 0,
    "pos": [
-    1.15,
-    -2.2,
-    0.03
+    1.5,
+    2.0,
+    -0.02
    ],
    "view": "34",
    "dir": -1,
@@ -385,182 +385,7 @@
    "look": "michel"
   }
  ],
- "held3d": [
-  {
-   "who": "michel",
-   "obj": "oil_glass",
-   "module": "sets/s2_apron.js",
-   "builder": "buildOil",
-   "opts": {},
-   "grip": "handle",
-   "hand": "R",
-   "when": "always",
-   "f0": 283,
-   "f1": 316,
-   "note": "row 11 \"glass\": swirl, sniff, nod"
-  },
-  {
-   "who": "michel",
-   "obj": "water_jug",
-   "module": "sets/s2_apron.js",
-   "builder": "buildJug",
-   "opts": {},
-   "grip": "handle",
-   "hand": "R",
-   "when": "always",
-   "f0": 318,
-   "f1": 343,
-   "angle": [
-    [
-     318,
-     -90
-    ],
-    [
-     324,
-     -90
-    ],
-    [
-     330,
-     -45
-    ],
-    [
-     340,
-     -45
-    ],
-    [
-     343,
-     -90
-    ]
-   ],
-   "note": "row 12 \"jug\": the glug"
-  },
-  {
-   "who": "michel",
-   "obj": "tumbler",
-   "module": "sets/s2_apron.js",
-   "builder": "buildTumbler",
-   "opts": {},
-   "grip": "handle",
-   "hand": "L",
-   "when": "always",
-   "f0": 344,
-   "f1": 362,
-   "angle": [
-    [
-     344,
-     -90
-    ],
-    [
-     350,
-     -60
-    ],
-    [
-     358,
-     -90
-    ]
-   ],
-   "note": "row 12: he drinks"
-  },
-  {
-   "who": "michel",
-   "obj": "sugar_tongs",
-   "module": "sets/s2_apron.js",
-   "builder": "buildTongs",
-   "opts": {},
-   "grip": "point",
-   "hand": "R",
-   "when": "always",
-   "f0": 345,
-   "f1": 384,
-   "angle": [
-    [
-     345,
-     20
-    ],
-    [
-     365,
-     30
-    ]
-   ],
-   "note": "row 13: the bites drop on the scale on \"pounds\""
-  },
-  {
-   "who": "michel",
-   "obj": "wing_slice",
-   "module": "sets/s2_apron.js",
-   "builder": "buildWingSlice",
-   "opts": {},
-   "grip": "point",
-   "hand": "R",
-   "when": "always",
-   "f0": 396,
-   "f1": 414,
-   "angle": [
-    [
-     396,
-     -10
-    ]
-   ],
-   "note": "row 14 \"Wings\": snapped like a cracker"
-  },
-  {
-   "who": "michel",
-   "obj": "wheel_hub",
-   "module": "sets/s2_apron.js",
-   "builder": "buildHub",
-   "opts": {},
-   "grip": "point",
-   "hand": "R",
-   "when": "always",
-   "f0": 418,
-   "f1": 438,
-   "angle": [
-    [
-     418,
-     -10
-    ]
-   ],
-   "note": "row 15 \"wheels\": bitten like a doughnut"
-  },
-  {
-   "who": "michel",
-   "obj": "seat_cushion",
-   "module": "sets/s2_apron.js",
-   "builder": "buildCushion",
-   "opts": {},
-   "grip": "point",
-   "hand": "R",
-   "when": "always",
-   "f0": 442,
-   "f1": 462,
-   "angle": [
-    [
-     442,
-     -10
-    ]
-   ],
-   "note": "row 16 \"seats\": the spring boings out"
-  },
-  {
-   "who": "michel",
-   "obj": "tire",
-   "module": "sets/s2_apron.js",
-   "builder": "buildTire",
-   "opts": {},
-   "grip": "point",
-   "hand": "R",
-   "when": "always",
-   "f0": 468,
-   "f1": 494,
-   "angle": [
-    [
-     468,
-     -10
-    ]
-   ],
-   "note": "row 17 \"tires\": stretches like gum and snaps back"
-  }
- ],
+ "held3d": [],
  "moods": [
   {
    "at": 283,
@@ -576,6 +401,129 @@
    "at": 489,
    "look": "flash_white",
    "note": "row 17: rubber snap"
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 290,
+   "f1": 297,
+   "at": [
+    3.6,
+    -0.72,
+    0.98
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 298,
+   "f1": 314,
+   "at": [
+    3.56,
+    -0.8,
+    1.18
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 395,
+   "f1": 403,
+   "at": [
+    3.64,
+    -0.76,
+    1.12
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 404,
+   "f1": 410,
+   "at": [
+    3.55,
+    -0.86,
+    1.14
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 417,
+   "f1": 425,
+   "at": [
+    3.64,
+    -0.76,
+    1.12
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 426,
+   "f1": 432,
+   "at": [
+    3.55,
+    -0.86,
+    1.14
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 440,
+   "f1": 448,
+   "at": [
+    3.64,
+    -0.76,
+    1.12
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 449,
+   "f1": 456,
+   "at": [
+    3.55,
+    -0.86,
+    1.14
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 470,
+   "f1": 477,
+   "at": [
+    3.64,
+    -0.76,
+    1.12
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 478,
+   "f1": 481,
+   "at": [
+    3.55,
+    -0.86,
+    1.14
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 482,
+   "f1": 489,
+   "at": [
+    3.68,
+    -0.58,
+    1.18
+   ]
   }
  ],
  "kicks": [
@@ -655,16 +603,16 @@
     {
      "at": 296,
      "pos": [
-      4.76,
-      -0.52,
-      1.32
+      4.48,
+      -0.56,
+      1.2
      ],
      "aim": [
-      3.45,
-      -0.85,
-      1.28
+      3.48,
+      -0.88,
+      1.14
      ],
-     "lens": 30,
+     "lens": 28,
      "subject": "michel",
      "framing": "M",
      "purpose": "ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back",
@@ -697,15 +645,34 @@
      ]
     },
     {
-     "at": 448,
+     "at": 400,
      "pos": [
-      5.69,
-      -0.64,
-      1.4
+      5.08,
+      -1.13,
+      1.25
      ],
      "aim": [
-      3.4,
-      -0.8,
+      3.5,
+      -0.85,
+      1.12
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROWS 14-15 (M13 truck, close): each bite held up toward the lens",
+     "hold": 0.0,
+     "creep": 0.0035
+    },
+    {
+     "at": 448,
+     "pos": [
+      5.07,
+      -1.38,
+      1.25
+     ],
+     "aim": [
+      3.45,
+      -0.85,
       1.1
      ],
      "lens": 28,
@@ -718,16 +685,16 @@
     {
      "at": 466,
      "pos": [
-      4.89,
-      -0.65,
-      1.3
+      4.75,
+      -1.2,
+      0.92
      ],
      "aim": [
-      3.45,
+      3.52,
       -0.8,
-      1.25
+      1.2
      ],
-     "lens": 28,
+     "lens": 24,
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back",
@@ -740,14 +707,14 @@
     {
      "at": 512,
      "pos": [
-      5.32,
-      -0.45,
-      1.18
+      5.03,
+      -0.53,
+      1.2
      ],
      "aim": [
       3.4,
       -1.0,
-      0.98
+      1.08
      ],
      "lens": 30,
      "subject": "michel",

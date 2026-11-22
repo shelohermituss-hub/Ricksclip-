@@ -16,7 +16,7 @@ const seatY = ch => { const top = ch.hy - 100 * ch.K, k = 1.7 / (G - top); retur
 // 3D legs (film.js floorLegs): metres from the floor point under the hips; x = to his side, y = up, z = toward where he faces (under the table)
 export const legs3d = { r: .024, pts: [[.08, SEAT_M + .04, .0], [.09, SEAT_M + .045, .24], [.095, SEAT_M - .03, .29], [.1, .04, .32], [.105, .03, .42]] };
 export const chair3d = { seat: SEAT_M };
-const OFF = { mi_table: 0, ow_watch: 0 };                    // both acts start at film frame 0 (hidden before the window): move frame = film frame
+const OFF = { mi_table: 262, ow_watch: 0 };                  // round 2 FIX: the kit's move clock (mt) restarts on every POSE change: mi_table starts at its act f262 (round 1 played every hand 262 f late)
 
 // ---- MICHEL m:mi_table (SIDE, seated at the white-cloth table, faces the table = +x). One move for rows 10-18.
 //  257-275 "Every day": he settles onto the seat (body drops 14 px, bounce), both hands tuck the chair in (grip at the hips, 2 small scoots of the body forward)
@@ -40,7 +40,7 @@ function miTable(t, ch) { const f = F(t) + OFF.mi_table, S = ch.sh[1], L = ch.ar
   let R = P2([[0, { f: .18, d: .78 }], [257, { f: .3, d: .6 }, 4], [266, { f: .1, d: .75 }, 4], [276, REST, 8], [283, { f: .5, d: .32 }, 8], [300, NOSE, 10], [313, { f: .48, d: .4 }, 8], [316, REST, 6],
     [318, { f: .56, d: .28 }, 6], [324, { f: .62, d: .2 }, 8], [341, { f: .55, d: .45 }, 8], [345, REST, 6],
     [352, { f: .62, d: .3 }, 8], [365, { f: .62, d: .24 }, 3], [369, { f: .62, d: .3 }, 6], [384, REST, 10],
-    [398, MOUTH, 9], [409, { f: .45, d: .25 }, 8], [420, MOUTH, 8], [430, { f: .45, d: .25 }, 8], [444, MOUTH, 7], [453, { f: .44, d: .3 }, 8],
+    [394, { f: .7, d: -.05 }, 6], [402, MOUTH, 5], [409, { f: .7, d: .02 }, 6], [417, { f: .7, d: -.05 }, 5], [424, MOUTH, 4], [431, { f: .7, d: .02 }, 6], [440, { f: .7, d: -.05 }, 5], [447, MOUTH, 4], [454, { f: .66, d: .05 }, 6],
     [470, MOUTH, 8], [480, { f: .78, d: .05 }, 8], [489, { f: .4, d: .02 }, 2], [492, REST, 12]], f);
   if (swirl) R = { f: R.f + swirl * Math.cos(ang), d: R.d + swirl * Math.sin(ang) };
   // far hand (L)
