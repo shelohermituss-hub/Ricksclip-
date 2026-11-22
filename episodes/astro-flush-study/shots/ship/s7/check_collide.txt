@@ -1,8 +1,11 @@
-collide: s7/film.json  frames 0-712 every 2 (357 checked)  cast navigator  held 3D props: none
-set ship: 172 meshes tested; not tested: 1 no name, 14 see-through, 5 effect / sky name
+collide: s7/film.json  frames 531-711 every 2 (91 checked)  cast navigator  held 3D props: none
+set ship: 164 meshes tested; not tested: 1 no name, 22 see-through, 5 effect / sky name
 resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
 result rule            who / what             against                    frames     what                                                                          
-WARN   BODY_IN_BOX     navigator              ship/ship_root/canopy_bars f0-712     the body box is 227 cm into its box, but no drawn body point is inside the me~
-WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f628-658   the body box is 9 cm into its box, but no drawn body point is inside the mesh~
-WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f668-698   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
-0 FAIL, 3 WARN (18.1 s, scan 9 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s7/out/collide.json
+WARN   BODY_IN_BOX     navigator              ship/ship_root/canopy_bars f531-711   the body box is 227 cm into its box, but no drawn body point is inside the me~
+WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f625-657   the body box is 16 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_OBJECT  navigator              ship/ship_root/float_cup   f659-661   3 % of the body is inside it (boxes overlap 15 cm)                            
+WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f663       the body box is 14 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_OBJECT  navigator              ship/ship_root/float_cup   f665-679   3 % of the body is inside it (boxes overlap 16 cm)                            
+WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f681-711   the body box is 18 cm into its box, but no drawn body point is inside the mes~
+0 FAIL, 6 WARN (6.6 s, scan 2.2 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s7/out/collide.json

@@ -1,7 +1,7 @@
-motion_objects: s9/film.json  frames 0-802  11 tracks (camera, 0 characters, 10 moving objects of 204)
-CAMERA moves on 6 % of the frames (50 of 802 steps)
+motion_objects: s9/film.json  frames 763-802  11 tracks (camera, 0 characters, 10 moving objects of 205)
+CAMERA moves on 100 % of the frames (39 of 39 steps)
 CUT  none
 result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
-PASS   CAMERA                             803     50      0.49      0.02       0     0     0   
+PASS   CAMERA                             40      39      0.46      0.40       0     0     0   
 ... 10 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
-0 FAIL, 0 WARN on 0 of 11 tracks (5.4 s, page scan 0.3 s = 0.3 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s9/out/motion_objects.json
+0 FAIL, 0 WARN on 0 of 11 tracks (3.2 s, page scan 0.0 s = 0.5 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s9/out/motion_objects.json

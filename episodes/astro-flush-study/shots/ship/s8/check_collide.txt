@@ -1,6 +1,6 @@
-collide: s8/film.json  frames 0-770 every 2 (386 checked)  cast   held 3D props: none
-set ship: 172 meshes tested; not tested: 1 no name, 14 see-through, 5 effect / sky name
+collide: s8/film.json  frames 706-770 every 2 (33 checked)  cast   held 3D props: none
+set ship: 164 meshes tested; not tested: 1 no name, 22 see-through, 5 effect / sky name
 resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
 result rule            who / what             against                    frames     what                                                                          
 (no row)
-0 FAIL, 0 WARN (4.6 s, scan 0.2 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s8/out/collide.json
+0 FAIL, 0 WARN (3.5 s, scan 0 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s8/out/collide.json

@@ -1,0 +1,15 @@
+collide: s11/film.json  frames 867-1005 every 2 (70 checked)  cast newguy  held 3D props: none
+set ship: 164 meshes tested; not tested: 1 no name, 22 see-through, 5 effect / sky name
+resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
+result rule            who / what             against                    frames     what                                                                          
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/belt_sill   f867-883   the body box is 9 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/belt_stripe f867-883   the body box is 25 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/porthole_b~ f867-883   the body box is 67 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/window_bev~ f867-883   the body box is 73 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/window_bol~ f867-883   the body box is 77 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/window_rin~ f867-883   the body box is 81 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/porthole_b~ f883       the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/porthole_b~ f883       the body box is 12 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/porthole_b~ f883       the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 ship/ship_root/porthole_b~ f883       the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+0 FAIL, 10 WARN (5.9 s, scan 3 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/collide.json

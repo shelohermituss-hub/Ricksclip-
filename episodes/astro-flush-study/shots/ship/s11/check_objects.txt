@@ -1,15 +1,17 @@
-motion_objects: s11/film.json  frames 0-1006  11 tracks (camera, 1 characters, 6 moving objects of 204)
-CAMERA moves on 29 % of the frames (296 of 1006 steps)
+motion_objects: s11/film.json  frames 867-1006  11 tracks (camera, 1 characters, 6 moving objects of 205)
+CAMERA moves on 100 % of the frames (139 of 139 steps)
 CUT  none
 result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
-PASS   CAMERA                             1007    296     252.79    9.19       0     0     0   
-WARN   newguy.feet                        890     12      13.88     0.00       0     0     1   
-WARN   newguy.head                        890     22      13.79     0.00       0     0     1   
-WARN   newguy.handR                       890     883     13.88     0.00       0     0     1   
-WARN   newguy.handL                       890     880     14.09     0.00       0     0     1   
+PASS   CAMERA                             140     139     222.27    8.51       0     0     0   
+FAIL   newguy.feet                        17      7       10.65     0.00       0     1     1   
+FAIL   newguy.head                        17      14      10.82     0.00       0     1     1   
+WARN   newguy.handR                       17      16      10.59     0.00       0     0     1   
+WARN   newguy.handL                       17      16      10.97     0.00       0     0     1   
 ... 6 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
-WARN POP  newguy.feet  f890  turns invisible inside the camera frame with no scale or opacity ramp
-WARN POP  newguy.head  f890  turns invisible inside the camera frame with no scale or opacity ramp
-WARN POP  newguy.handR  f890  turns invisible inside the camera frame with no scale or opacity ramp
-WARN POP  newguy.handL  f890  turns invisible inside the camera frame with no scale or opacity ramp
-0 FAIL, 4 WARN on 4 of 11 tracks (23.4 s, page scan 15.6 s = 15.5 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/motion_objects.json
+FAIL JUMP newguy.feet  f878  2.1 cm in one step at f878, the steps around it run at 0.36 cm/frame (median)
+FAIL JUMP newguy.head  f878  2.2 cm in one step at f878, the steps around it run at 0.34 cm/frame (median)
+WARN POP  newguy.feet  f884  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.head  f884  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.handR  f884  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.handL  f884  turns invisible inside the camera frame with no scale or opacity ramp
+2 FAIL, 4 WARN on 4 of 11 tracks (3.7 s, page scan 0.3 s = 2 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/motion_objects.json

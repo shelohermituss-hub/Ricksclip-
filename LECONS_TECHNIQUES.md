@@ -664,3 +664,10 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Fix: every `sets/<place>/build_<place>.sh` runs `mkdir -p out` first. Resume step: `python tools/film_plan.py check` on every shot film.json.
 - Guard: the line is in all four build scripts; STATE.md resume steps list the plan check.
 - Proof: mc rebuilt in 23 s (mc_lite.glb, mc_screens_sheet.jpg); 12 shot plans baked; ship key stills render (s2, s7, s11).
+
+## 2026-11-22 (astro-flush-study, ship round 2): stale camera after regenerating film.json
+- Problem: the first f990 stills after make_film.py showed the round-1 camera.
+- Cause: render_gpu reads `out/plan/camera_baked.json`, written only by `tools/film_plan.py check`; make_film.py rewrites film.json but not the plan.
+- Fix: run `python tools/film_plan.py check <film.json>` after every film.json change, before any render.
+- Guard: written in shots/ship/STATE.md and in the resume steps of STATE.md (step 6). To do: make render_gpu refuse a plan older than its film.json.
+- Proof: after the check, f990 shows the round-8 porthole-side camera (nose lower right, as his), sheet work/proof/ship/round2_keys.jpg.

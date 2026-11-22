@@ -1,20 +1,20 @@
-motion_objects: s2/film.json  frames 0-140  9 tracks (camera, 0 characters, 8 moving objects of 204)
-CAMERA moves on 90 % of the frames (126 of 140 steps)
+motion_objects: s2/film.json  frames 29-140  9 tracks (camera, 0 characters, 8 moving objects of 205)
+CAMERA moves on 100 % of the frames (111 of 111 steps)
 CUT  none
 result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
-FAIL   CAMERA                             141     126     745.98    18.88      0     2     0   
-FAIL   ship/ship_root/flame_core          44      43      59.10     1.98       0     1     0   
-FAIL   ship/ship_root/flame_glow          44      43      59.10     1.98       0     1     0   
-FAIL   ship/ship_root/flame_halo          44      43      59.10     1.98       0     1     0   
-FAIL   ship/ship_root/flame_mid           44      43      59.10     1.98       0     1     0   
-FAIL   ship/ship_root/flame_outer         44      43      59.10     1.98       0     1     0   
-FAIL   ship/sky_dome                      141     126     745.98    0.00       0     1     0   
+FAIL   CAMERA                             112     111     745.98    18.88      0     2     0   
+FAIL   ship/ship_root/flame_core          112     65      61.43     2.05       0     4     0   
+FAIL   ship/ship_root/flame_glow          112     65      61.43     2.05       0     4     0   
+FAIL   ship/ship_root/flame_halo          112     65      61.43     2.05       0     4     0   
+FAIL   ship/ship_root/flame_mid           112     65      61.43     2.05       0     4     0   
+FAIL   ship/ship_root/flame_outer         112     65      61.43     2.05       0     4     0   
+FAIL   ship/sky_dome                      112     111     745.98    0.00       0     1     0   
 ... 2 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
 FAIL JUMP CAMERA  f38-39  746.0 cm in one step at f39, the steps around it run at 132.06 cm/frame (median)  [2 times: f38-39 f70-71]
 FAIL JUMP ship/sky_dome  f38-39  746.0 cm in one step at f39, the steps around it run at 132.06 cm/frame (median)
-FAIL JUMP ship/ship_root/flame_core  f98-100  2.07 x scale in one step at f98, the steps around it run at 0.136 x scale/frame (median)
-FAIL JUMP ship/ship_root/flame_glow  f98-100  2.07 x scale in one step at f98, the steps around it run at 0.136 x scale/frame (median)
-FAIL JUMP ship/ship_root/flame_halo  f98-100  2.07 x scale in one step at f98, the steps around it run at 0.136 x scale/frame (median)
-FAIL JUMP ship/ship_root/flame_mid  f98-100  2.07 x scale in one step at f98, the steps around it run at 0.136 x scale/frame (median)
-FAIL JUMP ship/ship_root/flame_outer  f98-100  2.07 x scale in one step at f98, the steps around it run at 0.136 x scale/frame (median)
-8 FAIL, 0 WARN on 7 of 9 tracks (6.1 s, page scan 0.2 s = 1.1 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s2/out/motion_objects.json
+FAIL JUMP ship/ship_root/flame_core  f83-84  9.32 x scale in one step at f83, the steps around it run at 0.210 x scale/frame (median)  [4 times: f83-84 f86 f96-97 f99]
+FAIL JUMP ship/ship_root/flame_glow  f83-84  9.32 x scale in one step at f83, the steps around it run at 0.210 x scale/frame (median)  [4 times: f83-84 f86 f96-97 f99]
+FAIL JUMP ship/ship_root/flame_halo  f83-84  9.32 x scale in one step at f83, the steps around it run at 0.210 x scale/frame (median)  [4 times: f83-84 f86 f96-97 f99]
+FAIL JUMP ship/ship_root/flame_mid  f83-84  9.32 x scale in one step at f83, the steps around it run at 0.210 x scale/frame (median)  [4 times: f83-84 f86 f96-97 f99]
+FAIL JUMP ship/ship_root/flame_outer  f83-84  9.32 x scale in one step at f83, the steps around it run at 0.210 x scale/frame (median)  [4 times: f83-84 f86 f96-97 f99]
+23 FAIL, 0 WARN on 7 of 9 tracks (3.7 s, page scan 0.1 s = 0.9 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s2/out/motion_objects.json

@@ -13,7 +13,7 @@
   PASS camera   cuts per 10 s                                              0.0            target <= 0.9, aim 0.4 (Rick 0.4; CB: fewer cuts)
   FAIL camera   tilt while resting, deg                                    14.0           target level (<= 0.5); tilt only inside a move (Rick: 0 % of holds)
          FIX: use travel_roll on the move instead of roll on the station
-  PASS camera   roll rate peak deg/f                                       0.2            target <= 1.1 (Rick p99 1.08)
+  PASS camera   roll rate peak deg/f                                       0.24           target <= 1.1 (Rick p99 1.08)
   PASS camera   lens outside 16-55 mm on non-insert frames, %              0.0            target wide and close: about 24 mm = 73 deg tall (Rick, measured); long lenses only for object inserts
   PASS camera   travels that swing the view over 120 deg                   0              target 0: lay the places along the travel direction so the camera never turns back
   WARN camera   camera v2 notes (flowed-through stations, short travels, capped whips) 5              target 0
