@@ -4,8 +4,10 @@
 import { blinkAt, cycle } from './motion/rig.mjs';
 const F = t => Math.round(t * 30 * 1000) / 1000;
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
-const snap = (f, n = 3) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
-function tr(keys, f) { let v = keys[0][1]; for (let i = 1; i < keys.length; i++) { const [f0, to, n = 3] = keys[i]; if (f <= f0) break; const u = snap(f - f0, n); v = Array.isArray(to) ? v.map((a, j) => a + (to[j] - a) * u) : v + (to - v) * u; } return v; }
+const snapOld = (f, n = 3) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
+// round 3 (motion, 2026-11-22): every snap is eased at BOTH ends (smoothstep) over at least 6 frames; a 3-frame fast-out put 48 % of an arm move in one frame (check_objects JUMP)
+const snap = (f, n = 6) => { n = Math.max(6, n); if (f <= 0) return 0; const u = f / n; return u >= 1 ? 1 : u * u * (3 - 2 * u); };
+function tr(keys, f) { let v = keys[0][1]; for (let i = 1; i < keys.length; i++) { const [k0, to, n = 6] = keys[i], f0 = k0 - 2; if (f <= f0) break; const u = snap(f - f0, n);   // round 3: starts 2 f early so the eased move is half-way 1 f after its key v = Array.isArray(to) ? v.map((a, j) => a + (to[j] - a) * u) : v + (to - v) * u; } return v; }
 const P2 = (keys, f) => { const v = tr(keys.map(k => [k[0], [k[1].f, k[1].d], k[2]]), f); return { f: v[0], d: v[1] }; };
 const step = (keys, f) => { let v = keys[0][1]; for (const [f0, x] of keys) if (f >= f0) v = x; return v; };
 // weightless float: slow bob (6-8 rig px = 3-4 cm) + slight tilt, phase per character so heads bob out of step
@@ -55,7 +57,7 @@ function dir10(t, ch) { const f = F(t);
   if (f >= 848 && f < 860) face = shout[Math.floor((f - 848) / 3) % shout.length];
   const R = P2([[0, { f: .25, d: .85 }], [812, { f: .45, d: .55 }, 3], [842, { f: .35, d: -1.0 }, 3]], f);
   const L = P2([[0, { f: .25, d: .85 }], [812, { f: .45, d: .55 }, 3], [839, { f: .3, d: .75 }, 3]], f);
-  const lunge = snap(f - 839, 3), shake = f >= 846 && f < 860 ? 2.5 * Math.sin((f - 846) * Math.PI / 3) : 0;
+  const lunge = snap(f - 834, 12), shake = f >= 846 && f < 860 ? 2.5 * Math.sin((f - 846) * Math.PI / 3) : 0;
   return { view: 'front', dir: 1, x: 0, y: bob(f, 5, 5, 40) + 10 * lunge, rot: -4 * lunge + tilt(f, 3, 1), head: tr([[0, -2], [812, 3, 3], [839, -6, 3], [863, -3, 4]], f) + shake,
     feet: FEET, hands: [{ f: L.f, d: L.d, bow: .3 }, { f: R.f, d: R.d, bow: .25, over: f >= 842 }], face, blink: null, held: [] }; }
 

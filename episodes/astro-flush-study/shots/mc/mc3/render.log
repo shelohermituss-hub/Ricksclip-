@@ -1,6 +1,14 @@
+[page] film.js: move module not found: ../../ep_mc
 [page] Failed to load resource: the server responded with a status of 404 (Not Found)
-[page] AF_MC {"meshes":77,"glb_tris":69518,"load_ms":196}
+[page] AF_MC {"meshes":77,"glb_tris":69518,"load_ms":287}
 WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab fast
 film: 411 frames at 30 fps, 540x960, cast director, ctlGreen, ctlBlue, ctlDark
 [page] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
-stills: 291 frames in 237.5 s = 816 ms/frame (draw 762 + grab 55) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/mc/mc3/out/stills
+[page] puppets.mjs: move "../../ep_mc/fao3" not loaded
+[page] poses.mjs: unknown pose "m:../../ep_mc/fao3", using stand
+[page] puppets.mjs: move "../../ep_mc/capcom3" not loaded
+[page] poses.mjs: unknown pose "m:../../ep_mc/capcom3", using stand
+[page] puppets.mjs: move "../../ep_mc/guido3" not loaded
+[page] poses.mjs: unknown pose "m:../../ep_mc/guido3", using stand
+[page] puppets.mjs: move "../../ep_mc/dir3" not loaded
+[page] poses.mjs: unknown pose "m:../../ep_mc/dir3", using stand

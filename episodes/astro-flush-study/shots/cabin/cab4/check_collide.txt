@@ -1,0 +1,46 @@
+collide: cab4/film.json  frames 0-422 every 2 (212 checked)  cast commander, newguy, navigator  held 3D props: none
+set cabin: 121 meshes tested; not tested: 1 no name, 4 effect / sky name
+resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
+result rule            who / what             against                    frames     what                                                                          
+FAIL   BODY_IN_OBJECT  navigator              cabin/cabin_quilt_backing  f0-288     12 % of the body is inside it (boxes overlap 55 cm)                           
+FAIL   BODY_IN_OBJECT  navigator              cabin/cabin_wall_upper_ba~ f292-294   15 % of the body is inside it (boxes overlap 40 cm)                           
+FAIL   BODY_IN_OBJECT  newguy                 cabin/cabin_quilt_backing  f294-302   19 % of the body is inside it (boxes overlap 18 cm)                           
+FAIL   BODY_IN_OBJECT  commander              cabin/cabin_quilt_backing  f298-300   16 % of the body is inside it (boxes overlap 34 cm)                           
+FAIL   BODY_IN_OBJECT  commander              cabin/cabin_wall_upper_ba~ f302       35 % of the body is inside it (boxes overlap 33 cm)                           
+WARN   BODY_IN_BOX     commander              cabin/cabin_quilt          f0-302     the body box is 28 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/cabin_quilt_backing  f0-294     the body box is 35 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              cabin/cabin_quilt_buttons  f0-302     the body box is 28 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/cabin_floor          f0-286     the body box is 8 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/cabin_floor_dots     f0-286     the body box is 9 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/cabin_quilt          f0-302     the body box is 38 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/cabin_quilt_backing  f0-290     the body box is 42 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     newguy                 cabin/cabin_quilt_buttons  f0-302     the body box is 37 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     navigator              cabin/cabin_hatch_frame    f0-288     the body box is 74 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_OBJECT  navigator              cabin/cabin_hatch_leaf     f0-294     5 % of the body is inside it (boxes overlap 57 cm)                            
+WARN   BODY_IN_BOX     navigator              cabin/cabin_quilt          f0-294     the body box is 53 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     navigator              cabin/cabin_quilt_buttons  f0-292     the body box is 46 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f10-16     the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f28-36     the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f48-80     the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f52-62     the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_2  f52        the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f92-122    the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_2  f104-116   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f112-144   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f150-162   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f156-190   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_2  f168-180   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f176-178   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f194-208   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f212-230   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f240-248   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f244-254   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_2  f244       the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f270-272   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/clipboard/clipboard~ f280-332   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 cabin/magazine/magazine_1  f284-294   the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              cabin/cabin_wall_upper_ba~ f288       the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_OBJECT  navigator              cabin/cabin_hatch_frame    f290-298   7 % of the body is inside it (boxes overlap 48 cm)                            
+WARN   BODY_IN_BOX     navigator              cabin/cabin_hatch_lever    f290-296   the body box is 29 cm into its box, but no drawn body point is inside the mes~
+... 37 more in collide.json
+5 FAIL, 72 WARN (16.5 s, scan 12.3 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/collide.json

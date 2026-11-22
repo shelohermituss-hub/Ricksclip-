@@ -271,20 +271,35 @@ def _v2_path(nx, chain, p0, a0, l0):
     if len(chain) == 1:
         P = [p0] + [list(v) for v in nx.get("via", [])] + [nx["pos"]]; A = ([a0] + [list(v) for v in nx["aim_via"]] + [nx["aim"]]) if nx.get("aim_via") else None; l1 = nx.get("lens", D["lens"])
         return lambda u: (_catmull(P, u), _catmull(A, u) if A else vlerp(a0, nx["aim"], u), math.exp(math.log(l0) + (math.log(l1) - math.log(l0)) * u), 0)
-    K = [(p0, a0, l0, 0)]; pa, pl = a0, l0
+    K = [(p0, a0, l0, 0)]; pa, pl = a0, l0; SK = {}
     for ci, c in enumerate(chain):
         vs = c.get("via", []); l1 = c.get("lens", D["lens"])
         for vi, v in enumerate(vs):
             t = (vi + 1) / (len(vs) + 1.0); K.append((list(v), vlerp(pa, c["aim"], t), math.exp(math.log(pl) + (math.log(l1) - math.log(pl)) * t), ci))
-        K.append((list(c["pos"]), list(c["aim"]), l1, ci + 1)); pa, pl = c["aim"], l1
+        K.append((list(c["pos"]), list(c["aim"]), l1, ci + 1)); pa, pl = c["aim"], l1; SK[ci] = len(K) - 1
     P = [k[0] for k in K]; A = [k[1] for k in K]; n = len(K) - 1
     def at(u):
         x = min(n - 1e-9, max(0.0, u) * n); i = int(x); t = x - i
         return _catmull(P, u), _catmull(A, u), math.exp(math.log(K[i][2]) + (math.log(K[i + 1][2]) - math.log(K[i][2])) * t), K[i][3]
+    at.knots = {j: q / float(n) for j, q in SK.items()}                      # chain station j -> its u on the path (station key "pin")
     return at
 
-def _v2_ease(F, perf, at, f0, N, whip, far, up=None, subj=lambda ci: None):
-    """u for k = 0..N frames into the travel, so the picture speed (instrument model) rises over r frames, cruises, and falls over r frames"""
+def _pchip(xs, ys, x):
+    """monotone cubic (Fritsch-Carlson) through (xs, ys), zero slope at both ends: speed is continuous through every inner knot (no dip, no overshoot)"""
+    n = len(xs); h = [xs[i + 1] - xs[i] for i in range(n - 1)]; d = [(ys[i + 1] - ys[i]) / h[i] for i in range(n - 1)]; m = [0.0] * n
+    for i in range(1, n - 1):
+        w1, w2 = 2 * h[i] + h[i - 1], h[i] + 2 * h[i - 1]
+        m[i] = 0.0 if d[i - 1] * d[i] <= 0 else (w1 + w2) / (w1 / d[i - 1] + w2 / d[i])
+    i = 0
+    while i < n - 2 and x > xs[i + 1]: i += 1
+    t = (x - xs[i]) / h[i]
+    return (2 * t ** 3 - 3 * t ** 2 + 1) * ys[i] + (t ** 3 - 2 * t ** 2 + t) * h[i] * m[i] + (-2 * t ** 3 + 3 * t ** 2) * ys[i + 1] + (t ** 3 - t ** 2) * h[i] * m[i + 1]
+
+def _v2_ease(F, perf, at, f0, N, whip, far, up=None, subj=lambda ci: None, pins=None):
+    """u for k = 0..N frames into the travel, so the picture speed (instrument model) rises over r frames, cruises, and falls over r frames.
+    pins (2026-11-22, station key "pin": true on a hold-0 pass station): [(u of the station on the path, frame offset)]: the travel reaches each
+    pinned station exactly on its own frame; the picture distance against time is a monotone cubic through the pins (eased start and end,
+    speed continuous through each pin, no speed dip). Without pins: the old ramp-cruise-ramp."""
     if N <= 1: return [0.0, 1.0][:N + 1]
     M = max(120, 8 * N); C = []; prev = None
     for i in range(M + 1):
@@ -299,6 +314,9 @@ def _v2_ease(F, perf, at, f0, N, whip, far, up=None, subj=lambda ci: None):
         if t <= r: x = t / r; return r * (x ** 3 - x ** 4 / 2)
         if t >= N - r: y = (N - t) / r; return tot - r * (y ** 3 - y ** 4 / 2)
         return r / 2.0 + (t - r)
+    if pins:
+        xs = [0.0] + [float(k) for _, k in pins] + [float(N)]; ys = [0.0] + [cum[int(round(u * M))] for u, _ in pins] + [cum[-1]]
+        E = lambda t: _pchip(xs, ys, t); tot = cum[-1]
     out = []; i = 0
     for k in range(N + 1):
         g = E(k) / tot * cum[-1]
@@ -325,9 +343,14 @@ def _bake_v2(F, tv_fix=None):
                 nx = S[R[ri + 1]]
                 if "_u" not in nx:
                     p0, a0, l0 = _rest_pose(s, s["_depart"] - s["_arrive"]); p0, a0 = fol(s, s["_depart"], p0, a0)
-                    nx["_path"] = _v2_path(nx, nx["_chain"], p0, a0, l0); nx["_u"] = _v2_ease(F, perf, nx["_path"], s["_depart"], nx["_tv"], nx["_whip"], far, s.get("up"), lambda ci, a=a: S[a + ci].get("subject"))
+                    nx["_path"] = _v2_path(nx, nx["_chain"], p0, a0, l0); kn = getattr(nx["_path"], "knots", {}); pins = sorted((kn[ci], c["_arrive"] - s["_depart"]) for ci, c in enumerate(nx["_chain"][:-1]) if c.get("pin") and ci in kn and 0 < c["_arrive"] - s["_depart"] < nx["_tv"])
+                    nx["_u"] = _v2_ease(F, perf, nx["_path"], s["_depart"], nx["_tv"], nx["_whip"], far, s.get("up"), lambda ci, a=a: S[a + ci].get("subject"), pins)
+                    nx["_rollpins"] = [(float(c["_arrive"] - s["_depart"]), c["roll"]) for c in nx["_chain"][:-1] if c.get("pin") and "roll" in c and 0 < c["_arrive"] - s["_depart"] < nx["_tv"]]
                 u = nx["_u"][f - s["_depart"]]; pos, aim, lens, ci = nx["_path"](u); j = a + ci; state = "travel"
                 roll = s.get("roll", 0.0) + (nx.get("roll", 0.0) - s.get("roll", 0.0)) * u + nx.get("travel_roll", 0.0) * math.sin(math.pi * u) ** 2
+                if nx.get("_rollpins"):                                       # pinned pass stations with a "roll" hold it on their frame (monotone cubic between)
+                    RP = [(0.0, s.get("roll", 0.0))] + nx["_rollpins"] + [(float(nx["_tv"]), nx.get("roll", 0.0))]
+                    roll = _pchip([q[0] for q in RP], [q[1] for q in RP], float(f - s["_depart"])) + nx.get("travel_roll", 0.0) * math.sin(math.pi * u) ** 2
             for kf, amp in kicks:
                 if 0 <= f - kf < 7: roll += amp * (1 - (f - kf) / 7.0) * (1 if (f - kf) % 2 == 0 else -1); aim = vadd(aim, [0, 0, 0.012 * amp * (1 - (f - kf) / 7.0) * (1 if (f - kf) % 2 == 0 else -1)])
             kicked = any(0 <= f - kf < 8 for kf, amp in kicks); sj = S[j]
@@ -475,7 +498,7 @@ def bake_performance(F):
                 if not first: swaps.append(tf)
             body = {k: a[k] for k in ("view", "dir", "pose", "prop", "hand", "visible", "look", "look_full", "walk_pose", "cling") if k in a}
             if body: keys.append((tf + (1 if "face" in a and not first else 0), body))   # the body follows one frame later
-            if "pos" in a and not first: keys.append((tf + 1, dict(_move=(list(a["pos"]), a.get("walk", False), int(round(a.get("move_s", 0.5) * fps)), bool(a.get("linear"))))))
+            if "pos" in a and not first: keys.append((tf + 1, dict(_move=(list(a["pos"]), a.get("walk", False), int(round(a.get("move_s", 0.5) * fps)), bool(a.get("linear")), a.get("ease")))))
             if a.get("exit"): keys.append((tf, dict(visible=False)))
             if "say" in a:                                                       # quoted line: [first word index, last word index] in words.json
                 i0, i1 = a["say"]
@@ -490,21 +513,21 @@ def bake_performance(F):
             while ki < len(keys) and keys[ki][0] <= f:
                 ch = dict(keys[ki][1]); ki += 1
                 if "_move" in ch:
-                    to, walk, dur, lin = ch.pop("_move")
+                    to, walk, dur, lin, eas = ch.pop("_move")
                     if move:                                                                                 # a new move that starts before the last one has landed starts from where the figure IS (2026-11-10: it used to snap back to the old start)
-                        m0, d0, a_, b_ = move[:4]; u0 = min(1.0, (f - m0) / float(d0)); st["pos"] = vlerp(a_, b_, u0 if (move[4] or move[5]) else fast_in(u0))
+                        m0, d0, a_, b_ = move[:4]; u0 = min(1.0, (f - m0) / float(d0)); st["pos"] = vlerp(a_, b_, u0 if (move[4] or move[5]) else smoother(u0) if move[6] == "inout" else fast_in(u0))
                     dist = vlen(vsub(to, st["pos"]))
                     if walk: dur = max(dur, int(dist / info.get("walk_speed", 1.1) * fps))
-                    move = (f, max(1, dur), list(st["pos"]), to, walk, lin)
+                    move = (f, max(1, dur), list(st["pos"]), to, walk, lin, eas)                           # act "ease": "inout" (2026-11-22) = eased start AND landing (smootherstep); default = fast_in (no ease-in)
                 if "_mouth" in ch: mouth = ch.pop("_mouth")
                 st.update(ch)
             if talk[f] and mouth is None: mouth = frames[f - 1]["mouth"] if f and frames[f - 1] and frames[f - 1]["mouth"] else "rest"
             pos = st["pos"]; step = None
             if move:
-                m0, dur, a_, b_, walk, lin = move; u = (f - m0) / float(dur)
+                m0, dur, a_, b_, walk, lin, eas = move; u = (f - m0) / float(dur)
                 if u >= 1: st["pos"] = pos = list(b_); move = None
                 else:
-                    pos = vlerp(a_, b_, u if (walk or lin) else fast_in(u)); step = int((f - m0) / (fps * 0.27)) % 2 if walk else None    # walk: a step every ~8 f (Rick stride 1.07 head widths)
+                    pos = vlerp(a_, b_, u if (walk or lin) else smoother(u) if eas == "inout" else fast_in(u)); step = int((f - m0) / (fps * 0.27)) % 2 if walk else None    # walk: a step every ~8 f (Rick stride 1.07 head widths)
             frames[f] = dict(view=st["view"], dir=st["dir"], pose=st["pose"] if step is None else "%s%d" % (st.get("walk_pose") or "walk", step), face=st["face"], mouth=mouth if talk[f] else None,
                              blink=None, prop=st["prop"], hand=st["hand"], pos=[round(v, 4) for v in pos], visible=st["visible"] and f >= f0)
             walking = bool(move and move[4] and F.get("auto_view"))

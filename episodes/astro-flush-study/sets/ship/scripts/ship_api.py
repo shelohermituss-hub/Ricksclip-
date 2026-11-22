@@ -3,7 +3,8 @@ set_state(scene, light='space'|'warm'|'map'|'radio', sun_dir=[x,y,z] (toward the
           4 steps, + collar puff from .5), glitter_ck=0..1 (cloud around the canopy, 3 steps), comm=0|1 (COMM INCOMING lamp, red MFD window, red wash),
           digits=0..3 (radio display picture), starmap=0..1 (sheet on the glass), shot=2|7|9|11 (stand-in cards), ship=[x,y,z,rx,ry,rz] (ship_root, degrees),
           earth=[x,y,z,R], earth_emit=0..1 (1 = evenly lit day side as shot 2, low = dark crescent as shot 11), fan=deg (solar fans about their boom),
-          earth_glare=[sx, sy, r, k] (round 4: soft white sun spot on the Earth at screen place sx, sy in half-frame units, radius r in half-frame heights, k 0..1))
+          earth_rot=[x, y, z] degrees (round 5: turns the painted globe per shot), earth_term=[dx, dy, k] (dark side away from screen direction dx, dy; k 0 = evenly lit),
+          fans=0|1 (round solar fans, spokes and booms; shot 2 has none), earth_glare=[sx, sy, r, k] (round 4: soft white sun spot on the Earth at screen place sx, sy in half-frame units, radius r in half-frame heights, k 0..1))
 set_light(scene, kind) is called by set_state(light=...). The same names and numbers are in ship_meta.json for the kit (sets/ship.js)."""
 import bpy, json, os, math
 from mathutils import Vector
@@ -22,7 +23,7 @@ def _emit(mat, strength, col=None):
     if col: b.inputs['Emission Color'].default_value = col
 DEFAULT = {'light': 'space', 'sun_dir': None, 'flame': 0, 'preglow': 0, 'glitter': 0, 'glitter_ck': 0, 'comm': 0, 'digits': 0, 'starmap': 0, 'shot': 0,
            'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0, 'sun_k': 1., 'sky_rot': 0, 'wash': 0,
-           'earth_glare': [.5, -.7, .3, 0.]}
+           'earth_glare': [.5, -.7, .3, 0.], 'earth_rot': [75, 0, 30], 'earth_term': [-.6, .6, 0.], 'fans': 1}
 LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each, cockpit fill W, room lights W, world colour
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
     'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 220, 'ck_fill': 60, 'rooms': 120},
@@ -44,14 +45,19 @@ def set_state(scene, **kw):
     _o('sky_dome').rotation_euler = (0, 0, math.radians(float(S.get('sky_rot', 0))))
     w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or {'warm': 450., 'space': 200.}.get(S['light'], 0.)
     sh = S['ship']; r = _o('ship_root'); r.location = sh[:3]; r.rotation_euler = [math.radians(a) for a in sh[3:6]]
-    e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; eo.rotation_euler = (math.radians(75), 0, math.radians(30));   # equator toward the lens (the UV poles pinch)
+    e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; eo.rotation_euler = [math.radians(a) for a in (S.get('earth_rot') or DEFAULT['earth_rot'])]   # round 5: per shot
     ee = float(S.get('earth_emit', 1.)); _emit('earth', ee)   # round 4: the map is the emission (unlit look); a dim lit base shows when earth_emit is low
     em = bpy.data.materials.get('earth'); _vis('earth_clouds', False)   # clouds are in the map now
     if em:
         nn = em.node_tree.nodes; nn['earth_base'].inputs['Value'].default_value = .12 + .5 * (1 - ee)
         gx, gy, gr, gk = (list(S.get('earth_glare') or DEFAULT['earth_glare']) + [0, 0, 0, 0])[:4]; cam = scene.camera
         tv = 18. / cam.data.lens if cam else .4; th = tv * scene.render.resolution_x / max(1, scene.render.resolution_y)
-        nn['glare_x'].outputs[0].default_value = gx * th; nn['glare_y'].outputs[0].default_value = gy * tv; nn['glare_r'].outputs[0].default_value = max(gr, .01) * tv; nn['glare_k'].outputs[0].default_value = gk
+        R3 = cam.matrix_world.to_3x3() if cam else Vector((0, 0, 1)).to_track_quat('Z', 'Y').to_matrix()   # round 5: screen numbers -> world directions
+        g = (R3 @ Vector((gx * th, gy * tv, -1.))).normalized(); nn['glare_dir'].inputs[0].default_value, nn['glare_dir'].inputs[1].default_value, nn['glare_dir'].inputs[2].default_value = g
+        nn['glare_r'].outputs[0].default_value = max(gr, .01) * tv; nn['glare_k'].outputs[0].default_value = gk
+        tx, ty, tk = (list(S.get('earth_term') or DEFAULT['earth_term']) + [0, 0, 0])[:3]; td = (R3 @ Vector((tx, ty, .5))).normalized()
+        for i in range(3): nn['term_dir'].inputs[i].default_value = td[i]
+        nn['term_k'].outputs[0].default_value = tk
     f = float(S['flame'])
     for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):
         o = _o(n); o.scale = (max(f, .001), .45 + .55 * f, .45 + .55 * f); o.hide_render = o.hide_viewport = f <= .001
@@ -69,6 +75,7 @@ def set_state(scene, **kw):
     sm = float(S['starmap']); _vis('star_map_sheet', sm > 0); _vis('star_map_tape', sm > 0); _emit('pic_starmap', 2.5 * sm)
     for n in ('solar_fan_p', 'solar_fan_n'):
         for o in (_o(n), _o(n + '_spokes')): o.rotation_euler = (0, math.radians(float(S.get('fan', 0))), 0)
+    for n in ('solar_fan_p', 'solar_fan_n', 'solar_fan_p_spokes', 'solar_fan_n_spokes', 'solar_boom_p', 'solar_boom_n'): _vis(n, int(S.get('fans', 1)))
     shot = int(S.get('shot', 0))
     for n, shots in M['standins'].items(): _vis(n, shot in shots)
     return S

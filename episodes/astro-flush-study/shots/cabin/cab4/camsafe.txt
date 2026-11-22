@@ -1,0 +1,7 @@
+CAMERA-SAFE  cab4  camsafe on  1269 checks: PASS 722  WARN 0  FAIL 547
+  VIEW_MISMATCH  547
+  f0 commander FAIL  yaw -26.2 pitch 48.7  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_cab/cmd4)
+      FIX: set film.json "camsafe": true (moves then draw the asked view)
+  f299 navigator FAIL  yaw 21.1 pitch 19.8  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_cab/nav4)
+      FIX: set film.json "camsafe": true (moves then draw the asked view)
+report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/plan/camsafe_report.json

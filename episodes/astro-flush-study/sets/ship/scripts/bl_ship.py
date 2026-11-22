@@ -450,27 +450,34 @@ def earth_mats():
     t = N_('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png')); t.interpolation = 'Cubic'
     hs = N_('ShaderNodeHueSaturation'); hs.name = 'earth_base'; hs.inputs['Value'].default_value = .2; L_(t.outputs[0], hs.inputs['Color']); L_(hs.outputs[0], b.inputs['Base Color'])
     lw = N_('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5
-    pw = N_('ShaderNodeMath'); pw.operation = 'POWER'; L_(lw.outputs['Facing'], pw.inputs[0]); pw.inputs[1].default_value = 5.
+    pw = N_('ShaderNodeMath'); pw.operation = 'POWER'; L_(lw.outputs['Facing'], pw.inputs[0]); pw.inputs[1].default_value = 14.   # round 5: only the last few degrees at the limb go pale (close views stay saturated)
     pk = N_('ShaderNodeMath'); pk.operation = 'MULTIPLY'; pk.inputs[1].default_value = .6; L_(pw.outputs[0], pk.inputs[0])
     limb = N_('ShaderNodeMix'); limb.data_type = 'RGBA'; L_(pk.outputs[0], limb.inputs['Factor']); L_(t.outputs[0], limb.inputs[6]); limb.inputs[7].default_value = lin('#d4efff')
-    gp = N_('ShaderNodeNewGeometry'); vt = N_('ShaderNodeVectorTransform'); vt.vector_type = 'POINT'; vt.convert_from = 'WORLD'; vt.convert_to = 'CAMERA'; L_(gp.outputs['Position'], vt.inputs[0])
-    sx = N_('ShaderNodeSeparateXYZ'); L_(vt.outputs[0], sx.inputs[0]); nz = N_('ShaderNodeMath'); nz.operation = 'MULTIPLY'; nz.inputs[1].default_value = -1.; L_(sx.outputs['Z'], nz.inputs[0])
+    gp = N_('ShaderNodeNewGeometry')   # round 5: glare and terminator in WORLD space; ship_api turns the screen numbers into world directions with the scene camera
+    gd = N_('ShaderNodeCombineXYZ'); gd.name = 'glare_dir'; gd.inputs[2].default_value = 1.; ic = N_('ShaderNodeVectorMath'); ic.operation = 'DOT_PRODUCT'; L_(gp.outputs['Incoming'], ic.inputs[0]); L_(gd.outputs[0], ic.inputs[1])
     def V(name, v): n = N_('ShaderNodeValue'); n.name = n.label = name; n.outputs[0].default_value = v; return n
-    gx, gy, gr, gk = V('glare_x', .3), V('glare_y', -.3), V('glare_r', .12), V('glare_k', 0.)
+    gr, gk = V('glare_r', .12), V('glare_k', 0.)
     def M(op, a, bb):
         n = N_('ShaderNodeMath'); n.operation = op
         for i, v in enumerate((a, bb)):
             if isinstance(v, (int, float)): n.inputs[i].default_value = v
             else: L_(v, n.inputs[i])
         return n.outputs[0]
-    du = M('SUBTRACT', M('DIVIDE', sx.outputs['X'], nz.outputs[0]), gx.outputs[0]); dv = M('SUBTRACT', M('DIVIDE', sx.outputs['Y'], nz.outputs[0]), gy.outputs[0])
-    d2 = M('DIVIDE', M('ADD', M('MULTIPLY', du, du), M('MULTIPLY', dv, dv)), M('MULTIPLY', gr.outputs[0], gr.outputs[0]))
-    gl = M('MULTIPLY', M('ADD', M('EXPONENT', M('MULTIPLY', d2, -1.), 0), M('MULTIPLY', M('EXPONENT', M('MULTIPLY', d2, -.15), 0), .35)), gk.outputs[0])   # core + broad halo
+    cosg = M('MULTIPLY', ic.outputs['Value'], -1.)   # Incoming points back to the lens: -Incoming . glare_dir = cos(angle from the glare ray)
+    d2 = M('DIVIDE', M('MULTIPLY', M('SUBTRACT', 1., cosg), 2.), M('MULTIPLY', gr.outputs[0], gr.outputs[0]))
+    gl = M('MULTIPLY', M('ADD', M('EXPONENT', M('MULTIPLY', d2, -1.), 0), M('MULTIPLY', M('EXPONENT', M('MULTIPLY', d2, -.15), 0), .45)), gk.outputs[0])   # core (k > 1 clips it white) + broad soft halo
     gm = N_('ShaderNodeMix'); gm.data_type = 'RGBA'; gm.clamp_factor = True; L_(gl, gm.inputs['Factor']); L_(limb.outputs[2], gm.inputs[6]); gm.inputs[7].default_value = (1, 1, 1, 1)
-    L_(gm.outputs[2], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = 1.
+    # round 5 terminator: fac = 1 - term_k * (1 - smoothstep(N . term_dir)); term_k 0 = evenly lit (ship_api earth_term)
+    gn = gp
+    td = N_('ShaderNodeCombineXYZ'); td.name = 'term_dir'; td.inputs[2].default_value = 1.   # world direction of the lit side (ship_api)
+    dp = N_('ShaderNodeVectorMath'); dp.operation = 'DOT_PRODUCT'; L_(gn.outputs['Normal'], dp.inputs[0]); L_(td.outputs[0], dp.inputs[1])
+    mr = N_('ShaderNodeMapRange'); mr.interpolation_type = 'SMOOTHSTEP'; mr.inputs['From Min'].default_value = -.2; mr.inputs['From Max'].default_value = .3; L_(dp.outputs['Value'], mr.inputs[0])
+    tk = V('term_k', 0.); fac = M('SUBTRACT', 1., M('MULTIPLY', tk.outputs[0], M('SUBTRACT', 1., mr.outputs[0])))
+    tm = N_('ShaderNodeMix'); tm.data_type = 'RGBA'; L_(fac, tm.inputs['Factor']); tm.inputs[6].default_value = lin('#02030c'); L_(gm.outputs[2], tm.inputs[7])
+    L_(tm.outputs[2], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = 1.
     b.inputs['Roughness'].default_value = .7; b.inputs['Specular IOR Level'].default_value = .15; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
-    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 3.5   # round 4: thicker rim
+    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 5.   # round 5 (3.5 washed the close views)
     em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#c8ecff'); em.inputs[1].default_value = 3.
     tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])
@@ -496,7 +503,8 @@ sm = mat('sky_stars', png='stars.png', emit_png=True, es=1., rough=1.); sm.node_
 def star_boost(m):
     """round 4: emission strength 1 + 5 v^4 (v = picture brightness): the navy ground stays as painted, star cores go past 1 so the render's pixel filter
     does not dim the 1-2 px stars (an 8-bit map clips them at 1)."""
-    nt = m.node_tree; t = nt.nodes['Image Texture']; b = nt.nodes['Principled BSDF']; hv = nt.nodes.new('ShaderNodeSeparateColor'); hv.mode = 'HSV'; nt.links.new(t.outputs[0], hv.inputs[0])
+    nt = m.node_tree; t = nt.nodes['Image Texture']; b = nt.nodes['Principled BSDF']; b.inputs['Specular IOR Level'].default_value = 0.   # round 5: the sun's gloss on the dome lifted the sky to #0d0d21
+    hv = nt.nodes.new('ShaderNodeSeparateColor'); hv.mode = 'HSV'; nt.links.new(t.outputs[0], hv.inputs[0])
     p4 = nt.nodes.new('ShaderNodeMath'); p4.operation = 'POWER'; p4.inputs[1].default_value = 4.; nt.links.new(hv.outputs[2], p4.inputs[0])
     ma = nt.nodes.new('ShaderNodeMath'); ma.operation = 'MULTIPLY_ADD'; ma.inputs[1].default_value = 5.; ma.inputs[2].default_value = 1.; nt.links.new(p4.outputs[0], ma.inputs[0]); nt.links.new(ma.outputs[0], b.inputs['Emission Strength'])
 star_boost(sm)

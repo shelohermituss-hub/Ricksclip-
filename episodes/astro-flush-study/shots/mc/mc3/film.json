@@ -93,7 +93,30 @@
    },
    "mc": {
     "keys": "reference",
-    "ref_f0": 0
+    "ref_f0": 0,
+    "motion": {
+     "screen_fade": {
+      "ring": [
+       6,
+       0
+      ],
+      "noflush": [
+       0,
+       6
+      ]
+     },
+     "mood_fade": {
+      "teal": 8
+     },
+     "box_rise": [
+      170,
+      182
+     ],
+     "cover": [
+      254,
+      263
+     ]
+    }
    }
   }
  },
@@ -105,9 +128,9 @@
     {
      "at": 0,
      "pos": [
-      -2.9015,
-      -2.772,
-      4.4122
+      -3.1837,
+      -1.0046,
+      4.7497
      ],
      "aim": [
       -2.9015,
@@ -115,12 +138,12 @@
       4.4122
      ],
      "lens": 58.88,
-     "roll": 0,
+     "roll": -3.6,
      "hold": 0.7,
      "creep": 0,
      "subject": null,
      "framing": "C",
-     "purpose": "pre-roll (never rendered): parked on the panel"
+     "purpose": "pre-roll (never rendered): parked just inside the panel; the travel leaves at f108"
     },
     {
      "at": 120,
@@ -137,11 +160,9 @@
      "lens": 58.88,
      "roll": -4,
      "hold": 0,
-     "min_hold": 0,
-     "creep": 0,
+     "pin": true,
      "framing": "C",
-     "purpose": "f120 match move from shot 2: the space panel fills the frame",
-     "travel": 0.1
+     "purpose": "f120 match move from shot 2: the space panel fills the frame, camera already moving"
     },
     {
      "at": 142,
@@ -156,12 +177,12 @@
       2.6
      ],
      "lens": 58.88,
-     "roll": 0,
+     "roll": -7,
      "hold": 0,
-     "creep": 0,
+     "pin": true,
      "framing": "W",
      "subject": "ctlBlue",
-     "purpose": "via (no stop): orbit map wall, clocks, three heads at the bottom (cam f140 fitted)"
+     "purpose": "pinned pass: orbit map wall, clocks, three heads at the bottom (cam f140 fitted)"
     },
     {
      "at": 180,
@@ -177,19 +198,11 @@
      ],
      "lens": 58.88,
      "roll": 0,
-     "travel": 2.0,
-     "travel_roll": -5.0,
-     "hold": 3.0,
-     "creep": 0,
-     "drift": [
-      0.02,
-      0.5666666666666664,
-      0.0
-     ],
-     "drift_aim": 0,
+     "hold": 0,
+     "pin": true,
      "subject": "director",
      "framing": "M",
-     "purpose": "one pull-back f120-180 (roll -4 -> about -7 -> level), then settled: slow push in"
+     "purpose": "pinned pass: director on his mark, level, slow push in"
     },
     {
      "at": 283,
@@ -205,18 +218,32 @@
      ],
      "lens": 58.88,
      "roll": 0,
-     "hold": 4.0,
-     "creep": 0.00015,
-     "drift": [
-      0.03,
-      0.0,
-      0.0
-     ],
-     "drift_aim": 0.5,
-     "travel": 0.43,
+     "hold": 0,
+     "pin": true,
      "subject": "director",
      "framing": "M",
-     "purpose": "f283 = cam_monitor; holds with a slight drift to f410 (monitor picture of shot 4)"
+     "purpose": "pinned pass: f283 = cam_monitor (monitor picture of shot 4)"
+    },
+    {
+     "at": 410,
+     "pos": [
+      1.127,
+      -19.8,
+      1.45
+     ],
+     "aim": [
+      0.6635,
+      0,
+      2.7
+     ],
+     "lens": 58.88,
+     "roll": 0,
+     "travel": 10.0667,
+     "hold": 1.0,
+     "creep": 0,
+     "subject": "director",
+     "framing": "M",
+     "purpose": "eased landing at the end of the monitor tail"
     }
    ]
   }
@@ -364,19 +391,20 @@
   },
   {
    "who": "ctlGreen",
-   "at": 150,
+   "at": 146,
    "pos": [
     -1.188,
     -11.35,
     0
    ],
-   "move_s": 0.85,
+   "move_s": 1.0,
+   "ease": "inout",
    "look": [
     -1.188,
     -17.35,
     1.4
    ],
-   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back), eased both ends"
   },
   {
    "who": "ctlGreen",
@@ -441,19 +469,20 @@
   },
   {
    "who": "ctlBlue",
-   "at": 150,
+   "at": 146,
    "pos": [
     -0.565,
     -11.35,
     0
    ],
-   "move_s": 0.85,
+   "move_s": 1.0,
+   "ease": "inout",
    "look": [
     -0.565,
     -17.35,
     1.4
    ],
-   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back), eased both ends"
   },
   {
    "who": "ctlBlue",
@@ -518,19 +547,20 @@
   },
   {
    "who": "ctlDark",
-   "at": 150,
+   "at": 146,
    "pos": [
     0.058,
     -11.35,
     0
    ],
-   "move_s": 0.85,
+   "move_s": 1.0,
+   "ease": "inout",
    "look": [
     0.058,
     -17.35,
     1.4
    ],
-   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back)"
+   "note": "cheat marks of his f142 -> real marks by f176 (under the pull-back), eased both ends"
   },
   {
    "who": "ctlDark",
@@ -586,7 +616,7 @@
     0.6
    ],
    [
-    150,
+    146,
     0.6,
     0.6
    ],
@@ -608,7 +638,7 @@
     0.6
    ],
    [
-    150,
+    146,
     0.6,
     0.6
    ],
@@ -630,7 +660,7 @@
     0.6
    ],
    [
-    150,
+    146,
     0.6,
     0.6
    ],

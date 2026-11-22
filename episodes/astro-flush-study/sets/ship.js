@@ -39,13 +39,14 @@ export async function build(THREE, scene, film, ctx) {
   const basic = (o, opt) => { if (o) o.traverse(m => { if (m.isMesh) m.material = new THREE.MeshBasicMaterial(Object.assign({ toneMapped: false, fog: false }, opt(m.material))); }); };
   basic(N('sky_dome'), m => ({ map: m.map, side: THREE.DoubleSide }));
   // round 4: unlit Earth as in Blender: the painted map (clouds inside, make_earth_stars.py), pale limb, soft white glare spot at a screen place (S.earth_glare)
-  const GL = { glare: { value: new THREE.Vector4(.5, -.7, .3, 0) } };
+  const GL = { glare: { value: new THREE.Vector4(.5, -.7, .3, 0) }, term: { value: new THREE.Vector3(-.6, .6, 0) } };
   const em = N('earth'); if (em) em.traverse(m => { if (!m.isMesh) return; m.material = new THREE.ShaderMaterial({ uniforms: Object.assign({ map: { value: m.material.map } }, GL), toneMapped: false, fog: false,
-    vertexShader: 'varying vec2 vUv; varying vec3 vP, vN; void main(){ vUv = uv; vec4 p = modelViewMatrix * vec4(position, 1.); vP = p.xyz; vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * p; }',
-    fragmentShader: 'uniform sampler2D map; uniform vec4 glare; varying vec2 vUv; varying vec3 vP, vN; void main(){ vec3 c = texture2D(map, vUv).rgb;' +
-      ' float fa = 1. - abs(dot(normalize(vN), normalize(-vP))); c = mix(c, vec3(.83, .94, 1.), .7 * fa * fa * fa);' +
-      ' float A = projectionMatrix[0][0], B = projectionMatrix[1][1]; vec2 s = vP.xy / -vP.z - vec2(glare.x / A, glare.y / B); float r = glare.z / B, g = glare.w * exp(-dot(s, s) / (r * r));' +
-      ' gl_FragColor = vec4(mix(c, vec3(1.), clamp(g, 0., 1.)), 1.); }' }); m.material.map = null; });
+    vertexShader: 'varying vec2 vUv; varying vec3 vP, vN; varying vec2 vPA; void main(){ vUv = uv; vPA = vec2(projectionMatrix[0][0], projectionMatrix[1][1]); vec4 p = modelViewMatrix * vec4(position, 1.); vP = p.xyz; vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * p; }',
+    fragmentShader: 'uniform sampler2D map; uniform vec4 glare; uniform vec3 term; varying vec2 vUv; varying vec3 vP, vN; varying vec2 vPA; void main(){ vec3 c = texture2D(map, vUv).rgb;' +
+      ' float fa = 1. - abs(dot(normalize(vN), normalize(-vP))); c = mix(c, vec3(.83, .94, 1.), .6 * pow(fa, 14.));' +
+      ' float A = vPA.x, B = vPA.y; vec2 s = vP.xy / -vP.z - vec2(glare.x / A, glare.y / B); float r = glare.z / B, d2 = dot(s, s) / (r * r), g = glare.w * (exp(-d2) + .45 * exp(-.15 * d2));' +
+      ' float T = smoothstep(-.2, .3, dot(normalize(vN), normalize(vec3(term.xy, .5)))); c *= 1. - term.z * (1. - T);' +
+      ' gl_FragColor = linearToOutputTexel(vec4(mix(c, vec3(1.), clamp(g, 0., 1.)), 1.)); }' }); m.material.map = null; });
   basic(N('earth_rim'), () => ({ color: '#c8ecff', transparent: true, opacity: .45, side: THREE.BackSide, depthWrite: false }));
   vis('earth_clouds', false);   // round 4: the cloud shell and its tile are gone (clouds are painted into the Earth map)
   const FL = { flame_core: ['#fefefe', 1], flame_mid: ['#cbaaf1', .55], flame_outer: ['#8a6ee7', .35], flame_halo: ['#6d51b8', .22], flame_glow: ['#8a6ee7', .1] };
@@ -57,9 +58,10 @@ export async function build(THREE, scene, film, ctx) {
   function setState(s = {}) {
     Object.assign(S, s);
     if (shipRoot && S.ship) { shipRoot.position.copy(B2T(S.ship.slice(0, 3))); shipRoot.rotation.set(S.ship[3] * D2R, S.ship[5] * D2R, -S.ship[4] * D2R); }
-    if (S.earth_glare) GL.glare.value.set(...S.earth_glare);
+    if (S.earth_glare) GL.glare.value.set(...S.earth_glare); if (S.earth_term) GL.term.value.set(...S.earth_term);   // round 5: same numbers as ship_api.py
+    for (const n of ['solar_fan_p', 'solar_fan_n', 'solar_fan_p_spokes', 'solar_fan_n_spokes', 'solar_boom_p', 'solar_boom_n']) vis(n, S.fans ?? 1);
     if (earth && S.earth) { const p = B2T(S.earth.slice(0, 3)), d = p.length(), k = d > 420 ? 420 / d : 1; earth.position.copy(p.multiplyScalar(k)); earth.scale.setScalar(S.earth[3] * k);
-      earth.rotation.set(75 * D2R, 30 * D2R, 0, 'YXZ'); }   // the api turns the equator toward the lens (Blender x 75, z 30)
+      const er = S.earth_rot || [75, 0, 30]; earth.rotation.set(er[0] * D2R, er[2] * D2R, -er[1] * D2R, 'YZX'); }   // round 5: Blender XYZ euler earth_rot (Rz Ry Rx) in Y-up axes
     const f = +S.flame; flames.forEach(o => { o.visible = f > .001; o.scale.set(Math.max(f, .001), .45 + .55 * f, .45 + .55 * f); });   // glTF is Y-up: Blender x stays x, the width axes are y and z
     if (nozzleMat) nozzleMat.emissiveIntensity = 8 * Math.max(+S.preglow, f > 0 ? 1 : 0);
     for (let k = 0; k < 4; k++) vis('glitter_trail_' + k, S.glitter > k / 4); vis('glitter_collar', S.glitter >= .5);

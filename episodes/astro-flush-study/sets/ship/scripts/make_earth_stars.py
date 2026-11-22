@@ -35,8 +35,8 @@ def norm01(a, lo=1, hi=99): p0, p1 = np.percentile(a[::7, ::7], [lo, hi]); retur
 def up(a, W, H): return np.asarray(Image.fromarray(a.astype(np.float32), 'F').resize((W, H), Image.BICUBIC), np.float32)
 
 # ------------------------------------------------------------------ EARTH
-SEA_D, SEA_L, SHALLOW = hx('#1a5cc8'), hx('#2a7cd8'), hx('#3aa8e6')
-LAND_A, LAND_B, LAND_C = hx('#86c446'), hx('#b8d457'), hx('#6db248')
+SEA_D, SEA_L, SHALLOW = hx('#22599f'), hx('#2f7fc0'), hx('#3d9bd2')   # round 5: his on-screen sea #2862a2..#3488bf
+LAND_A, LAND_B, LAND_C = hx('#8dc43c'), hx('#bcd44a'), hx('#6aae3e')
 CLOUD, CSHADE, CDEEP = hx('#fbfdff'), hx('#c4d6ee'), hx('#9fb8dc')
 def earth(W=8192, H=4096):
     w2, h2 = W // 2, H // 2; P = sphere(w2, h2)

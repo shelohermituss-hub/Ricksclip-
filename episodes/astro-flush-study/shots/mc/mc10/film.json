@@ -93,7 +93,30 @@
    },
    "mc": {
     "keys": "reference",
-    "ref_f0": 0
+    "ref_f0": 0,
+    "motion": {
+     "screen_fade": {
+      "ring": [
+       6,
+       0
+      ],
+      "noflush": [
+       0,
+       6
+      ]
+     },
+     "mood_fade": {
+      "teal": 8
+     },
+     "box_rise": [
+      170,
+      182
+     ],
+     "cover": [
+      254,
+      263
+     ]
+    }
    }
   }
  },
@@ -225,19 +248,20 @@
   },
   {
    "who": "director",
-   "at": 838,
+   "at": 834,
    "pos": [
     0.9500000000000001,
     -14.81,
     0
    ],
-   "move_s": 0.13,
+   "move_s": 0.4,
+   "ease": "inout",
    "look": [
     0.9,
     -19.21,
     1.4
    ],
-   "note": "839-842 lunges to the lens (head 15% -> 21%)"
+   "note": "834-846 lunges to the lens (his build-up 833-845, head 15% -> 21%), eased"
   },
   {
    "who": "director",
