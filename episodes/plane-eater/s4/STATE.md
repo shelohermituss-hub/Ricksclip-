@@ -30,3 +30,20 @@
 - Owner beard swap: owner 660, ownerBeardS 679 "two", M 686 "years", L 694, XL 701 "finish"; jaw drop 713; XL stands at the empty cradle from 876.
 - Links: cast, props, voice -> ../; sets/{apron,apron.js,vendor,xray,xray.js,pe_props.js} -> ../../sets/. No change to shared sets.
 - LECONS_TECHNIQUES.md: first-station creep from frame 0, the shared out/plan between passes, "travel" stations, hidden-vs-removed meshes in a held builder.
+
+## Checks (draft render, 2026-11-22)
+- camsafe validate: exit 1, 4646 checks, 4580 PASS, 66 FAIL = ownerBeardXL f877-942 VIEW_MISMATCH (camera asks front, m:ow_stare draws 3/4).
+  Fix: let ow_stare draw the view camsafe asks for (or add look_full on his act at 876). No waiver.
+- frame_checks: 5 FAIL / 19 WARN / 90 PASS: owner XL cut by the left edge f904-912 (body + head), Michel cut by the left edge f774-781 (the crane
+  start frames the tower, Michel half out), Michel feet float 25 cm at f942 (seated legs3d), WARN beard L/XL overlap at the swap frame 693 (two
+  puppets on one frame), owner foot slide f874-903 (the walk-in of the XL owner to the cradle), table_top 1-4 % in his torso (seated).
+- film_plan check --window 660-942: 10 FAIL / 10 WARN of 44. Window gate: camera speed p90 31.7 px/f (target <= 22): the beat-to-beat
+  stations (travel 0.6-1.0 s, "travel under 1 s" WARN x5). The other FAILs (rest length, dead still 74 %, framing medians, frozen 23 s, moods/min)
+  are measured over frames 0-660 too (the camera and the cast rest before the window): not the stretch's own.
+- film_A (clinic 638-672) not checked separately (time).
+- Seen on KEYFRAMES.jpg: at f822-838 the crane rises INTO the near tree crown (a dark leaf mass covers the top third at 838): move the crane
+  stations north of the tree (7.0, -4.9) or hide the crown for that lens. Coffin on the tower top not readable at 838.
+
+## Numbers
+- Pass A 35 frames 1.9 s/f, pass B 283 frames 2.8 s/f (another builder rendering), all 305 frames + blend in 924 s. Checks: about 13 min frame_checks + camsafe.
+- draft.mp4 10.17 s with voice (21.27-31.43 s), KEYFRAMES.jpg (13 keys), strip_4fps.jpg. Test stills key/t1..t6.
