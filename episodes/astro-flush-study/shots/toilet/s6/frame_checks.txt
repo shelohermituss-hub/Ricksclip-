@@ -1,0 +1,3 @@
+frame_checks: s6/film.json  513 of 538 frames (rests f0-484)  cast newguy
+result who            rest         check         number    worst at  bad frames what                                                      
+0 FAIL, 0 WARN, 12 PASS (25.3 s, scan 17.7 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s6/out/frame_checks.md

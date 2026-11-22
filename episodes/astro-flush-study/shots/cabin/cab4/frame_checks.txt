@@ -1,0 +1,8 @@
+frame_checks: cab4/film.json  349 of 423 frames (rests f0-271)  cast commander, newguy, navigator
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   commander      f422 (last)  feet          32.7 cm   f422      1/1        2 of 2 feet float, nearest cabin/cabin_floor_dots         
+FAIL   newguy         f422 (last)  feet          12.6 cm   f422      1/1        2 of 2 feet float, nearest cabin/cabin_floor_dots         
+FAIL   navigator      f422 (last)  feet          45.6 cm   f422      1/1        2 of 2 feet float, nearest cabin/cabin_floor_dots         
+WARN   commander      f272-421 mo~ body_in_mesh  1 %       f420      28/66      inside cabin/cabin_table: torso-hips-thighs 1 %, legs 0 %~
+WARN   commander      f422 (last)  body_in_mesh  1 %       f422      1/1        inside cabin/cabin_table: torso-hips-thighs 1 %, legs 0 %~
+3 FAIL, 2 WARN, 13 PASS (40.1 s, scan 28.7 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/frame_checks.md, 3 crops in /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/frame_checks

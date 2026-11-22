@@ -1,5 +1,5 @@
-CAMERA-SAFE  cab4  camsafe on  1269 checks: PASS 984  WARN 285  FAIL 0
-  STEEP          285
-  f0 newguy WARN  yaw 6 pitch 68.9  WARN STEEP: camera 69 deg down
+CAMERA-SAFE  cab4  camsafe on  1269 checks: PASS 983  WARN 286  FAIL 0
+  STEEP          286
+  f0 newguy WARN  yaw 6.9 pitch 71.2  WARN STEEP: camera 71 deg down
       FIX: lower the camera to 60 deg or less unless the plan wants the top-down
 report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/plan/camsafe_report.json

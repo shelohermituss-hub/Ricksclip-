@@ -1,0 +1,4 @@
+frame_checks: s1/film.json  23 of 42 frames (rests none)  cast newguy
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   newguy         f0 (first)   seat          7.7 %     f0        1/1        hips hover above toilet/toilet_seat                       
+1 FAIL, 0 WARN, 14 PASS (9.5 s, scan 1 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/frame_checks.md, 1 crops in /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/frame_checks
