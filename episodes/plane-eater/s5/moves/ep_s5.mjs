@@ -31,18 +31,18 @@ function miMeal(t, ch) { const f = F(t) + A0;
   near = mix(near, { f: .9, d: .5 }, down); far = mix(far, { f: .9, d: .52 }, down);                                 // the strike on FOOD
   near = mix(near, { f: .35, d: -.25 }, raise); far = mix(far, { f: .55, d: .3 }, raise);                            // fork to the mouth, knife rests
   const chew = f > 1008 ? 1.5 * Math.sin((f - 1008) * .9) : 0;
-  return { view: '34', dir: 1, x: 0, y: seatY(ch) + dip(f, W.food, 8, 6) + chew, rot: 4 * sniff - 4 * back + 9 * down - 9 * raise,
+  return { view: '34', dir: 1, x: 0, y: seatY(ch) + dip(f, W.food, 8, 6) + chew, rot: 4 * sniff - 4 * back + 4 * down - 4 * raise,
     head: 7 * sniff - 12 * back + 5 * down - 5 * raise + ring(f, W.food, 3, 10), feet: [], farArmFront: true,
     hands: [{ ...far, bow: .4 }, { ...near, bow: .35, over: up > .5 && raise < .5 }], held: [] }; }
 
 // ---- OWNER m:ow_wary (3/4, aisle seat), rows 35-38: arms folded on his belly, wary side-eye at Michel; DEAD STILL in the stillness;
 //   1003 after "FOOD": the near hand (rag) flies up to his eyes and RUBS them (3 rubs, 1006-1016); 1017 the hand drops, defeated
 function owWary(t, ch) { const f = F(t) + A0;
-  const lean = snap(f - 977, 10), rubIn = snap(f - 1003, 5) - snap(f - 1010, 5), rub = f > 1005 && f < 1010 ? .06 * Math.sin((f - 1005) * 1.9) : 0;
-  const reach = snap(f - 1009, 6), wipe = f > 1014 ? .07 * Math.sin((f - 1014) * 1.6) : 0;
+  const lean = snap(f - 977, 10), rubIn = snap(f - 994, 4) - snap(f - 1001, 4), rub = f > 995 && f < 1001 ? .06 * Math.sin((f - 995) * 1.9) : 0;
+  const reach = snap(f - 1001, 6), wipe = f > 1006 ? .08 * Math.sin((f - 1006) * 1.6) : 0;
   let near = mix({ f: .35, d: .62 }, { f: .28 + rub, d: -.38 }, rubIn); near = mix(near, { f: 1.0 + wipe, d: -.28 }, reach);   // row 38: leans over and wipes the window, rag at eye height
   const far = { f: .2, d: .66 };
-  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 5 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
+  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 2 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
     hands: [{ ...far, bow: .4 }, { ...near, bow: .3, over: rubIn > .5 || reach > .5 }], held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });

@@ -125,15 +125,14 @@
     ],
     "wild": [
      "8A",
-     "8B",
-     "16A",
-     "16B"
+     "8B"
     ],
     "wing_offset": [
-     -3.044,
+     -0.09,
      0,
-     -0.812
+     -0.341
     ],
+    "tray_dy": -0.5199999999999999,
     "foil_raise": 0.16
    },
    "kit3d": {
@@ -145,7 +144,7 @@
   "meal": {
    "pos": [
     0.30000000000000004,
-    1.25,
+    0.7300000000000001,
     0.7925
    ],
    "kind": "the grey airline meal"
@@ -153,16 +152,16 @@
   "tray": {
    "pos": [
     0.28,
-    1.2,
+    0.68,
     0.7725
    ],
    "kind": "the tray table (bitten on FOOD)"
   },
   "wing": {
    "pos": [
-    1.5650924750405069,
+    1.4749999999999999,
     6.8,
-    0.7786944512770276
+    0.43800000000000006
    ],
    "kind": "the airliner wing with one bite missing"
   }
@@ -173,7 +172,7 @@
    "at": 943,
    "pos": [
     0,
-    1.2,
+    0.68,
     0.0
    ],
    "view": "34",
@@ -182,7 +181,7 @@
    "face": "k:skeptical",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 35 \"HONESTLY\": lifts the foil off the grey meal, suspicious sniff"
@@ -193,7 +192,7 @@
    "face": "k:peDisgust",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 36 \"STILL better\": the face falls, polite disgust; slides the meal aside with one finger"
@@ -204,7 +203,7 @@
    "face": "k:proud",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 37 \"airline\": knife and fork up over the tray table"
@@ -215,7 +214,7 @@
    "face": "k:peChewHard",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 37 \"FOOD\": he cuts a bite out of the tray table"
@@ -226,7 +225,7 @@
    "face": "k:peChew",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 37-38: chews, happy, big in front of the window"
@@ -237,7 +236,7 @@
    "face": "k:slyWink",
    "look": [
     3.0,
-    1.2,
+    0.68,
     1.2
    ],
    "note": "row 38: slow wink (smug)"
@@ -247,7 +246,7 @@
    "at": 943,
    "pos": [
     0,
-    0.68,
+    1.2,
     0.0
    ],
    "view": "34",
@@ -256,7 +255,7 @@
    "face": "k:skeptical",
    "look": [
     3.0,
-    0.68,
+    1.2,
     1.2
    ],
    "note": "row 35: wary side-eye at Michel"
@@ -267,7 +266,7 @@
    "face": "k:worried",
    "look": [
     3.0,
-    0.68,
+    1.2,
     1.2
    ],
    "note": "row 36: leans away from the sliding meal"
@@ -278,7 +277,7 @@
    "face": "k:frustrated",
    "look": [
     3.0,
-    0.68,
+    1.2,
     1.2
    ],
    "note": "row 37: rubs his eyes with the yellow rag (running gag), defeated"
@@ -336,7 +335,7 @@
    "kind": "glint",
    "pos": [
     0.18000000000000002,
-    1.2,
+    0.68,
     1.3
    ],
    "note": "row 37 \"airline\": a glint on the raised knife"
@@ -346,7 +345,7 @@
    "kind": "clank",
    "pos": [
     0.36000000000000004,
-    1.3,
+    0.78,
     0.7725
    ],
    "note": "row 37 POWER 4: the bite out of the tray table, impact flash and sparks"
@@ -378,18 +377,18 @@
      "at": 943,
      "pos": [
       1.0,
-      0.35,
+      0.3,
       1.32
      ],
      "aim": [
       0.0,
-      0.95,
+      0.9,
       0.9
      ],
      "lens": 14,
      "subject": "michel",
      "framing": "W",
-     "purpose": "ROW 35 \"HONESTLY\" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil high off the grey meal with his fork hand",
+     "purpose": "ROW 35 \"HONESTLY\" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): Michel in front in seat B lifts the foil high off the grey meal, the owner at the window, wary",
      "hold": 0.9,
      "creep": 0.0,
      "shows": [
@@ -400,12 +399,12 @@
      "at": 984,
      "pos": [
       0.8,
-      0.9,
+      0.3,
       1.28
      ],
      "aim": [
-      0.08,
-      1.08,
+      0.06,
+      0.62,
       0.92
      ],
      "lens": 16,
@@ -422,41 +421,69 @@
     {
      "at": 1003,
      "pos": [
-      0.78,
-      0.88,
-      1.26
+      0.82,
+      0.32,
+      1.28
      ],
      "aim": [
-      0.1,
-      1.1,
-      0.92
+      0.08,
+      0.7,
+      0.94
      ],
-     "lens": 16,
+     "lens": 15,
      "subject": "michel",
      "framing": "M",
-     "purpose": "ROW 37 \"airline FOOD\" (POWER 4, M02 land): knife and fork up, then the strike: a neat bite out of the tray table, the owner rubs his eyes",
-     "hold": 0.1,
+     "purpose": "ROW 37 \"airline FOOD\" (POWER 4): knife and fork up, the strike: a neat bite out of the tray table; the owner wipes the window with his rag",
+     "hold": 0.2,
      "creep": 0.0028,
      "shows": [
       "tray"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "win",
+   "place": "cabin",
+   "stations": [
+    {
+     "at": 1012,
+     "pos": [
+      0.2,
+      1.7,
+      1.05
+     ],
+     "aim": [
+      0.6949999999999998,
+      6.99,
+      0.558
+     ],
+     "lens": 70,
+     "subject": "wing",
+     "framing": "O",
+     "purpose": "ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "wing"
      ]
     },
     {
      "at": 1021,
      "pos": [
-      1.75,
-      0.2,
-      1.35
+      0.23,
+      1.74,
+      1.05
      ],
      "aim": [
-      0.3,
-      1.15,
-      0.9
+      0.6949999999999998,
+      6.99,
+      0.558
      ],
-     "lens": 16,
-     "subject": "michel",
-     "framing": "W",
-     "purpose": "ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0",
+     "lens": 82,
+     "subject": "wing",
+     "framing": "O",
+     "purpose": "ROW 38 last frame: the bitten wing big and clear (slow push)",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [

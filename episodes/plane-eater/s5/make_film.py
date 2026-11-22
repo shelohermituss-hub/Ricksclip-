@@ -9,9 +9,10 @@ A = meta['anchors']
 cast = {'michel': dict(keys['cast']['michel'], walk_speed=99), 'owner': dict(keys['cast']['ownerBeardXL'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s5/' + k
 SEAT_M = .52
-MI = [A['michel_seat'][0], A['michel_seat'][1], A['michel_seat'][2] - SEAT_M]      # bottom ON the cushion (moves/ep_s5.mjs chair3d)
-OW = [A['owner_seat'][0], A['owner_seat'][1], A['owner_seat'][2] - SEAT_M]
-TRAY, MEAL = A['tray_table'], A['meal_tray']
+MI = [A['owner_seat'][0], A['owner_seat'][1], A['owner_seat'][2] - SEAT_M]      # fix round 2 (lead): Michel in seat B facing his tray, the OWNER at the window      # bottom ON the cushion (moves/ep_s5.mjs chair3d)
+OW = [A['michel_seat'][0], A['michel_seat'][1], A['michel_seat'][2] - SEAT_M]
+TDY = A['owner_seat'][1] - A['michel_seat'][1]
+TRAY, MEAL = [A['tray_table'][0], A['tray_table'][1] + TDY, A['tray_table'][2]], [A['meal_tray'][0], A['meal_tray'][1] + TDY, A['meal_tray'][2]]
 MI_FACE = [MI[0] + .2, MI[1], 1.22]
 FWD_M, FWD_O = [3.0, MI[1], 1.2], [3.0, OW[1], 1.2]   # seated: they face along the seat (+x) so the 3D legs agree with the seat; eyes act through the faces
 WIN = [0.98, 1.774, 1.02]   # window_glass_L_8 centre (the window just ahead of Michel's: the end station sees it whole)
@@ -36,12 +37,12 @@ held3d = [
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
-END_CAM = [1.75, 0.20, 1.35]
+END_CAM = [1.05, 0.25, 1.28]
+WCAM = [0.20, 1.70, 1.05]; WDIR = [0.25, 1.0, -0.12]          # row 38 close window shot: the lens at the glass of window L_0, looking out and a little forward
 stations = [
-    st(943, [1.00, 0.35, 1.32], [0.0, 0.95, 0.90], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil high off the grey meal with his fork hand', hold=0.9, creep=0.0, shows=['meal']),
-    st(984, [0.80, 0.90, 1.28], [0.08, 1.08, 0.92], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
-    st(1003, [0.78, 0.88, 1.26], [0.10, 1.10, 0.92], 16, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4, M02 land): knife and fork up, then the strike: a neat bite out of the tray table, the owner rubs his eyes', hold=0.1, shows=['tray']),
-    st(1021, END_CAM, [0.30, 1.15, 0.90], 16, 'michel', 'W', 'ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0', hold=0.0, shows=['wing']),
+    st(943, [1.00, 0.30, 1.32], [0.0, 0.90, 0.90], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): Michel in front in seat B lifts the foil high off the grey meal, the owner at the window, wary', hold=0.9, creep=0.0, shows=['meal']),
+    st(984, [0.80, 0.30, 1.28], [0.06, 0.62, 0.92], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
+    st(1003, [0.82, 0.32, 1.28], [0.08, 0.70, 0.94], 15, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4): knife and fork up, the strike: a neat bite out of the tray table; the owner wipes the window with his rag', hold=0.2, shows=['tray']),
 ]
 props = {
     'meal': dict(pos=MEAL, kind='the grey airline meal'),
@@ -50,10 +51,13 @@ props = {
 }
 K = lambda f, foil, meal, pea, bitten: dict(f=f, foil=foil, meal=meal, pea=pea, bitten=bitten)
 cab = dict(keys=[K(930, 0, 0, 0, 0), K(948, 1, 0, 0, 0), K(976, 1, 0, 0, 0), K(988, 1, 1, .3, 0), K(996, 1, 1, 1, 0), K(1001, 1, 1, 1, 1), K(1030, 1, 1, 1, 1)])
-cab['wild'] = ['8A', '8B', '16A', '16B']
+cab['wild'] = ['8A', '8B']
 # the wing bite onto the end station's ray through window L_0: keep y 6.8, move the wing along x and z (sets/cabin.js wing_offset)
 BITE = A['wing_bite']; t = (BITE[1] - END_CAM[1]) / (WIN[1] - END_CAM[1])
-cab['wing_offset'] = [round(END_CAM[0] + t * (WIN[0] - END_CAM[0]) - BITE[0], 3), 0, round(END_CAM[2] + t * (WIN[2] - END_CAM[2]) - BITE[2], 3)]
+t = (BITE[1] - WCAM[1]) / WDIR[1]
+BT = [WCAM[0] + t * WDIR[0], BITE[1], WCAM[2] + t * WDIR[2]]
+cab['wing_offset'] = [round(BT[0] - BITE[0], 3), 0, round(BT[2] - BITE[2], 3)]
+cab['tray_dy'] = TDY
 cab['foil_raise'] = 0.16
 place = dict(set='cabin', kind='am', light='day', cabin=cab, kit3d=dict(envGround='#6a7896'))
 film = {
@@ -73,5 +77,13 @@ film = {
     'moods': [dict(at=969, look='cold_blue', note='row 36: the grey meal, the face falls'), dict(at=1012, look='warm_up', note='row 38: smug, happy, the bright window'), dict(at=1001, look='flash_white', note='row 37 POWER 4 impact flash')],
     'takes': [{'id': 's5', 'place': 'cabin', 'stations': stations}],
 }
+AIMB = [BT[0] - 0.78, BT[1] + 0.19, BT[2] + 0.12]   # the bite notch as measured on the lens-40 test frame (key/w.jpg: 160 px left, 25 px up of BT)
+WIN_ST = [st(1005, WCAM, AIMB, 70, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
+          st(1021, [WCAM[0] + .03, WCAM[1] + .04, WCAM[2]], AIMB, 82, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
+film['takes'].append({'id': 'win', 'place': 'cabin', 'stations': [dict(WIN_ST[0], at=1012), WIN_ST[1]]})
+props['wing']['pos'] = BT
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 print('film.json written:', len(acts), 'acts,', len(stations), 'stations')
+import copy
+FA = copy.deepcopy(film); FA['takes'] = [{'id': 's5', 'place': 'cabin', 'stations': stations}]; json.dump(FA, open(os.path.join(HERE, 'film_A.json'), 'w'), indent=1)
+FW = copy.deepcopy(film); FW['takes'] = [{'id': 'win', 'place': 'cabin', 'stations': WIN_ST}]; json.dump(FW, open(os.path.join(HERE, 'film_W.json'), 'w'), indent=1)

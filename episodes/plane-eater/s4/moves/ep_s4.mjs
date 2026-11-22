@@ -33,19 +33,19 @@ function miS4(t, ch) { const f = F(t);
   let R = P2([[0, PLATE], [703, { f: .6, d: .4 }, 4], [707, { f: .5, d: .05 }, 5], [711, MOUTH, 3], [715, REST, 8],
     [737, { f: .62, d: .42 }, 4], [740, { f: .55, d: .08 }, 4], [751, { f: .62, d: .42 }, 5], [755, REST, 8],
     [830, { f: .6, d: .42 }, 6], [836, { f: .55, d: .3 }, 6], [843, { f: .74, d: .12 }, 5], [850, { f: .72, d: .16 }, 2], [866, { f: .6, d: .42 }, 10], [878, REST, 8],
-    [882, { f: .62, d: .42 }, 5], [888, { f: .5, d: .1 }, 8], [894, { f: .55, d: -.32 }, 6], [906, { f: .38, d: -.12 }, 6], [912, { f: .3, d: -.1 }, 3], [930, { f: .45, d: .15 }, 12]], f);
+    [890, { f: .5, d: .1 }, 6], [894, { f: .5, d: -.12 }, 6], [906, REST, 8]], f);   // the near hand helps hold the frame up on STRANGEST
   if (lapse) R = { f: PLATE.f + (MOUTH.f - PLATE.f) * toM, d: PLATE.d + (MOUTH.d - PLATE.d) * toM };
   if (f > 740 && f < 751) R = { f: R.f + .025 * Math.sin((f - 740) * 2.6), d: R.d };                        // the bell rings
   if (f > 850 && f < 862) R = { f: R.f, d: R.d + .04 * Math.exp(-(f - 850) / 3) * Math.sin((f - 850) * 2.1) };   // the catch rings out in the arm
   const Lh = P2([[0, { f: .36, d: .66 }], [716, { f: .3, d: -.08 }, 5], [721, { f: .34, d: .0 }, 3], [723, { f: .3, d: -.08 }, 3], [728, { f: .36, d: .66 }, 8],
-    [841, { f: .5, d: .3 }, 4], [858, { f: .36, d: .66 }, 10], [890, { f: .5, d: .1 }, 6], [894, { f: .62, d: -.28 }, 6], [906, { f: .36, d: .66 }, 8]], f);
+    [841, { f: .5, d: .3 }, 4], [858, { f: .36, d: .66 }, 10], [880, { f: .6, d: .42 }, 5], [887, { f: .5, d: .1 }, 7], [894, { f: .58, d: -.3 }, 6], [906, { f: .36, d: -.1 }, 6], [912, { f: .3, d: -.1 }, 3], [930, { f: .45, d: .12 }, 12]], f);   // the far hand (in front) carries the certificate
   const chewL = lapse ? 3 * Math.abs(Math.sin((f - 662) * Math.PI / 3.5)) : 0, chew2 = f > 914 && f < 942 ? 3 * Math.abs(Math.sin((f - 914) * Math.PI / 6)) : 0;
   const head = tr([[0, 2], [707, -2, 5], [713, -8, 3], [718, 2, 6], [728, 0, 6], [755, -6, 12], [768, -10, 8], [796, -14, 8], [818, -18, 8], [841, -6, 6], [850, 4, 2], [860, 0, 10],
     [894, -5, 6], [910, 4, 3], [914, 2, 6]], f) + ring(f, 713, 5, 10) + ring(f, 850, 4, 10) + chewL + chew2 + (lapse ? 4 * toM : 0);
   const rot = tr([[0, 1], [728, 0, 8], [755, -2, 12], [841, 4, 4], [850, -1, 4], [894, -6, 6], [912, 2, 3], [920, -1, 12]], f) + ring(f, 850, 2, 8);
   const face = f < 663 ? 'k:proud' : f < 703 ? (Math.floor((f - 662) / 7) % 2 ? 'k:peChew' : 'k:proud') : f < 713 ? 'k:aim' : f < 718 ? 'k:peChew' : f < 728 ? 'k:proud'
     : f < 737 ? 'k:standard' : f < 755 ? 'k:browUp' : f < 841 ? 'k:happy' : f < 858 ? 'k:nervousSmile' : f < 894 ? 'k:proud' : f < 911 ? 'k:proud' : f < 930 ? 'k:peChew' : 'k:happy';
-  return { view: 'side', dir: 1, x: 0, y: y0 + dip(f, 713, 4, 4) + dip(f, 850, 6, 4) + dip(f, 912, 5, 4), rot, head, feet: [], farArmFront: (f > 715 && f < 728) || (f > 840 && f < 858) || (f > 889 && f < 906),
+  return { view: 'side', dir: 1, x: 0, y: y0 + dip(f, 713, 4, 4) + dip(f, 850, 6, 4) + dip(f, 912, 5, 4), rot, head, feet: [], farArmFront: (f > 715 && f < 728) || (f > 840 && f < 858) || (f > 879),
     hands: [{ f: Lh.f, d: Lh.d, bow: .35 }, { f: R.f, d: R.d, bow: .35, over: true }], face, blink: face === 'k:standard' ? blinkAt(t) : null, held: [] }; }
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
 const STY = [sty('mi_s4', miS4, 'seated: time-lapse eating, the spinner cherry, bell, coffin catch, certificate up, medal bite')];

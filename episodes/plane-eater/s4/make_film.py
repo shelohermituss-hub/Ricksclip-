@@ -59,24 +59,20 @@ held3d = [H('michel', 'fork', 'buildFork', 662, 702, grip='raise', module='sets/
           H('michel', 'spinner', 'buildSpinner', 704, 713, grip='point', note='row 26: the spinner, like a cherry'),
           H('michel', 'bell', 'buildBell', 737, 752, note='row 27: the silver table bell'),
           H('michel', 'plate', 'buildPlate', 830, 878, angle=[[830, 0]], note='row 31: plate up, the coffin lands on it at 850'),
-          H('michel', 'certificate', 'buildCert', 882, 942, angle=[[882, -90], [894, -80], [906, -100], [912, -110]], note='rows 33-34: STRANGEST DIET EVER, bitten corner from 913')]
+          H('michel', 'certificate', 'buildCert', 882, 942, hand='L', angle=[[882, -90], [894, -80], [906, -100], [912, -110]], note='rows 33-34: STRANGEST DIET EVER, bitten corner from 913')]
 for who, f0, f1 in zip(OWN, SWAP, SWAP[1:] + [876]):
     held3d.append(H(who, 'rag', 'buildRag', f0, f1 - 1, grip='hang', module='sets/pe_props.js', anchor='grip', note='the yellow rag in his lap'))
 held3d.append(H('ownerBeardXL', 'rag', 'buildRag', 876, 942, grip='hang', module='sets/pe_props.js', anchor='grip', note='rows 33-34: the rag hangs from his hand'))
 stB = [
-    st(660, [8.6, -5.6, 3.4], [0.4, -1.6, 0.9], 18, 'michel', 'W', 'ROW 24 "It TOOK him" (PLACE, M20 dissolve while flying in): back at the table under the wing, the sliced Cessna, the owner in his deck chair by the nose', hold=0.0, shows=['table', 'plane']),
-    st(680, [8.2, -5.2, 3.2], [0.2, -1.7, 1.0], 18, 'michel', 'W', 'ROW 25 "two YEARS" (ACT + EXTREME 2, M00 living rest, slow drift): the sun swings, autumn, snow, spring; the Cessna shrinks slice by slice from the tail; the owner\'s beard grows', hold=0.0, shows=['plane', 'deck']),
-    st(702, [7.7, -4.6, 2.9], [0.6, -1.6, 1.0], 18, 'michel', 'W', 'ROW 25 end: the cradle almost empty, beard XL', hold=0.0, shows=['deck']),
-    st(718, [5.35, -1.75, 1.45], [3.45, -0.85, 1.28], 28, 'michel', 'C', 'ROW 26 "to finish the PLANE," (M02 push in): the spinner popped like a cherry, the napkin dab', hold=0.35, shows=['table']),
-    st(748, [7.6, -2.6, 2.1], [3.0, 1.2, 1.9], 22, 'trolley', 'W', 'ROW 27 "and for DESSERT?" (TURN, M12 pull + truck): the bell rings, the work lamps snap on, the trolley rolls out of the hangar', hold=0.0, shows=['trolley']),
-    st(772, [7.7, -2.4, 2.5], [3.25, 1.5, 2.45], 22, 'tower', 'W', 'ROW 28 "BIKES," (EXTREME 3 tier 1, M18 huge-tiny crane up starts): the bike tier pops in', hold=0.2, shows=['tower']),
-    st(800, [7.7, -2.3, 3.2], [3.25, 1.5, 3.0], 22, 'tower', 'W', 'ROW 29 "shopping CARTS," (M18 continues up): the cart tier', hold=0.2, shows=['tower']),
-    st(822, [7.7, -2.2, 3.8], [3.25, 1.5, 3.6], 22, 'tower', 'W', 'ROW 30 "TVS," (M18 continues): the TVs flick on to test stripes', hold=0.2, shows=['tower']),
-    st(838, [7.6, -2.2, 4.4], [3.25, 1.5, 4.1], 22, 'tower', 'W', 'ROW 31 "and a COFFIN" topper wobbles at the top', hold=0.1, shows=['tower']),
-    st(856, [6.3, -3.1, 1.9], [3.6, -0.4, 1.6], 22, 'michel', 'M', 'ROW 31 COFFIN 28.32 (M18 lands, short M02 down to the catch): Michel catches the coffin on his plate one-handed, nervous smile, the whole cake beside him', hold=0.3, shows=['table', 'tower']),
-    st(876, [5.0, -2.2, 1.5], [3.5, -0.6, 1.05], 26, 'michel', 'M', 'ROW 32 "GUINNESS called it" (SETUP, M11 push + truck beside Michel): the cloche lifts off the BOOK OF RECORDS + certificate', hold=0.3, shows=['book']),
-    st(902, [5.2, -2.0, 1.6], [3.45, -0.85, 1.5], 26, 'michel', 'C', 'ROW 33 "the STRANGEST diet" (CLIMAX + POWER 3, M02 push in): STRANGEST DIET EVER held up, chest out, every flashbulb fires', hold=0.4, shows=['cert']),
-    st(942, [5.4, -1.9, 1.55], [3.3, -1.15, 1.35], 26, 'michel', 'M', 'ROW 34 "DIET ever." (M00 rest with creep): he bites the frame like a gold medal and chews; the owner at the empty cradle behind stares', hold=0.0, shows=['cert']),
+    st(660, [9.4, -2.9, 3.4], [0.3, -1.9, 0.9], 18, 'michel', 'W', 'ROW 24 "It TOOK him" (PLACE, M20 dissolve while flying in): back at the table under the wing, the sliced Cessna, the owner in his deck chair by the nose', hold=0.0, creep=0.0, shows=['table', 'plane']),
+    st(697, [8.6, -2.7, 3.0], [0.6, -1.9, 1.0], 18, 'michel', 'W', 'ROW 25 "two YEARS" (ACT + EXTREME 2, M00 living rest, slow drift): the sun swings, autumn, snow, spring; the Cessna shrinks slice by slice from the tail; the owner\'s beard grows to his knees', hold=0.0, travel=1.0, shows=['plane', 'deck']),
+    st(718, [5.35, -1.75, 1.45], [3.45, -0.85, 1.28], 28, 'michel', 'C', 'ROW 26 "to finish the PLANE," (M02 push in): the spinner popped like a cherry, the napkin dab', hold=0.3, travel=0.65, shows=['table']),
+    st(750, [7.2, -2.6, 2.1], [3.0, 1.0, 1.9], 22, 'trolley', 'W', 'ROW 27 "and for DESSERT?" (TURN, M12 pull + truck): the bell rings, the work lamps snap on, the trolley rolls out of the hangar', hold=0.1, travel=0.8, shows=['trolley']),
+    st(774, [7.2, -2.5, 2.4], [3.25, 1.5, 2.45], 22, 'tower', 'W', 'ROW 28 "BIKES," (EXTREME 3 tier 1, M18 huge-tiny crane up starts): the bike tier pops in', hold=0.1, travel=0.7, shows=['tower']),
+    st(836, [7.1, -2.4, 4.5], [3.25, 1.5, 4.0], 22, 'tower', 'W', 'ROWS 29-31 "shopping CARTS, TVS, and a COFFIN" (M18 crane up the tower): carts, the TVs flick on, the coffin topper wobbles at the top', hold=0.15, travel=1.8, shows=['tower']),
+    st(860, [6.2, -3.0, 1.9], [3.55, -0.35, 1.45], 22, 'michel', 'M', 'ROWS 31-32 COFFIN 28.32 (M18 lands, short M02 down to the catch) + "GUINNESS" (the cloche lifts in the same frame): the catch on his plate, the whole cake beside him, the book revealed', hold=0.3, travel=0.6, shows=['table', 'tower', 'book']),
+    st(904, [5.0, -2.05, 1.6], [3.45, -0.8, 1.5], 26, 'michel', 'C', 'ROW 33 "the STRANGEST diet" (CLIMAX + POWER 3, M02 push in): STRANGEST DIET EVER held up, chest out, every flashbulb fires', hold=0.3, travel=1.0, shows=['cert']),
+    st(942, [5.3, -1.95, 1.55], [3.3, -1.15, 1.35], 26, 'michel', 'M', 'ROW 34 "DIET ever." (M00 rest with creep): he bites the frame like a gold medal and chews; the owner at the empty cradle behind stares', hold=0.0, travel=1.0, shows=['cert']),
 ]
 props = {
     'table': dict(pos=[3.4, -0.32, 0.8], kind='the white-cloth table under the wing'),

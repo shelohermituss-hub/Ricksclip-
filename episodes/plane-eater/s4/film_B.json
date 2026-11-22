@@ -528,7 +528,7 @@
    "builder": "buildCert",
    "opts": {},
    "grip": "handle",
-   "hand": "R",
+   "hand": "L",
    "when": "always",
    "f0": 882,
    "f1": 942,
@@ -769,13 +769,13 @@
     {
      "at": 660,
      "pos": [
-      8.6,
-      -5.6,
+      9.4,
+      -2.9,
       3.4
      ],
      "aim": [
-      0.4,
-      -1.6,
+      0.3,
+      -1.9,
       0.9
      ],
      "lens": 18,
@@ -783,54 +783,33 @@
      "framing": "W",
      "purpose": "ROW 24 \"It TOOK him\" (PLACE, M20 dissolve while flying in): back at the table under the wing, the sliced Cessna, the owner in his deck chair by the nose",
      "hold": 0.0,
-     "creep": 0.003,
+     "creep": 0.0,
      "shows": [
       "table",
       "plane"
      ]
     },
     {
-     "at": 680,
+     "at": 697,
      "pos": [
-      8.2,
-      -5.2,
-      3.2
-     ],
-     "aim": [
-      0.2,
-      -1.7,
-      1.0
-     ],
-     "lens": 18,
-     "subject": "michel",
-     "framing": "W",
-     "purpose": "ROW 25 \"two YEARS\" (ACT + EXTREME 2, M00 living rest, slow drift): the sun swings, autumn, snow, spring; the Cessna shrinks slice by slice from the tail; the owner's beard grows",
-     "hold": 0.0,
-     "creep": 0.003,
-     "shows": [
-      "plane",
-      "deck"
-     ]
-    },
-    {
-     "at": 702,
-     "pos": [
-      7.7,
-      -4.6,
-      2.9
+      8.6,
+      -2.7,
+      3.0
      ],
      "aim": [
       0.6,
-      -1.6,
+      -1.9,
       1.0
      ],
      "lens": 18,
      "subject": "michel",
      "framing": "W",
-     "purpose": "ROW 25 end: the cradle almost empty, beard XL",
+     "purpose": "ROW 25 \"two YEARS\" (ACT + EXTREME 2, M00 living rest, slow drift): the sun swings, autumn, snow, spring; the Cessna shrinks slice by slice from the tail; the owner's beard grows to his knees",
      "hold": 0.0,
      "creep": 0.003,
+     "travel": 1.0,
      "shows": [
+      "plane",
       "deck"
      ]
     },
@@ -850,40 +829,42 @@
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 26 \"to finish the PLANE,\" (M02 push in): the spinner popped like a cherry, the napkin dab",
-     "hold": 0.35,
+     "hold": 0.3,
      "creep": 0.003,
+     "travel": 0.65,
      "shows": [
       "table"
      ]
     },
     {
-     "at": 748,
+     "at": 750,
      "pos": [
-      7.6,
+      7.2,
       -2.6,
       2.1
      ],
      "aim": [
       3.0,
-      1.2,
+      1.0,
       1.9
      ],
      "lens": 22,
      "subject": "trolley",
      "framing": "W",
      "purpose": "ROW 27 \"and for DESSERT?\" (TURN, M12 pull + truck): the bell rings, the work lamps snap on, the trolley rolls out of the hangar",
-     "hold": 0.0,
+     "hold": 0.1,
      "creep": 0.003,
+     "travel": 0.8,
      "shows": [
       "trolley"
      ]
     },
     {
-     "at": 772,
+     "at": 774,
      "pos": [
-      7.7,
-      -2.4,
-      2.5
+      7.2,
+      -2.5,
+      2.4
      ],
      "aim": [
       3.25,
@@ -894,141 +875,80 @@
      "subject": "tower",
      "framing": "W",
      "purpose": "ROW 28 \"BIKES,\" (EXTREME 3 tier 1, M18 huge-tiny crane up starts): the bike tier pops in",
-     "hold": 0.2,
-     "creep": 0.003,
-     "shows": [
-      "tower"
-     ]
-    },
-    {
-     "at": 800,
-     "pos": [
-      7.7,
-      -2.3,
-      3.2
-     ],
-     "aim": [
-      3.25,
-      1.5,
-      3.0
-     ],
-     "lens": 22,
-     "subject": "tower",
-     "framing": "W",
-     "purpose": "ROW 29 \"shopping CARTS,\" (M18 continues up): the cart tier",
-     "hold": 0.2,
-     "creep": 0.003,
-     "shows": [
-      "tower"
-     ]
-    },
-    {
-     "at": 822,
-     "pos": [
-      7.7,
-      -2.2,
-      3.8
-     ],
-     "aim": [
-      3.25,
-      1.5,
-      3.6
-     ],
-     "lens": 22,
-     "subject": "tower",
-     "framing": "W",
-     "purpose": "ROW 30 \"TVS,\" (M18 continues): the TVs flick on to test stripes",
-     "hold": 0.2,
-     "creep": 0.003,
-     "shows": [
-      "tower"
-     ]
-    },
-    {
-     "at": 838,
-     "pos": [
-      7.6,
-      -2.2,
-      4.4
-     ],
-     "aim": [
-      3.25,
-      1.5,
-      4.1
-     ],
-     "lens": 22,
-     "subject": "tower",
-     "framing": "W",
-     "purpose": "ROW 31 \"and a COFFIN\" topper wobbles at the top",
      "hold": 0.1,
      "creep": 0.003,
+     "travel": 0.7,
      "shows": [
       "tower"
      ]
     },
     {
-     "at": 856,
+     "at": 836,
      "pos": [
-      6.3,
-      -3.1,
+      7.1,
+      -2.4,
+      4.5
+     ],
+     "aim": [
+      3.25,
+      1.5,
+      4.0
+     ],
+     "lens": 22,
+     "subject": "tower",
+     "framing": "W",
+     "purpose": "ROWS 29-31 \"shopping CARTS, TVS, and a COFFIN\" (M18 crane up the tower): carts, the TVs flick on, the coffin topper wobbles at the top",
+     "hold": 0.15,
+     "creep": 0.003,
+     "travel": 1.8,
+     "shows": [
+      "tower"
+     ]
+    },
+    {
+     "at": 860,
+     "pos": [
+      6.2,
+      -3.0,
       1.9
      ],
      "aim": [
-      3.6,
-      -0.4,
-      1.6
+      3.55,
+      -0.35,
+      1.45
      ],
      "lens": 22,
      "subject": "michel",
      "framing": "M",
-     "purpose": "ROW 31 COFFIN 28.32 (M18 lands, short M02 down to the catch): Michel catches the coffin on his plate one-handed, nervous smile, the whole cake beside him",
+     "purpose": "ROWS 31-32 COFFIN 28.32 (M18 lands, short M02 down to the catch) + \"GUINNESS\" (the cloche lifts in the same frame): the catch on his plate, the whole cake beside him, the book revealed",
      "hold": 0.3,
      "creep": 0.003,
+     "travel": 0.6,
      "shows": [
       "table",
-      "tower"
-     ]
-    },
-    {
-     "at": 876,
-     "pos": [
-      5.0,
-      -2.2,
-      1.5
-     ],
-     "aim": [
-      3.5,
-      -0.6,
-      1.05
-     ],
-     "lens": 26,
-     "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 32 \"GUINNESS called it\" (SETUP, M11 push + truck beside Michel): the cloche lifts off the BOOK OF RECORDS + certificate",
-     "hold": 0.3,
-     "creep": 0.003,
-     "shows": [
+      "tower",
       "book"
      ]
     },
     {
-     "at": 902,
+     "at": 904,
      "pos": [
-      5.2,
-      -2.0,
+      5.0,
+      -2.05,
       1.6
      ],
      "aim": [
       3.45,
-      -0.85,
+      -0.8,
       1.5
      ],
      "lens": 26,
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 33 \"the STRANGEST diet\" (CLIMAX + POWER 3, M02 push in): STRANGEST DIET EVER held up, chest out, every flashbulb fires",
-     "hold": 0.4,
+     "hold": 0.3,
      "creep": 0.003,
+     "travel": 1.0,
      "shows": [
       "cert"
      ]
@@ -1036,8 +956,8 @@
     {
      "at": 942,
      "pos": [
-      5.4,
-      -1.9,
+      5.3,
+      -1.95,
       1.55
      ],
      "aim": [
@@ -1051,6 +971,7 @@
      "purpose": "ROW 34 \"DIET ever.\" (M00 rest with creep): he bites the frame like a gold medal and chews; the owner at the empty cradle behind stares",
      "hold": 0.0,
      "creep": 0.003,
+     "travel": 1.0,
      "shows": [
       "cert"
      ]

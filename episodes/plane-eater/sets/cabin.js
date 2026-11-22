@@ -39,6 +39,8 @@ export async function build(THREE, scene, film, ctx) {
   // S5 fix round 2026-11-22: "wing_offset": [dx, dy, dz] (plan metres) moves the whole outside wing (wing, winglet, engine, flap canoes, nav light)
   // so its bite (anchors.wing_bite) lands on the ray of the film's own window station (make_film.py computes it); "foil_raise" lifts the lifted foil higher (m).
   if (P.wing_offset) { const d = V(P.wing_offset).sub(V([0, 0, 0])); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) o.position.add(d); }); }
+  // S5 fix round 2: "tray_dy" (plan metres along y) moves Michel's tray table, its arms, the meal and the pea to another seat of the row (-0.52 = seat B)
+  if (P.tray_dy) { const d = V([0, P.tray_dy, 0]).sub(V([0, 0, 0])); root.traverse(o => { if (/^(tray_table|tray_table_bitten|tray_arm_|meal_|pea_runaway)/.test(o.name) && !/^(tray_table|meal_)/.test((o.parent || {}).name || '') && o.name !== 'tray_table_B_stowed' && o.name !== 'tray_table_recess') o.position.add(d); }); }
   const N = n => root.getObjectByName(n), tray = N('tray_table'), trayB = N('tray_table_bitten'), foilOn = N('meal_foil_on'), foilUp = N('meal_foil_lifted'), pea = N('pea_runaway');
   const pea0 = pea ? pea.position.clone() : null;
   // S5 builder 2026-11-22: "meal" 0..1 = Michel slides the grey meal aside with one finger (row 36, toward the owner's side, 14 cm); all meal_* nodes ride together

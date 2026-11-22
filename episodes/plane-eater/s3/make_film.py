@@ -9,7 +9,7 @@ A, C = meta['anchors'], meta['cams']
 cast = {'doctor': dict(keys['cast']['doctor'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s3/' + k
 FILM = A['film_hero']['c']                                   # (0.11, 2.085, 1.47): the signature film on panel 1
-DOC = [-0.30, 1.56, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
+DOC = [-0.34, 1.74, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
 P = meta['slide_path']
 def along(u):
     n = len(P) - 1; f = min(max(u, 0), 1) * n; i = min(int(f), n - 1); k = f - i
@@ -32,7 +32,8 @@ sm = lambda f: (lambda u: u * u * (3 - 2 * u))(min(1, max(0, (f - 618) / 42)))
 # FIVE PASSES, FOUR DISSOLVES ON THE MOVE (blend.py), every pass a slow drift (camera p90 <= 22): A1 clinic wide (row 19, the Doctor whole, his fist on the
 # film edge) -> 556-565 -> A2 the film close, pushing in -> 568-577 -> B1 the X-ray world and the lining on THICK -> 606-615 -> B2 the ride of the
 # bite-Cessna -> 628-637 -> C back out: the Doctor whole, double take.
-A1 = [st(519, [1.05, -0.95, 1.40], [-0.22, 1.72, 1.18], 18, 'doctor', 'W', 'ROW 19 "x -RAYED"..."found" (ACT + SIGNATURE, M00 living rest, slow creep in): the Doctor whole at the left, his fist ON the film edge, leaning in, glasses down, jolt on "found"; the glowing film with the tiny bite-Cessna; the box flickers twice', hold=0.0, shows=['film']),
+A1 = [st(490, [1.05, -0.95, 1.40], [-0.22, 1.72, 1.18], 18, 'doctor', 'W', 'pre-roll (same as f519)', hold=0.9),
+      st(519, [1.05, -0.95, 1.40], [-0.22, 1.72, 1.18], 18, 'doctor', 'W', 'ROW 19 "x -RAYED"..."found" (ACT + SIGNATURE, M00 living rest, slow creep in): the Doctor whole at the left, his fist ON the film edge, leaning in, glasses down, jolt on "found"; the glowing film with the tiny bite-Cessna; the box flickers twice', hold=0.0, shows=['film']),
       st(566, [0.92, -0.62, 1.42], [-0.18, 1.78, 1.22], 18, 'doctor', 'W', 'ROW 19 end of the slow creep (dissolve source A1)', hold=0.0, shows=['film'])]
 A2 = [st(552, [0.24, 1.30, 1.49], [0.10, 2.20, 1.46], 24, 'film', 'C', 'ROW 20 "STOMACH" (M07 fly into the object, slow push): the film fills the lens, F-MIAM readable (dissolve target A1, source A2)', hold=0.0, shows=['film']),
       st(580, [0.12, 1.86, 1.47], [0.11, 2.30, 1.47], 24, 'film', 'C', 'the lens goes on into the film grain', hold=0.0, shows=['film'])]

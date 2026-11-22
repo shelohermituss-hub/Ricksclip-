@@ -43,14 +43,14 @@ export function buildFork(T) { THREE_ ||= T; const g = clone('fork'); g.scale.se
 export function buildBell(T) { THREE_ ||= T; const g = part('cloche_bell', /^bell/); g.traverse(o => { if (o.isMesh && /bell_(dome|body|cup)?$|bell_dome|bell_body/.test(o.name)) { o.material = o.material.clone(); o.material.metalness = .55; o.material.roughness = .2; o.material.color.set('#e4e7ec'); } }); g.position.x = -.30; g.scale.setScalar(1.6); return wrap(g, .05); }   // the silver table bell (grip = its wood knob)
 export function buildSpinner(T) { THREE_ ||= T; const s = part('cessna150_sliced', /^s0_spinner$/); const h = centred(T, s); h.scale.setScalar(.55); return wrap(h, .06); }   // the last piece: the spinner, cherry-size in his fingers
 let heldCoffin = null;
-export function buildPlate(T) { THREE_ ||= T; const g = new T.Group(), p = clone('plate'); p.scale.setScalar(1.3); g.add(p);
-  const c = part('dessert_trolley', /^coffin_/), h = centred(T, c); h.scale.setScalar(.55); h.position.set(.0, .07, 0); h.rotation.y = .5; h.visible = false; g.add(h); heldCoffin = h;
+export function buildPlate(T) { THREE_ ||= T; const g = new T.Group(), p = clone('plate'); p.scale.setScalar(1.6); g.add(p);
+  const c = part('dessert_trolley', /^coffin_/), h = centred(T, c); h.scale.setScalar(1.0); h.position.set(.0, .1, 0); h.rotation.y = .5; h.visible = false; g.add(h); heldCoffin = h;
   const o = new T.Group(); o.add(g); g.rotation.z = 0; return { group: o, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.12, 0, 0) }; }
 let certWhole = null, certBit = null;
 export function buildCert(T) { THREE_ ||= T; const g = new T.Group();
   const a = part('certificate', /^cert_(?!bitten)/), b = part('certificate', /^cert_bitten/); const ha = centred(T, a), hb = centred(T, b);
-  for (const h of [ha, hb]) { h.scale.setScalar(.62); h.rotation.y = Math.PI; g.add(h); } hb.visible = false; certWhole = ha; certBit = hb;   // faces -Y in the glb: turned to the lens side
-  const o = new T.Group(); g.position.x = .28; o.add(g); return { group: o, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.56, 0, 0) }; }
+  for (const h of [ha, hb]) { h.scale.setScalar(1.0); g.add(h); } hb.visible = false; certWhole = ha; certBit = hb;   // faces -Y in the glb: turned to the lens side
+  const o = new T.Group(); g.position.x = .24; o.add(g); return { group: o, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.48, 0, 0) }; }
 export async function build(THREE, scene, film, ctx) {
   THREE_ = THREE; const V = p => ctx.B2T(p);
   const base = await apronBuild(THREE, scene, film, ctx);

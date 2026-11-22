@@ -13,5 +13,5 @@ python $ROOT/tools/film_plan.py check film.json --window 519-638 > plan_check.tx
 timeout 900 node $ROOT/tools/frame_checks/check.mjs film.json > checks.txt 2>&1; tail -4 checks.txt
 timeout 900 node $ROOT/tools/camsafe/validate.mjs film.json > camsafe.txt 2>&1; echo "camsafe exit $?"; grep CAMERA-SAFE camsafe.txt
 ffmpeg -v error -y -framerate 30 -start_number 519 -i frames/f_%05d.png -ss 17.30 -t 4.0 -i voice/voice.wav -c:v libx264 -crf 20 -pix_fmt yuv420p -c:a aac -b:a 160k -shortest draft.mp4 && echo "mp4 ok $(ffprobe -v error -show_entries format=duration -of csv=p=0 draft.mp4) s"
-python sheets.py . 519 638 519,545,560,572,592,610,628,634,638
+python sheets.py . 519 638 519,545,560,572,594,612,628,634,638
 echo S3_RENDER_END
