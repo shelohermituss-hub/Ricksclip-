@@ -11,16 +11,16 @@ const G = {};
 for (const n of ['cessna150_sliced', 'dessert_trolley', 'cloche_bell', 'record_book', 'certificate', 'plate', 'fork']) G[n] = (await ld.loadAsync(P + n + '.glb')).scene;
 let THREE_ = null;
 const clone = n => G[n].clone(true);
-function part(name, keep) { const g = clone(name); g.traverse(o => { if (o.isMesh && !keep.test(o.name)) o.visible = false; }); return g; }
+function part(name, keep) { const g = clone(name), drop = []; g.traverse(o => { if (o.isMesh && !keep.test(o.name)) drop.push(o); }); for (const o of drop) o.removeFromParent(); return g; }   // removes (not hides) the rest, so a bounding box sees only the part
 const sm = u => { u = Math.min(1, Math.max(0, u)); return u * u * (3 - 2 * u); };
 const lerpC = (T, a, b, u) => new T.Color(a).lerp(new T.Color(b), u);
 // ---- frames (words.json x 30): took 669, two 679, years 686, finish 701, plane 713, dessert 740, Bikes 768, carts 796, TVs 818, coffin 850,
 //      Guinness 855, strangest 894, diet 912, ever 920
 export const TL0 = 672, TL1 = 708;                    // the time-lapse: slices go 672-706, the season wheel turns 672-712
 export const DESK = [3.47, -0.42, .78];                // where the cloche / book sit on the table (in reach of the seated Michel at (3.4, -1.0))
-export const TROLLEY = { from: [1.6, 9.6, .03], to: [3.25, 1.55, .03], f0: 742, f1: 766, scale: 2.0 };
+export const TROLLEY = { from: [1.6, 9.6, .03], to: [3.25, 1.55, .03], f0: 742, f1: 766, scale: 2.4 };
 export const CATCH = [3.62, -0.68, 1.34];              // his plate in the near hand at the catch (f850), from the --held dump of the draft
-export const DECK = [1.1, -5.1, .03];                  // the owner's deck chair, moved from (-6.4, 5.4) to the nose side of the plane (seen in the wide)
+export const DECK = [-1.6, -4.2, .03];                  // the owner's deck chair, moved from (-6.4, 5.4) to the nose side of the plane (seen in the wide)
 // ---- season / light keys (frame, look). Each look: sky top, horizon, sun colour, sun intensity, ambient colour, ambient intensity, ground (lawn), leaves, card tint
 const DAY = { top: '#1a86f2', hor: '#cfe6ff', sun: '#fff6e6', si: 4.6, amb: '#e6edf7', ai: 2.0, lawn: null, leaf: null, tint: '#ffffff', snow: 0 };
 const KEYS = [
@@ -40,7 +40,7 @@ function look(T, f) { let i = 0; while (i < KEYS.length - 2 && f >= KEYS[i + 1][
 function wrap(g, tipX = .1) { const T = THREE_; const group = new T.Group(); group.add(g); return { group, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(tipX, 0, 0) }; }
 const centred = (T, g) => { const b = new T.Box3().setFromObject(g), c = b.getCenter(new T.Vector3()); g.position.sub(c); const h = new T.Group(); h.add(g); return h; };
 export function buildFork(T) { THREE_ ||= T; const g = clone('fork'); g.scale.setScalar(1.4); return wrap(g, .2); }
-export function buildBell(T) { THREE_ ||= T; const g = part('cloche_bell', /^bell/); g.position.x = -.30; g.scale.setScalar(1.6); return wrap(g, .05); }   // the silver table bell (grip = its wood knob)
+export function buildBell(T) { THREE_ ||= T; const g = part('cloche_bell', /^bell/); g.traverse(o => { if (o.isMesh && /bell_(dome|body|cup)?$|bell_dome|bell_body/.test(o.name)) { o.material = o.material.clone(); o.material.metalness = .55; o.material.roughness = .2; o.material.color.set('#e4e7ec'); } }); g.position.x = -.30; g.scale.setScalar(1.6); return wrap(g, .05); }   // the silver table bell (grip = its wood knob)
 export function buildSpinner(T) { THREE_ ||= T; const s = part('cessna150_sliced', /^s0_spinner$/); const h = centred(T, s); h.scale.setScalar(.55); return wrap(h, .06); }   // the last piece: the spinner, cherry-size in his fingers
 let heldCoffin = null;
 export function buildPlate(T) { THREE_ ||= T; const g = new T.Group(), p = clone('plate'); p.scale.setScalar(1.3); g.add(p);
@@ -81,6 +81,8 @@ export async function build(THREE, scene, film, ctx) {
   const certOnBook = put(part('certificate', /^cert_(?!bitten)/), [DESK[0] + .0, DESK[1] + .02, DESK[2] + .075], 0, .42); certOnBook.rotation.x = -Math.PI / 2 + .25;
   { const c = new THREE.Box3().setFromObject(certOnBook).getCenter(new THREE.Vector3()), want = V([DESK[0], DESK[1], DESK[2] + .1]); certOnBook.position.add(want.sub(c)); }
   const cloche = put(part('cloche_bell', /^cloche/), [DESK[0], DESK[1], DESK[2] + .005], 0, 1.35);
+  const silver = g => g.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.material.color.set('#e4e7ec'); o.material.metalness = .55; o.material.roughness = .22; } });   // draft: the env map is too dark for pure metal (read black)
+  silver(cloche);
   const bellOnTable = put(part('cloche_bell', /^bell/), [3.72, -0.62, .78], 0, 1.6); bellOnTable.position.add(V([-.30 * 1.6, 0, 0]).sub(V([0, 0, 0])));
   const cl0 = cloche.position.clone();
   // the dessert trolley: x2, more of everything round each tier

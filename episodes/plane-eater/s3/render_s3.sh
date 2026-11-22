@@ -2,11 +2,10 @@
 # S3 DRAFT cycle (fix round): film*.json -> bake -> three half-size passes (A clinic push into the film 519-577, B X-ray world 568-637, C back out to the
 # Doctor 628-638) -> two DISSOLVES ON THE MOVE (568-577 A->B, 628-637 B->C) into frames/ -> checks on film.json -> draft.mp4 (log logs/render.log, end S3_RENDER_END)
 cd "$(dirname "$0")"; ROOT=../../..; K=$ROOT/templates/threejs_film/render_gpu.mjs
-python make_film.py; for x in film film_A film_B film_C; do python $ROOT/tools/film_plan.py bake $x.json | tail -1; done
-rm -rf frames passes; mkdir -p frames passes/A passes/B passes/C; t0=$(date +%s)
-python $ROOT/tools/film_plan.py bake film_A.json > /dev/null; node $K film_A.json --frames 519-577 --scale 0.5 --grab fast --stills-dir "$PWD/passes/A" > logs/rA.log 2>&1
-python $ROOT/tools/film_plan.py bake film_B.json > /dev/null; node $K film_B.json --frames 568-637 --scale 0.5 --grab fast --stills-dir "$PWD/passes/B" > logs/rB.log 2>&1
-python $ROOT/tools/film_plan.py bake film_C.json > /dev/null; node $K film_C.json --frames 628-638 --scale 0.5 --grab fast --stills-dir "$PWD/passes/C" > logs/rC.log 2>&1
+python make_film.py
+rm -rf frames passes; mkdir -p frames; t0=$(date +%s)
+for P in A1 A2 B1 B2 C; do R=$(python -c "import json;print(json.load(open('passes.json'))['$P'])"); mkdir -p passes/$P
+  python $ROOT/tools/film_plan.py bake film_$P.json > /dev/null; node $K film_$P.json --frames $R --scale 0.5 --grab fast --stills-dir "$PWD/passes/$P" > logs/r$P.log 2>&1; done
 python blend.py
 echo "render: $(ls frames | wc -l) frames in $(( $(date +%s) - t0 )) s"
 python $ROOT/tools/film_plan.py bake film.json | tail -1

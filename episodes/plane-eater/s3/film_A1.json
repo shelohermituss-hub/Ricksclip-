@@ -152,8 +152,8 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.22,
-    1.42,
+    -0.3,
+    1.56,
     0.0
    ],
    "view": "34",
@@ -285,98 +285,66 @@
    "note": "row 21 POWER 2 cyan-white flash on THICK"
   }
  ],
+ "hand_at": [
+  {
+   "who": "doctor",
+   "f0": 519,
+   "f1": 600,
+   "at": [
+    -0.08,
+    2.07,
+    1.5
+   ],
+   "note": "row 19: his fist ON the left edge of the film"
+  }
+ ],
  "takes": [
   {
-   "id": "B",
+   "id": "A1",
    "place": "xray",
    "stations": [
     {
-     "at": 566,
+     "at": 519,
      "pos": [
-      28.75,
-      -3.4,
-      0.3
+      1.05,
+      -0.95,
+      1.4
      ],
      "aim": [
-      30.5,
-      -0.2,
-      -2.0
+      -0.22,
+      1.72,
+      1.18
      ],
      "lens": 18,
-     "subject": "lining",
+     "subject": "doctor",
      "framing": "W",
-     "purpose": "ROW 20 \"STOMACH lining\" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining",
+     "purpose": "ROW 19 \"x -RAYED\"...\"found\" (ACT + SIGNATURE, M00 living rest, slow creep in): the Doctor whole at the left, his fist ON the film edge, leaning in, glasses down, jolt on \"found\"; the glowing film with the tiny bite-Cessna; the box flickers twice",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
-      "lining",
-      "mini"
+      "film"
      ]
     },
     {
-     "at": 594,
+     "at": 566,
      "pos": [
-      30.2,
-      -1.25,
-      -2.15
+      0.92,
+      -0.62,
+      1.42
      ],
      "aim": [
-      30.9,
-      -0.1,
-      -2.85
+      -0.18,
+      1.78,
+      1.22
      ],
-     "lens": 22,
-     "subject": "lining",
-     "framing": "C",
-     "purpose": "ROW 21 \"so THICK\" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash, then steady glow",
-     "hold": 0.35,
-     "creep": 0.0028,
-     "shows": [
-      "lining"
-     ]
-    },
-    {
-     "at": 620,
-     "pos": [
-      29.25,
-      -2.15,
-      -1.45
-     ],
-     "aim": [
-      29.0,
-      -0.2,
-      -2.4
-     ],
-     "lens": 24,
-     "subject": "mini",
-     "framing": "C",
-     "purpose": "ROW 22 \"SLID\" (SIGNATURE peak, M14 ride): the bite-Cessna, navy stripe, propeller humming, starts down the runway",
+     "lens": 18,
+     "subject": "doctor",
+     "framing": "W",
+     "purpose": "ROW 19 end of the slow creep (dissolve source A1)",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
-      "mini"
-     ]
-    },
-    {
-     "at": 638,
-     "pos": [
-      29.7,
-      -1.95,
-      -1.5
-     ],
-     "aim": [
-      29.65,
-      -0.2,
-      -2.5
-     ],
-     "lens": 24,
-     "subject": "mini",
-     "framing": "C",
-     "purpose": "ROW 22 \"through\" (M14): the plane slides along the oily lining and out of frame right (dissolve source for the way back out)",
-     "hold": 0.0,
-     "creep": 0.0028,
-     "shows": [
-      "mini"
+      "film"
      ]
     }
    ]

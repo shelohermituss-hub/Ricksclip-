@@ -8,7 +8,7 @@ keys = json.load(open(os.path.join(EP, 'cast', 'CAST_KEYS.json')))
 meta = json.load(open(os.path.join(EP, 'sets', 'apron', 'out', 'apron_meta.json')))
 cast = {k: dict(keys['cast'][k], walk_speed=99) for k in ['michel', 'owner']}
 Z = 0.03
-MI, OW = [5.35, -1.3, 0.48], [1.0, -3.05, Z]   # Michel stands ON his showman trunk (top 0.48 m): the wing tip (top 1.95-2.0 m) is then at his hands
+MI, OW = [5.3, -1.3, 0.61], [1.0, -3.05, Z]   # Michel stands ON his showman trunk (top 0.48 m): the wing tip (top 1.95-2.0 m) is then at his hands
 TIP = [5.06, -1.25, 2.0]        # the salted wing-tip corner (leading edge, outer end)
 CUT = [4.82, -1.6, 1.97]        # the saw cut at the leading edge, underside
 PLATE = [5.98, -1.62, 1.52]      # fix round: the plate on a small pedestal side table at his chest (top 1.50 m), not on the wing (s1_apron.js prints PE_S1_PLATE)
@@ -44,13 +44,17 @@ held3d = [
          angle=shake, scale=2.2),   # turned over, cap down, rocking 98-122 deg every 3 f = the shake (no tip_at: it would aim the cap up at the point)
     dict(who='michel', obj='fork', module='sets/pe_props.js', builder='buildFork', grip='raise', hand='L', anchor='grip', tip='tip', when='always', f1=150, scale=1.3,
          angle=[[0, -80], [112, -80], [120, -15], [131, -15], [138, -80]]),   # the fork turns out to the side while the fist is at the collar (never across his face)
-    dict(who='michel', obj='hacksaw', module='sets/pe_props.js', builder='buildSaw', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=151, f1=204, angle=-4, scale=1.4,
+    dict(who='michel', obj='hacksaw', module='sets/pe_props.js', builder='buildSaw', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=151, f1=204, angle=-4, scale=2.8,
          tip_at=[dict(f0=156, f1=162, at=[CUT[0], CUT[1] - 0.07, CUT[2]], ramp=[6, 0])] + strokes),
-    dict(who='michel', obj='sugar_tongs', module='sets/pe_props.js', builder='buildTongs', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=205, scale=1.8, angle=35,
+    dict(who='michel', obj='sugar_tongs', module='sets/pe_props.js', builder='buildTongs', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=205, scale=3.4, angle=35,
          tip_at=[dict(f0=206, f1=218, at=[CUT[0] + 0.03, CUT[1] + 0.05, CUT[2] - 0.02], ramp=[8, 4]), dict(f0=226, f1=256, at=[PLATE[0], PLATE[1], PLATE[2] + 0.03], ramp=[10, 0])]),
     dict(who='owner', obj='rag', module='sets/pe_props.js', builder='buildRag', grip='hang', hand='R', anchor='grip', when='always', scale=1.0),
 ]
 
+# fix round 2: the move's fists go to world points through hand_at (kit: st.tgt in move-rig px); the move blends to them by its own weights
+hand_at = [dict(who='michel', f0=0, f1=74, at=[TIP[0] + 0.02, TIP[1] - 0.05, TIP[2] + 0.17], note='shaker fist over the wing tip (the cap 0.16 m below it)'),
+           dict(who='michel', f0=148, f1=221, at=[CUT[0] + 0.32, CUT[1] + 0.02, CUT[2] + 0.02], note='saw fist: the blade on the cut line; then the tongs at the cut'),
+           dict(who='michel', f0=222, f1=256, at=[PLATE[0] - 0.22, PLATE[1], PLATE[2] + 0.2], note='tongs fist over the plate')]
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 stations = [
@@ -58,11 +62,14 @@ stations = [
     st(82, [7.4, -3.5, 2.3], [2.0, -0.9, 1.2], 16, 'michel', 'P', 'ROW 3 (M11 push + truck along his eyeline, lands as a reveal): his look runs along the wing to the nose; the camera rises a little, swings left with his look and widens until the whole Cessna F-MIAM stands in frame, Michel near at its wing tip', hold=0.2, shows=['plane']),
     st(124, [6.2, -3.3, 2.12], [5.55, -1.3, 1.98], 26, 'michel', 'M', 'ROWS 4-5 (M02 push in to land on the face, POWER 1): the idea forms (chin on fork), then LUNCH! to the lens with the napkin snap; the wing tip beside him', hold=0.9, shows=['michel']),
     st(182, [6.0, -3.15, 2.08], [5.2, -1.45, 2.02], 28, 'michel', 'C', 'ROWS 6-8 CLOSE rest (M10 face -> hand -> blade): the hacksaw on the cut line at the wing tip, aluminium dust, his tongue in the corner; the owner jolts in the back', hold=0.4, shows=['trunk', 'cut']),
-    st(238, [6.75, -3.2, 1.92], [5.7, -1.45, 1.72], 30, 'michel', 'C', 'ROW 9 CLOSE (M02 push in to land on the plate): the tongs set ONE tiny square on the white plate on the side table, his proud nod above it', hold=0.6, shows=['plate']),
+]
+stations2 = [
+    st(204, [7.7, -4.6, 2.15], [2.6, -0.9, 1.3], 16, 'michel', 'P', 'ROW 8 "a WHOLE Cessna" (M05 pull back, soft 8 f blend in on the move from the saw close, then a REST): the whole plane with the neat cut at the wing tip, Michel tiny on his trunk, the owner at the nose jolts and polishes faster', hold=0.4, shows=['plane', 'owner']),
+    st(256, [6.75, -3.2, 1.92], [5.75, -1.45, 1.7], 30, 'michel', 'C', 'ROW 9 CLOSE (M02 push in to land on the plate): the tongs set ONE tiny square on the white plate on the side table, his proud nod above it', hold=0.2, shows=['plate']),
 ]
 props = {
     'tip': dict(pos=TIP, kind='the salted wing tip'), 'plane': dict(pos=[0, 0, 1.2], kind='the Cessna F-MIAM'), 'cut': dict(pos=CUT, kind='the saw cut'),
-    'trunk': dict(pos=[5.5, -1.3, 0.25], kind='the MONSIEUR MANGETOUT trunk'), 'plate': dict(pos=PLATE, kind='the plate with the first bite'),
+    'trunk': dict(pos=[5.3, -1.3, 0.3], kind='the MONSIEUR MANGETOUT trunk'), 'plate': dict(pos=PLATE, kind='the plate with the first bite'),
 }
 place = dict(set='s1_apron', kind='day', light='morning', light_over=meta['light']['day'], kit3d=dict(envGround='#a7a6a3'), air=1, wind=1, backdrop=30)
 film = {
@@ -81,7 +88,8 @@ film = {
     'moods': [dict(at=121, look='flash_white', note='row 5 POWER 1 impact (with the set impact frame f121-123)')],
     'sentences': [dict(text='In 1978, a French guy looked at an airplane... and thought: Lunch!', words=[0, 11], subject='michel', nouns=[dict(word='airplane', show='plane')]),
                   dict(text='Michel Lottito cut a whole Cessna into tiny metal bites.', words=[12, 21], subject='michel', nouns=[dict(word='Cessna', show='plane'), dict(word='bites', show='plate')])],
-    'takes': [{'id': 's1', 'place': 'apron', 'stations': stations}],
+    'takes': [{'id': 's1', 'place': 'apron', 'stations': stations}, {'id': 's1b', 'place': 'apron', 'stations': stations2}],
+    'hand_at': hand_at,
 }
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 print('film.json written:', len(acts), 'acts,', len(stations), 'stations')

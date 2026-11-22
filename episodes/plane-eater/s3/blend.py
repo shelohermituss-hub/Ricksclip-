@@ -1,13 +1,13 @@
-"""blend.py: composes frames/ from the three passes with two eased DISSOLVES ON THE MOVE: 568-577 A (push into the film) -> B (X-ray world),
-628-637 B -> C (back out to the Doctor's double take). The camera keeps moving in both passes, so it reads as a fly-through, not a cut."""
-import os, shutil
+"""blend.py: composes frames/ 519-638 from the passes (passes.json: name -> frame range, in film order) with an eased DISSOLVE ON THE MOVE over each
+overlap: A1 -> A2 (556-565), A2 -> B1 (568-577), B1 -> B2 (606-615), B2 -> C (628-637). Every pass keeps moving, so each reads as a fly-through, not a cut."""
+import os, json, shutil
 from PIL import Image
-H = os.path.dirname(os.path.abspath(__file__)); P = lambda k, f: os.path.join(H, 'passes', k, 'f_%05d.png' % f); O = lambda f: os.path.join(H, 'frames', 'f_%05d.png' % f)
-ease = lambda u: u * u * (3 - 2 * u)
+H = os.path.dirname(os.path.abspath(__file__)); R = json.load(open(os.path.join(H, 'passes.json')))
+P = lambda k, f: os.path.join(H, 'passes', k, 'f_%05d.png' % f); O = lambda f: os.path.join(H, 'frames', 'f_%05d.png' % f)
+ease = lambda u: u * u * (3 - 2 * u); rng = {k: tuple(map(int, v.split('-'))) for k, v in R.items()}; order = list(R)
 for f in range(519, 639):
-    if f < 568: shutil.copy(P('A', f), O(f))
-    elif f <= 577: Image.blend(Image.open(P('A', f)).convert('RGB'), Image.open(P('B', f)).convert('RGB'), ease((f - 567) / 11)).save(O(f))
-    elif f < 628: shutil.copy(P('B', f), O(f))
-    elif f <= 637: Image.blend(Image.open(P('B', f)).convert('RGB'), Image.open(P('C', f)).convert('RGB'), ease((f - 627) / 11)).save(O(f))
-    else: shutil.copy(P('C', f), O(f))
-print('blend: frames 519-638 composed (dissolves 568-577, 628-637)')
+    cur = [k for k in order if rng[k][0] <= f <= rng[k][1]]
+    if len(cur) == 1: shutil.copy(P(cur[0], f), O(f)); continue
+    a, b = cur[0], cur[1]; s0, s1 = rng[b][0], rng[a][1]
+    Image.blend(Image.open(P(a, f)).convert('RGB'), Image.open(P(b, f)).convert('RGB'), ease((f - s0 + 1) / (s1 - s0 + 2))).save(O(f))
+print('blend: frames 519-638 composed from', order)

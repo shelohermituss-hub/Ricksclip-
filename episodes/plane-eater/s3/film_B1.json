@@ -152,8 +152,8 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.22,
-    1.42,
+    -0.3,
+    1.56,
     0.0
    ],
    "view": "34",
@@ -285,95 +285,89 @@
    "note": "row 21 POWER 2 cyan-white flash on THICK"
   }
  ],
+ "hand_at": [
+  {
+   "who": "doctor",
+   "f0": 519,
+   "f1": 600,
+   "at": [
+    -0.08,
+    2.07,
+    1.5
+   ],
+   "note": "row 19: his fist ON the left edge of the film"
+  }
+ ],
  "takes": [
   {
-   "id": "A",
+   "id": "B1",
    "place": "xray",
    "stations": [
     {
-     "at": 519,
+     "at": 564,
      "pos": [
-      1.05,
-      -0.95,
-      1.38
+      29.85,
+      -1.95,
+      -1.35
      ],
      "aim": [
-      -0.22,
-      1.7,
-      1.18
+      30.8,
+      -0.1,
+      -2.7
      ],
-     "lens": 18,
-     "subject": "doctor",
+     "lens": 22,
+     "subject": "lining",
      "framing": "W",
-     "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice",
-     "hold": 0.6,
+     "purpose": "ROW 20 \"lining\" (IMPOSSIBLE VIEW, slow drift; dissolve target A2): the cartoon X-ray world, cyan ribs and spine on mid-blue, the lining under the bean",
+     "hold": 0.0,
      "creep": 0.0028,
      "shows": [
-      "film"
+      "lining"
      ]
     },
     {
-     "at": 552,
+     "at": 594,
      "pos": [
-      0.62,
-      0.25,
-      1.48
+      30.2,
+      -1.25,
+      -2.15
      ],
      "aim": [
+      30.9,
+      -0.1,
+      -2.85
+     ],
+     "lens": 22,
+     "subject": "lining",
+     "framing": "C",
+     "purpose": "ROW 21 \"so THICK\" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "lining"
+     ]
+    },
+    {
+     "at": 616,
+     "pos": [
+      30.3,
+      -1.1,
+      -2.18
+     ],
+     "aim": [
+      30.95,
       -0.08,
-      2.0,
-      1.36
+      -2.88
      ],
-     "lens": 18,
-     "subject": "film",
-     "framing": "M",
-     "purpose": "ROW 19 \"found\" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable",
+     "lens": 22,
+     "subject": "lining",
+     "framing": "C",
+     "purpose": "the glow settles (dissolve source B1)",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
-      "film"
+      "lining"
      ]
-    },
-    {
-     "at": 573,
-     "pos": [
-      0.13,
-      1.76,
-      1.47
-     ],
-     "aim": [
-      0.11,
-      2.2,
-      1.47
-     ],
-     "lens": 24,
-     "subject": "film",
-     "framing": "C",
-     "purpose": "ROW 20 \"STOMACH\" (M07 fly into the object): the film fills the lens",
-     "hold": 0.0,
-     "creep": 0.0028,
-     "shows": [
-      "film"
-     ]
-    },
-    {
-     "at": 582,
-     "pos": [
-      0.11,
-      1.99,
-      1.47
-     ],
-     "aim": [
-      0.11,
-      2.3,
-      1.47
-     ],
-     "lens": 24,
-     "subject": "film",
-     "framing": "C",
-     "purpose": "fly-through: the lens goes on into the film grain (dissolve source A)",
-     "hold": 0.0,
-     "creep": 0.0028
     }
    ]
   }

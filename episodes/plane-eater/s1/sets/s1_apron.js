@@ -14,7 +14,7 @@ const PDIR = new URL('../props/out/', import.meta.url).href;
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 // story positions (plan metres, Z up), shared with make_film.py (keep in step)
-export const S1 = { trunk: [5.35, -1.3, 0.03], cutX: 4.80, plateXY: [5.98, -1.62], tableTop: 1.5, LUNCH: 121, CUT: 173, PICK: 214, BITES: 235 };
+export const S1 = { trunk: [5.3, -1.3, 0.03], cutX: 4.80, plateXY: [5.98, -1.62], tableTop: 1.5, LUNCH: 121, CUT: 173, PICK: 214, BITES: 235 };
 let CESSNA = null;
 function softTex(THREE) { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.45, 'rgba(255,255,255,.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
@@ -39,7 +39,7 @@ function woodTex(THREE, base, grain) { const c = document.createElement('canvas'
   g.globalAlpha = 1; const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; }
 function buildTrunk(THREE) {   // local: metres, Y up, the painted FRONT faces +Z (turned toward the lens in build), origin on the ground at the centre. Michel stands ON it.
   const g = new THREE.Group(); g.name = 's1_trunk';
-  const W = .9, D = .5, H = .42;
+  const W = .9, D = .55, H = .55;   // fix round 2: a deeper showman trunk (0.55 m) so his salting fist reaches over the 2.0 m wing top
   const M = (o) => new THREE.MeshStandardMaterial({ roughness: .55, metalness: 0, ...o });
   const wood = M({ map: woodTex(THREE, '#7a4a2a', '#3e2312'), roughness: .5 }), brass = new THREE.MeshStandardMaterial({ color: '#d9a94a', metalness: .9, roughness: .3 }),
     leather = M({ color: '#5a3320', roughness: .7 }), navy = M({ color: '#1d3461', roughness: .6 }), front = M({ map: lidTex(THREE), roughness: .55 });
@@ -62,6 +62,9 @@ export async function build(THREE, scene, film, ctx) {
   const plane = CESSNA.scene.clone(true); plane.name = 'pe_cessna_FMIAM'; plane.position.copy(V(ANCHORS.cessna_spot)); scene.add(plane);
   let wing = null; plane.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; if (/^wing_L/.test(o.name) && !wing) wing = o; } });
   plane.updateMatrixWorld(true);
+  // fix round 2 (lead): the wing top must read WHITE in the hook: the left wing panels get a little of the sun's own colour as emission (the sky fill
+  // turned the high-sun top grey-blue); the asset file is untouched
+  plane.traverse(o => { if (o.isMesh && /^(wing_L|aileron_L|flap_L)/.test(o.name)) { o.material = o.material.clone(); o.material.emissive = new THREE.Color('#fff4e6'); o.material.emissiveIntensity = .28; } });
   // the wing tip section at the cut (ray-cast up and down through wing_L): underside and top per chord point
   const rc = new THREE.Raycaster(), sec = [];
   for (let y = -2.0; y <= -.1; y += .05) { const lo = new THREE.Vector3(), hi = new THREE.Vector3(); rc.set(V([S1.cutX, y, 0]), new THREE.Vector3(0, 1, 0)); const a = wing ? rc.intersectObject(wing, true) : [];
@@ -121,7 +124,7 @@ export async function build(THREE, scene, film, ctx) {
       else { const k = f - S1.BITES, hop = k >= 0 && k < 6 ? .012 * Math.sin(Math.PI * k / 6) : 0; biteG.position.copy(onPlate).add(new THREE.Vector3(0, hop, 0)); biteG.rotation.set(0, .4, 0); } }
     // POWER 1 impact frame: f121 light field with red lines, f122-123 red field with light lines, behind Michel, facing the lens
     const E = f - S1.LUNCH; imp.visible = !!(R && R.camera) && E >= 0 && E < 3;
-    if (imp.visible) { const cam = R.camera, head = V([5.35, -1.3, 2.1]), d = cam.position.distanceTo(head) + .6, fov = cam.fov * Math.PI / 180, h = 2 * d * Math.tan(fov / 2) * 1.15;
+    if (imp.visible) { const cam = R.camera, head = V([5.3, -1.3, 2.25]), d = cam.position.distanceTo(head) + .6, fov = cam.fov * Math.PI / 180, h = 2 * d * Math.tan(fov / 2) * 1.15;
       imp.material.map = E === 0 ? impA : impB; imp.material.needsUpdate = true; const fw = new THREE.Vector3(); cam.getWorldDirection(fw);
       imp.position.copy(cam.position).addScaledVector(fw, d); imp.quaternion.copy(cam.quaternion); imp.scale.set(h * cam.aspect, h, 1); }
   }

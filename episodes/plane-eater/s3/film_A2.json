@@ -1,0 +1,353 @@
+{
+ "title": "The Man Who Ate An Airplane, S3 THE X-RAY (line 5, rows 19-22, frames 519-638), DRAFT",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 519,
+ "end": 639,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "auto_view": false,
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "doctor": {
+   "puppet": "cast:plane_eater/doctor",
+   "height": 1.64,
+   "heads_tall": 2.79,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.3,
+  "bloom": 0.35,
+  "vignette": 0
+ },
+ "places": {
+  "xray": {
+   "set": "xray",
+   "kind": "am",
+   "light": "day",
+   "xray": {
+    "keys": [
+     {
+      "f": 505,
+      "flicker": 1,
+      "puff": 0
+     },
+     {
+      "f": 519,
+      "flicker": 1
+     },
+     {
+      "f": 521,
+      "flicker": 0
+     },
+     {
+      "f": 524,
+      "flicker": 0.85
+     },
+     {
+      "f": 527,
+      "flicker": 0
+     },
+     {
+      "f": 584,
+      "puff": 0
+     },
+     {
+      "f": 593,
+      "puff": 1
+     },
+     {
+      "f": 618,
+      "puff": 1,
+      "ride": 0
+     },
+     {
+      "f": 660,
+      "puff": 1,
+      "ride": 1
+     }
+    ],
+    "tone": {
+     "lining": 0.35,
+     "backdrop": 0.6,
+     "bands": 0.8,
+     "key": 0.5,
+     "lining_color": "#4a86c8",
+     "backdrop_color": "#2f6fb3"
+    }
+   },
+   "kit3d": {
+    "envGround": "#a9c4bd"
+   }
+  }
+ },
+ "props": {
+  "film": {
+   "pos": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "kind": "the signature X-ray film: a tiny Cessna built of square bites inside the belly"
+  },
+  "mini": {
+   "pos": [
+    28.464,
+    -0.2,
+    -2.221
+   ],
+   "kind": "the mini bite-Cessna"
+  },
+  "lining": {
+   "pos": [
+    30.6,
+    -0.2,
+    -2.6
+   ],
+   "kind": "the stomach lining / mattress"
+  }
+ },
+ "acts": [
+  {
+   "who": "doctor",
+   "at": 519,
+   "pos": [
+    -0.3,
+    1.56,
+    0.0
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s3/dr_lean",
+   "face": "k:browUp",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"x -RAYED\": hand up on the film clip, the box flickers, he leans in (over-the-shoulder)"
+  },
+  {
+   "who": "doctor",
+   "at": 541,
+   "face": "k:think",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"and\": pushes the half-moon glasses down his nose"
+  },
+  {
+   "who": "doctor",
+   "at": 550,
+   "face": "k:surprised",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 19 \"found\": a jolt back, he sees the tiny plane"
+  },
+  {
+   "who": "doctor",
+   "at": 562,
+   "face": "k:shocked",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 20 \"stomach\": eyes wide as the camera goes past his shoulder into the film"
+  },
+  {
+   "who": "doctor",
+   "at": 567,
+   "visible": false,
+   "note": "the lens has passed his shoulder into the film"
+  },
+  {
+   "who": "doctor",
+   "at": 620,
+   "visible": true,
+   "face": "k:shocked",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "back out of the film: he is where he stood"
+  },
+  {
+   "who": "doctor",
+   "at": 633,
+   "face": "k:peJawDrop",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 23 start: the DOUBLE TAKE snaps back to the film, jaw drop"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 592,
+   "amp": 2
+  }
+ ],
+ "fx": [
+  {
+   "at": 528,
+   "kind": "glint",
+   "pos": [
+    0.16,
+    2.065,
+    1.52
+   ],
+   "note": "row 19 \"-rayed\": a glint runs over the tiny Cessna on the film"
+  },
+  {
+   "at": 592,
+   "kind": "glow",
+   "pos": [
+    30.6,
+    -0.2,
+    -2.55
+   ],
+   "note": "row 21 THICK: the lining glows as it puffs"
+  },
+  {
+   "at": 630,
+   "kind": "shine",
+   "pos": [
+    28.949,
+    -0.2,
+    -2.411
+   ],
+   "note": "row 22: oil sparkle behind the sliding plane"
+  },
+  {
+   "at": 636,
+   "kind": "shine",
+   "pos": [
+    29.729,
+    -0.2,
+    -2.584
+   ],
+   "note": "row 22: oil sparkle trail"
+  }
+ ],
+ "moods": [
+  {
+   "at": 592,
+   "look": "flash_white",
+   "note": "row 21 POWER 2 cyan-white flash on THICK"
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "doctor",
+   "f0": 519,
+   "f1": 600,
+   "at": [
+    -0.08,
+    2.07,
+    1.5
+   ],
+   "note": "row 19: his fist ON the left edge of the film"
+  }
+ ],
+ "takes": [
+  {
+   "id": "A2",
+   "place": "xray",
+   "stations": [
+    {
+     "at": 552,
+     "pos": [
+      0.24,
+      1.3,
+      1.49
+     ],
+     "aim": [
+      0.1,
+      2.2,
+      1.46
+     ],
+     "lens": 24,
+     "subject": "film",
+     "framing": "C",
+     "purpose": "ROW 20 \"STOMACH\" (M07 fly into the object, slow push): the film fills the lens, F-MIAM readable (dissolve target A1, source A2)",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "film"
+     ]
+    },
+    {
+     "at": 580,
+     "pos": [
+      0.12,
+      1.86,
+      1.47
+     ],
+     "aim": [
+      0.11,
+      2.3,
+      1.47
+     ],
+     "lens": 24,
+     "subject": "film",
+     "framing": "C",
+     "purpose": "the lens goes on into the film grain",
+     "hold": 0.0,
+     "creep": 0.0028,
+     "shows": [
+      "film"
+     ]
+    }
+   ]
+  }
+ ]
+}

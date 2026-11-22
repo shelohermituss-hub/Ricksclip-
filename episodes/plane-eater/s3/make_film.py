@@ -9,7 +9,7 @@ A, C = meta['anchors'], meta['cams']
 cast = {'doctor': dict(keys['cast']['doctor'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s3/' + k
 FILM = A['film_hero']['c']                                   # (0.11, 2.085, 1.47): the signature film on panel 1
-DOC = [-0.22, 1.42, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
+DOC = [-0.30, 1.56, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
 P = meta['slide_path']
 def along(u):
     n = len(P) - 1; f = min(max(u, 0), 1) * n; i = min(int(f), n - 1); k = f - i
@@ -29,22 +29,21 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
 sm = lambda f: (lambda u: u * u * (3 - 2 * u))(min(1, max(0, (f - 618) / 42)))
-CL = [
-    st(519, [1.05, -0.95, 1.38], [-0.22, 1.70, 1.18], 18, 'doctor', 'W', 'ROW 19 "x -RAYED" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice', hold=0.6, shows=['film']),
-    st(552, [0.62, 0.25, 1.48], [-0.08, 2.00, 1.36], 18, 'film', 'M', 'ROW 19 "found" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable', hold=0.0, shows=['film']),
-    st(573, [0.13, 1.76, 1.47], [0.11, 2.20, 1.47], 24, 'film', 'C', 'ROW 20 "STOMACH" (M07 fly into the object): the film fills the lens', hold=0.0, shows=['film']),
-]
-CL_IN = CL + [st(582, [0.11, 1.99, 1.47], [0.11, 2.30, 1.47], 24, 'film', 'C', 'fly-through: the lens goes on into the film grain (dissolve source A)', hold=0.0)]
-IN = [
-    st(566, [28.75, -3.40, 0.30], [30.50, -0.20, -2.00], 18, 'lining', 'W', 'ROW 20 "STOMACH lining" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining', hold=0.0, shows=['lining', 'mini']),
-    st(594, [30.20, -1.25, -2.15], [30.90, -0.10, -2.85], 22, 'lining', 'C', 'ROW 21 "so THICK" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash, then steady glow', hold=0.35, shows=['lining']),
-    st(620, [29.25, -2.15, -1.45], [29.0, -0.2, -2.4], 24, 'mini', 'C', 'ROW 22 "SLID" (SIGNATURE peak, M14 ride): the bite-Cessna, navy stripe, propeller humming, starts down the runway', hold=0.0, shows=['mini']),
-    st(638, [29.70, -1.95, -1.50], [29.65, -0.2, -2.50], 24, 'mini', 'C', 'ROW 22 "through" (M14): the plane slides along the oily lining and out of frame right (dissolve source for the way back out)', hold=0.0, shows=['mini']),
-]
-OUT = [
-    st(612, [0.12, 1.80, 1.47], [0.11, 2.20, 1.47], 24, 'film', 'C', 'back out of the film (dissolve target C): the film fills the lens again', hold=0.0),
-    st(640, [0.52, 1.30, 1.47], [-0.16, 1.86, 1.38], 20, 'doctor', 'M', 'ROW 22-23 (M04 pull back): the Doctor beside his film, the DOUBLE TAKE on f633-638, jaw drop; the film with the tiny plane at the right', hold=0.0, shows=['film']),
-]
+# FIVE PASSES, FOUR DISSOLVES ON THE MOVE (blend.py), every pass a slow drift (camera p90 <= 22): A1 clinic wide (row 19, the Doctor whole, his fist on the
+# film edge) -> 556-565 -> A2 the film close, pushing in -> 568-577 -> B1 the X-ray world and the lining on THICK -> 606-615 -> B2 the ride of the
+# bite-Cessna -> 628-637 -> C back out: the Doctor whole, double take.
+A1 = [st(519, [1.05, -0.95, 1.40], [-0.22, 1.72, 1.18], 18, 'doctor', 'W', 'ROW 19 "x -RAYED"..."found" (ACT + SIGNATURE, M00 living rest, slow creep in): the Doctor whole at the left, his fist ON the film edge, leaning in, glasses down, jolt on "found"; the glowing film with the tiny bite-Cessna; the box flickers twice', hold=0.0, shows=['film']),
+      st(566, [0.92, -0.62, 1.42], [-0.18, 1.78, 1.22], 18, 'doctor', 'W', 'ROW 19 end of the slow creep (dissolve source A1)', hold=0.0, shows=['film'])]
+A2 = [st(552, [0.24, 1.30, 1.49], [0.10, 2.20, 1.46], 24, 'film', 'C', 'ROW 20 "STOMACH" (M07 fly into the object, slow push): the film fills the lens, F-MIAM readable (dissolve target A1, source A2)', hold=0.0, shows=['film']),
+      st(580, [0.12, 1.86, 1.47], [0.11, 2.30, 1.47], 24, 'film', 'C', 'the lens goes on into the film grain', hold=0.0, shows=['film'])]
+B1 = [st(564, [29.85, -1.95, -1.35], [30.80, -0.10, -2.70], 22, 'lining', 'W', 'ROW 20 "lining" (IMPOSSIBLE VIEW, slow drift; dissolve target A2): the cartoon X-ray world, cyan ribs and spine on mid-blue, the lining under the bean', hold=0.0, shows=['lining']),
+      st(594, [30.20, -1.25, -2.15], [30.90, -0.10, -2.85], 22, 'lining', 'C', 'ROW 21 "so THICK" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash', hold=0.0, shows=['lining']),
+      st(616, [30.30, -1.10, -2.18], [30.95, -0.08, -2.88], 22, 'lining', 'C', 'the glow settles (dissolve source B1)', hold=0.0, shows=['lining'])]
+B2 = [st(604, [29.05, -2.25, -1.42], [28.90, -0.20, -2.38], 24, 'mini', 'C', 'ROW 22 "just SLID" (SIGNATURE peak, M14, slow drift with it; dissolve target B1): the bite-Cessna, navy stripe, propeller humming, slides down the runway', hold=0.0, shows=['mini']),
+      st(640, [29.65, -1.98, -1.50], [29.60, -0.20, -2.50], 24, 'mini', 'C', 'ROW 22 "through": it slides along the oily lining and out of frame right (dissolve source B2)', hold=0.0, shows=['mini'])]
+OUT = [st(612, [0.62, -0.45, 1.42], [-0.20, 1.75, 1.15], 18, 'doctor', 'W', 'back out (dissolve target C, slow pull back): the Doctor whole beside his film', hold=0.0, shows=['film']),
+       st(640, [0.80, -0.75, 1.42], [-0.22, 1.72, 1.15], 18, 'doctor', 'W', 'ROW 22-23: the Doctor whole, the DOUBLE TAKE f628-638, jaw drop; the film with the tiny plane', hold=0.0, shows=['film'])]
+PASSES = {'A1': (A1, '519-565'), 'A2': (A2, '556-577'), 'B1': (B1, '568-615'), 'B2': (B2, '606-637'), 'C': (OUT, '628-638')}
 props = {
     'film': dict(pos=FILM, kind='the signature X-ray film: a tiny Cessna built of square bites inside the belly'),
     'mini': dict(pos=P[0], kind='the mini bite-Cessna'),
@@ -72,14 +71,16 @@ film = {
            dict(at=636, kind='shine', pos=along(sm(634) - .03), note='row 22: oil sparkle trail')],
     'moods': [
               dict(at=592, look='flash_white', note='row 21 POWER 2 cyan-white flash on THICK')],
-    'takes': [{'id': 'clinic', 'place': 'xray', 'stations': CL}, {'id': 'inside', 'place': 'xray', 'stations': [IN[0]] + IN[1:3]},
-              {'id': 'out', 'place': 'xray', 'stations': [dict(OUT[1], at=633, hold=0.2)]}],
+    'hand_at': [dict(who='doctor', f0=519, f1=600, at=[-0.08, 2.07, 1.50], note='row 19: his fist ON the left edge of the film')],
+    'takes': [{'id': 'A1', 'place': 'xray', 'stations': A1}, {'id': 'A2', 'place': 'xray', 'stations': [dict(A2[1], at=566, hold=0.3)]},
+              {'id': 'B1', 'place': 'xray', 'stations': [dict(B1[0], at=578)] + B1[1:]}, {'id': 'B2', 'place': 'xray', 'stations': [dict(B2[0], at=616), B2[1]]},
+              {'id': 'C', 'place': 'xray', 'stations': [dict(OUT[1], at=634, hold=0.2)]}],
 }
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 # the three passes of the two DISSOLVES ON THE MOVE (render_s3.sh blends them): A = the clinic push going on into the film grain, B = the X-ray world,
 # C = back out to the Doctor. Same film, one take each; film.json above (cut-based) is the one the checks read.
 import copy
-for name, take, a0, a1 in (('A', CL_IN, 519, 583), ('B', IN, 519, 639), ('C', OUT, 519, 641)):
+for name, (take, rng) in PASSES.items():
     F = copy.deepcopy(film); F['takes'] = [{'id': name, 'place': 'xray', 'stations': take}]
     json.dump(F, open(os.path.join(HERE, 'film_%s.json' % name), 'w'), indent=1)
-print('film.json + film_A/B/C.json written:', len(acts), 'acts')
+json.dump({k: v[1] for k, v in PASSES.items()}, open(os.path.join(HERE, 'passes.json'), 'w'))

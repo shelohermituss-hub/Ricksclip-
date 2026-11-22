@@ -43,6 +43,10 @@ function miHook(t, ch, view = 'front') { const f = F(t), S = ch.sh[1], L = ch.ar
   let h1 = mix(baton, { wx: Wd * .15 + .12 * L, wy: S - .22 * L }, chin); h1 = mix(h1, { wx: Wd * .12, wy: S + .02 * L + .1 * L * tug }, collar);
   const saw = { wx: Wd * .3 + .6 * L + .06 * L * st, wy: S - .66 * L }; h1 = mix(h1, saw, sawUp);
   h1 = mix(h1, { wx: Wd * .3 + .6 * L, wy: S - .62 * L }, tongUp * (1 - tongDown)); h1 = mix(h1, { wx: Wd * .3 + .6 * L, wy: S + .12 * L }, tongDown);   // fix round: the plate is on the side table at his chest
+  // fix round 2: hand_at targets (ch.tgt, card px) take the working fist: salt f0-62 (fist 0), saw f150-202 and tongs f205-218 at the cut, tongs at the plate f226+ (fist 1)
+  if (ch.tgt) { const T = { wx: ch.tgt[0], wy: ch.tgt[1] };
+    if (f < 76) h0 = mix(h0, T, 1 - snap(f - W.looked, 10));
+    else { const w = f < 222 ? snap(f - 150, 10) * (1 - snap(f - 212, 8)) + 0 : snap(f - 224, 12); h1 = mix(h1, T, w); } }
   return { view, dir: 1, x: 0, y, rot, head, feet: [{ x: -26, lift: 0 }, { x: 26, lift: 0 }], farArmFront: false,
     hands: [{ ...h0, bow: .4 }, { ...h1, bow: .35, over: true }], held: [] }; }
 
