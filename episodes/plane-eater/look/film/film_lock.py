@@ -49,9 +49,9 @@ for o in new:
     while r is not None:
         if r.name.split('.')[0].startswith(KEEP): keep.add(o); break
         r = r.parent if r.parent in new_set else None
-drop = [o for o in new if o not in keep and not any(c in keep for c in o.children_recursive)]
-bpy.data.batch_remove(drop); kept = [o for o in new if o in keep or any(c in keep for c in o.children_recursive)]
-kept = [o for o in kept if o.name in bpy.data.objects]
+keepall = {o for o in new if o in keep or any(c in keep for c in o.children_recursive)}
+drop = [o for o in new if o not in keepall]; kept = list(keepall)
+bpy.data.batch_remove(drop)
 print('KEPT', len(kept), sorted({root_of(o).name for o in kept})[:40], flush=True)
 mv = L2.motion(LOCK, PLACE, kept); print('MOTION', {k: v for k, v in mv.items() if k != 'missing'}, 'missing', mv.get('missing', [])[:10])
 
