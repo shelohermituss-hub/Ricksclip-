@@ -56,3 +56,14 @@ Dans le kit elles sont **presque invisibles** : 1 à 3 px en 1080. Chez la réf�
 ## Comment récupérer ce dossier sur le PC
 Dépôt GitHub `shelohermituss-hub/Ricksclip-`, branche `ccr-e4844daf-xc796n`, dossier `unity_test/`
 (par exemple `git clone --depth 1 -b ccr-e4844daf-xc796n https://github.com/shelohermituss-hub/Ricksclip-.git`, ou le téléchargement zip de la branche sur GitHub).
+
+## Résultat (2026-11-22, vérifié dans la session cloud)
+- Reçu : `s11_unity.mp4` (1080x1920, 30 i/s, 140 images) + rapport `RESULTATS.md` de la session du PC (copiés dans `references/look_match/astro_flush/work/unity/`, ignoré par git).
+- Conversion glTF -> Unity prouvée : `(x,y,z) -> (-x,y,z)`, quaternion `(qx,-qy,-qz,qw)`, caméra `* Euler(0,180,0)` ; 0,003 px d'écart sur 700 points.
+- Temps sur la 940MX : rendu 69 ms par image, 164 ms avec l'écriture PNG ; le plan entier en environ 1 min.
+- Image : Unity refait le kit presque à l'identique (mêmes données). Seul vrai gain visible : le nuage d'étincelles, dense et lumineux (le kit ne le montre pas).
+  Les couleurs de coque ont dû être recalées à la main sur les images du kit.
+- Fluidité f867-997 (pauses / à-coups / secousses) : kit 0,069 / 0,054 / 0,105 ; Unity 0,069 / 0,023 / 0,089 ; Rick 0,008 / 0 / 0,040.
+- L'écart avec Rick vient de la mise en scène et des modèles (même trajet de caméra, même coup de roulis f935-955, dessous du vaisseau au lieu du flanc LODESTAR,
+  nouveau qui reste au hublot jusqu'à f883), pas du moteur.
+- README : `porthole_b` est la 3e fenêtre de la rangée (2e hublot habité).
