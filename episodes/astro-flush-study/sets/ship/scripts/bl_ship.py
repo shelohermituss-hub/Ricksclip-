@@ -444,21 +444,41 @@ for k, a in enumerate((-.08, .06)):                                 # twin T lev
 cyl('mic_stand', .04, .08, tuple(R(.2, .25, .04)), 'mic'); box('mic', (.07, .05, .14), tuple(R(.2, .25, .15)), 'mic', bev=.02)
 # ================================================================== WORLD: Earth (painted map + bright rim), sky dome (stars), all world objects
 def earth_mats():
-    m = bpy.data.materials.new('earth'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
-    t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png'))
-    hs = nt.nodes.new('ShaderNodeHueSaturation'); hs.inputs['Saturation'].default_value = 1.25; hs.inputs['Value'].default_value = .5   # tames the clouds under the hard sun
-    nt.links.new(t.outputs[0], hs.inputs['Color']); nt.links.new(hs.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
-    b.inputs['Roughness'].default_value = .3; b.inputs['Specular IOR Level'].default_value = .9; MATS['earth'] = m
+    """round 4: nearly unlit Earth (as his): the painted map (make_earth_stars.py, clouds inside) is the emission; a dim diffuse base keeps a crescent when
+    ship_api lowers earth_emit; the limb goes pale blue-white; a soft white sun glare spot sits at a screen place (ship_api earth_glare -> nodes glare_*)."""
+    m = bpy.data.materials.new('earth'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']; N_ = nt.nodes.new; L_ = nt.links.new
+    t = N_('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png')); t.interpolation = 'Cubic'
+    hs = N_('ShaderNodeHueSaturation'); hs.name = 'earth_base'; hs.inputs['Value'].default_value = .2; L_(t.outputs[0], hs.inputs['Color']); L_(hs.outputs[0], b.inputs['Base Color'])
+    lw = N_('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5
+    pw = N_('ShaderNodeMath'); pw.operation = 'POWER'; L_(lw.outputs['Facing'], pw.inputs[0]); pw.inputs[1].default_value = 5.
+    pk = N_('ShaderNodeMath'); pk.operation = 'MULTIPLY'; pk.inputs[1].default_value = .6; L_(pw.outputs[0], pk.inputs[0])
+    limb = N_('ShaderNodeMix'); limb.data_type = 'RGBA'; L_(pk.outputs[0], limb.inputs['Factor']); L_(t.outputs[0], limb.inputs[6]); limb.inputs[7].default_value = lin('#d4efff')
+    gp = N_('ShaderNodeNewGeometry'); vt = N_('ShaderNodeVectorTransform'); vt.vector_type = 'POINT'; vt.convert_from = 'WORLD'; vt.convert_to = 'CAMERA'; L_(gp.outputs['Position'], vt.inputs[0])
+    sx = N_('ShaderNodeSeparateXYZ'); L_(vt.outputs[0], sx.inputs[0]); nz = N_('ShaderNodeMath'); nz.operation = 'MULTIPLY'; nz.inputs[1].default_value = -1.; L_(sx.outputs['Z'], nz.inputs[0])
+    def V(name, v): n = N_('ShaderNodeValue'); n.name = n.label = name; n.outputs[0].default_value = v; return n
+    gx, gy, gr, gk = V('glare_x', .3), V('glare_y', -.3), V('glare_r', .12), V('glare_k', 0.)
+    def M(op, a, bb):
+        n = N_('ShaderNodeMath'); n.operation = op
+        for i, v in enumerate((a, bb)):
+            if isinstance(v, (int, float)): n.inputs[i].default_value = v
+            else: L_(v, n.inputs[i])
+        return n.outputs[0]
+    du = M('SUBTRACT', M('DIVIDE', sx.outputs['X'], nz.outputs[0]), gx.outputs[0]); dv = M('SUBTRACT', M('DIVIDE', sx.outputs['Y'], nz.outputs[0]), gy.outputs[0])
+    d2 = M('DIVIDE', M('ADD', M('MULTIPLY', du, du), M('MULTIPLY', dv, dv)), M('MULTIPLY', gr.outputs[0], gr.outputs[0]))
+    gl = M('MULTIPLY', M('ADD', M('EXPONENT', M('MULTIPLY', d2, -1.), 0), M('MULTIPLY', M('EXPONENT', M('MULTIPLY', d2, -.15), 0), .35)), gk.outputs[0])   # core + broad halo
+    gm = N_('ShaderNodeMix'); gm.data_type = 'RGBA'; gm.clamp_factor = True; L_(gl, gm.inputs['Factor']); L_(limb.outputs[2], gm.inputs[6]); gm.inputs[7].default_value = (1, 1, 1, 1)
+    L_(gm.outputs[2], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = 1.
+    b.inputs['Roughness'].default_value = .7; b.inputs['Specular IOR Level'].default_value = .15; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
-    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 6.
-    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#bfeaff'); em.inputs[1].default_value = 4.
+    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 3.5   # round 4: thicker rim
+    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#c8ecff'); em.inputs[1].default_value = 3.
     tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])
     MATS['earth_rim'] = r
 earth_mats()
 bm = B(); bm.loops.layers.uv.verify(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1., calc_uvs=True); eo = obj('earth', bm, 'earth', (0, -3000, -2600), (0, 0, 0), c=WORLD, smooth=True, mover={'state': 'earth [x,y,z,R] per shot'})
 eo.scale = (1500,) * 3; MOVERS['earth']['scale'] = 1500
-bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1.035); ro = obj('earth_rim', bm, 'earth_rim', c=WORLD, smooth=True); ro.parent = eo
+bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1.045); ro = obj('earth_rim', bm, 'earth_rim', c=WORLD, smooth=True); ro.parent = eo
 def cloud_mat():
     """round 3: procedural cloud shell (holds close up): warped noise, big swirls + small puffs, white with soft pale-blue shade, alpha. The kit uses cloud_tile_kit.png."""
     m = bpy.data.materials.new('earth_clouds'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']; N_ = nt.nodes.new; L_ = nt.links.new
@@ -469,9 +489,17 @@ def cloud_mat():
     L_(n1.outputs['Fac'], sh.inputs[0]); L_(sh.outputs[0], b.inputs['Base Color']); b.inputs['Roughness'].default_value = .9; b.inputs['Specular IOR Level'].default_value = .1
     MATS['earth_clouds'] = m; return m
 bm = B(); bm.loops.layers.uv.verify(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=1.006, calc_uvs=True); co = obj('earth_clouds', bm, cloud_mat(), c=WORLD, smooth=True); co.parent = eo
+co.hide_render = co.hide_viewport = True   # round 4: clouds are painted into earth.png; the shell (ring streaks) is kept by name but hidden (ship_api too)
 bm = B(); bm.loops.layers.uv.verify(); bmesh.ops.create_uvsphere(bm, u_segments=96, v_segments=48, radius=20000., calc_uvs=True); bmesh.ops.reverse_faces(bm, faces=bm.faces[:])
 sky = bpy.data.objects.new('sky_dome', bpy.data.meshes.new('sky_dome')); bm.to_mesh(sky.data); bm.free(); WORLD.objects.link(sky)
 sm = mat('sky_stars', png='stars.png', emit_png=True, es=1., rough=1.); sm.node_tree.nodes['Image Texture'].extension = 'REPEAT'; sky.data.materials.append(sm)
+def star_boost(m):
+    """round 4: emission strength 1 + 5 v^4 (v = picture brightness): the navy ground stays as painted, star cores go past 1 so the render's pixel filter
+    does not dim the 1-2 px stars (an 8-bit map clips them at 1)."""
+    nt = m.node_tree; t = nt.nodes['Image Texture']; b = nt.nodes['Principled BSDF']; hv = nt.nodes.new('ShaderNodeSeparateColor'); hv.mode = 'HSV'; nt.links.new(t.outputs[0], hv.inputs[0])
+    p4 = nt.nodes.new('ShaderNodeMath'); p4.operation = 'POWER'; p4.inputs[1].default_value = 4.; nt.links.new(hv.outputs[2], p4.inputs[0])
+    ma = nt.nodes.new('ShaderNodeMath'); ma.operation = 'MULTIPLY_ADD'; ma.inputs[1].default_value = 5.; ma.inputs[2].default_value = 1.; nt.links.new(p4.outputs[0], ma.inputs[0]); nt.links.new(ma.outputs[0], b.inputs['Emission Strength'])
+star_boost(sm)
 sky.visible_diffuse = sky.visible_glossy = sky.visible_shadow = False
 for p in sky.data.polygons: p.use_smooth = True
 # ================================================================== STAND-IN CARDS (excluded from the GLB), LIGHTS, ship_root

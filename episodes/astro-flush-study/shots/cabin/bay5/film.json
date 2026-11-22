@@ -1,0 +1,441 @@
+{
+ "title": "astro-flush cabin, shot 5 (f423-494, + dissolves f411-422 and f495-499)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "caps_his.json",
+ "start": 411,
+ "end": 500,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "navigator": {
+   "puppet": "cast:astro_flush/navigator",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "commander": {
+   "puppet": "cast:astro_flush/commander",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 1.0,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "cabin": {
+   "set": "cab_stage",
+   "kind": "interior",
+   "light": "night",
+   "light_over": {
+    "tint": "#c9cff5"
+   },
+   "cabin": {
+    "mode": "night",
+    "door": 1,
+    "bag_new_guy": "full",
+    "sway": -0.6,
+    "keys": [
+     {
+      "f": 0,
+      "sway": -0.6,
+      "bag_new_guy": "full"
+     },
+     {
+      "f": 440,
+      "sway": 0.5
+     },
+     {
+      "f": 462,
+      "bag_new_guy": "full",
+      "sway": -0.2
+     },
+     {
+      "f": 463,
+      "bag_new_guy": "empty"
+     },
+     {
+      "f": 476,
+      "sway": -0.5
+     },
+     {
+      "f": 500,
+      "sway": 0.4
+     }
+    ]
+   },
+   "held": [
+    {
+     "obj": "float_crisps",
+     "who": null,
+     "drift": {
+      "f": 411,
+      "v": [
+       0.02,
+       -0.01,
+       0.03
+      ],
+      "spin": [
+       0,
+       0,
+       12
+      ]
+     }
+    },
+    {
+     "obj": "float_book",
+     "who": null,
+     "drift": {
+      "f": 411,
+      "v": [
+       -0.03,
+       0,
+       -0.015
+      ],
+      "spin": [
+       6,
+       0,
+       9
+      ]
+     }
+    },
+    {
+     "obj": "float_tube",
+     "who": null,
+     "drift": {
+      "f": 411,
+      "v": [
+       0.03,
+       0,
+       0.01
+      ],
+      "spin": [
+       0,
+       10,
+       14
+      ]
+     }
+    },
+    {
+     "obj": "float_strip",
+     "who": null,
+     "drift": {
+      "f": 411,
+      "v": [
+       0,
+       -0.02,
+       0.02
+      ],
+      "spin": [
+       8,
+       0,
+       -10
+      ]
+     }
+    },
+    {
+     "obj": "float_pen",
+     "who": null,
+     "drift": {
+      "f": 411,
+      "v": [
+       0.02,
+       0,
+       0.02
+      ],
+      "spin": [
+       0,
+       20,
+       0
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "takes": [
+  {
+   "id": "s5",
+   "place": "cabin",
+   "stations": [
+    {
+     "pos": [
+      -12.108,
+      -4.662,
+      3.509
+     ],
+     "aim": [
+      -12.959,
+      0.425,
+      2.195
+     ],
+     "lens": 31.18,
+     "roll": -2.5,
+     "at": 0,
+     "hold": 0.7,
+     "creep": 0,
+     "framing": "W",
+     "purpose": "pre-roll (never rendered)"
+    },
+    {
+     "pos": [
+      -12.108,
+      -4.662,
+      3.509
+     ],
+     "aim": [
+      -12.959,
+      0.425,
+      2.195
+     ],
+     "lens": 31.18,
+     "roll": -2.5,
+     "at": 411,
+     "hold": 0,
+     "min_hold": 0,
+     "creep": 0,
+     "travel": 0.1,
+     "framing": "W",
+     "purpose": "f411 first ghost: already panning right"
+    },
+    {
+     "pos": [
+      -11.9578,
+      -2.891,
+      1.7184
+     ],
+     "aim": [
+      -10.4694,
+      1.7822,
+      2.2679
+     ],
+     "lens": 31.18,
+     "roll": 2.0,
+     "at": 452,
+     "travel": 1.3666666666666667,
+     "via": [
+      [
+       -11.758,
+       -4.412,
+       3.459
+      ]
+     ],
+     "aim_via": [
+      [
+       -11.859,
+       0.425,
+       2.195
+      ]
+     ],
+     "hold": 0.26666666666666666,
+     "creep": 0,
+     "drift": [
+      -0.0832,
+      0.6338,
+      -0.7253
+     ],
+     "drift_aim": 1,
+     "subject": "newguy",
+     "framing": "M",
+     "purpose": "pan right + push in to commander + new guy, near rest ('asleep.'), drifts into cam f460 (fitted)"
+    },
+    {
+     "pos": [
+      -12.904,
+      -3.237,
+      2.653
+     ],
+     "aim": [
+      -9.639,
+      0.368,
+      1.496
+     ],
+     "lens": 29.9,
+     "roll": 4.09,
+     "at": 490,
+     "travel": 1.0,
+     "hold": 0.3333333333333333,
+     "creep": 0,
+     "drift": [
+      -0.231,
+      -0.1288,
+      0.282
+     ],
+     "drift_aim": 1,
+     "subject": "newguy",
+     "framing": "M",
+     "purpose": "pans right with him and pulls back to the door (cam f490 fitted), on through the dissolve"
+    }
+   ]
+  }
+ ],
+ "card_scale": {
+  "navigator": [
+   [
+    0,
+    0.82,
+    0.82
+   ],
+   [
+    900,
+    0.82,
+    0.82
+   ]
+  ],
+  "commander": [
+   [
+    0,
+    1.0,
+    1.0
+   ],
+   [
+    900,
+    1.0,
+    1.0
+   ]
+  ],
+  "newguy": [
+   [
+    0,
+    0.91,
+    0.91
+   ],
+   [
+    900,
+    0.91,
+    0.91
+   ]
+  ]
+ },
+ "acts": [
+  {
+   "who": "navigator",
+   "at": 0,
+   "pos": [
+    -13.566,
+    1.0,
+    1.24
+   ],
+   "pose": "m:../../ep_cab/nav5",
+   "look": [
+    -13.566,
+    -5.0,
+    1.4
+   ],
+   "note": "asleep in the teal bag"
+  },
+  {
+   "who": "commander",
+   "at": 0,
+   "pos": [
+    -11.948,
+    1.0,
+    0.944
+   ],
+   "pose": "m:../../ep_cab/cmd5",
+   "look": [
+    -11.948,
+    -5.0,
+    1.4
+   ],
+   "note": "asleep in the blue bag, mouth open"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "pos": [
+    -10.586,
+    1.0,
+    0.956
+   ],
+   "pose": "m:../../ep_cab/ng5",
+   "look": [
+    -10.586,
+    -5.0,
+    1.4
+   ],
+   "note": "asleep in the green bag"
+  },
+  {
+   "who": "newguy",
+   "at": 457,
+   "pos": [
+    -10.741,
+    0.75,
+    1.309
+   ],
+   "move_s": 0.4,
+   "look": [
+    -10.741,
+    -5.25,
+    1.4
+   ],
+   "note": "slides up out of the green bag f457-469, eased, body straight"
+  },
+  {
+   "who": "newguy",
+   "at": 474,
+   "pos": [
+    -10.358,
+    -0.3,
+    0.758
+   ],
+   "move_s": 0.65,
+   "look": [
+    -10.358,
+    -6.3,
+    1.4
+   ],
+   "note": "drifts right to the back door"
+  }
+ ]
+}

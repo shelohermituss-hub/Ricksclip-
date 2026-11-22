@@ -1,0 +1,457 @@
+{
+ "title": "astro-flush cabin, shot 4 (f284-410, + dissolve f411-422)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "caps_his.json",
+ "start": 284,
+ "end": 423,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "commander": {
+   "puppet": "cast:astro_flush/commander",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "navigator": {
+   "puppet": "cast:astro_flush/navigator",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 1.0,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "cabin": {
+   "set": "cab_stage",
+   "kind": "interior",
+   "light": "day",
+   "light_over": {
+    "tint": "#ffffff"
+   },
+   "cabin": {
+    "mode": "day",
+    "door": 1,
+    "sway": 0
+   },
+   "held": [
+    {
+     "obj": "magazine",
+     "who": "newguy",
+     "hand": 0,
+     "off": [
+      0,
+      0,
+      -0.05
+     ],
+     "spin": [
+      0,
+      0,
+      -8
+     ],
+     "toss": {
+      "f": 392,
+      "v": [
+       -0.55,
+       0.25,
+       0.55
+      ],
+      "spin": [
+       160,
+       90,
+       260
+      ]
+     }
+    },
+    {
+     "obj": "drink_ball",
+     "who": "newguy",
+     "hand": 1,
+     "off": [
+      0,
+      0,
+      0.02
+     ],
+     "toss": {
+      "f": 396,
+      "v": [
+       -0.35,
+       0.05,
+       0.12
+      ],
+      "spin": [
+       20,
+       40,
+       30
+      ]
+     }
+    },
+    {
+     "obj": "clipboard",
+     "who": "navigator",
+     "hand": 0,
+     "off": [
+      0,
+      0,
+      -0.12
+     ],
+     "spin": [
+      0,
+      0,
+      -10
+     ]
+    },
+    {
+     "obj": "pencil",
+     "who": "navigator",
+     "hand": 1,
+     "off": [
+      0,
+      0,
+      0.04
+     ],
+     "spin": [
+      0,
+      0,
+      30
+     ]
+    }
+   ]
+  }
+ },
+ "takes": [
+  {
+   "id": "s4",
+   "place": "cabin",
+   "stations": [
+    {
+     "pos": [
+      0,
+      -0.6,
+      3.67
+     ],
+     "aim": [
+      0,
+      1.5,
+      3.67
+     ],
+     "lens": 31.18,
+     "roll": 0,
+     "at": 0,
+     "hold": 0.7,
+     "creep": 0,
+     "subject": null,
+     "framing": "C",
+     "purpose": "pre-roll (never rendered): the monitor fills the frame"
+    },
+    {
+     "pos": [
+      0,
+      -0.6,
+      3.67
+     ],
+     "aim": [
+      0,
+      1.5,
+      3.67
+     ],
+     "lens": 31.18,
+     "roll": 0,
+     "at": 284,
+     "hold": 0,
+     "min_hold": 0,
+     "creep": 0,
+     "travel": 0.1,
+     "framing": "C",
+     "purpose": "f284 match move from shot 3: monitor 95 % of the frame"
+    },
+    {
+     "pos": [
+      0.8369,
+      -5.066,
+      1.4893
+     ],
+     "aim": [
+      0.4759,
+      -0.079,
+      1.4903
+     ],
+     "lens": 31.18,
+     "roll": 0.38,
+     "at": 317,
+     "travel": 1.1,
+     "via": [
+      [
+       0.018,
+       -1.849,
+       2.439
+      ]
+     ],
+     "aim_via": [
+      [
+       0.018,
+       3.151,
+       2.439
+      ]
+     ],
+     "hold": 1.4333333333333333,
+     "creep": 0,
+     "drift": [
+      -0.5787,
+      0.5572,
+      0.0095
+     ],
+     "drift_aim": 1,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "settle f312-317, then the slow push in through f330 (cam f330 fitted) to f360"
+    },
+    {
+     "pos": [
+      -0.427,
+      -3.849,
+      1.51
+     ],
+     "aim": [
+      0.024,
+      1.131,
+      1.509
+     ],
+     "lens": 31.18,
+     "roll": -1.8,
+     "at": 390,
+     "travel": 1.0,
+     "hold": 1.0666666666666667,
+     "creep": 0,
+     "drift": [
+      -0.0429,
+      0.0413,
+      0.0007
+     ],
+     "drift_aim": 1,
+     "subject": "newguy",
+     "framing": "W",
+     "purpose": "rest/creep 360-390 into cam f390 (fitted), creep on to the dissolve f411-422"
+    }
+   ]
+  }
+ ],
+ "card_scale": {
+  "commander": [
+   [
+    0,
+    1.21,
+    1.21
+   ],
+   [
+    900,
+    1.21,
+    1.21
+   ]
+  ],
+  "newguy": [
+   [
+    0,
+    1.21,
+    1.21
+   ],
+   [
+    900,
+    1.21,
+    1.21
+   ]
+  ],
+  "navigator": [
+   [
+    0,
+    1.21,
+    1.21
+   ],
+   [
+    900,
+    1.21,
+    1.21
+   ]
+  ]
+ },
+ "acts": [
+  {
+   "who": "commander",
+   "at": 0,
+   "pos": [
+    -0.959,
+    1.35,
+    0.23
+   ],
+   "pose": "m:../../ep_cab/cmd4",
+   "look": [
+    -0.959,
+    -4.65,
+    1.4
+   ],
+   "note": "floating, weightless (bob in the move)"
+  },
+  {
+   "who": "commander",
+   "at": 300,
+   "pos": [
+    -0.944,
+    0.7,
+    0.215
+   ],
+   "move_s": 0.6,
+   "look": [
+    -0.944,
+    -5.3,
+    1.4
+   ],
+   "note": "cheat mark of his f300 -> real mark under the settle"
+  },
+  {
+   "who": "commander",
+   "at": 340,
+   "pos": [
+    -1.053,
+    0.7,
+    0.279
+   ],
+   "move_s": 1.6,
+   "look": [
+    -1.053,
+    -5.3,
+    1.4
+   ],
+   "note": "slow float drift to his f390 mark"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "pos": [
+    0.114,
+    1.12,
+    -0.09
+   ],
+   "pose": "m:../../ep_cab/ng4",
+   "look": [
+    0.114,
+    -4.88,
+    1.4
+   ],
+   "note": "floating, weightless (bob in the move)"
+  },
+  {
+   "who": "newguy",
+   "at": 300,
+   "pos": [
+    0.167,
+    0.7,
+    -0.085
+   ],
+   "move_s": 0.6,
+   "look": [
+    0.167,
+    -5.3,
+    1.4
+   ],
+   "note": "cheat mark of his f300 -> real mark under the settle"
+  },
+  {
+   "who": "newguy",
+   "at": 340,
+   "pos": [
+    -0.053,
+    0.7,
+    0.066
+   ],
+   "move_s": 1.6,
+   "look": [
+    -0.053,
+    -5.3,
+    1.4
+   ],
+   "note": "slow float drift to his f390 mark"
+  },
+  {
+   "who": "navigator",
+   "at": 0,
+   "pos": [
+    1.215,
+    0.7,
+    0.256
+   ],
+   "pose": "m:../../ep_cab/nav4",
+   "look": [
+    1.215,
+    -5.3,
+    1.4
+   ],
+   "note": "floating, weightless (bob in the move)"
+  },
+  {
+   "who": "navigator",
+   "at": 340,
+   "pos": [
+    1.0,
+    0.7,
+    0.413
+   ],
+   "move_s": 1.6,
+   "look": [
+    1.0,
+    -5.3,
+    1.4
+   ],
+   "note": "slow float drift to his f390 mark"
+  }
+ ]
+}

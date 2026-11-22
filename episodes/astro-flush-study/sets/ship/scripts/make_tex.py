@@ -152,4 +152,5 @@ if __name__ == '__main__' and len(sys.argv) > 1:
     for n in sys.argv[1:]: globals()[n]()
     print('tex ok', sys.argv[1:])
 elif __name__ == '__main__':
-    earth(); stars(); kit_sky(); cloud_tile(); lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))
+    # round 4: earth.png / earth_kit.jpg / stars.png / stars_kit.jpg come from make_earth_stars.py (earth(), stars(), kit_sky(), cloud_tile() here are the old round-3 pictures)
+    lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))

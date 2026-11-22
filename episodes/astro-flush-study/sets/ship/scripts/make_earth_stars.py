@@ -35,39 +35,39 @@ def norm01(a, lo=1, hi=99): p0, p1 = np.percentile(a[::7, ::7], [lo, hi]); retur
 def up(a, W, H): return np.asarray(Image.fromarray(a.astype(np.float32), 'F').resize((W, H), Image.BICUBIC), np.float32)
 
 # ------------------------------------------------------------------ EARTH
-SEA_D, SEA_L, SHALLOW = hx('#1450c4'), hx('#1f6fdc'), hx('#38a6ec')
-LAND_A, LAND_B, LAND_C = hx('#7fbf3a'), hx('#b4d34a'), hx('#5fa83c')
+SEA_D, SEA_L, SHALLOW = hx('#1a5cc8'), hx('#2a7cd8'), hx('#3aa8e6')
+LAND_A, LAND_B, LAND_C = hx('#86c446'), hx('#b8d457'), hx('#6db248')
 CLOUD, CSHADE, CDEEP = hx('#fbfdff'), hx('#c4d6ee'), hx('#9fb8dc')
 def earth(W=8192, H=4096):
     w2, h2 = W // 2, H // 2; P = sphere(w2, h2)
     # land: a few big masses (low frequency), soft coasts
     nl = Noise3(11); land = fbm3(nl, P, 1.6, 6, .52); land = norm01(land)
-    lm = sstep(.60, .70, land)                                 # about a quarter of the globe
-    shallow = sstep(.48, .64, land) * (1 - lm)
+    lm = sstep(.645, .70, land)                                 # about a quarter of the globe
+    shallow = sstep(.57, .66, land) * (1 - lm)
     lv = fbm3(Noise3(12), P, 6, 4, .55); lv = norm01(lv)
     # clouds: domain warp, then fbm -> thresholded masses; streaks along latitude bands
     nw1, nw2, nw3 = Noise3(21), Noise3(22), Noise3(23)
     wq = np.stack([fbm3(nw1, P, 2.2, 4), fbm3(nw2, P, 2.2, 4), fbm3(nw3, P, 2.2, 4)]) - .5
-    Pw = P + wq * 1.25
-    nc = Noise3(31); c = fbm3(nc, Pw, 3.2, 6, .55); c = norm01(c)
+    Pw = P + wq * 1.6
+    nc = Noise3(31); c = fbm3(nc, Pw, 4.2, 6, .58); c = norm01(c)
     wq2 = np.stack([fbm3(nw1, Pw, 9, 3), fbm3(nw2, Pw, 9, 3), fbm3(nw3, Pw, 9, 3)]) - .5
     cf = fbm3(Noise3(32), Pw + wq2 * .25, 14, 4, .6); cf = norm01(cf)   # billowy edges
-    cmix = c * .78 + cf * .22
+    cmix = c * .72 + cf * .28
     del wq, wq2
     # up to full size; thresholds at full size keep the edges crisp
     U = lambda a: up(a, W, H)
-    cmix, land, lm, shallow, lv = U(cmix), U(land), U(lm), U(shallow), U(lv)
-    P2 = sphere(W, H); fine = fbm3(Noise3(33), P2, 40, 3, .6); fine = norm01(fine); del P2
-    T = .53; cm = sstep(T, T + .035, cmix + (fine - .5) * .06)              # crisp fluffy masses
+    cfu = U(cf); cmix, land, lm, shallow, lv = U(cmix), U(land), U(lm), U(shallow), U(lv)
+    P2 = sphere(W, H); fine = fbm3(Noise3(33), P2, 36, 4, .65); fine = norm01(fine); del P2
+    T = .585; cm = sstep(T, T + .03, cmix + (fine - .5) * .10)              # crisp fluffy masses
     depth = sstep(T, T + .20, nd.gaussian_filter(cmix, 3))                  # thick in the middle
-    sh = np.clip(depth * .9 + (fine - .5) * .5 + (cmix - T) * 1.2, 0, 1)
+    sh = np.clip(.18 + depth * .7 + (cfu - .42) * 1.4 + (fine - .5) * .3, 0, 1)
     img = np.empty((H, W, 3), np.float32)
     sv = norm01(nd.gaussian_filter(land, 6))[..., None]
     img[:] = SEA_D * (1 - sv) + SEA_L * sv
     img = img * (1 - shallow[..., None] * .85) + SHALLOW * shallow[..., None] * .85
     g = (LAND_A * (1 - lv[..., None]) + LAND_B * lv[..., None]); g = g * (1 - sstep(.6, .9, land)[..., None] * .35) + LAND_C * sstep(.6, .9, land)[..., None] * .35
     lm3 = nd.gaussian_filter(lm, 2.5)[..., None]; img = img * (1 - lm3) + g * lm3
-    cs = np.roll(np.roll(cm, 9, 0), 12, 1)[..., None]; img *= 1 - .22 * cs * (1 - cm[..., None])   # faint cloud shadow on the ground
+    cs = nd.gaussian_filter(np.roll(np.roll(cm, 9, 0), 12, 1), 5)[..., None]; img *= 1 - .15 * cs * (1 - cm[..., None])   # faint cloud shadow on the ground
     cc = CDEEP * (1 - sh[..., None]) + CSHADE * sh[..., None]; cc = cc * (1 - sstep(.45, .85, sh)[..., None]) + CLOUD * sstep(.45, .85, sh)[..., None]
     img = img * (1 - cm[..., None]) + cc * cm[..., None]
     im = Image.fromarray(np.clip(img + .5, 0, 255).astype(np.uint8)); im.save(os.path.join(TEX, 'earth.png'), compress_level=1)
@@ -86,11 +86,11 @@ def star_list(seed=7):
     big = (u < .30) & (r.random(N) < .12)                                         # a few bright ones with a tiny glow
     col = np.ones((N, 3), np.float32); t = r.random(N); col[t < .07] = (.78, .85, 1.); col[(t >= .07) & (t < .11)] = (1., .9, .78)
     return lat, lon, amp, big, col
-def stars_paint(W, H, sig=.62):
+def stars_paint(W, H, sig=.42):
     r = np.random.default_rng(51); P = sphere(W // 8, H // 8)
     n1 = norm01(fbm3(Noise3(51), P + (np.stack([fbm3(Noise3(53), P, 2, 3)] * 3) - .5), 1.8, 5, .55)); n2 = norm01(fbm3(Noise3(52), P, 2.4, 5, .55))
-    a1 = sstep(.55, .95, n1) ** 1.4; a2 = sstep(.6, .95, n2) ** 1.6
-    neb = a1[..., None] * (NEB1 - BG) * .55 + a2[..., None] * (NEB2 - BG) * .45
+    a1 = sstep(.6, .97, n1) ** 1.5; a2 = sstep(.68, .97, n2) ** 1.8
+    neb = a1[..., None] * (NEB1 - BG) * .5 + a2[..., None] * (NEB2 - BG) * .2
     img = BG + np.stack([up(neb[..., k], W, H) for k in range(3)], -1)
     star = np.zeros((H, W), np.float32); colimg = np.ones((H, W, 3), np.float32)
     lat, lon, amp, big, col = star_list()
@@ -110,7 +110,7 @@ def stars_paint(W, H, sig=.62):
     return Image.fromarray(np.clip(img + .5, 0, 255).astype(np.uint8))
 def stars():
     stars_paint(8192, 4096).save(os.path.join(TEX, 'stars.png'), compress_level=1)
-    stars_paint(4096, 2048, sig=.62 * 1.35).save(os.path.join(OUTD, 'stars_kit.jpg'), quality=92)
+    stars_paint(4096, 2048, sig=.55).save(os.path.join(OUTD, 'stars_kit.jpg'), quality=92)
     print('stars painted')
 
 # ------------------------------------------------------------------ MEASURE (his frames by code, ours beside)

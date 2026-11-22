@@ -4,5 +4,6 @@
 # NOTEX=1 skips the pictures (stars.png takes about a minute).
 set -e; cd "$(dirname "$0")"
 [ -n "$NOTEX" ] || python3 scripts/make_tex.py
+[ -n "$NOTEX" ] || [ -n "$NOEARTH" ] || python3 scripts/make_earth_stars.py   # earth + stars (about 80 s); NOEARTH=1 keeps the last ones
 blender -b -P scripts/bl_ship.py 2>&1 | grep -E "BUILT|Error|Traceback|line |error" || true
 ls -la out

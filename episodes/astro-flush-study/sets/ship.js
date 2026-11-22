@@ -38,10 +38,16 @@ export async function build(THREE, scene, film, ctx) {
   }
   const basic = (o, opt) => { if (o) o.traverse(m => { if (m.isMesh) m.material = new THREE.MeshBasicMaterial(Object.assign({ toneMapped: false, fog: false }, opt(m.material))); }); };
   basic(N('sky_dome'), m => ({ map: m.map, side: THREE.DoubleSide }));
-  basic(N('earth'), m => ({ map: m.map }));
-  basic(N('earth_rim'), () => ({ color: '#bfeaff', transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false }));
-  const ct = await new THREE.TextureLoader().loadAsync(DIR + 'cloud_tile_kit.png'); ct.wrapS = ct.wrapT = THREE.RepeatWrapping; ct.repeat.set(6, 3); ct.colorSpace = THREE.SRGBColorSpace;
-  basic(N('earth_clouds'), () => ({ map: ct, transparent: true, depthWrite: false }));
+  // round 4: unlit Earth as in Blender: the painted map (clouds inside, make_earth_stars.py), pale limb, soft white glare spot at a screen place (S.earth_glare)
+  const GL = { glare: { value: new THREE.Vector4(.5, -.7, .3, 0) } };
+  const em = N('earth'); if (em) em.traverse(m => { if (!m.isMesh) return; m.material = new THREE.ShaderMaterial({ uniforms: Object.assign({ map: { value: m.material.map } }, GL), toneMapped: false, fog: false,
+    vertexShader: 'varying vec2 vUv; varying vec3 vP, vN; void main(){ vUv = uv; vec4 p = modelViewMatrix * vec4(position, 1.); vP = p.xyz; vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * p; }',
+    fragmentShader: 'uniform sampler2D map; uniform vec4 glare; varying vec2 vUv; varying vec3 vP, vN; void main(){ vec3 c = texture2D(map, vUv).rgb;' +
+      ' float fa = 1. - abs(dot(normalize(vN), normalize(-vP))); c = mix(c, vec3(.83, .94, 1.), .7 * fa * fa * fa);' +
+      ' float A = projectionMatrix[0][0], B = projectionMatrix[1][1]; vec2 s = vP.xy / -vP.z - vec2(glare.x / A, glare.y / B); float r = glare.z / B, g = glare.w * exp(-dot(s, s) / (r * r));' +
+      ' gl_FragColor = vec4(mix(c, vec3(1.), clamp(g, 0., 1.)), 1.); }' }); m.material.map = null; });
+  basic(N('earth_rim'), () => ({ color: '#c8ecff', transparent: true, opacity: .45, side: THREE.BackSide, depthWrite: false }));
+  vis('earth_clouds', false);   // round 4: the cloud shell and its tile are gone (clouds are painted into the Earth map)
   const FL = { flame_core: ['#fefefe', 1], flame_mid: ['#cbaaf1', .55], flame_outer: ['#8a6ee7', .35], flame_halo: ['#6d51b8', .22], flame_glow: ['#8a6ee7', .1] };
   for (const [n, [c, a]] of Object.entries(FL)) basic(N(n), () => ({ color: c, transparent: a < 1, opacity: a, depthWrite: false }));
   root.traverse(o => { if (o.isMesh && /^glitter/.test(o.name)) o.material = new THREE.MeshBasicMaterial({ color: '#ffffff', toneMapped: false }); });   // space: no kit fog (it greys the stars and the hull); film.json places.ship.ship.fog = true keeps it
@@ -51,6 +57,7 @@ export async function build(THREE, scene, film, ctx) {
   function setState(s = {}) {
     Object.assign(S, s);
     if (shipRoot && S.ship) { shipRoot.position.copy(B2T(S.ship.slice(0, 3))); shipRoot.rotation.set(S.ship[3] * D2R, S.ship[5] * D2R, -S.ship[4] * D2R); }
+    if (S.earth_glare) GL.glare.value.set(...S.earth_glare);
     if (earth && S.earth) { const p = B2T(S.earth.slice(0, 3)), d = p.length(), k = d > 420 ? 420 / d : 1; earth.position.copy(p.multiplyScalar(k)); earth.scale.setScalar(S.earth[3] * k);
       earth.rotation.set(75 * D2R, 30 * D2R, 0, 'YXZ'); }   // the api turns the equator toward the lens (Blender x 75, z 30)
     const f = +S.flame; flames.forEach(o => { o.visible = f > .001; o.scale.set(Math.max(f, .001), .45 + .55 * f, .45 + .55 * f); });   // glTF is Y-up: Blender x stays x, the width axes are y and z

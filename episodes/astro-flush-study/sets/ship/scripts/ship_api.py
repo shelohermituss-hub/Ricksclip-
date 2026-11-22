@@ -2,7 +2,8 @@
 set_state(scene, light='space'|'warm'|'map'|'radio', sun_dir=[x,y,z] (toward the sun, world), flame=0..1, preglow=0..1, glitter=0..1 (trail from the tail,
           4 steps, + collar puff from .5), glitter_ck=0..1 (cloud around the canopy, 3 steps), comm=0|1 (COMM INCOMING lamp, red MFD window, red wash),
           digits=0..3 (radio display picture), starmap=0..1 (sheet on the glass), shot=2|7|9|11 (stand-in cards), ship=[x,y,z,rx,ry,rz] (ship_root, degrees),
-          earth=[x,y,z,R], earth_emit=0..1 (1 = evenly lit day side as shot 2, low = dark crescent as shot 11), fan=deg (solar fans about their boom))
+          earth=[x,y,z,R], earth_emit=0..1 (1 = evenly lit day side as shot 2, low = dark crescent as shot 11), fan=deg (solar fans about their boom),
+          earth_glare=[sx, sy, r, k] (round 4: soft white sun spot on the Earth at screen place sx, sy in half-frame units, radius r in half-frame heights, k 0..1))
 set_light(scene, kind) is called by set_state(light=...). The same names and numbers are in ship_meta.json for the kit (sets/ship.js)."""
 import bpy, json, os, math
 from mathutils import Vector
@@ -20,7 +21,8 @@ def _emit(mat, strength, col=None):
     b = m.node_tree.nodes['Principled BSDF']; b.inputs['Emission Strength'].default_value = strength
     if col: b.inputs['Emission Color'].default_value = col
 DEFAULT = {'light': 'space', 'sun_dir': None, 'flame': 0, 'preglow': 0, 'glitter': 0, 'glitter_ck': 0, 'comm': 0, 'digits': 0, 'starmap': 0, 'shot': 0,
-           'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0, 'sun_k': 1., 'sky_rot': 0, 'wash': 0}
+           'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0, 'sun_k': 1., 'sky_rot': 0, 'wash': 0,
+           'earth_glare': [.5, -.7, .3, 0.]}
 LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each, cockpit fill W, room lights W, world colour
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
     'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 220, 'ck_fill': 60, 'rooms': 120},
@@ -43,7 +45,13 @@ def set_state(scene, **kw):
     w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or {'warm': 450., 'space': 200.}.get(S['light'], 0.)
     sh = S['ship']; r = _o('ship_root'); r.location = sh[:3]; r.rotation_euler = [math.radians(a) for a in sh[3:6]]
     e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; eo.rotation_euler = (math.radians(75), 0, math.radians(30));   # equator toward the lens (the UV poles pinch)
-    _emit('earth', .12 * float(S.get('earth_emit', 1.)))
+    ee = float(S.get('earth_emit', 1.)); _emit('earth', ee)   # round 4: the map is the emission (unlit look); a dim lit base shows when earth_emit is low
+    em = bpy.data.materials.get('earth'); _vis('earth_clouds', False)   # clouds are in the map now
+    if em:
+        nn = em.node_tree.nodes; nn['earth_base'].inputs['Value'].default_value = .12 + .5 * (1 - ee)
+        gx, gy, gr, gk = (list(S.get('earth_glare') or DEFAULT['earth_glare']) + [0, 0, 0, 0])[:4]; cam = scene.camera
+        tv = 18. / cam.data.lens if cam else .4; th = tv * scene.render.resolution_x / max(1, scene.render.resolution_y)
+        nn['glare_x'].outputs[0].default_value = gx * th; nn['glare_y'].outputs[0].default_value = gy * tv; nn['glare_r'].outputs[0].default_value = max(gr, .01) * tv; nn['glare_k'].outputs[0].default_value = gk
     f = float(S['flame'])
     for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):
         o = _o(n); o.scale = (max(f, .001), .45 + .55 * f, .45 + .55 * f); o.hide_render = o.hide_viewport = f <= .001
