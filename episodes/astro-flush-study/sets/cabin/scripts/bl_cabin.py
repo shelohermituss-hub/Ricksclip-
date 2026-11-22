@@ -162,7 +162,7 @@ MON = dict(x=0., z=3.60, w=1.40, h=2.50)       # monitor outer frame (f330: 190 
 PICW, PICH = 1.26, 2.24                          # cabin_monitor_pic = 9:16 portrait
 HATCH = dict(x=1.95, z=1.68, w=.92, h=2.30, r=.42, t=.16)   # rounded-top hatch at the right edge of the back wall (f330 x 430-540 px)
 UP0 = RAIL_Z + .15
-panels('cabin_wall_upper', (CX1, WY, UP0), (-1, 0, 0), (0, 0, 1), CX1 - CX0, CTOP - UP0, [], pw=.85, ph=.62)
+panels('cabin_wall_upper', (CX1, WY, UP0), (-1, 0, 0), (0, 0, 1), CX1 - CX0, CTOP - UP0, [], pw=.85, ph=.62, g=.02)
 # quilted lower wall: diagonal diamond grid, each diamond padded (light centre, dark groove), a small button at the crossings
 QS = .19; bq, bbut = B(), B()
 qrows = int(QUILT_TOP / (QS / 2)) + 2; qcols = int((CX1 - CX0) / QS) + 2
@@ -185,7 +185,7 @@ box('cabin_rail_teal', (CX1 - CX0, .07, .14), ((CX0 + CX1) / 2, WY - .035, RAIL_
 box('cabin_rail_orange', (CX1 - CX0, .03, .022), ((CX0 + CX1) / 2, WY - .015, RAIL_Z + .135), mat('rail_orange', rough=.6), bev=0)
 # floor: light grey-beige rubber + regular dot grid (inventory 2 cm dots at 5 cm pitch, x 1.55)
 box('cabin_floor', (CX1 - CX0 + 1, WY + 7, .1), ((CX0 + CX1) / 2, WY - (WY + 7) / 2 + .0, -.05), mat('floor_rubber'), bev=0)
-dots('cabin_floor_dots', -2.7, 2.7, -2.4, WY, 0., .0775, .015, .004, mat('floor_dot'))
+dots('cabin_floor_dots', -3.0, 3.0, -2.6, WY, 0., .11, .03, .01, mat('floor_dot', rough=.7))
 # ceiling slopes at the top corners (A-shape seen at the top of f330) + 2 roof brace tubes from the upper corners toward the centre top
 bm = B()
 for s in (1, -1): abox(bm, 2.6, 7.5, .12, MT((s * 2.55, WY - 3.7, CTOP + .6), (0, s * 38, 0)), bev=0)
@@ -195,6 +195,9 @@ for s in (1, -1):
     atube(bm, [(s * 2.75, WY - .12, 4.55), (s * .7, WY - .12, 6.6)], .045, 12)
     for p in ((s * 2.75, WY - .06, 4.55),): abox(bm, .14, .1, .14, MT(p), bev=.015)
 obj('cabin_roof_braces', bm, mat('roof_brace', rough=.6), smooth=True)
+bm = B(); abox(bm, 8.4, 10.5, .2, MT((0, WY - 4.6, CTOP + 1.6)), bev=0)
+for s in (1, -1): abox(bm, .2, 10.5, CTOP + 1.8, MT((s * 3.45, WY - 4.6, (CTOP + 1.8) / 2)), bev=0)
+abox(bm, 8.4, .2, CTOP + 1.8, MT((0, WY - 9.8, (CTOP + 1.8) / 2)), bev=0); obj('cabin_shell', bm, mat('ceiling'))
 # wall monitor: dark frame, small camera on top centre, label plate under it, green LED bottom right, the picture plane fed by the stretch builder
 MY = WY - .045
 box('cabin_monitor_frame', (MON['w'], .09, MON['h']), (MON['x'], MY, MON['z']), mat('screen_frame', rough=.45), bev=.02)
@@ -226,11 +229,11 @@ def duffel(name, col, loc, L=.70, R=.23):
     return o
 duffel('cabin_bag_blue', 'bag_blue', (-1.43, WY - .22, 4.32)); duffel('cabin_bag_orange', 'bag_orange', (.88, WY - .24, 4.32)); duffel('cabin_bag_red', 'bag_red', (-2.35, WY - .22, 4.0))
 # galley table (left edge): black round top on one pole and disc foot, red bottle, yellow block, tray; grey box on a shelf; drawer block with 4 labels
-GX, GY = -1.6, .95
-bm = B(); acyl(bm, .45, .05, MT((0, 0, 1.24)), 32); acyl(bm, .035, 1.2, MT((0, 0, .62)), 12); acyl(bm, .26, .03, MT((0, 0, .015)), 24); obj('cabin_table', bm, mat('table_black', rough=.4), (GX, GY, 0), smooth=True)
-bm = B(); alathe(bm, [(.04, 0), (.045, .02), (.045, .16), (.02, .2), (.012, .25)], 12); obj('cabin_bottle', bm, mat('bottle_red', rough=.35), (GX + .25, GY - .12, 1.265), smooth=True)
-box('cabin_block', (.1, .08, .07), (GX + .05, GY - .2, 1.3), mat('block_yellow'), bev=.01)
-box('cabin_tray', (.3, .2, .02), (GX - .1, GY + .05, 1.275), mat('table_brown'), bev=.006)
+GX, GY = -1.75, .55; GT = 1.15
+bm = B(); acyl(bm, .45, .05, MT((0, 0, GT)), 32); acyl(bm, .035, GT - .04, MT((0, 0, GT / 2)), 12); acyl(bm, .26, .03, MT((0, 0, .015)), 24); obj('cabin_table', bm, mat('table_black', rough=.4), (GX, GY, 0), smooth=True)
+bm = B(); alathe(bm, [(.04, 0), (.045, .02), (.045, .16), (.02, .2), (.012, .25)], 12); obj('cabin_bottle', bm, mat('bottle_red', rough=.35), (GX + .25, GY - .12, GT + .025), smooth=True)
+box('cabin_block', (.1, .08, .07), (GX + .05, GY - .2, GT + .06), mat('block_yellow'), bev=.01)
+box('cabin_tray', (.3, .2, .02), (GX - .1, GY + .05, GT + .035), mat('table_brown'), bev=.006)
 box('cabin_shelf', (.8, .45, .05), (GX - .45, WY - .23, 1.6), mat('table_brown'), bev=.01)
 box('cabin_oven', (.55, .4, .35), (GX - .5, WY - .23, 1.8), mat('oven_grey', rough=.5), bev=.02)
 box('cabin_oven_door', (.36, .02, .22), (GX - .54, WY - .44, 1.8), mat('table_black', rough=.3), bev=.006)
@@ -289,7 +292,10 @@ def bag_parts(col, flat=1., open_=False):
     body, collar, head, strap, zipl = B(), B(), B(), B(), B()
     R = BAGW / 2; prof = [(R * .62, -BAGH), (R * .9, -BAGH + .12), (R, -BAGH + .45), (R * .98, -.55), (R * .9, -.32)]
     alathe(body, prof, 24, MT((0, -.2 * flat, 0)), ey=.42 * flat)
+    for v in body.verts:      # broad soft folds: a slow wave round the bag that drifts with height (no texture, geometry only)
+        k = 1 + .07 * math.sin(3 * math.atan2(v.co.x, v.co.y + .2 * flat) + 3.5 * v.co.z) + .04 * math.sin(5.5 * v.co.z); v.co.x *= k; v.co.y = -.2 * flat + (v.co.y + .2 * flat) * k
     alathe(collar, [(R * .9, -.33), (R * .96, -.29), (R * .96, -.2), (R * .88, -.16)], 24, MT((0, -.2 * flat, 0)), ey=.45 * flat)
+    alathe(zipl, [(R * .78, -.205), (R * .78, -.2)], 24, MT((0, -.2 * flat, 0)), ey=.38 * flat)   # the collar opening round the head: dark ellipse
     abox(head, .5, .1, .34, MT((0, -.07, -.05)), bev=.04)
     abox(strap, .52, .11, .04, MT((0, -.07, -.06)), bev=.005)
     for s in (1, -1): acyl(strap, .012, .12, MT((s * .2, -.03, .1)), 8)
@@ -297,7 +303,7 @@ def bag_parts(col, flat=1., open_=False):
     return body, collar, head, strap, zipl
 for n, (x, col) in BAGS.items():
     b, c_, h, s, z = bag_parts(col)
-    multi(n, [(b, mat(col, rough=.75)), (c_, mat(col + '_collar', col=PAL['bag_green_lining'] if col == 'bag_green' else PAL['headrest'], rough=.8)), (h, mat('headrest', rough=.8)),
+    multi(n, [(b, mat(col, rough=.75, emit=PAL['bag_green_rim'], es=.12) if col == 'bag_green' else mat(col, rough=.75)), (c_, mat(col + '_collar', col=PAL['bag_green_lining'] if col == 'bag_green' else PAL['headrest'], rough=.8)), (h, mat('headrest', rough=.8)),
               (s, mat('strap_black')), (z, mat('strap_black'))], (x, BY - .06, RZ + .02), smooth=True, mover={'sway_deg': 2.5})
 b, c_, h, s, z = bag_parts('bag_green', flat=.55, open_=True)
 fl = B(); R = BAGW / 2
@@ -383,10 +389,10 @@ def light(name, loc, col, watts, radius=.1, kind='POINT', aim=None, spot=None):
     return o
 # day: one hard key from the front, high, slightly right of the camera (shadows down-left on the quilt and the floor); a faint warm bounce
 light('key_day', (6.0, -6.0, 8.0), (1., .97, .92), 4.2, .6, 'SUN', aim=(0, 1.5, 0))
-light('fill_day', (0, -4.0, 3.0), (1., .9, .82), 120, 3., 'AREA', aim=(0, 1.5, 1.8))
+light('fill_day', (3.0, -3.0, 4.5), (1., .85, .7), 0, 2., 'AREA', aim=(0, 1.5, 1.2))
 # night: warm reading-light pools on the wall panels (one per panel column), cool glow under the skylights, front fill on the bags, end wall wash, floor light, toilet room lamp
 for k in range(6):
-    x = XL + .5 + k * .93; light('pool_%d' % (k + 1), (x, BY - .5, 3.7), (1., .62, .4), 0, .05, 'SPOT', aim=(x, BY, 2.95), spot=40)
+    x = XL + .5 + k * .93; light('pool_%d' % (k + 1), (x, BY - .5, 3.7), (1., .45, .15), 0, .05, 'SPOT', aim=(x, BY, 2.95), spot=40)
 for k, x in enumerate(SKY): light('sky_glow_%d' % (k + 1), (x, BY - 1.3, 4.2), (.25, .35, 1.), 0, 1., 'AREA', aim=(x, BY - 1.3, 0))
 light('bag_fill', (BX - .2, -3.0, 1.9), (.45, .55, 1.), 0, 2.5, 'AREA', aim=(BX - .2, BY, 1.5))
 light('end_wash', (EX - 2.6, -2.6, 2.6), (.2, .3, 1.), 0, 2., 'AREA', aim=(EX, -.6, 1.6))
@@ -396,7 +402,7 @@ w = bpy.data.worlds.new('cabin_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
 ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['z'] + .02], 'head_sign': [1.58, WY, 3.35], 'hatch': [HATCH['x'], WY - .1, HATCH['z']],
-             'galley_table': [GX, GY, 1.24], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .1, .3],
+             'galley_table': [GX, GY, GT], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .1, .3],
              'bay_wall_centre': [BX, BY, 0], 'bag_navigator': [BAGS['bag_navigator'][0], BY - .06, RZ + .02], 'bag_commander': [BAGS['bag_commander'][0], BY - .06, RZ + .02],
              'bag_new_guy': [BAGS['bag_new_guy'][0], BY - .06, RZ + .02], 'bay_door': [EX, DOOR['y'], 0], 'bay_floor_light': [EX - .55, DOOR['y'] + .1, 0],
              'newguy_s5_bag': [BAGS['bag_new_guy'][0], BY - .32, .78], 'newguy_s5_door': [EX - 1.0, -.35, .55], 'toilet_room_beyond': [EX + 1.5, DOOR['y'], 0]})
@@ -425,7 +431,7 @@ META = {'place': 'cabin', 'units': 'Blender metres, Z up', 'rooms': {'D_cabin_da
 json.dump(META, open(os.path.join(OUT, 'cabin_meta.json'), 'w'), indent=1)
 SC.render.engine = 'CYCLES'; SC.cycles.samples = 16; SC.cycles.use_denoising = True; SC.view_settings.view_transform = 'Standard'; SC.view_settings.look = 'None'
 SC.render.resolution_x, SC.render.resolution_y = 540, 960; SC.cycles.max_bounces = 6
-for n in ('cabin_ceiling',): bpy.data.objects[n].visible_shadow = False
+for n in ('cabin_ceiling', 'cabin_shell'): bpy.data.objects[n].visible_shadow = False
 tris = sum(len(o.data.polygons) for o in SET.objects if o.type == 'MESH')
 for o in bpy.data.objects: o.select_set(False)
 for o in SET.objects: o.select_set(True)

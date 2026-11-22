@@ -162,15 +162,15 @@ def hazard(d, x0, y0, x1, y1, n=5):
 def make_noflush():
     im = canvas('#2a2746'); d = ImageDraw.Draw(im); header_flush(d, tick='#8f7fb0', txt='#55507a', rule='#4a4670')
     d.rectangle((0, 0, W * SS, 130 * SS), fill='#2a2746')
-    x0, x1 = .12 * W, .90 * W
+    x0, x1 = .20 * W, .80 * W      # mc stretch round 2: his red box is about 60 % of the screen width, dark screen around it
     d.rectangle((x0 * SS, 62 * SS, x1 * SS, 128 * SS), fill='#ab082c'); hazard(d, x0 + 12, 74, x0 + 150, 116)
     d.rectangle((x0 * SS, 62 * SS, (x0 + 12) * SS, 128 * SS), fill='#ab082c')
-    text(d, (x0 + 172, 95), 'C&W  FLT DIR  WCS INHIBIT', 38, '#fef6f8', 'lm', spacing=2); text(d, (x1 - 24, 95), 'MSG 0417', 38, '#fef6f8', 'rm', spacing=2)
+    text(d, (x0 + 172, 95), 'C&W  FLT DIR  WCS INHIBIT', 30, '#fef6f8', 'lm', spacing=2); text(d, (x1 - 24, 95), 'MSG 0417', 38, '#fef6f8', 'rm', spacing=2)
     lay = black(); dl = ImageDraw.Draw(lay); dl.rectangle((x0 * SS, 140 * SS, x1 * SS, 590 * SS), fill='#5a0818'); im = add_glow(im, lay, 22, .8); d = ImageDraw.Draw(im)
     d.rectangle((x0 * SS, 140 * SS, x1 * SS, 590 * SS), fill='#e4163d')
     d.rectangle(((x0 + 14) * SS, 154 * SS, (x1 - 14) * SS, 576 * SS), outline='#fef6f8', width=5 * SS)
     cx = (x0 + x1) / 2
-    stroke_text(d, 'NO FLUSHING', cx, 272, 150, '#fef6f8', 34, shear=.2, gap=38); stroke_text(d, 'TONIGHT', cx, 466, 150, '#fef6f8', 34, shear=.2, gap=38)
+    stroke_text(d, 'NO FLUSHING', cx, 282, 118, '#fef6f8', 30, shear=.2, gap=30); stroke_text(d, 'TONIGHT', cx, 456, 118, '#fef6f8', 30, shear=.2, gap=30)
     done(im, 'mc_screen_noflush.png')
 def graph_pts():
     """plan-vs-actual, screen fractions (his f806 / f860): the red line follows the plan to K, then leaves it and bends down to the arrow head."""

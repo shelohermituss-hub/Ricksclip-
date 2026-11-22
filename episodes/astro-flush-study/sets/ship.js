@@ -37,7 +37,7 @@ export async function build(THREE, scene, film, ctx) {
       if (o.isDirectionalLight) { o.color.set('#ffffff'); o.intensity = 3.2; o.position.copy(ctx.B2T([.2, .5, .85]).multiplyScalar(60)); } });
   }
   const basic = (o, opt) => { if (o) o.traverse(m => { if (m.isMesh) m.material = new THREE.MeshBasicMaterial(Object.assign({ toneMapped: false, fog: false }, opt(m.material))); }); };
-  basic(N('sky_dome'), m => ({ map: m.map, side: THREE.BackSide }));
+  basic(N('sky_dome'), m => ({ map: m.map, side: THREE.DoubleSide }));
   basic(N('earth'), m => ({ map: m.map }));
   basic(N('earth_rim'), () => ({ color: '#bfeaff', transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false }));
   const ct = await new THREE.TextureLoader().loadAsync(DIR + 'cloud_tile_kit.png'); ct.wrapS = ct.wrapT = THREE.RepeatWrapping; ct.repeat.set(6, 3); ct.colorSpace = THREE.SRGBColorSpace;

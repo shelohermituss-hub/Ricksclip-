@@ -52,3 +52,32 @@ One ship model: body x 0..21.5, nose cockpit x 21.5..26.4 with real interior; ra
 7. f880: the porthole frame is too big in frame (the camera is now too close) and too dark grey. The bolts read as dark posts. The room shows the stand-in in front of the inner porthole.
 8. f790: closer to his, but the panel still fills the top half and the radio sits low-left. The cube lever block is too big.
 9. f740 is unchanged (the pencil mover is still in view).
+
+## Round 3 (cameras by fit, cloud shell, kit space light)
+- `scripts/fit_cams.py`: it reads the points in params "fits" (pixel on his frame + model point), solves by least squares and writes the cams with `fit_rms_px`. With the lens free the fits run off to very wide, close cameras, so each lens is fixed (f40 45, f70 45, f600 50, f880 40, f990 45, f790 55).
+- Fit rms: f40 14 px, f70 11 px, f880 23 px, f990 25 px, f790 42 px. f600 fit 1 px on 4 lamp points, but they are coplanar, so the solve is not reliable; f600 stays by eye. f680 is not fitted (by eye).
+- Model changed from what the points measured:
+  - Windows: 10 a side, opening .5 x .76 with a .12 frame, 1.45 m apart, a larger gap after the aft porthole. `porthole_b` is now window 2 (x 4.75), so the letters are not above it.
+  - LODESTAR is on the side band above the windows (4 m word).
+  - Arrays stand above and below the truss.
+  - Fans are 8.4 m across on side booms.
+  - The navigator card is moved forward to x 24.2.
+- Earth: a procedural cloud shell (`earth_clouds`, noise with warp, alpha, pale-blue shade); base darkened (value .5). The kit uses `out/cloud_tile_kit.png` (seamless 2048, repeated 6x3).
+- Flame: 5 layers, soft at the edges and fading along the length (`flame_mat`: layer weight x length gradient).
+- ship.js space light:
+  - hides the kit gradient sky (baseLight), no fog, black background, the kit hemisphere fill dimmed to navy, the kit sun put at the Blender key;
+  - sky, Earth, rim, clouds, flame and glitter use unlit basic materials (toneMapped false);
+  - the additive flame blending is removed.
+- Proof: `references/look_match/astro_flush/work/proof/ship/kit_vs_blender.jpg` (kit f0, kit f12 with the flame on | Blender f990, f110).
+
+| frame | mean L | p1 | p99 | mean sat |
+|---|---|---|---|---|
+| f40 | 0.250 / 0.271 | 0.000 / 0.004 | 1.000 / 0.992 | 0.583 / 0.688 |
+| f70 | 0.317 / 0.394 | 0.007 / 0.005 | 1.000 / 0.997 | 0.630 / 0.590 |
+| f110 | 0.105 / 0.132 | 0.032 / 0.005 | 1.000 / 0.996 | 0.614 / 0.782 |
+| f600 | 0.212 / 0.212 | 0.008 / 0.013 | 0.905 / 0.934 | 0.357 / 0.393 |
+| f680 | 0.204 / 0.199 | 0.036 / 0.004 | 1.000 / 0.861 | 0.276 / 0.363 |
+| f740 | 0.102 / 0.078 | 0.001 / 0.004 | 1.000 / 0.989 | 0.696 / 0.804 |
+| f790 | 0.182 / 0.139 | 0.005 / 0.000 | 1.000 / 0.964 | 0.693 / 0.546 |
+| f880 | 0.211 / 0.245 | 0.000 / 0.000 | 0.785 / 0.890 | 0.349 / 0.362 |
+| f990 | 0.117 / 0.064 | 0.049 / 0.005 | 0.997 / 0.772 | 0.521 / 0.881 |

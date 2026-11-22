@@ -153,7 +153,7 @@ def pedestal(tag, x, y, top=True):
     cyl('pedestal_pole_' + tag, .035, PT - .2, (x, y, (PT - .2) / 2 + .02), 'pedestal_pole', seg=12)
     if top: box('button_box_' + tag, (.36, .3, .22), (x, y, PT - .11), 'button_box', bev=.025)
     ANCH['pedestal_' + tag] = [x, y, PT]
-GX, GY, NX, NY, PT = .49, -13.0, 1.44, -13.3, .98      # PT = top of the button boxes
+GX, GY, NX, NY, PT = .49, -13.0, 1.19, -13.3, .98      # mc stretch round 2: NO GO 0.25 m toward the director (was 1.44) so his fist lands on the button      # PT = top of the button boxes
 pedestal('go', GX, GY); pedestal('nogo', NX, NY, top=False)
 bm = B(); alathe(bm, [(.09, 0), (.09, .02), (.075, .06), (.04, .085), (0, .09)], 20); obj('mc_go_button', bm, mat('go_dome', emit=PAL['go_dome'], es=1.5, rough=.3), (GX, GY - .02, PT), smooth=True, mover=dict(kind='press', pressed=dict(loc=[GX, GY - .02, PT - .025], rot=[0, 0, 0]), f=[224, 227]))
 # NO GO: the whole box pops up onto the pedestal at f176-180 (scale 0 -> 1 from its base), cover flips up (f260), red dome presses (f263-264)

@@ -13,9 +13,9 @@ def _vis(n, on):
     if o: o.hide_render = o.hide_viewport = not on
 def _lerp(a, b, u): return [x + (y - x) * u for x, y in zip(a, b)]
 LIGHTS = {  # watts per light (sun: W/m2) and the world (colour, strength) for each kind
-    'day':   {'key_day': 4.0, 'world': ((.09, .06, .045), .05), 'bounces': 1},
-    'night': {'pool_1': 450, 'pool_2': 450, 'pool_3': 450, 'pool_4': 450, 'pool_5': 450, 'pool_6': 450, 'sky_glow_1': 25, 'sky_glow_2': 25, 'bag_fill': 70, 'end_wash': 110,
-              'floor_light_glow': 6, 'toilet_room_lamp': 120, 'world': ((.005, .008, .16), .5), 'bounces': 4},
+    'day':   {'key_day': 4.6, 'fill_day': 25, 'world': ((.09, .05, .03), .03), 'bounces': 0, 'head_glow': 0},
+    'night': {'pool_1': 1500, 'pool_2': 1500, 'pool_3': 1500, 'pool_4': 1500, 'pool_5': 1500, 'pool_6': 1500, 'sky_glow_1': 40, 'sky_glow_2': 40, 'bag_fill': 160, 'end_wash': 220,
+              'floor_light_glow': 6, 'toilet_room_lamp': 120, 'world': ((.005, .008, .16), .8), 'bounces': 4, 'head_glow': .9},
 }
 def set_light(scene, kind):
     L = LIGHTS[kind]
@@ -23,6 +23,8 @@ def set_light(scene, kind):
         if o.type != 'LIGHT': continue
         o.data.energy = L.get(o.name, 0); o.hide_render = o.hide_viewport = o.name not in L; o.visible_glossy = False
     scene.cycles.diffuse_bounces = L['bounces']   # day: 1 bounce keeps the hard shadows near black (shadow/lit 0.13 on the quilt, LOOK_INVENTORY D2)
+    m = bpy.data.materials.get('standin_head')     # night: the faces stay full-bright as his (a small self-light on the stand-in heads)
+    if m: b = m.node_tree.nodes['Principled BSDF']; b.inputs['Emission Color'].default_value = (1, 1, 1, 1); b.inputs['Emission Strength'].default_value = L['head_glow']
     bg = scene.world.node_tree.nodes['Background']; bg.inputs[0].default_value = (*L['world'][0], 1); bg.inputs[1].default_value = L['world'][1]
 def set_monitor(png):
     m = bpy.data.materials.get('monitor_placeholder')

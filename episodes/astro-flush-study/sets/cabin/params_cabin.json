@@ -2,12 +2,12 @@
  "_note": "PALETTE FIRST (LOOK_INVENTORY D1 cabin day + E1 sleep bay night; lit column unless said). One flat colour per surface. cams/proofs are read by still_cabin.py straight from here (no rebuild for a camera change).",
  "palette": {
   "wall_upper": "#a7abbe",
-  "wall_seam": "#5d5f6c",
+  "wall_seam": "#34353f",
   "rivet": "#d4d6e0",
   "quilt": "#b8aea2",
   "quilt_button": "#8f857b",
   "floor_rubber": "#c7bcaf",
-  "floor_dot": "#d3c8ba",
+  "floor_dot": "#a59a8e",
   "rail_teal": "#0dc8a6",
   "rail_orange": "#ea7121",
   "screen_frame": "#241a1a",
@@ -51,8 +51,8 @@
   "door_frame_dark": "#000018",
   "bag_teal": "#0a676f",
   "bag_blue_sleep": "#0a19a0",
-  "bag_green": "#04341e",
-  "bag_green_lining": "#9daa8e",
+  "bag_green": "#38b52c",
+  "bag_green_lining": "#a8f0a0",
   "headrest": "#767fc6",
   "strap_black": "#05050a",
   "porthole_frame": "#2c2145",
@@ -74,7 +74,8 @@
   "standin_newguy": "#f8d136",
   "standin_commander": "#d63231",
   "standin_navigator": "#8e5bdc",
-  "standin_head": "#f6f4ef"
+  "standin_head": "#f6f4ef",
+  "bag_green_rim": "#9dffc8"
  },
  "cams": {
   "f284": {
