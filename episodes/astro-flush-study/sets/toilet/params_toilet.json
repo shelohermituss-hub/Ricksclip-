@@ -1,38 +1,249 @@
 {
-  "_note": "PALETTE FIRST (LOOK_INVENTORY A1 + H1, day-lit column unless said). One flat colour per surface. cams/proofs are read by still_toilet.py straight from here (no rebuild for a camera change).",
-  "palette": {
-    "wall_upper": "#302f3c", "wall_lower": "#191923", "seam": "#000000", "rivet": "#6e6f77", "ceiling": "#212129", "roof_beam": "#17191f",
-    "rim_strip": "#6e6f77", "window_frame": "#4f4953", "door_frame": "#646973", "door_leaf": "#3a3e4b", "corridor_wall": "#2e5590", "corridor_seam": "#1f3f72",
-    "shelf_top": "#a3705d", "shelf_front": "#693a2c", "cabinet": "#151821",
-    "tile_white": "#f5f2f5", "tile_black": "#211f25", "porcelain": "#e6e3dd", "chrome": "#c5c8c3", "peg_black": "#0b0b18",
-    "paper": "#ece9e2", "roll_core": "#c49b2a", "handle_orange": "#e77012", "towel_orange": "#f1971b", "towel_white": "#f8f0e1",
-    "cup_blue": "#2aa4f9", "straw_red": "#e03a3a", "dispenser_night": "#5367bd", "pot": "#e1d1c2", "leaf": "#61962e", "speaker": "#0b0b18", "wedge": "#6e6f77",
-    "hose_core": "#64656b", "hose_rib": "#fafcfd", "hose_glow": "#f0ffff", "glow_ring": "#f8fffd", "toilet_glow": "#d1e7fe",
-    "space": "#010019", "poster_paper": "#f9faf8", "poster_header": "#151e47",
-    "bay_beam": "#6b9aaa", "bay_dark": "#21262f", "foil": "#e8db49", "foil_rivet": "#383204", "flange": "#4f8aa7", "bolt_white": "#f4f6f8", "brass": "#c9a23a",
-    "sign_yellow": "#f1e126", "pipe_yellow": "#f1e126", "pipe_black": "#101014", "port_plate": "#1d2b3b", "collar": "#0b0b18",
-    "nozzle_cone": "#1b2530", "nozzle_ring": "#7fc3d2", "nozzle_inner": "#337b8a", "nozzle_plate": "#404550", "nozzle_bolt": "#5b6168",
-    "tube_a": "#17283a", "tube_b": "#102130", "tube_light": "#50808f", "tube_core": "#d8fbff",
-    "standin_newguy": "#f8d136", "standin_commander": "#d63231", "standin_head": "#f4f3ef", "standin_ink": "#0e0407"
+ "_note": "PALETTE FIRST (LOOK_INVENTORY A1 + H1, day-lit column unless said). One flat colour per surface. cams/proofs are read by still_toilet.py straight from here (no rebuild for a camera change).",
+ "palette": {
+  "wall_upper": "#302f3c",
+  "wall_lower": "#191923",
+  "seam": "#000000",
+  "rivet": "#6e6f77",
+  "ceiling": "#212129",
+  "roof_beam": "#17191f",
+  "rim_strip": "#6e6f77",
+  "window_frame": "#4f4953",
+  "door_frame": "#646973",
+  "door_leaf": "#3a3e4b",
+  "corridor_wall": "#2e5590",
+  "corridor_seam": "#1f3f72",
+  "shelf_top": "#a3705d",
+  "shelf_front": "#693a2c",
+  "cabinet": "#151821",
+  "tile_white": "#f5f2f5",
+  "tile_black": "#211f25",
+  "porcelain": "#e6e3dd",
+  "chrome": "#c5c8c3",
+  "peg_black": "#0b0b18",
+  "paper": "#ece9e2",
+  "roll_core": "#c49b2a",
+  "handle_orange": "#e77012",
+  "towel_orange": "#f1971b",
+  "towel_white": "#f8f0e1",
+  "cup_blue": "#2aa4f9",
+  "straw_red": "#e03a3a",
+  "dispenser_night": "#5367bd",
+  "pot": "#e1d1c2",
+  "leaf": "#61962e",
+  "speaker": "#0b0b18",
+  "wedge": "#6e6f77",
+  "hose_core": "#64656b",
+  "hose_rib": "#fafcfd",
+  "hose_glow": "#f0ffff",
+  "glow_ring": "#f8fffd",
+  "toilet_glow": "#d1e7fe",
+  "space": "#010019",
+  "poster_paper": "#f9faf8",
+  "poster_header": "#151e47",
+  "bay_beam": "#6b9aaa",
+  "bay_dark": "#21262f",
+  "foil": "#e8db49",
+  "foil_rivet": "#383204",
+  "flange": "#4f8aa7",
+  "bolt_white": "#f4f6f8",
+  "brass": "#c9a23a",
+  "sign_yellow": "#f1e126",
+  "pipe_yellow": "#f1e126",
+  "pipe_black": "#101014",
+  "port_plate": "#1d2b3b",
+  "collar": "#0b0b18",
+  "nozzle_cone": "#1b2530",
+  "nozzle_ring": "#7fc3d2",
+  "nozzle_inner": "#337b8a",
+  "nozzle_plate": "#404550",
+  "nozzle_bolt": "#5b6168",
+  "tube_a": "#17283a",
+  "tube_b": "#102130",
+  "tube_light": "#50808f",
+  "tube_core": "#d8fbff",
+  "standin_newguy": "#f8d136",
+  "standin_commander": "#d63231",
+  "standin_head": "#f4f3ef",
+  "standin_ink": "#0e0407"
+ },
+ "cams": {
+  "f5": {
+   "loc": [
+    -1.75,
+    2.85,
+    0.85
+   ],
+   "look": [
+    2.0,
+    2.75,
+    1.55
+   ],
+   "roll": 0,
+   "vfov": 68
   },
-  "cams": {
-    "f5":    {"loc": [-1.75, 2.85, 0.85], "look": [2.0, 2.75, 1.55], "roll": 0, "vfov": 68},
-    "f33":   {"loc": [-3.3, 2.85, 0.95], "look": [2.0, 2.75, 1.45], "roll": 0, "vfov": 68},
-    "f515":  {"loc": [-0.75, 2.95, 1.0], "look": [2.0, 2.9, 1.75], "roll": 0, "vfov": 62},
-    "f1030": {"loc": [0.2, -1.45, 0.5], "look": [0.45, 3.9, 1.75], "roll": 0, "vfov": 80},
-    "f1105": {"loc": [-0.5, -0.9, 0.6], "look": [0.75, 3.9, 1.9], "roll": 0, "vfov": 80},
-    "f1125": {"loc": [0.6, -0.6, 0.35], "look": [-1.2, 3.9, 1.3], "roll": 3, "vfov": 80},
-    "f1150": {"loc": [-0.75, 0.75, -0.95], "look": [1.6, 1.5, -1.0], "roll": 25, "vfov": 75},
-    "f1190": {"loc": [0.0, -40.0, 0.0], "look": [0.0, -30.0, 0.0], "roll": 0, "vfov": 80}
+  "f33": {
+   "loc": [
+    -3.3,
+    2.85,
+    0.95
+   ],
+   "look": [
+    2.0,
+    2.75,
+    1.45
+   ],
+   "roll": 0,
+   "vfov": 68
   },
-  "proofs": {
-    "f5":    {"light": "day", "glow": 0, "exploded": 0, "door": "closed", "shot": 1},
-    "f33":   {"light": "day", "glow": 0, "exploded": 0, "door": "closed", "shot": 1, "paper": 1},
-    "f515":  {"light": "night", "glow": 1, "exploded": 0, "door": "closed", "shot": 6},
-    "f1030": {"light": "wide", "glow": 0, "exploded": 0, "door": "open", "shot": 12},
-    "f1105": {"light": "wide", "glow": 1, "exploded": 1, "door": "open", "shot": 12, "commander": 0, "pulse": 0.02},
-    "f1125": {"light": "wide", "glow": 1, "exploded": 1, "door": "open", "shot": 12, "commander": 0, "pulse": 0.3},
-    "f1150": {"light": "wide", "glow": 1, "exploded": 1, "door": "open", "shot": 13, "pulse": 0.78},
-    "f1190": {"light": "wide", "glow": 1, "exploded": 1, "door": "open", "shot": 13, "pulse": 1.0}
+  "f515": {
+   "loc": [
+    -0.75,
+    2.95,
+    1.0
+   ],
+   "look": [
+    2.0,
+    2.9,
+    1.75
+   ],
+   "roll": 0,
+   "vfov": 62
+  },
+  "f1030": {
+   "loc": [
+    0.2,
+    -1.45,
+    0.5
+   ],
+   "look": [
+    0.45,
+    3.9,
+    1.75
+   ],
+   "roll": 0,
+   "vfov": 80
+  },
+  "f1105": {
+   "loc": [
+    -0.5,
+    -0.9,
+    0.6
+   ],
+   "look": [
+    0.75,
+    3.9,
+    1.9
+   ],
+   "roll": 0,
+   "vfov": 80
+  },
+  "f1125": {
+   "loc": [
+    0.6,
+    -0.6,
+    0.35
+   ],
+   "look": [
+    -1.2,
+    3.9,
+    1.3
+   ],
+   "roll": 3,
+   "vfov": 80
+  },
+  "f1150": {
+   "loc": [
+    -0.75,
+    0.75,
+    -0.95
+   ],
+   "look": [
+    1.6,
+    1.5,
+    -1.0
+   ],
+   "roll": 25,
+   "vfov": 75
+  },
+  "f1190": {
+   "loc": [
+    0,
+    -28.3,
+    0
+   ],
+   "look": [
+    0,
+    -26.5,
+    0
+   ],
+   "roll": 0,
+   "vfov": 80
   }
+ },
+ "proofs": {
+  "f5": {
+   "light": "day",
+   "glow": 0,
+   "exploded": 0,
+   "door": "closed",
+   "shot": 1
+  },
+  "f33": {
+   "light": "day",
+   "glow": 0,
+   "exploded": 0,
+   "door": "closed",
+   "shot": 1,
+   "paper": 1
+  },
+  "f515": {
+   "light": "night",
+   "glow": 1,
+   "exploded": 0,
+   "door": "closed",
+   "shot": 6
+  },
+  "f1030": {
+   "light": "wide",
+   "glow": 0,
+   "exploded": 0,
+   "door": "open",
+   "shot": 12
+  },
+  "f1105": {
+   "light": "wide",
+   "glow": 1,
+   "exploded": 1,
+   "door": "open",
+   "shot": 12,
+   "commander": 0,
+   "pulse": 0.02
+  },
+  "f1125": {
+   "light": "wide",
+   "glow": 1,
+   "exploded": 1,
+   "door": "open",
+   "shot": 12,
+   "commander": 0,
+   "pulse": 0.3
+  },
+  "f1150": {
+   "light": "wide",
+   "glow": 1,
+   "exploded": 1,
+   "door": "open",
+   "shot": 13,
+   "pulse": 0.78
+  },
+  "f1190": {
+   "light": "wide",
+   "glow": 1,
+   "exploded": 1,
+   "door": "open",
+   "shot": 13,
+   "pulse": 1.0
+  }
+ }
 }
