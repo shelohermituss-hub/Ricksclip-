@@ -1,0 +1,67 @@
+{
+ "face_shadow": true,
+ "face_shadow_rule": "CB 2026-11-15: the template drawn face shadow STAYS (face_shadow true); only generated shade is removed (card_shade amount 0, rim 0, hat_shadow 0, no far light).",
+ "_note": "character-artist 2026-11-22, astro-flush STUDY (private, never published). Copy cast + puppet_pkg + face_shadow + costume_shade + card_shade into film.json. Sheet: cast/sheets/astro_flush.mjs. Faces: k:afEyeRoll, k:afSweat, k:afGrit registered by the sheet.",
+ "puppet_pkg": [
+  "<relative path to>/episodes/astro-flush-study/cast",
+  "<relative path to>/templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93
+  },
+  "commander": {
+   "puppet": "cast:astro_flush/commander",
+   "height": 1.76,
+   "heads_tall": 2.93
+  },
+  "navigator": {
+   "puppet": "cast:astro_flush/navigator",
+   "height": 1.66,
+   "heads_tall": 2.93
+  },
+  "director": {
+   "puppet": "cast:astro_flush/director",
+   "height": 1.82,
+   "heads_tall": 3.1
+  },
+  "ctlGreen": {
+   "puppet": "cast:astro_flush/ctlGreen",
+   "height": 1.62,
+   "heads_tall": 3.1
+  },
+  "ctlBlue": {
+   "puppet": "cast:astro_flush/ctlBlue",
+   "height": 1.66,
+   "heads_tall": 3.1
+  },
+  "ctlDark": {
+   "puppet": "cast:astro_flush/ctlDark",
+   "height": 1.68,
+   "heads_tall": 3.1
+  }
+ },
+ "faces_new": [
+  "afEyeRoll",
+  "afSweat",
+  "afGrit"
+ ],
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "card_shade_rule": "CB 2026-11-15: card_shade.amount 0 AND rim_amount 0 in every place, no far light, lights []. Never raise amount."
+}

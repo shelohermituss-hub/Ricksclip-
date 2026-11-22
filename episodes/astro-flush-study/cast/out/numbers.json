@@ -1,0 +1,602 @@
+{
+ "newguy_front": {
+  "rag_px": 29956,
+  "red_px": 341,
+  "yellow_px": 13958,
+  "gold_px": 11235,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440,
+  "face": {
+   "n": 7529,
+   "coloured_share": 0,
+   "grey_share": 0.0145,
+   "darkest_skin": 43
+  }
+ },
+ "newguy_34": {
+  "rag_px": 35222,
+  "red_px": 301,
+  "yellow_px": 10683,
+  "gold_px": 16330,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440
+ },
+ "newguy_34L": {
+  "rag_px": 29581,
+  "red_px": 341,
+  "yellow_px": 12366,
+  "gold_px": 11593,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440
+ },
+ "newguy_side": {
+  "rag_px": 26118,
+  "red_px": 0,
+  "yellow_px": 7812,
+  "gold_px": 12178,
+  "teal_px": 0,
+  "top_px": 448,
+  "ground_px": 1440
+ },
+ "newguy_sideL": {
+  "rag_px": 22414,
+  "red_px": 0,
+  "yellow_px": 7580,
+  "gold_px": 7854,
+  "teal_px": 0,
+  "top_px": 448,
+  "ground_px": 1440
+ },
+ "newguy_back": {
+  "rag_px": 36693,
+  "red_px": 0,
+  "yellow_px": 18402,
+  "gold_px": 11801,
+  "teal_px": 0,
+  "top_px": 453,
+  "ground_px": 1440
+ },
+ "commander_front": {
+  "rag_px": 2567,
+  "red_px": 25741,
+  "yellow_px": 0,
+  "gold_px": 1990,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440,
+  "face": {
+   "n": 6554,
+   "coloured_share": 0,
+   "grey_share": 0.0769,
+   "darkest_skin": 35
+  }
+ },
+ "commander_34": {
+  "rag_px": 2784,
+  "red_px": 28599,
+  "yellow_px": 0,
+  "gold_px": 2052,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "commander_34L": {
+  "rag_px": 2409,
+  "red_px": 24538,
+  "yellow_px": 0,
+  "gold_px": 1779,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "commander_side": {
+  "rag_px": 2037,
+  "red_px": 20715,
+  "yellow_px": 0,
+  "gold_px": 1280,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "commander_sideL": {
+  "rag_px": 1583,
+  "red_px": 15874,
+  "yellow_px": 0,
+  "gold_px": 982,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "commander_back": {
+  "rag_px": 1201,
+  "red_px": 29782,
+  "yellow_px": 0,
+  "gold_px": 827,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "navigator_front": {
+  "rag_px": 3907,
+  "red_px": 341,
+  "yellow_px": 0,
+  "gold_px": 3079,
+  "teal_px": 0,
+  "top_px": 349,
+  "ground_px": 1440,
+  "face": {
+   "n": 7198,
+   "coloured_share": 0,
+   "grey_share": 0.0264,
+   "darkest_skin": 43
+  }
+ },
+ "navigator_34": {
+  "rag_px": 3941,
+  "red_px": 300,
+  "yellow_px": 0,
+  "gold_px": 3277,
+  "teal_px": 0,
+  "top_px": 349,
+  "ground_px": 1440
+ },
+ "navigator_34L": {
+  "rag_px": 3912,
+  "red_px": 341,
+  "yellow_px": 0,
+  "gold_px": 3126,
+  "teal_px": 0,
+  "top_px": 349,
+  "ground_px": 1440
+ },
+ "navigator_side": {
+  "rag_px": 3800,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 2542,
+  "teal_px": 0,
+  "top_px": 379,
+  "ground_px": 1440
+ },
+ "navigator_sideL": {
+  "rag_px": 3802,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 2542,
+  "teal_px": 0,
+  "top_px": 379,
+  "ground_px": 1440
+ },
+ "navigator_back": {
+  "rag_px": 2964,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 2257,
+  "teal_px": 0,
+  "top_px": 379,
+  "ground_px": 1440
+ },
+ "director_front": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440,
+  "face": {
+   "n": 6329,
+   "coloured_share": 0,
+   "grey_share": 0.0607,
+   "darkest_skin": 44
+  }
+ },
+ "director_34": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "director_34L": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "director_side": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "director_sideL": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "director_back": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "ctlGreen_front": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 12708,
+  "top_px": 475,
+  "ground_px": 1440,
+  "face": {
+   "n": 6291,
+   "coloured_share": 0,
+   "grey_share": 0.166,
+   "darkest_skin": 44
+  }
+ },
+ "ctlGreen_34": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 16105,
+  "top_px": 475,
+  "ground_px": 1440
+ },
+ "ctlGreen_34L": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 12224,
+  "top_px": 475,
+  "ground_px": 1440
+ },
+ "ctlGreen_side": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 10486,
+  "top_px": 475,
+  "ground_px": 1440
+ },
+ "ctlGreen_sideL": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 7844,
+  "top_px": 475,
+  "ground_px": 1440
+ },
+ "ctlGreen_back": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 12986,
+  "top_px": 475,
+  "ground_px": 1440
+ },
+ "ctlBlue_front": {
+  "rag_px": 0,
+  "red_px": 324,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440,
+  "face": {
+   "n": 6346,
+   "coloured_share": 0,
+   "grey_share": 0.0632,
+   "darkest_skin": 44
+  }
+ },
+ "ctlBlue_34": {
+  "rag_px": 0,
+  "red_px": 289,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlBlue_34L": {
+  "rag_px": 0,
+  "red_px": 287,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlBlue_side": {
+  "rag_px": 0,
+  "red_px": 7,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlBlue_sideL": {
+  "rag_px": 0,
+  "red_px": 5,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlBlue_back": {
+  "rag_px": 0,
+  "red_px": 929,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlDark_front": {
+  "rag_px": 121,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 30,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440,
+  "face": {
+   "n": 6341,
+   "coloured_share": 0,
+   "grey_share": 0.0625,
+   "darkest_skin": 44
+  }
+ },
+ "ctlDark_34": {
+  "rag_px": 138,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 119,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ },
+ "ctlDark_34L": {
+  "rag_px": 131,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 73,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ },
+ "ctlDark_side": {
+  "rag_px": 71,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 56,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ },
+ "ctlDark_sideL": {
+  "rag_px": 71,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 56,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ },
+ "ctlDark_back": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ },
+ "newguy_front_smug": {
+  "rag_px": 29956,
+  "red_px": 341,
+  "yellow_px": 13958,
+  "gold_px": 11235,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440,
+  "face": {
+   "n": 7753,
+   "coloured_share": 0,
+   "grey_share": 0.0193,
+   "darkest_skin": 45
+  }
+ },
+ "newguy_34_afEyeRoll": {
+  "rag_px": 35222,
+  "red_px": 301,
+  "yellow_px": 10683,
+  "gold_px": 16330,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440
+ },
+ "newguy_front_sleepy": {
+  "rag_px": 29956,
+  "red_px": 341,
+  "yellow_px": 13958,
+  "gold_px": 11235,
+  "teal_px": 0,
+  "top_px": 328,
+  "ground_px": 1440,
+  "face": {
+   "n": 7077,
+   "coloured_share": 0.0254,
+   "grey_share": 0.025,
+   "darkest_skin": 35
+  }
+ },
+ "newguy_34_afSweat": {
+  "rag_px": 35222,
+  "red_px": 301,
+  "yellow_px": 10683,
+  "gold_px": 16330,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440
+ },
+ "newguy_front_worried": {
+  "rag_px": 29956,
+  "red_px": 341,
+  "yellow_px": 13958,
+  "gold_px": 11235,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440,
+  "face": {
+   "n": 6717,
+   "coloured_share": 0,
+   "grey_share": 0.0222,
+   "darkest_skin": 47
+  }
+ },
+ "newguy_34_happy": {
+  "rag_px": 35222,
+  "red_px": 301,
+  "yellow_px": 10683,
+  "gold_px": 16330,
+  "teal_px": 0,
+  "top_px": 451,
+  "ground_px": 1440
+ },
+ "commander_34_angry": {
+  "rag_px": 2784,
+  "red_px": 28599,
+  "yellow_px": 0,
+  "gold_px": 2052,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440
+ },
+ "commander_front_afEyeRoll": {
+  "rag_px": 2567,
+  "red_px": 25741,
+  "yellow_px": 0,
+  "gold_px": 1990,
+  "teal_px": 0,
+  "top_px": 389,
+  "ground_px": 1440,
+  "face": {
+   "n": 6495,
+   "coloured_share": 0,
+   "grey_share": 0.0794,
+   "darkest_skin": 35
+  }
+ },
+ "navigator_front_shocked": {
+  "rag_px": 3906,
+  "red_px": 341,
+  "yellow_px": 0,
+  "gold_px": 3084,
+  "teal_px": 0,
+  "top_px": 323,
+  "ground_px": 1440,
+  "face": {
+   "n": 6048,
+   "coloured_share": 0,
+   "grey_share": 0.0403,
+   "darkest_skin": 44
+  }
+ },
+ "navigator_34_smug": {
+  "rag_px": 3941,
+  "red_px": 300,
+  "yellow_px": 0,
+  "gold_px": 3277,
+  "teal_px": 0,
+  "top_px": 349,
+  "ground_px": 1440
+ },
+ "director_front_afGrit": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440,
+  "face": {
+   "n": 5482,
+   "coloured_share": 0,
+   "grey_share": 0.1042,
+   "darkest_skin": 44
+  }
+ },
+ "director_34_furious": {
+  "rag_px": 0,
+  "red_px": 866,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "director_34_smug": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 469,
+  "ground_px": 1440
+ },
+ "ctlGreen_34_shocked": {
+  "rag_px": 0,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 16105,
+  "top_px": 357,
+  "ground_px": 1440
+ },
+ "ctlBlue_34_worried": {
+  "rag_px": 0,
+  "red_px": 269,
+  "yellow_px": 0,
+  "gold_px": 0,
+  "teal_px": 0,
+  "top_px": 472,
+  "ground_px": 1440
+ },
+ "ctlDark_34_skeptical": {
+  "rag_px": 138,
+  "red_px": 0,
+  "yellow_px": 0,
+  "gold_px": 119,
+  "teal_px": 0,
+  "top_px": 467,
+  "ground_px": 1440
+ }
+}

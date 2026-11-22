@@ -1,0 +1,73 @@
+{
+ "_note": "astro-flush STUDY cast block (private exercise). Same form as episodes/plane-eater/s1/film.json: copy puppet_pkg (fix the relative paths from the film.json folder), cast, face_shadow, costume_shade, card_shade into film.json. Episode faces k:afEyeRoll, k:afSweat, k:afGrit are registered by cast/sheets/astro_flush.mjs at load.",
+ "puppet_pkg": [
+  "../cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "puppet_pkg_note": "paths as seen from episodes/astro-flush-study/<stretch>/film.json",
+ "cast": {
+  "newguy": {
+   "puppet": "cast:astro_flush/newguy",
+   "height": 1.7,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "commander": {
+   "puppet": "cast:astro_flush/commander",
+   "height": 1.76,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "navigator": {
+   "puppet": "cast:astro_flush/navigator",
+   "height": 1.66,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "director": {
+   "puppet": "cast:astro_flush/director",
+   "height": 1.82,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlGreen": {
+   "puppet": "cast:astro_flush/ctlGreen",
+   "height": 1.62,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlBlue": {
+   "puppet": "cast:astro_flush/ctlBlue",
+   "height": 1.66,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "ctlDark": {
+   "puppet": "cast:astro_flush/ctlDark",
+   "height": 1.68,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "faces_new": [
+  "afEyeRoll",
+  "afSweat",
+  "afGrit"
+ ]
+}
