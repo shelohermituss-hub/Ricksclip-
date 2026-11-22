@@ -109,3 +109,10 @@ episodes/*/s*/out/lock/
 episodes/*/s*/out/overlay/
 episodes/*/look/film/final/
 episodes/plane-eater/plane_eater_blender.mp4
+# check tool outputs (re-made by tools/motion_objects and tools/collide)
+out/motion_objects.json
+out/collide.json
+# astro-flush-study set build output (re-made by sets/<place>/build_<place>.sh)
+episodes/astro-flush-study/sets/*/out/
+episodes/astro-flush-study/sets/*/build/
+episodes/astro-flush-study/sets/*/logs/

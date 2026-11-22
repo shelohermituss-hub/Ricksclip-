@@ -1,0 +1,479 @@
+{
+ "summary": {
+  "film": "/home/user/Ricksclip-/templates/film_example/film.json",
+  "window": [
+   0,
+   459
+  ],
+  "step": 1,
+  "frames": 460,
+  "fail": 24,
+  "warn": 1,
+  "tracks": 15,
+  "tracks_failing": 8,
+  "camera_moving_share": 0.987,
+  "cuts": [],
+  "seconds": 4,
+  "page": {
+   "objects_seen": 251,
+   "tracked": 8,
+   "dropped_inherit_only": 0,
+   "changing_without_name": 0,
+   "scan_ms": 2007,
+   "ms_per_frame": 4.4
+  },
+  "notes": [],
+  "numbers": {
+   "frozenPos": 0.00002,
+   "frozenRot": 0.002,
+   "frozenScale": 0.00002,
+   "movePos": 0.0002,
+   "moveRot": 0.02,
+   "moveScale": 0.0005,
+   "heldMax": 3,
+   "heldFlank": 0.25,
+   "heldMin": {
+    "camera": [
+     0.0005,
+     0.05
+    ],
+    "card": [
+     0.0005,
+     0.05
+    ],
+    "object": [
+     0.0005,
+     0.05
+    ],
+    "hand": [
+     0.002,
+     0.05
+    ]
+   },
+   "jumpX": 4,
+   "jumpWin": 6,
+   "floor": {
+    "camera": {
+     "pos": 0.01,
+     "rot": 0.5,
+     "fov": 0.5
+    },
+    "card": {
+     "pos": 0.02
+    },
+    "hand": {
+     "pos": 0.04
+    },
+    "object": {
+     "pos": 0.02,
+     "rot": 3,
+     "scale": 0.1
+    }
+   },
+   "cutPos": 0.5,
+   "cutRot": 20,
+   "cutX": 8,
+   "popRamp": 0.8,
+   "popLook": 3
+  }
+ },
+ "table": [
+  {
+   "track": "CAMERA",
+   "kind": "camera",
+   "frames": 460,
+   "steps": 459,
+   "moving": 453,
+   "max_m_per_frame": 0.21269943582435755,
+   "max_deg_per_frame": 3.84005385409987,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "master.feet",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 0,
+   "max_m_per_frame": 0,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "master.head",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 440,
+   "max_m_per_frame": 0.03127357190984105,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "master.handR",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 434,
+   "max_m_per_frame": 0.5469906580555102,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 5,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "master.handL",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 439,
+   "max_m_per_frame": 0.712833199282974,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 8,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "kid.feet",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 15,
+   "max_m_per_frame": 0.20050261843676748,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 1,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "kid.head",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 363,
+   "max_m_per_frame": 0.19792444669620785,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 1,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "kid.handR",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 371,
+   "max_m_per_frame": 0.19265969998938534,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 3,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "kid.handL",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 395,
+   "max_m_per_frame": 0.2573330332468026,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 2,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "lady.feet",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 0,
+   "max_m_per_frame": 0,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "lady.head",
+   "kind": "card",
+   "frames": 460,
+   "steps": 459,
+   "moving": 398,
+   "max_m_per_frame": 0.027804949199737687,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "lady.handR",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 392,
+   "max_m_per_frame": 0.2543146476316296,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 3,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "lady.handL",
+   "kind": "hand",
+   "frames": 460,
+   "steps": 459,
+   "moving": 404,
+   "max_m_per_frame": 0.21525401273843894,
+   "max_deg_per_frame": 0,
+   "held": 0,
+   "jump": 1,
+   "pop": 0,
+   "result": "FAIL"
+  },
+  {
+   "track": "clock_face/clock_hand_minute",
+   "kind": "object",
+   "frames": 460,
+   "steps": 459,
+   "moving": 459,
+   "max_m_per_frame": 0,
+   "max_deg_per_frame": 1.7190173325590636,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  },
+  {
+   "track": "clock_face_02/clock_hand_minute_02",
+   "kind": "object",
+   "frames": 460,
+   "steps": 459,
+   "moving": 459,
+   "max_m_per_frame": 0,
+   "max_deg_per_frame": 1.7190173325590636,
+   "held": 0,
+   "jump": 0,
+   "pop": 0,
+   "result": "PASS"
+  }
+ ],
+ "events": [
+  {
+   "level": "WARN",
+   "rule": "KICK",
+   "track": "CAMERA",
+   "f0": 105,
+   "f1": 106,
+   "text": "camera kick declared in the plan: 3.84 deg in one step at f105, the steps around it run at 0.751 deg/frame (median)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handR",
+   "f0": 105,
+   "f1": 105,
+   "text": "32.1 cm in one step at f105, the steps around it run at 0.14 cm/frame (median), pose press_watch -> flinch (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handR",
+   "f0": 184,
+   "f1": 184,
+   "text": "54.7 cm in one step at f184, the steps around it run at 0.85 cm/frame (median), pose flinch -> point_up (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handR",
+   "f0": 224,
+   "f1": 224,
+   "text": "13.1 cm in one step at f224, the steps around it run at 0.75 cm/frame (median), pose point_up -> hands_hips (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handR",
+   "f0": 243,
+   "f1": 243,
+   "text": "13.1 cm in one step at f243, the steps around it run at 0.04 cm/frame (median), pose hands_hips -> point_out (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handR",
+   "f0": 380,
+   "f1": 380,
+   "text": "23.3 cm in one step at f380, the steps around it run at 0.72 cm/frame (median), pose finger_up -> hold_watch (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 25,
+   "f1": 25,
+   "text": "50.0 cm in one step at f25, the steps around it run at 0.12 cm/frame (median), pose hold_watch -> press_watch (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 105,
+   "f1": 105,
+   "text": "53.0 cm in one step at f105, the steps around it run at 0.17 cm/frame (median), pose press_watch -> flinch (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 184,
+   "f1": 184,
+   "text": "21.8 cm in one step at f184, the steps around it run at 1.78 cm/frame (median), pose flinch -> point_up (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 224,
+   "f1": 224,
+   "text": "56.4 cm in one step at f224, the steps around it run at 0.95 cm/frame (median), pose point_up -> hands_hips (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 243,
+   "f1": 243,
+   "text": "44.3 cm in one step at f243, the steps around it run at 0.21 cm/frame (median), pose hands_hips -> point_out (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 321,
+   "f1": 321,
+   "text": "50.1 cm in one step at f321, the steps around it run at 0.14 cm/frame (median), pose point_out -> stand (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 351,
+   "f1": 351,
+   "text": "71.3 cm in one step at f351, the steps around it run at 0.26 cm/frame (median), pose stand -> finger_up (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "master.handL",
+   "f0": 380,
+   "f1": 380,
+   "text": "71.3 cm in one step at f380, the steps around it run at 0.63 cm/frame (median), pose finger_up -> hold_watch (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.feet",
+   "f0": 322,
+   "f1": 322,
+   "text": "20.1 cm in one step at f322, the steps around it run at 3.10 cm/frame (median)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.head",
+   "f0": 322,
+   "f1": 322,
+   "text": "19.8 cm in one step at f322, the steps around it run at 3.00 cm/frame (median)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.handR",
+   "f0": 155,
+   "f1": 155,
+   "text": "17.8 cm in one step at f155, the steps around it run at 0.04 cm/frame (median), pose stand -> show_wrist (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.handR",
+   "f0": 321,
+   "f1": 321,
+   "text": "17.8 cm in one step at f321, the steps around it run at 3.89 cm/frame (median), pose show_wrist -> point_out (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.handR",
+   "f0": 379,
+   "f1": 379,
+   "text": "17.6 cm in one step at f379, the steps around it run at 0.73 cm/frame (median), pose point_out -> show_wrist (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.handL",
+   "f0": 321,
+   "f1": 321,
+   "text": "25.6 cm in one step at f321, the steps around it run at 4.09 cm/frame (median), pose show_wrist -> point_out (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "kid.handL",
+   "f0": 379,
+   "f1": 379,
+   "text": "25.7 cm in one step at f379, the steps around it run at 2.47 cm/frame (median), pose point_out -> show_wrist (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "lady.handR",
+   "f0": 153,
+   "f1": 153,
+   "text": "23.9 cm in one step at f153, the steps around it run at 0.05 cm/frame (median), pose stand -> show_wrist (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "lady.handR",
+   "f0": 320,
+   "f1": 320,
+   "text": "19.6 cm in one step at f320, the steps around it run at 0.09 cm/frame (median), pose show_wrist -> hand_mouth (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "lady.handR",
+   "f0": 404,
+   "f1": 404,
+   "text": "25.4 cm in one step at f404, the steps around it run at 0.14 cm/frame (median), pose hand_mouth -> clap (pose pop)"
+  },
+  {
+   "level": "FAIL",
+   "rule": "JUMP",
+   "track": "lady.handL",
+   "f0": 404,
+   "f1": 404,
+   "text": "21.5 cm in one step at f404, the steps around it run at 0.14 cm/frame (median), pose hand_mouth -> clap (pose pop)"
+  }
+ ]
+}
