@@ -555,3 +555,12 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   Only camsafe films with a seated legs3d move change; library sit_chair has symmetric hands.
 - Guard: episodes/plane-eater/s2/check_held_seated.sh (R prop closer to the lens than the seat AND R is the raised fist). Before the fix: R grip behind the
   card (y -1.26) and R = the low idle fist; after: PASS 0.918 < 1.355 m, R raised. Proof frames: s2/key/heldtest/sheet4.jpg (glass + tumbler on the fists).
+- 2026-11-22 (plane-eater Blender film) Kit pieces came out white or wrong in Blender from the lock. Causes: (1) the lock glb carries colours only, no
+  texture maps (canvas textures, the Cessna paint); (2) stretch scripts move/hide pieces per frame (also BASE-set parts: the table jug hidden by S2)
+  and objects hidden at export time are not in the glb. Fix: look/film/film_lock.py takes materials again by object name from props/out/*.blend,
+  repaints kit-coded pieces (film_fixes.kit_paint), and keys visibility + matrices per frame from look/film/dump_nodes.sh (render_gpu --eval loop
+  over the window, base set included with __none__). Guard: KIT_VS_BLENDER.jpg from FRESH render_gpu stills (s*/frames were stale). FERMÉ for
+  textures/visibility; OPEN for objects hidden at export (s1_bite, s1_cut_line) and WebGL-drawn power lines (S1 f121).
+- 2026-11-22 (same) RunPod package rendered magenta cards: image-sequence paths set as '//seq/..' were resolved against the SET blend, then
+  save_as(relative_remap) rebased them to ../../sets/... Fix: set the absolute path to the copied folder, let relative_remap write //seq/...;
+  old packages: look/film/runpod_kit/fix_seq_paths.py. Guard: package_all.sh renders one frame; LOOK at one at PCT 25. FERMÉ

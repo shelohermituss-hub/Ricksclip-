@@ -119,3 +119,92 @@ def kit_paint(sc, cfg, K):
         for o in sc.objects:
             if o.type == 'MESH' and o.name in K.get('KEPT', ()) and o.name.split('.')[0].startswith(pre): o.data.materials.clear(); o.data.materials.append(m); n += 1
         print('PAINT', pre, n)
+
+def cabin_window(sc, cfg, K):
+    """the set's fuselage_skin_outer has no window holes (LECONS 2026-11-21): the outer skin, window glass and shades are hidden from the
+    lens only (they still light and shadow; the shades stay), so every window shows the set's sky, cumulus deck and wing."""
+    n = 0
+    for o in sc.objects:
+        if o.name.startswith(('fuselage_skin_outer', 'window_glass')): o.visible_camera = False; n += 1
+    print('CABIN_WINDOW hidden from lens', n)
+
+# ---------------- S4: the seasons time-lapse and the dusk (s4_apron.js KEYS, driven per frame in the kit; the lock has one light only)
+S4_KEYS = [(0, 'DAY'), (674, 'DAY'),
+    (682, dict(top='#3d7fd0', hor='#ffd9a8', sun='#ffc98a', si=3.6, amb='#d9c9b8', ai=1.7, lawn='#a79a52', leaf='#d9822b', snow=0)),
+    (690, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#cfe0f5', leaf='#e9f0fa', snow=1)),
+    (698, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#cfe0f5', leaf='#e9f0fa', snow=1)),
+    (705, dict(top='#2f8ae8', hor='#d8f0d0', sun='#fff8e0', si=4.2, amb='#e3eedf', ai=1.9, lawn='#7fbf4a', leaf='#8fd14f', snow=0)),
+    (716, dict(top='#2f8ae8', hor='#d8f0d0', sun='#fff8e0', si=4.2, amb='#e3eedf', ai=1.9, lawn='#7fbf4a', leaf='#8fd14f', snow=0)),
+    (738, 'DUSK'), (9999, 'DUSK')]
+
+def _hx(h):
+    h = h.lstrip('#'); c = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]; return [x / 12.92 if x <= .04045 else ((x + .055) / 1.055) ** 2.4 for x in c]
+
+def seasons(sc, cfg, K):
+    """per frame: sky (camera) colours, sun colour/strength (with the 5-day strobe of the time-lapse), sky fill, exposure day -> dusk (cards follow),
+    lawn and leaves tinted toward the season, a snow skin over the apron, the hangar work lamps and the pink table key from 'dessert?' (740)."""
+    import json, os
+    RL = json.load(open(os.path.join(os.path.dirname(os.path.dirname(K['EP'])), 'templates', 'blender_look', 'rick_light.json')))
+    D, U = RL['day'], RL['dusk']
+    def look(name):
+        if name == 'DAY': return dict(top=D['sky_top'], hor=D['sky_low'], sun=D['sun_col'], sk=1.0, amb=D['fill_col'], ak=1.0, lawn=None, leaf=None, snow=0, ex=cfg.get('expo', -.1), dusk=0)
+        if name == 'DUSK': return dict(top=U['sky_top'], hor=U['sky_low'], sun=U['sun_col'], sk=U['sun'] / D['sun'], amb=U['fill_col'], ak=U['fill'] / D['fill'], lawn='#6e7a52', leaf='#5d6e48', snow=0, ex=U['exposure'], dusk=1)
+        return dict(top=name['top'], hor=name['hor'], sun=name['sun'], sk=name['si'] / 4.6, amb=name['amb'], ak=name['ai'] / 2.0, lawn=name['lawn'], leaf=name['leaf'], snow=name['snow'], ex=cfg.get('expo', -.1), dusk=0)
+    KS = [(f, look(n)) for f, n in S4_KEYS]
+    def at(f):
+        for (fa, A), (fb, B) in zip(KS, KS[1:]):
+            if fa <= f <= fb:
+                u = 0 if fb == fa else (f - fa) / (fb - fa); u = u * u * (3 - 2 * u); L = lambda k: [a + (b - a) * u for a, b in zip(_hx(A[k]), _hx(B[k]))]
+                lawnK = (1 if A['lawn'] and B['lawn'] else 1 - u if A['lawn'] else u if B['lawn'] else 0)
+                return dict(top=L('top'), hor=L('hor'), sun=L('sun'), sk=A['sk'] + (B['sk'] - A['sk']) * u, amb=L('amb'), ak=A['ak'] + (B['ak'] - A['ak']) * u,
+                            lawn=_hx(B['lawn'] or A['lawn']) if (A['lawn'] or B['lawn']) else None, lawnK=lawnK, leaf=_hx(B['leaf'] or A['leaf']) if (A['leaf'] or B['leaf']) else None,
+                            snow=A['snow'] + (B['snow'] - A['snow']) * u, ex=A['ex'] + (B['ex'] - A['ex']) * u, dusk=A['dusk'] + (B['dusk'] - A['dusk']) * u)
+    w = sc.world; N = w.node_tree.nodes; rp = N['sky_ramp']; sun = bpy.data.objects['apron_sun']; E0 = sun.data.energy; F0 = N['sky_fill'].inputs['Strength'].default_value
+    def tint_hook(m, tag):
+        if not m or not m.use_nodes or m.node_tree.nodes.get('season_' + tag): return None
+        b = next((n for n in m.node_tree.nodes if n.type in ('BSDF_PRINCIPLED', 'BSDF_DIFFUSE')), None)
+        if b is None: return None
+        ci = b.inputs['Base Color'] if 'Base Color' in b.inputs else b.inputs['Color']; mx = m.node_tree.nodes.new('ShaderNodeMix'); mx.data_type = 'RGBA'; mx.name = 'season_' + tag
+        if ci.links: m.node_tree.links.new(ci.links[0].from_socket, mx.inputs['A'])
+        else: mx.inputs['A'].default_value = ci.default_value
+        m.node_tree.links.new(mx.outputs['Result'], ci); return mx
+    lawnM, leafM = [], []
+    for o in sc.objects:
+        if o.type != 'MESH': continue
+        for m in o.data.materials:
+            if not m: continue
+            if o.name.startswith(('lawn', 'tufts', 'grass', 'runway_mow', 'fields_')) and m not in [x[0] for x in lawnM]:
+                h = tint_hook(m, 'lawn'); h and lawnM.append((m, h))
+            elif ('leaf' in m.name.lower() or 'leaves' in m.name.lower() or 'crown' in m.name.lower()) and m not in [x[0] for x in leafM]:
+                h = tint_hook(m, 'leaf'); h and leafM.append((m, h))
+    # the snow skin
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, .045)); sn = bpy.context.object; sn.name = 'season_snow'; sn.scale = (60, 40, 1)
+    sm = bpy.data.materials.new('season_snow'); sm.use_nodes = True; nt = sm.node_tree; b = nt.nodes['Principled BSDF']; b.inputs['Base Color'].default_value = tuple(_hx('#eef4fb')) + (1,); b.inputs['Roughness'].default_value = .9
+    sn.data.materials.append(sm)
+    lamps = [o for o in bpy.data.objects if o.name.startswith('lamp_work') and o.type == 'LIGHT']
+    kd = bpy.data.lights.new('dusk_table_key', 'POINT'); kd.color = tuple(_hx('#ffb48a')); kd.shadow_soft_size = .4; ko = bpy.data.objects.new('dusk_table_key', kd); sc.collection.objects.link(ko); ko.location = (4.6, -0.2, 2.6)
+    cards = [k['material'] for k in K['CARDS'].values()] + [m for m in bpy.data.materials if m.name.startswith('Card_')]
+    f0, f1 = cfg['window']
+    for f in range(f0, f1 + 1):
+        S = at(f); tl = (f - 672) / (712 - 672) if 672 <= f <= 712 else 0; flick = .78 + .22 * math.cos(tl * math.pi * 2 * 5) if tl else 1
+        rp.color_ramp.elements[0].color = S['hor'] + [1]; rp.color_ramp.elements[1].color = S['top'] + [1]
+        for e in rp.color_ramp.elements: e.keyframe_insert('color', frame=f)
+        sun.data.color = S['sun']; sun.data.energy = E0 * S['sk'] * flick; sun.data.keyframe_insert('color', frame=f); sun.data.keyframe_insert('energy', frame=f)
+        N['sky_fill'].inputs['Color'].default_value = S['amb'] + [1]; N['sky_fill'].inputs['Strength'].default_value = F0 * S['ak']
+        N['sky_fill'].inputs['Color'].keyframe_insert('default_value', frame=f); N['sky_fill'].inputs['Strength'].keyframe_insert('default_value', frame=f)
+        sc.view_settings.exposure = S['ex']; sc.view_settings.keyframe_insert('exposure', frame=f)
+        N['sky_cam'].inputs[1].default_value = 2 ** (-S['ex']) * flick; N['sky_cam'].inputs[1].keyframe_insert('default_value', frame=f)
+        for m in cards:
+            e_ = m.node_tree.nodes.get('self')
+            if e_ is not None: e_.inputs[1].default_value = 2 ** (-S['ex']); e_.inputs[1].keyframe_insert('default_value', frame=f)
+        for m, h in lawnM:
+            h.inputs['Factor'].default_value = (S['lawnK'] * .85) if S['lawn'] else 0; h.inputs['B'].default_value = (S['lawn'] or [0, 0, 0]) + [1]
+            h.inputs['Factor'].keyframe_insert('default_value', frame=f); h.inputs['B'].keyframe_insert('default_value', frame=f)
+        for m, h in leafM:
+            h.inputs['Factor'].default_value = (S['lawnK'] * .9) if S['leaf'] else 0; h.inputs['B'].default_value = (S['leaf'] or [0, 0, 0]) + [1]
+            h.inputs['Factor'].keyframe_insert('default_value', frame=f); h.inputs['B'].keyframe_insert('default_value', frame=f)
+        sn.hide_render = S['snow'] < .02; sn.keyframe_insert('hide_render', frame=f); b.inputs['Alpha'].default_value = .92 * S['snow']; b.inputs['Alpha'].keyframe_insert('default_value', frame=f)
+        on = 0 if f < 740 else 1 - math.exp(-(f - 740) / 1.5)
+        for l in lamps: l.data.energy = l.get('lamp_energy', 300) * on; l.data.keyframe_insert('energy', frame=f)
+        kd.energy = 150 * on; kd.keyframe_insert('energy', frame=f)
+    print('SEASONS', f0, f1, 'lawn mats', len(lawnM), 'leaf mats', len(leafM), 'lamps', len(lamps))

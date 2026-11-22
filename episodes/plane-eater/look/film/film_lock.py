@@ -53,7 +53,7 @@ for o in new:
     ch = chain(o); names = [x.name.split('.')[0] for x in ch]
     if any(nm.startswith(HELDPART) for nm in names): continue                 # held props are rebuilt from held_all.json
     if names[-1] != BASE and o.type != 'LIGHT': keep.add(o); continue          # the stretch's own pieces (and the plane in this stretch's state)
-    if int(o.get('lock_id', -1)) in moving_ids and o.type == 'MESH':           # a base-set part that moves in this stretch (chair pulled out ...): the kit copy
+    if int(o.get('lock_id', -1)) in moving_ids and o.type == 'MESH' and not CFG.get('base_dump'):           # a base-set part that moves in this stretch (chair pulled out ...): the kit copy
         keep.add(o); old = bpy.data.objects.get(names[0])
         if old is not None and old not in new_set: replaced.append(old.name); old.hide_render = True; old.hide_viewport = True
 keepall = {o for o in new if o in keep}
@@ -82,6 +82,25 @@ for o in kept:
         if ms and len(ms) == len(o.data.materials) and all(ms):
             for i, m in enumerate(ms): o.data.materials[i] = m
             nmat += 1
+# glassware reads as the kit's clear glass (at 24-64 spp a real-IOR transmission goes frosted and dark): transparent + fresnel gloss
+THIN = {}
+for o in kept:
+    if o.type != 'MESH' or o.name not in bpy.data.objects: continue
+    for i, m in enumerate(o.data.materials):
+        if not m or not m.use_nodes: continue
+        b = next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None)
+        if b is None or (b.inputs['Transmission Weight'].default_value < .3 and 'glass' not in m.name.lower()): continue
+        if m.name not in THIN:
+            liquid = any(k in m.name.lower() for k in ('water', 'oil', 'amber', 'wine'))
+            t = bpy.data.materials.new(m.name + '_clear'); t.use_nodes = True; N = t.node_tree.nodes; Lk = t.node_tree.links
+            for n in list(N): N.remove(n)
+            tr = N.new('ShaderNodeBsdfTransparent'); gl = N.new('ShaderNodeBsdfGlossy'); gl.inputs['Roughness'].default_value = .04
+            cb = b.inputs['Base Color'].default_value; tr.inputs['Color'].default_value = (cb[0] * .5 + .5, cb[1] * .5 + .5, cb[2] * .5 + .5, 1) if liquid else (.97, .99, 1, 1)
+            fr = N.new('ShaderNodeLayerWeight'); fr.inputs['Blend'].default_value = .25; mx = N.new('ShaderNodeMixShader')
+            Lk.new(fr.outputs['Fresnel'], mx.inputs[0]); Lk.new(tr.outputs[0], mx.inputs[1]); Lk.new(gl.outputs[0], mx.inputs[2])
+            o_ = N.new('ShaderNodeOutputMaterial'); Lk.new(mx.outputs[0], o_.inputs['Surface']); THIN[m.name] = t
+        o.data.materials[i] = THIN[m.name]
+print('THIN_GLASS', sorted(THIN)[:10])
 print('MATS_FROM_BLENDS', nmat, 'of', sum(1 for o in kept if o.type == 'MESH'))
 # per-frame visibility + matrices of the stretch's script-driven pieces (look/film/dump_nodes.sh), where the lock has only one state
 DUMPF = os.path.join(LOCK, 'nodes_dump.json')
@@ -89,6 +108,9 @@ if os.path.exists(DUMPF):
     DU = json.load(open(DUMPF)); ids = L2.by_id(kept); Cm = Matrix(((1, 0, 0, 0), (0, 0, -1, 0), (0, 1, 0, 0), (0, 0, 0, 1))); Ci = Cm.inverted(); nd = 0
     for lid, r in DU['nodes'].items():
         o = ids.get(int(lid))
+        if o is None and CFG.get('base_dump') and r['name']:                   # a base-set part the kit script moves or hides: the set's own object, by name
+            o = bpy.data.objects.get(r['name'])
+            if o is not None and o in new_set: o = None
         if o is None: continue
         mw = o.matrix_world.copy(); o.parent = None; o.matrix_world = mw; o.rotation_mode = 'QUATERNION'; prev = None; nd += 1
         for i, (v, m) in enumerate(zip(r['v'], r['m'])):
@@ -190,6 +212,10 @@ if MODE == 'hats':
     os.makedirs(os.path.join(HERE, 'fix_' + ST), exist_ok=True); FX.hats(sc, CFG, KX, os.path.join(HERE, 'fix_' + ST, 'hats.json')); sys.exit(0)
 FX.apply(sc, CFG, KX)
 
+for n in filter(None, os.environ.get('DBG_HIDE', '').split(',')):          # debug: hide named objects and their children
+    o = bpy.data.objects.get(n)
+    if o:
+        for x in [o] + list(o.children_recursive): x.hide_render = True; x.animation_data_clear()
 # ---------------- render settings, outline objects
 fo = PL.render_setup(sc, int(os.environ.get('W', 540)), int(os.environ.get('H', 960)), int(os.environ.get('SPP', 24)), bounces=5 if PLACE == 'apron' else 6)
 sc.render.fps = LJ.get('fps', 30); sc.frame_start, sc.frame_end = CFG['window']
@@ -211,7 +237,9 @@ def render_frames(frames, od):
 
 if MODE == 'info':
     for f in [int(x) for x in (A[2].split(',') if len(A) > 2 else [str(FR[0]['f'])])]:
-        sc.frame_set(f); print('HIDE', f, [(o.name, o.hide_render, o.visible_get()) for o in sc.objects if o.name.startswith('Card_michel')], [(m.name, m.node_tree.nodes['seq'].image.name, m.node_tree.nodes['seq'].image_user.frame_current if hasattr(m.node_tree.nodes['seq'].image_user,'frame_current') else '', m.node_tree.nodes['seq'].image_user.frame_offset) for m in bpy.data.materials if m.name.startswith('Card_michel')])
+        sc.frame_set(f); print('JUG', f, [(o.name, o.hide_render, [round(x, 2) for x in o.matrix_world.translation], [round(x, 2) for x in o.matrix_world.to_scale()]) for o in sc.objects if o.name.split('.')[0] in ('Scene', 'jug_body', 'glass_body', 'scale_body')][:12])
+        print('HIDE', f, [(o.name, o.hide_render, o.visible_get()) for o in sc.objects if o.name.startswith('Card_michel')], [(m.name, m.node_tree.nodes['seq'].image.name, m.node_tree.nodes['seq'].image_user.frame_current if hasattr(m.node_tree.nodes['seq'].image_user,'frame_current') else '', m.node_tree.nodes['seq'].image_user.frame_offset) for m in bpy.data.materials if m.name.startswith('Card_michel')])
+        print('PROPSCALE', f, {f'{w}:{o}': [round(v[0].matrix_world.to_scale().x, 2), v[0].hide_render] for (w, o), v in PROPS.items()})
         print('INFO_F', f, json.dumps({w: PL.screen(sc, k['object'].matrix_world.translation) for w, k in CARDS.items()}),
                                json.dumps({f'{w}:{o}': PL.screen(sc, v[0].matrix_world.translation) for (w, o), v in PROPS.items()}))
 elif MODE == 'keys':
@@ -220,16 +248,18 @@ elif MODE == 'keys':
 elif MODE == 'package':
     # RunPod package: one .blend (everything packed except the card drawings, which are image sequences: copied next to it), frames json, render.sh
     od = A[2] if len(A) > 2 else os.path.join(EP, 'runpod', ST); os.makedirs(od, exist_ok=True)
-    for who in CARDS:
-        dst = os.path.join(od, 'cards', who); os.makedirs(dst, exist_ok=True)
-        for fn in os.listdir(os.path.join(LOCK, 'cards', who)):
-            if fn.endswith('.png'): shutil.copy2(os.path.join(LOCK, 'cards', who, fn), dst)
+    for im in bpy.data.images:                       # image sequences (lock card drawings, the S1 re-posed drawings) cannot be packed: copied next to the .blend
+        if im.source != 'SEQUENCE': continue
+        src = os.path.dirname(bpy.path.abspath(im.filepath)); rel = 'seq/' + os.path.basename(os.path.dirname(src)) + '_' + os.path.basename(src); dst = os.path.join(od, rel)
+        os.makedirs(dst, exist_ok=True)
+        for fn in os.listdir(src):
+            if fn.endswith('.png'): shutil.copy2(os.path.join(src, fn), dst)
+        im.filepath = os.path.join(dst, os.path.basename(im.filepath)); print('SEQ', im.name, '->', rel)   # absolute here: save_as relative_remap makes it //seq/... next to scene.blend
     for im in bpy.data.images:
         if im.source == 'SEQUENCE': continue
         if im.source == 'FILE' and not im.packed_file:
             try: im.pack()
             except Exception as ex: print('PACK_FAIL', im.name, ex)
-    for who, k in CARDS.items(): k['material'].node_tree.nodes['seq'].image.filepath = '//cards/%s/s0001.png' % who
     for lib in list(bpy.data.libraries): bpy.data.libraries.remove(lib)
     sc.render.filepath = '//out/f_####'
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(od, 'scene.blend'), compress=True, relative_remap=True)

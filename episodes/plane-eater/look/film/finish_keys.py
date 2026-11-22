@@ -12,9 +12,12 @@ for st, c in CFG.items():
     for f in c['keys']:
         raw = os.path.join(KD, '%s_f%04d.png' % (st, f))
         if not os.path.exists(raw): continue
-        fin = raw.replace('.png', '_final.png'); js = raw.replace('.png', '_num.json'); kind, s = c.get('grade', ['DAY', .5])
-        r = subprocess.run([sys.executable, FK, raw, os.path.join(KD, '%s_f%04d_' % (st, f), 'pass_mask.png'), raw.replace('.png', '_lines_id.png'), fin, '--kind', kind, '--strength', str(s), '--json', js], capture_output=True, text=True)
+        fin = raw.replace('.png', '_final.png'); js = raw.replace('.png', '_num.json'); kind, s = c.get('grade_keys', {}).get(str(f), c.get('grade', ['DAY', .5])); extra = c.get('grade_extra', {}).get(str(f), [])
+        r = subprocess.run([sys.executable, FK, raw, os.path.join(KD, '%s_f%04d_' % (st, f), 'pass_mask.png'), raw.replace('.png', '_lines_id.png'), fin, '--kind', kind, '--strength', str(s), '--json', js] + extra, capture_output=True, text=True)
         if r.returncode: print(r.stderr[-800:]); continue
+        ov = os.path.join(EP, st, 'out', 'overlay', 'o_%05d.png' % f)          # the kit's drawn layer (focus lines, glints, captions) over the graded frame
+        if os.path.exists(ov):
+            base = Image.open(fin).convert('RGBA'); o_ = Image.open(ov).convert('RGBA').resize(base.size, Image.LANCZOS); Image.alpha_composite(base, o_).convert('RGB').save(fin)
         n = json.load(open(js)); nums['%s_f%04d' % (st, f)] = dict(word=word_at(f), kind=kind, final=n['final'], target=n['target'], line_px=n['line_px']); tiles.append((st, f, fin, n))
 json.dump(nums, open(os.path.join(LOOK, 'keys_numbers.json'), 'w'), indent=1)
 F = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 13); FS = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 11)

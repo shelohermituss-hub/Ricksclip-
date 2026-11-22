@@ -80,7 +80,8 @@
    "DAY",
    0.5
   ],
-  "fix": []
+  "fix": [],
+  "base_dump": true
  },
  "s4": {
   "place": "apron",
@@ -100,6 +101,85 @@
    "DAY",
    0.5
   ],
-  "fix": []
+  "fix": [
+   "seasons"
+  ],
+  "base_dump": true,
+  "grade_keys": {
+   "850": [
+    "DUSK",
+    0.5
+   ],
+   "905": [
+    "DUSK",
+    0.5
+   ]
+  }
+ },
+ "s3": {
+  "place": "xray",
+  "set_blend": "sets/xray/out/xray.blend",
+  "light": "set",
+  "expo": -0.6,
+  "key_dir": [
+   -1,
+   -0.15,
+   0.35
+  ],
+  "base_root": "xray",
+  "keys": [
+   562,
+   592
+  ],
+  "window": [
+   520,
+   638
+  ],
+  "grade": [
+   "INTERIOR",
+   1.0
+  ],
+  "fix": [],
+  "base_dump": true,
+  "grade_extra": {
+   "592": [
+    "--sat-floor",
+    "raw"
+   ]
+  },
+  "grade_keys": {
+   "592": [
+    "INTERIOR",
+    0.5
+   ]
+  }
+ },
+ "s5": {
+  "place": "cabin",
+  "set_blend": "sets/cabin/out/cabin.blend",
+  "light": "set",
+  "expo": 0.0,
+  "key_dir": [
+   0.1,
+   1.0,
+   0.25
+  ],
+  "base_root": "cabin",
+  "keys": [
+   969,
+   1001
+  ],
+  "window": [
+   943,
+   1021
+  ],
+  "grade": [
+   "INTERIOR",
+   0.6
+  ],
+  "fix": [
+   "cabin_window"
+  ],
+  "base_dump": true
  }
 }

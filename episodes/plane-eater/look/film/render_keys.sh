@@ -4,7 +4,7 @@ R="$(cd "$(dirname "$0")/../../../.." && pwd)"; EP="$R/episodes/plane-eater"
 for s in "$@"; do
   K=$(python3 -c "import json;print(','.join(map(str,json.load(open('$EP/look/film/stretches.json'))['$s']['keys'])))")
   B=$(python3 -c "import json;print(json.load(open('$EP/look/film/stretches.json'))['$s']['set_blend'])")
-  blender -b "$EP/$B" --python "$EP/look/film/film_lock.py" -- "$s" keys "$K" 2>&1 | grep -E "FRAME|SALT|HELD|KEPT|MOTION|Traceback|Error:"
+  blender -b "$EP/$B" --python "$EP/look/film/film_lock.py" -- "$s" keys "$K" 2>&1 | grep -E "FRAME|SALT|HELD|KEPT|MOTION|DUMP_APPLIED|MATS_FROM|PAINT|CABIN|Traceback|Error:"
 done
 python3 -I "$EP/look/film/finish_keys.py"
 echo RENDER_KEYS_END

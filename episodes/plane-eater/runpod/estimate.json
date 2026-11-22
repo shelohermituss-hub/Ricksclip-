@@ -1,0 +1,39 @@
+{
+ "note": "estimate, NOT a pod measure: CPU key times here (540x960 24 spp) x 10.7 for 1080x1920 64 spp, x 0.08-0.16 for an RTX 4090 (ratio from the 2026-11-20/21 measures: CPU 1080p 32 spp 37 s, 4090 720p 64 spp 5.1 s). Measure 3 frames on the pod first.",
+ "stretches": {
+  "s1": [
+   0,
+   256,
+   257,
+   "21-41"
+  ],
+  "s2": [
+   257,
+   519,
+   263,
+   "25-49"
+  ],
+  "s3": [
+   520,
+   638,
+   119,
+   "45-90"
+  ],
+  "s4": [
+   639,
+   942,
+   304,
+   "18-37"
+  ],
+  "s5": [
+   943,
+   1021,
+   79,
+   "38-76"
+  ]
+ },
+ "total_frames": 1022,
+ "total_hours_4090": "7.2-14.3",
+ "packages_GB": 1.2,
+ "cpu_pack_test": "1 frame per package at PCT 10 SPP 8: final written (5 s each); s4 f850 checked at PCT 25: cards, dusk, props OK"
+}

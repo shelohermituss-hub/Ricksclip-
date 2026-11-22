@@ -104,3 +104,5 @@ episodes/*/sound/out/stems/
 episodes/*/sound/*preview*.mp3
 episodes/*/look/film/keys/*_/
 episodes/*/look/film/keys/*_lines_id.png
+episodes/*/runpod/*/
+episodes/*/s*/out/lock/
