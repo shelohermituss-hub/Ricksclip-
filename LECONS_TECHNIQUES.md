@@ -525,3 +525,11 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   hand-set travel and is reached on its frame (speed capped at 60 px/f, WARN under 1 s): use it for fast beat-to-beat stretches.
 - Also: a held3d builder that HIDES the unwanted meshes of a glb keeps them in Box3.setFromObject, so re-centring put the spinner 2 m off the hand;
   remove them (removeFromParent) instead.
+
+## 2026-11-22 plane-eater S2 round 2: two more traps (episode move + seated card)
+- Problem: every hand act of Michel came 262 frames late (no prop ever reached his face). Cause: the kit's move clock mt restarts on every POSE change
+  (film.js tweenedB), not at film frame 0; the act switching to m:../../ep_s2/mi_table was at 262 while the move assumed f = film frame.
+  Fix: OFF.mi_table = 262 in the move. Guard: a move's frame offset = the frame of its pose's act. Proof: f300 the hand is at his nose.
+- Problem: held3d props sat 0.3-0.5 m BELOW the drawn hand of a seated legs3d episode card (grip z 0.69-0.72 with the hand at the nose), hidden
+  behind the chair in every frame. Cause: not found (held3d hand solve vs the seat offset of legs3d cards); OPEN.
+  Workaround: hand_at pins the drawn hand on a world point and the set shows the prop at that point (s2/sets/s2_apron.js). Proof: f304 oil glass at his nose.
