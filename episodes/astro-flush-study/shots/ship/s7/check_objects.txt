@@ -1,0 +1,16 @@
+motion_objects: s7/film.json  frames 0-712  17 tracks (camera, 1 characters, 12 moving objects of 204)
+CAMERA moves on 27 % of the frames (193 of 712 steps)
+CUT  none
+result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
+PASS   CAMERA                             713     193     20.01     0.78       0     0     0   
+FAIL   navigator.handR                    713     707     6.18      0.00       0     1     0   
+WARN   ship/ship_root/glitter_cockpit_1   98      0       0.00      0.00       0     0     1   
+WARN   ship/ship_root/glitter_cockpit_2   82      0       0.00      0.00       0     0     1   
+PASS   navigator.feet                     713     0       0.00      0.00       0     0     0   
+PASS   navigator.head                     713     167     2.83      0.00       0     0     0   
+PASS   navigator.handL                    713     700     3.98      0.00       0     0     0   
+... 10 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
+FAIL JUMP navigator.handR  f640  6.2 cm in one step at f640, the steps around it run at 0.14 cm/frame (median)
+WARN POP  ship/ship_root/glitter_cockpit_1  f615  turns visible inside the camera frame with no scale or opacity ramp
+WARN POP  ship/ship_root/glitter_cockpit_2  f631  turns visible inside the camera frame with no scale or opacity ramp
+1 FAIL, 2 WARN on 3 of 17 tracks (25.2 s, page scan 14.9 s = 20.9 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s7/out/motion_objects.json

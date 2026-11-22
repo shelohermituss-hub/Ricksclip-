@@ -138,19 +138,19 @@ c880, c990 = C['f880'], C['f990']; d11 = unit(sub(c880['look'], c880['loc']))
 S11 = [st(add(c880['loc'], d11, .55), add(c880['look'], d11, .55), 20, -.4, at=0, hold=0, creep=0, subject="newguy", framing="C", purpose="pre-roll; travel leaves f855 (near rest f867-875, slow creep)"),
        st(add(c880['loc'], d11, .45), add(c880['look'], d11, .45), 20, -.3, at=867, hold=0, pin=True, subject="newguy", framing="C", purpose="by eye: porthole frontal 30 %, new guy head 18 %"),
        dict(cam(c880), roll=1.5, at=880, hold=0, pin=True, subject=None, framing="C", purpose="pinned pass: cam f880 fitted; pull back starts f876"),
-       st([2.5, 17.0, -2.5], [9.0, 2.4, 0.6], 36, 6.5, at=900, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f900 track along the hull from below: windows row, LODESTAR above, stripe below"),
-       st([20.0, 22.0, 6.0], [4.0, 0.0, 0.0], 45, 12.0, at=930, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f930 hull recedes upper left, tail + fans enter (rising over to the f990 side)"),
-       st(lerp(c990['loc'], [32, 6, 34], .35), lerp(c990['look'], [30, 2, 28], .3), 45, 18.0, at=960, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f960 whole ship on the diagonal, easing out"),
-       dict(cam(c990), roll=21.5, at=990, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f990 fitted (roll 9.5 of the fit + 12 of the travel ... see STATE)"),
-       st(add(c990['loc'], sub(c990['loc'], c990['look']), .02), c990['look'], 45, 22.0, at=1006, travel=round((1006 - 855) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
+       st([2.5, 17.0, -2.5], [9.0, 2.4, 0.6], 36, 4.0, at=900, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f900 track along the hull from below: windows row, LODESTAR above, stripe below"),
+       st([20.0, 22.0, 6.0], [4.0, 0.0, 0.0], 45, 7.0, at=930, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f930 hull recedes upper left, tail + fans enter (rising over to the f990 side)"),
+       st(lerp(c990['loc'], [32, 6, 34], .35), lerp(c990['look'], [30, 2, 28], .3), 45, 9.0, at=960, hold=0, pin=True, subject=None, framing="W", purpose="by eye: f960 whole ship on the diagonal, easing out"),
+       dict(cam(c990), at=990, hold=0, pin=True, subject=None, framing="W", purpose="pinned pass: cam f990 fitted (roll 9.5 of the fit + 12 of the travel ... see STATE)"),
+       st(add(c990['loc'], sub(c990['loc'], c990['look']), .02), c990['look'], 45, 9.6, at=1006, travel=round((1006 - 855) / 30, 4), hold=0.2, creep=0, subject=None, framing="W",
           purpose="his rest f992-1001: here a creep (rule 3)")]
 E11 = [[0] + earth_world(c990, PR['f990']['earth_screen'])]
 def sk11(f): return dict(flame=0.0, preglow=0.0, glitter=1.0, glitter_ck=1.0, comm=0, digits=0, starmap=0.0, ship=[0, 0, 0, 0, 0, 0], fans=1, fan=round(49 + .5 * (f - 990), 3),
                          earth_rot=ER0, earth_glare=[.5, -.7, .3, 0])
 F11 = base("astro-flush ship, shot 11 (f867-997, rendered f867-1006)", 867, 1007, ("newguy",), keys_per_frame(840, 1007, sk11), {"earth": E11, "sky_follow": True})
 F11["takes"] = [{"id": "s11", "place": "ship", "stations": S11}]
-s11 = CARD.get('s11', 1.0); F11["card_scale"] = {"newguy": [[0, s11, s11], [2000, s11, s11]]}
-NG = A['newguy_s11']; NG = [NG[0], NG[1], NG[2] + CARD.get('s11_dz', 0)]
+s11 = CARD.get('s11', 0.7); F11["card_scale"] = {"newguy": [[0, s11, s11], [2000, s11, s11]]}
+NG = [A['porthole_b'][0], 1.7, -1.14]   # round 1: the anchor newguy_s11 put the head 30 %+ and cut at the porthole edge; centred on porthole_b, deeper, card .7
 F11["acts"] = [dict(who="newguy", at=0, pos=NG, pose="m:../../ep_ship/ng11", look=[NG[0], 9, NG[2] + 1.2], note="nervous smile, sweat drop, small worried bob"),
                dict(who="newguy", at=875, pos=[NG[0] + .9, NG[1] - .1, NG[2]], move_s=0.4, ease="inout", look=[NG[0] + .9, 9, NG[2] + 1.2], note="f876-884 slides sideways out of the window (his 8 f; 12 f eased)"),
                dict(who="newguy", at=890, visible=False, note="out of view"), dict(who="newguy", at=867, face="k:afSweat", note="nervous smile, sweat drop")]

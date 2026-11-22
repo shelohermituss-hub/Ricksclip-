@@ -1,0 +1,2 @@
+CAMERA-SAFE  s11  camsafe on  890 checks: PASS 890  WARN 0  FAIL 0
+report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s11/out/plan/camsafe_report.json

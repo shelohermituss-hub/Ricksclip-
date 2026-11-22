@@ -1,0 +1,8 @@
+collide: s7/film.json  frames 0-712 every 2 (357 checked)  cast navigator  held 3D props: none
+set ship: 172 meshes tested; not tested: 1 no name, 14 see-through, 5 effect / sky name
+resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
+result rule            who / what             against                    frames     what                                                                          
+WARN   BODY_IN_BOX     navigator              ship/ship_root/canopy_bars f0-712     the body box is 227 cm into its box, but no drawn body point is inside the me~
+WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f628-658   the body box is 9 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     navigator              ship/ship_root/float_cup   f668-698   the body box is 7 cm into its box, but no drawn body point is inside the mesh~
+0 FAIL, 3 WARN (18.1 s, scan 9 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/ship/s7/out/collide.json

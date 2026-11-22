@@ -633,3 +633,26 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Problem 5 (OPEN): a face-only act (`{who, at, face}`) seems to restart the episode move's clock (t from the act's frame), so the move's own face and hand
   keys jump back to their f0 values after every face act (s6: the new guy keeps the f0 wince face; s12 hand JUMPs at face-act frames). Faces returned from
   the move without face acts did not show either (s1 first draft: flat face at f20). Cause not confirmed; check puppets.mjs moveOf (t per run) before the next round.
+
+## 2026-11-22 — Character acting in the three.js kit: move faces ignored, moves silently "stand", cards tipping off their plane (kit fix; closes Problem 5 above) — FERMÉ
+- Problem: (a) toilet: "a face act restarts the move's clock" (s6 face stuck, s12 hand JUMPs f1057/f1097); (b) cabin: faces returned by the move never showed;
+  (c) mc3/mc10: every move "not loaded", all four characters drawn as kit "stand"; (d) a high camera tipped a sleeper's card off the wall (set wrapper workaround).
+- Causes: (a) NOT a clock restart: film.js restarts a move's clock only when the baked POSE string changes (proved: hand track identical frame by frame with and
+  without face acts). The s12 JUMPs are the move's own keys (1054: a whole-arm swing in 8 f, peak f1056-57; 1070 same; 1097 a one-frame front->34 view swap).
+  (b) puppets.mjs moveOf read the move's P only for the body; P.face/P.blink were dropped, the face came from acts only ("standard" when none).
+  (c) ep_mc.mjs line 10: tr()'s update `v = ...; } return v; }` sat inside a `//` comment -> SyntaxError -> film.js caught the failed import and printed one
+  warning, poses.mjs fell back to "stand", render exit 0. check_midline_comments missed it (no ";" before the swallowed statement).
+  (d) renderFrame tips every card by atan2(cam height - 0.55 h, distance) about its feet; there was no key to turn that off.
+- Fix (kit; old films unchanged): film.json `"move_face": true` = the move's returned face/blink/mouth are used where no act set a face; act `face: "move"` hands
+  the face back after an override (works without the film key); a move face that would last one frame keeps the previous one (2-frame safe). film.js setup checks
+  every used move module AND style; render_gpu.mjs / render.mjs exit 4 "MOVES MISSING" (override `--allow-missing-moves`). Upright: cast `"upright": true |
+  [[f0, f1, n]]` (eased) or act `"upright": true` (film_plan bakes it, only when on) -> uprightW() takes the tip off in renderFrame, handTarget, handWorld,
+  held3d, h3Frame and the camsafe report. ep_mc.mjs tr() repaired.
+- Guard: tools/check_midline_comments.py now flags JS comments holding "; }", "} return" or "return ...;" and runs `node --check` on every .mjs
+  (old ep_mc.mjs: 2 hits, exit 1). STRETCH_BRIEF "ACTING IN THE KIT: THE PATTERN THAT WORKS".
+- Proof (test film in the kit helper's scratch, actest/place/A-H, mc set, new guy, a probe move): hand v per frame A (no face acts) = B (3 face acts) = C
+  (move_face) = D (override) exactly; faces before: "standard" f0-60 / after C: nervous, happy, (1-frame surprised at f30 dropped), angry; D: act surprised f25-34,
+  move again from f35; G (unknown style) and H (old ep_mc.mjs) exit 4 with the reason, before: exit 0 drawing "stand"; E/F high camera (3.6 m): card tip 38.2 deg -> 0 with cast upright, feet and place unchanged (stills proof/upright_EF.jpg).
+  Real shots: mc3 render log had 4x "not loaded" + 4x "using stand"; now none, f180/224/264 the director plays dir3 (finger up, button reach).
+  toilet s6 copy with "move_face": true and its 4 face acts removed: faces f500 nervous, f507-509 afSweat, f510 nervous, f513+ nervousSmile, all from ng6.
+  film_plan check mc3 10 FAIL (was 11: film.json changed since), s6 9 FAIL (same). check_views: 24 tiles "no approved picture" only (as shipped), 0 changed.

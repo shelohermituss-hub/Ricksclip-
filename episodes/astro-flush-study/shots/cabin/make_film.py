@@ -24,7 +24,9 @@ VIS = {'newguy': 1.12, 'commander': 1.22, 'navigator': 1.18}        # visible he
 CAL = json.load(open(os.path.join(H, 'cal.json'))) if os.path.exists(os.path.join(H, 'cal.json')) else {}
 CAL.setdefault('newguy@490', [.04, 0, 1.0])
 # round 3: face widths measured ours/his on the r3 test stills (f330 commander -17 %, new guy -9 %; f390 new guy -12 %; f300 new guy -19 % and 10 points too high)
-for k_, v_ in {'commander@330': [0, 0, 1.17], 'newguy@330': [0, 0, 1.08], 'newguy@390': [0, 0, 1.12], 'newguy@300': [0, -.10, 1.23]}.items(): CAL.setdefault(k_, v_)     # round 3 (lead's sheet): new guy at f490 was 12 % small and 4 points right
+# second pass on the re-baked render (face widths ours/his: f330 commander +29 %, new guy +14 %, navigator +14 %; f390 commander +7 %, new guy +25 %, navigator +16 %)
+for k_, v_ in {'commander@330': [0, 0, .91], 'newguy@330': [0, 0, .95], 'navigator@330': [0, 0, .88], 'commander@390': [0, 0, .93], 'newguy@390': [0, 0, .90], 'navigator@390': [0, 0, .86],
+               'newguy@300': [0, -.10, 1.23]}.items(): CAL.setdefault(k_, v_)     # round 3 (lead's sheet): new guy at f490 was 12 % small and 4 points right
 def ray_y(c, sx, sy, y):
     a = unproject(c, sx, sy, 1.0); o = c['loc']; t = (y - o[1]) / (a[1] - o[1]); return [o[i] + (a[i] - o[i]) * t for i in range(3)], t
 def need(f, who, y):
