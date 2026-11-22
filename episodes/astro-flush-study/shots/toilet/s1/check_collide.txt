@@ -1,0 +1,6 @@
+collide: s1/film.json  frames 0-40 every 2 (21 checked)  cast newguy  held 3D props: none
+set toilet: 111 meshes tested; not tested: 1 no name, 2 effect / sky name
+resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
+result rule            who / what             against                    frames     what                                                                          
+(no row)
+0 FAIL, 0 WARN (7.9 s, scan 0.8 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/collide.json

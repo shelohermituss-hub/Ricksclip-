@@ -22,6 +22,9 @@ HIS = {300: {'newguy': (.55, .74, .22), 'commander': (.03, .62, .22)},
 HT = {w: CAST['cast'][w]['height'] for w in ('newguy', 'commander', 'navigator')}; HTALL = 2.93
 VIS = {'newguy': 1.12, 'commander': 1.22, 'navigator': 1.18}        # visible head (hair / cap) / drawn ball: calibrated on our render (CAL)
 CAL = json.load(open(os.path.join(H, 'cal.json'))) if os.path.exists(os.path.join(H, 'cal.json')) else {}
+CAL.setdefault('newguy@490', [.04, 0, 1.0])
+# round 3: face widths measured ours/his on the r3 test stills (f330 commander -17 %, new guy -9 %; f390 new guy -12 %; f300 new guy -19 % and 10 points too high)
+for k_, v_ in {'commander@330': [0, 0, 1.17], 'newguy@330': [0, 0, 1.08], 'newguy@390': [0, 0, 1.12], 'newguy@300': [0, -.10, 1.23]}.items(): CAL.setdefault(k_, v_)     # round 3 (lead's sheet): new guy at f490 was 12 % small and 4 points right
 def ray_y(c, sx, sy, y):
     a = unproject(c, sx, sy, 1.0); o = c['loc']; t = (y - o[1]) / (a[1] - o[1]); return [o[i] + (a[i] - o[i]) * t for i in range(3)], t
 def need(f, who, y):
@@ -30,6 +33,10 @@ def need(f, who, y):
     p, t = ray_y(c, sx - k[0], sy - k[1], y); dep = depth_of(c, p); return p, h * k[2] * frame_h(c, dep) / (HT[who] / HTALL * VIS[who])
 def place(f, who, s, y):
     p, _ = need(f, who, y); return [round(p[0], 3), round(y, 3), round(p[2] - s * HT[who] * (1 - .5 / HTALL), 3)]
+def place_d(f, who, s, yref=.45):
+    """round 3: his head on HIS screen spot at the depth where a card of scale s gives his head height (no scale change in a shot)"""
+    c = C['f%d' % f]; p, need_s = need(f, who, yref); o = c['loc']; k = s / need_s; P = [o[i] + (p[i] - o[i]) * k for i in range(3)]
+    return [round(P[0], 3), round(P[1], 3), round(P[2] - s * HT[who] * (1 - .5 / HTALL), 3)]
 def base(title, start, end, cast):
     return {"title": title, "fps": 30, "size": [1080, 1920], "words": "caps_his.json", "start": start, "end": end,
         "camera": {"v2": True}, "camsafe": True, "kit3d": {"pbr": True, "relief": True, "sky": False, "trees": False},
@@ -65,28 +72,31 @@ F4["takes"] = [{"id": "s4", "place": "cabin", "stations": [
     dict(at=422, **c422, travel=round((422 - 272) / 30.0, 4), hold=1.0, creep=0, subject="newguy", framing="W", purpose="eased landing through the dissolve f411-422"),
 ]}]
 Y4 = .45
-P4 = {w_: {f: place(f, w_, S4, Y4) for f in (330, 390)} for w_ in ('commander', 'newguy', 'navigator')}
-for w_ in ('newguy', 'commander'): P4[w_][300] = place(300, w_, S4_300[w_], Y300)
-F4["card_scale"] = {'navigator': [[0, S4, S4], [900, S4, S4]]}
-for w_ in ('newguy', 'commander'): F4["card_scale"][w_] = [[0, S4_300[w_], S4_300[w_]], [300, S4_300[w_], S4_300[w_]], [318, S4, S4], [900, S4, S4]]
+# round 3 (lead): NO scale change in the shot (round 2 grew two cards 37-54 % over f300-318). One scale per character; his head size on every
+# measured frame comes from DEPTH along his head ray (place_d). Commander 1.0 / new guy 1.05 keep the f300 marks off the quilt (y < 1.1).
+S4C = {'commander': 1.0, 'newguy': 1.05, 'navigator': S4}
+P4 = {w_: {f: place_d(f, w_, S4C[w_]) for f in (330, 390)} for w_ in ('commander', 'newguy', 'navigator')}
+for w_ in ('newguy', 'commander'): P4[w_][300] = place_d(300, w_, S4C[w_])
+F4["card_scale"] = {w_: [[0, s_, s_], [900, s_, s_]] for w_, s_ in S4C.items()}
 F4["acts"] = []
 for w_, mv, lk in (('commander', 'cmd4', 'newguy'), ('newguy', 'ng4', None), ('navigator', 'nav4', 'newguy')):
     p = P4[w_]; first = p.get(300, p[330]); L_ = lk or LOOK(first)
     F4["acts"] += [dict(who=w_, at=0, pos=first, pose="m:../../ep_cab/" + mv, look=L_, note="floating, weightless (bob in the move); turned to the new guy" if lk else "floating, faces the lens")]
-    if 300 in p: F4["acts"] += [dict(who=w_, at=300, pos=p[330], move_s=0.6, ease="inout", look=L_, note="his f300 mark -> his f330 mark under the pull-back, eased")]
+    if 300 in p: F4["acts"] += [dict(who=w_, at=300, pos=p[330], move_s=1.0, ease="inout", look=L_, note="his f300 mark -> his f330 mark under the pull-back, eased over 30 f")]
     F4["acts"] += [dict(who=w_, at=335, pos=p[390], move_s=1.8, ease="inout", look=L_, note="slow float drift to his f390 mark, eased")]
 
 # ---------------- shot 5 (night). ONE travel f399-499 pinned on f411 (already panning right), f430, f460, f490 (fitted); sleepers on the bags' head anchors.
-S5 = {'navigator': .82, 'commander': .95, 'newguy': .92}
+S5 = {'navigator': .82, 'commander': 1.2, 'newguy': 1.0}   # round 3: commander + new guy heads were 28 % / 10 % small at f430 (face balls measured)
 MV = META['movers']
+# round 3: light_over tint white, card_gain 1, card_fog off: his characters stay full colour and the brightest things at night; light_scale .09 = room as bright as his
 F5 = base("astro-flush cabin, shot 5 (f423-494, + dissolves f411-422 and f495-499)", 411, 500, ("navigator", "commander", "newguy"))
-F5["places"] = {"cabin": {"set": "cab_stage", "kind": "interior", "light": "night", "light_over": {"tint": "#c9cff5"},
-    "cabin": {"mode": "night", "door": 1, "bag_new_guy": "full", "sway": -.6,
+F5["places"] = {"cabin": {"set": "cab_stage", "kind": "interior", "light": "night", "light_over": {"tint": "#ffffff", "card_gain": 1.0, "card_fog": False},
+    "cabin": {"mode": "night", "light_scale": 0.09, "door": 1, "bag_new_guy": "full", "sway": -.6,
               "keys": [{"f": 0, "sway": -.6, "bag_new_guy": "full"}, {"f": 440, "sway": .5}, {"f": 452, "bag_new_guy": "full", "sway": .2}, {"f": 453, "bag_new_guy": "empty"}, {"f": 476, "sway": -.5}, {"f": 500, "sway": .4}]},
     "held": [dict(obj="float_crisps", who=None, drift=dict(f=411, v=[.02, -.01, .03], spin=[0, 0, 12])), dict(obj="float_book", who=None, drift=dict(f=411, v=[-.03, 0, -.015], spin=[6, 0, 9])),
              dict(obj="float_tube", who=None, drift=dict(f=411, v=[.03, 0, .01], spin=[0, 10, 14])), dict(obj="float_strip", who=None, drift=dict(f=411, v=[0, -.02, .02], spin=[8, 0, -10])),
              dict(obj="float_pen", who=None, drift=dict(f=411, v=[.02, 0, .02], spin=[0, 20, 0]))],
-    "upright": [dict(who="navigator"), dict(who="commander"), dict(who="newguy", f1=446, n=16)]}}
+    "upright": [dict(who="navigator"), dict(who="commander"), dict(who="newguy")]}}   # round 3: new guy upright all through: no 16-frame tip blend at the slide (jerk)
 c430, c460, c490 = cam(C['f430']), cam(C['f460']), cam(C['f490'])
 p411 = dict(c430, pos=[round(c430['pos'][0] - .3, 4), round(c430['pos'][1] - .2, 4), round(c430['pos'][2] + .04, 4)], aim=[round(c430['aim'][0] - 1.0, 4), c430['aim'][1], c430['aim'][2]], roll=-2.2)
 pre5 = dict(p411, pos=[round(p411['pos'][0] - .2, 4), p411['pos'][1], p411['pos'][2]], aim=[round(p411['aim'][0] - .6, 4), p411['aim'][1], p411['aim'][2]], roll=-2.6)
@@ -103,7 +113,7 @@ F5["takes"] = [{"id": "s5", "place": "cabin", "stations": [
 def on_head(who, bag):
     h = MV[bag]['head']; s = S5[who]; return [h[0], h[1], round(h[2] - s * HT[who] * (1 - .5 / HTALL), 3)]
 P5 = {'navigator': on_head('navigator', 'bag_navigator'), 'commander': on_head('commander', 'bag_commander')}
-ng = {430: on_head('newguy', 'bag_new_guy'), 460: place(460, 'newguy', S5['newguy'], .75), 490: place(490, 'newguy', S5['newguy'], -.3)}
+ng = {430: on_head('newguy', 'bag_new_guy'), 460: place(460, 'newguy', S5['newguy'], .75), 490: place_d(490, 'newguy', S5['newguy'], -.3)}
 DOOR = [A['bay_door'][0], A['bay_door'][1], 1.4]
 F4["collide"] = {}
 F5["collide"] = {"ignore": ["bag_*", "bay_wall_backing"]}   # WAIVER: the sleepers stand IN their bags on the set's card plane y 1.0 (set STATE round 3: back half of the bag behind the card); the turned card box reaches the wall behind the bag
@@ -115,10 +125,11 @@ F5["acts"] = [dict(who='navigator', at=0, pos=P5['navigator'], pose="m:../../ep_
               dict(who='newguy', at=472, pos=ng[490], move_s=0.6, ease="inout", look=DOOR, note="floats right to the back door f472-490, eased; turned to the door (3/4)")]
 
 # faces live in the acts (the kit keeps the film's face, not the move's): same keys as moves/ep_cab.mjs, on his frames
-FACES4 = {'newguy': [(284, 'k:afEyeRoll'), (316, 'k:surprised'), (330, 'k:afEyeRoll'), (348, 'k:smug')] + [(356 + 3 * i, 'k:talk' if i % 2 == 0 else 'k:smug') for i in range(6)] +
-          [(374, 'k:smug')] + [(378 + 3 * i, 'k:talk' if i % 2 == 0 else 'k:happy') for i in range(3)] + [(388, 'k:laugh'), (396, 'k:smug')],
-          'commander': [(284, 'k:annoyed'), (340, 'k:afEyeRoll'), (353, 'k:annoyed'), (396, 'k:skeptical')],
-          'navigator': [(284, 'k:skeptical'), (348, 'k:annoyed'), (388, 'k:skeptical')]}
+FACES4 = {   # round 3: read on his frames f300-410 every 10 (new guy: half-lid sip 284-315, wide round eyes + small closed mouth 316-335 "rolls his",
+             # half-lid bored 336-347, grin with teeth 348-375 "It's a toilet", laughing open mouth 376-387, grin 388-397, happy open 398-405, laugh 406-)
+    'newguy': [(284, 'k:afEyeRoll'), (316, 'k:open'), (336, 'k:afEyeRoll'), (348, 'k:cheer'), (376, 'k:laugh'), (388, 'k:cheer'), (398, 'k:happy'), (406, 'k:laugh')],
+    'commander': [(284, 'k:afEyeRoll')],          # stern half-lid all through (his f300-410)
+    'navigator': [(284, 'k:smug')]}               # smirk, half-lid (his f310-410)
 FACES5 = {'navigator': [(0, 'k:sleepy')], 'commander': [(0, 'k:sleepy')], 'newguy': [(0, 'k:sleepy'), (452, 'k:sneaky'), (470, 'k:afSweat')]}
 for Fm, FC in ((F4, FACES4), (F5, FACES5)):
     for w_, keys in FC.items():

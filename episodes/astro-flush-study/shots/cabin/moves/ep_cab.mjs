@@ -23,34 +23,35 @@ function ng4(t, ch) { const f = F(t);
   const R = P2([[0, { f: .45, d: .45 }], [386, { f: .95, d: -.2 }, 12], [396, { f: .35, d: .55 }, 14]], f);
   const head = tr([[0, 4], [317, -6, 3], [330, 9, 3], [348, -2, 3], [376, -7, 3], [388, 0, 3], [396, 4, 3]], f) + tilt(f, 5, 1.8);
   const rot = tr([[0, 0], [376, -7, 4], [388, 0, 3], [396, 3, 3]], f) + tilt(f, 21, 1.2);
-  let face = step([[0, 'k:afEyeRoll'], [316, 'k:standard'], [317, 'k:surprised'], [330, 'k:afEyeRoll'], [348, 'k:smug'], [356, 'k:smug'], [374, 'k:smug'], [388, 'k:laugh'], [396, 'k:smug']], f);
-  face = talk(f, 'k:talk', 'k:smug', 356, 372) || talk(f, 'k:talk', 'k:happy', 378, 388) || face;
+  // round 3: faces read on his frames f300-410 every 10 (same keys as make_film.py FACES4; the kit plays the move's face)
+  const face = step([[0, 'k:afEyeRoll'], [316, 'k:open'], [336, 'k:afEyeRoll'], [348, 'k:cheer'], [376, 'k:laugh'], [388, 'k:cheer'], [398, 'k:happy'], [406, 'k:laugh']], f);
   return { view: 'front', dir: 1, x: 0, y: bob(f, 0, 7, 48), rot, head, feet: dangle(f, 0), farArmFront: true,
-    hands: [{ f: L.f, d: L.d, bow: f >= 396 ? -.9 : .3 }, { f: R.f, d: R.d, bow: f >= 396 ? -.9 : .3 }], face, blink: face === 'k:standard' || face === 'k:smug' ? blinkAt(t, 2.4, .2) : null, held: [] }; }
+    hands: [{ f: L.f, d: L.d, bow: f >= 396 ? -.9 : .3 }, { f: R.f, d: R.d, bow: f >= 396 ? -.9 : .3 }], face, blink: face === 'k:afEyeRoll' ? blinkAt(t, 2.4, .2) : null, held: [] }; }
 
 // ---- COMMANDER, shot 4: left, floats seated by the galley, 3/4 to the right; frown all through; 340-352 eyes shut in annoyance; 396 turns his head to the new guy.
 function cmd4(t, ch) { const f = F(t);
-  const face = step([[0, 'k:annoyed'], [340, 'k:afEyeRoll'], [353, 'k:annoyed'], [396, 'k:skeptical']], f);
+  const face = 'k:afEyeRoll';   // round 3: stern half-lid all through (his f300-410)
   return { view: '34', dir: 1, x: 0, y: bob(f, 17, 6, 52), rot: tilt(f, 40, 1.4), head: tr([[0, 0], [340, 5, 3], [353, 0, 3], [396, -6, 3]], f) + tilt(f, 9, 1.6), feet: dangle(f, 23, 70), farArmFront: true,
-    hands: [{ f: .35, d: .6, bow: .3 }, { f: .45, d: .5, bow: .3 }], face, blink: face === 'k:annoyed' ? blinkAt(t, 2.9, .7) : null, held: [] }; }
+    hands: [{ f: .35, d: .6, bow: .3 }, { f: .45, d: .5, bow: .3 }], face, blink: blinkAt(t, 2.9, .7), held: [] }; }
 
 // ---- NAVIGATOR, shot 4: right, 3/4 to the left; clipboard (screen-left hand) + pencil (screen-right), side look to the new guy, small head turns only; pencil taps.
 function nav4(t, ch) { const f = F(t);
-  const face = step([[0, 'k:skeptical'], [348, 'k:annoyed'], [388, 'k:skeptical']], f), tap = 0.04 * Math.sin(f * Math.PI / 4) * (f % 60 < 24 ? 1 : 0);
+  const face = 'k:smug', tap = 0.04 * Math.sin(f * Math.PI / 4) * (f % 60 < 24 ? 1 : 0);
   return { view: '34', dir: 1, x: 0, y: bob(f, 31, 7, 44), rot: tilt(f, 3, 1.3), head: tr([[0, -3], [330, 3, 4], [376, -4, 4]], f) + tilt(f, 27, 1.5), feet: dangle(f, 47, 55), farArmFront: true,
     hands: [{ f: .5, d: .4, bow: .3 }, { f: .45, d: .35 + tap, bow: .3 }], face, blink: blinkAt(t, 3.3, 1.1), held: [] }; }
 
+// round 3: sleepers' arms up by the head, above the collar (his f430: heads, shoulders and hands over the bags).
 // ---- SHOT 5: asleep in the bags (bodies hidden by the bag fronts), heads loll slowly; the new guy opens one eye ~452, slides out 457-469
 // (pos glide in acts), 472 looks back at the commander with the sweat drop, 474-494 drifts right to the door, 3/4 away, arms tucked, tiptoe, look over the shoulder.
 const loll = (f, ph, a = 5) => a * Math.sin(2 * Math.PI * (f + ph) / 90);
 function nav5(t, ch) { const f = F(t);
-  return { view: 'front', dir: 1, x: 0, y: bob(f, 11, 4, 70), rot: loll(f, 20, 2), head: loll(f, 0, 6), feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], hands: [{ f: .15, d: .9, bow: .2 }, { f: .15, d: .9, bow: .2 }], face: 'k:sleepy', blink: null, held: [] }; }
+  return { view: 'front', dir: 1, x: 0, y: bob(f, 11, 4, 70), rot: loll(f, 20, 2), head: loll(f, 0, 6), feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], hands: [{ f: .5, d: -.3, bow: .6 }, { f: .5, d: -.3, bow: .6 }], face: 'k:sleepy', blink: null, held: [] }; }
 function cmd5(t, ch) { const f = F(t);
-  return { view: 'front', dir: 1, x: 0, y: bob(f, 37, 4, 76), rot: loll(f, 50, 2), head: loll(f, 33, 7), feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], hands: [{ f: .15, d: .9, bow: .2 }, { f: .15, d: .9, bow: .2 }], face: 'k:sleepy', blink: null, held: [] }; }
+  return { view: 'front', dir: 1, x: 0, y: bob(f, 37, 4, 76), rot: loll(f, 50, 2), head: loll(f, 33, 7), feet: [{ x: -20, lift: 0 }, { x: 20, lift: 0 }], hands: [{ f: .5, d: -.3, bow: .6 }, { f: .5, d: -.3, bow: .6 }], face: 'k:sleepy', blink: null, held: [] }; }
 function ng5(t, ch) { const f = F(t), out = f >= 446;
   const face = step([[0, 'k:sleepy'], [452, 'k:sneaky'], [470, 'k:afSweat']], f);
   const view = f < 472 ? 'front' : '34', head = tr([[0, 0], [452, -3, 3], [470, -9, 3], [474, 6, 3], [486, -5, 4]], f) + (f < 452 ? loll(f, 65, 6) : tilt(f, 3, 1.5));
-  const H = P2([[0, { f: .15, d: .9 }], [446, { f: .1, d: .95 }, 8], [472, { f: .45, d: .2 }, 8]], f);
+  const H = P2([[0, { f: .5, d: -.3 }], [446, { f: .1, d: .95 }, 12], [472, { f: .45, d: .2 }, 10]], f);   // round 3: arms up by the head while asleep (his f430)
   const uf = snap(f - 468, 10), A0 = [{ x: -16, lift: 0 }, { x: 16, lift: 0 }], A1 = [{ x: -24 + 6 * Math.sin(f / 7), lift: 40 + 15 * Math.sin(f / 7) }, { x: 26, lift: 75 + 8 * Math.sin(f / 9) }];
   const feet = A0.map((a, i) => ({ x: a.x + (A1[i].x - a.x) * uf, lift: a.lift + (A1[i].lift - a.lift) * uf }));   // tiptoe blended in over 10 f (no feet JUMP)
   return { view, dir: 1, x: 0, y: bob(f, 3, 4 + 2 * snap(f - 446, 16), 60), rot: tr([[0, 0], [446, 0], [472, 8, 8]], f) + tilt(f, 15, 1.2), head, feet, farArmFront: true,

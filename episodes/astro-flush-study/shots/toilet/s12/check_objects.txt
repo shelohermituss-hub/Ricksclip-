@@ -1,0 +1,72 @@
+motion_objects: s12/film.json  frames 0-1199  31 tracks (camera, 2 characters, 22 moving objects of 125)
+CAMERA moves on 19 % of the frames (223 of 1195 steps)
+CUT  f1138  NOT IN THE PLAN: camera teleport 0.18 m, 85.7 deg in one step; the plan declares no cut here
+CUT  f1139  NOT IN THE PLAN: camera teleport 0.17 m, 94.2 deg in one step; the plan declares no cut here
+CUT  f1140  NOT IN THE PLAN: camera teleport 0.25 m, 35.8 deg in one step; the plan declares no cut here
+CUT  f1176  plan: cut flag
+result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
+FAIL   CAMERA                             1200    223     59.97     37.83      0     1     0   
+FAIL   newguy.handR                       1121    1030    13.10     0.00       0     2     1   
+FAIL   newguy.handL                       1121    1045    9.68      0.00       0     3     1   
+FAIL   toilet/explode_ring_1              1200    96      12.41     2.48       0     1     0   
+FAIL   toilet/explode_ring_2              1200    95      35.40     1.52       0     1     0   
+FAIL   toilet/explode_ring_3              1200    94      48.13     2.50       0     1     0   
+FAIL   toilet/explode_ring_4              1200    93      69.27     1.36       0     1     0   
+FAIL   toilet/hatch_panel                 1200    6       0.00      17.02      0     1     0   
+FAIL   toilet/toilet_base                 1200    98      18.33     1.59       0     1     0   
+FAIL   toilet/toilet_bolt_1               1200    97      30.26     14.18      0     1     0   
+FAIL   toilet/toilet_bolt_2               1200    97      27.77     22.52      0     1     0   
+FAIL   toilet/toilet_bolt_3               1200    97      12.71     37.23      0     1     0   
+FAIL   toilet/toilet_bolt_4               1200    96      14.29     47.63      0     1     0   
+FAIL   toilet/toilet_bowl                 1200    96      30.70     2.78       0     1     0   
+FAIL   toilet/toilet_flange               1200    98      11.48     2.44       0     1     0   
+FAIL   toilet/toilet_flush_button         1200    92      69.30     2.50       0     1     0   
+FAIL   toilet/toilet_flush_lever          1200    92      57.87     5.87       0     1     0   
+FAIL   toilet/toilet_gasket               1200    98      15.53     0.87       0     1     0   
+FAIL   toilet/toilet_hinge_peg_l          1200    93      47.49     1.17       0     1     0   
+FAIL   toilet/toilet_hinge_peg_r          1200    94      41.01     1.44       0     1     0   
+FAIL   toilet/toilet_lid                  1200    93      53.85     31.95      0     1     0   
+FAIL   toilet/toilet_seat                 1200    95      37.61     3.16       0     1     0   
+FAIL   toilet/toilet_tank                 1200    93      52.90     4.06       0     1     0   
+FAIL   toilet/toilet_tank_lid             1200    92      56.71     5.90       0     1     0   
+WARN   commander.feet                     1100    0       0.00      0.00       0     0     1   
+WARN   commander.head                     1100    80      0.24      0.00       0     0     1   
+WARN   commander.handR                    1100    1081    0.77      0.00       0     0     1   
+WARN   commander.handL                    1100    1088    0.84      0.00       0     0     1   
+WARN   newguy.feet                        1121    19      1.15      0.00       0     0     1   
+WARN   newguy.head                        1121    103     1.17      0.00       0     0     1   
+WARN   toilet/hose_pulse                  113     65      18.65     0.00       0     0     1   
+FAIL JUMP newguy.handL  f1056-1057  7.3 cm in one step at f1057, the steps around it run at 1.66 cm/frame (median)  [3 times: f1056-1057 f1070-1071 f1097-1100]
+FAIL JUMP newguy.handR  f1097  6.4 cm in one step at f1097, the steps around it run at 0.30 cm/frame (median)  [2 times: f1097 f1102-1105]
+FAIL JUMP toilet/toilet_base  f1098-1102  18.3 cm in one step at f1098, the steps around it run at 0.50 cm/frame (median)
+FAIL JUMP toilet/toilet_flange  f1098-1102  11.5 cm in one step at f1099, the steps around it run at 0.45 cm/frame (median)
+FAIL JUMP toilet/toilet_gasket  f1098-1102  15.5 cm in one step at f1099, the steps around it run at 1.01 cm/frame (median)
+FAIL JUMP toilet/toilet_bolt_1  f1099-1103  30.3 cm in one step at f1099, the steps around it run at 0.14 cm/frame (median)
+FAIL JUMP toilet/toilet_bolt_2  f1099-1103  27.8 cm in one step at f1100, the steps around it run at 1.11 cm/frame (median)
+FAIL JUMP toilet/toilet_bolt_3  f1099-1103  12.7 cm in one step at f1100, the steps around it run at 0.43 cm/frame (median)
+FAIL JUMP toilet/explode_ring_1  f1100-1104  12.4 cm in one step at f1101, the steps around it run at 0.60 cm/frame (median)
+FAIL JUMP toilet/toilet_bolt_4  f1100-1104  14.3 cm in one step at f1100, the steps around it run at 0.08 cm/frame (median)
+FAIL JUMP toilet/toilet_bowl  f1100-1104  30.7 cm in one step at f1101, the steps around it run at 1.31 cm/frame (median)
+FAIL JUMP toilet/explode_ring_2  f1101-1105  35.4 cm in one step at f1101, the steps around it run at 0.24 cm/frame (median)
+FAIL JUMP toilet/toilet_hinge_peg_l  f1101-1105  47.5 cm in one step at f1102, the steps around it run at 1.94 cm/frame (median)
+FAIL JUMP toilet/toilet_seat  f1101-1106  37.6 cm in one step at f1102, the steps around it run at 0.88 cm/frame (median)
+FAIL JUMP toilet/explode_ring_3  f1102-1106  48.1 cm in one step at f1103, the steps around it run at 1.49 cm/frame (median)
+FAIL JUMP toilet/toilet_hinge_peg_r  f1102-1107  41.0 cm in one step at f1102, the steps around it run at 0.34 cm/frame (median)
+FAIL JUMP toilet/toilet_lid  f1102-1107  53.8 cm in one step at f1103, the steps around it run at 1.63 cm/frame (median)
+FAIL JUMP toilet/explode_ring_4  f1103-1108  2.11 x scale in one step at f1103, the steps around it run at 0.010 x scale/frame (median)
+FAIL JUMP toilet/toilet_flush_lever  f1103-1108  57.9 cm in one step at f1104, the steps around it run at 1.35 cm/frame (median)
+FAIL JUMP toilet/toilet_tank  f1103-1108  52.9 cm in one step at f1104, the steps around it run at 1.20 cm/frame (median)
+FAIL JUMP toilet/toilet_flush_button  f1104-1109  69.3 cm in one step at f1105, the steps around it run at 1.72 cm/frame (median)
+FAIL JUMP toilet/toilet_tank_lid  f1104-1109  56.7 cm in one step at f1105, the steps around it run at 1.22 cm/frame (median)
+FAIL JUMP toilet/hatch_panel  f1132-1133  11.43 deg in one step at f1133, the steps around it run at 2.216 deg/frame (median)
+FAIL JUMP CAMERA  f1136-1137  37.83 deg in one step at f1137, the steps around it run at 3.949 deg/frame (median)
+WARN POP  toilet/hose_pulse  f1087  turns visible inside the camera frame with no scale or opacity ramp
+WARN POP  commander.feet  f1100  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  commander.head  f1100  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  commander.handR  f1100  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  commander.handL  f1100  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.feet  f1121  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.head  f1121  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.handR  f1121  turns invisible inside the camera frame with no scale or opacity ramp
+WARN POP  newguy.handL  f1121  turns invisible inside the camera frame with no scale or opacity ramp
+27 FAIL, 9 WARN on 31 of 31 tracks (63.3 s, page scan 47.2 s = 39.3 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s12/out/motion_objects.json

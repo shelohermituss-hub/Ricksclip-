@@ -41,3 +41,15 @@ Render: half size, 2.0 s/f (cab4 139 f), 1.5 s/f (bay5 89 f). Draft mp4s: refere
 - Commander / navigator: look = "newguy" (camsafe wants 3/4, moves draw 3/4). cab4 camsafe 0 FAIL (render 2b, before the face fix).
 - Props: toss / release start from the hand's own velocity; magazine push [-1.1, -.35, 1.0] m/s, spin 220/140/380 deg/s. Monitor placeholder pulses +-6 % (period 9 f) so its frames are not held.
 - WAIVERS: feet float (frame_checks "feet") = weightless crew, his frames show dangling legs. bay5 collide ignore bag_* and bay_wall_backing: sleepers stand IN the bags on the set's card plane.
+
+## Round 3 (2026-11-22, lead's sheets cab4_lead / bay5_lead)
+- Shot 5 "no heads": the full bay5 render (13:43-13:46) was made BEFORE the `upright` fix reached cab_stage.js (13:59); only the single f430 check had it.
+  Re-rendered with it: heads above the collars on f423/430/445. Sleepers' arms now up by the head (moves nav5/cmd5/ng5), as his f430.
+- Shot 5 light: light_over tint #ffffff + card_gain 1 + card_fog false (existing kit keys: cards were tinted #c9cff5 and fogged = grey-blue);
+  cabin light_scale .025 -> .09 (set key) = room mean L near his. New guy upright all through (no 16 f tip blend at the slide).
+  Scales from face widths at f430: commander .95 -> 1.2, new guy .92 -> 1.0; f490 placed by depth (place_d) on his head spot, 4 points left.
+- Shot 4: the f300-318 card growth is gone. One scale per character (commander 1.0, new guy 1.05, navigator 1.15); his head size on every
+  measured frame comes from depth along his head ray (place_d) + face-width calibration (CAL: commander@330 1.17, newguy@330 1.08, @390 1.12, @300 1.23 and 10 points lower).
+- Faces from his f300-410 every 10: new guy afEyeRoll -> open (316, wide round eyes, small closed mouth) -> afEyeRoll (336) -> cheer (348, teeth) -> laugh (376) -> cheer (388) -> happy (398) -> laugh (406);
+  commander afEyeRoll all through; navigator smug. FOUND: the kit plays the MOVE's face here (f320/f390 showed the move's surprised / laugh, not the act's): moves and acts now carry the same keys.
+- Render: render_r3.sh (waits for any earlier render_all, both drafts, then the four checks).

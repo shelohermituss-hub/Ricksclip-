@@ -1,0 +1,2 @@
+CAMERA-SAFE  s1  camsafe on  42 checks: PASS 42  WARN 0  FAIL 0
+report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/plan/camsafe_report.json

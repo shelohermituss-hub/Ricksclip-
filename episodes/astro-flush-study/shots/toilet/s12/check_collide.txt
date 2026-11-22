@@ -1,0 +1,31 @@
+collide: s12/film.json  frames 0-1198 every 2 (600 checked)  cast commander, newguy  held 3D props: none
+set toilet: 111 meshes tested; not tested: 1 no name, 2 effect / sky name
+resting: no "collide": {"resting": {...}} in the film.json, so FLOATING / SUNK was not tested
+result rule            who / what             against                    frames     what                                                                          
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f20-34     the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f46-48     the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f82-102    the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f144-162   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f202-226   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f274-292   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f340-362   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f402-420   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f462-482   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f532-546   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f596-614   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f618-622   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f660-678   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f712-740   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f770-772   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f776-802   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f816       the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f834-840   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f852-880   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f912-944   the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f966-1004  the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/door_frame          f1028-1092 the body box is 11 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              toilet/rim_strip           f1040-1090 the body box is 10 cm into its box, but no drawn body point is inside the mes~
+WARN   BODY_IN_BOX     commander              toilet/wall_back_rivets    f1068-1078 the body box is 6 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     commander              toilet/wall_back_panels    f1074-1076 the body box is 5 cm into its box, but no drawn body point is inside the mesh~
+WARN   BODY_IN_BOX     newguy                 toilet/toilet_lid          f1110-1120 the body box is 9 cm into its box, but no drawn body point is inside the mesh~
+0 FAIL, 26 WARN (31.2 s, scan 21.2 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s12/out/collide.json

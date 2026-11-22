@@ -338,9 +338,10 @@ bm = B(); z = FLZ + .2
 while z < GZ1 - .15:                                                 # chevron slats on the back wall
     for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * (IW - .1), z - .45), .06, 4)
     z += .22
-for k in range(14):                                                  # diagonal slats on the floor
+obj('ck_slats', bm, 'ck_slat'); bm = B()
+for k in range(14):                                                  # dark diagonal slats on the floor
     x = XB + .3 + k * .3; abeam(bm, (x, -IW + .2, FLZ + .04), (x + .5, IW - .2, FLZ + .04), .025, 4)
-obj('ck_slats', bm, 'ck_slat')
+obj('ck_floor_slats', bm, mat('ck_floor_slat', col='#25222c', rough=.85))
 LX, LT, LB = 23.4, (.40, 1.93), (.55, 1.2)                         # round 6 (f600 fit): short lamps over the navigator, rods splay out a little
 for k, s in enumerate((-1, 1)):                                     # 2 pairs of black rods with an orange glowing tube + round tip
     for dy in (-.06, .06):

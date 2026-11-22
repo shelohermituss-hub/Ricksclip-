@@ -37,7 +37,7 @@ def set_light(scene, kind, sun_dir=None, sun_k=1.):
     for n in ('lamp_light_0', 'lamp_light_1'): _o(n).data.energy = L['lamps']
     _o('ck_fill').data.energy = L['ck_fill']
     for n in ('room_light_a', 'room_light_b'): _o(n).data.energy = L['rooms']
-    lamp_es = {'space': 1., 'warm': .3, 'map': .35, 'radio': .25}[kind]
+    lamp_es = {'space': 1., 'warm': .3, 'map': .03, 'radio': .25}[kind]
     _emit('lamp_tube', 6. * lamp_es); _emit('lamp_tip', 9. * lamp_es)
 def set_state(scene, **kw):
     S = json.loads(scene.get('ship_state', '{}')) or dict(DEFAULT); S.update(kw); scene['ship_state'] = json.dumps(S); M = meta()

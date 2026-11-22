@@ -1,6 +1,7 @@
 [page] Failed to load resource: the server responded with a status of 404 (Not Found)
-[page] AF_CABIN {"meshes":95,"glb_tris":142542,"load_ms":170,"mode":"night"}
+[page] AF_CABIN {"meshes":95,"glb_tris":142542,"load_ms":295,"mode":"night"}
 WebGL renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)  |  vendor: Google Inc. (Google)  |  WebGL 2.0 (OpenGL ES 3.0 Chromium)  |  browser 157.0.8103.78  |  mode software, grab fast
 film: 500 frames at 30 fps, 540x960, cast navigator, commander, newguy
 [page] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
-stills: 89 frames in 185.9 s = 2089 ms/frame (draw 2016 + grab 73) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/stills
+[page] puppets.mjs: unknown face "k:sneaky" for cast:astro_flush/newguy, using its own face
+stills: 89 frames in 249.4 s = 2802 ms/frame (draw 2708 + grab 94) -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/stills

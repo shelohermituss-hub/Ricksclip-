@@ -1,25 +1,19 @@
 motion_objects: cab4/film.json  frames 0-422  17 tracks (camera, 3 characters, 4 moving objects of 164)
-CAMERA moves on 36 % of the frames (150 of 422 steps)
+CAMERA moves on 35 % of the frames (148 of 422 steps)
 CUT  none
 result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
-PASS   CAMERA                             423     150     15.10     0.62       0     0     0   
-FAIL   newguy.handR                       423     419     11.80     0.00       0     2     0   
-FAIL   newguy.handL                       423     417     10.75     0.00       0     2     0   
-FAIL   cabin/drink_ball                   423     417     8.88      1.75       0     1     0   
-FAIL   cabin/magazine                     423     419     9.59      13.18      0     1     0   
-PASS   commander.feet                     423     66      7.23      0.00       0     0     0   
-PASS   commander.head                     423     129     8.01      0.00       0     0     0   
-PASS   commander.handR                    423     419     7.36      0.00       0     0     0   
-PASS   commander.handL                    423     419     7.40      0.00       0     0     0   
-PASS   newguy.feet                        423     68      5.64      0.00       0     0     0   
-PASS   newguy.head                        423     132     7.28      0.00       0     0     0   
+PASS   CAMERA                             423     148     15.10     0.62       0     0     0   
+PASS   commander.feet                     423     66      8.52      0.00       0     0     0   
+PASS   commander.head                     423     118     11.15     0.00       0     0     0   
+PASS   commander.handR                    423     422     8.79      0.00       0     0     0   
+PASS   commander.handL                    423     420     8.84      0.00       0     0     0   
+PASS   newguy.feet                        423     68      7.11      0.00       0     0     0   
+PASS   newguy.head                        423     133     9.24      0.00       0     0     0   
+PASS   newguy.handR                       423     420     6.95      0.00       0     0     0   
+PASS   newguy.handL                       423     419     6.91      0.00       0     0     0   
 PASS   navigator.feet                     423     50      1.03      0.00       0     0     0   
-PASS   navigator.head                     423     118     8.81      0.00       0     0     0   
-PASS   navigator.handR                    423     419     4.33      0.00       0     0     0   
+PASS   navigator.head                     423     116     8.81      0.00       0     0     0   
+PASS   navigator.handR                    423     418     4.33      0.00       0     0     0   
 PASS   navigator.handL                    423     421     6.10      0.00       0     0     0   
-... 2 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
-FAIL JUMP cabin/magazine  f377-378  3.5 cm in one step at f377, the steps around it run at 0.86 cm/frame (median)
-FAIL JUMP cabin/drink_ball  f387-392  8.9 cm in one step at f390, the steps around it run at 0.24 cm/frame (median)
-FAIL JUMP newguy.handR  f388-389  9.5 cm in one step at f389, the steps around it run at 1.45 cm/frame (median)  [2 times: f388-389 f397-399]
-FAIL JUMP newguy.handL  f388-389  8.8 cm in one step at f389, the steps around it run at 1.44 cm/frame (median)  [2 times: f388-389 f398-399]
-6 FAIL, 0 WARN on 4 of 17 tracks (29.9 s, page scan 22.4 s = 52.9 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/motion_objects.json
+... 4 moving objects with PASS not shown (--all shows them; all are in motion_objects.json)
+0 FAIL, 0 WARN on 0 of 17 tracks (37.8 s, page scan 28.2 s = 66.7 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/cab4/out/motion_objects.json

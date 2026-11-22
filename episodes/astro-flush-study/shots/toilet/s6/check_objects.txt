@@ -1,0 +1,13 @@
+motion_objects: s6/film.json  frames 0-537  6 tracks (camera, 1 characters, 1 moving objects of 125)
+CAMERA moves on 9 % of the frames (51 of 537 steps)
+CUT  none
+result track                              frames  moving  max cm/f  max deg/f  held  jump  pop 
+PASS   CAMERA                             538     51      1.01      0.00       0     0     0   
+FAIL   newguy.handR                       538     520     12.44     0.00       0     1     0   
+FAIL   toilet/toilet_flush_lever          538     9       0.00      13.48      0     2     0   
+PASS   newguy.feet                        538     0       0.00      0.00       0     0     0   
+PASS   newguy.head                        538     37      0.06      0.00       0     0     0   
+PASS   newguy.handL                       538     522     3.27      0.00       0     0     0   
+FAIL JUMP toilet/toilet_flush_lever  f506-508  13.48 deg in one step at f507, the steps around it run at 0.000 deg/frame (median)  [2 times: f506-508 f516-519]
+FAIL JUMP newguy.handR  f514-515  12.4 cm in one step at f515, the steps around it run at 2.96 cm/frame (median)
+3 FAIL, 0 WARN on 2 of 6 tracks (21.7 s, page scan 12.5 s = 23.2 ms/frame)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s6/out/motion_objects.json

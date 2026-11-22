@@ -1,0 +1,8 @@
+CAMERA-SAFE  s12  camsafe on  2221 checks: PASS 2215  WARN 1  FAIL 5
+  VIEW_MISMATCH  5
+  FLICKER        1
+  f1097 newguy FAIL  yaw -3.9 pitch -4.1  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_toilet/ng12)
+      FIX: set film.json "camsafe": true (moves then draw the asked view)
+  f1102 newguy WARN  yaw -1.4 pitch -4.4  WARN FLICKER: view 3/4 -> front again 5 frames after the last change
+      FIX: ease the camera through the switch angle, or hold the view (act key "view") for this move
+report -> /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s12/out/plan/camsafe_report.json
