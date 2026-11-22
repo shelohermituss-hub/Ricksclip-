@@ -33,7 +33,7 @@ acts = [
     dict(who='owner', at=200, face='k:shocked', look=[0.45, -3.42, 0.85], note='row 8: polishes faster, in denial'),
 ]
 # held props (props/out GLBs through sets/pe_props.js); tip_at puts the working end on the story point, the fist follows
-shake = [[f, 120 if (f // 3) % 2 == 0 else 142] for f in range(0, 61, 3)] + [[64, 100]]   # tipped further over: the cap pours just above the wing top
+shake = [[f, 138 if (f // 3) % 2 == 0 else 158] for f in range(0, 61, 3)] + [[64, 100]]   # tipped further over: the cap pours just above the wing top
 strokes = []
 for k in range(5):
     s = 162 + k * 8
@@ -44,7 +44,7 @@ held3d = [
          angle=shake, scale=2.2),   # turned over, cap down, rocking 98-122 deg every 3 f = the shake (no tip_at: it would aim the cap up at the point)
     dict(who='michel', obj='fork', module='sets/pe_props.js', builder='buildFork', grip='raise', hand='L', anchor='grip', tip='tip', when='always', f1=150, scale=1.3,
          angle=[[0, -80], [112, -80], [120, -15], [131, -15], [138, -80]]),   # the fork turns out to the side while the fist is at the collar (never across his face)
-    dict(who='michel', obj='hacksaw', module='sets/pe_props.js', builder='buildSaw', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=151, f1=204, angle=-4, scale=2.8,
+    dict(who='michel', obj='hacksaw', module='sets/pe_props.js', builder='buildSaw', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=151, f1=204, angle=-20, scale=2.8,
          tip_at=[dict(f0=156, f1=162, at=[CUT[0], CUT[1] - 0.07, CUT[2]], ramp=[6, 0])] + strokes),
     dict(who='michel', obj='sugar_tongs', module='sets/pe_props.js', builder='buildTongs', grip='point', hand='L', anchor='grip', tip='tip', when='always', f0=205, scale=3.4, angle=35,
          tip_at=[dict(f0=206, f1=218, at=[CUT[0] + 0.03, CUT[1] + 0.05, CUT[2] - 0.02], ramp=[8, 4]), dict(f0=226, f1=256, at=[PLATE[0], PLATE[1], PLATE[2] + 0.03], ramp=[10, 0])]),
@@ -52,8 +52,8 @@ held3d = [
 ]
 
 # fix round 2: the move's fists go to world points through hand_at (kit: st.tgt in move-rig px); the move blends to them by its own weights
-hand_at = [dict(who='michel', f0=0, f1=74, at=[TIP[0] - 0.02, TIP[1] - 0.05, 2.22], note='shaker fist over the wing tip (the cap 0.16 m below it)'),
-           dict(who='michel', f0=148, f1=221, at=[CUT[0] + 0.32, CUT[1] + 0.02, CUT[2] + 0.02], note='saw fist: the blade on the cut line; then the tongs at the cut'),
+hand_at = [dict(who='michel', f0=0, f1=74, at=[TIP[0] - 0.24, TIP[1] - 0.05, 2.28], note='shaker fist over the wing tip (the cap 0.16 m below it)'),
+           dict(who='michel', f0=148, f1=221, at=[CUT[0] + 0.1, CUT[1] + 0.02, CUT[2] - 0.2], note='saw fist: the blade on the cut line; then the tongs at the cut'),
            dict(who='michel', f0=222, f1=256, at=[PLATE[0] - 0.22, PLATE[1], PLATE[2] + 0.2], note='tongs fist over the plate')]
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
