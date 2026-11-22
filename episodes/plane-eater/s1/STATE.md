@@ -56,3 +56,9 @@ render_s1.sh (whole cycle), keyframes.py, sheets.py, sheet.py; frames/ (git-igno
   was tried and put the wing tip through his face (key/h1.jpg): kept at x 5.3. Saw close from 1.7 m below the wing line: the blade shows under
   the leading edge (f185), but its grip crosses his cheek. Numbers: plan 0 FAIL p90 19.9; frame_checks 0 FAIL 3 WARN 53 PASS; camsafe 0 FAIL 1 WARN; gate 0.
 - Still weak: f0 the shaker also touches his mouth (reads half as salting); saw grip over his cheek; feet slide WARN 5 cm (1 frame x3).
+
+## FIX LIST v1 round (2026-11-22, draft/FIX_LIST_v1.md S1 line)
+- Re-rendered only f0-75 and f148-207 (fix_s1.sh) + the blend. Salting fist target moved 0.24 m west (2.28 m), shaker tipped 138-158 deg: the cap
+  is on the wing-tip end from f0, but the arm is at full reach (rig clamp) so the shaker body still touches his chin on screen. Saw fist 0.2 m
+  lower, saw angle -20: the grip is below the wing and clear of his face at f185; the blade now crosses the wing upright (cuts THROUGH it).
+- Checks: plan 0 FAIL; frame_checks 0 FAIL 3 WARN 53 PASS; camsafe 513 PASS 1 WARN 0 FAIL.

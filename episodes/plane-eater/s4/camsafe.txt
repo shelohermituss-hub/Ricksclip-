@@ -1,5 +1,5 @@
-CAMERA-SAFE  s4  camsafe on  4646 checks: PASS 4580  WARN 0  FAIL 66
-  VIEW_MISMATCH  66
-  f877 ownerBeardXL FAIL  yaw 22.8 pitch 6.5  FAIL VIEW_MISMATCH: asked front, drew 3/4 (../../ep_s4b/ow_stare)
-      FIX: set film.json "camsafe": true (moves then draw the asked view)
+CAMERA-SAFE  s4  camsafe on  1221 checks: PASS 1219  WARN 2  FAIL 0
+  FLICKER        2
+  f745 ownerBeardXL WARN  yaw 36 pitch 11.9  WARN FLICKER: view side -> 3/4 again 3 frames after the last change
+      FIX: ease the camera through the switch angle, or hold the view (act key "view") for this move
 report -> /home/user/Ricksclip-/episodes/plane-eater/s4/out/plan/camsafe_report.json

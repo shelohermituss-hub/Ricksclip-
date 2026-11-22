@@ -541,3 +541,17 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Fix: on the first station of a take in a late stretch: "creep": 0 and, for a living rest, "drift" with "ends": true (pos is where the rest ENDS).
 - Guard: print out/plan/camera_baked.json pos at the stretch's first frame and compare with the station pos after every bake.
 - Proof: episodes/plane-eater/s3 film_A1.json: baked f519 (0.04, 1.16) before, (0.96, -0.60) after for station pos (0.80, -0.40).
+
+## 2026-11-22 — held3d props hidden / in the wrong fist on a SEATED camsafe card (plane-eater S2; also blocks S3, S5) — FERMÉ (kit fixed)
+- Problem: on Michel seated (episode move with legs3d, camsafe), every held3d prop was invisible or in the idle hand; hand_at "hand" did nothing.
+- Cause, measured on a 2-frame test film (s2/film_heldtest.json, fists marked on the frames from --held): (1) film.js h3Frame placed fists/props on the
+  card plane at the FEET, but renderFrame tips a seated camsafe card about its SEAT and nudges it toward the lens (CONTACT PIVOT + DEPTH NUDGE): the
+  prop sat 0.2-0.4 m BEHIND the drawn card (grip y -1.26 behind the body at y -1.0, camera north) = hidden by his own body. (2) puppets.mjs camsafeView
+  redrew a side-written legs3d move front / 3/4 without remapping hands[]: the authored near hand (his R in side) became the screen-right fist = his L
+  in front, so held3d "R" went to the idle fist; and side "forward" reach (+f) turned into reach OUT to the side (the glass left the frame).
+  (3) by design, hand_at with "hand" is ignored on m: moves (film.js h3State skips /^m:/); a move must read ch.tgt (hand_at WITHOUT "hand").
+- Fix (kit): film.js h3Frame applies the same seat pivot + depth nudge as renderFrame; puppets.mjs camsafeView swaps the hand pair when the R index changes
+  (side R = 1, or 0 mirrored; front / 3/4 R = 0; back R = 1) and maps forward reach f -> -0.6 f (front/back) or 0.4 f (3/4), drawn over the body.
+  Only camsafe films with a seated legs3d move change; library sit_chair has symmetric hands.
+- Guard: episodes/plane-eater/s2/check_held_seated.sh (R prop closer to the lens than the seat AND R is the raised fist). Before the fix: R grip behind the
+  card (y -1.26) and R = the low idle fist; after: PASS 0.918 < 1.355 m, R raised. Proof frames: s2/key/heldtest/sheet4.jpg (glass + tumbler on the fists).

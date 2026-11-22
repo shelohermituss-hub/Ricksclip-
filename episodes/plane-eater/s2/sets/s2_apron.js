@@ -66,7 +66,6 @@ export async function build(THREE, scene, film, ctx) {
     for (const [k, a, b] of HELD) st[k].visible = !(f >= 290 && f <= 316 && k === 'oil');
     const w = WHO(f), hw = HW.find(h => f >= h.f0 && f <= h.f1);
     for (const [k, g] of Object.entries(inHand)) { g.visible = k === w && !!hw; if (g.visible) { g.position.copy(V([hw.at[0], hw.at[1], hw.at[2] + .06])); g.rotation.set(0, k === 'oil' ? -1.2 : 0, k === 'oil' ? 0 : .25); } }   // fix v1: the bites face the north lens flat (they were edge-on)
-    if (live.tireG !== inHand.tire) live.tireG = inHand.tire;
     st.jug.visible = !(f >= 318 && f <= 342); st.tumbler.visible = !(f >= 346 && f <= 360);
     const HL = (film.hand_at || []).filter(h => h.who === 'michel' && f >= h.f0 && f <= h.f1);
     for (const [k, g] of Object.entries(hold)) { const h = HL.find(x => (k === 'jug' && x.f0 === 318) || (k === 'tongs' && x.f0 === 352) || (k === 'tumbler' && x.hand === 'L')); g.visible = !!h; if (!h) continue;
@@ -90,5 +89,5 @@ export async function build(THREE, scene, film, ctx) {
       m.position.copy(V([3.55 + v[0] * .25 * Math.min(u, .5), -0.78 + v[2] * .2 * Math.min(u, .5), Math.max(.785, 1.12 + v[1] * .3 * u - 4.9 * u * u)])); m.rotation.set(i + f * .3, i * 2, 0); });
   } };
 }
-export let MOUTH_P = [3.45, -0.92, 1.16];
+export let MOUTH_P = [3.435, -0.983, 1.14];   // his mouth = the held3d fist at the bite (f478, --held, kit fix 2026-11-22)
 const ANCH = (b, k) => (b.anchors && b.anchors[k]) || [0, 0, .03];

@@ -49,7 +49,7 @@ stations = [
     st(296, [4.48, -0.56, 1.2], [3.48, -0.88, 1.14], 28, 'michel', 'M', 'ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back', hold=0.4, shows=['oil']),
     st(366, [3.95, 0.25, 0.98], [3.55, -0.6, 1.1], 28, 'michel', 'C', 'ROW 13 (EXPLAIN, M02 push in on the dial): the needle swings past and settles on "2 lb / 900 g", his raised brow at the top', hold=0.2, shows=['scale']),
     st(394, [3.12, 0.75, 1.0], [3.5, -0.85, 1.18], 24, 'michel', 'C', 'ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back', hold=3.0, shows=['tire']),
-    st(512, [3.25, 0.65, 1.02], [3.42, -1.0, 1.05], 26, 'michel', 'M', 'ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)', hold=0.2),
+    st(512, [3.25, 0.65, 1.02], [3.62, -1.0, 1.05], 26, 'michel', 'M', 'ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)', hold=0.2),
 ]
 props = {
     'table': dict(pos=[3.4, -0.32, 0.8], kind='the white-cloth table under the wing'),
@@ -70,9 +70,9 @@ film = {
     'costume_shade': dict(keys['costume_shade'], keep_drawn_light=True, smooth=40),
     'card_shade': dict(keys['card_shade'], amount=0, rim_amount=0),
     'post': {'dof': 0.0, 'dust': 0.3, 'bloom': 1, 'vignette': 0},
-    'places': {'apron': place}, 'props': props, 'acts': acts, 'held3d': [],
+    'places': {'apron': place}, 'props': props, 'acts': acts, 'held3d': held3d,
     'moods': [dict(at=283, look='warm_up', note='row 11: the oil glass glows amber'), dict(at=407, look='warm_up', note='row 14: afternoon, warmer'), dict(at=489, look='flash_white', note='row 17: rubber snap')],
-    'hand_at': [dict(who='michel', hand='R', f0=a, f1=b, at=p) for a, b, p in HAND_WIN] + [dict(who='michel', hand='L', f0=346, f1=360, at=TUMB_AT)],
+    'hand_at': [],   # kit fixed 2026-11-22 (held3d on seated legs3d cards): props are held3d again, on the drawn fists; HAND_WIN kept for reference only
     'kicks': [{'at': 489, 'amp': 2}],
     'fx': [dict(at=407, kind='glint', pos=[3.55, -0.78, 1.12], note='row 14: crack of the wing slice'),
            dict(at=489, kind='glint', pos=[3.55, -0.9, 1.2], note='row 17: rubber snap')],

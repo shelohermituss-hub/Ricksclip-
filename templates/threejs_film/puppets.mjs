@@ -118,7 +118,7 @@ function moveOf(entry, st) {
   let v = mod[ex]; if (frontal) v = (ex === 'default' ? mod.front || (M.motion.mods[mn + '_front'] || {}).default : mod[ex.replace(/Side$/, '') + 'Front']) || v;
   const sty = v && v.styles && v.styles.find(s => s.key === style); if (!sty) { warn('move "' + id + '" has no style ' + style); return null; }
   const ch0 = chOf(entry), t = m[2] ? +m[3] : (st.mt || 0) + (m[3] ? +m[3] : 0), flipT = (st.dir || 1) === -1, ch = st.tgt ? { ...ch0, tgt: flipT ? [-st.tgt[0], st.tgt[1]] : st.tgt } : ch0; let P = sty.pose(t, ch);   /* kit_patch: ch.tgt = film.json hand_at, projected on the card (mirrored when the card is) */ const lag = M.motion.cloth && !m[2] ? M.motion.cloth.clothLag(u => sty.pose(u, ch), t, ch) : [0, 0]; /* LIVE CLOTH 2026-11-12: follow-through of long cloth and capes (a frozen pose has none) */ const extra = P.poses ? P : null; if (P.poses) P = P.poses[0];
-  if (cs && P && !P.poses) P = camsafeView(P, want, mod);
+  if (cs && P && !P.poses) P = camsafeView(P, want, mod, flipT);
   const view = P.view || 'side'; if (st.tgt && flipT && (view === 'front' || view === 'back')) { P = sty.pose(t, { ...ch0, tgt: st.tgt }); if (P.poses) P = P.poses[0]; }
   return { P, ch, lag, dark: !!st.dark, lit: !!st.lit, pop: st.pop || 0, centre: CENTRE.test(e ? e.action : mn), props: !!m[4], back: (extra || P).back, front: (extra || P).front, mirror: (st.dir || 1) === -1 && view !== 'front' && view !== 'back' };
 }
@@ -129,9 +129,19 @@ function moveOf(entry, st) {
 //  - 3/4 wanted, move has front only: the front drawing turned to 3/4 (the template's 3/4 = the front with the face parts moved, VIEW RULE 2).
 //  - a move whose legs are 3D (legs3d: sit_chair, sit_floor) has no legs on the card, so its body takes any of the four views.
 // A side wanted from a move with a front drawing only cannot be fixed here: tools/camsafe/validate.mjs reports it (VIEW_MISMATCH).
-function camsafeView(P, want, mod) {
+function camsafeView(P, want, mod, flip = false) {
   const v = P.view || 'side'; if (v === want) return P;
-  if (mod && mod.legs3d) return { ...P, view: want, dir: 1 };
+  // HAND IDENTITY (kit fix 2026-11-22, plane-eater S2; LECONS_TECHNIQUES): a side-written legs3d move redrawn front / 3/4 / back kept its hands[] ORDER, so the
+  // authored near hand (his RIGHT when the side card faces right) became hands[1] = the screen-right fist = his LEFT in a front drawing: the busy hand
+  // swapped sides and held3d "hand": "R" went to the idle fist (props hidden at his hip). Keep who does what: swap the pair when the R index changes
+  // (side: R = 1, or 0 when mirrored; front and 3/4: R = 0; back: R = 1; film.js h3Hands uses the same indices).
+  if (mod && mod.legs3d) { const out = { ...P, view: want, dir: 1 }, rS = v === 'side' ? (flip ? 0 : 1) : null, rW = want === 'back' ? 1 : 0;
+    if (rS != null && rS !== rW && Array.isArray(P.hands) && P.hands.length === 2) out.hands = [P.hands[1], P.hands[0]];
+    // FORWARD REACH, SEEN FROM THE FRONT: a side move's hand {f, d} reaches FORWARD (+f along the facing). Redrawn front / back it must come toward the lens,
+    // i.e. in front of the chest toward the body's middle line, not out to the side (the oil glass went out of frame at arm's length). f -> -0.6 f (front,
+    // back) or 0.4 f (3/4), drawn over the body. Hands given as {wx, wy} / {lx, ly} and the old non-camsafe films are untouched.
+    if (rS != null && Array.isArray(out.hands)) out.hands = out.hands.map(h => h && h.f != null && h.wx == null && h.lx == null ? { ...h, f: want === '34' ? .4 * h.f : -.6 * h.f, over: h.f > .2 ? true : h.over } : h);
+    return out; }
   if (want === 'back' && v === 'front') return { ...P, view: 'back' };
   if (want === '34' && v === 'front') return { ...P, view: '34', dir: 1 };
   return P;

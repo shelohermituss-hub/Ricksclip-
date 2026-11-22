@@ -157,8 +157,15 @@ async function h3gBuild() {
   }
 }
 function h3Frame(who, f, st) {   // the card's own axes on frame f, exactly as renderFrame turns it, and the two ways between card px and the world
-  const c = R.cards[who], cp = B2T(R.cam[f].pos), p = B2T(st.pos), hh = c.entry.height || 1.7, cs = cardScale(who, f);
+  const c = R.cards[who], cp = B2T(R.cam[f].pos), p = B2T(st.pos), hh = c.entry.height || 1.7; let cs = cardScale(who, f);
   const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ'), ex = h3V(1, 0, 0).applyEuler(e), ey = h3V(0, 1, 0).applyEuler(e), n = h3V(0, 0, 1).applyEuler(e);
+  // SEATED CARD (kit fix 2026-11-22, plane-eater S2; LECONS_TECHNIQUES): renderFrame tips a camsafe seated card about its SEAT and nudges it toward the lens
+  // (CAMERA-SAFE CONTACT PIVOT + DEPTH NUDGE). This frame did neither, so held3d props and fists sat on the un-nudged plane BEHIND the drawn card (hidden by
+  // his own body) and a little off. Same maths as renderFrame here, so the 3D prop is in front of the drawn fist.
+  if (R.film.camsafe && !lieOf(st)) { const sh = seatH(c, st); if (sh > 0) { p.y += sh; p.addScaledVector(ey, -sh);
+    const tipR = -e.x, tc = new THREE.Vector3(cp.x - p.x, 0, cp.z - p.z).normalize(), pos0 = B2T(st.pos);
+    if (tipR > .02 && facingOf(st, pos0, cp).fwd.dot(tc) > -.25) { const seatP = pos0.clone().add(new THREE.Vector3(0, sh, 0)), dist = seatP.distanceTo(cp), d = Math.min(dist * .5, (hh - sh) * Math.sin(tipR) + .06), k = 1 - d / dist;
+      p.sub(cp).multiplyScalar(k).add(cp); cs = [cs[0] * k, cs[1] * k]; } } }
   const W = q => p.clone().addScaledVector(ex, (q[0] - CARD.CX) * c.k * cs[0]).addScaledVector(ey, (CARD.GY - q[1]) * c.k * cs[1]);
   const toCard = w => { const d = w.clone().sub(cp), t = p.clone().sub(cp).dot(n) / d.dot(n), x = cp.clone().addScaledVector(d, t).sub(p); return [CARD.CX + x.dot(ex) / (c.k * cs[0]), CARD.GY - x.dot(ey) / (c.k * cs[1])]; };   // along the camera ray onto the card: the fist is SEEN on the point
   return { c, cp, p, ex, ey, n, W, toCard, k: c.k };

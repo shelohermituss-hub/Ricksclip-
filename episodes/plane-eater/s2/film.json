@@ -385,7 +385,190 @@
    "look": "michel"
   }
  ],
- "held3d": [],
+ "held3d": [
+  {
+   "who": "michel",
+   "obj": "oil_glass",
+   "module": "sets/s2_apron.js",
+   "builder": "buildOil",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 283,
+   "f1": 316,
+   "scale": 2.2,
+   "note": "row 11 \"glass\": swirl, sniff, nod"
+  },
+  {
+   "who": "michel",
+   "obj": "water_jug",
+   "module": "sets/s2_apron.js",
+   "builder": "buildJug",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 318,
+   "f1": 343,
+   "scale": 2.2,
+   "angle": [
+    [
+     318,
+     -90
+    ],
+    [
+     324,
+     -90
+    ],
+    [
+     330,
+     -45
+    ],
+    [
+     340,
+     -45
+    ],
+    [
+     343,
+     -90
+    ]
+   ],
+   "note": "row 12 \"jug\": the glug"
+  },
+  {
+   "who": "michel",
+   "obj": "tumbler",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTumbler",
+   "opts": {},
+   "grip": "handle",
+   "hand": "L",
+   "when": "always",
+   "f0": 344,
+   "f1": 362,
+   "scale": 2.2,
+   "angle": [
+    [
+     344,
+     -90
+    ],
+    [
+     350,
+     -60
+    ],
+    [
+     358,
+     -90
+    ]
+   ],
+   "note": "row 12: he drinks"
+  },
+  {
+   "who": "michel",
+   "obj": "sugar_tongs",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTongs",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 345,
+   "f1": 384,
+   "scale": 2.2,
+   "angle": [
+    [
+     345,
+     20
+    ],
+    [
+     365,
+     30
+    ]
+   ],
+   "note": "row 13: the bites drop on the scale on \"pounds\""
+  },
+  {
+   "who": "michel",
+   "obj": "wing_slice",
+   "module": "sets/s2_apron.js",
+   "builder": "buildWingSlice",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 396,
+   "f1": 414,
+   "scale": 1,
+   "angle": [
+    [
+     396,
+     -10
+    ]
+   ],
+   "note": "row 14 \"Wings\": snapped like a cracker"
+  },
+  {
+   "who": "michel",
+   "obj": "wheel_hub",
+   "module": "sets/s2_apron.js",
+   "builder": "buildHub",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 418,
+   "f1": 438,
+   "scale": 1,
+   "angle": [
+    [
+     418,
+     -10
+    ]
+   ],
+   "note": "row 15 \"wheels\": bitten like a doughnut"
+  },
+  {
+   "who": "michel",
+   "obj": "seat_cushion",
+   "module": "sets/s2_apron.js",
+   "builder": "buildCushion",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 442,
+   "f1": 462,
+   "scale": 1,
+   "angle": [
+    [
+     442,
+     -10
+    ]
+   ],
+   "note": "row 16 \"seats\": the spring boings out"
+  },
+  {
+   "who": "michel",
+   "obj": "tire",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTire",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 468,
+   "f1": 494,
+   "scale": 1,
+   "angle": [
+    [
+     468,
+     -10
+    ]
+   ],
+   "note": "row 17 \"tires\": stretches like gum and snaps back"
+  }
+ ],
  "moods": [
   {
    "at": 283,
@@ -403,162 +586,7 @@
    "note": "row 17: rubber snap"
   }
  ],
- "hand_at": [
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 290,
-   "f1": 297,
-   "at": [
-    3.6,
-    -0.72,
-    0.98
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 298,
-   "f1": 314,
-   "at": [
-    3.56,
-    -0.8,
-    1.18
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 318,
-   "f1": 342,
-   "at": [
-    3.62,
-    -0.66,
-    1.0
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 352,
-   "f1": 370,
-   "at": [
-    3.64,
-    -0.48,
-    1.06
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 395,
-   "f1": 403,
-   "at": [
-    3.5,
-    -0.55,
-    1.24
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 404,
-   "f1": 410,
-   "at": [
-    3.55,
-    -0.86,
-    1.14
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 417,
-   "f1": 425,
-   "at": [
-    3.5,
-    -0.55,
-    1.24
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 426,
-   "f1": 432,
-   "at": [
-    3.55,
-    -0.86,
-    1.14
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 440,
-   "f1": 448,
-   "at": [
-    3.5,
-    -0.55,
-    1.24
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 449,
-   "f1": 456,
-   "at": [
-    3.55,
-    -0.86,
-    1.14
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 470,
-   "f1": 477,
-   "at": [
-    3.5,
-    -0.55,
-    1.24
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 478,
-   "f1": 481,
-   "at": [
-    3.55,
-    -0.86,
-    1.14
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "R",
-   "f0": 482,
-   "f1": 489,
-   "at": [
-    3.88,
-    -0.92,
-    1.24
-   ]
-  },
-  {
-   "who": "michel",
-   "hand": "L",
-   "f0": 346,
-   "f1": 360,
-   "at": [
-    3.42,
-    -0.84,
-    1.1
-   ]
-  }
- ],
+ "hand_at": [],
  "kicks": [
   {
    "at": 489,
@@ -713,7 +741,7 @@
       1.02
      ],
      "aim": [
-      3.42,
+      3.62,
       -1.0,
       1.05
      ],
