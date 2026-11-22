@@ -1,4 +1,10 @@
 # S3 STATE: THE X-RAY (PICTURE_PLAN rows 19-22, line 5, film 17.30-21.28 s = frames 519-638). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX LIST v1 (draft/FIX_LIST_v1.md) - result
+- Doctor bigger in the wide: PARTLY (camera in to 0.55, 0.10; he is about 1.3x bigger, still a medium-small figure). The first-frame jump is fixed
+  (creep on a first station runs from frame 0: creep 0 + drift with ends, LECONS 2026-11-22).
+- Doctor's fist on the film edge: NOT met (hand_at given; his hand rises to his head, short of the film).
+- Cushions: kept as round puffs (for Blender).
+- frame_checks 0 FAIL / 0 WARN, camsafe 584 PASS / 1 FAIL (f566), window camera p90 9.8 px/f. Plan check 6 FAIL.
 ## FIX ROUND 2 (lead: simplify) - result
 - Five passes, four dissolves on the move (blend.py, passes.json): A1 clinic wide 519-565 -> A2 film close -> B1 X-ray world/lining -> B2 ride -> C back out.
   Each pass a slow drift: window camera p90 18.4 px/f (PASS <= 22). frame_checks 0 FAIL / 3 WARN (wall 3 %). camsafe 584 PASS / 1 FAIL.

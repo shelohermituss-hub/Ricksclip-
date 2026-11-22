@@ -1,4 +1,11 @@
 # S5 STATE: THE ENDING (PICTURE_PLAN rows 35-38, line 8b, film 31.44-34.04 s = frames 943-1021). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX LIST v1 (draft/FIX_LIST_v1.md) - result
+- Window bite: DONE. The window pass (film_W.json) hides the far glb wing and builds a clean wing panel just outside the glass with ONE crescent bite
+  (cabin.js "bite_piece": centre, r .5 m, bank -50 deg so the lens looks down on it, sweep 25); the bite fills about a third of the frame, clouds behind
+  it, nothing across the bite. A thin bar crosses the sky at the top (not found yet).
+- Owner's rag wipe at eye height: NOT met (hand_at on the glass given, the hand stays at his chest; seen from the aisle the window is behind him).
+- Owner hips on the seat: NOT met (pos z -5 cm did not clear it: frame_checks seat 10.8 %, feet -7.4 cm, f0-955). frame_checks 2 FAIL / 4 WARN.
+  camsafe 2034 PASS / 10 FAIL (f1012 in the window take, Michel behind the lens). Plan check 7 FAIL.
 ## FIX ROUND 2 (lead: simplify) - result
 - Seats swapped: Michel in seat B in front with his tray (cabin.js "tray_dy" -0.52 moves the tray, arms, meal and pea), the owner at the window.
 - Row 38: its own close window pass (film_W.json, lens at the glass of window L_0) with a dissolve on the move 1005-1012 (blend.py). The bitten

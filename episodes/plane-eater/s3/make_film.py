@@ -9,7 +9,7 @@ A, C = meta['anchors'], meta['cams']
 cast = {'doctor': dict(keys['cast']['doctor'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s3/' + k
 FILM = A['film_hero']['c']                                   # (0.11, 2.085, 1.47): the signature film on panel 1
-DOC = [-0.26, 1.86, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
+DOC = [-0.34, 1.74, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
 P = meta['slide_path']
 def along(u):
     n = len(P) - 1; f = min(max(u, 0), 1) * n; i = min(int(f), n - 1); k = f - i
@@ -32,9 +32,7 @@ sm = lambda f: (lambda u: u * u * (3 - 2 * u))(min(1, max(0, (f - 618) / 42)))
 # FIVE PASSES, FOUR DISSOLVES ON THE MOVE (blend.py), every pass a slow drift (camera p90 <= 22): A1 clinic wide (row 19, the Doctor whole, his fist on the
 # film edge) -> 556-565 -> A2 the film close, pushing in -> 568-577 -> B1 the X-ray world and the lining on THICK -> 606-615 -> B2 the ride of the
 # bite-Cessna -> 628-637 -> C back out: the Doctor whole, double take.
-A1 = [st(490, [0.85, -0.45, 1.40], [-0.18, 1.85, 1.15], 22, 'doctor', 'W', 'pre-roll (same as f519)', hold=0.9),
-      st(519, [0.85, -0.45, 1.40], [-0.18, 1.85, 1.15], 22, 'doctor', 'W', 'ROW 19 "x -RAYED"..."found" (ACT + SIGNATURE, M00 living rest, slow creep in): the Doctor whole at the left, his fist ON the film edge, leaning in, glasses down, jolt on "found"; the glowing film with the tiny bite-Cessna; the box flickers twice', hold=0.0, shows=['film']),
-      st(566, [0.74, -0.18, 1.42], [-0.15, 1.88, 1.20], 22, 'doctor', 'W', 'ROW 19 end of the slow creep (dissolve source A1)', hold=0.0, shows=['film'])]
+A1 = [st(519, [0.55, 0.10, 1.40], [-0.20, 1.80, 1.16], 22, 'doctor', 'W', 'ROW 19 "x -RAYED"..."found" (ACT + SIGNATURE, M00 living rest): the Doctor whole at the left, hand up to the film edge, leaning in, glasses down, jolt on "found"; the glowing film with the tiny bite-Cessna; the box flickers twice', hold=1.6, creep=0.0, drift=[-0.04, 0.05, 0.0], ends=True, shows=['film'])]   # creep 0: a creep on the first station runs from frame 0 and drove the lens 2 m in (bug found 2026-11-22)
 A2 = [st(552, [0.24, 1.30, 1.49], [0.10, 2.20, 1.46], 24, 'film', 'C', 'ROW 20 "STOMACH" (M07 fly into the object, slow push): the film fills the lens, F-MIAM readable (dissolve target A1, source A2)', hold=0.0, shows=['film']),
       st(580, [0.12, 1.86, 1.47], [0.11, 2.30, 1.47], 24, 'film', 'C', 'the lens goes on into the film grain', hold=0.0, shows=['film'])]
 B1 = [st(564, [29.85, -1.95, -1.35], [30.80, -0.10, -2.70], 22, 'lining', 'W', 'ROW 20 "lining" (IMPOSSIBLE VIEW, slow drift; dissolve target A2): the cartoon X-ray world, cyan ribs and spine on mid-blue, the lining under the bean', hold=0.0, shows=['lining']),
@@ -72,7 +70,7 @@ film = {
            dict(at=636, kind='shine', pos=along(sm(634) - .03), note='row 22: oil sparkle trail')],
     'moods': [
               dict(at=592, look='flash_white', note='row 21 POWER 2 cyan-white flash on THICK')],
-    'hand_at': [dict(who='doctor', f0=519, f1=600, at=[-0.08, 2.07, 1.38], note='row 19: his fist ON the left edge of the film')],
+    'hand_at': [dict(who='doctor', f0=519, f1=600, at=[-0.08, 2.07, 1.50], note='row 19: his fist ON the left edge of the film')],
     'takes': [{'id': 'A1', 'place': 'xray', 'stations': A1}, {'id': 'A2', 'place': 'xray', 'stations': [dict(A2[1], at=566, hold=0.3)]},
               {'id': 'B1', 'place': 'xray', 'stations': [dict(B1[0], at=578)] + B1[1:]}, {'id': 'B2', 'place': 'xray', 'stations': [dict(B2[0], at=616), B2[1]]},
               {'id': 'C', 'place': 'xray', 'stations': [dict(OUT[1], at=634, hold=0.2)]}],

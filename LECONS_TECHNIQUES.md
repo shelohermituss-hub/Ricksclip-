@@ -533,3 +533,11 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - Problem: held3d props sat 0.3-0.5 m BELOW the drawn hand of a seated legs3d episode card (grip z 0.69-0.72 with the hand at the nose), hidden
   behind the chair in every frame. Cause: not found (held3d hand solve vs the seat offset of legs3d cards); OPEN.
   Workaround: hand_at pins the drawn hand on a world point and the set shows the prop at that point (s2/sets/s2_apron.js). Proof: f304 oil glass at his nose.
+
+## 2026-11-22 — A camera "creep"/"drift" on a take's FIRST station runs from frame 0 (plane-eater S3 pass A1, film_plan.py camera v2) — FERMÉ
+- Problem: the first rendered frame of a stretch was framed far closer than the next ones; the baked rest position was 2 m from the station's pos.
+- Cause: the rest motion (default creep 0.0028 of the distance per frame, or "drift") of the first station is applied from frame 0 of the film, so a
+  stretch that starts at f519 had 519 frames of push already done.
+- Fix: on the first station of a take in a late stretch: "creep": 0 and, for a living rest, "drift" with "ends": true (pos is where the rest ENDS).
+- Guard: print out/plan/camera_baked.json pos at the stretch's first frame and compare with the station pos after every bake.
+- Proof: episodes/plane-eater/s3 film_A1.json: baked f519 (0.04, 1.16) before, (0.96, -0.60) after for station pos (0.80, -0.40).

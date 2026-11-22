@@ -22,3 +22,4 @@
   4. window_glass_* opacity at most 0.18 (they rendered near-opaque grey-white).
 - pe_props.js (new): buildFork / buildKnife / buildRag for the kit's generic held3d path, loading props/out/fork.glb, knife.glb, owner_rag_spanner.glb
   (rag node only), turned +X -> +Y. Needs the stretch folder to see props/ (s3/props, s5/props are symlinks to ../props).
+- 2026-11-22 (lead, from the S3/S5 builder report): cabin.js options tray_dy, wing_bank, hide_wing, bite_piece; xray.js option "tone". Off unless a film.json asks for them.
