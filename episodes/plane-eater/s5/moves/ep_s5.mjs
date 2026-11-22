@@ -5,11 +5,11 @@
 // words.json frames: Honestly 943 (-955), STILLNESS 955-968, still 969, better 977, than 985, airline 991, FOOD 1001 (-1012), end 1021
 import { snap, dip, ring, step } from './studio_ep.mjs';
 import { G } from './motion/rig.mjs';
-const F = t => Math.round(t * 30 * 1000) / 1000, A0 = 943, SEAT_M = .30;
+const F = t => Math.round(t * 30 * 1000) / 1000, A0 = 943, SEAT_M = .52;   // the cabin seat pan top (sets/cabin: seat_0A_pan z .40-.52); pos z = the floor
 export const N = 79;
 export const W = { honestly: 943, still0: 955, still1: 968, still: 969, better: 977, than: 985, airline: 991, food: 1001, end: 1021 };
 const seatY = ch => { const top = ch.hy - 100 * ch.K, k = 1.7 / (G - top); return G - SEAT_M / k - 640 + 4; };   // body bottom on the seat (sit_chair.mjs)
-export const legs3d = { r: .02, pts: [[.075, SEAT_M + .04, .0], [.085, SEAT_M + .045, .2], [.09, SEAT_M - .03, .25], [.095, .04, .26], [.1, .03, .35]] };
+export const legs3d = { r: .022, pts: [[.075, SEAT_M + .04, .0], [.085, SEAT_M + .045, .22], [.09, SEAT_M - .02, .28], [.095, .05, .32], [.1, .03, .43]] };   // thighs along the pan to its front edge (x .26), shins to the floor, feet under the tray
 export const chair3d = { seat: SEAT_M };
 const mix = (a, b, u) => ({ f: a.f + (b.f - a.f) * u, d: a.d + (b.d - a.d) * u });
 
@@ -23,8 +23,8 @@ function miMeal(t, ch) { const f = F(t) + A0;
   const lift = snap(f - 944, 5), sniff = snap(f - 949, 6), back = snap(f - W.still, 10), push = snap(f - 976, 6) - snap(f - 989, 6);
   const up = snap(f - W.airline, 6), down = snap(f - (W.food - 2), 4), raise = snap(f - 1006, 8);
   let near = { f: .55, d: .75 };
-  near = mix(near, { f: .85, d: .55 }, snap(f - 943, 2)); near = mix(near, { f: .7, d: .05 }, lift);                 // foil up
-  near = mix(near, { f: .88, d: .62 }, snap(f - 974, 5));                                                              // finger to the tray edge
+  near = mix(near, { f: .85, d: .55 }, snap(f - 943, 2)); near = mix(near, { f: .62, d: -.45 }, lift);                 // foil up
+  near = mix(near, { f: .88, d: .62 }, snap(f - 971, 5));                                                              // finger to the tray edge
   near = { f: near.f, d: near.d }; const slide = push;                                                                 // the slide is the set state "meal"
   let far = { f: .45, d: .78 };
   near = mix(near, { f: .38, d: -.42 }, up); far = mix(far, { f: .38, d: -.42 }, up);                                // conductor: knife and fork up
@@ -38,10 +38,12 @@ function miMeal(t, ch) { const f = F(t) + A0;
 // ---- OWNER m:ow_wary (3/4, aisle seat), rows 35-38: arms folded on his belly, wary side-eye at Michel; DEAD STILL in the stillness;
 //   1003 after "FOOD": the near hand (rag) flies up to his eyes and RUBS them (3 rubs, 1006-1016); 1017 the hand drops, defeated
 function owWary(t, ch) { const f = F(t) + A0;
-  const lean = snap(f - 977, 10), rubIn = snap(f - 1003, 5) - snap(f - 1017, 6), rub = f > 1006 && f < 1016 ? .06 * Math.sin((f - 1006) * 1.9) : 0;
-  const near = mix({ f: .35, d: .62 }, { f: .28 + rub, d: -.38 }, rubIn), far = { f: .2, d: .66 };
-  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn, head: -4 * lean + 6 * rubIn, feet: [], farArmFront: true,
-    hands: [{ ...far, bow: .4 }, { ...near, bow: .35, over: rubIn > .5 }], held: [] }; }
+  const lean = snap(f - 977, 10), rubIn = snap(f - 1003, 5) - snap(f - 1010, 5), rub = f > 1005 && f < 1010 ? .06 * Math.sin((f - 1005) * 1.9) : 0;
+  const reach = snap(f - 1009, 6), wipe = f > 1014 ? .07 * Math.sin((f - 1014) * 1.6) : 0;
+  let near = mix({ f: .35, d: .62 }, { f: .28 + rub, d: -.38 }, rubIn); near = mix(near, { f: 1.0 + wipe, d: -.28 }, reach);   // row 38: leans over and wipes the window, rag at eye height
+  const far = { f: .2, d: .66 };
+  return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 12 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
+    hands: [{ ...far, bow: .4 }, { ...near, bow: .3, over: rubIn > .5 || reach > .5 }], held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
 const STY = [sty('mi_meal', miMeal, 'lifts the foil, sniffs (stillness), disgust, slides the meal aside, knife and fork up, strikes the tray table, chews'),

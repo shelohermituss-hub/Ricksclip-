@@ -126,7 +126,13 @@
     "wild": [
      "8A",
      "8B"
-    ]
+    ],
+    "wing_offset": [
+     -2.698,
+     0,
+     -0.894
+    ],
+    "foil_raise": 0.16
    },
    "kit3d": {
     "envGround": "#6a7896"
@@ -166,16 +172,16 @@
    "pos": [
     0,
     1.2,
-    0.22000000000000003
+    0.0
    ],
    "view": "34",
    "dir": 1,
    "pose": "m:../../ep_s5/mi_meal",
    "face": "k:skeptical",
    "look": [
-    0.30000000000000004,
-    1.25,
-    0.7925
+    3.0,
+    1.2,
+    1.2
    ],
    "note": "row 35 \"HONESTLY\": lifts the foil off the grey meal, suspicious sniff"
   },
@@ -184,9 +190,9 @@
    "at": 969,
    "face": "k:peDisgust",
    "look": [
-    0.30000000000000004,
-    1.25,
-    0.7925
+    3.0,
+    1.2,
+    1.2
    ],
    "note": "row 36 \"STILL better\": the face falls, polite disgust; slides the meal aside with one finger"
   },
@@ -195,9 +201,9 @@
    "at": 991,
    "face": "k:proud",
    "look": [
-    0.28,
+    3.0,
     1.2,
-    0.7725
+    1.2
    ],
    "note": "row 37 \"airline\": knife and fork up over the tray table"
   },
@@ -206,9 +212,9 @@
    "at": 1001,
    "face": "k:peChewHard",
    "look": [
-    0.28,
+    3.0,
     1.2,
-    0.7725
+    1.2
    ],
    "note": "row 37 \"FOOD\": he cuts a bite out of the tray table"
   },
@@ -216,14 +222,22 @@
    "who": "michel",
    "at": 1007,
    "face": "k:peChew",
-   "look": "cam",
+   "look": [
+    3.0,
+    1.2,
+    1.2
+   ],
    "note": "row 37-38: chews, happy, big in front of the window"
   },
   {
    "who": "michel",
    "at": 1015,
    "face": "k:slyWink",
-   "look": "cam",
+   "look": [
+    3.0,
+    1.2,
+    1.2
+   ],
    "note": "row 38: slow wink (smug)"
   },
   {
@@ -232,16 +246,16 @@
    "pos": [
     0,
     0.68,
-    0.22000000000000003
+    0.0
    ],
    "view": "34",
    "dir": 1,
    "pose": "m:../../ep_s5/ow_wary",
    "face": "k:skeptical",
    "look": [
-    0.2,
-    1.2,
-    1.22
+    3.0,
+    0.68,
+    1.2
    ],
    "note": "row 35: wary side-eye at Michel"
   },
@@ -250,9 +264,9 @@
    "at": 977,
    "face": "k:worried",
    "look": [
-    0.2,
-    1.2,
-    1.22
+    3.0,
+    0.68,
+    1.2
    ],
    "note": "row 36: leans away from the sliding meal"
   },
@@ -261,9 +275,9 @@
    "at": 1003,
    "face": "k:frustrated",
    "look": [
-    0.2,
-    1.2,
-    1.22
+    3.0,
+    0.68,
+    1.2
    ],
    "note": "row 37: rubs his eyes with the yellow rag (running gag), defeated"
   }
@@ -280,7 +294,6 @@
    "anchor": "grip",
    "tip": "tip",
    "when": "always",
-   "f0": 989,
    "scale": 1
   },
   {
@@ -294,7 +307,6 @@
    "anchor": "grip",
    "tip": "tip",
    "when": "always",
-   "f0": 989,
    "scale": 1
   },
   {
@@ -370,12 +382,12 @@
      "aim": [
       0.0,
       0.95,
-      1.0
+      0.9
      ],
      "lens": 14,
      "subject": "michel",
      "framing": "W",
-     "purpose": "ROW 35 \"HONESTLY\" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil off the grey meal, the window bright with clouds",
+     "purpose": "ROW 35 \"HONESTLY\" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil high off the grey meal with his fork hand",
      "hold": 0.9,
      "creep": 0.0,
      "shows": [
@@ -392,7 +404,7 @@
      "aim": [
       0.08,
       1.08,
-      0.97
+      0.92
      ],
      "lens": 16,
      "subject": "michel",
@@ -408,14 +420,14 @@
     {
      "at": 1003,
      "pos": [
-      0.74,
-      0.92,
-      1.24
+      0.78,
+      0.88,
+      1.26
      ],
      "aim": [
       0.1,
       1.1,
-      0.97
+      0.92
      ],
      "lens": 16,
      "subject": "michel",
@@ -430,19 +442,19 @@
     {
      "at": 1021,
      "pos": [
-      0.64,
-      0.5,
-      1.22
+      1.65,
+      0.18,
+      1.38
      ],
      "aim": [
-      0.1,
-      1.75,
-      1.05
+      0.25,
+      1.15,
+      0.92
      ],
-     "lens": 14,
+     "lens": 16,
      "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 38 last frame (M26 end pull back): Michel calm and big, chewing, wink; the window beside him with the sky; loops to frame 0",
+     "framing": "W",
+     "purpose": "ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [

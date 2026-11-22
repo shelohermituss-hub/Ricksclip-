@@ -8,7 +8,7 @@ function make(THREE, src, keep, len, scale = 1) {
   const group = new THREE.Group(), m = src.clone(true);
   if (keep) m.traverse(o => { if (o.isMesh && !keep.test(o.name)) o.visible = false; });
   m.rotation.z = Math.PI / 2; m.scale.setScalar(scale); group.add(m);
-  m.traverse(o => { if (o.isMesh) { o.castShadow = true; const mt = o.material; if (mt && mt.metalness > .5) { mt.metalness = .55; mt.roughness = Math.max(mt.roughness, .3); } } });
+  m.traverse(o => { if (o.isMesh) { o.castShadow = true; let mt = o.material; if (mt && (mt.metalness > .3 || /steel|metal|silver|chrome|blade|tine|bolster|fork|knife/i.test(mt.name + o.name)) && !/handle|wood|rivet/i.test(mt.name + o.name)) { mt = o.material = mt.clone(); mt.metalness = .2; mt.roughness = .3; mt.color.set('#dfe4ea'); mt.emissive && mt.emissive.set('#2a2e33'); } } });
   return { group, grip: new THREE.Vector3(0, 0, 0), tip: new THREE.Vector3(0, len * scale, 0) };
 }
 export const buildFork = (THREE, o = {}) => make(THREE, G.fork, null, .2, o.scale ?? 1.4);

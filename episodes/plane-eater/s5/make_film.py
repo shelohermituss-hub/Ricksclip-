@@ -8,37 +8,40 @@ meta = json.load(open(os.path.join(EP, 'sets', 'cabin', 'out', 'cabin_meta.json'
 A = meta['anchors']
 cast = {'michel': dict(keys['cast']['michel'], walk_speed=99), 'owner': dict(keys['cast']['ownerBeardXL'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s5/' + k
-SEAT_M = .30
+SEAT_M = .52
 MI = [A['michel_seat'][0], A['michel_seat'][1], A['michel_seat'][2] - SEAT_M]      # bottom ON the cushion (moves/ep_s5.mjs chair3d)
 OW = [A['owner_seat'][0], A['owner_seat'][1], A['owner_seat'][2] - SEAT_M]
 TRAY, MEAL = A['tray_table'], A['meal_tray']
 MI_FACE = [MI[0] + .2, MI[1], 1.22]
+FWD_M, FWD_O = [3.0, MI[1], 1.2], [3.0, OW[1], 1.2]   # seated: they face along the seat (+x) so the 3D legs agree with the seat; eyes act through the faces
+WIN = [0.98, 1.774, 1.02]   # window_glass_L_8 centre (the window just ahead of Michel's: the end station sees it whole)
 
 acts = [
-    dict(who='michel', at=943, pos=MI, view='34', dir=1, pose=M('mi_meal'), face='k:skeptical', look=MEAL, note='row 35 "HONESTLY": lifts the foil off the grey meal, suspicious sniff'),
-    dict(who='michel', at=969, face='k:peDisgust', look=MEAL, note='row 36 "STILL better": the face falls, polite disgust; slides the meal aside with one finger'),
-    dict(who='michel', at=991, face='k:proud', look=TRAY, note='row 37 "airline": knife and fork up over the tray table'),
-    dict(who='michel', at=1001, face='k:peChewHard', look=TRAY, note='row 37 "FOOD": he cuts a bite out of the tray table'),
-    dict(who='michel', at=1007, face='k:peChew', look='cam', note='row 37-38: chews, happy, big in front of the window'),
-    dict(who='michel', at=1015, face='k:slyWink', look='cam', note='row 38: slow wink (smug)'),
-    dict(who='owner', at=943, pos=OW, view='34', dir=1, pose=M('ow_wary'), face='k:skeptical', look=MI_FACE, note='row 35: wary side-eye at Michel'),
-    dict(who='owner', at=977, face='k:worried', look=MI_FACE, note='row 36: leans away from the sliding meal'),
-    dict(who='owner', at=1003, face='k:frustrated', look=MI_FACE, note='row 37: rubs his eyes with the yellow rag (running gag), defeated'),
+    dict(who='michel', at=943, pos=MI, view='34', dir=1, pose=M('mi_meal'), face='k:skeptical', look=FWD_M, note='row 35 "HONESTLY": lifts the foil off the grey meal, suspicious sniff'),
+    dict(who='michel', at=969, face='k:peDisgust', look=FWD_M, note='row 36 "STILL better": the face falls, polite disgust; slides the meal aside with one finger'),
+    dict(who='michel', at=991, face='k:proud', look=FWD_M, note='row 37 "airline": knife and fork up over the tray table'),
+    dict(who='michel', at=1001, face='k:peChewHard', look=FWD_M, note='row 37 "FOOD": he cuts a bite out of the tray table'),
+    dict(who='michel', at=1007, face='k:peChew', look=FWD_M, note='row 37-38: chews, happy, big in front of the window'),
+    dict(who='michel', at=1015, face='k:slyWink', look=FWD_M, note='row 38: slow wink (smug)'),
+    dict(who='owner', at=943, pos=OW, view='34', dir=1, pose=M('ow_wary'), face='k:skeptical', look=FWD_O, note='row 35: wary side-eye at Michel'),
+    dict(who='owner', at=977, face='k:worried', look=FWD_O, note='row 36: leans away from the sliding meal'),
+    dict(who='owner', at=1003, face='k:frustrated', look=FWD_O, note='row 37: rubs his eyes with the yellow rag (running gag), defeated'),
 ]
 held3d = [
-    dict(who='michel', obj='fork', module='sets/pe_props.js', builder='buildFork', opts={}, grip='raise', hand='R', anchor='grip', tip='tip', when='always', f0=989, scale=1),
-    dict(who='michel', obj='knife', module='sets/pe_props.js', builder='buildKnife', opts={}, grip='raise', hand='L', anchor='grip', tip='tip', when='always', f0=989, scale=1),
+    dict(who='michel', obj='fork', module='sets/pe_props.js', builder='buildFork', opts={}, grip='raise', hand='R', anchor='grip', tip='tip', when='always', scale=1),
+    dict(who='michel', obj='knife', module='sets/pe_props.js', builder='buildKnife', opts={}, grip='raise', hand='L', anchor='grip', tip='tip', when='always', scale=1),
     dict(who='owner', obj='rag', module='sets/pe_props.js', builder='buildRag', opts={}, grip='hang', hand='R', anchor='grip', when='always', scale=1),
 ]
 
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
+END_CAM = [1.65, 0.18, 1.38]
 stations = [
-    st(943, [1.00, 0.35, 1.32], [0.0, 0.95, 1.00], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil off the grey meal, the window bright with clouds', hold=0.9, creep=0.0, shows=['meal']),
-    st(984, [0.80, 0.90, 1.28], [0.08, 1.08, 0.97], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
-    st(1003, [0.74, 0.92, 1.24], [0.10, 1.10, 0.97], 16, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4, M02 land): knife and fork up, then the strike: a neat bite out of the tray table, the owner rubs his eyes', hold=0.1, shows=['tray']),
-    st(1021, [0.64, 0.50, 1.22], [0.10, 1.75, 1.05], 14, 'michel', 'M', 'ROW 38 last frame (M26 end pull back): Michel calm and big, chewing, wink; the window beside him with the sky; loops to frame 0', hold=0.0, shows=['wing']),
+    st(943, [1.00, 0.35, 1.32], [0.0, 0.95, 0.90], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil high off the grey meal with his fork hand', hold=0.9, creep=0.0, shows=['meal']),
+    st(984, [0.80, 0.90, 1.28], [0.08, 1.08, 0.92], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
+    st(1003, [0.78, 0.88, 1.26], [0.10, 1.10, 0.92], 16, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4, M02 land): knife and fork up, then the strike: a neat bite out of the tray table, the owner rubs his eyes', hold=0.1, shows=['tray']),
+    st(1021, END_CAM, [0.25, 1.15, 0.92], 16, 'michel', 'W', 'ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0', hold=0.0, shows=['wing']),
 ]
 props = {
     'meal': dict(pos=MEAL, kind='the grey airline meal'),
@@ -48,6 +51,10 @@ props = {
 K = lambda f, foil, meal, pea, bitten: dict(f=f, foil=foil, meal=meal, pea=pea, bitten=bitten)
 cab = dict(keys=[K(930, 0, 0, 0, 0), K(948, 1, 0, 0, 0), K(976, 1, 0, 0, 0), K(988, 1, 1, .3, 0), K(996, 1, 1, 1, 0), K(1001, 1, 1, 1, 1), K(1030, 1, 1, 1, 1)])
 cab['wild'] = ['8A', '8B']
+# the wing bite onto the end station's ray through window L_0: keep y 6.8, move the wing along x and z (sets/cabin.js wing_offset)
+BITE = A['wing_bite']; t = (BITE[1] - END_CAM[1]) / (WIN[1] - END_CAM[1])
+cab['wing_offset'] = [round(END_CAM[0] + t * (WIN[0] - END_CAM[0]) - BITE[0], 3), 0, round(END_CAM[2] + t * (WIN[2] - END_CAM[2]) - BITE[2], 3)]
+cab['foil_raise'] = 0.16
 place = dict(set='cabin', kind='am', light='day', cabin=cab, kit3d=dict(envGround='#6a7896'))
 film = {
     'title': 'The Man Who Ate An Airplane, S5 THE ENDING (line 8b, rows 35-38, frames 943-1021), DRAFT',

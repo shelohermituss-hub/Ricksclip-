@@ -36,6 +36,9 @@ export async function build(THREE, scene, film, ctx) {
     const card = new THREE.Mesh(new THREE.PlaneGeometry(60, 30), new THREE.MeshBasicMaterial({ map: tx, toneMapped: false, fog: false }));
     card.name = 'sky_card'; card.position.copy(V([0, 14, -3])); card.lookAt(V([0, 0, -3])); card.userData.noExport = true; scene.add(card);
   }
+  // S5 fix round 2026-11-22: "wing_offset": [dx, dy, dz] (plan metres) moves the whole outside wing (wing, winglet, engine, flap canoes, nav light)
+  // so its bite (anchors.wing_bite) lands on the ray of the film's own window station (make_film.py computes it); "foil_raise" lifts the lifted foil higher (m).
+  if (P.wing_offset) { const d = V(P.wing_offset).sub(V([0, 0, 0])); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) o.position.add(d); }); }
   const N = n => root.getObjectByName(n), tray = N('tray_table'), trayB = N('tray_table_bitten'), foilOn = N('meal_foil_on'), foilUp = N('meal_foil_lifted'), pea = N('pea_runaway');
   const pea0 = pea ? pea.position.clone() : null;
   // S5 builder 2026-11-22: "meal" 0..1 = Michel slides the grey meal aside with one finger (row 36, toward the owner's side, 14 cm); all meal_* nodes ride together
@@ -46,7 +49,7 @@ export async function build(THREE, scene, film, ctx) {
   const S = { bitten: P.bitten ?? 0, foil: P.foil ?? 0, pea: P.pea ?? 0, meal: P.meal ?? 0 };
   function setState(s = {}) {
     Object.assign(S, s); const b = S.bitten >= .5, f = S.foil >= .5;
-    if (tray) tray.visible = !b; if (trayB) trayB.visible = b; if (foilOn) foilOn.visible = !f; if (foilUp) foilUp.visible = f;
+    if (tray) tray.visible = !b; if (trayB) trayB.visible = b; if (foilOn) foilOn.visible = !f; if (foilUp) foilUp.visible = f; if (foilUp && P.foil_raise) { foilUp.userData.p0 ||= foilUp.position.clone(); foilUp.position.copy(foilUp.userData.p0).add(new THREE.Vector3(-.04, P.foil_raise, 0)); }
     meal.forEach(([o, p0]) => o.position.copy(p0).add(new THREE.Vector3(0, 0, .14 * S.meal)));
     if (pea) { const u = S.pea; pea.position.copy(pea0).add(new THREE.Vector3(-.06 * u, -(u > .7 ? (u - .7) * (u - .7) * 6 : 0), .0)); }
   }
