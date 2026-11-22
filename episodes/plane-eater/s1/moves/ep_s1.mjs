@@ -32,9 +32,9 @@ function miHook(t, ch, view = 'front') { const f = F(t), S = ch.sh[1], L = ch.ar
   const rot = 3 * sh * (1 - stopSalt) + 1.5 * st * sawUp - 2 * ant + 2 * snap(f - 150, 10) - 2 * snap(f - 206, 10);
   const y = -6 * (snap(f - W.guy, 5) - snap(f - W.guy - 6, 6)) + 6 * ant + dip(f, W.lunch, 8, 4) - 4 * (snap(f - 202, 8) - snap(f - 214, 8)) + dip(f, W.bites - 1, 5, 4);
   const head = -4 * (snap(f - W.looked, 8)) + 4 * snap(f - W.looked, 8) * 0 + 4 * chin - 3 * ant + 6 * (snap(f - W.bites + 1, 5) - snap(f - W.bites - 4, 8)) + ring(f, W.lunch + 3, 3, 9);
-  // fix round: 'hi' is inside the arm's reach (motion gate arm_over_reach)
+  // fix round 3: in the front drawing the salting fist goes to full reach up and out over the wing tip (hand_at target 2.10 m)
   // far fist (L): shaker high over the wing -> chest -> collar -> hip -> steadies the wing -> hip
-  const hi = { wx: Wd * .3 + .5 * L, wy: S - .55 * L + .05 * L * sh }, chest = { wx: Wd * .2 + .25 * L, wy: S + .35 * L }, hip = { wx: -Wd * .7, wy: ch.hipY - 18 };
+  const hi = { wx: view === 'side' ? Wd * .3 + .5 * L : -(Wd * .5 + .62 * L), wy: S - .72 * L + .05 * L * sh }, chest = { wx: Wd * .2 + .25 * L, wy: S + .35 * L }, hip = { wx: -Wd * .7, wy: ch.hipY - 18 };
   const mix = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   let h0 = mix(hi, chest, stopSalt); h0 = mix(h0, { wx: -Wd * .12, wy: S + .02 * L + .1 * L * tug }, collar); h0 = mix(h0, hip, snap(f - 130, 10) * (1 - steady));
   h0 = mix(h0, { wx: Wd * .3 + .55 * L, wy: S - .78 * L }, steady);

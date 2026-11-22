@@ -77,7 +77,7 @@ film = {
     'moods': [dict(at=969, look='cold_blue', note='row 36: the grey meal, the face falls'), dict(at=1012, look='warm_up', note='row 38: smug, happy, the bright window'), dict(at=1001, look='flash_white', note='row 37 POWER 4 impact flash')],
     'takes': [{'id': 's5', 'place': 'cabin', 'stations': stations}],
 }
-AIMB = [BT[0] - 1.25, BT[1] + 0.19, BT[2] + 0.12]   # the bite notch as measured on the lens-40 test frame (key/w.jpg: 160 px left, 25 px up of BT)
+AIMB = [BT[0] - 0.55, BT[1] + 0.19, BT[2] + 0.12]   # the bite notch as measured on the lens-40 test frame (key/w.jpg: 160 px left, 25 px up of BT)
 WIN_ST = [st(1005, WCAM, AIMB, 70, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
           st(1021, [WCAM[0] + .03, WCAM[1] + .04, WCAM[2]], AIMB, 82, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
 film['takes'].append({'id': 'win', 'place': 'cabin', 'stations': [dict(WIN_ST[0], at=1012), WIN_ST[1]]})

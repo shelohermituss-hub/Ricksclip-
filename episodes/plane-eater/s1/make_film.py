@@ -8,7 +8,7 @@ keys = json.load(open(os.path.join(EP, 'cast', 'CAST_KEYS.json')))
 meta = json.load(open(os.path.join(EP, 'sets', 'apron', 'out', 'apron_meta.json')))
 cast = {k: dict(keys['cast'][k], walk_speed=99) for k in ['michel', 'owner']}
 Z = 0.03
-MI, OW = [5.3, -1.3, 0.61], [1.0, -3.05, Z]   # Michel stands ON his showman trunk (top 0.48 m): the wing tip (top 1.95-2.0 m) is then at his hands
+MI, OW = [5.3, -1.3, 0.61], [1.0, -3.05, Z]   # fix round 3: 0.2 m nearer put the wing tip through his face (key/h1.jpg): back to 5.3. Michel stands ON his showman trunk (top 0.48 m): the wing tip (top 1.95-2.0 m) is then at his hands
 TIP = [5.06, -1.25, 2.0]        # the salted wing-tip corner (leading edge, outer end)
 CUT = [4.82, -1.6, 1.97]        # the saw cut at the leading edge, underside
 PLATE = [5.98, -1.62, 1.52]      # fix round: the plate on a small pedestal side table at his chest (top 1.50 m), not on the wing (s1_apron.js prints PE_S1_PLATE)
@@ -33,7 +33,7 @@ acts = [
     dict(who='owner', at=200, face='k:shocked', look=[0.45, -3.42, 0.85], note='row 8: polishes faster, in denial'),
 ]
 # held props (props/out GLBs through sets/pe_props.js); tip_at puts the working end on the story point, the fist follows
-shake = [[f, 98 if (f // 3) % 2 == 0 else 122] for f in range(0, 61, 3)] + [[64, 100]]
+shake = [[f, 120 if (f // 3) % 2 == 0 else 142] for f in range(0, 61, 3)] + [[64, 100]]   # tipped further over: the cap pours just above the wing top
 strokes = []
 for k in range(5):
     s = 162 + k * 8
@@ -52,7 +52,7 @@ held3d = [
 ]
 
 # fix round 2: the move's fists go to world points through hand_at (kit: st.tgt in move-rig px); the move blends to them by its own weights
-hand_at = [dict(who='michel', f0=0, f1=74, at=[TIP[0] + 0.02, TIP[1] - 0.05, TIP[2] + 0.17], note='shaker fist over the wing tip (the cap 0.16 m below it)'),
+hand_at = [dict(who='michel', f0=0, f1=74, at=[TIP[0] - 0.02, TIP[1] - 0.05, 2.22], note='shaker fist over the wing tip (the cap 0.16 m below it)'),
            dict(who='michel', f0=148, f1=221, at=[CUT[0] + 0.32, CUT[1] + 0.02, CUT[2] + 0.02], note='saw fist: the blade on the cut line; then the tongs at the cut'),
            dict(who='michel', f0=222, f1=256, at=[PLATE[0] - 0.22, PLATE[1], PLATE[2] + 0.2], note='tongs fist over the plate')]
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
@@ -61,7 +61,7 @@ stations = [
     st(0, [5.25, -3.35, 2.75], [5.05, -1.35, 1.75], 24, 'michel', 'M', 'ROWS 1-2 FRAME 0 (HOOK, M00 living rest + M01 creep). WAIVER (lead 2026-11-22, frame 0 + hook only): lens 2.75 m, looking DOWN on the sunlit white/navy wing top (the joke is the wing top), Michel looks UP at the lens so his face reads: Michel big on his MONSIEUR MANGETOUT trunk at the END of the wing, salting the white wing tip beside his face like a steak; the sunlit leading edge runs away to the left', hold=1.3, shows=['tip']),
     st(82, [7.4, -3.5, 2.3], [2.0, -0.9, 1.2], 16, 'michel', 'P', 'ROW 3 (M11 push + truck along his eyeline, lands as a reveal): his look runs along the wing to the nose; the camera rises a little, swings left with his look and widens until the whole Cessna F-MIAM stands in frame, Michel near at its wing tip', hold=0.2, shows=['plane']),
     st(124, [6.2, -3.3, 2.12], [5.55, -1.3, 1.98], 26, 'michel', 'M', 'ROWS 4-5 (M02 push in to land on the face, POWER 1): the idea forms (chin on fork), then LUNCH! to the lens with the napkin snap; the wing tip beside him', hold=0.9, shows=['michel']),
-    st(182, [6.0, -3.15, 2.08], [5.2, -1.45, 2.02], 28, 'michel', 'C', 'ROWS 6-8 CLOSE rest (M10 face -> hand -> blade): the hacksaw on the cut line at the wing tip, aluminium dust, his tongue in the corner; the owner jolts in the back', hold=0.4, shows=['trunk', 'cut']),
+    st(182, [5.45, -3.3, 1.7], [4.95, -1.5, 1.86], 28, 'michel', 'C', 'ROWS 6-8 CLOSE rest (M10 face -> hand -> blade): the hacksaw on the cut line at the wing tip, aluminium dust, his tongue in the corner; the owner jolts in the back', hold=0.4, shows=['trunk', 'cut']),
 ]
 stations2 = [
     st(204, [7.7, -4.6, 2.15], [2.6, -0.9, 1.3], 16, 'michel', 'P', 'ROW 8 "a WHOLE Cessna" (M05 pull back, soft 8 f blend in on the move from the saw close, then a REST): the whole plane with the neat cut at the wing tip, Michel tiny on his trunk, the owner at the nose jolts and polishes faster', hold=0.4, shows=['plane', 'owner']),

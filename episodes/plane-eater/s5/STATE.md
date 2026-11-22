@@ -1,4 +1,12 @@
 # S5 STATE: THE ENDING (PICTURE_PLAN rows 35-38, line 8b, film 31.44-34.04 s = frames 943-1021). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX ROUND 2 (lead: simplify) - result
+- Seats swapped: Michel in seat B in front with his tray (cabin.js "tray_dy" -0.52 moves the tray, arms, meal and pea), the owner at the window.
+- Row 38: its own close window pass (film_W.json, lens at the glass of window L_0) with a dissolve on the move 1005-1012 (blend.py). The bitten
+  wing is sunlit and the crescent bite reads, but it is SMALL (about a tenth of the frame, not a third) and a thin bar (wing part) runs across it;
+  aiming at lens 70-82 did not move it to the centre as computed (three tries).
+- frame_checks 2 FAIL / 2 WARN (from 7 FAIL): the owner's hips 12.6 % over the seat belt and his feet 6.9 cm sunk (f0-955); Michel is out of
+  the tray. camsafe 2034 PASS / 10 FAIL (f1012, LEGS_DISAGREE in the window take where Michel is behind the lens). Plan check 7 FAIL.
+- Owner's wipe: his rag hand reaches toward the window from 1001, but it does not read as a wipe at eye height (seen from the aisle).
 ## FIX ROUND 1 (lead's 5 points) - result
 - (1) PARTLY: seated like sit_chair with SEAT_M .52 (the pan top) and pos z 0 (floor), they face along the seat: camsafe 2044 PASS / 0 FAIL (LEGS 0).
   frame_checks still 7 FAIL: Michel feet sunk -7 cm (f0-961) / float 18 cm at f1021, owner hips over seat_0B_back 30 % at f1021 (his lean), Michel's body
