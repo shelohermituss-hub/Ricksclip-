@@ -21,5 +21,5 @@ for k in keys:
         R3 = cam.matrix_world.to_3x3(); f, rt, up = R3 @ Vector((0, 0, -1)), R3 @ Vector((1, 0, 0)), R3 @ Vector((0, 1, 0))
         dv = (Matrix.Rotation(sy * vh, 3, rt) @ Matrix.Rotation(-sx * hh, 3, up) @ f).normalized()
         p = Vector(c['loc']) + dv * dist; st['earth'] = [p.x, p.y, p.z, dist * math.sin(math.radians(ang))]
-    api.set_state(sc, **st)
+    sc['ship_state'] = json.dumps(api.DEFAULT); api.set_state(sc, **st)   # every proof starts from the defaults
     sc.render.filepath = os.path.join(HERE, '..', 'out', 'stills', 'ship_%s.png' % k); bpy.ops.render.render(write_still=True); print('STILL', k)
