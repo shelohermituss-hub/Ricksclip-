@@ -39,6 +39,15 @@ function look(T, f) { let i = 0; while (i < KEYS.length - 2 && f >= KEYS[i + 1][
 // ---- held3d builders (origin = grip, business end +X)
 function wrap(g, tipX = .1) { const T = THREE_; const group = new T.Group(); group.add(g); return { group, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(tipX, 0, 0) }; }
 const centred = (T, g) => { const b = new T.Box3().setFromObject(g), c = b.getCenter(new T.Vector3()); g.position.sub(c); const h = new T.Group(); h.add(g); return h; };
+// fix round 2: the coffin as a CLASSIC coffin (top view: the six-sided shape, wide at the shoulders), warm varnished wood, a raised lid, brass handles
+export function makeCoffin(T, L = 1) { const g = new T.Group(), w = .36 * L, sh = .22 * L, h = .2 * L, sx = -L / 2;
+  const S = new T.Shape(); S.moveTo(sx, -w * .32); S.lineTo(sx + sh, -w / 2); S.lineTo(L / 2, -w * .36); S.lineTo(L / 2, w * .36); S.lineTo(sx + sh, w / 2); S.lineTo(sx, w * .32); S.closePath();
+  const wood = new T.MeshStandardMaterial({ color: '#a8592a', roughness: .32, metalness: 0 }), lidM = new T.MeshStandardMaterial({ color: '#c0703a', roughness: .28 }), brass = new T.MeshStandardMaterial({ color: '#e0b04a', roughness: .25, metalness: .7 });
+  const body = new T.Mesh(new T.ExtrudeGeometry(S, { depth: h, bevelEnabled: true, bevelSize: .012 * L, bevelThickness: .012 * L, bevelSegments: 2 }), wood); body.rotation.x = -Math.PI / 2; g.add(body);
+  const lid = new T.Mesh(new T.ExtrudeGeometry(S, { depth: h * .28, bevelEnabled: true, bevelSize: .02 * L, bevelThickness: .02 * L, bevelSegments: 2 }), lidM); lid.rotation.x = -Math.PI / 2; lid.position.y = h + .01 * L; lid.scale.set(.94, .9, 1); g.add(lid);
+  const cr = new T.Mesh(new T.BoxGeometry(.05 * L, .012 * L, .16 * L), brass); cr.position.set(sx + sh * .9, h * 1.32 + .02 * L, 0); g.add(cr); const cr2 = new T.Mesh(new T.BoxGeometry(.16 * L, .012 * L, .05 * L), brass); cr2.position.copy(cr.position); g.add(cr2);
+  for (const z of [-1, 1]) for (const x of [-.18, .08, .32]) { const hd = new T.Mesh(new T.TorusGeometry(.03 * L, .007 * L, 6, 14, Math.PI), brass); hd.position.set(x * L, h * .55, z * (w * .47 + .01 * L)); hd.rotation.set(0, z > 0 ? 0 : Math.PI, Math.PI); g.add(hd); }
+  g.traverse(o => { if (o.isMesh) o.castShadow = o.receiveShadow = true; }); g.userData.L = L; return g; }
 export function buildCloche(T) { THREE_ ||= T; const g = part('cloche_bell', /^cloche/); g.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.material.color.set('#e4e7ec'); o.material.metalness = .55; o.material.roughness = .22; } });
   g.scale.setScalar(1.35); const h = new T.Group(); h.add(g); g.position.y = -.2 * 1.35; h.rotation.z = -Math.PI / 2; return wrap(h, .1); }   // grip = the knob (cloche origin = plate centre, knob about 0.2 m up)
 export function buildFork(T) { THREE_ ||= T; const g = clone('fork'); g.scale.setScalar(1.4); return wrap(g, .2); }
@@ -46,7 +55,7 @@ export function buildBell(T) { THREE_ ||= T; const g = part('cloche_bell', /^bel
 export function buildSpinner(T) { THREE_ ||= T; const s = part('cessna150_sliced', /^s0_spinner$/); const h = centred(T, s); h.scale.setScalar(.55); return wrap(h, .06); }   // the last piece: the spinner, cherry-size in his fingers
 let heldCoffin = null;
 export function buildPlate(T) { THREE_ ||= T; const g = new T.Group(), p = clone('plate'); p.scale.setScalar(1.6); g.add(p);
-  const c = part('dessert_trolley', /^coffin_/), h = centred(T, c); h.scale.setScalar(1.7); h.position.set(.0, .12, 0); h.rotation.y = .5; h.visible = false; g.add(h); heldCoffin = h;
+  const h = makeCoffin(T, .62); h.position.set(.0, .03, 0); h.rotation.y = .5; h.visible = false; g.add(h); heldCoffin = h;
   const o = new T.Group(); o.add(g); g.rotation.z = 0; return { group: o, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.12, 0, 0) }; }
 let certWhole = null, certBit = null;
 export function buildCert(T) { THREE_ ||= T; const g = new T.Group();
@@ -87,7 +96,7 @@ export async function build(THREE, scene, film, ctx) {
   silver(cloche);
   const bellOnTable = put(part('cloche_bell', /^bell/), [3.72, -0.62, .78], 0, 1.6); bellOnTable.position.add(V([-.30 * 1.6, 0, 0]).sub(V([0, 0, 0])));
   const cl0 = cloche.position.clone();
-  const plateDown = new THREE.Group(); { const p = clone('plate'); p.scale.setScalar(1.6); plateDown.add(p); const c = part('dessert_trolley', /^coffin_/), h = centred(THREE, c); h.scale.setScalar(1.3); h.position.y = .1; h.rotation.y = .5; plateDown.add(h); }
+  const plateDown = new THREE.Group(); { const p = clone('plate'); p.scale.setScalar(1.6); plateDown.add(p); const h = makeCoffin(THREE, .62); h.position.y = .03; h.rotation.y = .5; plateDown.add(h); }
   put(plateDown, [3.2, -0.45, .785], 20);   // fix: set down on the far-left of the cloth so it never covers the certificate (rows 33-34) plateDown.visible = false;
   // the dessert trolley: x2, more of everything round each tier
   const tro = new THREE.Group(); scene.add(tro); const src = clone('dessert_trolley'), groups = { bike: [], cart: [], tv: [], coffin: [] };
@@ -99,9 +108,9 @@ export async function build(THREE, scene, film, ctx) {
   const tvScreens = []; for (const g of tiers.tv) g.traverse(o => { if (o.isMesh && /tv_screen/.test(o.name)) { o.material = new THREE.MeshStandardMaterial({ color: '#111', emissive: '#ffffff', emissiveIntensity: 0, roughness: .2 }); tvScreens.push(o); } });
   const stripe = (() => { const c = document.createElement('canvas'); c.width = 64; c.height = 32; const g = c.getContext('2d'); ['#ffffff', '#ffe600', '#00e5ff', '#00d84a', '#ff3bd4', '#ff3030', '#2040ff'].forEach((col, i) => { g.fillStyle = col; g.fillRect(i * 64 / 7, 0, 64 / 7 + 1, 32); }); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
   for (const o of tvScreens) o.material.emissiveMap = stripe;
-  { const g = tiers.coffin[0], b = new THREE.Box3(); for (const o of g.children) { o.geometry.computeBoundingBox(); const bb = o.geometry.boundingBox.clone(); o.updateMatrix(); bb.applyMatrix4(o.matrix); b.union(bb); }
-    const c = b.getCenter(new THREE.Vector3()); for (const o of g.children) o.position.sub(c); g.position.copy(c); g.position.y += .26; }   // fix: the coffin sat inside the TV cabinet; now it lies on top of it
-  tiers.coffin[0].scale.setScalar(1.9); tiers.coffin[0].userData.big = 1.9;
+  { const g = tiers.coffin[0]; for (const o of [...g.children]) o.removeFromParent();          // fix round 2: our classic coffin replaces the glb box
+    const b = new THREE.Box3(); tiers.tv[0].traverse(o => { if (o.isMesh) { o.geometry.computeBoundingBox(); const bb = o.geometry.boundingBox.clone(); o.updateMatrix(); bb.applyMatrix4(o.matrix); b.union(bb); } });
+    const cf = makeCoffin(THREE, 1.25 / TROLLEY.scale); g.add(cf); g.position.set(0, b.max.y + .005, 0); g.rotation.y = .9; }
   const coffin = tiers.coffin[0], coffin0 = { p: coffin.position.clone(), r: coffin.rotation.clone() };
   // the hangar work lamps (dusk): off until "dessert?", then they snap on
   const spots = []; for (const x of [-6.6, -2.2, 2.2, 6.6]) { const sp = new THREE.SpotLight('#ffd49a', 0, 16, Math.PI * .24, .5, 2); sp.position.copy(V([x, 8.28, 6.25])); sp.target.position.copy(V([x, 4.5, 0])); scene.add(sp, sp.target); spots.push(sp); }
@@ -140,7 +149,7 @@ export async function build(THREE, scene, film, ctx) {
       coffin.position.copy(coffin0.p); coffin.rotation.copy(coffin0.r); coffin.visible = f >= 832 && f < 850;
       if (f >= 834 && f < 841) coffin.rotation.z = coffin0.r.z + .12 * Math.sin((f - 834) * 1.9) * (1 + (f - 834) / 7);
       if (f >= 841 && f < 850) { const u2 = (f - 841) / 9; tro.updateMatrixWorld(true); const top = coffin.parent.localToWorld(coffin0.p.clone()), end = V(CATCH).add(new THREE.Vector3(0, .12, 0));
-        const w = top.clone().lerp(end, u2); w.y = top.y + (end.y - top.y) * u2 * u2 + .25 * Math.sin(u2 * Math.PI); coffin.position.copy(coffin.parent.worldToLocal(w)); coffin.rotation.z = coffin0.r.z + u2 * 2.4; coffin.rotation.x = u2 * .8; coffin.scale.setScalar(1.9 + (1.7 / 2.4 - 1.9) * u2); } }
+        const w = top.clone().lerp(end, u2); w.y = top.y + (end.y - top.y) * u2 * u2 + .25 * Math.sin(u2 * Math.PI); coffin.position.copy(coffin.parent.worldToLocal(w)); coffin.rotation.z = coffin0.r.z + u2 * 2.4; coffin.rotation.x = u2 * .8; coffin.scale.setScalar(1 + (.62 / 1.25 - 1) * u2); } }
     if (heldCoffin) heldCoffin.visible = f >= 850;
     if (certWhole) { certWhole.visible = f < 913; certBit.visible = f >= 913; }
   } };

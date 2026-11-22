@@ -512,8 +512,8 @@
    "who": "ownerBeardXL",
    "at": 740,
    "pos": [
-    1.4,
-    -0.1,
+    1.6,
+    -1.3,
     0.03
    ],
    "view": "34",
@@ -852,11 +852,11 @@
       1.75
      ],
      "aim": [
-      3.6,
-      -0.55,
+      3.1,
+      -1.0,
       1.45
      ],
-     "lens": 24,
+     "lens": 22,
      "subject": "michel",
      "framing": "M",
      "purpose": "ROWS 31-32 COFFIN (the coffin drops into frame onto his plate) + GUINNESS (his hand lifts the cloche off the book)",
@@ -875,11 +875,11 @@
       1.6
      ],
      "aim": [
-      3.55,
-      -0.6,
+      3.1,
+      -1.05,
       1.35
      ],
-     "lens": 24,
+     "lens": 22,
      "subject": "michel",
      "framing": "M",
      "purpose": "push",

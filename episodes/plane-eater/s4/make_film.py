@@ -37,7 +37,7 @@ filmA = dict(base, title='plane-eater S4 pass A: clinic, row 23 (638-672)', star
     props={'film': dict(pos=FILM, kind='the X-ray film with the tiny bite-Cessna')}, acts=actsA,
     takes=[{'id': 'A', 'place': 'xray', 'stations': stA}])
 # ------------------------------------------------------------------ PASS B: the apron, rows 24-34 (660-942)
-MICHEL = [3.4, -1.0, Z]; DECK = [5.8, -3.7, Z]; CRADLE = [1.4, -0.1, Z]
+MICHEL = [3.4, -1.0, Z]; DECK = [5.8, -3.7, Z]; CRADLE = [1.6, -1.3, Z]
 TABLE_LOOK = [3.4, -0.2, 0.9]; TOWER = [3.25, 1.55, 3.0]
 OWN = ['owner', 'ownerBeardS', 'ownerBeardM', 'ownerBeardL', 'ownerBeardXL']
 SWAP = [660, 679, 686, 694, 701]                # the beard grows on the words: two 679, years 686, to 694, finish 701 (S chest, M belly, L hem, XL knees)
@@ -71,11 +71,11 @@ PASSES = [   # (id, render from, render to, stations): one take each, joined by 
                       st(745, [5.25, -1.7, 1.45], [3.45, -0.85, 1.3], 28, 'michel', 'C', 'push', travel=1.3, hold=0.0, creep=0.0)]),
     ('B3', 738, 847, [st(738, [7.7, -0.3, 2.0], [2.6, 3.4, 1.7], 22, 'trolley', 'W', 'ROW 27-28 (M12): the work lamps snap on, the trolley rolls out of the hangar toward the table', creep=0.0, shows=['trolley']),
                       st(772, [7.7, -0.5, 2.3], [3.25, 1.55, 2.4], 22, 'tower', 'W', 'ROW 28 "BIKES," (M18 crane up starts)', travel=1.1, hold=0.0, creep=0.0, shows=['tower']),
-                      st(840, [7.6, -0.5, 4.3], [3.25, 1.55, 4.0], 22, 'tower', 'W', 'ROWS 29-31 carts, TVs, the coffin topper wobbles (M18 up the tower, slow)', travel=2.2, hold=0.0, creep=0.0, shows=['tower'])]),
-    ('B4', 840, 891, [st(840, [5.6, -2.3, 1.75], [3.6, -0.55, 1.45], 24, 'michel', 'M', 'ROWS 31-32 COFFIN (the coffin drops into frame onto his plate) + GUINNESS (his hand lifts the cloche off the book)', creep=0.0, shows=['table', 'book']),
-                      st(891, [5.3, -2.15, 1.6], [3.55, -0.6, 1.35], 24, 'michel', 'M', 'push', travel=1.6, hold=0.0, creep=0.0)]),
-    ('B5', 884, 942, [st(884, [5.15, -2.05, 1.6], [3.5, -0.8, 1.45], 26, 'michel', 'C', 'ROWS 33-34 STRANGEST DIET EVER up, POWER 3 flashes, the medal bite, the owner stares from the cradle', creep=0.0, shows=['cert']),
-                      st(942, [4.95, -1.95, 1.55], [3.45, -0.9, 1.4], 26, 'michel', 'C', 'slow push', travel=1.9, hold=0.0, creep=0.0)]),
+                      st(840, [6.7, -0.3, 3.9], [3.25, 1.55, 3.35], 22, 'tower', 'W', 'ROWS 29-31 carts, TVs, the coffin topper wobbles (M18 up the tower, slow)', travel=2.2, hold=0.0, creep=0.0, shows=['tower'])]),
+    ('B4', 840, 891, [st(840, [5.6, -2.3, 1.75], [3.1, -1.0, 1.45], 22, 'michel', 'M', 'ROWS 31-32 COFFIN (the coffin drops into frame onto his plate) + GUINNESS (his hand lifts the cloche off the book)', creep=0.0, shows=['table', 'book']),
+                      st(891, [5.3, -2.15, 1.6], [3.1, -1.05, 1.35], 22, 'michel', 'M', 'push', travel=1.6, hold=0.0, creep=0.0)]),
+    ('B5', 884, 942, [st(884, [5.15, -2.05, 1.6], [3.2, -1.2, 1.45], 26, 'michel', 'C', 'ROWS 33-34 STRANGEST DIET EVER up, POWER 3 flashes, the medal bite, the owner stares from the cradle', creep=0.0, shows=['cert']),
+                      st(942, [4.95, -1.95, 1.55], [3.15, -1.25, 1.4], 26, 'michel', 'C', 'slow push', travel=1.9, hold=0.0, creep=0.0)]),
 ]
 stB = [x for p in PASSES for x in p[3]]
 props = {
