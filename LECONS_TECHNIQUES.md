@@ -16,6 +16,13 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-22 — Film Blender rendu sans la pièce montée ni le matelas (plane-eater) — OUVERT (correction en cours)
+- Problème : dans le film rendu sur RunPod, la pièce montée du dessert (f738-850) et le gonflement de la paroi en matelas (f580-610) manquent ; arbre et sol d'hiver faux dans l'accéléré.
+- Cause réelle : ces objets sont construits par du code dans les scripts de décor du kit (s4_apron.js, xray.js) et ne font pas partie de l'export verrouillé ; le lead n'a contrôlé que 13 images clés, aucune sur ces plans, et n'a pas généralisé l'alerte « ligne de scie et bouchée absentes ».
+- Correction : planches brouillon contre Blender par morceau (look/film/KIT_VS_FINAL_s#.jpg), liste complète des manques, correction dans Blender, rendu partiel.
+- Garde-fou : REGLES_METHODE section 2 (comparaison complète avant tout rendu payant ; chercher toute la famille d'un défaut).
+- Preuve : à venir (planche corrigée).
+
 ## 2026-11-22 — Cartes magenta sur RunPod : chemins d'images absolus dans le paquet (plane-eater) — FERMÉ
 - Problème : sur la machine RunPod, les personnages sortaient en aplats magenta (images de cartes introuvables). Vu seulement parce que le lead a téléchargé et regardé 3 images d'essai avant de lancer le film.
 - Cause réelle : les séquences d'images des cartes gardaient le chemin absolu de la machine de construction (/home/user/...) ; le test du paquet ici passait puisque ces chemins existent ici.

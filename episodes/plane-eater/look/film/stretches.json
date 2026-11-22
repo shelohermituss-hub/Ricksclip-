@@ -132,7 +132,8 @@
    0.5
   ],
   "fix": [],
-  "base_dump": true
+  "base_dump": true,
+  "sat_kmax": 1.6
  },
  "s4": {
   "place": "apron",
@@ -173,7 +174,14 @@
     "DUSK",
     0.5
    ]
-  ]
+  ],
+  "late": [
+   760,
+   800,
+   838,
+   846
+  ],
+  "snow_z": 0.09
  },
  "s3": {
   "place": "xray",
@@ -198,7 +206,10 @@
    "INTERIOR",
    1.0
   ],
-  "fix": [],
+  "fix": [
+   "xray_puff",
+   "expo_keys"
+  ],
   "base_dump": true,
   "grade_extra": {
    "592": [
@@ -218,6 +229,16 @@
     633,
     "INTERIOR",
     0.5
+   ]
+  ],
+  "expo_keys": [
+   [
+    520,
+    -0.3
+   ],
+   [
+    578,
+    -0.6
    ]
   ]
  },

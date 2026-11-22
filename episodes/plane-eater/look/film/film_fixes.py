@@ -135,8 +135,8 @@ def cabin_window(sc, cfg, K):
 # ---------------- S4: the seasons time-lapse and the dusk (s4_apron.js KEYS, driven per frame in the kit; the lock has one light only)
 S4_KEYS = [(0, 'DAY'), (674, 'DAY'),
     (682, dict(top='#3d7fd0', hor='#ffd9a8', sun='#ffc98a', si=3.6, amb='#d9c9b8', ai=1.7, lawn='#a79a52', leaf='#d9822b', snow=0)),
-    (690, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#cfe0f5', leaf='#e9f0fa', snow=1)),
-    (698, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#cfe0f5', leaf='#e9f0fa', snow=1)),
+    (690, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#f2f6fb', leaf='#f4f7fb', snow=1)),
+    (698, dict(top='#7d97b8', hor='#e8eef6', sun='#eef4ff', si=3.0, amb='#dfe8f5', ai=2.2, lawn='#f2f6fb', leaf='#f4f7fb', snow=1)),
     (705, dict(top='#2f8ae8', hor='#d8f0d0', sun='#fff8e0', si=4.2, amb='#e3eedf', ai=1.9, lawn='#7fbf4a', leaf='#8fd14f', snow=0)),
     (716, dict(top='#2f8ae8', hor='#d8f0d0', sun='#fff8e0', si=4.2, amb='#e3eedf', ai=1.9, lawn='#7fbf4a', leaf='#8fd14f', snow=0)),
     (738, 'DUSK'), (9999, 'DUSK')]
@@ -182,7 +182,7 @@ def seasons(sc, cfg, K):
             elif ('leaf' in m.name.lower() or 'leaves' in m.name.lower() or 'crown' in m.name.lower()) and m not in [x[0] for x in leafM]:
                 h = tint_hook(m, 'leaf'); h and leafM.append((m, h))
     # the snow skin
-    bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, .045)); sn = bpy.context.object; sn.name = 'season_snow'; sn.scale = (60, 40, 1)
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, cfg.get('snow_z', .09))); sn = bpy.context.object; sn.name = 'season_snow'; sn.scale = (cfg.get('snow_size', [120, 90])[0], cfg.get('snow_size', [120, 90])[1], 1)
     sm = bpy.data.materials.new('season_snow'); sm.use_nodes = True; nt = sm.node_tree; b = nt.nodes['Principled BSDF']; b.inputs['Base Color'].default_value = tuple(_hx('#eef4fb')) + (1,); b.inputs['Roughness'].default_value = .9
     sn.data.materials.append(sm)
     lamps = [o for o in bpy.data.objects if o.name.startswith('lamp_work') and o.type == 'LIGHT']
@@ -202,7 +202,7 @@ def seasons(sc, cfg, K):
             e_ = m.node_tree.nodes.get('self')
             if e_ is not None: e_.inputs[1].default_value = 2 ** (-S['ex']); e_.inputs[1].keyframe_insert('default_value', frame=f)
         for m, h in lawnM:
-            h.inputs['Factor'].default_value = (S['lawnK'] * .85) if S['lawn'] else 0; h.inputs['B'].default_value = (S['lawn'] or [0, 0, 0]) + [1]
+            h.inputs['Factor'].default_value = (S['lawnK'] * (.85 + .15 * S['snow'])) if S['lawn'] else 0; h.inputs['B'].default_value = (S['lawn'] or [0, 0, 0]) + [1]
             h.inputs['Factor'].keyframe_insert('default_value', frame=f); h.inputs['B'].keyframe_insert('default_value', frame=f)
         for m, h in leafM:
             h.inputs['Factor'].default_value = (S['lawnK'] * .9) if S['leaf'] else 0; h.inputs['B'].default_value = (S['leaf'] or [0, 0, 0]) + [1]
@@ -280,3 +280,33 @@ def tint_mats(sc, cfg, K):
                 else: mx.inputs['A'].default_value = ci.default_value
                 mx.inputs['B'].default_value = tuple(_hx(hx)) + (1,); m.node_tree.links.new(mx.outputs['Result'], ci); done.add(m.name); n += 1
         print('TINT', pre, hx, fac, n)
+
+
+def xray_puff(sc, cfg, K):
+    """S3: the lining's shape key 'puff' (thin -> button-tufted quilted mattress) keyed per frame from the kit's own keys
+    (s3/film.json places.xray.xray.keys, linear as xray.js), on every object of the set that has the key."""
+    import json, os
+    P = json.load(open(os.path.join(K['EP'], 's3', 'film.json')))['places']['xray'].get('xray', {}); ks = sorted([k for k in P.get('keys', []) if 'puff' in k], key=lambda k: k['f'])
+    base = P.get('puff', 0); objs = [o for o in sc.objects if o.type == 'MESH' and o.data.shape_keys and 'puff' in o.data.shape_keys.key_blocks]
+    def at(f):
+        if not ks: return base
+        if f <= ks[0]['f']: return ks[0]['puff']
+        for a, b in zip(ks, ks[1:]):
+            if a['f'] <= f <= b['f']: return a['puff'] + (b['puff'] - a['puff']) * (f - a['f']) / max(1, b['f'] - a['f'])
+        return ks[-1]['puff']
+    f0, f1 = cfg['window']
+    for o in objs:
+        kb = o.data.shape_keys.key_blocks['puff']
+        for f in range(f0, f1 + 1): kb.value = at(f); kb.keyframe_insert('value', frame=f)
+    print('XRAY_PUFF', len(objs), 'objects', [(k['f'], k['puff']) for k in ks])
+
+def expo_keys(sc, cfg, K):
+    """exposure keyed per frame range (stretches.json 'expo_keys': [[f, exposure], ...], held); the cards' emission follows (2^-exposure)."""
+    ks = sorted(cfg.get('expo_keys', [])); f0, f1 = cfg['window']; cards = [m for m in bpy.data.materials if m.name.startswith('Card_')]
+    for f in range(f0, f1 + 1):
+        ex = [e for g, e in ks if g <= f][-1] if any(g <= f for g, _ in ks) else sc.view_settings.exposure
+        sc.view_settings.exposure = ex; sc.view_settings.keyframe_insert('exposure', frame=f)
+        for m in cards:
+            e_ = m.node_tree.nodes.get('self')
+            if e_ is not None: e_.inputs[1].default_value = 2 ** (-ex); e_.inputs[1].keyframe_insert('default_value', frame=f)
+    print('EXPO_KEYS', ks)

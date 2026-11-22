@@ -65,6 +65,29 @@ bpy.data.batch_remove(drop)
 print('REPLACED', replaced[:20])
 print('LOCKIDS', sum(1 for o in kept if 'lock_id' in o.keys()), [ (o.name, o.get('lock_id')) for o in new if o.name.startswith(('s1_bite','s1_cut'))][:4] if False else '')
 print('KEPT', len(kept), sorted({root_of(o).name for o in kept})[:40], flush=True)
+# kit pieces hidden when the lock was exported (cake tower, coffin, trolley ...): the scene AT LATER FRAMES (look/film/export_late.sh) adds every node
+# whose lock id is not in yet; the node dump then keys their visibility and moves (stretches.json 'late')
+have = {int(o['lock_id']) for o in kept if 'lock_id' in o.keys()} | {int(o['lock_id']) for o in bpy.data.objects if 'lock_id' in o.keys()}
+for lf in CFG.get('late', []):
+    gp = os.path.join(LOCK, 'sets', '%s_late_f%04d.glb' % (PLACE, lf))
+    if not os.path.exists(gp): print('LATE missing', gp); continue
+    b4 = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=gp); nw = [o for o in bpy.data.objects if o not in b4]; nws = set(nw)
+    def chainL(o):
+        c = [o]
+        while c[-1].parent is not None and c[-1].parent in nws: c.append(c[-1].parent)
+        return c
+    keepL = set()
+    for o in nw:
+        nm = [x.name.split('.')[0] for x in chainL(o)]
+        if any(n.startswith(HELDPART + ('fist', 'floor_legs', 'look')) for n in nm): continue
+        lid = int(o.get('lock_id', -1))
+        if lid < 0 or lid in have: continue
+        if o.type == 'LIGHT' or nm[-1].startswith('late_'): continue
+        keepL.add(o)
+    for o in keepL:
+        if o.parent is not None and o.parent not in keepL: mw = o.matrix_world.copy(); o.parent = None; o.matrix_world = mw
+    bpy.data.batch_remove([o for o in nw if o not in keepL]); kept.extend(keepL); have |= {int(o['lock_id']) for o in keepL}
+    print('LATE', lf, len(keepL), 'new nodes')
 # pieces the kit had hidden when the lock was exported (not in the glb) are rebuilt here and keyed by the node dump (stretches.json 'rebuild')
 for lid, spec in CFG.get('rebuild', {}).items():
     if 'part' in spec:
@@ -126,6 +149,12 @@ if os.path.exists(DUMPF):
             o = bpy.data.objects.get(r['name'])
             if o is not None and o in new_set: o = None
         if o is None: continue
+        by_name = o not in new_set and int(o.get('lock_id', -1)) != int(lid)
+        if by_name and all(r['m'][0] == m for m in r['m']):                     # a set part the kit only hides / shows: visibility on it AND its children
+            for x in [o] + list(o.children_recursive):
+                for i, v in enumerate(r['v']):
+                    if i == 0 or v != r['v'][i - 1]: x.hide_render = not v; x.keyframe_insert('hide_render', frame=DU['f0'] + i)
+            nd += 1; continue
         mw = o.matrix_world.copy(); o.parent = None; o.matrix_world = mw; o.rotation_mode = 'QUATERNION'; prev = None; nd += 1
         for i, (v, m) in enumerate(zip(r['v'], r['m'])):
             f = DU['f0'] + i; M = Matrix([m[0:4], m[4:8], m[8:12], m[12:16]]).transposed(); W = Cm @ M @ Ci
@@ -186,8 +215,8 @@ PARTS = {'salt_shaker': dict(c='salt_shaker', tip=(0, 0, .072)), 'fork': dict(c=
          'sugar_tongs': dict(c='sugar_tongs', tip=(.115, 0, 0)), 'rag': dict(c='owner_rag_spanner', rx='^rag', tip=(0, 0, .15)), 'knife': dict(c='knife', tip=(.257, 0, 0)),
          'oil_glass': dict(c='oil_glass', tip=(.02, 0, 0)), 'water_jug': dict(c='water_jug', rx='^jug', tip=(.25, 0, 0), off=(.12, 0, -.17)),
          'tumbler': dict(c='water_jug', rx='^tumbler', tip=(.02, 0, 0), off=(-.22, 0, -.05)),
-         'wing_slice': dict(c='metal_bites', rx='^bite_2', tip=(.1, 0, 0), col='#f3f4f1'), 'wheel_hub': dict(c='metal_bites', rx='^bite_3', tip=(.1, 0, 0), col='#c9ccd1'),
-         'seat_cushion': dict(c='metal_bites', rx='^bite_4', tip=(.1, 0, 0), col='#2f5fb0'), 'tire': dict(c='metal_bites', rx='^bite_5', tip=(.1, 0, 0), col='#232428')}
+         'wing_slice': dict(bite=1, c='metal_bites', rx='^bite_2', tip=(.1, 0, 0), col='#f3f4f1'), 'wheel_hub': dict(bite=1, c='metal_bites', rx='^bite_3', tip=(.1, 0, 0), col='#c9ccd1'),
+         'seat_cushion': dict(bite=1, c='metal_bites', rx='^bite_4', tip=(.1, 0, 0), col='#2f5fb0'), 'tire': dict(bite=1, c='metal_bites', rx='^bite_5', tip=(.1, 0, 0), col='#232428')}
 PARTS.update(CFG.get('parts', {}))
 INKM = bpy.data.materials.new('ink_fist'); INKM.use_nodes = True; nb = INKM.node_tree.nodes['Principled BSDF']; nb.inputs['Base Color'].default_value = PL.lin('#2a1e24'); nb.inputs['Roughness'].default_value = .6
 nb.inputs['Emission Color'].default_value = PL.lin('#2a1e24'); nb.inputs['Emission Strength'].default_value = 1.0
@@ -202,6 +231,12 @@ for (who, obj), rows in groups.items():
     if pt.get('rx'):
         for o in list(coll.all_objects):
             if not re.match(pt['rx'], o.name): bpy.data.objects.remove(o)
+    if pt.get('bite'):                                                         # s2_apron.js bite(): the one bite centred, in a holder rotated x 90, at x .1, scaled 5.5
+        kids = [o for o in coll.all_objects if o.parent == e]; bpy.context.view_layer.update()
+        pts = [e.matrix_world.inverted() @ (o.matrix_world @ Vector(c)) for o in coll.all_objects if o.type == 'MESH' for c in o.bound_box]
+        cen = sum(pts, Vector()) / max(1, len(pts)); hol = bpy.data.objects.new('holder_' + obj, None); sc.collection.objects.link(hol); hol.parent = e
+        hol.location = (.1, 0, 0); hol.rotation_euler = (math.pi / 2, 0, 0); hol.scale = (5.5, 5.5, 5.5)
+        for o in kids: o.parent = hol; o.location = Vector(o.location) - cen
     if pt.get('off'):
         for o in coll.all_objects:
             if o.parent == e: o.location = Vector(o.location) + Vector(pt['off'])
