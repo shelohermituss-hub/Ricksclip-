@@ -34,7 +34,7 @@ export async function build(THREE, scene, film, ctx) {
     scene.fog = null; scene.background = new THREE.Color('#000005');
     scene.children.forEach(o => { if (o === root) return; if (o.isMesh && o.userData.noExport && o.material && o.material.side === THREE.BackSide) o.visible = false;
       if (o.isHemisphereLight) { o.color.set('#2a3060'); o.groundColor.set('#000000'); o.intensity = .35; }
-      if (o.isDirectionalLight) { o.color.set('#ffffff'); o.intensity = 3.2; o.position.copy(B2T([.2, .5, .85]).multiplyScalar(60)); } });
+      if (o.isDirectionalLight) { o.color.set('#ffffff'); o.intensity = 3.2; o.position.copy(ctx.B2T([.2, .5, .85]).multiplyScalar(60)); } });
   }
   const basic = (o, opt) => { if (o) o.traverse(m => { if (m.isMesh) m.material = new THREE.MeshBasicMaterial(Object.assign({ toneMapped: false, fog: false }, opt(m.material))); }); };
   basic(N('sky_dome'), m => ({ map: m.map, side: THREE.BackSide }));
