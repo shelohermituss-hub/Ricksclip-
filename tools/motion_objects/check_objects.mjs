@@ -54,6 +54,8 @@ for (const [who, rows] of Object.entries(D.cards)) {
   tracks.push({ name: who + '.head', kind: 'card', rows: rows.map(r => r && { p: r.head, v: 1 }), poses: rows.map(r => r && r.pose) });
   if (rows.some(r => r && r.hands)) for (const [k, nm] of [[0, 'handR'], [1, 'handL']]) tracks.push({ name: `${who}.${nm}`, kind: 'hand', rows: rows.map(r => r && r.hands && { p: r.hands[k], v: 1 }), poses: rows.map(r => r && r.pose) });
 }
+const changes = o => { let k = null; for (const r of o.rows) { if (!r) continue; if (k && r.some((x, i) => Math.abs(x - k[i]) > (i === 10 ? 0 : i === 11 ? 1e-3 : 2e-5))) return true; k = k || r; } return false; };   // float noise only = not a moving object
+D.objects = D.objects.filter(changes);
 for (const o of D.objects) tracks.push({ name: o.name, kind: 'object', type: o.type, rows: o.rows.map(r => r && { p: r.slice(0, 3), q: r.slice(3, 7), s: r.slice(7, 10), v: r[10], op: r[11] }) });
 
 const events = [];
