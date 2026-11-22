@@ -1,0 +1,16 @@
+frame_checks: bay5/film.json  451 of 500 frames (rests f0-398)  cast navigator, commander, newguy
+result who            rest         check         number    worst at  bad frames what                                                      
+FAIL   navigator      f0-398       face_covered  3 rays    f0        399/399    head centre INSIDE cabin/bay_wall_backing; in front: cabi~
+FAIL   commander      f0-398       face_covered  3 rays    f0        399/399    head centre INSIDE cabin/bay_wall_backing; in front: cabi~
+FAIL   navigator      f0-398       feet          13.5 cm   f113      399/399    2 of 2 feet float, nearest cabin/bag_navigator/bag_naviga~
+FAIL   commander      f0-398       body_side     71 %      f158      399/399    cut by the right edge                                     
+FAIL   commander      f0-398       head_cut      78 %      f336      399/399    cut by the right edge                                     
+FAIL   navigator      f0-398       body_in_mesh  69 %      f374      399/399    inside cabin/bag_navigator/bag_navigator_1: torso-hips-th~
+FAIL   commander      f0-398       body_in_mesh  79 %      f388      399/399    inside cabin/bay_wall_backing: torso-hips-thighs 78 %, le~
+FAIL   commander      f399-498 mo~ body_in_mesh  100 %     f449      34/34      inside cabin/bag_commander/bag_commander_1: torso-hips-th~
+FAIL   navigator      f399-498 mo~ body_in_mesh  72 %      f427      18/18      inside cabin/bag_navigator/bag_navigator_1: torso-hips-th~
+FAIL   newguy         f399-498 mo~ body_in_mesh  99 %      f449      18/42      inside cabin/bag_new_guy/bag_new_guy_1: torso-hips-thighs~
+FAIL   newguy         f499 (last)  feet          74.4 cm   f499      1/1        2 of 2 feet float, nearest cabin/bay_floor                
+WARN   commander      f0-398       feet          4.3 cm    f0        399/399    1 of 2 feet float, nearest cabin/bag_commander/bag_comman~
+WARN   newguy         f399-498 mo~ slide         1.2 %     f455      1/26       the planted foot slides 1.2 cm per frame across the pictu~
+11 FAIL, 2 WARN, 10 PASS (197.6 s, scan 175.5 s)  ->  /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/frame_checks.md, 11 crops in /home/user/Ricksclip-/episodes/astro-flush-study/shots/cabin/bay5/out/frame_checks

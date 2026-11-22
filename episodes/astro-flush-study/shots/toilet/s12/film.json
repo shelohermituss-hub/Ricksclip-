@@ -2722,6 +2722,60 @@
    "note": "slides to centre f1072-1093, eased"
   },
   {
+   "who": "commander",
+   "at": 0,
+   "face": "k:annoyed",
+   "note": "glare"
+  },
+  {
+   "who": "commander",
+   "at": 1040,
+   "face": "k:angry",
+   "note": "flush?"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "face": "k:afSweat",
+   "note": "stiff, scared"
+  },
+  {
+   "who": "newguy",
+   "at": 1038,
+   "face": "k:happy",
+   "note": "innocent smile, flush? f1040"
+  },
+  {
+   "who": "newguy",
+   "at": 1054,
+   "face": "k:smug",
+   "note": "explaining"
+  },
+  {
+   "who": "newguy",
+   "at": 1058,
+   "face": "k:talk",
+   "note": "Well, f1061"
+  },
+  {
+   "who": "newguy",
+   "at": 1066,
+   "face": "k:smug",
+   "note": "a spaceship toilet"
+  },
+  {
+   "who": "newguy",
+   "at": 1097,
+   "face": "k:browUp",
+   "note": "turns to the toilet coming apart, points"
+  },
+  {
+   "who": "newguy",
+   "at": 1102,
+   "face": "k:happy",
+   "note": "shrug smile, have pipes."
+  },
+  {
    "who": "newguy",
    "at": 1121,
    "visible": false,

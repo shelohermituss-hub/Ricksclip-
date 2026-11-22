@@ -40,13 +40,12 @@
   PASS framing  same framing on the same subject in a row (stations)       3              target <= 3
   WARN story    sentences table                                            missing        target film.json needs 'sentences' so the story gates can run
          FIX: add one row per sentence: words [first, last], subject, nouns
-  FAIL acting   pose or face changes per 10 s on screen                    0.0            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
-         FIX: add an act (face, pose, turn, step, prop beat) on the content words
-  PASS acting   longest fully frozen figure with a resting camera, s       0.0            target <= 3 unless something else moves
+  PASS acting   pose or face changes per 10 s on screen                    7.1            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
+  PASS acting   longest fully frozen figure with a resting camera, s       0.2            target <= 3 unless something else moves
   PASS acting   held props without a hand                                  0              target 0: every held prop is attached to a hand on every frame
   PASS acting   camera goes around a figure but its view never changes     0              target 0: a pure camera move never turns a character; the view follows the camera (act key look / look_full)
   FAIL acting   effects per 10 s                                           0.0            target 1-2, on the action noun or verb (Rick)
          FIX: add a glint, glow, stamp, coin or dust hit on the key nouns
   FAIL acting   mood (light / colour) changes per minute                   0.0            target >= 12, in-shot on the word (Rick 13.7, range 3.9-15.5)
          FIX: add light or colour shifts on the turn, the proof and the payoff
-RESULT: 7 FAIL, 4 WARN of 40 gates. Baked files and plan_report.md in /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/plan
+RESULT: 6 FAIL, 4 WARN of 40 gates. Baked files and plan_report.md in /home/user/Ricksclip-/episodes/astro-flush-study/shots/toilet/s1/out/plan

@@ -199,6 +199,19 @@
       ]
      }
     }
+   ],
+   "upright": [
+    {
+     "who": "navigator"
+    },
+    {
+     "who": "commander"
+    },
+    {
+     "who": "newguy",
+     "f1": 446,
+     "n": 16
+    }
    ]
   }
  },
@@ -329,6 +342,12 @@
    ]
   }
  ],
+ "collide": {
+  "ignore": [
+   "bag_*",
+   "bay_wall_backing"
+  ]
+ },
  "card_scale": {
   "navigator": [
    [
@@ -369,6 +388,28 @@
  },
  "acts": [
   {
+   "who": "commander",
+   "at": 0,
+   "pos": [
+    -11.95,
+    1.0,
+    0.933
+   ],
+   "pose": "m:../../ep_cab/cmd5",
+   "look": [
+    -11.95,
+    -5.0,
+    1.4
+   ],
+   "note": "asleep, head on the blue bag's head anchor, mouth open"
+  },
+  {
+   "who": "commander",
+   "at": 0,
+   "face": "k:sleepy",
+   "note": "face on his frame"
+  },
+  {
    "who": "navigator",
    "at": 0,
    "pos": [
@@ -385,20 +426,10 @@
    "note": "asleep, head on the teal bag's head anchor"
   },
   {
-   "who": "commander",
+   "who": "navigator",
    "at": 0,
-   "pos": [
-    -11.95,
-    1.0,
-    0.933
-   ],
-   "pose": "m:../../ep_cab/cmd5",
-   "look": [
-    -11.95,
-    -5.0,
-    1.4
-   ],
-   "note": "asleep, head on the blue bag's head anchor, mouth open"
+   "face": "k:sleepy",
+   "note": "face on his frame"
   },
   {
    "who": "newguy",
@@ -418,6 +449,12 @@
   },
   {
    "who": "newguy",
+   "at": 0,
+   "face": "k:sleepy",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
    "at": 446,
    "pos": [
     -10.741,
@@ -432,6 +469,18 @@
     1.4
    ],
    "note": "slides up and out of the green bag f446-462, eased both ends, body straight"
+  },
+  {
+   "who": "newguy",
+   "at": 452,
+   "face": "k:sneaky",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 470,
+   "face": "k:afSweat",
+   "note": "face on his frame"
   },
   {
    "who": "newguy",

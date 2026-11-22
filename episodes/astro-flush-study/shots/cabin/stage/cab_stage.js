@@ -28,6 +28,11 @@ export async function build(THREE, scene, film, ctx) {
   }
   // round 2: the monitor placeholder breathes a little (emission +-amp, a slow pulse) so the frames it fills are not held; the lead feeds the real picture later
   const ML = ctx.place && ctx.place.monitor_live, mon = B.mover('cabin_monitor_pic'), m0 = mon && mon.material ? mon.material.emissiveIntensity : 1;
-  function update(f, t, R) { B.update(f, t); place(f); if (ML && mon && mon.material) mon.material.emissiveIntensity = m0 * (1 + ML.amp * Math.sin(2 * Math.PI * f / ML.period)); }
+  // round 2: UPRIGHT cards for the sleepers. The kit tips every card to face the lens about its feet; from his high f430 camera (16 deg down) that
+  // leaned the heads 0.38 m back into the bag wall and headrest pad (no head seen). In the bags the card stays vertical on the bag plane (only the
+  // tip is taken off, eased back in over the "release" frames). film.json places.cabin.upright: [{ who, f1 (tip back from here), n (frames) }]
+  const UP = (ctx.place && ctx.place.upright) || [], sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+  function update(f, t, R) { B.update(f, t); place(f);
+    for (const u of UP) { const c = R && R.cards && R.cards[u.who]; if (!c || !c.mesh) continue; c.mesh.rotation.x *= sm((f - (u.f1 ?? 1e9)) / (u.n || 12)); } if (ML && mon && mon.material) mon.material.emissiveIntensity = m0 * (1 + ML.amp * Math.sin(2 * Math.PI * f / ML.period)); }
   return { ...B, update };
 }

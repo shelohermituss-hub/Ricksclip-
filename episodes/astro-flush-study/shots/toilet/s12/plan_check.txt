@@ -53,7 +53,7 @@
          FIX: change the shot size, or put someone else in the picture
   WARN story    sentences table                                            missing        target film.json needs 'sentences' so the story gates can run
          FIX: add one row per sentence: words [first, last], subject, nouns
-  FAIL acting   pose or face changes per 10 s on screen                    0.0            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
+  FAIL acting   pose or face changes per 10 s on screen                    1.9            target >= 4 (Rick 4.5 on one figure, range 3-7; this counts every figure on screen)
          FIX: add an act (face, pose, turn, step, prop beat) on the content words
   FAIL acting   longest fully frozen figure with a resting camera, s       33.4           target <= 3 unless something else moves
          FIX: commander: add a face change, or let the camera creep / another character act

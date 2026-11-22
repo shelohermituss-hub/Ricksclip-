@@ -805,6 +805,30 @@
     1.3
    ],
    "note": "wince, flush snap 507-508, relief, sweat"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "face": "k:nervous",
+   "note": "wince"
+  },
+  {
+   "who": "newguy",
+   "at": 507,
+   "face": "k:afSweat",
+   "note": "SNAP: wide eyes, o mouth, one drop"
+  },
+  {
+   "who": "newguy",
+   "at": 510,
+   "face": "k:nervous",
+   "note": "recoil"
+  },
+  {
+   "who": "newguy",
+   "at": 513,
+   "face": "k:nervousSmile",
+   "note": "relaxed smile, one sweat drop"
   }
  ]
 }

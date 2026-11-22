@@ -28,3 +28,16 @@ Render: half size, 2.0 s/f (cab4 139 f), 1.5 s/f (bay5 89 f). Draft mp4s: refere
 - Bags: the sleepers' heads are hidden. The bag tops are above the head height his frames give (head centres z 2.24-2.40 at y 1.0); the bags need a collar/opening
   at about z 2.1 that a card at y ~1.0 shows through, or tell us the plane inside the bag (anchor) where the head clears the collar.
 - Sleep mask for the navigator: not in the cast (head_wear sleepMask is "pushed up"); needs a character-artist variant.
+
+## Round 2 (2026-11-22, coordinator's 5 points + MOTION RULES) - render 2c started, NOT yet checked
+- Camera: ONE travel per shot through pinned pass stations (hold 0, pin): cab4 f272 pre-roll -> 284/300/330/390 (fitted) -> eased landing 422;
+  bay5 f399 pre-roll -> 411/430/460/490 -> landing 499. Baked positions are ON the fitted cams at those frames. Plan window: cab4 p90 16.2 PASS, peak 30.9 WARN (his pull-back);
+  bay5 p90 10.7, peak 10.9 PASS.
+- Marks: cabin plane y .45 (f300 marks y .30), 1.05-1.2 m off the quilt; scale 1.15 (f300 new guy .84 / commander .745 growing to 1.15 f300-318 under the pull-back).
+  Bay: sleepers on the bags' head anchors [x, 1.0, 2.32]. Acts eased (ease inout), poses smoothstep >= 6 f starting 2 f early; big arm moves 10-14 f.
+- FOUND: the kit tips every card to the lens about its feet; from the high f430 cam the heads leaned 0.38 m back into the headrest pad and wall = no heads.
+  cab_stage.js "upright" takes the tip off the sleepers' cards (new guy eased back in from f446 over 16 f). Checked on f430: three heads above the collars.
+- FOUND: the film keeps the ACT's face, not the move's: round 1 faces never played. Faces now in acts (FACES4 / FACES5 in make_film.py).
+- Commander / navigator: look = "newguy" (camsafe wants 3/4, moves draw 3/4). cab4 camsafe 0 FAIL (render 2b, before the face fix).
+- Props: toss / release start from the hand's own velocity; magazine push [-1.1, -.35, 1.0] m/s, spin 220/140/380 deg/s. Monitor placeholder pulses +-6 % (period 9 f) so its frames are not held.
+- WAIVERS: feet float (frame_checks "feet") = weightless crew, his frames show dangling legs. bay5 collide ignore bag_* and bay_wall_backing: sleepers stand IN the bags on the set's card plane.

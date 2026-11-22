@@ -743,6 +743,18 @@
     1.3
    ],
    "note": "smug, flushes f8-10, laughs"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "face": "k:smug",
+   "note": "If you"
+  },
+  {
+   "who": "newguy",
+   "at": 9,
+   "face": "k:laugh",
+   "note": "snap f8-10: closed happy eyes, laughing mouth (flush f11)"
   }
  ]
 }

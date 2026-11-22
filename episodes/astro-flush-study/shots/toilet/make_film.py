@@ -63,6 +63,7 @@ F1["takes"] = [{"id": "s1", "place": "toilet", "stations": S1}]
 s1 = CARD.get('s1', 1.0)
 F1["card_scale"] = {"newguy": [[0, s1, s1], [2000, s1, s1]]}
 F1["acts"] = [dict(who="newguy", at=0, pos=[NG1[0], NG1[1], 0], pose="m:../../ep_toilet/ng1", look=LOOK(NG1, c5['loc']), note="smug, flushes f8-10, laughs")]
+F1["acts"] += [dict(who="newguy", at=0, face="k:smug", note="If you"), dict(who="newguy", at=9, face="k:laugh", note="snap f8-10: closed happy eyes, laughing mouth (flush f11)")]
 
 # ---------------- shot 6 (night close). Pre-roll travel leaves f485 so f495 (dissolve in) already moves; z1.06 per 0.5 s to f515 (cam fitted), z1.02 after.
 c515 = C['f515']; NG6 = A['newguy_s6']; dv = unit([c515['look'][i] - c515['loc'][i] for i in range(3)])
@@ -81,6 +82,8 @@ F6["takes"] = [{"id": "s6", "place": "toilet", "stations": S6}]
 s6 = CARD.get('s6', 1.0)
 F6["card_scale"] = {"newguy": [[0, s6, s6], [2000, s6, s6]]}
 F6["acts"] = [dict(who="newguy", at=0, pos=[NG6[0], NG6[1], 0], pose="m:../../ep_toilet/ng6", look=LOOK(NG6, c515['loc']), note="wince, flush snap 507-508, relief, sweat")]
+F6["acts"] += [dict(who="newguy", at=0, face="k:nervous", note="wince"), dict(who="newguy", at=507, face="k:afSweat", note="SNAP: wide eyes, o mouth, one drop"),
+               dict(who="newguy", at=510, face="k:nervous", note="recoil"), dict(who="newguy", at=513, face="k:nervousSmile", note="relaxed smile, one sweat drop")]
 
 # ---------------- shot 12 + 12->13 + 13 (wide dark room -> hatch -> under the floor -> WASTE VENT flange; cut in the dark nozzle f1176 -> tube).
 c1030, c1105, c1125, c1150, c1190 = C['f1030'], C['f1105'], C['f1125'], C['f1150'], C['f1190']; NG12 = A['newguy_s12']; CM12 = A['commander_s12']
@@ -141,6 +144,10 @@ F12["acts"] = [dict(who="commander", at=0, pos=[CM12[0], CM12[1] - .1, 0], pose=
                dict(who="commander", at=1100, visible=False, note="out of frame since f1074 (camera move); hidden"),
                dict(who="newguy", at=0, pos=[NG12[0], NG12[1], 0], pose="m:../../ep_toilet/ng12", look=LOOK(NG12, c1030['loc']), note="scared, innocent smile, explains"),
                dict(who="newguy", at=1072, pos=NGC, move_s=0.7, ease="inout", look=LOOK(NGC, c1105['loc']), note="slides to centre f1072-1093, eased"),
+               dict(who="commander", at=0, face="k:annoyed", note="glare"), dict(who="commander", at=1040, face="k:angry", note="flush?"),
+               dict(who="newguy", at=0, face="k:afSweat", note="stiff, scared"), dict(who="newguy", at=1038, face="k:happy", note="innocent smile, flush? f1040"),
+               dict(who="newguy", at=1054, face="k:smug", note="explaining"), dict(who="newguy", at=1058, face="k:talk", note="Well, f1061"), dict(who="newguy", at=1066, face="k:smug", note="a spaceship toilet"),
+               dict(who="newguy", at=1097, face="k:browUp", note="turns to the toilet coming apart, points"), dict(who="newguy", at=1102, face="k:happy", note="shrug smile, have pipes."),
                dict(who="newguy", at=CARD.get('ng_hide', 1121), visible=False, note="left the frame right with the pan (his f1120); no characters after")]
 
 CAPS = [("If you", 0.0), ("flush", .36), ("the", .58), ("toilet", .78), ("on a", 1.08), ("spaceship,", 1.42),

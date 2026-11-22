@@ -19,8 +19,8 @@ const talk = (f, a, b, on, off) => f >= on && f < off ? (Math.floor((f - on) / 3
 // magazine lowered ("toilet." 360); 376-384 leans to the commander ("What's it" 380); 388-392 laughs, arms out ("gonna do?"), 392 tosses the
 // magazine (the set mover flies off up-left, film.json held); 396-410 hands on hips, smug, legs dangle.
 function ng4(t, ch) { const f = F(t);
-  const L = P2([[0, { f: .5, d: .3 }], [356, { f: .4, d: .6 }, 3], [376, { f: .55, d: .35 }, 3], [388, { f: .95, d: -.35 }, 3], [396, { f: .35, d: .55 }, 3]], f);
-  const R = P2([[0, { f: .45, d: .45 }], [388, { f: .95, d: -.2 }, 3], [396, { f: .35, d: .55 }, 3]], f);
+  const L = P2([[0, { f: .5, d: .3 }], [356, { f: .4, d: .6 }, 3], [376, { f: .55, d: .35 }, 10], [386, { f: .95, d: -.35 }, 12], [396, { f: .35, d: .55 }, 14]], f);
+  const R = P2([[0, { f: .45, d: .45 }], [386, { f: .95, d: -.2 }, 12], [396, { f: .35, d: .55 }, 14]], f);
   const head = tr([[0, 4], [317, -6, 3], [330, 9, 3], [348, -2, 3], [376, -7, 3], [388, 0, 3], [396, 4, 3]], f) + tilt(f, 5, 1.8);
   const rot = tr([[0, 0], [376, -7, 4], [388, 0, 3], [396, 3, 3]], f) + tilt(f, 21, 1.2);
   let face = step([[0, 'k:afEyeRoll'], [316, 'k:standard'], [317, 'k:surprised'], [330, 'k:afEyeRoll'], [348, 'k:smug'], [356, 'k:smug'], [374, 'k:smug'], [388, 'k:laugh'], [396, 'k:smug']], f);

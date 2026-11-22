@@ -135,7 +135,7 @@ PORTS = {'porthole_a': 0, 'porthole_b': 2}                           # window in
 def win_v(i, z):
     o, U, V, N, L = frame(i); return (z - o.z) / V.z
 def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
-    o, U, V, N, L = frame(i); nrow = max(1, round(L / ph)); ph = L / nrow; g = .045; t = .06
+    o, U, V, N, L = frame(i); nrow = max(1, round(L / ph)); ph = L / nrow; g = .018; t = .014   # round 7: flat panels, thin seams (f880)
     bk, bp, br, bs = B(), B(), B(), B()
     for u0, u1, v0, v1 in subs([(0, XB, 0, L)], holes):
         abox(bk, u1 - u0, v1 - v0, .03, MF(o + U * ((u0 + u1) / 2) + V * ((v0 + v1) / 2) + N * (-.015), U, V, N), bev=0)
@@ -143,13 +143,14 @@ def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
         sh = pw * rnd.uniform(.2, .8); u = -sh; step = pw
         while u < XB:
             for u0, u1, v0, v1 in subs([(max(u, 0) + g, min(u + step, XB) - g, r * ph + g, (r + 1) * ph - g)], holes):
-                abox(bp, u1 - u0, v1 - v0, t, MF(o + U * ((u0 + u1) / 2) + V * ((v0 + v1) / 2) + N * (t / 2), U, V, N), bev=.018)
-                k = 0; ru = u0 + .12
-                while ru < u1 - .1 and v1 - v0 > .3:
-                    acyl(br, .022, .02, MF(o + U * ru + V * (v1 - .07) + N * (t + .005), U, V, N), seg=6); ru += .32
+                abox(bp, u1 - u0, v1 - v0, t, MF(o + U * ((u0 + u1) / 2) + V * ((v0 + v1) / 2) + N * (t / 2), U, V, N), bev=.004)
+                ru = u0 + .05                                         # fine dotted rivet rows along the top and bottom of each panel
+                while ru < u1 - .04 and v1 - v0 > .2:
+                    for vv in (v1 - .035, v0 + .035): acyl(br, .007, .008, MF(o + U * ru + V * vv + N * (t + .002), U, V, N), seg=6)
+                    ru += .09
                 if (u1 - u0) > .6 and (v1 - v0) > .5 and rnd.random() < .6:
                     su, sv = u0 + rnd.uniform(.15, u1 - u0 - .45), v0 + rnd.uniform(.12, v1 - v0 - .12)
-                    abox(bs, rnd.uniform(.12, .3), .025, .006, MF(o + U * (su + .15) + V * sv + N * (t + .002), U, V, N), bev=0)
+                    abox(bs, rnd.uniform(.12, .3), .02, .003, MF(o + U * (su + .15) + V * sv + N * (t + .001), U, V, N), bev=0)
             u += step; step = pw * rnd.choice((.5, .75, 1., 1., 1.25, 1.5))
     nm = 'hull_' + [k for k, v in EDGE.items() if v == i][0]
     obj(nm + '_backing', bk, 'hull_core'); obj(nm + '_panels', bp, mname); obj(nm + '_rivets', br, 'rivet', smooth=True); obj(nm + '_scuffs', bs, 'scuff')
@@ -162,7 +163,7 @@ hull_face(EDGE['shoulder_p'], 'hull_top', pw=2.2, ph=1.0); hull_face(EDGE['shoul
 # belt stripe + sill on both sides (z -1.39..-1.0 stripe, sill under it), roof dashes, LODESTAR on both shoulders
 bst, bsl, bd = B(), B(), B()
 for side in (1, -1):
-    abox(bst, XB - .1, .1, .39, MT((XB / 2, side * (HW + .07), -1.195)), bev=.02); abox(bsl, XB - .1, .08, .2, MT((XB / 2, side * (HW + .06), -1.5)), bev=.02)
+    abox(bst, XB - .1, .06, .14, MT((XB / 2, side * (HW + .04), -1.07)), bev=.01); abox(bsl, XB - .1, .05, .04, MT((XB / 2, side * (HW + .035), -1.175)), bev=.008)   # round 7: thin stripe + thin pale line (f880)
     o, U, V, N, L = frame(EDGE['shoulder_p' if side > 0 else 'shoulder_n'])
     for x in [1.0 + 1.5 * k for k in range(14)]: abox(bd, .62, .12, .05, MF(o + U * x + V * (L * .82) + N * .085, U, V, N), bev=.01)
 for y in (.55, -.55):
@@ -196,38 +197,48 @@ def stub_room(name, x, y1=-.5, px=.15, pw=.55, ph=.8, pz=-.1):
     obj(name + '_room_walls', bw, 'stub_wall'); obj(name + '_room_floor', bf, 'stub_floor')
     bm = B(); arring(bm, pw, ph, min(.2, pw * .36), pw * .18, .08, MF((x + px, y1 + .07, pz), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
     bm = B(); aquad(bm, pw + .03, ph + .03, MF((x + px, y1 + .06, pz), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
+    bm = B(); abeam(bm, (x - RW / 2 + .06, y1 + .07, .12), (x + RW / 2 - .06, y1 + .07, .12), .012, 6)   # round 7: thin red rail, thin panel lines on the back wall
+    obj(name + '_room_rail', bm, 'stub_rail')
+    bm = B()
+    for k in range(-2, 3): abox(bm, .008, .004, z1 - z0 - .2, MT((x + .225 + k * .45, y1 + .052, (z0 + z1) / 2)), bev=0)
+    for zz in (-.75, -.3, .55, 1.0): abox(bm, RW - .12, .004, .008, MT((x, y1 + .052, zz)), bev=0)
+    obj(name + '_room_lines', bm, mat('stub_line', col='#9a978e', rough=.8, es=.3, emit='#9a978e'))
     ANCH[name] = [x, HW + .15, WIN_Z]; ANCH[name + '_card'] = [x - .1, HW - .7, z0 + .05]
 stub_room('porthole_a', WIN_X[PORTS['porthole_a']]); stub_room('porthole_b', WIN_X[PORTS['porthole_b']], y1=HW - 1.25, px=-.03, pw=.24, ph=.36, pz=-.2)   # round 6: shot 11 room shallow, small inner porthole right of centre
 # hazard box (the waste vent from outside) on the stripe under porthole_b, a loose wrench drifting by the stripe (mover)
-xh = WIN_X[PORTS['porthole_b']]; box('hazard_box', (.46, .12, .46), (xh + .55, HW + .17, -1.2), 'hazard_y', bev=.02)
+xh = WIN_X[PORTS['porthole_b']] - 1.5; box('hazard_box', (.46, .12, .46), (xh + .55, HW + .17, -1.2), 'hazard_y', bev=.02)   # round 7: moved aft, out of the f880 view
 box('hazard_box_core', (.34, .03, .34), (xh + .55, HW + .235, -1.2), 'black', bev=.01); cyl('hazard_lens', .09, .04, (xh + .55, HW + .26, -1.2), mat('hazard_lens', col='#3a6070', rough=.2), rot=(90, 0, 0))
 bm = B(); abox(bm, .5, .05, .08, MT((0, 0, 0)), bev=.01); alathe(bm, [(.08, -.025), (.08, .025)], 6, MT((.27, 0, 0), (90, 0, 0))); alathe(bm, [(.06, -.025), (.06, .025)], 6, MT((-.26, 0, 0), (90, 0, 0)))
 obj('wrench', bm, 'wrench', (12.4, HW + 1.1, -1.75), (20, 10, 35), mover={'drift': [.15, .05, .03, 25]})
-# ------------------------------------------------------------------ nose: opaque lower skin + top brow, glass above the floor line, navy bars
-def ring(x, P): return [Vector((x, y, z)) for y, z in P]
-RA, RF = ring(XB, PROF), ring(XN, FRONT)
-GLASS_E = (2, 3, 5, 6); bo, bgl, bbar = B(), B(), B()
-for i in range(8):
-    j = (i + 1) % 8; quad = [RA[i], RA[j], RF[j], RF[i]]
-    if i in GLASS_E:
-        apoly(bgl, quad)
-        for t in (1 / 3, 2 / 3): abeam(bbar, RA[i].lerp(RF[i], t), RA[j].lerp(RF[j], t), .045)
-    else: apoly(bo, quad, .07)
-    abeam(bbar, RA[i], RF[i], .06)
-for i in range(8): abeam(bbar, RA[i], RA[(i + 1) % 8], .07); abeam(bbar, RF[i], RF[(i + 1) % 8], .06)
-apoly(bgl, [RF[0], RF[1], RF[2], RF[7]][::-1]); apoly(bgl, [RF[2], RF[3], RF[4], RF[5], RF[6], RF[7]][::-1])
-obj('nose_skin', bo, 'hull_side'); obj('canopy_glass', bgl, 'glass'); obj('canopy_bars', bbar, 'canopy_bar', smooth=True)
+# ------------------------------------------------------------------ round 7 nose (his f560-f700): solid roof slab overhanging a big glass box, solid skirt under it
+GZ0, GZ1 = -1.25, 2.0; GF0, GF1 = 26.4, 25.9; GW, GC, GCD = 1.1, 2.05, .7      # glass floor/top z; front pane x at bottom/top (sloped back); front half width, side half width, chamfer depth
+def gpt(s, k, z):
+    xf = GF0 + (GF1 - GF0) * (z - GZ0) / (GZ1 - GZ0)
+    return Vector(((xf, s * GW, z), (xf - GCD, s * GC, z), (XB, s * GC, z))[k])
+def aprism(bm, pts, z0, z1):
+    b = [bm.verts.new((x, y, z0)) for x, y in pts]; t = [bm.verts.new((x, y, z1)) for x, y in pts]; n = len(pts)
+    bm.faces.new(b[::-1]); bm.faces.new(t)
+    for i in range(n): j = (i + 1) % n; bm.faces.new((b[i], b[j], t[j], t[i]))
+bgl, bbar = B(), B()
+apoly(bgl, [gpt(-1, 0, GZ0), gpt(1, 0, GZ0), gpt(1, 0, GZ1), gpt(-1, 0, GZ1)])
+for s in (1, -1):
+    for k in (0, 1): apoly(bgl, [gpt(s, k, GZ0), gpt(s, k + 1, GZ0), gpt(s, k + 1, GZ1), gpt(s, k, GZ1)][::(1 if s > 0 else -1)])
+    for k in (0, 1, 2): abeam(bbar, gpt(s, k, GZ0), gpt(s, k, GZ1), .035)          # thin navy bars at the pane edges only
+for z in (GZ0 + .02, GZ1 - .02):
+    for a, b_ in ((gpt(-1, 0, z), gpt(1, 0, z)), (gpt(1, 0, z), gpt(1, 1, z)), (gpt(-1, 0, z), gpt(-1, 1, z)), (gpt(1, 1, z), gpt(1, 2, z)), (gpt(-1, 1, z), gpt(-1, 2, z))): abeam(bbar, a, b_, .035)
+obj('canopy_glass', bgl, 'glass'); obj('canopy_bars', bbar, 'canopy_bar', smooth=True)
+SW = GC + .17; bm = B(); aprism(bm, [(XB, -SW), (GF1 - .45, -SW), (GF1 + .38, -GW - .1), (GF1 + .38, GW + .1), (GF1 - .45, SW), (XB, SW)], GZ1, HW); obj('nose_roof', bm, 'nose_roof')   # thick flat slab, overhangs the glass
+bm = B(); aprism(bm, [(XB, -SW), (GF0 - .55, -SW), (GF0 + .22, -GW - .1), (GF0 + .22, GW + .1), (GF0 - .55, SW), (XB, SW)], -HW + .2, GZ0); obj('nose_skin', bm, 'hull_side')   # solid skirt under the glass
 bm = B()
-for t in (.25, .5, .75): abeam(bm, RA[4].lerp(RF[4], t) + Vector((0, 0, .075)), RA[5].lerp(RF[5], t) + Vector((0, 0, .075)), .02)
+for t in (.3, .55, .8): abeam(bm, (XB + (GF1 - XB) * t, -SW + .02, HW + .005), (XB + (GF1 - XB) * t, SW - .02, HW + .005), .012)
 obj('nose_brow_seams', bm, 'hull_core')
-bm = B()                                                           # 2 white streak reflections on the glass (thin emissive slivers just outside it)
-for (i, t0, t1) in ((2, .25, .55), (6, .45, .8)):
-    p0 = RA[i].lerp(RF[i], t0); p1 = RA[(i + 1) % 8].lerp(RF[(i + 1) % 8], t1); n = Vector((0, 1 if i == 2 else -1, 0)) * .03
-    abeam(bm, p0 + n, p1 + n, .012)
-obj('canopy_streaks', bm, mat('glass_streak', col='#ffffff', es=1.2, alpha=.5))
+bm = B()                                                           # 2 faint white streak reflections on the glass
+for s, z0, z1 in ((1, -.3, 1.3), (-1, .2, 1.7)):
+    p0, p1 = gpt(s, 0, z0).lerp(gpt(s, 1, z0), .3), gpt(s, 0, z1).lerp(gpt(s, 1, z1), .75); n = Vector((.7, s * .7, 0)) * .03; abeam(bm, p0 + n, p1 + n, .01)
+obj('canopy_streaks', bm, mat('glass_streak', col='#ffffff', es=.8, alpha=.35))
 # nose details outside: small dark block with 2 short cylinders under the canopy (+Y side), antenna mast + pale disc on the brow
-box('nose_block', (.7, .35, .4), (24.0, 2.02, -1.55), 'engine', bev=.03)
-for dx in (-.15, .15): cyl('nose_block_cyl_%d' % (dx > 0), .09, .25, (24.0 + dx, 2.25, -1.55), 'black', rot=(90, 0, 0))
+box('nose_block', (.7, .35, .4), (24.0, SW + .17, -1.7), 'engine', bev=.03)
+for dx in (-.15, .15): cyl('nose_block_cyl_%d' % (dx > 0), .09, .25, (24.0 + dx, SW + .4, -1.7), 'black', rot=(90, 0, 0))
 # ================================================================== B. AFT: collar, truss, tanks, fans, arrays, engine, flame
 bm = B(); alathe(bm, [(2.25, 0), (2.25, -.3), (2.1, -1.0), (1.6, -1.7), (.85, -2.1), (.6, -2.2)], 11, MF((0, 0, 0), (0, 1, 0), (0, 0, 1), (1, 0, 0)), jit=.07)
 obj('gold_collar', bm, 'gold')
@@ -318,17 +329,17 @@ cloud('glitter_collar', 160, lambda r: (r.gauss(0, 1.2), r.gauss(0, 1.8), r.gaus
 for k in range(3):                                                 # around the canopy for shot 7 (on in 3 steps: 'glitter_ck')
     cloud('glitter_cockpit_%d' % k, 420, lambda r: (r.uniform(-3, 9), r.uniform(-7, 7), r.uniform(-4, 6)), .008, .02, (XN, 0, 0), 40 + k)
 # ================================================================== F. COCKPIT INTERIOR (inside the nose, real geometry)
-def inner_y(x, z):
-    t = (x - XB) / (XN - XB); hw = HW * (1 - t) + HW * FS * t; return hw if z < .93 else hw - (z - .93)
-FLZ = -1.25; bm = B(); apoly(bm, [(XB + .05, -HW + .1, FLZ), (XB + .05, HW - .1, FLZ), (XN - .5, inner_y(XN - .5, -1) - .05, FLZ + .3 * (1 - FS)), (XN - .5, -inner_y(XN - .5, -1) + .05, FLZ + .3 * (1 - FS))], .05)
+FLZ = GZ0; IW = GC - .06                                              # round 7: interior fits the glass box
+bm = B(); apoly(bm, [(XB + .05, -IW, FLZ), (XB + .05, IW, FLZ), (GF0 - GCD - .05, IW, FLZ), (GF0 - .08, GW - .05, FLZ), (GF0 - .08, -GW + .05, FLZ), (GF0 - GCD - .05, -IW, FLZ)][::-1], .05)
 obj('ck_floor', bm, 'ck_floor')
-bm = B(); apoly(bm, [(XB + .05, -.9, HW - .1), (XB + .05, .9, HW - .1), (XN - .1, .9 * FS, HW * FS + FZ - .1), (XN - .1, -.9 * FS, HW * FS + FZ - .1)], .04); obj('ck_roof_liner', bm, 'ck_roof')
+bm = B(); apoly(bm, [(XB + .05, -IW, GZ1 - .03), (XB + .05, IW, GZ1 - .03), (GF1 - GCD, IW, GZ1 - .03), (GF1 - .05, GW, GZ1 - .03), (GF1 - .05, -GW, GZ1 - .03), (GF1 - GCD, -IW, GZ1 - .03)], .03); obj('ck_roof_liner', bm, 'ck_roof')
 bm = B(); apoly(bm, [(XB + .03, y * .985, z * .985) for y, z in PROF][::-1], .05); obj('ck_back_wall', bm, 'ck_wall')
-bm = B(); z = FLZ + .25
-while z < HW - .25:
-    hw = inner_y(XB, z) - .2
-    for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * hw, z - .35), .07, 4)
-    z += .26
+bm = B(); z = FLZ + .2
+while z < GZ1 - .15:                                                 # chevron slats on the back wall
+    for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * (IW - .1), z - .45), .06, 4)
+    z += .22
+for k in range(14):                                                  # diagonal slats on the floor
+    x = XB + .3 + k * .3; abeam(bm, (x, -IW + .2, FLZ + .04), (x + .5, IW - .2, FLZ + .04), .025, 4)
 obj('ck_slats', bm, 'ck_slat')
 LX, LT, LB = 23.4, (.40, 1.93), (.52, 1.2)                         # round 6 (f600 fit): short lamps over the navigator, rods splay out a little
 for k, s in enumerate((-1, 1)):                                     # 2 pairs of black rods with an orange glowing tube + round tip
@@ -365,7 +376,7 @@ for s in (1, -1):                                                  # side consol
 bm = B(); alathe(bm, [(.0, 0), (.6, 0), (.6, .05), (.55, .25), (.4, .45), (.0, .55)], 16, Matrix.Diagonal((1, .55, 1, 1))); obj('red_half_round', bm, 'red_half', (22.6, -1.3, FLZ), smooth=True)
 box('red_half_block', (.3, .25, .2), (22.6, -1.3, FLZ + .6), 'black', bev=.02)
 box('blue_box_table', (.6, .6, .36), (22.4, 1.0, FLZ + .18), 'console', bev=.02); box('blue_box', (.42, .42, .3), (22.4, 1.0, FLZ + .51), 'blue_box', bev=.03)   # round 6 (f600 fit)
-pic('wall_badge', .36, .36, MF((22.2, inner_y(22.2, .5) - .12, .5), (1, 0, 0), (0, 0, 1), (0, -1, 0)), 'badge.png', es=1.2)
+pic('wall_badge', .36, .36, MF((XB + .2, 1.2, .45), (0, 1, 0), (0, 0, 1), (1, 0, 0)), 'badge.png', es=1.2)   # round 7: on the back wall, right (f560)
 # floating things (movers): the navigator's brown cup, a book, a pencil, a juice box
 for nm, size, loc, rot, mc in (('float_cup', (.12, .12, .16), (23.55, .35, .1), (10, 20, 0), mat('cup_brown', col='#7a4a2a', rough=.7)),
                                ('float_book', (.3, .22, .05), (23.8, -1.1, .9), (30, 15, 40), mat('book_blue', col='#2a4fb0', rough=.8)),
@@ -373,10 +384,10 @@ for nm, size, loc, rot, mc in (('float_cup', (.12, .12, .16), (23.55, .35, .1), 
                                ('float_juice', (.1, .07, .16), (23.3, -.7, 1.5), (20, -15, 10), 'juice')):
     box(nm, size, loc, mc, bev=.012, rot=rot, mover={'drift': 'kit floats it'})
 # star map sheet taped on the inside of the front glass (shot 8): picture + 2 tape strips
-sx = XN - .1; scz = (FRONT[2][1] + FRONT[3][1]) / 2 + .15; ANCH['star_map'] = [sx, 0, scz]
-pic('star_map_sheet', .93, 1.16, MF((sx, 0, scz), (0, -1, 0), (0, 0, 1), (-1, 0, 0)), 'starmap.png', es=2.5, mover={'state': 'starmap 0-1'})
+scz = .75; sx = GF0 + (GF1 - GF0) * (scz - GZ0) / (GZ1 - GZ0) - .07; ANCH['star_map'] = [sx, 0, scz]   # round 7: smaller, lower (f740)
+pic('star_map_sheet', .5, .62, MF((sx, 0, scz), (0, -1, 0), (0, 0, 1), (-1, 0, 0)), 'starmap.png', es=2.5, mover={'state': 'starmap 0-1'})
 bm = B()
-for s in (1, -1): abox(bm, .01, .22, .07, MT((sx - .005, s * .44, scz + .56), (s * 40, 0, 0)), bev=0)
+for s in (1, -1): abox(bm, .01, .13, .045, MT((sx - .005, s * .24, scz + .3), (s * 40, 0, 0)), bev=0)
 obj('star_map_tape', bm, 'tape', mover={'follows': 'star_map_sheet'})
 # ================================================================== G. RADIO STATION on the +Y wall (desk, lower panel, sloped upper panel, radio)
 # radio frame, local: a along +X, b toward the wall (+Y), z up, origin at the desk top front centre
@@ -428,7 +439,7 @@ XR = RYAW.to_3x3() @ Vector((1, 0, 0)); FN = XR.cross(FA)
 FC = RD + RYAW.to_3x3() @ Vector((0, -.195, .14))
 FM_ = MF(FC + FN * .012, XR, FA, FN)
 bm = B(); arring(bm, .5, .3, .01, .012, .01, FM_, lip=.003); obj('radio_face_edge', bm, 'radio_edge')
-pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=.4)
+pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=.25)
 for k in range(4):
     pic('radio_digits_%d' % k, .22, .085, FM_ @ Matrix.Translation((-.04, .035, .006 + .0005 * k)), 'radio_digits_%d.png' % k, es=2.2, alpha=False, mover={'state': 'digits %d' % k})
 bm = B()
@@ -524,9 +535,9 @@ def standin(name, col, h, loc, rz, hm='sd_head'):
 NG = PAL['sd_newguy']['hex']; NV = PAL['sd_navigator']['hex']
 STANDINS = {'standin_newguy_s2': [2], 'standin_newguy_s11': [11], 'standin_navigator_s7': [7]}
 pa, pb = ANCH['porthole_a_card'], ANCH['porthole_b_card']
-standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .47, pb[1] + .45, -1.5), 0)   # round 6: left of the opening (screen), beside the inner porthole
+standin('standin_newguy_s2', NG, 1.70, (pa[0] + .05, pa[1] + .2, -1.2), 0); standin('standin_newguy_s11', NG, 1.70, (pb[0] + .40, pb[1] + .45, -1.5), 0)   # round 6: left of the opening (screen), beside the inner porthole
 standin('standin_navigator_s7', NV, 1.66, (23.9, 0, -.53), 90)   # round 6 (f600 fit): head centre z .82 under the lamps
-ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .47, pb[1] + .45, -1.5]
+ANCH['navigator_s7'] = [23.9, 0, -.53]; ANCH['newguy_s2'] = [pa[0] + .05, pa[1] + .2, -1.2]; ANCH['newguy_s11'] = [pb[0] + .40, pb[1] + .45, -1.5]
 def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
     d = bpy.data.lights.new(name, kind); d.color = col
     if kind == 'SUN': d.energy = watts; d.angle = math.radians(radius)

@@ -282,14 +282,14 @@
     {
      "at": 422,
      "pos": [
-      -0.549,
-      -3.7315,
-      1.512
+      -0.4758,
+      -3.802,
+      1.5108
      ],
      "aim": [
-      -0.098,
-      1.2485,
-      1.511
+      -0.0248,
+      1.178,
+      1.5098
      ],
      "lens": 31.18,
      "roll": -1.8,
@@ -319,13 +319,13 @@
   "newguy": [
    [
     0,
-    0.9,
-    0.9
+    0.84,
+    0.84
    ],
    [
     300,
-    0.9,
-    0.9
+    0.84,
+    0.84
    ],
    [
     318,
@@ -341,13 +341,13 @@
   "commander": [
    [
     0,
-    0.8,
-    0.8
+    0.745,
+    0.745
    ],
    [
     300,
-    0.8,
-    0.8
+    0.745,
+    0.745
    ],
    [
     318,
@@ -366,13 +366,19 @@
    "who": "commander",
    "at": 0,
    "pos": [
-    -0.684,
-    0.45,
-    0.953
+    -0.638,
+    0.3,
+    1.054
    ],
    "pose": "m:../../ep_cab/cmd4",
    "look": "newguy",
    "note": "floating, weightless (bob in the move); turned to the new guy"
+  },
+  {
+   "who": "commander",
+   "at": 284,
+   "face": "k:annoyed",
+   "note": "face on his frame"
   },
   {
    "who": "commander",
@@ -401,54 +407,22 @@
    "note": "slow float drift to his f390 mark, eased"
   },
   {
-   "who": "newguy",
-   "at": 0,
-   "pos": [
-    0.093,
-    0.45,
-    0.533
-   ],
-   "pose": "m:../../ep_cab/ng4",
-   "look": [
-    0.093,
-    -5.55,
-    1.4
-   ],
-   "note": "floating, faces the lens"
+   "who": "commander",
+   "at": 340,
+   "face": "k:afEyeRoll",
+   "note": "face on his frame"
   },
   {
-   "who": "newguy",
-   "at": 300,
-   "pos": [
-    0.181,
-    0.45,
-    -0.006
-   ],
-   "move_s": 0.6,
-   "ease": "inout",
-   "look": [
-    0.093,
-    -5.55,
-    1.4
-   ],
-   "note": "his f300 mark -> his f330 mark under the pull-back, eased"
+   "who": "commander",
+   "at": 353,
+   "face": "k:annoyed",
+   "note": "face on his frame"
   },
   {
-   "who": "newguy",
-   "at": 335,
-   "pos": [
-    -0.074,
-    0.45,
-    0.136
-   ],
-   "move_s": 1.8,
-   "ease": "inout",
-   "look": [
-    0.093,
-    -5.55,
-    1.4
-   ],
-   "note": "slow float drift to his f390 mark, eased"
+   "who": "commander",
+   "at": 396,
+   "face": "k:skeptical",
+   "note": "face on his frame"
   },
   {
    "who": "navigator",
@@ -464,6 +438,12 @@
   },
   {
    "who": "navigator",
+   "at": 284,
+   "face": "k:skeptical",
+   "note": "face on his frame"
+  },
+  {
+   "who": "navigator",
    "at": 335,
    "pos": [
     0.922,
@@ -474,6 +454,165 @@
    "ease": "inout",
    "look": "newguy",
    "note": "slow float drift to his f390 mark, eased"
+  },
+  {
+   "who": "navigator",
+   "at": 348,
+   "face": "k:annoyed",
+   "note": "face on his frame"
+  },
+  {
+   "who": "navigator",
+   "at": 388,
+   "face": "k:skeptical",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 0,
+   "pos": [
+    0.088,
+    0.3,
+    0.659
+   ],
+   "pose": "m:../../ep_cab/ng4",
+   "look": [
+    0.088,
+    -5.7,
+    1.4
+   ],
+   "note": "floating, faces the lens"
+  },
+  {
+   "who": "newguy",
+   "at": 284,
+   "face": "k:afEyeRoll",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 300,
+   "pos": [
+    0.181,
+    0.45,
+    -0.006
+   ],
+   "move_s": 0.6,
+   "ease": "inout",
+   "look": [
+    0.088,
+    -5.7,
+    1.4
+   ],
+   "note": "his f300 mark -> his f330 mark under the pull-back, eased"
+  },
+  {
+   "who": "newguy",
+   "at": 316,
+   "face": "k:surprised",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 330,
+   "face": "k:afEyeRoll",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 335,
+   "pos": [
+    -0.074,
+    0.45,
+    0.136
+   ],
+   "move_s": 1.8,
+   "ease": "inout",
+   "look": [
+    0.088,
+    -5.7,
+    1.4
+   ],
+   "note": "slow float drift to his f390 mark, eased"
+  },
+  {
+   "who": "newguy",
+   "at": 348,
+   "face": "k:smug",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 356,
+   "face": "k:talk",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 359,
+   "face": "k:smug",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 362,
+   "face": "k:talk",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 365,
+   "face": "k:smug",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 368,
+   "face": "k:talk",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 371,
+   "face": "k:smug",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 374,
+   "face": "k:smug",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 378,
+   "face": "k:talk",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 381,
+   "face": "k:happy",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 384,
+   "face": "k:talk",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 388,
+   "face": "k:laugh",
+   "note": "face on his frame"
+  },
+  {
+   "who": "newguy",
+   "at": 396,
+   "face": "k:smug",
+   "note": "face on his frame"
   }
- ]
+ ],
+ "collide": {}
 }
