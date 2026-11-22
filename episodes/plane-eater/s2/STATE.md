@@ -73,3 +73,12 @@ NOT done: (3) closes land but do not READ:
 - NOT done: the props sit at the hand_at points but the DRAWN near hand is on the other side of his body in the front view (R/L mirror in the front
   drawing), so the bites float beside his face, not in a fist; the gum strand is not visible (tire square only); frame_checks inside the window: 2 FAIL,
   owner cut by the left edge f512-519 (the belly settle); the f0-235 FAILs are before the window.
+
+## KIT BUG round (2026-11-22, cap 40 min, took about 65 min) — held3d on a seated camsafe card: FIXED in the kit
+- Cause + fix + guard: LECONS_TECHNIQUES.md "held3d props hidden / in the wrong fist on a SEATED camsafe card". film.js h3Frame (seat pivot + depth nudge),
+  puppets.mjs camsafeView (hand identity swap + forward reach in front/3-4). Guard: check_held_seated.sh (PASS). Test film: film_heldtest.json (shares out/plan
+  with film.json: re-bake film.json after running the guard). Backups of the two kit files before the fix: in the session scratchpad only.
+- S2 applied: held3d back on (hand_at off): oil glass, jug, tumbler, tongs, wing slice, hub, cushion, tire in his fists on their words. f512 reframed.
+- Checks: camsafe 1040 PASS / 0 FAIL; frame_checks inside 257-519: 0 FAIL (3 FAIL on f0-235 = before the window, S1's part).
+- Still weak: the gum strand barely reads at f486 (the tire stays at his mouth: the pull-out reach is small after the front-view mapping); the scale stands in
+  the row-14..17 foreground at the left; bites are at the mouth, not held up to the lens first.

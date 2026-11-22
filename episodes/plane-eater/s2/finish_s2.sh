@@ -5,7 +5,7 @@ ffmpeg -v error -y -framerate 30 -start_number 257 -i frames/f_%05d.png -ss 8.56
 python3 - <<'E'
 from PIL import Image, ImageDraw
 keys = [(259, 'R10 standing at the chair'), (304, 'R11 glass: oil at his nose'), (335, 'R12 jug: the glug'), (375, 'R13 pounds: needle on 2 lb'),
-        (400, 'R14 wings: held up'), (421, 'R15 wheels: held up'), (445, 'R16 seats: held up'), (485, 'R17 tires: gum stretch'), (515, 'R18 doctors: belly pat')]
+        (402, 'R14 wings: bite'), (421, 'R15 wheels: held up'), (445, 'R16 seats: held up'), (486, 'R17 tires: gum stretch'), (515, 'R18 doctors: belly pat')]
 ims = [Image.open('frames/f_%05d.png' % f).convert('RGB') for f, _ in keys]; w, h = ims[0].size; s = 0.5; W, H = int(w * s), int(h * s)
 sheet = Image.new('RGB', (W * 3, (H + 24) * 3), 'white'); d = ImageDraw.Draw(sheet)
 for i, (im, (f, t)) in enumerate(zip(ims, keys)): x, y = (i % 3) * W, (i // 3) * (H + 24); sheet.paste(im.resize((W, H)), (x, y + 24)); d.text((x + 4, y + 6), 'f%d %s' % (f, t), fill='black')
