@@ -70,7 +70,7 @@ film = {
            dict(at=636, kind='shine', pos=along(sm(634) - .03), note='row 22: oil sparkle trail')],
     'moods': [
               dict(at=592, look='flash_white', note='row 21 POWER 2 cyan-white flash on THICK')],
-    'hand_at': [dict(who='doctor', f0=519, f1=600, at=[-0.08, 2.07, 1.50], note='row 19: his fist ON the left edge of the film')],
+    'hand_at': [dict(who='doctor', f0=519, f1=600, at=[-0.09, 2.07, 1.24], note='row 19: his fist ON the lower left corner of the film')],
     'takes': [{'id': 'A1', 'place': 'xray', 'stations': A1}, {'id': 'A2', 'place': 'xray', 'stations': [dict(A2[1], at=566, hold=0.3)]},
               {'id': 'B1', 'place': 'xray', 'stations': [dict(B1[0], at=578)] + B1[1:]}, {'id': 'B2', 'place': 'xray', 'stations': [dict(B2[0], at=616), B2[1]]},
               {'id': 'C', 'place': 'xray', 'stations': [dict(OUT[1], at=634, hold=0.2)]}],

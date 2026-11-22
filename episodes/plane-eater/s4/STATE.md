@@ -60,3 +60,9 @@ Checks: camsafe 1221 checks 0 FAIL (2 WARN); frame_checks 0 FAIL / 2 WARN (table
 NOT done: the coffin on the TOWER TOP still does not read at f838 (B3 framing at 838 is low; the coffin pops at 832 but is not seen). The coffin on his
 plate reads at 850 as an upright brown box (small). The owner at the cradle stands behind Michel's head in B4/B5 (overlap). Tree crown still in the
 top-left of the time-lapse wide (not a camera rise). film_A not checked on its own.
+
+## FIX ROUND 2 (lead: coffin + owner, 30 min cap)
+Done: makeCoffin() in sets/s4_apron.js = classic six-sided coffin, warm varnished wood, raised lid, brass cross + 6 brass handles; 1.25 m on the tower
+top (sits on the TV tier; the glb box was inside the TV cabinet), shrinks to 0.62 m in the fall onto his plate (same model on the plate and on the cloth).
+B3 end station re-aimed at the tower top (f838 shows the coffin). The owner at the cradle moved to (1.6, -1.3) and B4/B5 aims shifted left: he stands
+left of Michel, never behind his head. Re-rendered B3-B5 only. Weak: the coffin on the held plate stands upright (plate orientation in the hand).

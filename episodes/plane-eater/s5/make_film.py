@@ -31,7 +31,7 @@ acts = [
 held3d = [
     dict(who='michel', obj='fork', module='sets/pe_props.js', builder='buildFork', opts={}, grip='raise', hand='R', anchor='grip', tip='tip', when='always', scale=1),
     dict(who='michel', obj='knife', module='sets/pe_props.js', builder='buildKnife', opts={}, grip='raise', hand='L', anchor='grip', tip='tip', when='always', scale=1),
-    dict(who='owner', obj='rag', module='sets/pe_props.js', builder='buildRag', opts={}, grip='hang', hand='R', anchor='grip', when='always', scale=1),
+    dict(who='owner', obj='rag', module='sets/pe_props.js', builder='buildRag', opts={}, grip='hang', hand='L', anchor='grip', when='always', scale=1),
 ]
 
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
@@ -42,7 +42,7 @@ WCAM = [0.20, 1.70, 1.05]; WDIR = [0.25, 1.0, -0.12]          # row 38 close win
 stations = [
     st(943, [1.00, 0.30, 1.32], [0.0, 0.90, 0.90], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): Michel in front in seat B lifts the foil high off the grey meal, the owner at the window, wary', hold=0.9, creep=0.0, shows=['meal']),
     st(984, [0.80, 0.30, 1.28], [0.06, 0.62, 0.92], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
-    st(1003, [0.82, 0.32, 1.28], [0.08, 0.70, 0.94], 15, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4): knife and fork up, the strike: a neat bite out of the tray table; the owner wipes the window with his rag', hold=0.2, shows=['tray']),
+    st(1003, [0.85, 0.30, 1.30], [0.10, 1.05, 1.00], 13, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4): knife and fork up, the strike: a neat bite out of the tray table; the owner wipes the window with his rag', hold=0.2, shows=['tray']),
 ]
 props = {
     'meal': dict(pos=MEAL, kind='the grey airline meal'),
@@ -71,7 +71,7 @@ film = {
     'card_shade': dict(keys['card_shade'], amount=0, rim_amount=0),
     'post': {'dof': 0.0, 'dust': 0.2, 'bloom': 0.6, 'vignette': 0},
     'places': {'cabin': place}, 'props': props, 'acts': acts, 'held3d': held3d,
-    'hand_at': [dict(who='owner', f0=1001, f1=1021, at=[0.20, 1.74, 1.14], note='row 38: the rag ON the window glass at eye height')],
+    'hand_at': [dict(who='owner', f0=1001, f1=1021, at=[0.20, 1.74, 1.24], note='row 38: the rag ON the window glass at eye height')],
     'kicks': [{'at': 1001, 'amp': 3}],
     'fx': [dict(at=993, kind='glint', pos=[TRAY[0] - .1, TRAY[1], 1.3], note='row 37 "airline": a glint on the raised knife'),
            dict(at=1001, kind='clank', pos=[TRAY[0] + .08, TRAY[1] + .1, TRAY[2]], note='row 37 POWER 4: the bite out of the tray table, impact flash and sparks')],

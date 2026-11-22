@@ -328,7 +328,7 @@
    "builder": "buildRag",
    "opts": {},
    "grip": "hang",
-   "hand": "R",
+   "hand": "L",
    "anchor": "grip",
    "when": "always",
    "scale": 1
@@ -342,7 +342,7 @@
    "at": [
     0.2,
     1.74,
-    1.14
+    1.24
    ],
    "note": "row 38: the rag ON the window glass at eye height"
   }

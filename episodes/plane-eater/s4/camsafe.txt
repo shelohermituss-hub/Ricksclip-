@@ -1,5 +1,5 @@
 CAMERA-SAFE  s4  camsafe on  1221 checks: PASS 1219  WARN 2  FAIL 0
   FLICKER        2
-  f745 ownerBeardXL WARN  yaw 36 pitch 11.9  WARN FLICKER: view side -> 3/4 again 3 frames after the last change
+  f745 ownerBeardXL WARN  yaw 55.9 pitch 11.6  WARN FLICKER: view side -> 3/4 again 3 frames after the last change
       FIX: ease the camera through the switch angle, or hold the view (act key "view") for this move
 report -> /home/user/Ricksclip-/episodes/plane-eater/s4/out/plan/camsafe_report.json
