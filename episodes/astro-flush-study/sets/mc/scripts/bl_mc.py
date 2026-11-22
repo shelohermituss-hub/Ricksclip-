@@ -117,30 +117,30 @@ for s, x in ((1, 4.75), (-1, -4.75)):          # side monitors, portrait, turned
     pic('mc_' + nm, .93, 1.395, (x + .07 * math.sin(math.radians(rz)), -.42, 3.15), (90, 0, rz), 'mc_side_a.png' if s > 0 else 'mc_side_b.png')
 
 # ================================================================== controller desk (FAO, CAPCOM, GUIDO)
-DX0, DX1, DY, DD, DH = -4.7, -0.5, -9.65, 1.1, 1.15
+DX0, DX1, DY, DD, DH = -1.5, .37, -12.25, .8, .95      # round 2: solved from his f180 (heads .62 m apart, GUIDO end just left of the GO pedestal)
 DXC, DL, FY = (DX0 + DX1) / 2, DX1 - DX0, DY - DD / 2
 box('desk_body', (DL, DD, DH - .09), (DXC, DY, (DH - .09) / 2), 'desk_front', bev=.015)
 box('desk_top', (DL + .12, DD + .1, .09), (DXC, DY - .03, DH - .045), 'desk_top', bev=.02)
-box('desk_band', (DL, .02, .2), (DXC, FY - .011, DH - .2), 'desk_band', bev=0)
+box('desk_band', (DL, .02, .16), (DXC, FY - .011, DH - .16), 'desk_band', bev=0)
 STN = [DX0 + DL * (k + .5) / 3 for k in range(3)]
 for k, (lab, x) in enumerate(zip(('fao', 'capcom', 'guido'), STN)):
-    pic('mc_label_' + lab, .19 * 512 / 96, .19, (x, FY - .023, DH - .2), (90, 0, 0), 'mc_label_%s.png' % lab)
-    box('desk_panel_frame_%d' % k, (DL / 3 - .14, .02, DH - .52), (x, FY - .01, (DH - .52) / 2 + .08), 'desk_panel_frame', bev=.005)
-    box('desk_panel_%d' % k, (DL / 3 - .22, .03, DH - .6), (x, FY - .012, (DH - .52) / 2 + .08), 'desk_panel', bev=.005)
-    box('keyboard_%d' % k, (.62, .26, .06), (x - .05, DY - .2, DH + .03), 'keyboard', rot=(-6, 0, 0), bev=.01)
-    box('monitor_base_%d' % k, (.78, .36, .12), (x, DY + .18, DH + .06), 'monitor_base', bev=.015)
-    box('monitor_line_%d' % k, (.74, .01, .015), (x, DY - .005, DH + .1), mat('cyan_line', emit=PAL['cyan_line'], es=3.), bev=0)
-cyl('mug', .055, .13, (STN[0] + .45, DY - .3, DH + .065), 'mug', seg=16)
-cyl('mug_band', .057, .035, (STN[0] + .45, DY - .3, DH + .08), 'mug_band', seg=16)
+    pic('mc_label_' + lab, .11 * 512 / 96, .11, (x, FY - .023, DH - .16), (90, 0, 0), 'mc_label_%s.png' % lab)
+    box('desk_panel_frame_%d' % k, (DL / 3 - .08, .02, DH - .4), (x, FY - .01, (DH - .4) / 2 + .07), 'desk_panel_frame', bev=.005)
+    box('desk_panel_%d' % k, (DL / 3 - .13, .03, DH - .46), (x, FY - .012, (DH - .4) / 2 + .07), 'desk_panel', bev=.005)
+    box('keyboard_%d' % k, (.42, .2, .05), (x - .03, DY - .17, DH + .025), 'keyboard', rot=(-6, 0, 0), bev=.01)
+    box('monitor_base_%d' % k, (.5, .28, .1), (x, DY + .14, DH + .05), 'monitor_base', bev=.015)
+    box('monitor_line_%d' % k, (.46, .01, .015), (x, DY - .005, DH + .085), mat('cyan_line', emit=PAL['cyan_line'], es=3.), bev=0)
+cyl('mug', .055, .13, (STN[0] + .22, DY - .22, DH + .065), 'mug', seg=16)
+cyl('mug_band', .057, .035, (STN[0] + .22, DY - .22, DH + .08), 'mug_band', seg=16)
 ANCH['desk'] = [DXC, DY, DH]
-for lab, x in zip(('fao', 'capcom', 'guido'), STN): ANCH['ctl_' + lab] = [round(x, 3), DY + .75, 0]
+for lab, x in zip(('fao', 'capcom', 'guido'), STN): ANCH['ctl_' + lab] = [round(x, 3), DY + .65, 0]
 # bin with paper balls, right of the desk (gone after f150 when the director walks in)
 bm = B(); alathe(bm, [(.24, 0), (.27, .55)], 24); alathe(bm, [(.25, .53), (.255, .555)], 24)
 for i in range(5): abox(bm, .1, .1, .1, Matrix.Translation((rnd.uniform(-.1, .1), rnd.uniform(-.1, .1), .52 + rnd.uniform(0, .08))), bev=.03)
-o = obj('mc_bin', bm, 'bin', (-.05, -9.45, 0), smooth=True, mover=dict(kind='visible', f_off=150))
+o = obj('mc_bin', bm, 'bin', (.8, -11.95, 0), smooth=True, mover=dict(kind='visible', f_off=150))
 bm = B()
 for i in range(4): alathe(bm, [(.0, -.07), (.07, -.035), (.075, .03), (0, .07)], 10, Matrix.Translation((rnd.uniform(-.12, .12), rnd.uniform(-.12, .12), .58)))
-obj('mc_bin_paper', bm, 'paper', (-.05, -9.45, 0), smooth=True, mover=dict(kind='visible', f_off=150))
+obj('mc_bin_paper', bm, 'paper', (.8, -11.95, 0), smooth=True, mover=dict(kind='visible', f_off=150))
 
 # ================================================================== flight director: GO and NO GO pedestals with floor rings
 def pedestal(tag, x, y, top=True):
@@ -150,33 +150,33 @@ def pedestal(tag, x, y, top=True):
         a0, a1 = 2 * math.pi * k / n, 2 * math.pi * (k + 1) / n
         vs = [bm.verts.new((r * math.cos(a), r * math.sin(a), .028)) for r, a in ((.31, a0), (.36, a0), (.36, a1), (.31, a1))]; bm.faces.new(vs)
     obj('floor_ring_' + tag, bm, mat('floor_ring', emit=PAL['floor_ring'], es=1.6), (x, y, 0))
-    cyl('pedestal_pole_' + tag, .035, 1.3, (x, y, .68), 'pedestal_pole', seg=12)
-    if top: box('button_box_' + tag, (.36, .3, .22), (x, y, 1.42), 'button_box', bev=.025)
-    ANCH['pedestal_' + tag] = [x, y, 1.53]
-GX, GY, NX, NY = -.05, -10.35, 1.95, -10.6
+    cyl('pedestal_pole_' + tag, .035, PT - .2, (x, y, (PT - .2) / 2 + .02), 'pedestal_pole', seg=12)
+    if top: box('button_box_' + tag, (.36, .3, .22), (x, y, PT - .11), 'button_box', bev=.025)
+    ANCH['pedestal_' + tag] = [x, y, PT]
+GX, GY, NX, NY, PT = .49, -13.0, 1.44, -13.3, .98      # PT = top of the button boxes
 pedestal('go', GX, GY); pedestal('nogo', NX, NY, top=False)
-bm = B(); alathe(bm, [(.09, 0), (.09, .02), (.075, .06), (.04, .085), (0, .09)], 20); obj('mc_go_button', bm, mat('go_dome', emit=PAL['go_dome'], es=1.5, rough=.3), (GX, GY - .02, 1.53), smooth=True, mover=dict(kind='press', pressed=dict(loc=[GX, GY - .02, 1.505], rot=[0, 0, 0]), f=[224, 227]))
+bm = B(); alathe(bm, [(.09, 0), (.09, .02), (.075, .06), (.04, .085), (0, .09)], 20); obj('mc_go_button', bm, mat('go_dome', emit=PAL['go_dome'], es=1.5, rough=.3), (GX, GY - .02, PT), smooth=True, mover=dict(kind='press', pressed=dict(loc=[GX, GY - .02, PT - .025], rot=[0, 0, 0]), f=[224, 227]))
 # NO GO: the whole box pops up onto the pedestal at f176-180 (scale 0 -> 1 from its base), cover flips up (f260), red dome presses (f263-264)
-NB = (NX, NY, 1.31)
+NB = (NX, NY, PT - .22)
 bm = B(); abox(bm, .36, .3, .22, MT((0, 0, .11)), bev=.025); obj('mc_nogo_box', bm, 'button_box', NB, mover=dict(kind='pop', f=[176, 180], scale0=[1, 1, 0.01]))
-pic('mc_label_nogo', .2, .05, (NX, NY - .152, 1.37), (90, 0, 0), 'mc_label_nogo.png')
+pic('mc_label_nogo', .2, .05, (NX, NY - .152, PT - .16), (90, 0, 0), 'mc_label_nogo.png')
 bm = B(); alathe(bm, [(.1, 0), (.1, .02), (.085, .06), (.05, .085), (0, .09)], 20)
-obj('mc_nogo_button', bm, mat('nogo_dome', emit=PAL['nogo_dome'], es=.9, rough=.3), (NX, NY - .02, 1.53), smooth=True,
-    mover=dict(kind='press', pressed=dict(loc=[NX, NY - .02, 1.495], rot=[0, 0, 0]), f=[262, 264]))
+obj('mc_nogo_button', bm, mat('nogo_dome', emit=PAL['nogo_dome'], es=.9, rough=.3), (NX, NY - .02, PT), smooth=True,
+    mover=dict(kind='press', pressed=dict(loc=[NX, NY - .02, PT - .035], rot=[0, 0, 0]), f=[262, 264]))
 bm = B(); abox(bm, .3, .26, .025, MT((0, -.13, .0125)), bev=.008); abox(bm, .3, .02, .1, MT((0, -.25, -.04)), bev=.006); abox(bm, .02, .26, .1, MT((.14, -.13, -.04)), bev=.006); abox(bm, .02, .26, .1, MT((-.14, -.13, -.04)), bev=.006)
-obj('mc_nogo_cover', bm, mat('nogo_cover', emit=PAL['nogo_cover'], es=.6, rough=.4), (NX, NY + .13, 1.63),
-    mover=dict(kind='hinge', open=dict(loc=[NX, NY + .13, 1.63], rot=[-105, 0, 0]), f=[258, 261], axis='x, hinge at the back edge'))
-ANCH['director'] = [.95, -10.55, 0]; ANCH['nogo_button'] = [NX, NY - .02, 1.53]; ANCH['go_button'] = [GX, GY - .02, 1.53]
+obj('mc_nogo_cover', bm, mat('nogo_cover', emit=PAL['nogo_cover'], es=.6, rough=.4), (NX, NY + .13, PT + .1),
+    mover=dict(kind='hinge', open=dict(loc=[NX, NY + .13, PT + .1], rot=[-105, 0, 0]), f=[258, 261], axis='x, hinge at the back edge'))
+ANCH['director'] = [.9, -13.21, 0]; ANCH['nogo_button'] = [NX, NY - .02, PT]; ANCH['go_button'] = [GX, GY - .02, PT]
 
 # ================================================================== side counter with books (right)
-CX0, CX1, CY = 2.7, 5.0, -8.55
-box('counter_body', (CX1 - CX0, 1.0, 1.06), ((CX0 + CX1) / 2, CY, .53), 'desk_front', bev=.015)
-box('counter_top', (CX1 - CX0 + .1, 1.1, .09), ((CX0 + CX1) / 2, CY - .02, 1.105), 'desk_top', bev=.02)
+CX0, CX1, CY = 1.75, 3.6, -10.7
+box('counter_body', (CX1 - CX0, 1.0, .91), ((CX0 + CX1) / 2, CY, .455), 'desk_front', bev=.015)
+box('counter_top', (CX1 - CX0 + .1, 1.1, .09), ((CX0 + CX1) / 2, CY - .02, .955), 'desk_top', bev=.02)
 for k in range(4):
-    x = CX0 + (k + .5) * (CX1 - CX0) / 4; box('counter_door_%d' % k, (.02, .012, .85), (x + (CX1 - CX0) / 8 - .01, CY - .506, .5), 'desk_panel_frame', bev=0)
+    x = CX0 + (k + .5) * (CX1 - CX0) / 4; box('counter_door_%d' % k, (.02, .012, .72), (x + (CX1 - CX0) / 8 - .01, CY - .506, .43), 'desk_panel_frame', bev=0)
 for k, (c, hgt) in enumerate((('book_white', .36), ('book_red', .34), ('book_yellow', .37), ('book_blue', .35))):
-    box('book_%d' % k, (.07, .26, hgt), (3.15 + k * .085, CY - .1, 1.15 + hgt / 2), c, bev=.008)
-box('book_white_2', (.07, .26, .36), (3.15 - .085, CY - .1, 1.33), 'book_white', bev=.008)
+    box('book_%d' % k, (.07, .26, hgt), (2.15 + k * .085, CY - .1, 1.0 + hgt / 2), c, bev=.008)
+box('book_white_2', (.07, .26, .36), (2.15 - .085, CY - .1, 1.18), 'book_white', bev=.008)
 
 # ================================================================== stand-in cards (excluded from the GLB)
 CK = {'director': ('#f4f3ef', 1.82), 'ctl_fao': ('#2ab29a', 1.62), 'ctl_capcom': ('#487ede', 1.66), 'ctl_guido': ('#4b4f5e', 1.68)}
@@ -196,8 +196,8 @@ def light(name, loc, rot, kind='AREA', size=1., watts=100.):
     d = bpy.data.lights.new(name, kind); d.energy = watts
     if kind == 'AREA': d.shape = 'RECTANGLE'; d.size, d.size_y = size if isinstance(size, (int, float)) else size[0], size if isinstance(size, (int, float)) else size[1]
     o = bpy.data.objects.new(name, d); o.location = loc; o.rotation_euler = [math.radians(a) for a in rot]; LIGHTS.objects.link(o); return o
-light('fill_ceiling', (0, -10, ZC - .3), (0, 0, 0), size=(16, 16), watts=2200)
-light('fill_front', (1, -21, 3.5), (80, 0, 0), size=(10, 3), watts=600)
+light('fill_ceiling', (0, -12, ZC - .3), (0, 0, 0), size=(16, 16), watts=2200)
+light('fill_front', (1, -23.6, 4.5), (80, 0, 0), size=(10, 3), watts=600)
 light('screen_spill', (0, -.6, SZC), (-90, 0, 0), size=(SW, SH), watts=900)
 SC.world = bpy.data.worlds.new('mc_world'); SC.world.use_nodes = True
 

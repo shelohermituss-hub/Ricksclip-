@@ -372,8 +372,8 @@ def light(name, loc, col, watts, radius=.1, kind='POINT'):
 light('key_day', (-1.3, 3.2, 3.1), (1., .97, .92), 2600, .35); light('fill_day', (-1.2, .2, 1.6), (.55, .62, 1.), 500, .8); light('warm_top', (1.5, 2.5, 3.2), (1., .78, .62), 90, .1)
 light('night_fill', (-.6, 2.6, 2.6), (.12, .16, 1.), 420, .8)
 light('key_wide', (1.85, 3.75, 1.55), (1., .98, .95), 3800, .03, 'SPOT'); _k = bpy.data.objects['key_wide']; _k.rotation_euler = (Vector((-1.2, .2, 0)) - _k.location).to_track_quat('-Z', 'Y').to_euler(); _k.data.spot_size = math.radians(120); _k.data.spot_blend = .25; light('fill_wide', (-1.2, -.8, 2.2), (.6, .68, 1.), 380, .8); light('door_light', (DOOR['x'], 4.6, 1.9), (.8, .88, 1.), 160, .2)
-light('toilet_glow_light', (TX - .1, TY, .75), (.55, .75, 1.), 0, .25); light('pulse_light', tuple(path[0]), (.85, 1., 1.), 0, .05)
-light('bay_fill', (.6, 1.2, -.6), (1., .85, .55), 30, .5); light('tube_core_light', (0, TB1 - .25, 0), (.6, .95, 1.), 1.5, .1)
+light('toilet_glow_light', (TX - .65, TY - .1, .95), (.55, .75, 1.), 0, .25); light('pulse_light', tuple(path[0]), (.85, 1., 1.), 0, .05)
+light('bay_fill', (.6, 1.2, -.6), (1., .85, .55), 30, .5); light('tube_core_light', (0, TB1 - .25, 0), (.3, .8, 1.), 6, .1)
 w = bpy.data.worlds.new('toilet_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB

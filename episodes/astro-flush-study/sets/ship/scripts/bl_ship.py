@@ -438,7 +438,7 @@ def earth_mats():
     nt.links.new(t.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
     b.inputs['Roughness'].default_value = .45; b.inputs['Specular IOR Level'].default_value = .6; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
-    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 2.2
+    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 7.
     em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin(PRM['earth']['rim']); em.inputs[1].default_value = 4.
     tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])

@@ -21,7 +21,7 @@ def _lerp(a, b, u): return [x + (y - x) * u for x, y in zip(a, b)]
 LIGHTS = {  # watts per light and the world (colour, strength) for each kind
     'day':   {'key_day': 420, 'warm_top': 60, 'fill_day': 15, 'world': ((.02, .03, .16), .08), 'floor_rough': .45, 'earth': 1.25},
     'night': {'night_fill': 160, 'world': ((.004, .004, .12), .45), 'floor_rough': .3, 'earth': 1.0},
-    'wide':  {'key_wide': 1500, 'fill_wide': 40, 'door_light': 70, 'world': ((.04, .045, .09), .12), 'floor_rough': .22, 'earth': 1.2},
+    'wide':  {'key_wide': 2300, 'fill_wide': 70, 'door_light': 70, 'world': ((.04, .045, .09), .12), 'floor_rough': .22, 'earth': 1.2},
 }
 ALL = ('key_day', 'warm_top', 'fill_day', 'night_fill', 'key_wide', 'fill_wide', 'door_light')
 def set_light(scene, kind):
@@ -45,7 +45,7 @@ def set_state(scene, **kw):
     d = S['door']; d = {'open': 1., 'closed': 0.}.get(d, d); h = float(S.get('hatch', 0))
     # glow: porcelain emission + the halo source lamp at the toilet + the hose ribs + the travelling pulse
     _emit('porcelain', g * (.12 if night else 1.2)); _emit('hose_rib', g * .5); _emit('glow_ring', 6. * g)
-    o = _o('toilet_glow_light'); o.data.energy = g * (110 if night else 120); o.hide_render = g <= 0
+    o = _o('toilet_glow_light'); o.data.energy = g * (20 if night else 120); o.hide_render = g <= 0
     P = M['hose_path']; u = max(0., min(1., float(S.get('pulse', 0)))) * (len(P) - 1); i = min(int(u), len(P) - 2); p = _lerp(P[i], P[i + 1], u - i)
     for n in ('hose_pulse', 'pulse_light'):
         o = _o(n); o.location = p if n == 'hose_pulse' else (p[0], p[1], p[2] + .12); o.hide_render = o.hide_viewport = g <= 0

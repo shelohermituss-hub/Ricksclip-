@@ -8,7 +8,7 @@
 //   paper 0..1 = floating roll (paper < .5) or ribbon into the bowl (>= .5). Numbers are eased (smoothstep) between keys, light and paper are steps.
 // Anchors (Blender metres, Z up; ctx.B2T): toilet, toilet_bowl_centre, window, porthole, door, hose_port, hatch, flange, nozzle, tube_in, tube_core, newguy_s1/_s6/_s12, commander_s12 ...
 // Cameras: CAMS.f5 f33 f515 f1030 f1105 f1125 f1150 f1190 = {loc, look, roll, vfov} in Blender metres (the proof cameras of sets/toilet/STATE.md).
-import { GLTFLoader } from '../../plane-eater/sets/vendor/GLTFLoader.js';
+import { GLTFLoader } from './vendor/GLTFLoader.js';
 const DIR = new URL('./toilet/out/', import.meta.url).href;
 const META = await (await fetch(DIR + 'toilet_meta.json')).json();
 export const ANCHORS = META.anchors, CAMS = META.cams, MOVERS = META.movers, FRAMES = META.frames;
@@ -32,9 +32,9 @@ export async function build(THREE, scene, film, ctx) {
   // movers: rest transforms from meta, exploded / open targets
   const MV = Object.entries(MOVERS).map(([n, m]) => [N(n), m]).filter(([o]) => o);
   // lights: one set per kind, made from meta lights (watts -> three intensity by light_scale) and the world colour as a hemisphere fill
-  const LS = P.light_scale ?? 0.08, lights = {}, hemi = new THREE.HemisphereLight('#ffffff', '#000000', 0); scene.add(hemi);
+  const LS = P.light_scale ?? 0.025, lights = {}, hemi = new THREE.HemisphereLight('#ffffff', '#000000', 0); scene.add(hemi);
   for (const [n, L] of Object.entries(META.lights)) {
-    const l = new THREE.PointLight(new THREE.Color(...L.color), 0, 0, 2); l.position.copy(V(L.loc)); l.castShadow = /^key_/.test(n); l.name = 'toilet_' + n; scene.add(l); lights[n] = l;
+    const l = new THREE.PointLight(new THREE.Color(...L.color), 0, 0, 2); l.position.copy(V(L.loc)); l.castShadow = /^key_/.test(n); l.shadow.bias = -.002; l.shadow.normalBias = .03; l.name = 'toilet_' + n; scene.add(l); lights[n] = l;
   }
   const S = { light: 'day', glow: 0, exploded: 0, door: 0, hatch: 0, pulse: 0, paper: 0, ...META.state_default, ...P }; S.door = { open: 1, closed: 0 }[S.door] ?? S.door;
   const HP = META.hose_path.map(V), lerp = (a, b, u) => a + (b - a) * u;
@@ -42,13 +42,14 @@ export async function build(THREE, scene, film, ctx) {
     Object.assign(S, s); if (typeof S.door === 'string') S.door = { open: 1, closed: 0 }[S.door] ?? 0;
     const K = META.light_kinds[S.light] || META.light_kinds.day, g = +S.glow, e = +S.exploded, night = S.light === 'night';
     for (const [n, l] of Object.entries(lights)) l.intensity = (K[n] ?? 0) * LS;
-    lights.toilet_glow_light.intensity = g * (night ? 900 : 260) * LS; lights.pulse_light.intensity = 420 * g * LS;
+    lights.toilet_glow_light.intensity = g * (night ? 20 : 120) * LS; lights.pulse_light.intensity = 110 * g * LS;
     hemi.color.setRGB(...K.world[0]).convertLinearToSRGB(); hemi.intensity = K.world[1] * 2;
     for (const mn of ['tile_white', 'tile_black']) if (mats[mn]) mats[mn].roughness = K.floor_rough;
     for (const [n, kinds] of Object.entries(META.variants)) { const o = N(n); if (o) o.visible = kinds.includes(S.light); }
     const vd = N('window_view_day'), vn = N('window_view_night'); if (vd) vd.visible = !night; if (vn) vn.visible = night;
-    if (mats.porcelain) mats.porcelain.emissiveIntensity = g * (night ? 2.2 : 1.6);
-    if (mats.hose_rib) mats.hose_rib.emissiveIntensity = g * .5; if (mats.glow_ring) mats.glow_ring.emissiveIntensity = 6 * g;
+    if (mats.porcelain) mats.porcelain.emissiveIntensity = g * (night ? .12 : .35);
+    if (mats.hose_rib) mats.hose_rib.emissiveIntensity = g * .3; if (mats.glow_ring) mats.glow_ring.emissiveIntensity = 1.2 * g;   // kit bloom adds the halo: lower than Blender's emission
+    if (mats.hose_glow) mats.hose_glow.emissiveIntensity = 2 * g;
     for (const [o, m] of MV) {
       for (const [key, u] of [['exploded', e], ['open', o.name === 'door_leaf' ? +S.door : +S.hatch]]) {
         if (!m[key]) continue;
