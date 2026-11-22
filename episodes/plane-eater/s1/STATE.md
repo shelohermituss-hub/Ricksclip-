@@ -49,3 +49,10 @@ render_s1.sh (whole cycle), keyframes.py, sheets.py, sheet.py; frames/ (git-igno
   clamped short of it: the wing-tip point is beyond the arm in card space from this high lens. Saw close: the hacksaw is still hidden behind the wing.
   Next: draw the salting arm at full reach UP-LEFT in the front drawing (or move Michel 0.2 m nearer and lower the target to 2.10), frame the saw
   close from below the wing line (lens about 1.7 m) so the blade shows under the leading edge.
+
+## FIX ROUND 3 (last, lead 2026-11-22)
+- Salting: hand_at fist target raised to 2.22 m (the kit's rig scale puts the fist about 12 % lower than the point; checked with `render --hands`:
+  fist 2.02 m, cap 1.87 m) and the front drawing reaches full up/out; the shaker pours over the wing-tip end (best at f20). Michel 0.2 m nearer
+  was tried and put the wing tip through his face (key/h1.jpg): kept at x 5.3. Saw close from 1.7 m below the wing line: the blade shows under
+  the leading edge (f185), but its grip crosses his cheek. Numbers: plan 0 FAIL p90 19.9; frame_checks 0 FAIL 3 WARN 53 PASS; camsafe 0 FAIL 1 WARN; gate 0.
+- Still weak: f0 the shaker also touches his mouth (reads half as salting); saw grip over his cheek; feet slide WARN 5 cm (1 frame x3).
