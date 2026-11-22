@@ -13,7 +13,8 @@ to learn his picture, camera, timing and motion until we reach his level. Never 
    for the Earth and star maps, `NOEARTH=1` skips them once made).
 5. Read: this file, `README.md` (shots), `refs/SHOT_BOARD.md`, `refs/LOOK_INVENTORY.md`, `sets/SET_BRIEF.md`, `STRETCH_BRIEF.md` (with MOTION RULES
    and ACTING IN THE KIT at its end), then each `sets/<place>/STATE.md` and `shots/<place>/STATE.md`. LECONS_TECHNIQUES.md entries of 2026-11-22.
-6. Drafts are re-made by `shots/<place>/render_all.sh` then `post.sh` (mp4s, side-by-sides, fluidity rows; they need step 3).
+6. Camera plans are git-ignored too: `for f in episodes/astro-flush-study/shots/*/*/film.json; do python tools/film_plan.py check $f; done`.
+7. Drafts are re-made by `shots/<place>/render_all.sh` then `post.sh` (mp4s, side-by-sides, fluidity rows; they need step 3).
 
 ## Method that worked today (keep it)
 - One Blender script per place, palette table first, flat colours, no texture, no outline on props, every moving thing a named object;

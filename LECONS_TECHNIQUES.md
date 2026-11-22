@@ -656,3 +656,11 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
   Real shots: mc3 render log had 4x "not loaded" + 4x "using stand"; now none, f180/224/264 the director plays dir3 (finger up, button reach).
   toilet s6 copy with "move_face": true and its 4 face acts removed: faces f500 nervous, f507-509 afSweat, f510 nervous, f513+ nervousSmile, all from ng6.
   film_plan check mc3 10 FAIL (was 11: film.json changed since), s6 9 FAIL (same). check_views: 24 tiles "no approved picture" only (as shipped), 0 changed.
+
+## 2026-11-22 (resume, new container): set build failed on a fresh clone
+- Problem: `sets/mc/build_mc.sh` stopped with FileNotFoundError on `out/mc_screens_sheet.jpg`; the other three sets built.
+- Cause: `out/` is git-ignored, so a fresh clone has none; `tex_mc.py` writes its sheet into `out/` before Blender (which creates it) runs.
+  The camera plans (`shots/*/*/out/plan/camera_baked.json`) are git-ignored too: render_gpu stops with "Run: python tools/film_plan.py check".
+- Fix: every `sets/<place>/build_<place>.sh` runs `mkdir -p out` first. Resume step: `python tools/film_plan.py check` on every shot film.json.
+- Guard: the line is in all four build scripts; STATE.md resume steps list the plan check.
+- Proof: mc rebuilt in 23 s (mc_lite.glb, mc_screens_sheet.jpg); 12 shot plans baked; ship key stills render (s2, s7, s11).
