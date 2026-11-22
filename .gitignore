@@ -116,3 +116,8 @@ out/collide.json
 episodes/astro-flush-study/sets/*/out/
 episodes/astro-flush-study/sets/*/build/
 episodes/astro-flush-study/sets/*/logs/
+# astro-flush-study stretch output and the reference sound link
+episodes/astro-flush-study/shots/*/out/
+episodes/astro-flush-study/shots/*/frames*/
+episodes/astro-flush-study/shots/*/stills*/
+episodes/astro-flush-study/voice/*.wav
