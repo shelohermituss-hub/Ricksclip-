@@ -1,0 +1,2012 @@
+{
+ "title": "astro-flush ship, shot 9 (f771-802, rendered f763-802)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "caps_his.json",
+ "start": 763,
+ "end": 803,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": false,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../../../templates/vector2d_characters/code"
+ ],
+ "cast": {},
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "caption_rick_scale": 1.0,
+ "post": {
+  "dof": 0.0,
+  "dust": 0.0,
+  "bloom": 0.5,
+  "vignette": 0
+ },
+ "places": {
+  "ship": {
+   "set": "ship_stage",
+   "light": "night",
+   "light_over": {
+    "tint": "#ffffff",
+    "card_gain": 1.0,
+    "card_fog": false
+   },
+   "post": {
+    "dof": 0.0,
+    "dust": 0.0,
+    "bloom": 0.5,
+    "vignette": 0
+   },
+   "ship": {
+    "fog": false,
+    "keys": [
+     {
+      "f": 745,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 746,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 747,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 748,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 749,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 750,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 751,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 752,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 753,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 754,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 755,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 756,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 757,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 758,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 759,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 760,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 761,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 762,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 763,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 764,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 765,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 766,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 767,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 768,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 769,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 770,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 771,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 0,
+      "digits": 0,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 772,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 773,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 774,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 775,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 776,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 777,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 778,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 779,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 780,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 781,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 782,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 1,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 783,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 784,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 785,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 786,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 787,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 788,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 789,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 790,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 791,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 792,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 793,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 2,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 794,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 795,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 796,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 797,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 798,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 799,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 800,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 801,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 802,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     },
+     {
+      "f": 803,
+      "flame": 0.0,
+      "preglow": 0.0,
+      "glitter": 0.0,
+      "glitter_ck": 1.0,
+      "comm": 1,
+      "digits": 3,
+      "starmap": 1.0,
+      "ship": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "fans": 1,
+      "fan": 0.0,
+      "earth_rot": [
+       101.2,
+       267.1,
+       314.1
+      ],
+      "earth_glare": [
+       0.5,
+       -0.7,
+       0.3,
+       0
+      ]
+     }
+    ]
+   },
+   "stage": {
+    "earth": [
+     [
+      0,
+      0,
+      -3000,
+      -2600,
+      1500
+     ]
+    ],
+    "sky_follow": true,
+    "lamp_pulse": [
+     14,
+     0.35
+    ]
+   }
+  }
+ },
+ "takes": [
+  {
+   "id": "s9",
+   "place": "ship",
+   "stations": [
+    {
+     "pos": [
+      23.1709,
+      0.2802,
+      0.3088
+     ],
+     "aim": [
+      23.682,
+      10.048,
+      -2.289
+     ],
+     "lens": 18.0,
+     "roll": -1.2,
+     "at": 0,
+     "hold": 0,
+     "creep": 0,
+     "subject": null,
+     "framing": "C",
+     "purpose": "pre-roll; travel leaves f752"
+    },
+    {
+     "pos": [
+      23.183,
+      0.3188,
+      0.3085
+     ],
+     "aim": [
+      23.682,
+      10.048,
+      -2.289
+     ],
+     "lens": 18.0,
+     "roll": -1.35,
+     "at": 763,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "C",
+     "purpose": "by eye: radio lower left, sign top"
+    },
+    {
+     "pos": [
+      23.177,
+      0.396,
+      0.278
+     ],
+     "aim": [
+      23.682,
+      10.048,
+      -2.289
+     ],
+     "lens": 18.0,
+     "roll": -1.55,
+     "at": 790,
+     "hold": 0,
+     "pin": true,
+     "subject": null,
+     "framing": "C",
+     "purpose": "pinned pass: cam f790 fitted"
+    },
+    {
+     "pos": [
+      23.174,
+      0.4346,
+      0.2637
+     ],
+     "aim": [
+      23.682,
+      10.048,
+      -2.289
+     ],
+     "lens": 18.0,
+     "roll": -1.65,
+     "at": 802,
+     "travel": 1.6667,
+     "hold": 0.2,
+     "creep": 0,
+     "subject": null,
+     "framing": "C",
+     "purpose": "steady push to the hard cut 802/803"
+    }
+   ]
+  }
+ ],
+ "acts": []
+}

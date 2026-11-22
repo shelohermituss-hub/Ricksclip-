@@ -53,3 +53,4 @@ Render: half size, 2.0 s/f (cab4 139 f), 1.5 s/f (bay5 89 f). Draft mp4s: refere
 - Faces from his f300-410 every 10: new guy afEyeRoll -> open (316, wide round eyes, small closed mouth) -> afEyeRoll (336) -> cheer (348, teeth) -> laugh (376) -> cheer (388) -> happy (398) -> laugh (406);
   commander afEyeRoll all through; navigator smug. FOUND: the kit plays the MOVE's face here (f320/f390 showed the move's surprised / laugh, not the act's): moves and acts now carry the same keys.
 - Render: render_r3.sh (waits for any earlier render_all, both drafts, then the four checks).
+- round 3 FOUND: render_gpu reads out/plan/camera_baked.json + performance_baked.json; after make_film.py run film_plan.py check, or the render plays the old acts (round 3's first full render did).

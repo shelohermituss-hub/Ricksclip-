@@ -78,6 +78,7 @@ const openPage = async () => {   // launch (or relaunch, after the browser died)
   page.on('console', m => { if ((m.type() === 'warning' || m.type() === 'error') && !/GL Driver Message/.test(m.text())) console.log('[page]', m.text()); }); page.on('pageerror', e => console.log('[page error]', e.message));
   await page.goto(`${BASE}/kit/film_page.html`);
   info = await page.evaluate(c => window.setup(c), SETUP);
+  if ((info.move_errors || []).length && !has('--allow-missing-moves')) { console.error('MOVES MISSING (kit 2026-11-22: no silent fall back to "stand"):\n  ' + info.move_errors.join('\n  ') + '\nFix the move file or style, or pass --allow-missing-moves to render anyway.'); await browser.close(); server.close(); process.exit(4); }
   stage = page.locator('#stage');
 };
 process.on('exit', () => { if (!val('--cache')) fs.rmSync(CACHE, { recursive: true, force: true }); });

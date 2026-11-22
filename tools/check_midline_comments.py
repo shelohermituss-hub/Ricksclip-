@@ -4,11 +4,14 @@ Why (LECONS_TECHNIQUES.md, 2026-11-20 and 2026-11-21): four times a sed or an ed
 multi-statement line and silently dropped what came after it (pivots, an anchor pair, the denoiser, a chrome material).
 Usage: python tools/check_midline_comments.py <file or folder> [...]   exits 1 if a suspect line is found.
 """
-import re, sys, pathlib
+import re, sys, pathlib, shutil, subprocess
 
 # code-like text inside a comment: "; name = ...", "; name.attr(", "; name(" etc.
 CODE_AFTER = re.compile(r";\s*[A-Za-z_][\w.\[\]'\"]*\s*(=(?!=)|\()")
 CODE_AFTER_JS = re.compile(r";\s*[A-Za-z_][\w.\[\]]*\s*(=(?!=)[^;]*;|\([^;]*\)\s*;)")   # JS: the swallowed statement must end in ";"
+# 2026-11-22 (astro-flush mc, ep_mc.mjs tr()): prose then a statement with NO ";" before it ("... after its key v = ...; } return v; }") slipped past
+# CODE_AFTER_JS. A JS comment that closes a block after a statement ("; }"), or holds "} return" / "return ...;", is code too.
+BLOCK_JS = re.compile(r";\s*\}|\}\s*(return|else)\b|\breturn\b[^;]*;")
 
 def comment_part(line, ext):
     s, q = line, None
@@ -18,7 +21,7 @@ def comment_part(line, ext):
             continue
         if ch in "'\"`": q = ch; continue
         if ext == ".py" and ch == "#": return s[:i], s[i + 1:]
-        if ext in (".js", ".mjs") and s.startswith("//", i): return s[:i], s[i + 2:]
+        if ext in (".js", ".mjs") and s.startswith("//", i) and (i == 0 or s[i - 1] != "\\"): return s[:i], s[i + 2:]   # "\//" = an escaped slash in a regex literal
     return s, None
 
 def scan(path):
@@ -26,7 +29,10 @@ def scan(path):
     for n, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
         code, com = comment_part(line, path.suffix)
         if com is None or not code.strip(): continue          # no comment, or a comment-only line
-        if (CODE_AFTER_JS if path.suffix != ".py" else CODE_AFTER).search(com): bad.append((n, line.strip()[:160]))
+        if (CODE_AFTER_JS if path.suffix != ".py" else CODE_AFTER).search(com) or (path.suffix != ".py" and BLOCK_JS.search(com)): bad.append((n, line.strip()[:160]))
+    if path.suffix == ".mjs" and shutil.which("node"):      # 2026-11-22: a swallowed "}" breaks the module; the browser import then fails SILENTLY (film.js caught it)
+        r = subprocess.run(["node", "--check", str(path)], capture_output=True, text=True)
+        if r.returncode: L = (r.stderr or "").splitlines(); bad.append((0, "node --check: " + " | ".join([l for l in L if l.startswith(str(path))][:1] + [l for l in L if "Error" in l][:1])[:200]))
     return bad
 
 def main(args):

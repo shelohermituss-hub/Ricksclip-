@@ -496,7 +496,7 @@ def bake_performance(F):
             if "face" in a:
                 keys.append((tf, dict(face=a["face"])))
                 if not first: swaps.append(tf)
-            body = {k: a[k] for k in ("view", "dir", "pose", "prop", "hand", "visible", "look", "look_full", "walk_pose", "cling") if k in a}
+            body = {k: a[k] for k in ("view", "dir", "pose", "prop", "hand", "visible", "look", "look_full", "walk_pose", "cling", "upright") if k in a}   # "upright" (kit 2026-11-22): the card keeps vertical, no tip to the lens (film.js uprightW)
             if body: keys.append((tf + (1 if "face" in a and not first else 0), body))   # the body follows one frame later
             if "pos" in a and not first: keys.append((tf + 1, dict(_move=(list(a["pos"]), a.get("walk", False), int(round(a.get("move_s", 0.5) * fps)), bool(a.get("linear")), a.get("ease")))))
             if a.get("exit"): keys.append((tf, dict(visible=False)))
@@ -536,6 +536,7 @@ def bake_performance(F):
                 frames[f]["look"] = look
                 if walking or st.get("look_full"): frames[f]["look_full"] = True
             if st.get("cling"): frames[f]["cling"] = st["cling"]
+            if st.get("upright"): frames[f]["upright"] = True                                                # written only when on: films without the key bake exactly as before
         # blinks: one covering each face swap, then every 0.5-2.3 s; 4 frames; never while talking or in a punch hold
         marks = sorted(set(max(0, s - 1) for s in swaps)); f = int(rnd((who, "b0"), 0.5, 2.3) * fps)
         while f < end: marks.append(f); f += int(rnd((who, f), 0.5, 2.3) * fps)

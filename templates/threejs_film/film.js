@@ -6,12 +6,12 @@
 //   window.stations()                every station with its START / END frame, for the storyboard
 //   window.visibility(f)             projected centre + height of every character and named prop
 import * as THREE from './vendor/three.module.js';
-import { initPuppets, svgFor, stateKey, metrics, CARD, moveHands, moveFeet, poseHands, drawnView } from './puppets.mjs';
+import { initPuppets, svgFor, stateKey, metrics, CARD, moveHands, moveFeet, poseHands, drawnView, moveFace } from './puppets.mjs';
 import { lieOf } from './poses.mjs';
 import { lieLayout, placeLying } from './lie_cam.mjs';
 import { kit3dFlags, makeKit3d } from './look3d.mjs';
 
-let MOTION = null;
+let MOTION = null, MOVE_ERR = [];   // MOVE_ERR (kit 2026-11-22): move files or styles that did not load, handed to the renderer (setup().move_errors)
 const B2T = p => new THREE.Vector3(p[0], p[2], -p[1]);          // plan is metres, Z up, Y forward (Blender) -> three is Y up, -Z forward
 const LIGHTS = {                                                 // preview light only; the real look is the Blender pass
   night:    { top: '#0b1026', hor: '#27345c', sun: '#9fb6ff', si: 1.1, amb: '#3a4a7a', ai: 1.0, dir: [-4, 9, -3], tint: '#cfd8ff' },
@@ -40,7 +40,7 @@ const tweened = (who, f) => camsafeSt(R.h3o || R.hat ? h3State(who, f, tweenedB(
 // CAMERA-SAFE (2026-11-16): film.json "camsafe": true = moves draw the view the camera asks for (puppets.mjs camsafeView); off = as before   // kit 2026-11-13: generic held 3D (held3d entries with "grip") and hand_at with "hand"; a film without them gets tweenedB as before
 const camsafeSt = st => { if (st && R.film && R.film.camsafe) st.camsafe = 1; return st; };
 function tweenedB(who, f) {
-  const st = tweened0(who, f); if (!/^m:/.test(st.pose || '')) return st;
+  const st = tweened0(who, f); if (!/^m:/.test(st.pose || '')) return st.face === 'move' ? { ...st, face: 'standard' } : st;
   const MC = (R.moveCh ||= {})[who] ||= (() => { const out = []; let prev; for (const r of R.perf[who]) { if (r.state.pose !== prev) { out.push(r.f0); prev = r.state.pose; } } return out; })();
   let f0 = 0; for (const x of MC) { if (x <= f) f0 = x; else break; }
   const T = R.film.tween || {}, out = { ...st, tw: undefined, u: undefined, idle: undefined, mt: T.ones ? (f - f0) / R.fps : Math.round((f - f0) / R.fps * 15) / 15 };   // kit_patch: "ones" = a new pose every frame (STUDIO_MOTION rule 1)
@@ -48,11 +48,33 @@ function tweenedB(who, f) {
   const ha = (R.film.hand_at || []).find(h => h.who === who && f >= fr(h.f0) && f <= fr(h.f1)); if (ha) out.tgt = handTarget(who, f, out.pos, ha.at);
   // kit_patch HEAD WOBBLE: a 5 f head-size pop (peak +7 %) on every face change (CB_RULES s5)
   const FC = (R.faceCh || {})[who]; if (FC && (R.film.tween || {}).pop !== 0) for (const c of FC) { const d = f - c.f0; if (d >= 0 && d < 5) { out.pop = Math.round(((R.film.tween || {}).pop ?? .07) * Math.sin(Math.PI * (d + 1) / 6) * 100) / 100; break; } }
+  // MOVE DRIVES THE FACE (kit 2026-11-22, astro-flush toilet + cabin: "the film uses the face given in the acts and ignores the one the move returns").
+  // The move returns face (and blink, mouth) from its own clock. It is used where the baked face is "move" (act key face: "move" hands the face back to
+  // the move) or, with film.json "move_face": true, wherever no act set a face ("standard"). Any other act face overrides it until the next face act.
+  // 2-FRAME SAFE: a move face that would show for one frame only (a different face on f - 1 and on f + 1 of that) keeps the face of f - 1.
+  // An act blink / talking mouth wins over the move's; otherwise the move's blink and mouth are used. Default (no key, no "move" face) = as before.
+  if (st.face === 'move' || (R.film.move_face && (!st.face || st.face === 'standard'))) { const card = R.cards[who];
+    const at = g => card ? moveFace(card.entry, { ...out, mt: T.ones ? (g - f0) / R.fps : Math.round((g - f0) / R.fps * 15) / 15 }) : null;
+    const r = at(f); let fc = r && r.face;
+    if (fc && f - 1 >= f0) { const p = at(f - 1), n = at(f + 1), fp = p && p.face, fn = n && n.face; if (fp && fp !== fc && fn !== fc) fc = fp; }
+    out.face = fc || (st.face === 'move' ? 'standard' : st.face); out.face_src = fc ? 'move' : 'act';
+    if (r && r.blink && !out.blink) out.blink = r.blink; if (r && r.mouth && !out.mouth) out.mouth = r.mouth; }
   return out;
+}
+// UPRIGHT (kit 2026-11-22, astro-flush cabin: a sleeper in a wall bag leaned into the wall from a high camera). Every card tips toward the lens about its feet
+// (CB 2026-11-10: never squash). uprightW = 0..1 how much of that tip is taken off: 1 = the card stays vertical on its plane (still turned to the lens about
+// the vertical axis). Keys: act "upright": true / false (baked per frame by film_plan, a step), or cast "upright": true | [[f0, f1, n], ...] (frame ranges,
+// eased in and out over n frames, default 8). No key = 0 = every film as before. Used by renderFrame, handTarget, handWorld, held3d and h3Frame alike.
+function uprightW(who, f) {
+  const runs = R.perf[who], st = runs && runs.length ? perfAt(runs, f) : null; if (st && st.upright) return 1;
+  const U = ((R.film.cast || {})[who] || {}).upright; if (U === true) return 1; if (!Array.isArray(U)) return 0;
+  const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); let w = 0;
+  for (const r of U) { const [a, b = 1e9, n = 8] = r; w = Math.max(w, Math.min(sm((f - a + 1) / Math.max(1, n)), sm((b - f + 1) / Math.max(1, n)))); }
+  return w;
 }
 function handTarget(who, f, posP, at) {
   const c = R.cam[f], card = R.cards[who]; if (!c || !card) return null; const cp = B2T(c.pos), p = B2T(posP), q = B2T(at), h = card.entry.height || 1.7;
-  const ry = Math.atan2(cp.x - p.x, cp.z - p.z), rx = -Math.atan2(cp.y - (p.y + h * .55), Math.hypot(cp.x - p.x, cp.z - p.z)), e = new THREE.Euler(rx, ry, 0, 'YXZ');
+  const ry = Math.atan2(cp.x - p.x, cp.z - p.z), rx = -Math.atan2(cp.y - (p.y + h * .55), Math.hypot(cp.x - p.x, cp.z - p.z)) * (1 - uprightW(who, f)), e = new THREE.Euler(rx, ry, 0, 'YXZ');
   const ex = new THREE.Vector3(1, 0, 0).applyEuler(e), ey = new THREE.Vector3(0, 1, 0).applyEuler(e), n = new THREE.Vector3(0, 0, 1).applyEuler(e), d = q.clone().sub(cp);
   const t = p.clone().sub(cp).dot(n) / d.dot(n), x = cp.clone().addScaledVector(d, t).sub(p), u = x.dot(ex) / card.k, v = x.dot(ey) / card.k;
   return [Math.round(u * 2) / 2, Math.round((1010 - v) * 2) / 2];   // move rig: x from the card centre, ground at 1010
@@ -62,7 +84,7 @@ window.handWorld = (who, f) => {   // kit_patch: both move hands of a card in PL
   const c = R.cards[who]; if (!c) return null; const st = tweened(who, f), h = moveHands(c.entry, st);
   if (!h) { const q = poseHands(c.entry, st); if (!q) return { f, pose: st.pose }; const CF = h3Frame(who, f, st); return { f, pose: st.pose, view: q.view, hands: [h3P(CF.W(q.hands.R)), h3P(CF.W(q.hands.L))], card_px: [q.hands.R, q.hands.L].map(v => v.map(x => +x.toFixed(1))), far: q.far, k: c.k }; }   // kit 2026-11-13: plain poses too, [his right, his left]
   const cam = R.cam[f], cp = B2T(cam.pos), p = B2T(st.pos), hh = c.entry.height || 1.7;
-  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ'), ex = new THREE.Vector3(1, 0, 0).applyEuler(e), ey = new THREE.Vector3(0, 1, 0).applyEuler(e);
+  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)) * (1 - uprightW(who, f)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ'), ex = new THREE.Vector3(1, 0, 0).applyEuler(e), ey = new THREE.Vector3(0, 1, 0).applyEuler(e);
   const W = q => { const u = (q[0] - CARD.CX) * c.k, v = (CARD.GY - q[1]) * c.k, w = p.clone().addScaledVector(ex, u).addScaledVector(ey, v); return [+w.x.toFixed(4), +(-w.z).toFixed(4), +w.y.toFixed(4)]; };
   return { f, pose: st.pose, tgt: st.tgt || null, hands: h.hands.map(W), card_px: h.hands.map(q => q.map(v => +v.toFixed(1))), k: c.k, ex: [ex.x, -ex.z, ex.y].map(v => +v.toFixed(4)), ey: [ey.x, -ey.z, ey.y].map(v => +v.toFixed(4)) };
 };
@@ -73,7 +95,7 @@ const H3_ANCH = { lighter: { grip: [0, .0162, 0], flame: [-.004, .055, 0], thumb
 function held3dPose(hd, f) {
   const c = R.cards[hd.who]; if (!c) return null; const st = tweened(hd.who, f), h = moveHands(c.entry, st), ob = h && h.obj && h.obj.obj === hd.obj ? h.obj : null; if (!ob || !st.visible) return null;
   const cam = R.cam[f], cp = B2T(cam.pos), p = B2T(st.pos), hh = c.entry.height || 1.7;
-  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ');
+  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)) * (1 - uprightW(hd.who, f)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ');
   let ex = new THREE.Vector3(1, 0, 0).applyEuler(e), ey = new THREE.Vector3(0, 1, 0).applyEuler(e), n = new THREE.Vector3(0, 0, 1).applyEuler(e);
   const q = h.hands[ob.hand], u = (q[0] - CARD.CX) * c.k, v = (CARD.GY - q[1]) * c.k, grip = p.clone().addScaledVector(ex, u).addScaledVector(ey, v).addScaledVector(n, -(hd.behind ?? .012));
   if (h.mirror) { ex = ex.clone().negate(); n = n.clone().negate(); }
@@ -158,7 +180,7 @@ async function h3gBuild() {
 }
 function h3Frame(who, f, st) {   // the card's own axes on frame f, exactly as renderFrame turns it, and the two ways between card px and the world
   const c = R.cards[who], cp = B2T(R.cam[f].pos), p = B2T(st.pos), hh = c.entry.height || 1.7; let cs = cardScale(who, f);
-  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ'), ex = h3V(1, 0, 0).applyEuler(e), ey = h3V(0, 1, 0).applyEuler(e), n = h3V(0, 0, 1).applyEuler(e);
+  const e = new THREE.Euler(-Math.atan2(cp.y - (p.y + hh * .55), Math.hypot(cp.x - p.x, cp.z - p.z)) * (1 - uprightW(who, f)), Math.atan2(cp.x - p.x, cp.z - p.z), 0, 'YXZ'), ex = h3V(1, 0, 0).applyEuler(e), ey = h3V(0, 1, 0).applyEuler(e), n = h3V(0, 0, 1).applyEuler(e);
   // SEATED CARD (kit fix 2026-11-22, plane-eater S2; LECONS_TECHNIQUES): renderFrame tips a camsafe seated card about its SEAT and nudges it toward the lens
   // (CAMERA-SAFE CONTACT PIVOT + DEPTH NUDGE). This frame did neither, so held3d props and fists sat on the un-nudged plane BEHIND the drawn card (hidden by
   // his own body) and a little off. Same maths as renderFrame here, so the 3D prop is in front of the drawn fist.
@@ -308,6 +330,7 @@ function perfAt(runs, f) { let lo = 0, hi = runs.length - 1; while (lo < hi) { c
 const getJSON = async u => { const r = await fetch(u); if (!r.ok) throw new Error('cannot load ' + u); return r.json(); };
 
 window.setup = async (cfg) => {
+  MOVE_ERR = [];
   const dir = cfg.film.replace(/[^/]*$/, ''), film = await getJSON(cfg.film);
   const [camB, perf] = await Promise.all([getJSON(dir + 'out/plan/camera_baked.json'), getJSON(dir + 'out/plan/performance_baked.json')]);
   const words = await getJSON(dir + (film.words || 'voice/words.json')).catch(() => []);
@@ -327,7 +350,11 @@ window.setup = async (cfg) => {
     if (used.size) { const lib = await import(pk + 'motion/library.mjs').catch(e => (console.warn('film.js: motion library missing: ' + e.message), null));
       if (lib) { motion = { LIB: lib.LIB, mods: {}, cloth: await import(pk + 'motion/cloth_live.mjs').catch(() => null) /* live long cloth + capes, 2026-11-12 */ }; const want = new Set();
         for (const p of used) { const id = /^m:([^@+]+)/.exec(p)[1], e = lib.LIB.find(x => x.id === id), mn = (e ? e.module : id.slice(0, id.lastIndexOf('/'))).split('#')[0]; want.add(mn); want.add(mn + '_front'); }
-        for (const mn of want) { const m = await import(pk + 'motion/moves/' + mn + '.mjs').catch(() => null); if (m) motion.mods[mn] = m; else if (!/_front$/.test(mn)) console.warn('film.js: move module not found: ' + mn); } } } }
+        for (const mn of want) { let why = ''; const m = await import(pk + 'motion/moves/' + mn + '.mjs').catch(e => (why = String(e && e.message || e), null)); if (m) motion.mods[mn] = m; else if (!/_front$/.test(mn)) { console.warn('film.js: move module not found: ' + mn + (why ? ' (' + why + ')' : '')); MOVE_ERR.push(`move module "${mn}" did not load (${why || 'missing'}): an episode move "m:../../<file>/<style>" is <file>.mjs in a folder named in film.json "puppet_pkg" (e.g. "moves" or "../moves"); run node --check on it`); } }
+        // kit 2026-11-22 (astro-flush): a used style that the module does not have is an error too, not a silent "stand"
+        for (const p of used) { const id = /^m:([^@+]+)/.exec(p)[1], e = lib.LIB.find(x => x.id === id), k = id.lastIndexOf('/'), [mn, ex = 'default'] = (e ? e.module : id.slice(0, k)).split('#'), style = e ? e.style : id.slice(k + 1), mod = motion.mods[mn]; if (!mod) continue;
+          const vs = [mod[ex], ex === 'default' ? mod.front || (motion.mods[mn + '_front'] || {}).default : mod[ex.replace(/Side$/, '') + 'Front']].filter(Boolean); if (!vs.some(v => v.styles && v.styles.some(s => s.key === style))) MOVE_ERR.push(`move "${id}": module "${mn}" has no style "${style}" (export ${ex}; styles: ${vs.flatMap(v => (v.styles || []).map(s => s.key)).join(', ') || 'none'})`); } }
+      else MOVE_ERR.push('motion library did not load, ' + used.size + ' move pose(s) cannot play'); } }
   MOTION = motion;   // 2026-11-16: floor-sit 3D legs read the move module (legs3d)
   initPuppets({ char2d, memes, memes2, memes3, bodies, cast, castkit, castIndex, motion, grips, epFaces: film.faces_ep || null, held3d: (film.held3d || []).map(h => h.obj), faceShadow: film.face_shadow });   // kit_patch: episode faces; face_shadow false = no drawn face shadow on any card (CB 2026-11-15)
 
@@ -366,7 +393,7 @@ window.setup = async (cfg) => {
   }
   R.fx = (film.fx || []).map(e => ({ ...e, f: fr(e.at) })); R.moods = (film.moods || []).map(e => ({ ...e, f: fr(e.at) })); R.trans = (film.transitions || []).map(e => ({ ...e, f: fr(e.at) }));
   R.hl = (film.highlights || []).map(e => ({ ...e, f: fr(e.at), n: Math.max(2, Math.round((e.s ?? 1.2) * (film.fps || 30))) }));
-  return { frames: R.end, fps: R.fps, W, H, cast: Object.keys(R.cards), places: Object.keys(R.places) };
+  return { frames: R.end, fps: R.fps, W, H, cast: Object.keys(R.cards), places: Object.keys(R.places), move_errors: MOVE_ERR.slice() };   // kit 2026-11-22: the renderers stop (exit 4) when a move file or style is missing
 };
 
 function toonMat(color, opt = {}) {                                                  // 3-step toon shading shared by every set
@@ -466,7 +493,7 @@ window.renderFrame = async (f, opt = {}) => {
     card.blob.rotation.set(-Math.PI / 2, 0, 0); card.blob.scale.set(card.m.headPx * card.k * .42, card.m.headPx * card.k * .2, 1);   // lying may slide / turn them: reset each frame
     card.blob.position.set(pos.x, pos.y + .012, pos.z);   // 2026-11-13 lead fix: these three statements had been swallowed by the comment above, so every foot blob sat at the world origin
     card.mesh.rotation.order = 'YXZ'; card.mesh.rotation.y = Math.atan2(R.camera.position.x - pos.x, R.camera.position.z - pos.z);                       // face the lens
-    { const hm = (card.entry.height || 1.7) * .55, hd = Math.hypot(R.camera.position.x - pos.x, R.camera.position.z - pos.z); card.mesh.rotation.x = -Math.atan2(R.camera.position.y - (pos.y + hm), hd); }
+    { const hm = (card.entry.height || 1.7) * .55, hd = Math.hypot(R.camera.position.x - pos.x, R.camera.position.z - pos.z); card.mesh.rotation.x = -Math.atan2(R.camera.position.y - (pos.y + hm), hd) * (1 - uprightW(who, f)); }   // UPRIGHT (kit 2026-11-22): no tip where uprightW = 1
     card.pivot = 0; card.nudge = 0; if (R.film.camsafe && !lieOf(st)) { const sh = seatH(card, st); if (sh > 0) { const up = new THREE.Vector3(0, 1, 0).applyEuler(card.mesh.rotation); card.mesh.position.y += sh; card.mesh.position.addScaledVector(up, -sh); card.pivot = sh;
         // CAMERA-SAFE DEPTH NUDGE: from a high camera in front of him the tipped card leans BACK into his own chair back (turntable: the back rest cut across
         // his chest). Scale the card about the lens toward the camera by the lean: on screen nothing moves (same place, same size, hands and 3D legs
@@ -774,12 +801,12 @@ window.camsafe = (f) => {
     const pos = B2T(st.pos), H = card.entry.height || 1.7, F = facingOf(st, pos, cp), toCam = new THREE.Vector3(cp.x - pos.x, 0, cp.z - pos.z), hd = toCam.length(); toCam.normalize();
     const yaw = Math.atan2(F.fwd.x * toCam.z - F.fwd.z * toCam.x, F.fwd.x * toCam.x + F.fwd.z * toCam.z) * D;   // 0 = lens straight in front of his face, 180 = behind him; sign = which side
     const pitch = Math.atan2(cp.y - (pos.y + H * .55), hd) * D, lie = lieOf(st), dv = drawnView(card.entry, st), sh = lie ? 0 : seatH(card, st);
-    const tip = lie ? 0 : pitch;   // the card leans back by the camera's elevation (film.js: rotation.x = -atan2(...))
+    const tip = lie ? 0 : pitch * (1 - uprightW(who, f));   // the card leans back by the camera's elevation (film.js: rotation.x = -atan2(...))
     const drift = R.film.camsafe ? 0 : sh * Math.sin(Math.abs(tip) / D);   // how far the seat point leaves the seat when the card tips about its feet
     const head = project(B2T([st.pos[0], st.pos[1], st.pos[2] + H])), feet = project(B2T(st.pos));
     rows.push({ f, who, cut: !!c.cut, puppet: card.entry.puppet || '', pose: st.pose || '', look: st.look ?? null, look_full: !!st.look_full, facing_known: F.known,
       yaw: +yaw.toFixed(1), pitch: +pitch.toFixed(1), tip: +tip.toFixed(1), view_want: st.view || 'front', view_drawn: dv.view, mirror: dv.mirror, move: dv.move, legs3d: dv.legs3d,
-      lie: lie || null, seat_h: +sh.toFixed(3), seat_drift: +drift.toFixed(3), face: st.face || null, mouth: st.mouth || null, face_mode: dv.face, rig_error: dv.error || null,
+      lie: lie || null, seat_h: +sh.toFixed(3), seat_drift: +drift.toFixed(3), face: st.face || null, face_src: st.face_src || null, mouth: st.mouth || null, face_mode: dv.face, rig_error: dv.error || null,
       screen_h: head && feet ? +(feet[1] - head[1]).toFixed(3) : null, camsafe: !!R.film.camsafe });
   }
   return rows;

@@ -47,6 +47,7 @@ const browser = await chromium.launch(), page = await browser.newPage({ viewport
 page.on('console', m => { if ((m.type() === 'warning' || m.type() === 'error') && !/GL Driver Message/.test(m.text())) console.log('[page]', m.text()); }); page.on('pageerror', e => console.log('[page error]', e.message));
 await page.goto(`${BASE}/kit/film_page.html`);
 const info = await page.evaluate(c => window.setup(c), { film: '/ep/' + path.basename(FILM), W, H, captions: !has('--no-captions'), sheets: SHEETS, epSets: fs.existsSync(path.join(EP, 'sets')) ? fs.readdirSync(path.join(EP, 'sets')) : [] });
+if ((info.move_errors || []).length && !has('--allow-missing-moves')) { console.error('MOVES MISSING (kit 2026-11-22: no silent fall back to "stand"):\n  ' + info.move_errors.join('\n  ') + '\nFix the move file or style, or pass --allow-missing-moves to render anyway.'); await browser.close(); server.close(); process.exit(4); }
 const stage = page.locator('#stage');
 const shot = async (f, file) => { await page.evaluate(f => window.renderFrame(f), f); await stage.screenshot({ path: file }); };
 console.log(`film: ${info.frames} frames at ${info.fps} fps, ${W}x${H}, cast ${info.cast.join(', ')}`);

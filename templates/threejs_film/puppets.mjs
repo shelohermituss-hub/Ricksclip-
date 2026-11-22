@@ -193,6 +193,9 @@ export function moveFeet(entry, st) {
   const mv = moveOf(entry, st); if (!mv || !mv.P.feet) return null; const xo = mv.centre ? (mv.P.x || 0) : 0;
   return mv.P.feet.map(ft => ({ x: mv.mirror ? CARD.CX - (ft.x - xo) : CARD.CX + (ft.x - xo), lift: ft.lift || 0, pinned: !!ft.pts, seated: ft.thigh != null && (ft.mix ?? 1) > .5 }));   // seated: the move bends this leg on a seat (rig.mjs ft.thigh)
 }
+// MOVE FACE (kit 2026-11-22, astro-flush): what the move itself returns for the face on this state's clock (P.face, P.blink, P.mouth), or null.
+// film.js uses it where the baked face is "move" (act key face: "move") or, with film.json "move_face": true, wherever no act set a face.
+export function moveFace(entry, st) { let mv; try { mv = moveOf(entry, st); } catch (e) { return null; } if (!mv || !mv.P) return null; const P = mv.P; return P.face || P.blink || P.mouth ? { face: P.face || null, blink: P.blink || null, mouth: P.mouth || null } : null; }
 export function moveHands(entry, st) {
   const mv = moveOf(entry, st); if (!mv) return null; const xo = mv.centre ? (mv.P.x || 0) : 0, A = moveArms(mv.P, mv.ch, xo), oy = CARD.GY - MG;
   const hs = (mv.P.held || [])[0], am = hs ? /rotate\(([-\d.]+)\)/.exec(hs.svg(0, 0)) : null;
