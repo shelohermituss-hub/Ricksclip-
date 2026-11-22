@@ -60,7 +60,7 @@ def set_state(scene, **kw):
     for k in range(4): _vis('radio_digits_%d' % k, int(S['digits']) == k)
     sm = float(S['starmap']); _vis('star_map_sheet', sm > 0); _vis('star_map_tape', sm > 0); _emit('pic_starmap', 2.5 * sm)
     for n in ('solar_fan_p', 'solar_fan_n'):
-        for o in (_o(n), _o(n + '_spokes')): o.rotation_euler = (0, math.radians(float(S.get('fan', 0))), 0)
+        for o in (_o(n), _o(n + '_spokes')): o.rotation_euler = (math.radians(90), 0, math.radians(float(S.get('fan', 0))))
     shot = int(S.get('shot', 0))
     for n, shots in M['standins'].items(): _vis(n, shot in shots)
     return S

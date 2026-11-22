@@ -226,17 +226,17 @@ def duffel(name, col, loc, L=.70, R=.23):
     return o
 duffel('cabin_bag_blue', 'bag_blue', (-1.43, WY - .22, 4.49)); duffel('cabin_bag_orange', 'bag_orange', (.88, WY - .24, 4.52)); duffel('cabin_bag_red', 'bag_red', (-2.35, WY - .22, 4.15))
 # galley table (left edge): black round top on one pole and disc foot, red bottle, yellow block, tray; grey box on a shelf; drawer block with 4 labels
-GX, GY = -1.95, .45
+GX, GY = -1.6, .95
 bm = B(); acyl(bm, .45, .05, MT((0, 0, 1.24)), 32); acyl(bm, .035, 1.2, MT((0, 0, .62)), 12); acyl(bm, .26, .03, MT((0, 0, .015)), 24); obj('cabin_table', bm, mat('table_black', rough=.4), (GX, GY, 0), smooth=True)
 bm = B(); alathe(bm, [(.04, 0), (.045, .02), (.045, .16), (.02, .2), (.012, .25)], 12); obj('cabin_bottle', bm, mat('bottle_red', rough=.35), (GX + .25, GY - .12, 1.265), smooth=True)
 box('cabin_block', (.1, .08, .07), (GX + .05, GY - .2, 1.3), mat('block_yellow'), bev=.01)
 box('cabin_tray', (.3, .2, .02), (GX - .1, GY + .05, 1.275), mat('table_brown'), bev=.006)
-box('cabin_shelf', (.8, .45, .05), (GX - .2, WY - .23, 1.6), mat('table_brown'), bev=.01)
-box('cabin_oven', (.55, .4, .35), (GX - .25, WY - .23, 1.8), mat('oven_grey', rough=.5), bev=.02)
-box('cabin_oven_door', (.36, .02, .22), (GX - .29, WY - .44, 1.8), mat('table_black', rough=.3), bev=.006)
-box('cabin_drawers', (.6, .5, .75), (GX - .3, GY + .45, .9), mat('table_black', rough=.5), bev=.015)
+box('cabin_shelf', (.8, .45, .05), (GX - .45, WY - .23, 1.6), mat('table_brown'), bev=.01)
+box('cabin_oven', (.55, .4, .35), (GX - .5, WY - .23, 1.8), mat('oven_grey', rough=.5), bev=.02)
+box('cabin_oven_door', (.36, .02, .22), (GX - .54, WY - .44, 1.8), mat('table_black', rough=.3), bev=.006)
+box('cabin_drawers', (.6, .4, .75), (GX - .45, WY - .25, .9), mat('table_black', rough=.5), bev=.015)
 for k, nm in enumerate(('drawer_mac', 'drawer_beef', 'drawer_coffee', 'drawer_beans')):
-    pic('cabin_' + nm, .12, .08, (GX - .52 + k * .145, GY + .195, 1.15 - (k % 2) * .12), (90, 0, 0), nm + '.png')
+    pic('cabin_' + nm, .12, .08, (GX - .67 + k * .145, WY - .452, 1.15 - (k % 2) * .12), (90, 0, 0), nm + '.png')
 # hand props (movers): magazine MEGA SIP with a black straw (new guy), drink ball + straw (commander), clipboard + pencil (navigator)
 mg, mp, ms = B(), B(), B(); abox(mg, .26, .014, .34, bev=.004); aquad(mp, .25, .325, MT((0, -.0075, 0), (90, 0, 0))); atube(ms, [(.06, -.01, .16), (.07, -.02, .32), (-.04, -.15, .55)], .006, 8)
 multi('magazine', [(mg, mat('magazine', rough=.6)), (mp, mat('magazine_cover', png='magazine_cover.png', rough=.6)), (ms, mat('straw_black'))], (.08, .55, 1.28), (0, 0, -8), mover={})
@@ -364,7 +364,7 @@ def standin(name, col, h, loc, rz=0):
         if f.center.z > h - .63: f.material_index = 1
     return o
 SI = [('standin_commander_4', 'standin_commander', 1.76, (-1.05, .7, .75), ['4', '4a']), ('standin_newguy_4', 'standin_newguy', 1.70, (0., .7, .5), ['4']),
-      ('standin_navigator_4', 'standin_navigator', 1.66, (1.22, .7, .85), ['4', '4a']), ('standin_newguy_4a', 'standin_newguy', 1.70, (0., -1.45, .05), ['4a']),
+      ('standin_navigator_4', 'standin_navigator', 1.66, (1.22, .7, .85), ['4', '4a']), ('standin_newguy_4a', 'standin_newguy', 1.70, (0., .1, .3), ['4a']),
       ('standin_navigator_5', 'standin_navigator', 1.66, (BAGS['bag_navigator'][0], BY - .32, .75), ['5a', '5b', '5c']),
       ('standin_commander_5', 'standin_commander', 1.76, (BAGS['bag_commander'][0], BY - .32, .72), ['5a', '5b', '5c']),
       ('standin_newguy_5bag', 'standin_newguy', 1.70, (BAGS['bag_new_guy'][0], BY - .32, .78), ['5a']),
@@ -396,7 +396,7 @@ w = bpy.data.worlds.new('cabin_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
 ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['z'] + .02], 'head_sign': [1.58, WY, 3.46], 'hatch': [HATCH['x'], WY - .1, HATCH['z']],
-             'galley_table': [GX, GY, 1.24], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, -1.45, .05],
+             'galley_table': [GX, GY, 1.24], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .1, .3],
              'bay_wall_centre': [BX, BY, 0], 'bag_navigator': [BAGS['bag_navigator'][0], BY - .06, RZ + .02], 'bag_commander': [BAGS['bag_commander'][0], BY - .06, RZ + .02],
              'bag_new_guy': [BAGS['bag_new_guy'][0], BY - .06, RZ + .02], 'bay_door': [EX, DOOR['y'], 0], 'bay_floor_light': [EX - .55, DOOR['y'] + .1, 0],
              'newguy_s5_bag': [BAGS['bag_new_guy'][0], BY - .32, .78], 'newguy_s5_door': [EX - 1.0, -.35, .55], 'toilet_room_beyond': [EX + 1.5, DOOR['y'], 0]})

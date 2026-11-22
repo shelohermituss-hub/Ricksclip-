@@ -17,7 +17,6 @@ export async function build(THREE, scene, film, ctx) {
     o.castShadow = o.receiveShadow = !/^(sky_dome|earth|glitter|flame|canopy_glass|star_map)/.test(o.name);
     const m = o.material; if (m.emissive && m.emissive.getHex() !== 0) m.toneMapped = false;
     if (/glass|flame|earth_rim|star_map|lodestar|glitter/.test(m.name) || m.opacity < 1) { m.transparent = true; m.depthWrite = false; }
-    if (/^flame/.test(m.name)) m.blending = THREE.AdditiveBlending;
     if (o.name === 'sky_dome') { m.side = THREE.BackSide; m.fog = false; }
   });
   const N = n => root.getObjectByName(n), vis = (n, on) => { const o = N(n); if (o) o.visible = !!on; };
@@ -29,7 +28,23 @@ export async function build(THREE, scene, film, ctx) {
   }
   // the kit camera sees 600 m at most: the 20 km sky dome is shrunk to 500 m, and a far Earth is pulled in along its direction keeping its size in view
   const sky = N('sky_dome'); if (sky) sky.scale.setScalar(.025);
-  if (P.fog !== true) { scene.fog = null; scene.background = new THREE.Color('#010019'); }   // space: no kit fog (it greys the stars and the hull); film.json places.ship.ship.fog = true keeps it
+  // round 3 SPACE LIGHT (no geometry): hide the kit's gradient sky dome (film.js baseLight), no fog, black background, the kit's hemisphere fill
+  // turned to a faint navy and its sun put where Blender's space key is; star dome, Earth and rim unlit (basic, toneMapped false) so they show as in Blender
+  if (P.fog !== true) {
+    scene.fog = null; scene.background = new THREE.Color('#000005');
+    scene.children.forEach(o => { if (o === root) return; if (o.isMesh && o.userData.noExport && o.material && o.material.side === THREE.BackSide) o.visible = false;
+      if (o.isHemisphereLight) { o.color.set('#2a3060'); o.groundColor.set('#000000'); o.intensity = .35; }
+      if (o.isDirectionalLight) { o.color.set('#ffffff'); o.intensity = 3.2; o.position.copy(B2T([.2, .5, .85]).multiplyScalar(60)); } });
+  }
+  const basic = (o, opt) => { if (o) o.traverse(m => { if (m.isMesh) m.material = new THREE.MeshBasicMaterial(Object.assign({ toneMapped: false, fog: false }, opt(m.material))); }); };
+  basic(N('sky_dome'), m => ({ map: m.map, side: THREE.BackSide }));
+  basic(N('earth'), m => ({ map: m.map }));
+  basic(N('earth_rim'), () => ({ color: '#bfeaff', transparent: true, opacity: .35, side: THREE.BackSide, depthWrite: false }));
+  const ct = await new THREE.TextureLoader().loadAsync(DIR + 'cloud_tile_kit.png'); ct.wrapS = ct.wrapT = THREE.RepeatWrapping; ct.repeat.set(6, 3); ct.colorSpace = THREE.SRGBColorSpace;
+  basic(N('earth_clouds'), () => ({ map: ct, transparent: true, depthWrite: false }));
+  const FL = { flame_core: ['#fefefe', 1], flame_mid: ['#cbaaf1', .55], flame_outer: ['#8a6ee7', .35], flame_halo: ['#6d51b8', .22], flame_glow: ['#8a6ee7', .1] };
+  for (const [n, [c, a]] of Object.entries(FL)) basic(N(n), () => ({ color: c, transparent: a < 1, opacity: a, depthWrite: false }));
+  root.traverse(o => { if (o.isMesh && /^glitter/.test(o.name)) o.material = new THREE.MeshBasicMaterial({ color: '#ffffff', toneMapped: false }); });   // space: no kit fog (it greys the stars and the hull); film.json places.ship.ship.fog = true keeps it
   const shipRoot = N('ship_root'), earth = N('earth'), flames = ['flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'].map(N).filter(Boolean);
   const nozzleMat = (N('nozzle_glow') || {}).material, B2T = ctx.B2T;
   const S = Object.assign({}, META.state_default, P);

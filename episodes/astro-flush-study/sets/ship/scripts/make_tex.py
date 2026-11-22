@@ -137,6 +137,13 @@ def starmap():
     c = (470, 560); d.ellipse((c[0] - 80, c[1] - 80, c[0] + 80, c[1] + 80), outline=(255, 110, 90, 255), width=12); d.line((c[0] - 18, c[1] - 10, c[0] + 18, c[1] + 10), fill=(255, 230, 200, 255), width=10)
     im.save(os.path.join(TEX, 'starmap.png'))
 
+def cloud_tile():
+    """round 3: seamless 2048 cloud detail for the kit's cloud shell (repeated about 6x), white with alpha."""
+    W = 2048; c = fbm(W, W, 6, 7, 61); c = (c - c.min()) / (c.max() - c.min()); a = np.clip((c - .5) / .14, 0, 1)
+    sh = np.clip((c - .5) / .3, 0, 1)[..., None]; col = np.array(hx('#9fb6d6'), np.float32) * (1 - sh) + np.array(hx('#f6f9fc'), np.float32) * sh
+    im = np.dstack([col, a[..., None] * 255]).astype(np.uint8); OUTD = os.path.join(os.path.dirname(HERE), 'out'); os.makedirs(OUTD, exist_ok=True)
+    Image.fromarray(im, 'RGBA').save(os.path.join(OUTD, 'cloud_tile_kit.png'))
+
 def kit_sky():
     OUTD = os.path.join(os.path.dirname(HERE), 'out'); os.makedirs(OUTD, exist_ok=True)
     Image.open(os.path.join(TEX, 'stars.png')).resize((4096, 2048), Image.LANCZOS).save(os.path.join(OUTD, 'stars_kit.jpg'), quality=90)
@@ -145,4 +152,4 @@ if __name__ == '__main__' and len(sys.argv) > 1:
     for n in sys.argv[1:]: globals()[n]()
     print('tex ok', sys.argv[1:])
 elif __name__ == '__main__':
-    earth(); stars(); kit_sky(); lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))
+    earth(); stars(); kit_sky(); cloud_tile(); lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))
