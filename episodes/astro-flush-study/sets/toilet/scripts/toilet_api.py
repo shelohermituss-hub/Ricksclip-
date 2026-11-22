@@ -1,6 +1,7 @@
 """toilet_api.py: states of the built toilet place (sets/toilet/out/toilet.blend). Never rebuild for a still: load the blend, call set_state, set a camera, render.
 set_state(scene, light='day'|'night'|'wide', glow=0..1, exploded=0..1, door='open'|'closed' or 0..1, hatch=0..1, pulse=0..1 (place of the glow on the hose path),
-          shot=1|6|12|13 (which stand-in cards show), commander=0|1, paper=0|1 (floating roll -> ribbon into the bowl))
+          shot=1|6|12|13 (which stand-in cards show), commander=0|1, paper=0|1 (floating roll -> ribbon into the bowl),
+          tube=0|1 (1 = tube on the flange axis shown, outside nozzle hidden; 0 = the reverse), swirl=degrees (bowl_swirl turn about z))
 set_light(scene, kind) is called by set_state(light=...). The same names and numbers are in toilet_meta.json for the kit (sets/toilet.js)."""
 import bpy, json, os, math
 from mathutils import Vector
@@ -19,11 +20,11 @@ def _emit(mat, strength, col=None):
     if col: b.inputs['Emission Color'].default_value = col
 def _lerp(a, b, u): return [x + (y - x) * u for x, y in zip(a, b)]
 LIGHTS = {  # watts per light and the world (colour, strength) for each kind
-    'day':   {'key_day': 420, 'warm_top': 60, 'fill_day': 15, 'world': ((.02, .03, .16), .08), 'floor_rough': .45, 'earth': 1.25},
+    'day':   {'key_day': 260, 'warm_top': 40, 'fill_day': 6, 'world': ((.02, .03, .16), .05), 'floor_rough': .45, 'earth': 1.25},   # round 3: was 420/60/15/.08; 330 measured 0.41 (f5 too light)
     'night': {'night_fill': 160, 'world': ((.004, .004, .12), .45), 'floor_rough': .3, 'earth': 1.0},
-    'wide':  {'key_wide': 2300, 'fill_wide': 70, 'door_light': 70, 'world': ((.04, .045, .09), .12), 'floor_rough': .22, 'earth': 1.2},
+    'wide':  {'key_wide': 2300, 'fill_wide': 70, 'door_light': 70, 'bay_fill': 30, 'shaft_fill': 25, 'flange_fill': 12, 'tube_core_light': 40, 'world': ((.04, .045, .09), .12), 'floor_rough': .22, 'earth': 1.2},
 }
-ALL = ('key_day', 'warm_top', 'fill_day', 'night_fill', 'key_wide', 'fill_wide', 'door_light')
+ALL = ('key_day', 'warm_top', 'fill_day', 'night_fill', 'key_wide', 'fill_wide', 'door_light', 'bay_fill', 'shaft_fill', 'flange_fill', 'tube_core_light')
 def set_light(scene, kind):
     L = LIGHTS[kind]
     for n in ALL:
@@ -45,7 +46,18 @@ def set_state(scene, **kw):
     d = S['door']; d = {'open': 1., 'closed': 0.}.get(d, d); h = float(S.get('hatch', 0))
     # glow: porcelain emission + the halo source lamp at the toilet + the hose ribs + the travelling pulse
     _emit('porcelain', g * (.12 if night else 1.2)); _emit('hose_rib', g * .5); _emit('glow_ring', 6. * g)
-    o = _o('toilet_glow_light'); o.data.energy = g * (20 if night else 120); o.hide_render = g <= 0
+    o = _o('toilet_glow_light'); o.data.energy = g * (25 if night else 120); o.hide_render = g <= 0
+    # round 3, shot 6 night: floor strip + its light + the halo shell (halo is Blender only: the kit's bloom makes it)
+    gn = g if night else 0.; _emit('floor_glow', 6. * gn); o = _o('floor_glow_light')
+    if o: o.data.energy = 60 * gn; o.hide_render = gn <= 0
+    hm = bpy.data.materials.get('toilet_halo')
+    if hm: hm.node_tree.nodes['halo_strength'].inputs[1].default_value = .5 * gn
+    _vis('toilet_halo', gn > 0)
+    tb = int(S.get('tube', 1))
+    for n in M.get('tube_parts', []): _vis(n, tb)
+    for n in M.get('nozzle_parts', []): _vis(n, not tb)
+    o = _o('bowl_swirl')
+    if o: o.rotation_euler = (0, 0, math.radians(float(S.get('swirl', 0))))
     P = M['hose_path']; u = max(0., min(1., float(S.get('pulse', 0)))) * (len(P) - 1); i = min(int(u), len(P) - 2); p = _lerp(P[i], P[i + 1], u - i)
     for n in ('hose_pulse', 'pulse_light'):
         o = _o(n); o.location = p if n == 'hose_pulse' else (p[0], p[1], p[2] + .12); o.hide_render = o.hide_viewport = g <= 0

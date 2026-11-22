@@ -55,3 +55,35 @@ door_leaf (`open`), hatch_panel (`open`), paper_roll_float, paper_ribbon, hose_p
 4. The wide key light by the toilet blooms into a white blob in the kit (bloom lowered to .35 in s12); the pulse light blows the flange out white at f1170
    (staging scales it to .12 from f1162 through the wrapper).
 5. A face smug + ONE sweat drop (his f512-530) is not in the cast (stand-in k:nervousSmile) - for the character artist.
+
+## Round 3 (2026-11-22): staging requests 1-3 + tube + day light
+Done (bl_toilet.py, toilet_api.py, params_toilet.json, ../toilet.js):
+- 1a HATCH SHAFT: wall foot cut behind WASTE LINE hatch + floor slab opening x -2.15..-1.60, y 1.21..1.89 (0.55 x 0.68 m) straight down into the bay; bay left shell moved out to x -2.40..-2.15; lining `hatch_shaft_lining`; light `shaft_fill` (25 W, warm). hatch_panel `open` now swings flat up the wall (rot -86; the old pose covered the mouth). Anchors `hatch_shaft_top`, `hatch_shaft_bottom`. Verified in picture (f1137 cam): gold foil seen through the opening.
+- 1b TUBE AT THE FLANGE: flange_plate open (square 0.25 hole) + dark lip `flange_lip` (bore 0.25); throat r .125 from x 1.725 to 2.45 (bands + light ring `tube_throat_ring` at x 2.0), flare to r .5, tube x 2.75..10.75, core at x 11.01, all on the flange axis (y 1.5, z -0.9). Old tube at y -26..-34 is gone. Anchors `tube_in`, `tube_throat_end`, `tube_full`, `tube_core` (new places). Meta `one_move_hatch_to_tube` lists the anchor path. NEW STATE `tube` (step, default 1): 1 = tube shown, outside nozzle hidden; 0 = nozzle seen from outside (they overlap in space). Meta `tube_parts` / `nozzle_parts`. CAUTION: the hose end + brass coupling sit on the axis x 1.40-1.66: pass beside (offset >= .07) or through in 1-2 frames.
+- f1150 cam backed off through the x 0.1 frame opening: (-0.55, 1.12, -0.5). L 0.36 vs 0.37 now.
+- 2 `bowl_swirl` mover (3-arm spiral on `bowl_water`, origin at bowl centre, state `swirl` = degrees about z, meta spin hint -30 deg/frame f24-28). Verified in picture (close cam `swirl`, not a ref frame). `paper_ribbon` now has its origin at the roll (1.3, 2.28, 1.03): scale 0 -> 1 grows it from the roll.
+- 3 shot 6 night: `floor_glow_strip` (emissive along the right wall foot + cabinet front, state glow x night) + `floor_glow_light`; halo shell `toilet_halo` in collection `fx_blender_only` (NOT in the GLB: the kit's bloom does it). Verified in picture: halo + strip read.
+- 4 tube: palette lighter/less saturated navy (tube_a #18304a, tube_b #0c1826), light bands emissive (tube_light #4f8db0), core = cyan sphere + emissive ring + halo disc, `tube_core_light` 40 W.
+- 5 day: key_day 420 -> 260, warm_top 60 -> 40, fill_day 15 -> 6, world .08 -> .05.
+- Lights `bay_fill`, `shaft_fill`, `flange_fill`, `tube_core_light` are now in light kind `wide` (so the kit lights the bay too; before they were 0 in the kit).
+- Kit: toilet_lite.glb loads (copy of shots/toilet/s1, frame 26, 118 meshes, 95k tris, 0.1 s, 4.0 s/frame). Kit day picture is now darker (toilet grey) because of the lower day key: staging may raise light_scale for shot 1.
+
+### Numbers, round 3 (ours / his, 540x960; f26 rendered with key 330, before the last day cut)
+| frame | mean L ours / his | p1 | p99 | mean sat |
+|---|---|---|---|---|
+| f5 | 0.380 / 0.349 | 0.004 / 0.000 | 0.993 / 1.000 | 0.310 / 0.381 |
+| f26 | 0.407 / 0.354 | 0.004 / 0.000 | 0.993 / 1.000 | 0.309 / 0.382 |
+| f515 | 0.405 / 0.321 | 0.000 / 0.004 | 1.000 / 0.998 | 0.525 / 0.652 |
+| f1137 | 0.456 / 0.190 | 0.050 / 0.000 | 1.000 / 0.994 | 0.228 / 0.499 |
+| f1150 | 0.363 / 0.367 | 0.008 / 0.002 | 1.000 / 0.989 | 0.372 / 0.560 |
+| f1176 | 0.168 / 0.165 | 0.012 / 0.000 | 1.000 / 0.925 | 0.279 / 0.423 |
+| f1190 | 0.183 / 0.169 | 0.047 / 0.006 | 0.957 / 0.851 | 0.833 / 0.662 |
+
+### Still wrong after round 3, worst first
+1. f1137 (hatch, ours is a new test cam, not matched to his): his frame is dark and saturated (L 0.19, sat 0.50), ours 0.46 / 0.23: the white tiles dominate; the camera framing of his f1132-1141 is staging's.
+2. f1176: our bore is open and dark like his, but the hose end + coupling fill the centre and his white ring is hidden behind them; no brushed plate/bolts look (sat 0.28 vs 0.42).
+3. f515 night: L 0.41 vs 0.32, too light and pale (sat 0.53 vs 0.65); halo a bit wide; stand-in still too big.
+4. f1190: L right (0.18 vs 0.17) but too saturated blue (0.83 vs 0.66); his walls are greyer teal.
+5. f5 day: 0.38 vs 0.35, nearly there; sat 0.31 vs 0.38 (walls greyer than his).
+6. f1150: sat 0.37 vs 0.56; hose too white (his cyan stripes).
+7. Kit day darker after the key cut (see above).

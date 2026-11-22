@@ -5,7 +5,8 @@
 //   "keys": [ {"f": 1086, "glow": 0}, {"f": 1090, "glow": 1}, {"f": 1097, "exploded": 0}, {"f": 1104, "exploded": 1} ] } } }
 //   light day|night|wide (a step); glow 0..1 = toilet emission + halo lamp + hose ribs; exploded 0..1 = every toilet part from its rest to its exploded
 //   transform (meta movers); door 0..1 = door_leaf slides open; hatch 0..1 = hatch_panel swings open; pulse 0..1 = place of the cyan pulse on meta hose_path;
-//   paper 0..1 = floating roll (paper < .5) or ribbon into the bowl (>= .5). Numbers are eased (smoothstep) between keys, light and paper are steps.
+//   paper 0..1 = floating roll (paper < .5) or ribbon into the bowl (>= .5); tube 0|1 (step, default 1) = tube on the flange axis shown + outside nozzle hidden, 0 = the reverse;
+//   swirl = degrees of bowl_swirl about z. Numbers are eased (smoothstep) between keys, light and paper are steps.
 // Anchors (Blender metres, Z up; ctx.B2T): toilet, toilet_bowl_centre, window, porthole, door, hose_port, hatch, flange, nozzle, tube_in, tube_core, newguy_s1/_s6/_s12, commander_s12 ...
 // Cameras: CAMS.f5 f33 f515 f1030 f1105 f1125 f1150 f1190 = {loc, look, roll, vfov} in Blender metres (the proof cameras of sets/toilet/STATE.md).
 import { GLTFLoader } from './vendor/GLTFLoader.js';
@@ -28,7 +29,7 @@ export async function build(THREE, scene, film, ctx) {
     const m = o.material; if (m.name) mats[m.name] = m; if (m.emissive && m.emissive.getHex() !== 0) m.toneMapped = false;
   });
   const hex = n => new THREE.Color(META.palette[n] || '#ffffff');
-  for (const [n, c] of [['porcelain', 'toilet_glow'], ['hose_rib', 'hose_glow'], ['glow_ring', 'glow_ring'], ['hose_glow', 'hose_glow']]) if (mats[n]) { mats[n].emissive = hex(c); mats[n].toneMapped = false; }
+  for (const [n, c] of [['porcelain', 'toilet_glow'], ['hose_rib', 'hose_glow'], ['glow_ring', 'glow_ring'], ['hose_glow', 'hose_glow'], ['floor_glow', 'floor_glow']]) if (mats[n]) { mats[n].emissive = hex(c); mats[n].toneMapped = false; }
   // movers: rest transforms from meta, exploded / open targets
   const MV = Object.entries(MOVERS).map(([n, m]) => [N(n), m]).filter(([o]) => o);
   // lights: one set per kind, made from meta lights (watts -> three intensity by light_scale) and the world colour as a hemisphere fill
@@ -50,6 +51,9 @@ export async function build(THREE, scene, film, ctx) {
     if (mats.porcelain) mats.porcelain.emissiveIntensity = g * (night ? .12 : .35);
     if (mats.hose_rib) mats.hose_rib.emissiveIntensity = g * .3; if (mats.glow_ring) mats.glow_ring.emissiveIntensity = 1.2 * g;   // kit bloom adds the halo: lower than Blender's emission
     if (mats.hose_glow) mats.hose_glow.emissiveIntensity = 2 * g;
+    if (mats.floor_glow) mats.floor_glow.emissiveIntensity = night ? 1.5 * g : 0;   // round 3: shot 6 floor strip (the halo = kit bloom on the glowing porcelain)
+    const tb = +(S.tube ?? 1); for (const n of META.tube_parts || []) { const o = N(n); if (o) o.visible = !!tb; } for (const n of META.nozzle_parts || []) { const o = N(n); if (o) o.visible = !tb; }
+    const sw = N('bowl_swirl'); if (sw && MOVERS.bowl_swirl) sw.quaternion.copy(Q([0, 0, +(S.swirl || 0)]));
     for (const [o, m] of MV) {
       for (const [key, u] of [['exploded', e], ['open', o.name === 'door_leaf' ? +S.door : +S.hatch]]) {
         if (!m[key]) continue;
@@ -66,8 +70,8 @@ export async function build(THREE, scene, film, ctx) {
     if (!K.length) return {}; let a = K[0], b = K[K.length - 1];
     for (let i = 0; i < K.length - 1; i++) if (f >= K[i].f && f <= K[i + 1].f) { a = K[i]; b = K[i + 1]; break; }
     const u = b.f > a.f ? Math.min(1, Math.max(0, (f - a.f) / (b.f - a.f))) : (f >= b.f ? 1 : 0), sm = u * u * (3 - 2 * u), o = {};
-    for (const k of ['light', 'paper']) if (a[k] != null || b[k] != null) o[k] = f >= b.f ? (b[k] ?? a[k]) : (a[k] ?? b[k]);
-    for (const k of ['glow', 'exploded', 'door', 'hatch', 'pulse']) if (a[k] != null || b[k] != null) { const v0 = a[k] ?? b[k], v1 = b[k] ?? a[k]; o[k] = v0 + (v1 - v0) * sm; }
+    for (const k of ['light', 'paper', 'tube']) if (a[k] != null || b[k] != null) o[k] = f >= b.f ? (b[k] ?? a[k]) : (a[k] ?? b[k]);
+    for (const k of ['glow', 'exploded', 'door', 'hatch', 'pulse', 'swirl']) if (a[k] != null || b[k] != null) { const v0 = a[k] ?? b[k], v1 = b[k] ?? a[k]; o[k] = v0 + (v1 - v0) * sm; }
     return o;
   }
   function update(f, t) { setState(at(f)); }
