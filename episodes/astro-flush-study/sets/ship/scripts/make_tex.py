@@ -1,5 +1,5 @@
 """make_tex.py: every picture of the ship place (PIL + numpy), written to sets/ship/tex/. Run by build_ship.sh before Blender."""
-import os, math, json
+import os, sys, math, json
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 HERE = os.path.dirname(os.path.abspath(__file__)); TEX = os.path.join(os.path.dirname(HERE), 'tex'); os.makedirs(TEX, exist_ok=True)
@@ -21,24 +21,28 @@ def fbm(w, h, base, octaves, seed, wrap=True):
     return out / tot
 
 def earth():
-    W, H = 2048, 1024
-    land = fbm(W, H, 6, 6, 11); land = (land - land.min()) / (land.max() - land.min())
-    wx = (fbm(W, H, 5, 3, 21) - 0.5) * 140; wy = (fbm(W, H, 5, 3, 22) - 0.5) * 90
-    yy, xx = np.mgrid[0:H, 0:W]
-    cl = fbm(W, H, 8, 6, 31); cl = cl[np.clip((yy + wy).astype(int), 0, H - 1), ((xx + wx).astype(int)) % W]
-    cl = (cl - cl.min()) / (cl.max() - cl.min())
-    sea1, sea2, green, cloud, shade = [np.array(hx(c), np.float32) for c in ('#2062bd', '#2c76c1', '#8fc583', '#dee6f2', '#b8c6d2')]
+    """round 2: 4096x2048 so a cap filling the frame holds; vivid green land, cyan shallows, big warped white cloud swirls with soft blue shade.
+    Also writes ../out/earth_kit.jpg for the kit (the GLB carries only a tiny stand-in picture)."""
+    W, H = 4096, 2048
+    land = fbm(W, H, 5, 7, 11); land = (land - land.min()) / (land.max() - land.min())
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    wx = (fbm(W, H, 8, 4, 21) - 0.5) * 700; wy = (fbm(W, H, 8, 4, 22) - 0.5) * 420
+    sw = np.sin(xx / W * 2 * math.pi * 7 + fbm(W, H, 3, 3, 23) * 9) * 120
+    cl = fbm(W, H, 14, 7, 31); cl = cl[np.clip((yy + wy + sw * .5).astype(int), 0, H - 1), ((xx + wx + sw).astype(int)) % W]
+    cl = (cl - cl.min()) / (cl.max() - cl.min()); fine = fbm(W, H, 64, 4, 33); cl = cl * .72 + fine * .28
+    sea1, sea2, cloud, shade = [np.array(hx(c), np.float32) for c in ('#1d5cbc', '#2c78c8', '#f4f8fc', '#a9bfd8')]
     img = np.zeros((H, W, 3), np.float32)
-    t = np.clip((land - 0.35) / 0.2, 0, 1)[..., None]; img[:] = sea1 * (1 - t) + sea2 * t
-    coast = np.clip((land - 0.50) / 0.035, 0, 1)[..., None]; cyan = np.array((70, 190, 215), np.float32)
-    img = img * (1 - coast) + cyan * coast
-    lm = np.clip((land - 0.535) / 0.012, 0, 1)[..., None]
-    g2 = green * (0.86 + 0.28 * fbm(W, H, 24, 3, 41)[..., None]); img = img * (1 - lm) + g2 * lm
-    cm = np.clip((cl - 0.56) / 0.05, 0, 1); cs = np.roll(np.roll(cm, 8, 0), 8, 1)
-    img = img * (1 - 0.35 * cs[..., None])
-    inner = np.clip((cl - 0.66) / 0.08, 0, 1)[..., None]; cc = shade * (1 - inner) + cloud * inner
+    t = np.clip((land - 0.30) / 0.25, 0, 1)[..., None]; img[:] = sea1 * (1 - t) + sea2 * t
+    coast = np.clip((land - 0.50) / 0.035, 0, 1)[..., None]; cyan = np.array((60, 175, 215), np.float32)
+    img = img * (1 - coast * .7) + cyan * coast * .7
+    lm = np.clip((land - 0.535) / 0.01, 0, 1)[..., None]; gv = fbm(W, H, 20, 4, 41)[..., None]
+    g2 = np.array(hx('#55b043'), np.float32) * (1 - gv) + np.array(hx('#a6d870'), np.float32) * gv; img = img * (1 - lm) + g2 * lm
+    cm = np.clip((cl - 0.50) / 0.09, 0, 1) ** 1.3; cs = np.roll(np.roll(cm, 10, 0), 14, 1)
+    img = img * (1 - 0.30 * cs[..., None])
+    inner = np.clip((cl - 0.56) / 0.16, 0, 1)[..., None]; cc = shade * (1 - inner) + cloud * inner
     img = img * (1 - cm[..., None]) + cc * cm[..., None]
-    Image.fromarray(np.clip(img, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8)).save(os.path.join(TEX, 'earth.png'))
+    im = Image.fromarray(np.clip(img, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.7)); im.save(os.path.join(TEX, 'earth.png'))
+    OUTD = os.path.join(os.path.dirname(HERE), 'out'); os.makedirs(OUTD, exist_ok=True); im.save(os.path.join(OUTD, 'earth_kit.jpg'), quality=88)
 
 def stars():
     W, H = 8192, 4096
@@ -71,7 +75,7 @@ def text_img(name, size, items, bg=(0, 0, 0, 0)):
 
 def lodestar():
     im = Image.new('RGBA', (2000, 220), (0, 0, 0, 0)); d = ImageDraw.Draw(im); f = font(FI, 170)
-    for i, ch in enumerate('LODESTAR'): d.text((125 + i * 250, 110), ch, font=f, fill=(252, 252, 252, 255), anchor='mm')
+    for i, ch in enumerate('LODESTAR'): d.text((125 + i * 250, 110), ch, font=f, fill=(252, 252, 252, 255), anchor='mm', stroke_width=9, stroke_fill=(252, 252, 252, 255))
     im.save(os.path.join(TEX, 'lodestar.png'))
 
 def mfd(on):
@@ -133,5 +137,12 @@ def starmap():
     c = (470, 560); d.ellipse((c[0] - 80, c[1] - 80, c[0] + 80, c[1] + 80), outline=(255, 110, 90, 255), width=12); d.line((c[0] - 18, c[1] - 10, c[0] + 18, c[1] + 10), fill=(255, 230, 200, 255), width=10)
     im.save(os.path.join(TEX, 'starmap.png'))
 
-if __name__ == '__main__':
-    earth(); stars(); lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))
+def kit_sky():
+    OUTD = os.path.join(os.path.dirname(HERE), 'out'); os.makedirs(OUTD, exist_ok=True)
+    Image.open(os.path.join(TEX, 'stars.png')).resize((4096, 2048), Image.LANCZOS).save(os.path.join(OUTD, 'stars_kit.jpg'), quality=90)
+
+if __name__ == '__main__' and len(sys.argv) > 1:
+    for n in sys.argv[1:]: globals()[n]()
+    print('tex ok', sys.argv[1:])
+elif __name__ == '__main__':
+    earth(); stars(); kit_sky(); lodestar(); mfd(True); mfd(False); sband(); radio(); badge(); starmap(); print('tex ok', sorted(os.listdir(TEX)))

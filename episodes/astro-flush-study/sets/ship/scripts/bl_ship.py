@@ -130,8 +130,8 @@ EDGE = {'belly': 0, 'side_lo_p': 1, 'side_up_p': 2, 'shoulder_p': 3, 'top': 4, '
 def frame(i, x0=0.):
     a, b = Vector(PROF[i]), Vector(PROF[(i + 1) % 8]); d = b - a; L = d.length; v = d / L
     return Vector((x0, a.x, a.y)), Vector((1, 0, 0)), Vector((0, v.x, v.y)), Vector((0, v.y, -v.x)), L
-WIN_X = [1.6 + 2.0 * k for k in range(10)]; WIN_Z = -.15; WW, WH_, WR, WT = .70, 1.08, .14, .21
-PORTS = {'porthole_a': 0, 'porthole_b': 4}                           # window index (from aft) of the real openings
+WIN_X = [1.4 + 2.3 * k for k in range(9)]; WIN_Z = -.15; WW, WH_, WR, WT = .55, .85, .2, .26
+PORTS = {'porthole_a': 0, 'porthole_b': 3}                           # window index (from aft) of the real openings
 def win_v(i, z):
     o, U, V, N, L = frame(i); return (z - o.z) / V.z
 def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
@@ -140,9 +140,9 @@ def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
     for u0, u1, v0, v1 in subs([(0, XB, 0, L)], holes):
         abox(bk, u1 - u0, v1 - v0, .03, MF(o + U * ((u0 + u1) / 2) + V * ((v0 + v1) / 2) + N * (-.015), U, V, N), bev=0)
     for r in range(nrow):
-        sh = pw / 2 if r % 2 else 0.; u = -sh
+        sh = pw * rnd.uniform(.2, .8); u = -sh; step = pw
         while u < XB:
-            for u0, u1, v0, v1 in subs([(max(u, 0) + g, min(u + pw, XB) - g, r * ph + g, (r + 1) * ph - g)], holes):
+            for u0, u1, v0, v1 in subs([(max(u, 0) + g, min(u + step, XB) - g, r * ph + g, (r + 1) * ph - g)], holes):
                 abox(bp, u1 - u0, v1 - v0, t, MF(o + U * ((u0 + u1) / 2) + V * ((v0 + v1) / 2) + N * (t / 2), U, V, N), bev=.018)
                 k = 0; ru = u0 + .12
                 while ru < u1 - .1 and v1 - v0 > .3:
@@ -150,7 +150,7 @@ def hull_face(i, mname, pw=2.0, ph=1.4, holes=(), extra_hole_pad=0.):
                 if (u1 - u0) > .6 and (v1 - v0) > .5 and rnd.random() < .6:
                     su, sv = u0 + rnd.uniform(.15, u1 - u0 - .45), v0 + rnd.uniform(.12, v1 - v0 - .12)
                     abox(bs, rnd.uniform(.12, .3), .025, .006, MF(o + U * (su + .15) + V * sv + N * (t + .002), U, V, N), bev=0)
-            u += pw
+            u += step; step = pw * rnd.choice((.5, .75, 1., 1., 1.25, 1.5))
     nm = 'hull_' + [k for k, v in EDGE.items() if v == i][0]
     obj(nm + '_backing', bk, 'hull_core'); obj(nm + '_panels', bp, mname); obj(nm + '_rivets', br, 'rivet', smooth=True); obj(nm + '_scuffs', bs, 'scuff')
 for side in (1, -1):
@@ -179,13 +179,13 @@ for side in (1, -1):
         Mw = MF((x, side * (HW + .07), WIN_Z), (side, 0, 0), (0, 0, 1), (0, side, 0))
         arring(br_, WW, WH_, WR, WT, .16, Mw, lip=.04)
         arring(bi_, WW - .08, WH_ - .08, WR - .04, .06, .34, Mw @ Matrix.Translation((0, 0, -.2)), lip=.015)
-        for bu, bv in ((-1, -1), (1, -1), (-1, 1), (1, 1), (0, -1.12), (0, 1.12)):
+        for bu, bv in ((-1, -1), (1, -1), (-1, 1), (1, 1), (0, -1.1), (0, 1.1)):
             px = bu * (WW / 2 + WT * .45) * (.9 if bv in (1, -1) and bu else 1); pz = bv * (WH_ / 2 + WT * .45) * (1 if bu else .97)
             alathe(bb_, [(.04, 0), (.04, .035)], 6, Mw @ Matrix.Translation((px, pz, .08)))
         name = [n for n, i in PORTS.items() if i == k and side > 0]
         if not name:
-            abox(bg_, .95, .06, 1.25, MT((x, side * (HW - .42), WIN_Z)), bev=0)
-            abox(bf_, .5, .02, .78, MT((x, side * (HW - .385), WIN_Z + .05)), bev=0)
+            abox(bg_, .8, .06, 1.05, MT((x, side * (HW - .42), WIN_Z)), bev=0)
+            abox(bf_, .4, .02, .6, MT((x, side * (HW - .385), WIN_Z + .05)), bev=0)
 obj('window_rings', br_, 'port_ring', smooth=True); obj('window_bevels', bi_, 'port_bevel', smooth=True); obj('window_bolts', bb_, 'bolt_white', smooth=True)
 obj('window_glow', bg_, 'win_glow'); obj('window_glow_inner', bf_, mat('win_glow_inner', col='#d9a865', es=1.1, emit='#d9a865'))
 def stub_room(name, x):
@@ -195,9 +195,9 @@ def stub_room(name, x):
     for s in (1, -1): abox(bw, .1, y0 - y1, z1 - z0, MT((x + s * 1.4, (y0 + y1) / 2, (z0 + z1) / 2)), bev=0)
     abox(bw, 2.8, y0 - y1, .1, MT((x, (y0 + y1) / 2, z1)), bev=0); abox(bf, 2.8, y0 - y1, .1, MT((x, (y0 + y1) / 2, z0)), bev=0)
     obj(name + '_room_walls', bw, 'stub_wall'); obj(name + '_room_floor', bf, 'stub_floor')
-    box(name + '_room_rail', (2.7, .08, .1), (x, y1 + .1, .05), 'stub_rail', bev=.02)
-    bm = B(); arring(bm, .55, .8, .2, .1, .08, MF((x - .3, y1 + .07, .55), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
-    bm = B(); aquad(bm, .58, .83, MF((x - .3, y1 + .06, .55), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
+    box(name + '_room_rail', (2.7, .08, .1), (x, y1 + .1, -.95), 'stub_rail', bev=.02)
+    bm = B(); arring(bm, .55, .8, .2, .1, .08, MF((x + .15, y1 + .07, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port', bm, 'port_ring', smooth=True)
+    bm = B(); aquad(bm, .58, .83, MF((x + .15, y1 + .06, -.1), (1, 0, 0), (0, 0, 1), (0, 1, 0))); obj(name + '_room_port_glass', bm, 'stub_window')
     ANCH[name] = [x, HW + .15, WIN_Z]; ANCH[name + '_card'] = [x - .1, HW - .7, z0 + .05]
 for n, k in PORTS.items(): stub_room(n, WIN_X[k])
 # hazard box (the waste vent from outside) on the stripe under porthole_b, a loose wrench drifting by the stripe (mover)
@@ -275,10 +275,11 @@ obj('engine_bands', bm, 'gold', (TX1, 0, 0))
 NZX = TX1 - 3.9; bm = B(); alathe(bm, [(.7, 0), (.75, .4), (1.05, 1.2), (1.45, 1.9), (1.4, 1.9), (1.0, 1.2), (.65, .4)], 24, M_ENG, caps=False); obj('engine_bell', bm, 'engine', (NZX, 0, 0), smooth=True)
 bm = B(); alathe(bm, [(.0, .5), (1.0, 1.2), (1.38, 1.85)], 24, M_ENG, caps=False); obj('nozzle_glow', bm, 'nozzle_glow', (NZX, 0, 0), smooth=True, mover={'state': 'preglow 0-1'})
 FLX = NZX - 1.9; ANCH['flame_origin'] = [FLX, 0, 0]; ANCH['nozzle'] = [NZX, 0, 0]
-for nm, prof, mn in (('flame_core', [(.9, 0), (1.0, 1.5), (.8, 6), (.4, 11), (.05, 14)], ('flame_core', PRM['flame']['core'], 14., None)),
-                     ('flame_mid', [(1.2, 0), (1.7, 2), (1.6, 8), (1.0, 15), (.1, 19)], ('flame_mid', PRM['flame']['mid'], 7., .55)),
-                     ('flame_outer', [(1.4, 0), (2.4, 3), (2.4, 10), (1.6, 18), (.2, 23)], ('flame_outer', PRM['flame']['outer'], 4., .32)),
-                     ('flame_halo', [(1.6, -.3), (3.6, 4), (3.6, 12), (2.4, 21), (.3, 27)], ('flame_halo', PRM['flame']['halo'], 3., .18))):
+for nm, prof, mn in (('flame_core', [(1.0, 0), (1.25, 2), (1.1, 10), (.6, 19), (.05, 24)], ('flame_core', PRM['flame']['core'], 14., None)),
+                     ('flame_mid', [(1.3, 0), (2.1, 3), (2.1, 13), (1.4, 24), (.1, 31)], ('flame_mid', PRM['flame']['mid'], 6., .45)),
+                     ('flame_outer', [(1.5, 0), (3.0, 4), (3.1, 16), (2.2, 28), (.2, 37)], ('flame_outer', PRM['flame']['outer'], 4., .25)),
+                     ('flame_halo', [(1.7, -.3), (4.4, 5), (4.6, 18), (3.3, 32), (.3, 43)], ('flame_halo', PRM['flame']['halo'], 4., .14)),
+                     ('flame_glow', [(2.0, -.6), (5.8, 6), (6.2, 20), (4.6, 36), (.4, 48)], ('flame_glow', '#6d51b8', 2.5, .07))):
     bm = B(); alathe(bm, prof, 28, M_ENG); obj(nm, bm, mat(mn[0], col='#000000', emit=mn[1], es=mn[2], alpha=mn[3], rough=1.), (FLX, 0, 0), smooth=True, mover={'state': 'flame 0-1 scales x (length) and y,z (width)'})
 # ================================================================== GLITTER (movers: trail from the tail, puff at the collar, cloud around the cockpit)
 def sparkle(bm, p, s, big=False):
@@ -300,9 +301,9 @@ def cloud(name, n, sampler, s0, s1, loc, seed, parent_ship=True, c=None):
     for k in range(n): sparkle(bm, sampler(r), r.uniform(s0, s1) * (2.2 if r.random() < .1 else 1), big=r.random() < .1)
     return obj(name, bm, 'glitter', loc, c=c, mover={'state': 'glitter 0-1'})
 def trail(r, k, L=46.):
-    t = (k + r.random()) / 4; w = .6 + t * 9; return (-t * L, r.gauss(0, w * .5), r.gauss(0, w * .5) + t * 4)
+    t = (k + r.random()) / 4; w = .6 + t * 13; return (-t * L, r.gauss(0, w * .5), r.gauss(0, w * .5) + t * 4)
 for k in range(4):
-    cloud('glitter_trail_%d' % k, 450, lambda r, k=k: trail(r, k), .12, .3, (FLX - 2, 0, 0), 20 + k)
+    cloud('glitter_trail_%d' % k, 110, lambda r, k=k: trail(r, k), .1, .22, (FLX - 2, 0, 0), 20 + k)
 cloud('glitter_collar', 160, lambda r: (r.gauss(0, 1.2), r.gauss(0, 1.8), r.gauss(0, 1.5) + 2.5), .04, .09, (-1.5, 0, 0), 31)
 for k in range(3):                                                 # around the canopy for shot 7 (on in 3 steps: 'glitter_ck')
     cloud('glitter_cockpit_%d' % k, 420, lambda r: (r.uniform(-3, 9), r.uniform(-7, 7), r.uniform(-4, 6)), .008, .02, (XN, 0, 0), 40 + k)
@@ -316,7 +317,7 @@ bm = B(); apoly(bm, [(XB + .03, y * .985, z * .985) for y, z in PROF][::-1], .05
 bm = B(); z = FLZ + .25
 while z < HW - .25:
     hw = inner_y(XB, z) - .2
-    for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * hw, z + .35), .07, 4)
+    for s in (1, -1): abeam(bm, (XB + .12, 0, z), (XB + .12, s * hw, z - .35), .07, 4)
     z += .26
 obj('ck_slats', bm, 'ck_slat')
 for k, y in enumerate((-1.05, 1.05)):                              # 2 pairs of black rods with an orange glowing tube + round tip
@@ -436,10 +437,10 @@ def earth_mats():
     m = bpy.data.materials.new('earth'); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
     t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(TEX, 'earth.png'))
     nt.links.new(t.outputs[0], b.inputs['Base Color']); nt.links.new(t.outputs[0], b.inputs['Emission Color']); b.inputs['Emission Strength'].default_value = .12
-    b.inputs['Roughness'].default_value = .45; b.inputs['Specular IOR Level'].default_value = .6; MATS['earth'] = m
+    b.inputs['Roughness'].default_value = .3; b.inputs['Specular IOR Level'].default_value = .9; MATS['earth'] = m
     r = bpy.data.materials.new('earth_rim'); r.use_nodes = True; nt = r.node_tree; nt.nodes.clear(); o = nt.nodes.new('ShaderNodeOutputMaterial')
-    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 7.
-    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin(PRM['earth']['rim']); em.inputs[1].default_value = 4.
+    lw = nt.nodes.new('ShaderNodeLayerWeight'); lw.inputs[0].default_value = .5; pw = nt.nodes.new('ShaderNodeMath'); pw.operation = 'POWER'; pw.inputs[1].default_value = 3.5
+    em = nt.nodes.new('ShaderNodeEmission'); em.inputs[0].default_value = lin('#bfeaff'); em.inputs[1].default_value = 5.
     tr = nt.nodes.new('ShaderNodeBsdfTransparent'); mx = nt.nodes.new('ShaderNodeMixShader')
     nt.links.new(lw.outputs['Facing'], pw.inputs[0]); nt.links.new(pw.outputs[0], mx.inputs[0]); nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o.inputs[0])
     MATS['earth_rim'] = r
@@ -478,6 +479,7 @@ for k, p in enumerate(ANCH['lamps']): light('lamp_light_%d' % k, (p[0], p[1], .4
 light('ck_fill', (23.6, 0, .6), (.5, .55, 1.), 25, .6); light('comm_light', tuple(Vector(ANCH['comm_lamp']) + Vector((0, -.1, .08))), (1., .12, .08), 0, .05)
 light('mfd_light', tuple(U(-.02, .1, .35)), (1., .2, .2), 0, .1); light('room_light_a', (WIN_X[0], .3, 1.4), (1., .95, .88), 120, .4); light('room_light_b', (WIN_X[4], .3, 1.4), (1., .95, .88), 120, .4)
 light('flame_light', (FLX - 3, 0, 0), (.7, .55, 1.), 0, 2.)
+ww = light('wall_wash', (XB + 1.3, 0, HW - .35), (1., .74, .45), 0, .15, 'SPOT', rot=(0, -62, 0)); ww.data.spot_size = math.radians(95); ww.data.spot_blend = .6
 root = bpy.data.objects.new('ship_root', None); SET.objects.link(root); MOVERS['ship_root'] = {'loc': [0, 0, 0], 'rot': [0, 0, 0], 'state': 'ship [x,y,z,rx,ry,rz]'}
 for o in list(SET.objects) + list(STAND.objects) + list(LIGHTS.objects):
     if o is not root and o.parent is None and not o.name.startswith('sun_'): o.parent = root
@@ -489,7 +491,7 @@ ANCH = {k: [round(float(c), 4) for c in v] if not isinstance(v[0], list) else [[
 import ship_api as api
 META = {'place': 'ship', 'units': 'Blender metres, Z up; ship axis X, nose +X, porthole side +Y; everything ship = child of ship_root',
         'hull': {'body_x': [0, XB], 'nose_x': [XB, XN], 'half_width': HW, 'windows_x': WIN_X, 'window_z': WIN_Z, 'portholes': {k: WIN_X[v] for k, v in PORTS.items()}},
-        'anchors': ANCH, 'cams': PRM.get('cams', {}), 'proofs': PRM.get('proofs', {}), 'movers': MOVERS, 'standins': STANDINS,
+        'anchors': ANCH, 'cams': PRM.get('cams', {}), 'ship_poses': PRM.get('ship_poses', {}), 'kit_pictures': {'earth': 'earth_kit.jpg', 'sky_dome': 'stars_kit.jpg'}, 'proofs': PRM.get('proofs', {}), 'movers': MOVERS, 'standins': STANDINS,
         'state_default': api.DEFAULT, 'light_kinds': api.LIGHTS,
         'frames': {'shot2': [36, 119], 'ship_turns': 75, 'preglow': [84, 94], 'flame_on': [96, 100], 'flame_full': [100, 118], 'shot7': [538, 705],
                    'glitter_ck_on': [585, 660], 'lens_star': [690, 704], 'shot8': [713, 762], 'starmap_in': 709, 'shot9': [771, 802], 'comm_incoming': 772,
@@ -500,7 +502,11 @@ SC.render.resolution_x, SC.render.resolution_y = 540, 960; SC.cycles.max_bounces
 tris = sum(len(o.data.polygons) for o in list(SET.objects) + list(WORLD.objects) if o.type == 'MESH')
 for o in bpy.data.objects: o.select_set(False)
 for o in list(SET.objects) + list(WORLD.objects): o.select_set(True)
+# the kit loads earth_kit.jpg / stars_kit.jpg (written by make_tex.py) beside the GLB: the GLB carries tiny stand-in pictures only
+BIG = {n: MATS[n].node_tree.nodes['Image Texture'].image for n in ('earth', 'sky_stars')}; tiny = bpy.data.images.new('kit_stub', 8, 4)
+for n in BIG: MATS[n].node_tree.nodes['Image Texture'].image = tiny
 bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, 'ship_lite.glb'), use_selection=True, export_apply=True, export_yup=True, export_lights=False, export_cameras=False)
+for n, im in BIG.items(): MATS[n].node_tree.nodes['Image Texture'].image = im
 api._M.clear(); api.set_state(SC)
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, 'ship.blend'))
 print('BUILT ship: %d set objects, %d world, %d faces, %d movers' % (len(SET.objects), len(WORLD.objects), tris, len(MOVERS)))

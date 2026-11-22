@@ -20,15 +20,15 @@ def _emit(mat, strength, col=None):
     b = m.node_tree.nodes['Principled BSDF']; b.inputs['Emission Strength'].default_value = strength
     if col: b.inputs['Emission Color'].default_value = col
 DEFAULT = {'light': 'space', 'sun_dir': None, 'flame': 0, 'preglow': 0, 'glitter': 0, 'glitter_ck': 0, 'comm': 0, 'digits': 0, 'starmap': 0, 'shot': 0,
-           'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0}
+           'ship': [0, 0, 0, 0, 0, 0], 'earth': [0, -3000, -2600, 1500], 'earth_emit': 1., 'fan': 0, 'sun_k': 1., 'sky_rot': 0, 'wash': 0}
 LIGHTS = {  # sun (to-light direction, colour, strength), interior lamps W each, cockpit fill W, room lights W, world colour
     'space': {'sun': ((.2, .5, .85), (1., 1., 1.), 3.0), 'fill': .25, 'lamps': 60, 'ck_fill': 20, 'rooms': 120},
-    'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 160, 'ck_fill': 30, 'rooms': 120},
+    'warm':  {'sun': ((.45, -.6, .65), (1., .78, .6), 3.2), 'fill': .2, 'lamps': 220, 'ck_fill': 60, 'rooms': 120},
     'map':   {'sun': ((.45, -.6, .65), (1., .78, .6), .6), 'fill': .05, 'lamps': 8, 'ck_fill': 0, 'rooms': 0},
     'radio': {'sun': ((.45, -.6, .65), (1., .78, .6), 0.), 'fill': 0., 'lamps': 3, 'ck_fill': 0, 'rooms': 0},
 }
-def set_light(scene, kind, sun_dir=None):
-    L = LIGHTS[kind]; d, col, e = L['sun']; s = _o('sun_key')
+def set_light(scene, kind, sun_dir=None, sun_k=1.):
+    L = LIGHTS[kind]; d, col, e = L['sun']; s = _o('sun_key'); e = e * sun_k
     s.rotation_euler = Vector(sun_dir or d).normalized().to_track_quat('Z', 'Y').to_euler(); s.data.color = col; s.data.energy = e; s.hide_render = e <= 0
     f = _o('sun_fill'); f.data.energy = L['fill']; f.rotation_euler = (-Vector(sun_dir or d)).normalized().to_track_quat('Z', 'Y').to_euler()
     for n in ('lamp_light_0', 'lamp_light_1'): _o(n).data.energy = L['lamps']
@@ -38,11 +38,13 @@ def set_light(scene, kind, sun_dir=None):
     _emit('lamp_tube', 6. * lamp_es); _emit('lamp_tip', 9. * lamp_es)
 def set_state(scene, **kw):
     S = json.loads(scene.get('ship_state', '{}')) or dict(DEFAULT); S.update(kw); scene['ship_state'] = json.dumps(S); M = meta()
-    set_light(scene, S['light'], S.get('sun_dir'))
+    set_light(scene, S['light'], S.get('sun_dir'), float(S.get('sun_k', 1.)))
+    _o('sky_dome').rotation_euler = (0, 0, math.radians(float(S.get('sky_rot', 0))))
+    w = _o('wall_wash'); w.data.energy = float(S.get('wash', 0)) or {'warm': 450., 'space': 200.}.get(S['light'], 0.)
     sh = S['ship']; r = _o('ship_root'); r.location = sh[:3]; r.rotation_euler = [math.radians(a) for a in sh[3:6]]
     e = S['earth']; eo = _o('earth'); eo.location = e[:3]; eo.scale = (e[3],) * 3; _emit('earth', .12 * float(S.get('earth_emit', 1.)))
     f = float(S['flame'])
-    for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo'):
+    for n in ('flame_core', 'flame_mid', 'flame_outer', 'flame_halo', 'flame_glow'):
         o = _o(n); o.scale = (max(f, .001), .45 + .55 * f, .45 + .55 * f); o.hide_render = o.hide_viewport = f <= .001
     _o('flame_light').data.energy = 60000 * f
     pg = max(float(S['preglow']), 1. if f > 0 else 0.); _emit('nozzle_glow', 8. * pg)

@@ -21,6 +21,8 @@ export async function build(THREE, scene, film, ctx) {
     const m = o.material; if (m.emissive && (m.emissive.getHex() !== 0 || m.emissiveMap)) m.toneMapped = false;
   });
   const N = n => root.getObjectByName(n), loader = new THREE.TextureLoader(), texCache = {};
+  // picture sequences (clock strip, OFF COURSE) are loaded BEFORE the first frame, else a swapped plane renders black until its picture arrives
+  await Promise.all([...META.clock.seq, ...META.offcourse_seq].map(async e => { const t = await loader.loadAsync(TEX + e.png); t.colorSpace = THREE.SRGBColorSpace; t.flipY = false; texCache[e.png] = t; }));
   const tex = png => texCache[png] ||= loader.load(TEX + png, t => { t.colorSpace = THREE.SRGBColorSpace; t.flipY = false; });
   const swap = (obj, png) => { if (!obj) return; const m = obj.material; const t = tex(png); if (m.emissiveMap !== t) { m.emissiveMap = t; m.map = null; m.needsUpdate = true; } };
   const space = N('mc_space_panel'); if (space && P.space_texture) { space.material = space.material.clone(); space.material.emissiveMap = P.space_texture; space.material.needsUpdate = true; }

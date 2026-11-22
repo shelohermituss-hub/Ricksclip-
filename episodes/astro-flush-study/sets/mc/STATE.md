@@ -10,6 +10,34 @@ clock (9 pictures, his digits: MET 17:33 f120 -> 17:38 f270, LOS 12:03 -> 11:59;
 DEV 0.0 f803 -> 4.7 f826, red line grows to f860), nogo_box pop f176-180, cover f258-261, press f262-264, bin until f150. `mc_api.frame_state(f)` gives the reference timing.
 mc_space_panel: own plane, placeholder picture, rect in meta.space_panel (uv .022-.149 x .035-.435 of the screen). cam_monitor = f283 framing in meta.
 
+## Round 2 (layout solved from his frames with a pinhole model of the Blender camera: director feet/head, pedestal domes, controller heads, screen top)
+Desk 1.87 m (heads .62 m apart as his), x -1.5..0.37, y -12.25, 0.95 m tall, GUIDO end just left of the GO pedestal; controllers y -11.6; director (0.9, -13.21);
+GO pedestal (0.49, -13.0), NO GO (1.44, -13.3), box tops 0.98 m (his domes at the director's waist); counter x 1.75-3.6 y -10.7. Cameras: f180-f283 one lens
+(34 deg) pushing in from y -21.5 to -19.8; f140 own camera (34 deg, y -17.5, looking up at the screen); f820/f860 low and close (38 / 34 deg, y -17.7 / -17.3).
+Fills greyer (moods in params). Kit test: scratchpad film, `render_gpu.mjs --frames 0 --scale 0.5 --grab fast` loads mc.js (77 meshes, 69.5k tris), GO screen + teal
+state from "keys": "reference"; fixed: clock/OFF COURSE pictures are now preloaded (the swapped clock plane rendered black on the first frame).
+
+| frame | mean L ours / his | p1 | p99 | mean sat |
+|---|---|---|---|---|
+| f140 | 0.293 / 0.267 | 0.012 / 0.007 | 1.000 / 0.978 | 0.530 / 0.549 |
+| f180 | 0.333 / 0.304 | 0.017 / 0.008 | 1.000 / 0.997 | 0.530 / 0.503 |
+| f200 | 0.315 / 0.283 | 0.016 / 0.008 | 1.000 / 0.996 | 0.508 / 0.481 |
+| f235 | 0.338 / 0.298 | 0.018 / 0.007 | 1.000 / 0.997 | 0.510 / 0.491 |
+| f270 | 0.295 / 0.273 | 0.012 / 0.006 | 1.000 / 0.999 | 0.557 / 0.489 |
+| f283 | 0.327 / 0.286 | 0.012 / 0.003 | 1.000 / 0.999 | 0.458 / 0.490 |
+| f820 | 0.352 / 0.299 | 0.012 / 0.006 | 1.000 / 1.000 | 0.418 / 0.440 |
+| f860 | 0.404 / 0.332 | 0.012 / 0.006 | 1.000 / 1.000 | 0.394 / 0.429 |
+
+Still wrong, worst first (round 2)
+1. Shot 10 too bright (f860 0.404 vs 0.332, f820 0.352 vs 0.299): mostly the big flat white stand-in card (wider than his thin puppet); the room itself is near. Re-measure with the real card.
+2. Every frame 0.02-0.04 too bright; p1 0.012-0.018 vs 0.003-0.008 (blacks not deep enough: under-desk, soffit and bezel take too much fill).
+3. f270 red-violet saturation 0.557 vs 0.489 (still the most coloured mood); f283/f820/f860 now slightly under his.
+4. f140: his room is cheated (screen/desk ratio differs from f180); ours keeps one room, so his clocks sit at 14 % of the height and ours at 20 %, heads at 66 % vs his 68 %.
+5. Head size in shot 10: measured on his frames the head is 20 % (f820) and 25 % (f860) of the frame height, not 30 %; ours follows his frames.
+6. The GO pedestal is half hidden behind the wide director card at f180-f283 (his thin puppet leaves the dome free); NO GO letters thinner than his; map continents generic.
+7. Kit preview: lights are a hemisphere + top + screen point light, darker and greener than the Blender still; DOF of the kit blurs the screen text. Lens of the test station guessed (35 mm).
+
+## Round 1 numbers (old layout)
 | frame | mean L ours / his | p1 | p99 | mean sat |
 |---|---|---|---|---|
 | f140 | 0.232 / 0.267 | 0.012 / 0.007 | 1.000 / 0.978 | 0.633 / 0.549 |
@@ -20,7 +48,6 @@ mc_space_panel: own plane, placeholder picture, rect in meta.space_panel (uv .02
 | f283 | 0.281 / 0.286 | 0.012 / 0.003 | 1.000 / 0.999 | 0.537 / 0.490 |
 | f820 | 0.319 / 0.299 | 0.012 / 0.006 | 1.000 / 1.000 | 0.488 / 0.440 |
 | f860 | 0.334 / 0.332 | 0.011 / 0.006 | 1.000 / 1.000 | 0.474 / 0.429 |
-(f200, f235, f283, f860 stills are from the camera before the last +0.6 m x shift in params; re-render them.)
 
 Still wrong, worst first
 1. Staging depth: the controller desk is at the director's depth and too far left, so in f180-f283 the three controllers fall out of frame left. His desk sits BEHIND
