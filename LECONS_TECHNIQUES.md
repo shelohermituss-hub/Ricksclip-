@@ -463,3 +463,24 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 - 2026-11-21 (same) Kit sit_chair cards stand 1.65 m tall (only the legs bend), so a seated card towers over a seat. Fix: lower the card foot
   (-0.17 m in the cabin) and cut its alpha below the cushion top (object Z > seat) so no drawn shins lie on the seat. Guard: head top within
   1.25-1.35 m for a seated 1.80 m man. Proof: look/prev/C_t6 vs C_p2. FERMÉ
+
+## 2026-11-22 — An episode move that imports the rig by a repo path does not load (plane-eater S5, kit moves) — FERMÉ
+- Problem: film.js "move module not found: ../../ep_s5"; every seated act fell back to nothing.
+- Cause: moves are served from the merged puppet tree (/puppets/...), not from the repo; an import '../../../../templates/motion_styles/rig.mjs' leaves that tree.
+- Fix: import from the merged tree: `import { G } from './motion/rig.mjs'` (the same file sit_chair.mjs reaches as '../rig.mjs').
+- Guard: grep the render log for "move module not found" after the first test frame of every stretch.
+- Proof: episodes/plane-eater/s5 test frames show both men seated with their moves (key/dbg4.jpg).
+
+## 2026-11-22 — Camera-safe VIEW_MISMATCH on an episode move written for 3/4 only (plane-eater S3) — FERMÉ
+- Problem: camsafe validate 30 FAIL "asked side, drew 3/4 (../../ep_s3/dr_lean)" when the camera went more than 68 deg round the Doctor.
+- Cause: puppets.mjs takes the module's `front` export for front/3-4 and the `default` export for side; the file exported the same 3/4 styles in both.
+- Fix: one pose function with a view argument: `default` = its side drawing, `front` = its 3/4 drawing (episodes/plane-eater/s3/moves/ep_s3.mjs).
+- Guard: camsafe validate after every render; an episode move gets both exports unless it has legs3d (then any view is allowed).
+- Proof: S3 re-render camsafe numbers in episodes/plane-eater/s3/camsafe.txt.
+
+## 2026-11-22 — Airliner cabin: no lens fits in front of the seated men (plane-eater cabin.js) — OUVERT (draft workaround)
+- Problem: every front station rendered blue fabric; from the aisle the row in front hid both men.
+- Cause: 0.45 m leg room between Michel's seat and the row-8 seat backs (1:1 airliner pitch).
+- Fix (draft): cabin.js "wild": ["8A","8B"] hides the upper seat backs of the row in front, as a film crew pulls a row. Michel's tray table then hangs on its arms.
+- Guard: SET_CHANGES.md; Blender final to decide (wild back only where the lens is, or a longer pitch in that row).
+- Proof: episodes/plane-eater/s5/key/dbg3.jpg (blocked) vs dbg4.jpg (both men read).

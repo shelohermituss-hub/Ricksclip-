@@ -12,17 +12,18 @@ export const W = { x: 519, rayed: 528, him: 537, and: 541, found: 550, a: 556, s
 //   f528      "-RAYED": he LEANS IN to the film (anticipation 3 f back, then rot +7 over 12 f), head down 6 = peering over the half-moon glasses
 //   f541      "and": the far hand flies up to the nose and pushes the glasses down (snap 6), stays there (the clip hand stays on the clip)
 //   f550      "found": a small jolt back as he sees the plane (rot -4, snap 5, ring on the head), then DEAD STILL, staring, until the camera has gone
-function drLean(t, ch) { const f = F(t) + A0;
+function drLean(t, ch, view = '34') { const f = F(t) + A0;
   const ant = snap(f - (W.rayed - 3), 3) - snap(f - W.rayed, 4), lean = snap(f - W.rayed, 12), jolt = snap(f - W.found, 5) - .5 * snap(f - W.found - 6, 10);
   const gl = snap(f - W.and, 6);
   const rot = -2 * ant + 7 * lean - 4 * jolt, head = 6 * lean - 3 * jolt + ring(f, W.found, 4, 10);
   const far = { f: .35 + (.42 - .35) * gl, d: .78 - 1.38 * gl, bow: .45, over: gl > .5 };           // belly -> the nose (glasses down)
   const near = { f: .92, d: -.32 + .05 * lean, bow: .3 };                                               // up on the film clip bar
-  return { view: '34', dir: 1, x: 0, y: dip(f, W.found, 4, 5), rot, head, feet: [{ x: -26, lift: 0 }, { x: 24, lift: 0 }], farArmFront: gl > .5,
+  return { view, dir: 1, x: 0, y: dip(f, W.found, 4, 5), rot, head, feet: [{ x: -26, lift: 0 }, { x: 24, lift: 0 }], farArmFront: gl > .5,
     hands: [far, near], held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
+const STY_SIDE = [sty('dr_lean', (t, ch) => drLean(t, ch, 'side'), 'side drawing (camera-safe: the camera asks for side beyond 68 deg)')];
 const STY = [sty('dr_lean', drLean, 'hand on the film clip, leans in, pushes the glasses down, jolts on "found"')];
-export default { title: 'PLANE-EATER S3: episode moves', dur: N / 30, styles: STY };
+export default { title: 'PLANE-EATER S3: episode moves (side)', dur: N / 30, styles: STY_SIDE };
 export const front = { title: 'PLANE-EATER S3: episode moves', dur: N / 30, styles: STY };
 export const PLAN = { dr_lean: { who: 'doctor', view: '34', strikes: [528, 541, 550], holds: [[560, 638, 'staring, still']], acting: [519, 559] } };

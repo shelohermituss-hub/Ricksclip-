@@ -1,0 +1,5 @@
+CAMERA-SAFE  s3  camsafe on  639 checks: PASS 609  WARN 0  FAIL 30
+  VIEW_MISMATCH  30
+  f519 doctor FAIL  yaw 117.6 pitch 32  FAIL VIEW_MISMATCH: asked side, drew 3/4 (../../ep_s3/dr_lean)
+      FIX: the move ../../ep_s3/dr_lean has no side drawing: add one to its module, or keep the camera under 68 deg round him
+report -> /home/user/Ricksclip-/episodes/plane-eater/s3/out/plan/camsafe_report.json

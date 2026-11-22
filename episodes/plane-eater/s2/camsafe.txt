@@ -1,0 +1,5 @@
+CAMERA-SAFE  s2  camsafe on  1040 checks: PASS 803  WARN 0  FAIL 237
+  LEGS_DISAGREE  237
+  f0 michel FAIL  yaw -146.9 pitch 11.6  FAIL LEGS_DISAGREE: 3D legs point where he faces (147 deg) but the body is drawn side
+      FIX: set film.json "camsafe": true (sitting with 3D legs then takes the true view)
+report -> /home/user/Ricksclip-/episodes/plane-eater/s2/out/plan/camsafe_report.json

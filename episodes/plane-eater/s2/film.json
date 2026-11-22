@@ -1,0 +1,754 @@
+{
+ "title": "The Man Who Ate An Airplane, S2 THE TABLE (lines 3-4, frames 257-519)",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "start": 257,
+ "end": 520,
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "cast": {
+  "michel": {
+   "puppet": "cast:plane_eater/michel",
+   "height": 1.8,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "owner": {
+   "puppet": "cast:plane_eater/owner",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.3,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "places": {
+  "apron": {
+   "set": "s2_apron",
+   "kind": "day",
+   "light": "day",
+   "light_over": {
+    "top": "#0f79e8",
+    "hor": "#1a86f2",
+    "sun": "#ffe2c0",
+    "si": 3.2,
+    "amb": "#b4c3f0",
+    "ai": 1.3,
+    "dir": [
+     3.54,
+     7.66,
+     5.34
+    ]
+   },
+   "air": 1,
+   "wind": 1
+  }
+ },
+ "props": {
+  "table": {
+   "pos": [
+    3.4,
+    -0.32,
+    0.8
+   ],
+   "kind": "the white-cloth table under the wing"
+  },
+  "oil": {
+   "pos": [
+    3.6,
+    -0.56,
+    0.9
+   ],
+   "kind": "the amber oil glass"
+  },
+  "jug": {
+   "pos": [
+    3.66,
+    -0.36,
+    0.9
+   ],
+   "kind": "the big water jug"
+  },
+  "scale": {
+   "pos": [
+    3.62,
+    -0.42,
+    0.9
+   ],
+   "kind": "the kitchen scale dial 2 lb / 900 g"
+  },
+  "tire": {
+   "pos": [
+    3.6,
+    -0.9,
+    1.2
+   ],
+   "kind": "the stretched tire"
+  }
+ },
+ "acts": [
+  {
+   "who": "michel",
+   "at": 0,
+   "pos": [
+    3.4,
+    -1.0,
+    0.03
+   ],
+   "pose": "m:../../ep_s2/mi_table",
+   "face": "k:standard",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "rows 10-18: one seated move, every act on its word (moves/ep_s2.mjs)"
+  },
+  {
+   "who": "owner",
+   "at": 0,
+   "pos": [
+    1.35,
+    2.05,
+    0.03
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s2/ow_watch",
+   "face": "k:browUp",
+   "look": "michel",
+   "note": "rows 11 + 17: arms crossed far back; winces on the tire snap 489"
+  },
+  {
+   "who": "michel",
+   "at": 283,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 11 glass"
+  },
+  {
+   "who": "michel",
+   "at": 300,
+   "face": "k:concentrate",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "sniff"
+  },
+  {
+   "who": "michel",
+   "at": 316,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "nod"
+  },
+  {
+   "who": "michel",
+   "at": 378,
+   "face": "k:browUp",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 13: the scale judges him, one approving brow"
+  },
+  {
+   "who": "michel",
+   "at": 398,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 14"
+  },
+  {
+   "who": "michel",
+   "at": 407,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "crack"
+  },
+  {
+   "who": "michel",
+   "at": 420,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 15"
+  },
+  {
+   "who": "michel",
+   "at": 428,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "doughnut bite"
+  },
+  {
+   "who": "michel",
+   "at": 444,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 16"
+  },
+  {
+   "who": "michel",
+   "at": 451,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "sandwich bite"
+  },
+  {
+   "who": "michel",
+   "at": 470,
+   "face": "k:aim",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "row 17 even"
+  },
+  {
+   "who": "michel",
+   "at": 478,
+   "face": "k:peChewHard",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "the tire fights back"
+  },
+  {
+   "who": "michel",
+   "at": 490,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "chews hard"
+  },
+  {
+   "who": "michel",
+   "at": 506,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "note": "swallowed, triumphant"
+  },
+  {
+   "who": "owner",
+   "at": 285,
+   "face": "k:browUp",
+   "look": "michel",
+   "note": "row 11: leans in to watch the oil"
+  },
+  {
+   "who": "owner",
+   "at": 489,
+   "face": "k:peDisgust",
+   "look": "michel",
+   "note": "row 17 \"owner wincing\" on the rubber snap"
+  },
+  {
+   "who": "owner",
+   "at": 505,
+   "face": "k:browUp",
+   "look": "michel"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "michel",
+   "obj": "oil_glass",
+   "module": "sets/s2_apron.js",
+   "builder": "buildOil",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 283,
+   "f1": 316,
+   "note": "row 11 \"glass\": swirl, sniff, nod"
+  },
+  {
+   "who": "michel",
+   "obj": "water_jug",
+   "module": "sets/s2_apron.js",
+   "builder": "buildJug",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 318,
+   "f1": 343,
+   "angle": [
+    [
+     318,
+     -90
+    ],
+    [
+     324,
+     -90
+    ],
+    [
+     330,
+     -45
+    ],
+    [
+     340,
+     -45
+    ],
+    [
+     343,
+     -90
+    ]
+   ],
+   "note": "row 12 \"jug\": the glug"
+  },
+  {
+   "who": "michel",
+   "obj": "tumbler",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTumbler",
+   "opts": {},
+   "grip": "handle",
+   "hand": "L",
+   "when": "always",
+   "f0": 344,
+   "f1": 362,
+   "angle": [
+    [
+     344,
+     -90
+    ],
+    [
+     350,
+     -60
+    ],
+    [
+     358,
+     -90
+    ]
+   ],
+   "note": "row 12: he drinks"
+  },
+  {
+   "who": "michel",
+   "obj": "sugar_tongs",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTongs",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 345,
+   "f1": 384,
+   "angle": [
+    [
+     345,
+     20
+    ],
+    [
+     365,
+     30
+    ]
+   ],
+   "note": "row 13: the bites drop on the scale on \"pounds\""
+  },
+  {
+   "who": "michel",
+   "obj": "wing_slice",
+   "module": "sets/s2_apron.js",
+   "builder": "buildWingSlice",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 396,
+   "f1": 414,
+   "angle": [
+    [
+     396,
+     -10
+    ]
+   ],
+   "note": "row 14 \"Wings\": snapped like a cracker"
+  },
+  {
+   "who": "michel",
+   "obj": "wheel_hub",
+   "module": "sets/s2_apron.js",
+   "builder": "buildHub",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 418,
+   "f1": 438,
+   "angle": [
+    [
+     418,
+     -10
+    ]
+   ],
+   "note": "row 15 \"wheels\": bitten like a doughnut"
+  },
+  {
+   "who": "michel",
+   "obj": "seat_cushion",
+   "module": "sets/s2_apron.js",
+   "builder": "buildCushion",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 442,
+   "f1": 462,
+   "angle": [
+    [
+     442,
+     -10
+    ]
+   ],
+   "note": "row 16 \"seats\": the spring boings out"
+  },
+  {
+   "who": "michel",
+   "obj": "tire",
+   "module": "sets/s2_apron.js",
+   "builder": "buildTire",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 468,
+   "f1": 494,
+   "angle": [
+    [
+     468,
+     -10
+    ]
+   ],
+   "note": "row 17 \"tires\": stretches like gum and snaps back"
+  }
+ ],
+ "moods": [
+  {
+   "at": 283,
+   "look": "warm_up",
+   "note": "row 11: the oil glass glows amber in a dapple spot"
+  },
+  {
+   "at": 407,
+   "look": "warm_up",
+   "note": "row 14: afternoon, sun lower and warmer"
+  },
+  {
+   "at": 489,
+   "look": "flash_white",
+   "note": "row 17: rubber snap"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 489,
+   "amp": 2
+  }
+ ],
+ "fx": [
+  {
+   "at": 407,
+   "kind": "glint",
+   "pos": [
+    3.55,
+    -0.78,
+    1.12
+   ],
+   "note": "row 14: crack of the wing slice"
+  },
+  {
+   "at": 489,
+   "kind": "glint",
+   "pos": [
+    3.55,
+    -0.9,
+    1.2
+   ],
+   "note": "row 17: rubber snap"
+  }
+ ],
+ "takes": [
+  {
+   "id": "s2",
+   "place": "apron",
+   "stations": [
+    {
+     "at": 257,
+     "pos": [
+      1.46,
+      -3.98,
+      1.75
+     ],
+     "aim": [
+      2.9,
+      -0.9,
+      1.0
+     ],
+     "lens": 26,
+     "subject": "michel",
+     "framing": "W",
+     "purpose": "ROW 10 start (PLACE, M09 travel along a set line): from S1's plate the camera rides the wing's shadow edge on the cloth toward the table",
+     "hold": 0.0,
+     "creep": 0.0035
+    },
+    {
+     "at": 290,
+     "pos": [
+      6.5,
+      -3.21,
+      1.45
+     ],
+     "aim": [
+      3.35,
+      -0.75,
+      1.15
+     ],
+     "lens": 26,
+     "subject": "michel",
+     "framing": "W",
+     "purpose": "ROW 10 land (M09 end): the set table in the wing shade, Michel sat and tucked in, the sliced Cessna behind him, the owner far back",
+     "hold": 0.3,
+     "creep": 0.0035,
+     "shows": [
+      "table"
+     ]
+    },
+    {
+     "at": 305,
+     "pos": [
+      5.55,
+      -2.23,
+      1.35
+     ],
+     "aim": [
+      3.5,
+      -0.8,
+      1.2
+     ],
+     "lens": 32,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROW 11 (ACT, M02 push in): the amber oil glass large at his nose, the owner far back",
+     "hold": 0.4,
+     "creep": 0.0035,
+     "shows": [
+      "oil"
+     ]
+    },
+    {
+     "at": 345,
+     "pos": [
+      5.63,
+      -2.76,
+      1.4
+     ],
+     "aim": [
+      3.4,
+      -0.75,
+      1.15
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROW 12 (ACT, rest): jug glugs into the tumbler, he drinks",
+     "hold": 0.4,
+     "creep": 0.0035,
+     "shows": [
+      "jug"
+     ]
+    },
+    {
+     "at": 375,
+     "pos": [
+      4.6,
+      -1.74,
+      1.18
+     ],
+     "aim": [
+      3.6,
+      -0.55,
+      1.0
+     ],
+     "lens": 36,
+     "subject": "michel",
+     "framing": "C",
+     "purpose": "ROW 13 (EXPLAIN, M02 push in on the dial): the needle swings past and settles on \"2 lb / 900 g\", his raised brow at the top",
+     "hold": 0.6,
+     "creep": 0.0035,
+     "shows": [
+      "scale"
+     ]
+    },
+    {
+     "at": 410,
+     "pos": [
+      5.84,
+      -2.71,
+      1.4
+     ],
+     "aim": [
+      3.4,
+      -0.8,
+      1.15
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROW 14 (ACT list 1, M13 lateral truck starts): the wing slice cracks, white crumbs",
+     "hold": 0.0,
+     "creep": 0.0035
+    },
+    {
+     "at": 452,
+     "pos": [
+      6.35,
+      -1.81,
+      1.4
+     ],
+     "aim": [
+      3.4,
+      -0.85,
+      1.15
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROWS 15-16 (M13 continues along the bites): hub, cushion and spring",
+     "hold": 0.0,
+     "creep": 0.0035
+    },
+    {
+     "at": 484,
+     "pos": [
+      5.48,
+      -1.98,
+      1.42
+     ],
+     "aim": [
+      3.45,
+      -0.9,
+      1.25
+     ],
+     "lens": 34,
+     "subject": "michel",
+     "framing": "C",
+     "purpose": "ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back",
+     "hold": 0.5,
+     "creep": 0.0035,
+     "shows": [
+      "tire"
+     ]
+    },
+    {
+     "at": 519,
+     "pos": [
+      5.48,
+      -2.2,
+      1.2
+     ],
+     "aim": [
+      3.4,
+      -1.0,
+      0.95
+     ],
+     "lens": 30,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)",
+     "hold": 0.2,
+     "creep": 0.0035
+    }
+   ]
+  }
+ ]
+}

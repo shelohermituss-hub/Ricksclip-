@@ -57,7 +57,7 @@
  "post": {
   "dof": 0.0,
   "dust": 0.3,
-  "bloom": 1,
+  "bloom": 0.5,
   "vignette": 0
  },
  "places": {
@@ -97,11 +97,13 @@
       "puff": 1
      },
      {
-      "f": 622,
+      "f": 618,
+      "puff": 1,
       "ride": 0
      },
      {
       "f": 660,
+      "puff": 1,
       "ride": 1
      }
     ]
@@ -142,14 +144,14 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.36,
-    1.78,
+    -0.22,
+    1.42,
     0.0
    ],
    "view": "34",
-   "dir": 1,
+   "dir": -1,
    "pose": "m:../../ep_s3/dr_lean",
-   "face": "k:concentrate",
+   "face": "k:browUp",
    "look": [
     0.11,
     2.085,
@@ -211,9 +213,9 @@
    "at": 630,
    "kind": "shine",
    "pos": [
-    28.979,
+    28.949,
     -0.2,
-    -2.421
+    -2.411
    ],
    "note": "row 22: oil sparkle behind the sliding plane"
   },
@@ -221,9 +223,9 @@
    "at": 636,
    "kind": "shine",
    "pos": [
-    29.751,
+    29.729,
     -0.2,
-    -2.588
+    -2.584
    ],
    "note": "row 22: oil sparkle trail"
   }
@@ -248,16 +250,16 @@
     {
      "at": 519,
      "pos": [
-      0.62,
-      0.62,
-      1.52
+      1.05,
+      -0.95,
+      1.38
      ],
      "aim": [
-      -0.02,
-      2.05,
-      1.36
+      -0.22,
+      1.7,
+      1.18
      ],
-     "lens": 22,
+     "lens": 18,
      "subject": "doctor",
      "framing": "W",
      "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, M00 living rest then M02 push in): the doctor in 3/4 at the left leaning in to the glowing film, his hand on the clip bar; the film with the tiny bite-Cessna big at the right; the box flickers twice",
@@ -270,16 +272,16 @@
     {
      "at": 556,
      "pos": [
-      0.24,
-      1.36,
-      1.5
+      0.3,
+      0.7,
+      1.48
      ],
      "aim": [
-      0.1,
-      2.1,
-      1.47
+      -0.1,
+      2.05,
+      1.4
      ],
-     "lens": 26,
+     "lens": 22,
      "subject": "doctor",
      "framing": "M",
      "purpose": "ROW 19 \"found a\" (push in over the doctor's shoulder): the film fills most of the frame, the Cessna of square bites and F-MIAM readable, his glasses and clip hand at the left edge",
@@ -363,18 +365,18 @@
      ]
     },
     {
-     "at": 626,
+     "at": 622,
      "pos": [
-      28.344,
-      -0.42,
-      -2.2
+      29.25,
+      -2.15,
+      -1.45
      ],
      "aim": [
-      29.784,
+      29.0,
       -0.2,
-      -2.693
+      -2.4
      ],
-     "lens": 20,
+     "lens": 24,
      "subject": "mini",
      "framing": "C",
      "purpose": "ROW 22 \"SLID\" (SIGNATURE peak, M14 ride with the moving thing): the bite-Cessna at the lens, navy stripe, propeller humming, it starts down the runway",
@@ -387,16 +389,16 @@
     {
      "at": 638,
      "pos": [
-      29.794,
-      -0.5,
-      -2.56
+      29.7,
+      -1.95,
+      -1.5
      ],
      "aim": [
-      31.094,
+      29.65,
       -0.2,
-      -2.8400000000000003
+      -2.5
      ],
-     "lens": 20,
+     "lens": 24,
      "subject": "mini",
      "framing": "C",
      "purpose": "ROW 22 \"through\" (M14 ride, the camera rides with it): the plane slides along the oily lining, the sparkle trail behind it; the ride continues into the next stretch",

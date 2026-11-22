@@ -5,7 +5,7 @@
 import { GLTFLoader } from './vendor/GLTFLoader.js';
 const DIR = new URL('../props/out/', import.meta.url).href;
 const L = new GLTFLoader(), G = {};
-for (const n of ['salt_shaker', 'fork', 'hacksaw', 'sugar_tongs', 'metal_bites', 'plate']) G[n] = await L.loadAsync(DIR + n + '.glb');
+for (const n of ['salt_shaker', 'fork', 'hacksaw', 'sugar_tongs', 'metal_bites', 'plate', 'owner_rag_spanner']) G[n] = await L.loadAsync(DIR + n + '.glb');
 export const GLB = G;
 function inkFist(THREE, scene) {
   scene.traverse(o => { if (!o.isMesh || o.userData.peInk) return; let p = o, f = false; while (p) { if (p.name === 'held3d_fist') { f = true; break; } p = p.parent; } if (!f) return;
@@ -26,3 +26,5 @@ export const buildShaker = (THREE, o = {}) => make(THREE, 'salt_shaker', 0, [0, 
 export const buildFork = (THREE, o = {}) => make(THREE, 'fork', Math.PI / 2, [0, .20, 0], o);
 export const buildSaw = (THREE, o = {}) => make(THREE, 'hacksaw', Math.PI / 2, [0, .26, -.06], o);
 export const buildTongs = (THREE, o = {}) => make(THREE, 'sugar_tongs', Math.PI / 2, [0, .115, 0], o);
+// the owner's yellow polishing rag (owner_rag_spanner.glb without the spanner); origin = his pinch point
+export const buildRag = (THREE, o = {}) => { const r = make(THREE, 'owner_rag_spanner', 0, [0, .15, 0], o); const kill = []; r.group.traverse(n => { if (/spanner/.test(n.name)) kill.push(n); }); kill.forEach(n => n.parent && n.parent.remove(n)); return r; };
