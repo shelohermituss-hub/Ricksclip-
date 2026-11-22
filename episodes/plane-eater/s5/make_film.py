@@ -36,12 +36,12 @@ held3d = [
 def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **kw):
     return dict(at=at, pos=pos, aim=aim, lens=lens, subject=subject, framing=framing, purpose=purpose, hold=hold, creep=creep, **kw)
 
-END_CAM = [1.05, 0.25, 1.28]
+END_CAM = [1.75, 0.20, 1.35]
 stations = [
     st(943, [1.00, 0.35, 1.32], [0.0, 0.95, 0.90], 14, 'michel', 'W', 'ROW 35 "HONESTLY" (END setup, M21 match in, then the STILLNESS 955-968: camera and men dead still): the owner in the aisle seat, Michel at the window lifts the foil high off the grey meal with his fork hand', hold=0.9, creep=0.0, shows=['meal']),
     st(984, [0.80, 0.90, 1.28], [0.08, 1.08, 0.92], 16, 'michel', 'M', 'ROW 36 "STILL better" (M02 push in on the tray): the grey meal slides aside under one finger, a pea rolls off, his face falls', hold=0.3, shows=['meal', 'tray']),
     st(1003, [0.78, 0.88, 1.26], [0.10, 1.10, 0.92], 16, 'michel', 'M', 'ROW 37 "airline FOOD" (POWER 4, M02 land): knife and fork up, then the strike: a neat bite out of the tray table, the owner rubs his eyes', hold=0.1, shows=['tray']),
-    st(1021, END_CAM, [0.10, 1.05, 0.88], 13, 'michel', 'W', 'ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0', hold=0.0, shows=['wing']),
+    st(1021, END_CAM, [0.30, 1.15, 0.90], 16, 'michel', 'W', 'ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0', hold=0.0, shows=['wing']),
 ]
 props = {
     'meal': dict(pos=MEAL, kind='the grey airline meal'),
@@ -50,7 +50,7 @@ props = {
 }
 K = lambda f, foil, meal, pea, bitten: dict(f=f, foil=foil, meal=meal, pea=pea, bitten=bitten)
 cab = dict(keys=[K(930, 0, 0, 0, 0), K(948, 1, 0, 0, 0), K(976, 1, 0, 0, 0), K(988, 1, 1, .3, 0), K(996, 1, 1, 1, 0), K(1001, 1, 1, 1, 1), K(1030, 1, 1, 1, 1)])
-cab['wild'] = ['8A', '8B']
+cab['wild'] = ['8A', '8B', '16A', '16B']
 # the wing bite onto the end station's ray through window L_0: keep y 6.8, move the wing along x and z (sets/cabin.js wing_offset)
 BITE = A['wing_bite']; t = (BITE[1] - END_CAM[1]) / (WIN[1] - END_CAM[1])
 cab['wing_offset'] = [round(END_CAM[0] + t * (WIN[0] - END_CAM[0]) - BITE[0], 3), 0, round(END_CAM[2] + t * (WIN[2] - END_CAM[2]) - BITE[2], 3)]

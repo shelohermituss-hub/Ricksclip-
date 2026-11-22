@@ -1,4 +1,4 @@
-mi_hook [side]  twos 0   linear 0  stops 4 no_settle 0  creep 0  dps 24.8  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":77.81,"leg_stretch_px":0,"off_built_ground_px":0}
+mi_hook [side]  twos 0   linear 0  stops 4 no_settle 0  creep 0  dps 24.8  contact {"knee_off_spot_px":0,"planted_foot_slide_px":0,"arm_over_reach_px":0,"leg_stretch_px":0,"off_built_ground_px":0}
    snap napkin tug "Lunch" f125        f125-134  34 / 83 / 100 / 76 / 4 %   (Rick 5 / 16 / 31 / 48 / 66)
    snap nod "bites" f235               f235-247  52 / 86 / 96 / 100 / 87 %   (Rick 5 / 16 / 31 / 48 / 66)
    hold grin to the lens, dead still     f141-149  max 0 px/f

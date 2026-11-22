@@ -30,3 +30,13 @@
 ## Files
 draft.mp4 (8.57 s, voice + captions, half size), KEYFRAMES.jpg (3 per line), S1_strip_4fps.jpg, S1_feet_eyes.jpg, key/t*.jpg (test frames),
 render_s1.sh (whole cycle), keyframes.py, sheets.py, sheet.py; frames/ (git-ignored).
+
+## FIX ROUND 1 (lead option b, 2026-11-22) - checks pass, picture still below Rick
+- Done: waiver frame 0 (CAMERA_NOTE.md); lens 2.75 m on the wing top; shaker x2.2, 110 additive salt grains; rows 6-8 and 9 CLOSE rests; pedestal
+  side table (top 1.50 m, brass + marble) with the plate; aluminium dust larger; mi_hook front drawing (camsafe 0 FAIL); arm over-reach 0.
+- Numbers: plan 1 FAIL (shot mix close 29 % of the window: waived, lead-ordered closes), p90 18.6 px/f; frame_checks 0 FAIL 3 WARN 36 PASS;
+  camsafe 513 PASS 1 WARN (flicker f63) 0 FAIL; motion gate all 0, reach 0. Render 3.4 s/frame (f150-256 re-rendered at 2.2 s after the close reframes).
+- STILL BELOW RICK: f0 the big shaker sits at his MOUTH, not over the wing (the front drawing moved the hand), so the salting does not read;
+  the wing top reads grey-blue, not white; in the saw close (f182-205) the wing crosses his face and the hacksaw is hidden behind it; in the plate
+  close the tongs are not visible (the bite on the plate is tiny). Row 8 wide removed (camera speed). Next round: hand targets per view for the front
+  drawing (verify with render --held), shaker tip_at off, saw/tongs scale 2x and framed below the wing line.

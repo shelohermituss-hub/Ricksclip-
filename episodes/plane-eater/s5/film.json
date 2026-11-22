@@ -125,12 +125,14 @@
     ],
     "wild": [
      "8A",
-     "8B"
+     "8B",
+     "16A",
+     "16B"
     ],
     "wing_offset": [
-     -0.816,
+     -3.044,
      0,
-     -0.616
+     -0.812
     ],
     "foil_raise": 0.16
    },
@@ -442,16 +444,16 @@
     {
      "at": 1021,
      "pos": [
-      1.05,
-      0.25,
-      1.28
+      1.75,
+      0.2,
+      1.35
      ],
      "aim": [
-      0.1,
-      1.05,
-      0.88
+      0.3,
+      1.15,
+      0.9
      ],
-     "lens": 13,
+     "lens": 16,
      "subject": "michel",
      "framing": "W",
      "purpose": "ROW 38 last frame (M26 end pull back): both men whole in their seats, Michel calm, chewing, wink; the owner wipes the window with the rag; through it the airliner wing with one bite missing; loops to frame 0",

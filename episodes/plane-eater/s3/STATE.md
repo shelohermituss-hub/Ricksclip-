@@ -1,4 +1,14 @@
-# S3 STATE: THE X-RAY (PICTURE_PLAN rows 19-22, line 5, film 17.30-21.28 s = frames 519-638). DRAFT round 1, 2026-11-22. Half size (540x960).
+# S3 STATE: THE X-RAY (PICTURE_PLAN rows 19-22, line 5, film 17.30-21.28 s = frames 519-638). DRAFT fix round 1, 2026-11-22. Half size (540x960).
+## FIX ROUND 1 (lead's 4 points) - result
+- (2) DONE: no hard cut. Two DISSOLVES ON THE MOVE (blend.py): 568-577 the push into the film (pass A, film_A.json) into the X-ray world (pass B),
+  628-637 the world back out to the clinic (pass C). film.json (cut-based) is only for the checks.
+- (3) PARTLY: the world is a richer blue (xray.js "tone": lining glow x.35 #4a86c8, backdrop #2f6fb3, bands x.8, key light x.5, bloom .35); the cushions
+  now shade but still read as round puffs, no button tufts (not built). Camera p90 still 32.4 px/f (plan estimate; the 594->620 lining-to-ride leg, 5.1 m in 54 f).
+- (4) DONE: the Doctor is back at 620, DOUBLE TAKE in the move (looks away 628, snaps back 633, jaw drop k:peJawDrop). Fault: the last frame cuts him
+  at the left edge (frame_checks body_side 44 %, head_cut 31 % at f638).
+- (1) PARTLY: the Doctor holds in frame from 519 to about 545 (hand raised to the box, not touching the film), then the push leaves him; he is not kept
+  over the shoulder through f562. Wall: body_in_mesh down to 4 % (WARN). camsafe 585 PASS / 0 FAIL. Plan check 6 FAIL (speed p90, rests, head p90).
+## Round 1 notes (before the fix round)
 ## NOT done / failing
 - Row 19: the Doctor leaves the frame by f541 ("him"): the push starts too early, so "over the Doctor's shoulder" is not held; his clip hand does not
   touch the film (he stands about 0.6 m from the wall: frame_checks body_in_mesh WARN 23 % of his card in wall_back_0 at f542). No Michel in the room.
