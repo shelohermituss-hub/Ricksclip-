@@ -1,6 +1,6 @@
 """make_film.py: writes s5/film.json for S5 THE ENDING (PICTURE_PLAN rows 35-38, film 31.44-34.04 s = frames 943-1021). S5 stretch builder 2026-11-22.
 Edit this file, not film.json. Positions are plan metres (Z up, nose +X) in sets/cabin (see sets/cabin/out/cabin_meta.json)."""
-import json, os
+import json, os, math
 HERE = os.path.dirname(os.path.abspath(__file__))
 EP = os.path.join(HERE, '..')
 keys = json.load(open(os.path.join(EP, 'cast', 'CAST_KEYS.json')))
@@ -10,7 +10,7 @@ cast = {'michel': dict(keys['cast']['michel'], walk_speed=99), 'owner': dict(key
 M = lambda k: 'm:../../ep_s5/' + k
 SEAT_M = .52
 MI = [A['owner_seat'][0], A['owner_seat'][1], A['owner_seat'][2] - SEAT_M]      # fix round 2 (lead): Michel in seat B facing his tray, the OWNER at the window      # bottom ON the cushion (moves/ep_s5.mjs chair3d)
-OW = [A['michel_seat'][0], A['michel_seat'][1], A['michel_seat'][2] - SEAT_M]
+OW = [A['michel_seat'][0], A['michel_seat'][1], A['michel_seat'][2] - SEAT_M - 0.05]   # fix list: hips down onto the cushion (frame_checks seat 12.6 %)
 TDY = A['owner_seat'][1] - A['michel_seat'][1]
 TRAY, MEAL = [A['tray_table'][0], A['tray_table'][1] + TDY, A['tray_table'][2]], [A['meal_tray'][0], A['meal_tray'][1] + TDY, A['meal_tray'][2]]
 MI_FACE = [MI[0] + .2, MI[1], 1.22]
@@ -71,19 +71,23 @@ film = {
     'card_shade': dict(keys['card_shade'], amount=0, rim_amount=0),
     'post': {'dof': 0.0, 'dust': 0.2, 'bloom': 0.6, 'vignette': 0},
     'places': {'cabin': place}, 'props': props, 'acts': acts, 'held3d': held3d,
+    'hand_at': [dict(who='owner', f0=1001, f1=1021, at=[0.20, 1.74, 1.14], note='row 38: the rag ON the window glass at eye height')],
     'kicks': [{'at': 1001, 'amp': 3}],
     'fx': [dict(at=993, kind='glint', pos=[TRAY[0] - .1, TRAY[1], 1.3], note='row 37 "airline": a glint on the raised knife'),
            dict(at=1001, kind='clank', pos=[TRAY[0] + .08, TRAY[1] + .1, TRAY[2]], note='row 37 POWER 4: the bite out of the tray table, impact flash and sparks')],
     'moods': [dict(at=969, look='cold_blue', note='row 36: the grey meal, the face falls'), dict(at=1012, look='warm_up', note='row 38: smug, happy, the bright window'), dict(at=1001, look='flash_white', note='row 37 POWER 4 impact flash')],
     'takes': [{'id': 's5', 'place': 'cabin', 'stations': stations}],
 }
-AIMB = [BT[0] - 0.55, BT[1] + 0.19, BT[2] + 0.12]   # the bite notch as measured on the lens-40 test frame (key/w.jpg: 160 px left, 25 px up of BT)
-WIN_ST = [st(1005, WCAM, AIMB, 70, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
-          st(1021, [WCAM[0] + .03, WCAM[1] + .04, WCAM[2]], AIMB, 82, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
+BANK = 35.0; ca, sa = math.cos(math.radians(BANK)), math.sin(math.radians(BANK)); B0 = [1.25, 6.65, 0.80]   # bite centre measured in cabin_lite.glb
+BB = [B0[0], 1.9 + (B0[1] - 1.9) * ca + (B0[2] - .5) * sa, .5 - (B0[1] - 1.9) * sa + (B0[2] - .5) * ca]          # after the bank about the pivot
+AIMB = BB                                                                                                         # banked about the wing root only: the bite stays on the wing, we look down on it
+WCAB = dict(cab, wing_bank=BANK, wing_offset=[round(AIMB[i] - BB[i], 3) for i in range(3)])
+WIN_ST = [st(1005, WCAM, AIMB, 32, 'wing', 'O', 'ROW 38 (M26 end, dissolve on the move from the cabin): the lens at the glass, the airliner wing in the sun with ONE neat bite missing, big; loops to frame 0', hold=0.0, shows=['wing']),
+          st(1021, [WCAM[0] + .03, WCAM[1] + .04, WCAM[2]], AIMB, 36, 'wing', 'O', 'ROW 38 last frame: the bitten wing big and clear (slow push)', hold=0.0, shows=['wing'])]
 film['takes'].append({'id': 'win', 'place': 'cabin', 'stations': [dict(WIN_ST[0], at=1012), WIN_ST[1]]})
-props['wing']['pos'] = BT
+props['wing']['pos'] = AIMB
 json.dump(film, open(os.path.join(HERE, 'film.json'), 'w'), indent=1)
 print('film.json written:', len(acts), 'acts,', len(stations), 'stations')
 import copy
 FA = copy.deepcopy(film); FA['takes'] = [{'id': 's5', 'place': 'cabin', 'stations': stations}]; json.dump(FA, open(os.path.join(HERE, 'film_A.json'), 'w'), indent=1)
-FW = copy.deepcopy(film); FW['takes'] = [{'id': 'win', 'place': 'cabin', 'stations': WIN_ST}]; json.dump(FW, open(os.path.join(HERE, 'film_W.json'), 'w'), indent=1)
+FW = copy.deepcopy(film); FW['takes'] = [{'id': 'win', 'place': 'cabin', 'stations': WIN_ST}]; FW['places']['cabin']['cabin'] = WCAB; json.dump(FW, open(os.path.join(HERE, 'film_W.json'), 'w'), indent=1)

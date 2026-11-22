@@ -41,6 +41,8 @@ function owWary(t, ch) { const f = F(t) + A0;
   const lean = snap(f - 977, 10), rubIn = snap(f - 994, 4) - snap(f - 1001, 4), rub = f > 995 && f < 1001 ? .06 * Math.sin((f - 995) * 1.9) : 0;
   const reach = snap(f - 1001, 6), wipe = f > 1006 ? .08 * Math.sin((f - 1006) * 1.6) : 0;
   let near = mix({ f: .35, d: .62 }, { f: .28 + rub, d: -.38 }, rubIn); near = mix(near, { f: 1.0 + wipe, d: -.28 }, reach);   // row 38: leans over and wipes the window, rag at eye height
+  if (ch.tgt && reach > .05) { const w = f > 1006 ? f - 1006 : 0, h = { wx: ch.tgt[0] + 14 * Math.sin(w * 1.1), wy: ch.tgt[1] + 9 * Math.cos(w * 1.1) };   // hand_at: the rag ON the glass, small wiping circles
+    near = { wx: (near.wx ?? h.wx) * 0 + h.wx * reach + 0, wy: h.wy * reach + 0 }; if (reach < 1) { near = { wx: h.wx, wy: h.wy }; } }
   const far = { f: .2, d: .66 };
   return { view: '34', dir: 1, x: 0, y: seatY(ch), rot: -3 * lean + 3 * rubIn + 2 * reach, head: -4 * lean + 6 * rubIn - 4 * reach, feet: [], farArmFront: true,
     hands: [{ ...far, bow: .4 }, { ...near, bow: .3, over: rubIn > .5 || reach > .5 }], held: [] }; }

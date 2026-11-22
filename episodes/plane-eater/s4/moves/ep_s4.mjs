@@ -12,7 +12,7 @@ const dip = (f, f0, amp = 8, n = 4) => f > f0 && f < f0 + n ? amp * Math.sin(Mat
 // called 875, strangest 894, diet 912, ever 920, Honestly 943
 export const SEAT_M = .485;
 const seatY = ch => { const top = ch.hy - 100 * ch.K, k = 1.7 / (G - top); return G - SEAT_M / k - 640 + 4; };
-export const legs3d = { r: .024, pts: [[.08, SEAT_M + .04, .0], [.09, SEAT_M + .045, .24], [.095, SEAT_M - .03, .29], [.1, .04, .32], [.105, .03, .42]] };
+export const legs3d = { r: .034, pts: [[.08, SEAT_M + .04, .0], [.09, SEAT_M + .045, .24], [.095, SEAT_M - .03, .29], [.1, .04, .32], [.105, .03, .42]] };
 export const chair3d = { seat: SEAT_M };
 const P2 = (keys, f) => { const v = tr(keys.map(k => [k[0], [k[1].f, k[1].d], k[2]]), f); return { f: v[0], d: v[1] }; };
 const REST = { f: .42, d: .62 }, MOUTH = { f: .3, d: -.12 }, PLATE = { f: .5, d: .45 };
@@ -32,13 +32,14 @@ function miS4(t, ch) { const f = F(t);
   const lapse = f > 662 && f < 703 ? f : 0, ph = lapse ? ((f - 662) % 7) / 7 : 0, toM = lapse ? (ph < .45 ? snap(ph * 7, 3) : 1 - snap((ph - .45) * 7, 3)) : 0;
   let R = P2([[0, PLATE], [703, { f: .6, d: .4 }, 4], [707, { f: .5, d: .05 }, 5], [711, MOUTH, 3], [715, REST, 8],
     [737, { f: .62, d: .42 }, 4], [740, { f: .55, d: .08 }, 4], [751, { f: .62, d: .42 }, 5], [755, REST, 8],
-    [830, { f: .6, d: .42 }, 6], [836, { f: .55, d: .3 }, 6], [843, { f: .74, d: .12 }, 5], [850, { f: .72, d: .16 }, 2], [866, { f: .6, d: .42 }, 10], [878, REST, 8],
+    [830, { f: .6, d: .42 }, 6], [836, { f: .55, d: .3 }, 6], [843, { f: .74, d: .12 }, 5], [850, { f: .72, d: .16 }, 2], [853, { f: .62, d: .42 }, 3],   // catch, then the plate goes down on the cloth (855)
+    [858, { f: .64, d: .36 }, 3], [862, { f: .62, d: .32 }, 3], [866, { f: .56, d: -.18 }, 6], [874, { f: .74, d: .0 }, 6], [881, REST, 6],   // GUINNESS: he lifts the cloche off the book, holds it up, puts it aside
     [890, { f: .5, d: .1 }, 6], [894, { f: .5, d: -.12 }, 6], [906, REST, 8]], f);   // the near hand helps hold the frame up on STRANGEST
   if (lapse) R = { f: PLATE.f + (MOUTH.f - PLATE.f) * toM, d: PLATE.d + (MOUTH.d - PLATE.d) * toM };
   if (f > 740 && f < 751) R = { f: R.f + .025 * Math.sin((f - 740) * 2.6), d: R.d };                        // the bell rings
-  if (f > 850 && f < 862) R = { f: R.f, d: R.d + .04 * Math.exp(-(f - 850) / 3) * Math.sin((f - 850) * 2.1) };   // the catch rings out in the arm
+  if (f > 850 && f < 853) R = { f: R.f, d: R.d + .04 * Math.exp(-(f - 850) / 3) * Math.sin((f - 850) * 2.1) };   // the catch rings out in the arm
   const Lh = P2([[0, { f: .36, d: .66 }], [716, { f: .3, d: -.08 }, 5], [721, { f: .34, d: .0 }, 3], [723, { f: .3, d: -.08 }, 3], [728, { f: .36, d: .66 }, 8],
-    [841, { f: .5, d: .3 }, 4], [858, { f: .36, d: .66 }, 10], [880, { f: .6, d: .42 }, 5], [887, { f: .5, d: .1 }, 7], [894, { f: .58, d: -.3 }, 6], [906, { f: .36, d: -.1 }, 6], [912, { f: .3, d: -.1 }, 3], [930, { f: .45, d: .12 }, 12]], f);   // the far hand (in front) carries the certificate
+    [841, { f: .5, d: .3 }, 4], [858, { f: .36, d: .66 }, 10], [880, { f: .6, d: .42 }, 5], [887, { f: .5, d: .1 }, 7], [894, { f: .58, d: -.3 }, 6], [906, { f: .42, d: -.14 }, 6], [912, { f: .36, d: -.12 }, 3], [930, { f: .5, d: .02 }, 12]], f);   // the far hand (in front) carries the certificate
   const chewL = lapse ? 3 * Math.abs(Math.sin((f - 662) * Math.PI / 3.5)) : 0, chew2 = f > 914 && f < 942 ? 3 * Math.abs(Math.sin((f - 914) * Math.PI / 6)) : 0;
   const head = tr([[0, 2], [707, -2, 5], [713, -8, 3], [718, 2, 6], [728, 0, 6], [755, -6, 12], [768, -10, 8], [796, -14, 8], [818, -18, 8], [841, -6, 6], [850, 4, 2], [860, 0, 10],
     [894, -5, 6], [910, 4, 3], [914, 2, 6]], f) + ring(f, 713, 5, 10) + ring(f, 850, 4, 10) + chewL + chew2 + (lapse ? 4 * toM : 0);

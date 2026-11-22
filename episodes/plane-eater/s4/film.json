@@ -131,8 +131,8 @@
   },
   "deck": {
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.8
    ],
    "kind": "the owner in his deck chair, beard growing"
@@ -301,9 +301,9 @@
    "at": 894,
    "face": "k:proud",
    "look": [
-    5.2,
-    -1.2,
-    1.5
+    3.4,
+    -0.2,
+    0.9
    ],
    "look_full": true,
    "note": "row 33 STRANGEST: certificate up, chest out"
@@ -313,9 +313,9 @@
    "at": 912,
    "face": "k:peChew",
    "look": [
-    5.2,
-    -1.2,
-    1.5
+    3.4,
+    -0.2,
+    0.9
    ],
    "look_full": true,
    "note": "row 34 DIET: bites the frame like a medal"
@@ -325,23 +325,37 @@
    "at": 930,
    "face": "k:happy",
    "look": [
-    5.2,
-    -1.2,
-    1.5
+    3.4,
+    -0.2,
+    0.9
    ],
    "look_full": true,
    "note": "row 34: calm delight"
   },
   {
    "who": "owner",
-   "at": 660,
+   "at": 0,
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.03
    ],
    "view": "34",
    "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "owner",
+   "at": 660,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
    "pose": "m:../../ep_s4o/ow_deck",
    "face": "k:browUp",
    "look": "michel",
@@ -355,14 +369,28 @@
   },
   {
    "who": "ownerBeardS",
-   "at": 679,
+   "at": 0,
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.03
    ],
    "view": "34",
    "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardS",
+   "at": 679,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
    "pose": "m:../../ep_s4o/ow_deck",
    "face": "k:browUp",
    "look": "michel",
@@ -376,14 +404,28 @@
   },
   {
    "who": "ownerBeardM",
-   "at": 686,
+   "at": 0,
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.03
    ],
    "view": "34",
    "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardM",
+   "at": 686,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
    "pose": "m:../../ep_s4o/ow_deck",
    "face": "k:think",
    "look": "michel",
@@ -397,14 +439,28 @@
   },
   {
    "who": "ownerBeardL",
-   "at": 694,
+   "at": 0,
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.03
    ],
    "view": "34",
    "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardL",
+   "at": 694,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
    "pose": "m:../../ep_s4o/ow_deck",
    "face": "k:think",
    "look": "michel",
@@ -418,14 +474,28 @@
   },
   {
    "who": "ownerBeardXL",
-   "at": 701,
+   "at": 0,
    "pos": [
-    -1.6,
-    -4.2,
+    5.8,
+    -3.7,
     0.03
    ],
    "view": "34",
    "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardXL",
+   "at": 701,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
    "pose": "m:../../ep_s4o/ow_deck",
    "face": "k:think",
    "look": "michel",
@@ -441,15 +511,9 @@
   {
    "who": "ownerBeardXL",
    "at": 740,
-   "face": "k:browUp",
-   "look": "michel"
-  },
-  {
-   "who": "ownerBeardXL",
-   "at": 876,
    "pos": [
-    1.0,
-    -0.9,
+    1.4,
+    -0.1,
     0.03
    ],
    "view": "34",
@@ -457,6 +521,7 @@
    "pose": "m:../../ep_s4b/ow_stare",
    "face": "k:shocked",
    "look": "michel",
+   "look_full": true,
    "note": "rows 33-34: stands at the empty cradle, beard to his knees, rag down, stares (moved while the camera is on the cloche)"
   }
  ],
@@ -504,6 +569,19 @@
   },
   {
    "who": "michel",
+   "obj": "cloche",
+   "module": "sets/s4_apron.js",
+   "builder": "buildCloche",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 860,
+   "f1": 880,
+   "note": "row 32: his near hand lifts the cloche off the book"
+  },
+  {
+   "who": "michel",
    "obj": "plate",
    "module": "sets/s4_apron.js",
    "builder": "buildPlate",
@@ -512,7 +590,7 @@
    "hand": "R",
    "when": "always",
    "f0": 830,
-   "f1": 878,
+   "f1": 855,
    "angle": [
     [
      830,
@@ -543,11 +621,11 @@
     ],
     [
      906,
-     -100
+     -80
     ],
     [
      912,
-     -110
+     -75
     ]
    ],
    "note": "rows 33-34: STRANGEST DIET EVER, bitten corner from 913"
@@ -618,7 +696,7 @@
    "hand": "R",
    "when": "always",
    "f0": 701,
-   "f1": 875,
+   "f1": 739,
    "anchor": "grip",
    "note": "the yellow rag in his lap"
   },
@@ -631,7 +709,7 @@
    "grip": "hang",
    "hand": "R",
    "when": "always",
-   "f0": 876,
+   "f0": 740,
    "f1": 942,
    "anchor": "grip",
    "note": "rows 33-34: the rag hangs from his hand"
@@ -763,7 +841,7 @@
  ],
  "takes": [
   {
-   "id": "B",
+   "id": "B1",
    "place": "apron",
    "stations": [
     {
@@ -771,54 +849,57 @@
      "pos": [
       9.4,
       -2.9,
-      3.4
+      2.8
      ],
      "aim": [
-      0.3,
-      -1.9,
-      0.9
-     ],
-     "lens": 18,
-     "subject": "michel",
-     "framing": "W",
-     "purpose": "ROW 24 \"It TOOK him\" (PLACE, M20 dissolve while flying in): back at the table under the wing, the sliced Cessna, the owner in his deck chair by the nose",
-     "hold": 0.0,
-     "creep": 0.0,
-     "shows": [
-      "table",
-      "plane"
-     ]
-    },
-    {
-     "at": 697,
-     "pos": [
-      8.6,
-      -2.7,
-      3.0
-     ],
-     "aim": [
-      0.6,
-      -1.9,
+      1.6,
+      -3.0,
       1.0
      ],
      "lens": 18,
      "subject": "michel",
      "framing": "W",
-     "purpose": "ROW 25 \"two YEARS\" (ACT + EXTREME 2, M00 living rest, slow drift): the sun swings, autumn, snow, spring; the Cessna shrinks slice by slice from the tail; the owner's beard grows to his knees",
+     "purpose": "ROWS 24-25 \"It TOOK him two YEARS\" (PLACE + EXTREME 2, M00 living rest, slow drift): the owner in his deck chair in front (beard clock), Michel at the table, the Cessna shrinking slice by slice, seasons",
      "hold": 0.0,
-     "creep": 0.003,
-     "travel": 1.0,
+     "creep": 0.0,
      "shows": [
+      "table",
       "plane",
       "deck"
      ]
     },
     {
-     "at": 718,
+     "at": 712,
      "pos": [
-      5.35,
-      -1.75,
-      1.45
+      9.1,
+      -2.8,
+      2.7
+     ],
+     "aim": [
+      1.7,
+      -2.9,
+      1.0
+     ],
+     "lens": 18,
+     "subject": "michel",
+     "framing": "W",
+     "purpose": "ROW 25 end: drift",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 1.7
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "place": "apron",
+   "stations": [
+    {
+     "at": 705,
+     "pos": [
+      5.6,
+      -1.85,
+      1.5
      ],
      "aim": [
       3.45,
@@ -828,127 +909,180 @@
      "lens": 28,
      "subject": "michel",
      "framing": "C",
-     "purpose": "ROW 26 \"to finish the PLANE,\" (M02 push in): the spinner popped like a cherry, the napkin dab",
-     "hold": 0.3,
-     "creep": 0.003,
-     "travel": 0.65,
+     "purpose": "ROWS 26-27 \"to finish the PLANE, and for DESSERT?\" (M02 slow push): the spinner cherry, the napkin dab, the stillness, the bell",
+     "hold": 0.0,
+     "creep": 0.0,
      "shows": [
       "table"
      ]
     },
     {
-     "at": 750,
+     "at": 745,
      "pos": [
-      7.2,
-      -2.6,
-      2.1
+      5.25,
+      -1.7,
+      1.45
      ],
      "aim": [
-      3.0,
-      1.0,
-      1.9
+      3.45,
+      -0.85,
+      1.3
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "C",
+     "purpose": "push",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 1.3
+    }
+   ]
+  },
+  {
+   "id": "B3",
+   "place": "apron",
+   "stations": [
+    {
+     "at": 738,
+     "pos": [
+      7.7,
+      -0.3,
+      2.0
+     ],
+     "aim": [
+      2.6,
+      3.4,
+      1.7
      ],
      "lens": 22,
      "subject": "trolley",
      "framing": "W",
-     "purpose": "ROW 27 \"and for DESSERT?\" (TURN, M12 pull + truck): the bell rings, the work lamps snap on, the trolley rolls out of the hangar",
-     "hold": 0.1,
-     "creep": 0.003,
-     "travel": 0.8,
+     "purpose": "ROW 27-28 (M12): the work lamps snap on, the trolley rolls out of the hangar toward the table",
+     "hold": 0.0,
+     "creep": 0.0,
      "shows": [
       "trolley"
      ]
     },
     {
-     "at": 774,
+     "at": 772,
      "pos": [
-      7.2,
-      -2.5,
-      2.4
+      7.7,
+      -0.5,
+      2.3
      ],
      "aim": [
       3.25,
-      1.5,
-      2.45
+      1.55,
+      2.4
      ],
      "lens": 22,
      "subject": "tower",
      "framing": "W",
-     "purpose": "ROW 28 \"BIKES,\" (EXTREME 3 tier 1, M18 huge-tiny crane up starts): the bike tier pops in",
-     "hold": 0.1,
-     "creep": 0.003,
-     "travel": 0.7,
+     "purpose": "ROW 28 \"BIKES,\" (M18 crane up starts)",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 1.1,
      "shows": [
       "tower"
      ]
     },
     {
-     "at": 836,
+     "at": 840,
      "pos": [
-      7.1,
-      -2.4,
-      4.5
+      7.6,
+      -0.5,
+      4.3
      ],
      "aim": [
       3.25,
-      1.5,
+      1.55,
       4.0
      ],
      "lens": 22,
      "subject": "tower",
      "framing": "W",
-     "purpose": "ROWS 29-31 \"shopping CARTS, TVS, and a COFFIN\" (M18 crane up the tower): carts, the TVs flick on, the coffin topper wobbles at the top",
-     "hold": 0.15,
-     "creep": 0.003,
-     "travel": 1.8,
+     "purpose": "ROWS 29-31 carts, TVs, the coffin topper wobbles (M18 up the tower, slow)",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 2.2,
      "shows": [
       "tower"
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "B4",
+   "place": "apron",
+   "stations": [
     {
-     "at": 860,
+     "at": 840,
      "pos": [
-      6.2,
-      -3.0,
-      1.9
+      5.6,
+      -2.3,
+      1.75
      ],
      "aim": [
-      3.55,
-      -0.35,
+      3.6,
+      -0.55,
       1.45
      ],
-     "lens": 22,
+     "lens": 24,
      "subject": "michel",
      "framing": "M",
-     "purpose": "ROWS 31-32 COFFIN 28.32 (M18 lands, short M02 down to the catch) + \"GUINNESS\" (the cloche lifts in the same frame): the catch on his plate, the whole cake beside him, the book revealed",
-     "hold": 0.3,
-     "creep": 0.003,
-     "travel": 0.6,
+     "purpose": "ROWS 31-32 COFFIN (the coffin drops into frame onto his plate) + GUINNESS (his hand lifts the cloche off the book)",
+     "hold": 0.0,
+     "creep": 0.0,
      "shows": [
       "table",
-      "tower",
       "book"
      ]
     },
     {
-     "at": 904,
+     "at": 891,
      "pos": [
-      5.0,
+      5.3,
+      -2.15,
+      1.6
+     ],
+     "aim": [
+      3.55,
+      -0.6,
+      1.35
+     ],
+     "lens": 24,
+     "subject": "michel",
+     "framing": "M",
+     "purpose": "push",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 1.6
+    }
+   ]
+  },
+  {
+   "id": "B5",
+   "place": "apron",
+   "stations": [
+    {
+     "at": 884,
+     "pos": [
+      5.15,
       -2.05,
       1.6
      ],
      "aim": [
-      3.45,
+      3.5,
       -0.8,
-      1.5
+      1.45
      ],
      "lens": 26,
      "subject": "michel",
      "framing": "C",
-     "purpose": "ROW 33 \"the STRANGEST diet\" (CLIMAX + POWER 3, M02 push in): STRANGEST DIET EVER held up, chest out, every flashbulb fires",
-     "hold": 0.3,
-     "creep": 0.003,
-     "travel": 1.0,
+     "purpose": "ROWS 33-34 STRANGEST DIET EVER up, POWER 3 flashes, the medal bite, the owner stares from the cradle",
+     "hold": 0.0,
+     "creep": 0.0,
      "shows": [
       "cert"
      ]
@@ -956,25 +1090,22 @@
     {
      "at": 942,
      "pos": [
-      5.3,
+      4.95,
       -1.95,
       1.55
      ],
      "aim": [
-      3.3,
-      -1.15,
-      1.35
+      3.45,
+      -0.9,
+      1.4
      ],
      "lens": 26,
      "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 34 \"DIET ever.\" (M00 rest with creep): he bites the frame like a gold medal and chews; the owner at the empty cradle behind stares",
+     "framing": "C",
+     "purpose": "slow push",
      "hold": 0.0,
-     "creep": 0.003,
-     "travel": 1.0,
-     "shows": [
-      "cert"
-     ]
+     "creep": 0.0,
+     "travel": 1.9
     }
    ]
   }

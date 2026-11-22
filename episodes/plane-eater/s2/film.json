@@ -185,8 +185,8 @@
    "who": "owner",
    "at": 0,
    "pos": [
-    1.5,
-    2.0,
+    5.2,
+    -3.4,
     -0.02
    ],
    "view": "34",
@@ -429,12 +429,34 @@
   {
    "who": "michel",
    "hand": "R",
+   "f0": 318,
+   "f1": 342,
+   "at": [
+    3.62,
+    -0.66,
+    1.0
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
+   "f0": 352,
+   "f1": 370,
+   "at": [
+    3.64,
+    -0.48,
+    1.06
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "R",
    "f0": 395,
    "f1": 403,
    "at": [
-    3.64,
-    -0.76,
-    1.12
+    3.5,
+    -0.55,
+    1.24
    ]
   },
   {
@@ -454,9 +476,9 @@
    "f0": 417,
    "f1": 425,
    "at": [
-    3.64,
-    -0.76,
-    1.12
+    3.5,
+    -0.55,
+    1.24
    ]
   },
   {
@@ -476,9 +498,9 @@
    "f0": 440,
    "f1": 448,
    "at": [
-    3.64,
-    -0.76,
-    1.12
+    3.5,
+    -0.55,
+    1.24
    ]
   },
   {
@@ -498,9 +520,9 @@
    "f0": 470,
    "f1": 477,
    "at": [
-    3.64,
-    -0.76,
-    1.12
+    3.5,
+    -0.55,
+    1.24
    ]
   },
   {
@@ -520,9 +542,20 @@
    "f0": 482,
    "f1": 489,
    "at": [
-    3.68,
-    -0.58,
-    1.18
+    3.88,
+    -0.92,
+    1.24
+   ]
+  },
+  {
+   "who": "michel",
+   "hand": "L",
+   "f0": 346,
+   "f1": 360,
+   "at": [
+    3.42,
+    -0.84,
+    1.1
    ]
   }
  ],
@@ -638,67 +671,35 @@
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 13 (EXPLAIN, M02 push in on the dial): the needle swings past and settles on \"2 lb / 900 g\", his raised brow at the top",
-     "hold": 0.6,
+     "hold": 0.2,
      "creep": 0.0035,
      "shows": [
       "scale"
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "s2b",
+   "place": "apron",
+   "stations": [
     {
-     "at": 400,
+     "at": 394,
      "pos": [
-      5.08,
-      -1.13,
-      1.25
+      3.12,
+      0.75,
+      1.0
      ],
      "aim": [
       3.5,
       -0.85,
-      1.12
-     ],
-     "lens": 28,
-     "subject": "michel",
-     "framing": "M",
-     "purpose": "ROWS 14-15 (M13 truck, close): each bite held up toward the lens",
-     "hold": 0.0,
-     "creep": 0.0035
-    },
-    {
-     "at": 448,
-     "pos": [
-      5.07,
-      -1.38,
-      1.25
-     ],
-     "aim": [
-      3.45,
-      -0.85,
-      1.1
-     ],
-     "lens": 28,
-     "subject": "michel",
-     "framing": "M",
-     "purpose": "ROWS 15-16 (M13 continues along the bites): hub, cushion and spring",
-     "hold": 0.0,
-     "creep": 0.0035
-    },
-    {
-     "at": 466,
-     "pos": [
-      4.75,
-      -1.2,
-      0.92
-     ],
-     "aim": [
-      3.52,
-      -0.8,
-      1.2
+      1.18
      ],
      "lens": 24,
      "subject": "michel",
      "framing": "C",
      "purpose": "ROW 17 (ACT list 4, M02 push in on the stretch): the tire stretches like gum and snaps back on his cheeks, the owner winces far back",
-     "hold": 0.5,
+     "hold": 3.0,
      "creep": 0.0035,
      "shows": [
       "tire"
@@ -707,16 +708,16 @@
     {
      "at": 512,
      "pos": [
-      5.03,
-      -0.53,
-      1.2
+      3.25,
+      0.65,
+      1.02
      ],
      "aim": [
-      3.4,
+      3.42,
       -1.0,
-      1.08
+      1.05
      ],
-     "lens": 30,
+     "lens": 26,
      "subject": "michel",
      "framing": "M",
      "purpose": "ROW 18 (PLACE, settle on the belly for the M21 match dissolve into the X-ray film)",

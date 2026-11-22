@@ -1,0 +1,892 @@
+{
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "words": "voice/words.json",
+ "camera": {
+  "v2": true
+ },
+ "camsafe": true,
+ "tween": {
+  "frames": 0,
+  "face_frames": 0,
+  "ones": true
+ },
+ "puppet_pkg": [
+  "moves",
+  ".",
+  "cast",
+  "../../../templates/vector2d_characters/code"
+ ],
+ "face_shadow": true,
+ "costume_shade": {
+  "amount": 0.45,
+  "start": 0.35,
+  "cool": 0.15,
+  "smooth": 40,
+  "keep_drawn_light": true
+ },
+ "card_shade": {
+  "style": "rick",
+  "amount": 0,
+  "rim_amount": 0,
+  "rim_width": 0.9,
+  "hat_shadow": 0,
+  "lights": []
+ },
+ "title": "The Man Who Ate An Airplane, S4 TWO YEARS / DESSERT / RECORD (lines 6-8a, frames 660-942), DRAFT",
+ "start": 660,
+ "end": 943,
+ "kit3d": {
+  "pbr": true,
+  "relief": true,
+  "sky": true,
+  "trees": false
+ },
+ "post": {
+  "dof": 0.0,
+  "dust": 0.3,
+  "bloom": 1,
+  "vignette": 0
+ },
+ "cast": {
+  "michel": {
+   "puppet": "cast:plane_eater/michel",
+   "height": 1.8,
+   "heads_tall": 3.1,
+   "walk_speed": 99
+  },
+  "owner": {
+   "puppet": "cast:plane_eater/owner",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "ownerBeardS": {
+   "puppet": "cast:plane_eater/ownerBeardS",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "ownerBeardM": {
+   "puppet": "cast:plane_eater/ownerBeardM",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "ownerBeardL": {
+   "puppet": "cast:plane_eater/ownerBeardL",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  },
+  "ownerBeardXL": {
+   "puppet": "cast:plane_eater/ownerBeardXL",
+   "height": 1.74,
+   "heads_tall": 2.93,
+   "walk_speed": 99
+  }
+ },
+ "places": {
+  "apron": {
+   "set": "s4_apron",
+   "kind": "day",
+   "light": "day",
+   "light_over": {
+    "top": "#1a86f2",
+    "hor": "#cfe6ff",
+    "sun": "#fff6e6",
+    "si": 4.6,
+    "amb": "#e6edf7",
+    "ai": 2.0,
+    "dir": [
+     3.54,
+     7.66,
+     5.34
+    ],
+    "tint": "#ffffff"
+   },
+   "air": 0.3,
+   "wind": 1
+  }
+ },
+ "props": {
+  "table": {
+   "pos": [
+    3.4,
+    -0.32,
+    0.8
+   ],
+   "kind": "the white-cloth table under the wing"
+  },
+  "plane": {
+   "pos": [
+    0,
+    0.8,
+    1.0
+   ],
+   "kind": "the sliced Cessna, eaten tail first"
+  },
+  "deck": {
+   "pos": [
+    5.8,
+    -3.7,
+    0.8
+   ],
+   "kind": "the owner in his deck chair, beard growing"
+  },
+  "trolley": {
+   "pos": [
+    2.4,
+    5.6,
+    1.0
+   ],
+   "kind": "the dessert trolley rolling out of the hangar"
+  },
+  "tower": {
+   "pos": [
+    3.25,
+    1.55,
+    3.0
+   ],
+   "kind": "the cake tower: bikes, carts, TVs, coffin"
+  },
+  "book": {
+   "pos": [
+    3.47,
+    -0.42,
+    0.85
+   ],
+   "kind": "BOOK OF RECORDS + certificate under the cloche"
+  },
+  "cert": {
+   "pos": [
+    3.6,
+    -0.75,
+    1.45
+   ],
+   "kind": "the STRANGEST DIET EVER certificate"
+  }
+ },
+ "acts": [
+  {
+   "who": "michel",
+   "at": 0,
+   "pos": [
+    3.4,
+    -1.0,
+    0.03
+   ],
+   "pose": "m:../../ep_s4/mi_s4",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "rows 24-34: one seated move (time-lapse eating, spinner, bell, catch, certificate, bite)"
+  },
+  {
+   "who": "michel",
+   "at": 662,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 25 time-lapse: eats, never looks up"
+  },
+  {
+   "who": "michel",
+   "at": 703,
+   "face": "k:aim",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 26: picks the spinner"
+  },
+  {
+   "who": "michel",
+   "at": 713,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 26 PLANE: pops it like a cherry"
+  },
+  {
+   "who": "michel",
+   "at": 718,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 26: dabs his mouth, deep satisfaction"
+  },
+  {
+   "who": "michel",
+   "at": 728,
+   "face": "k:standard",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 27 planned stillness"
+  },
+  {
+   "who": "michel",
+   "at": 737,
+   "face": "k:browUp",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 27 DESSERT?: rings the bell"
+  },
+  {
+   "who": "michel",
+   "at": 755,
+   "face": "k:happy",
+   "look": [
+    3.25,
+    1.55,
+    3.0
+   ],
+   "look_full": true,
+   "note": "rows 28-30: thrilled, watches the tower rise"
+  },
+  {
+   "who": "michel",
+   "at": 841,
+   "face": "k:nervousSmile",
+   "look": [
+    3.6,
+    -0.7,
+    1.6
+   ],
+   "look_full": true,
+   "note": "row 31: the coffin topples, he catches it"
+  },
+  {
+   "who": "michel",
+   "at": 858,
+   "face": "k:proud",
+   "look": [
+    3.47,
+    -0.42,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 31-32: relief, then the cloche"
+  },
+  {
+   "who": "michel",
+   "at": 894,
+   "face": "k:proud",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 33 STRANGEST: certificate up, chest out"
+  },
+  {
+   "who": "michel",
+   "at": 912,
+   "face": "k:peChew",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 34 DIET: bites the frame like a medal"
+  },
+  {
+   "who": "michel",
+   "at": 930,
+   "face": "k:happy",
+   "look": [
+    3.4,
+    -0.2,
+    0.9
+   ],
+   "look_full": true,
+   "note": "row 34: calm delight"
+  },
+  {
+   "who": "owner",
+   "at": 0,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "owner",
+   "at": 660,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
+   "pose": "m:../../ep_s4o/ow_deck",
+   "face": "k:browUp",
+   "look": "michel",
+   "note": "row 25: waits in the deck chair, rag in his lap; beard none"
+  },
+  {
+   "who": "owner",
+   "at": 679,
+   "visible": false,
+   "note": "beard swap"
+  },
+  {
+   "who": "ownerBeardS",
+   "at": 0,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardS",
+   "at": 679,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
+   "pose": "m:../../ep_s4o/ow_deck",
+   "face": "k:browUp",
+   "look": "michel",
+   "note": "row 25: waits in the deck chair, rag in his lap; beard S"
+  },
+  {
+   "who": "ownerBeardS",
+   "at": 686,
+   "visible": false,
+   "note": "beard swap"
+  },
+  {
+   "who": "ownerBeardM",
+   "at": 0,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardM",
+   "at": 686,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
+   "pose": "m:../../ep_s4o/ow_deck",
+   "face": "k:think",
+   "look": "michel",
+   "note": "row 25: waits in the deck chair, rag in his lap; beard M"
+  },
+  {
+   "who": "ownerBeardM",
+   "at": 694,
+   "visible": false,
+   "note": "beard swap"
+  },
+  {
+   "who": "ownerBeardL",
+   "at": 0,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardL",
+   "at": 694,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
+   "pose": "m:../../ep_s4o/ow_deck",
+   "face": "k:think",
+   "look": "michel",
+   "note": "row 25: waits in the deck chair, rag in his lap; beard L"
+  },
+  {
+   "who": "ownerBeardL",
+   "at": 701,
+   "visible": false,
+   "note": "beard swap"
+  },
+  {
+   "who": "ownerBeardXL",
+   "at": 0,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": false,
+   "note": "hidden until his beat"
+  },
+  {
+   "who": "ownerBeardXL",
+   "at": 701,
+   "pos": [
+    5.8,
+    -3.7,
+    0.03
+   ],
+   "view": "34",
+   "dir": 1,
+   "visible": true,
+   "pose": "m:../../ep_s4o/ow_deck",
+   "face": "k:think",
+   "look": "michel",
+   "note": "row 25: waits in the deck chair, rag in his lap; beard XL"
+  },
+  {
+   "who": "ownerBeardXL",
+   "at": 713,
+   "face": "k:peJawDrop",
+   "look": "michel",
+   "note": "row 26: the jaw drops into the beard"
+  },
+  {
+   "who": "ownerBeardXL",
+   "at": 740,
+   "pos": [
+    1.4,
+    -0.1,
+    0.03
+   ],
+   "view": "34",
+   "dir": -1,
+   "pose": "m:../../ep_s4b/ow_stare",
+   "face": "k:shocked",
+   "look": "michel",
+   "look_full": true,
+   "note": "rows 33-34: stands at the empty cradle, beard to his knees, rag down, stares (moved while the camera is on the cloche)"
+  }
+ ],
+ "held3d": [
+  {
+   "who": "michel",
+   "obj": "fork",
+   "module": "sets/pe_props.js",
+   "builder": "buildFork",
+   "opts": {},
+   "grip": "raise",
+   "hand": "R",
+   "when": "always",
+   "f0": 662,
+   "f1": 702,
+   "anchor": "grip",
+   "tip": "tip",
+   "note": "row 25: time-lapse fork"
+  },
+  {
+   "who": "michel",
+   "obj": "spinner",
+   "module": "sets/s4_apron.js",
+   "builder": "buildSpinner",
+   "opts": {},
+   "grip": "point",
+   "hand": "R",
+   "when": "always",
+   "f0": 704,
+   "f1": 713,
+   "note": "row 26: the spinner, like a cherry"
+  },
+  {
+   "who": "michel",
+   "obj": "bell",
+   "module": "sets/s4_apron.js",
+   "builder": "buildBell",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 737,
+   "f1": 752,
+   "note": "row 27: the silver table bell"
+  },
+  {
+   "who": "michel",
+   "obj": "cloche",
+   "module": "sets/s4_apron.js",
+   "builder": "buildCloche",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 860,
+   "f1": 880,
+   "note": "row 32: his near hand lifts the cloche off the book"
+  },
+  {
+   "who": "michel",
+   "obj": "plate",
+   "module": "sets/s4_apron.js",
+   "builder": "buildPlate",
+   "opts": {},
+   "grip": "handle",
+   "hand": "R",
+   "when": "always",
+   "f0": 830,
+   "f1": 855,
+   "angle": [
+    [
+     830,
+     0
+    ]
+   ],
+   "note": "row 31: plate up, the coffin lands on it at 850"
+  },
+  {
+   "who": "michel",
+   "obj": "certificate",
+   "module": "sets/s4_apron.js",
+   "builder": "buildCert",
+   "opts": {},
+   "grip": "handle",
+   "hand": "L",
+   "when": "always",
+   "f0": 882,
+   "f1": 942,
+   "angle": [
+    [
+     882,
+     -90
+    ],
+    [
+     894,
+     -80
+    ],
+    [
+     906,
+     -80
+    ],
+    [
+     912,
+     -75
+    ]
+   ],
+   "note": "rows 33-34: STRANGEST DIET EVER, bitten corner from 913"
+  },
+  {
+   "who": "owner",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 660,
+   "f1": 678,
+   "anchor": "grip",
+   "note": "the yellow rag in his lap"
+  },
+  {
+   "who": "ownerBeardS",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 679,
+   "f1": 685,
+   "anchor": "grip",
+   "note": "the yellow rag in his lap"
+  },
+  {
+   "who": "ownerBeardM",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 686,
+   "f1": 693,
+   "anchor": "grip",
+   "note": "the yellow rag in his lap"
+  },
+  {
+   "who": "ownerBeardL",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 694,
+   "f1": 700,
+   "anchor": "grip",
+   "note": "the yellow rag in his lap"
+  },
+  {
+   "who": "ownerBeardXL",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 701,
+   "f1": 739,
+   "anchor": "grip",
+   "note": "the yellow rag in his lap"
+  },
+  {
+   "who": "ownerBeardXL",
+   "obj": "rag",
+   "module": "sets/pe_props.js",
+   "builder": "buildRag",
+   "opts": {},
+   "grip": "hang",
+   "hand": "R",
+   "when": "always",
+   "f0": 740,
+   "f1": 942,
+   "anchor": "grip",
+   "note": "rows 33-34: the rag hangs from his hand"
+  }
+ ],
+ "moods": [
+  {
+   "at": 740,
+   "look": "warm_up",
+   "note": "row 27: the work lamps snap on"
+  },
+  {
+   "at": 894,
+   "look": "flash_white",
+   "note": "row 33 POWER 3: every flashbulb fires at once"
+  }
+ ],
+ "kicks": [
+  {
+   "at": 850,
+   "amp": 1
+  },
+  {
+   "at": 894,
+   "amp": 2
+  }
+ ],
+ "fx": [
+  {
+   "at": 740,
+   "kind": "glint",
+   "pos": [
+    3.6,
+    -0.7,
+    1.25
+   ],
+   "note": "row 27: bell ring"
+  },
+  {
+   "at": 713,
+   "kind": "glint",
+   "pos": [
+    3.5,
+    -0.9,
+    1.35
+   ],
+   "note": "row 26: the spinner pop"
+  },
+  {
+   "at": 866,
+   "kind": "glint",
+   "pos": [
+    -1.5,
+    9.2,
+    1.8
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 880,
+   "kind": "glint",
+   "pos": [
+    1.8,
+    9.2,
+    1.6
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 894,
+   "kind": "glint",
+   "pos": [
+    0.2,
+    9.2,
+    1.9
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 896,
+   "kind": "glint",
+   "pos": [
+    -2.5,
+    9.2,
+    1.7
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 898,
+   "kind": "glint",
+   "pos": [
+    2.6,
+    9.2,
+    1.8
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 918,
+   "kind": "glint",
+   "pos": [
+    -0.8,
+    9.2,
+    1.7
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 930,
+   "kind": "glint",
+   "pos": [
+    1.3,
+    9.2,
+    1.8
+   ],
+   "note": "row 32-34: a flashbulb in the dark hangar doorway"
+  },
+  {
+   "at": 913,
+   "kind": "shine",
+   "pos": [
+    3.55,
+    -0.85,
+    1.42
+   ],
+   "note": "row 34: sparkle on the bite mark"
+  }
+ ],
+ "takes": [
+  {
+   "id": "B2",
+   "place": "apron",
+   "stations": [
+    {
+     "at": 705,
+     "pos": [
+      5.6,
+      -1.85,
+      1.5
+     ],
+     "aim": [
+      3.45,
+      -0.85,
+      1.28
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "C",
+     "purpose": "ROWS 26-27 \"to finish the PLANE, and for DESSERT?\" (M02 slow push): the spinner cherry, the napkin dab, the stillness, the bell",
+     "hold": 0.0,
+     "creep": 0.0,
+     "shows": [
+      "table"
+     ]
+    },
+    {
+     "at": 745,
+     "pos": [
+      5.25,
+      -1.7,
+      1.45
+     ],
+     "aim": [
+      3.45,
+      -0.85,
+      1.3
+     ],
+     "lens": 28,
+     "subject": "michel",
+     "framing": "C",
+     "purpose": "push",
+     "hold": 0.0,
+     "creep": 0.0,
+     "travel": 1.3
+    }
+   ]
+  }
+ ]
+}

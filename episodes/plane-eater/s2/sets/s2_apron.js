@@ -23,8 +23,8 @@ export function buildTongs(T) { THREE_ ||= T; const g = clone('sugar_tongs'); co
 // the four list bites (fix 1): the props-hero bites (props/out/metal_bites.glb bite_0..5, 3-4 cm squares, 1.5 mm sheet, cut aluminium edges, rivets)
 // repainted with the look of the part they come from, held 5.5x (round 2: the lead wants each bite ~1/5 of the close frame) (a bite is still neat and small next to his cartoon head, but it must read on a phone)
 function mat(T, c, r = .35, m = 0) { return new T.MeshStandardMaterial({ color: c, roughness: r, metalness: m }); }
-function bite(T, name, paint, extra) { const g = new T.Group(), b = part('metal_bites', new RegExp('^' + name + '($|_)')); const box = new T.Box3().setFromObject(b), c = box.getCenter(new T.Vector3());
-  b.position.sub(c); b.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); if (paint[o.name] || paint['*']) o.material.color.set(paint[o.name] || paint['*']); if (paint.metal && !/rivet|stripe/.test(o.name)) { o.material.metalness = paint.metal; o.material.roughness = .25; } } });
+function bite(T, name, paint, extra) { const g = new T.Group(), b = part('metal_bites', new RegExp('^' + name + '($|_)')); const box = new T.Box3(); b.updateMatrixWorld(true); b.traverse(o => { if (o.isMesh && o.visible) box.expandByObject(o); }); const c = box.getCenter(new T.Vector3());   // fix v1: centre on the ONE visible bite (the whole sheet put it up to 0.4 m off the hand)
+  b.position.sub(c); b.traverse(o => { if (o.isMesh) { const c = paint[o.name] || paint['*'], rv = /rivet/.test(o.name); o.material = new T.MeshStandardMaterial({ color: rv ? '#d6d9de' : c, metalness: rv ? .8 : (paint.metal && !/stripe/.test(o.name) ? .55 : 0), roughness: rv ? .3 : .45 }); } });   // fix v1: flat paint, no texture / full metal (they rendered as dark squares)
   const holder = new T.Group(); holder.add(b); holder.rotation.x = Math.PI / 2; holder.position.x = .1; holder.scale.setScalar(5.5); g.add(holder); if (extra) extra(g);
   return { group: g, grip: new T.Vector3(0, 0, 0), tip: new T.Vector3(.1, 0, 0) }; }
 export function buildWingSlice(T) { THREE_ ||= T; return bite(T, 'bite_2', { '*': '#f3f4f1', bite_2_stripe: '#1d3461' }); }                        // white skin + the navy stripe
@@ -57,14 +57,21 @@ export async function build(THREE, scene, film, ctx) {
   const B = n => { const b = (n === 'oil' ? buildOil : n === 'wing' ? buildWingSlice : n === 'hub' ? buildHub : n === 'cushion' ? buildCushion : buildTire)(THREE).group;
     if (n === 'oil') b.scale.setScalar(2.2); b.traverse(o => { if (o.isMesh) o.castShadow = true; }); b.visible = false; scene.add(b); return b; };
   const inHand = { oil: B('oil'), wing: B('wing'), hub: B('hub'), cushion: B('cushion'), tire: B('tire') };
+  const hold = { jug: put(part('water_jug', /^jug/), SPOT.jug), tumbler: put(part('water_jug', /^tumbler/), SPOT.tumbler), tongs: put(buildTongs(THREE).group, SPOT.scale) };
+  hold.tongs.scale.setScalar(2.2); for (const g of Object.values(hold)) g.visible = false;
   const WHO = f => f >= 290 && f <= 314 ? 'oil' : f >= 395 && f <= 410 ? 'wing' : f >= 417 && f <= 432 ? 'hub' : f >= 440 && f <= 456 ? 'cushion' : f >= 470 && f <= 489 ? 'tire' : null;
   const HW = (film.hand_at || []).filter(h => h.who === 'michel');
   const needle0 = live.needle ? live.needle.rotation.clone() : null;
   return { anchors: { ...base.anchors, ...SPOT }, update: (f, t) => { base.update && base.update(f, t);
     for (const [k, a, b] of HELD) st[k].visible = !(f >= 290 && f <= 316 && k === 'oil');
     const w = WHO(f), hw = HW.find(h => f >= h.f0 && f <= h.f1);
-    for (const [k, g] of Object.entries(inHand)) { g.visible = k === w && !!hw; if (g.visible) { g.position.copy(V([hw.at[0], hw.at[1], hw.at[2] + .06])); g.rotation.set(0, -1.2, k === 'oil' ? 0 : .5); } }
+    for (const [k, g] of Object.entries(inHand)) { g.visible = k === w && !!hw; if (g.visible) { g.position.copy(V([hw.at[0], hw.at[1], hw.at[2] + .06])); g.rotation.set(0, k === 'oil' ? -1.2 : 0, k === 'oil' ? 0 : .25); } }   // fix v1: the bites face the north lens flat (they were edge-on)
     if (live.tireG !== inHand.tire) live.tireG = inHand.tire;
+    st.jug.visible = !(f >= 318 && f <= 342); st.tumbler.visible = !(f >= 346 && f <= 360);
+    const HL = (film.hand_at || []).filter(h => h.who === 'michel' && f >= h.f0 && f <= h.f1);
+    for (const [k, g] of Object.entries(hold)) { const h = HL.find(x => (k === 'jug' && x.f0 === 318) || (k === 'tongs' && x.f0 === 352) || (k === 'tumbler' && x.hand === 'L')); g.visible = !!h; if (!h) continue;
+      const tilt = k === 'jug' ? (f < 324 ? 0 : f < 340 ? .7 : .7 * (1 - (f - 340) / 3)) : k === 'tumbler' ? (f > 350 && f < 357 ? .6 : 0) : 0;
+      g.position.copy(V([h.at[0] + (k === 'jug' ? .05 : 0), h.at[1], h.at[2] + (k === 'jug' ? -.17 : k === 'tumbler' ? -.04 : 0)])); g.rotation.set(0, k === 'tongs' ? -1.2 : 0, -tilt); }
     // the scale: empty (0 lb) until the bites drop on "pounds" (365); the needle swings past 2 lb to 3.1, wobbles, settles ON 2 lb by 386
     const lb = f < 365 ? 0 : 2 + 1.1 * Math.exp(-(f - 365) / 5) * Math.cos((f - 365) * .55) - 2 * Math.exp(-(f - 365) / 1.2);
     if (live.needle) { live.needle.rotation.copy(needle0); live.needle.rotateZ(-(lb - 2) * 75 * Math.PI / 180); }

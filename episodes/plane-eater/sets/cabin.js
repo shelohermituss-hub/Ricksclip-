@@ -38,7 +38,12 @@ export async function build(THREE, scene, film, ctx) {
   }
   // S5 fix round 2026-11-22: "wing_offset": [dx, dy, dz] (plan metres) moves the whole outside wing (wing, winglet, engine, flap canoes, nav light)
   // so its bite (anchors.wing_bite) lands on the ray of the film's own window station (make_film.py computes it); "foil_raise" lifts the lifted foil higher (m).
-  if (P.wing_offset) { const d = V(P.wing_offset).sub(V([0, 0, 0])); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) o.position.add(d); }); }
+  // fix list v1: "wing_bank" (deg) banks the outside wing about the fuselage line (pivot plan (0, 1.9, 0.5), outer end down) so a lens at the window
+  // looks DOWN on its top and the leading-edge bite reads as a crescent, not an edge-on sliver; "wing_offset" then moves the banked wing (the window pass only).
+  if (P.wing_bank) { const pv = new THREE.Group(); pv.position.copy(V([0, 1.9, 0.5])); scene.add(pv); pv.updateMatrixWorld(true); const W = [];
+    root.updateMatrixWorld(true); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) W.push(o); });
+    W.forEach(o => pv.attach(o)); pv.rotation.x = -P.wing_bank * Math.PI / 180; W.forEach(o => { if (/^engine_/.test(o.name)) o.visible = false; }); if (P.wing_offset) pv.position.add(V(P.wing_offset).sub(V([0, 0, 0]))); }   // - = outer end down; the engine is hidden in this pass
+  else if (P.wing_offset) { const d = V(P.wing_offset).sub(V([0, 0, 0])); root.traverse(o => { if (/^(wing_left|winglet|engine_|flap_|nav_light)/.test(o.name) && !/^(wing_left|winglet|engine_|flap_|nav_light)/.test((o.parent || {}).name || '')) o.position.add(d); }); }
   // S5 fix round 2: "tray_dy" (plan metres along y) moves Michel's tray table, its arms, the meal and the pea to another seat of the row (-0.52 = seat B)
   if (P.tray_dy) { const d = V([0, P.tray_dy, 0]).sub(V([0, 0, 0])); root.traverse(o => { if (/^(tray_table|tray_table_bitten|tray_arm_|meal_|pea_runaway)/.test(o.name) && !/^(tray_table|meal_)/.test((o.parent || {}).name || '') && o.name !== 'tray_table_B_stowed' && o.name !== 'tray_table_recess') o.position.add(d); }); }
   const N = n => root.getObjectByName(n), tray = N('tray_table'), trayB = N('tray_table_bitten'), foilOn = N('meal_foil_on'), foilUp = N('meal_foil_lifted'), pea = N('pea_runaway');

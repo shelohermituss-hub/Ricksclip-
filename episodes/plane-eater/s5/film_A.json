@@ -159,9 +159,9 @@
   },
   "wing": {
    "pos": [
-    1.4749999999999999,
-    6.8,
-    0.43800000000000006
+    1.25,
+    5.963045141278025,
+    -1.978742459380771
    ],
    "kind": "the airliner wing with one bite missing"
   }
@@ -247,7 +247,7 @@
    "pos": [
     0,
     1.2,
-    0.0
+    -0.05
    ],
    "view": "34",
    "dir": 1,
@@ -321,6 +321,19 @@
    "anchor": "grip",
    "when": "always",
    "scale": 1
+  }
+ ],
+ "hand_at": [
+  {
+   "who": "owner",
+   "f0": 1001,
+   "f1": 1021,
+   "at": [
+    0.2,
+    1.74,
+    1.14
+   ],
+   "note": "row 38: the rag ON the window glass at eye height"
   }
  ],
  "kicks": [

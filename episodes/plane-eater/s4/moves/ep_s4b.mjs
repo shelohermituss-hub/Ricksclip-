@@ -8,7 +8,7 @@ const dip = (f, f0, amp = 8, n = 4) => f > f0 && f < f0 + n ? amp * Math.sin(Mat
 function miClinic(t, ch) { const f = F(t), p = dip(f, 646, 1, 4) + dip(f, 652, 1, 4), bow = snap(f - 656, 6) - snap(f - 664, 8);
   return { view: '34', dir: 1, x: 0, y: 3 * bow, rot: 3 * bow, head: 5 * bow, feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: true,
     hands: [{ f: .28, d: .78 - .06 * p, bow: .4, over: true }, { f: .34, d: .74 - .06 * p, bow: .4, over: true }], held: [] }; }
-function owStare(t, ch) { const f = F(t) + 878, S = ch.sh[1], L = ch.armL, Wd = ch.handX, sh = f > 925 && f < 941 ? 4 * Math.sin((f - 925) * Math.PI / 5) : 0;
+function owStare(t, ch) { const f = F(t) + 740, S = ch.sh[1], L = ch.armL, Wd = ch.handX, sh = f > 925 && f < 941 ? 4 * Math.sin((f - 925) * Math.PI / 5) : 0;
   return { view: '34', dir: -1, x: 0, y: 0, rot: -2, head: -2 + sh, feet: [{ x: -24, lift: 0 }, { x: 24, lift: 0 }], farArmFront: false,
     hands: [{ f: .1, d: .9, bow: .25 }, { f: .22, d: .84, bow: .25, over: true }], held: [] }; }
 const STY = [{ key: 'mi_clinic', name: 'mi_clinic', blurb: 'standing behind the doctor, pats his belly politely', pose: miClinic },
