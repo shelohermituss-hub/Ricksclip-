@@ -16,6 +16,11 @@ Une entrée n'est complète que si elle a un garde-fou et une preuve. « Corrig�
 
 ## Entrées
 
+## 2026-11-22 — Retour de CB sur le film plane-eater v1 : collisions, personnage trop gros, mouvements saccadés, lumière plate — LEÇON RETENUE (film non corrigé)
+- Constat de CB : objets mal placés qui se traversent ; personnage principal trop gros ; manque de fluidité des personnages ET des objets (saccadé) ; lumière et ombres insuffisantes ; l'environnement est bon. Rick ressemble à un jeu vidéo : très fluide.
+- Causes probables, NON vérifiées (le film n'a pas été repris) : objets tenus placés image par image sans rotation ni lissage ; cartes de personnages échangées par pose sans intermédiaire ; plans reliés par fondus au lieu d'un mouvement continu ; gros plans obtenus en approchant la caméra d'une carte déjà grande ; cartes auto-éclairées qui ne reçoivent pas la lumière ni les ombres du décor ; aucun contrôle de collision ni de fluidité dans la chaîne Blender.
+- Garde-fou : CB_RULES section 3 « THE FOUR FAULTS OF THE PLANE-EATER FILM » (4 contrôles avant toute version en mouvement montrée à CB). À construire au prochain film : un contrôle automatique de collision et un contrôle de fluidité par objet.
+
 ## 2026-11-22 — Film Blender rendu sans la pièce montée ni le matelas (plane-eater) — LEÇON RETENUE, film non corrigé (CB 2026-11-22 : « Tu n'as pas besoin de faire des corrections, apprends juste de tes erreurs »)
 - Problème : dans le film rendu sur RunPod, la pièce montée du dessert (f738-850) et le gonflement de la paroi en matelas (f580-610) manquent ; arbre et sol d'hiver faux dans l'accéléré.
 - Cause réelle : ces objets sont construits par du code dans les scripts de décor du kit (s4_apron.js, xray.js) et ne font pas partie de l'export verrouillé ; le lead n'a contrôlé que 13 images clés, aucune sur ces plans, et n'a pas généralisé l'alerte « ligne de scie et bouchée absentes ».

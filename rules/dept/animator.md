@@ -1,4 +1,4 @@
-# CB RULES for the animator (GENERATED 2026-11-21 by tools/slice_rules.py from CB_RULES.md; do not edit)
+# CB RULES for the animator (GENERATED 2026-11-22 by tools/slice_rules.py from CB_RULES.md; do not edit)
 CB_RULES.md is the master and wins. This file holds the rules that touch your job. Read it instead of the whole book. If a rule you need seems missing, grep CB_RULES.md for the word; do not read it top to bottom.
 
 ## RULE NO. 1: MAKE A RICK-QUALITY VIDEO. If this fails, everything is wrong.
