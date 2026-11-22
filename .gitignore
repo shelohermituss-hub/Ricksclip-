@@ -94,3 +94,6 @@ episodes/*/props/logs/
 episodes/*/sets/*/proof/
 episodes/*/sets/*/logs/
 episodes/*/look/prev/
+episodes/*/s*/passes/
+episodes/*/s*/frames*/
+episodes/*/s*/stills*/
