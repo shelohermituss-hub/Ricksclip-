@@ -4,7 +4,7 @@
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 function miStand(t, ch) { const f = Math.round(t * 30000) / 1000, b = snap(f - 257, 5);
-  return { view: 'side', dir: 1, x: 0, y: 4 * b, rot: 6 * b, head: 4 * b, feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: true,
+  return { view: '34', dir: 1, x: 0, y: 4 * b, rot: 6 * b, head: 4 * b, feet: [{ x: -22, lift: 0 }, { x: 22, lift: 0 }], farArmFront: true,
     hands: [{ f: .5, d: .55 + .05 * b, bow: .35 }, { f: .55, d: .5 + .05 * b, bow: .35, over: true }], held: [] }; }
 const STY = [{ key: 'mi_stand', name: 'mi_stand', blurb: 'standing at the pulled-out chair, fists on the back hoop, small bow', pose: miStand }];
 export default { title: 'PLANE-EATER S2: standing at the chair', dur: 520 / 30, styles: STY };

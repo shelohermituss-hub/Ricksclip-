@@ -152,8 +152,8 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.25,
-    1.62,
+    -0.22,
+    1.42,
     0.0
    ],
    "view": "34",
@@ -293,16 +293,16 @@
     {
      "at": 519,
      "pos": [
-      0.62,
-      0.42,
-      1.58
+      1.05,
+      -0.95,
+      1.38
      ],
      "aim": [
-      -0.02,
-      2.05,
-      1.36
+      -0.22,
+      1.7,
+      1.18
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "doctor",
      "framing": "W",
      "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice",
@@ -315,16 +315,16 @@
     {
      "at": 552,
      "pos": [
-      0.4,
-      0.92,
-      1.56
+      0.62,
+      0.25,
+      1.48
      ],
      "aim": [
-      0.04,
-      2.08,
-      1.42
+      -0.08,
+      2.0,
+      1.36
      ],
-     "lens": 22,
+     "lens": 18,
      "subject": "film",
      "framing": "M",
      "purpose": "ROW 19 \"found\" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable",

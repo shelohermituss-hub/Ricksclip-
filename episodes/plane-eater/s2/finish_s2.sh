@@ -4,8 +4,8 @@ cd "$(dirname "$0")"; ROOT=../../..
 ffmpeg -v error -y -framerate 30 -start_number 257 -i frames/f_%05d.png -ss 8.5667 -t 8.7667 -i voice/voice.wav -map 0:v -map 1:a -c:v libx264 -crf 20 -pix_fmt yuv420p -c:a aac -b:a 160k -shortest draft.mp4 && echo "mp4 $(ffprobe -v error -show_entries format=duration -of csv=p=0 draft.mp4) s"
 python3 - <<'E'
 from PIL import Image, ImageDraw
-keys = [(290, 'R10 every day: sat at the table'), (305, 'R11 glass: oil at his nose'), (330, 'R12 jug: the glug'), (378, 'R13 pounds: needle on 2 lb'),
-        (409, 'R14 wings: crack'), (430, 'R15 wheels'), (456, 'R16 seats: spring'), (486, 'R17 tires: gum stretch'), (515, 'R18 doctors: belly pat')]
+keys = [(259, 'R10 standing at the chair'), (300, 'R11 glass: oil at his nose'), (330, 'R12 jug: the glug'), (375, 'R13 pounds: needle on 2 lb'),
+        (409, 'R14 wings: crack'), (430, 'R15 wheels'), (456, 'R16 seats: spring'), (485, 'R17 tires: gum stretch'), (515, 'R18 doctors: belly pat')]
 ims = [Image.open('frames/f_%05d.png' % f).convert('RGB') for f, _ in keys]; w, h = ims[0].size; s = 0.5; W, H = int(w * s), int(h * s)
 sheet = Image.new('RGB', (W * 3, (H + 24) * 3), 'white'); d = ImageDraw.Draw(sheet)
 for i, (im, (f, t)) in enumerate(zip(ims, keys)): x, y = (i % 3) * W, (i // 3) * (H + 24); sheet.paste(im.resize((W, H)), (x, y + 24)); d.text((x + 4, y + 6), 'f%d %s' % (f, t), fill='black')

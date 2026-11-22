@@ -45,3 +45,14 @@
 
 ## Numbers
 - Test stills: 4.1 s/frame at half size (3 frames, software). Draft: about 5 s/frame while other builders render.
+
+## FIX ROUND 1 (2026-11-22, lead's 6 points; cap 45 min, took about 95 min: render 10 s/frame on the shared box, killed at 30 min, rest re-rendered)
+Done: (2) bright noon light (light_over si 4.6, ai 2.0, warm-white sun, pale ambient; air 0.3); (4) owner moved to (1.15, -2.2), no longer behind his head
+from the main lens; (5) S2 starts with Michel standing behind the pulled-out chair (3.4, -1.45, m:../../ep_s2a/mi_stand), sits at 262, chair + Michel tuck
+-1.2 -> -1.0 by 281; (6) list bites = props-hero metal_bites bite_2/3/4/5 repainted (white+navy, aluminium hub + tyre ring, blue foam + spring, black);
+camera rebuilt from the ENE side (he is seen front/3-4), arrivals measured: oil close 290-306, dial close 358-381, tire close 460-490.
+(1) camsafe 1040 PASS / 0 FAIL: look_full on Michel's acts (seated legs3d move takes the true view) + mi_stand drawn '34' (frames 257-261 re-rendered).
+NOT done: (3) closes land but do not READ:
+  the held oil glass / bites / tire are hidden behind his body or too small at f300 and f485; the gum strand is not visible; the dial close (f375) reads.
+  frame_checks 11 FAIL: michel seat hover 38.6 % (f0-237, before window), owner feet float 5 cm (apron slab top above z .03), owner cut by edges in the
+  dial and tire closes, michel feet sunk -7 cm at f512. Draft: draft.mp4 (8.77 s, voice), KEYFRAMES.jpg, S2_strip_4fps.jpg.

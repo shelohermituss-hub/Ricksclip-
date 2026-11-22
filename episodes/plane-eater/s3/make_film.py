@@ -9,7 +9,7 @@ A, C = meta['anchors'], meta['cams']
 cast = {'doctor': dict(keys['cast']['doctor'], walk_speed=99)}
 M = lambda k: 'm:../../ep_s3/' + k
 FILM = A['film_hero']['c']                                   # (0.11, 2.085, 1.47): the signature film on panel 1
-DOC = [-0.25, 1.62, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
+DOC = [-0.22, 1.42, 0.0]                                     # beside the light box, left of the film, close enough for his hand on the clip bar
 P = meta['slide_path']
 def along(u):
     n = len(P) - 1; f = min(max(u, 0), 1) * n; i = min(int(f), n - 1); k = f - i
@@ -30,13 +30,13 @@ def st(at, pos, aim, lens, subject, framing, purpose, hold=0.0, creep=0.0028, **
 
 sm = lambda f: (lambda u: u * u * (3 - 2 * u))(min(1, max(0, (f - 618) / 42)))
 CL = [
-    st(519, [0.62, 0.42, 1.58], [-0.02, 2.05, 1.36], 20, 'doctor', 'W', 'ROW 19 "x -RAYED" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice', hold=0.6, shows=['film']),
-    st(552, [0.40, 0.92, 1.56], [0.04, 2.08, 1.42], 22, 'film', 'M', 'ROW 19 "found" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable', hold=0.0, shows=['film']),
+    st(519, [1.05, -0.95, 1.38], [-0.22, 1.70, 1.18], 18, 'doctor', 'W', 'ROW 19 "x -RAYED" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice', hold=0.6, shows=['film']),
+    st(552, [0.62, 0.25, 1.48], [-0.08, 2.00, 1.36], 18, 'film', 'M', 'ROW 19 "found" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable', hold=0.0, shows=['film']),
     st(573, [0.13, 1.76, 1.47], [0.11, 2.20, 1.47], 24, 'film', 'C', 'ROW 20 "STOMACH" (M07 fly into the object): the film fills the lens', hold=0.0, shows=['film']),
 ]
 CL_IN = CL + [st(582, [0.11, 1.99, 1.47], [0.11, 2.30, 1.47], 24, 'film', 'C', 'fly-through: the lens goes on into the film grain (dissolve source A)', hold=0.0)]
 IN = [
-    st(566, [29.05, -2.85, -0.45], [30.55, -0.25, -2.25], 20, 'lining', 'W', 'ROW 20 "STOMACH lining" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining', hold=0.0, shows=['lining', 'mini']),
+    st(566, [28.75, -3.40, 0.30], [30.50, -0.20, -2.00], 18, 'lining', 'W', 'ROW 20 "STOMACH lining" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining', hold=0.0, shows=['lining', 'mini']),
     st(594, [30.20, -1.25, -2.15], [30.90, -0.10, -2.85], 22, 'lining', 'C', 'ROW 21 "so THICK" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash, then steady glow', hold=0.35, shows=['lining']),
     st(620, [29.25, -2.15, -1.45], [29.0, -0.2, -2.4], 24, 'mini', 'C', 'ROW 22 "SLID" (SIGNATURE peak, M14 ride): the bite-Cessna, navy stripe, propeller humming, starts down the runway', hold=0.0, shows=['mini']),
     st(638, [29.70, -1.95, -1.50], [29.65, -0.2, -2.50], 24, 'mini', 'C', 'ROW 22 "through" (M14): the plane slides along the oily lining and out of frame right (dissolve source for the way back out)', hold=0.0, shows=['mini']),

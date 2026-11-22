@@ -152,8 +152,8 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.25,
-    1.62,
+    -0.22,
+    1.42,
     0.0
    ],
    "view": "34",
@@ -293,16 +293,16 @@
     {
      "at": 566,
      "pos": [
-      29.05,
-      -2.85,
-      -0.45
+      28.75,
+      -3.4,
+      0.3
      ],
      "aim": [
-      30.55,
-      -0.25,
-      -2.25
+      30.5,
+      -0.2,
+      -2.0
      ],
-     "lens": 20,
+     "lens": 18,
      "subject": "lining",
      "framing": "W",
      "purpose": "ROW 20 \"STOMACH lining\" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining",
