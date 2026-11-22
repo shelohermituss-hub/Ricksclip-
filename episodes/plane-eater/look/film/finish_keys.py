@@ -15,11 +15,15 @@ for st, c in CFG.items():
         fin = raw.replace('.png', '_final.png'); js = raw.replace('.png', '_num.json'); kind, s = c.get('grade_keys', {}).get(str(f), c.get('grade', ['DAY', .5])); extra = c.get('grade_extra', {}).get(str(f), [])
         r = subprocess.run([sys.executable, FK, raw, os.path.join(KD, '%s_f%04d_' % (st, f), 'pass_mask.png'), raw.replace('.png', '_lines_id.png'), fin, '--kind', kind, '--strength', str(s), '--json', js] + extra, capture_output=True, text=True)
         if r.returncode: print(r.stderr[-800:]); continue
+        mk = os.path.join(KD, '%s_f%04d_' % (st, f), 'pass_mask.png')
+        sys.path.insert(0, H); import sat_fit as SF, fx_layer as FXL
+        sf = SF.fit(fin, mk, kind, os.path.join(ROOT, 'episodes', 'yellow-fire-trucks', 'cine', 'rick_targets.json'), c.get('sat_kmax', 2.4)) if c.get('sat_fit', True) else {}
+        FXL.apply(fin, mk, os.path.join(H, 'fx', st + '_fx.json'), f)
         ov = os.path.join(EP, st, 'out', 'overlay', 'o_%05d.png' % f)          # the kit's drawn layer (focus lines, glints, captions) over the graded frame
         if os.path.exists(ov):
             base = Image.open(fin).convert('RGBA'); o_ = Image.open(ov).convert('RGBA').resize(base.size, Image.LANCZOS); Image.alpha_composite(base, o_).convert('RGB').save(fin)
-        n = json.load(open(js)); nums['%s_f%04d' % (st, f)] = dict(word=word_at(f), kind=kind, final=n['final'], target=n['target'], line_px=n['line_px']); tiles.append((st, f, fin, n))
-json.dump(nums, open(os.path.join(LOOK, 'keys_numbers.json'), 'w'), indent=1)
+        n = json.load(open(js)); n['final'] = SF.stats(__import__('numpy').asarray(Image.open(fin).convert('RGB'))); n['sat_fit'] = sf; json.dump(n, open(js, 'w'), indent=1, default=lambda x: x.tolist() if hasattr(x, 'tolist') else float(x)); n = json.load(open(js)); nums['%s_f%04d' % (st, f)] = dict(word=word_at(f), kind=kind, final=n['final'], target=n['target'], line_px=n['line_px']); tiles.append((st, f, fin, n))
+json.dump(nums, open(os.path.join(LOOK, 'keys_numbers.json'), 'w'), indent=1, default=float)
 F = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 13); FS = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 11)
 n = len(tiles); per = min(n, 8); w = 1590 // per; h = int(w * 16 / 9); rows = (n + per - 1) // per
 S = Image.new('RGB', (1590, rows * (h + 54) + 26), (18, 18, 22)); d = ImageDraw.Draw(S)

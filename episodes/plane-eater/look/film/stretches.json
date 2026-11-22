@@ -7,6 +7,7 @@
   "keys": [
    0,
    20,
+   60,
    121
   ],
   "window": [
@@ -19,8 +20,10 @@
   ],
   "fix": [
    "kit_paint",
+   "hook_cam",
    "salt_fix",
-   "salt_grains"
+   "salt_grains",
+   "lunch_lines"
   ],
   "paint": {
    "trunk_front": {
@@ -61,7 +64,44 @@
     "col": "#5a3320",
     "rough": 0.7
    }
-  }
+  },
+  "rebuild": {
+   "1515": {
+    "part": "metal_bites/bite_2"
+   },
+   "1519": {
+    "box": [
+     0.012,
+     1,
+     0.006
+    ],
+    "col": "#2a1830",
+    "name": "s1_cut_line"
+   }
+  },
+  "hook": {
+   "pos0": [
+    5.95,
+    -3.05,
+    2.4
+   ],
+   "pos1": [
+    5.8,
+    -2.85,
+    2.36
+   ],
+   "aim0": [
+    4.85,
+    -1.15,
+    1.75
+   ],
+   "aim1": [
+    4.85,
+    -1.15,
+    1.77
+   ]
+  },
+  "sat_kmax": 1.5
  },
  "s2": {
   "place": "apron",
@@ -114,7 +154,15 @@
     "DUSK",
     0.5
    ]
-  }
+  },
+  "grade_ranges": [
+   [
+    738,
+    942,
+    "DUSK",
+    0.5
+   ]
+  ]
  },
  "s3": {
   "place": "xray",
@@ -152,7 +200,15 @@
     "INTERIOR",
     0.5
    ]
-  }
+  },
+  "grade_ranges": [
+   [
+    578,
+    633,
+    "INTERIOR",
+    0.5
+   ]
+  ]
  },
  "s5": {
   "place": "cabin",
@@ -180,6 +236,13 @@
   "fix": [
    "cabin_window"
   ],
-  "base_dump": true
+  "base_dump": true,
+  "card_offset": {
+   "owner": [
+    0,
+    0.2,
+    0
+   ]
+  }
  }
 }

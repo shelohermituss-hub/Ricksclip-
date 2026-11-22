@@ -2,7 +2,7 @@
 import bpy, random, math
 from mathutils import Vector
 
-def salt_grains(sc, cfg, K, n=55, f0=0, f1=60):
+def salt_grains(sc, cfg, K, n=140, f0=0, f1=72):
     """a falling stream of salt from the shaker cap down to the wing top on f0-f1 (kit: additive sprites, not in the lock): small glinting
     cubes keyed per frame, each falling 0.0-0.3 m below the cap on its own phase; hidden outside the pour."""
     e = K['PROPS'].get(('michel', 'salt_shaker'))
@@ -11,13 +11,13 @@ def salt_grains(sc, cfg, K, n=55, f0=0, f1=60):
     b.inputs['Base Color'].default_value = (1, 1, 1, 1); b.inputs['Roughness'].default_value = .15; b.inputs['Emission Color'].default_value = (1, 1, 1, 1); b.inputs['Emission Strength'].default_value = 1.2
     rnd = random.Random(4); G = []
     for i in range(n):
-        bpy.ops.mesh.primitive_cube_add(size=.009, location=(0, 0, 0)); g = bpy.context.object; g.name = 'salt_fall_%02d' % i; g.data.materials.append(gm); g.visible_shadow = False
+        bpy.ops.mesh.primitive_cube_add(size=.007, location=(0, 0, 0)); g = bpy.context.object; g.name = 'salt_fall_%02d' % i; g.data.materials.append(gm); g.visible_shadow = True
         G.append((g, rnd.random(), rnd.gauss(0, 1), rnd.gauss(0, 1)))
     for f in range(f0, f1 + 2):
         sc.frame_set(min(f, f1)); cap = e.matrix_world @ Vector((0, 0, .075))
         for g, ph, gx, gy in G:
-            t = ((f / 9.0) + ph) % 1.0; fall = t * max(cap.z - 2.0, .12)
-            g.location = (cap.x + gx * (.006 + .02 * t), cap.y + gy * (.006 + .02 * t), cap.z - fall); g.hide_render = f > f1
+            t = ((f / 9.0) + ph) % 1.0; fall = t * .13
+            g.location = (cap.x + gx * (.004 + .02 * t), cap.y + gy * (.004 + .02 * t), cap.z - fall); g.hide_render = f > f1
             g.keyframe_insert('location', frame=f); g.keyframe_insert('hide_render', frame=f)
     sc['salt_grains'] = n
 
@@ -27,7 +27,7 @@ def apply(sc, cfg, K):
         if fn: fn(sc, cfg, K); print('FIX', name)
 
 # ---------------- S1 frame 0-72: the salting fist over the wing tip (the kit clamps it at his chin from this high lens)
-SALT = dict(f0=0, f_hold=54, f1=72, P=(4.86, -1.2, 2.14))   # over the wing-tip top (tip end x 5.09, chord y -1.68..-0.61, top z 1.99)
+SALT = dict(f0=0, f_hold=54, f1=72, P=(4.86, -1.2, 2.14), z_shaker=2.24)   # over the wing-tip top (tip end x 5.09, chord y -1.68..-0.61, top z 1.99)
 
 def _ray_plane(cam, scr, z, sc):
     """world point where the lens ray through screen (x right, y down, 0-1) meets the plane Z = z"""
@@ -94,13 +94,17 @@ def salt_fix(sc, cfg, K):
         e, coll, fist = sys_
         D = {int(k): v for k, v in json.load(open(os.path.join(d, 'hands_drawn.json'))).items()}; idx = K['CARDS']['michel']['index']; kpx = idx['metres_per_px']
         for f in range(f0, f1 + 1):
-            sc.frame_set(f); hx, hy = D[f]['R']; P = base.matrix_world @ Vector(((hx - idx['centre_px']) * kpx, 0, (idx['ground_px'] - hy) * kpx)); H[f]['P'] = list(P); ang = math.radians(150 if (f // 3) % 2 else 132)
+            sc.frame_set(f); hx, hy = D[f]['R']; P = base.matrix_world @ Vector(((hx - idx['centre_px']) * kpx, 0, (idx['ground_px'] - hy) * kpx))
+            C = sc.camera.matrix_world.translation.copy(); dd = (P - C).length; Pp = C + (P - C) * ((dd - cfg.get('salt_push', 0.5)) / dd)   # fist on the pulled card
+            t = (SALT['z_shaker'] - C.z) / (P.z - C.z) if abs(P.z - C.z) > 1e-3 else 1.0
+            if f <= SALT['f_hold'] and 0.2 < t < 3: P = C + (P - C) * t       # on the same lens ray, at a height above the wing top: the stream falls in front of it
+            shs = 2.2 * (P - C).length / (Pp - C).length; H[f]['P'] = list(P); ang = math.radians(150 if (f // 3) % 2 else 132)
             e.location = P; e.keyframe_insert('location', frame=f)
             # cap toward the wing (down, a little screen-left), shaken every 3 frames like the kit
             cam = sc.camera; sc.frame_set(f); right = (cam.matrix_world.to_3x3() @ Vector((1, 0, 0))).normalized()
             down = Vector((0, 0, -1)); tipdir = (down * math.cos(math.pi - ang) + (-right) * math.sin(math.pi - ang)).normalized()
             e.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(tipdir); e.keyframe_insert('rotation_quaternion', frame=f)
-            s = 2.2; e.scale = (s, s, s); e.keyframe_insert('scale', frame=f)
+            e.scale = (shs, shs, shs); e.keyframe_insert('scale', frame=f)
             camp = cam.matrix_world.translation; fist.location = P + (camp - P).normalized() * .02; fist.keyframe_insert('location', frame=f)
     print('SALT_FIX', f0, f1)
 
@@ -207,4 +211,54 @@ def seasons(sc, cfg, K):
         on = 0 if f < 740 else 1 - math.exp(-(f - 740) / 1.5)
         for l in lamps: l.data.energy = l.get('lamp_energy', 300) * on; l.data.keyframe_insert('energy', frame=f)
         kd.energy = 150 * on; kd.keyframe_insert('energy', frame=f)
+    # falling snowflakes while it snows (kit: flakes drifting down, .09 m a frame) in a box in front of the lens, and the sun swinging round
+    # 2.5 turns through the time-lapse, then sinking toward dusk (kit sun0 rotated about the vertical axis)
+    fm = bpy.data.materials.new('season_flake'); fm.use_nodes = True; fb = fm.node_tree.nodes['Principled BSDF']; fb.inputs['Base Color'].default_value = (1, 1, 1, 1)
+    fb.inputs['Emission Color'].default_value = (1, 1, 1, 1); fb.inputs['Emission Strength'].default_value = .5
+    rnd = random.Random(9); FL_ = []
+    for i in range(int(cfg.get('flakes', 260))):
+        bpy.ops.mesh.primitive_ico_sphere_add(radius=rnd.uniform(.012, .025), subdivisions=1); o = bpy.context.object; o.name = 'season_flake_%03d' % i; o.data.materials.append(fm); o.visible_shadow = False
+        FL_.append((o, rnd.random(), rnd.random(), rnd.random()))
+    sun.rotation_mode = 'QUATERNION'; q0 = sun.rotation_quaternion.copy() if sun.rotation_mode == 'QUATERNION' else sun.matrix_world.to_quaternion()
+    from mathutils import Quaternion
+    for f in range(f0, f1 + 1):
+        S = at(f); tl = (f - 672) / (712 + 4 - 672) if 672 <= f <= 716 else 0
+        a = tl * math.pi * 2 * 2.5 + (math.pi * 5 + .9 * min(1, (f - 716) / 26) if f > 716 else 0)
+        sun.rotation_quaternion = Quaternion((0, 0, 1), a) @ q0; sun.keyframe_insert('rotation_quaternion', frame=f)
+        sc.frame_set(f); cam = sc.camera.matrix_world; fwd = (cam.to_3x3() @ Vector((0, 0, -1))).normalized(); rt = (cam.to_3x3() @ Vector((1, 0, 0))).normalized(); C = cam.translation
+        snow_on = S['snow'] > .05
+        for o, u, v, w in FL_:
+            d = 1.0 + u * 7.0; z = ((w * 5 - f * .09) % 5); p = C + fwd * d + rt * ((v - .5) * d * 1.1); o.location = (p.x + .2 * math.sin(f * .2 + u * 9), p.y, z)
+            o.hide_render = not snow_on; o.keyframe_insert('location', frame=f); o.keyframe_insert('hide_render', frame=f)
     print('SEASONS', f0, f1, 'lawn mats', len(lawnM), 'leaf mats', len(leafM), 'lamps', len(lamps))
+
+# ---------------- S1 HOOK camera f0-72 (lead 2026-11-22: the wing tip big in frame, the salt stream readable; LOOK CARD A, lower lens)
+HOOK = dict(pos0=(4.05, -3.55, 1.15), pos1=(4.25, -3.2, 1.2), aim0=(5.0, -1.25, 1.85), aim1=(5.05, -1.25, 1.85), lens=20.0, f_push=58, f_blend=72)
+
+def hook_cam(sc, cfg, K):
+    """f0-58 a slow push from a low lens south-west of the trunk (wing tip upper left, Michel centre right, the shaker over the tip), f58-72 an
+    eased move into the kit's own camera of f72 (no cut). Keys replace the lock camera's keys on those frames."""
+    import os
+    H = dict(HOOK); H.update(cfg.get('hook', {}))
+    for k in ('pos0', 'pos1', 'aim0', 'aim1'):
+        if os.environ.get('HOOK_' + k.upper()): H[k] = tuple(float(x) for x in os.environ['HOOK_' + k.upper()].split(','))
+    cam = sc.camera; d = cam.data; f_end = H['f_blend']
+    sc.frame_set(f_end); P1, Q1, L1 = cam.matrix_world.translation.copy(), cam.matrix_world.to_quaternion(), d.lens
+    for f in range(0, f_end + 1):
+        u = min(1, f / H['f_push']); p = Vector(H['pos0']).lerp(Vector(H['pos1']), u); a = Vector(H['aim0']).lerp(Vector(H['aim1']), u)
+        q = (a - p).to_track_quat('-Z', 'Y'); lens = H['lens']
+        if f > H['f_push']:
+            w = (f - H['f_push']) / (f_end - H['f_push']); w = w * w * (3 - 2 * w); p = p.lerp(P1, w); q = q.slerp(Q1, w); lens = lens + (L1 - lens) * w
+        cam.location = p; cam.rotation_quaternion = q; d.lens = lens
+        cam.keyframe_insert('location', frame=f); cam.keyframe_insert('rotation_quaternion', frame=f); d.keyframe_insert('lens', frame=f)
+    print('HOOK_CAM', H)
+
+def lunch_lines(sc, cfg, K):
+    """POWER 1 'Lunch!' impact frame f121-123 (kit: napkin-red / white two-tone field with focus lines behind Michel). The centre on screen per
+    frame goes to look/film/fx/<s>_fx.json; fx_layer.py draws the field + lines UNDER the cards at finish time (keys and pod the same)."""
+    import os, json
+    from bpy_extras.object_utils import world_to_camera_view as w2c
+    od = os.path.join(K['LOOK'], 'film', 'fx'); os.makedirs(od, exist_ok=True); out = {}
+    for f in (121, 122, 123):
+        sc.frame_set(f); c = w2c(sc, sc.camera, K['CARDS']['michel']['object'].matrix_world @ Vector((0, 0, 1.2))); out[f] = dict(kind='focus', c=[c.x, 1 - c.y], two_tone=f == 122)
+    json.dump(out, open(os.path.join(od, 's1_fx.json'), 'w')); print('LUNCH_LINES', out)

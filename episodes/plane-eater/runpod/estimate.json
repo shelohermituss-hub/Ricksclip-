@@ -1,39 +1,48 @@
 {
- "note": "estimate, NOT a pod measure: CPU key times here (540x960 24 spp) x 10.7 for 1080x1920 64 spp, x 0.08-0.16 for an RTX 4090 (ratio from the 2026-11-20/21 measures: CPU 1080p 32 spp 37 s, 4090 720p 64 spp 5.1 s). Measure 3 frames on the pod first.",
+ "note": "CPU-measured ratio (this machine, same frame, PCT 33): new settings (720x1280, adaptive .1, max 48 spp, 4 bounces, simplify 2K, camera culling) vs the first package (1080x1920, .02, 64 spp): s1 .19, s2 .20, s4 .19, s5 .21, s3 ~.12. GPU = CPU x .155 (the car scene: CPU 37 s at 1080p 32 spp, 4090 5.1 s at 720p 64 spp). NOT a pod measure: measure 3 frames on the pod first.",
+ "cpu_new_s_at_pct33": {
+  "s1": 5.34,
+  "s2": 5.38,
+  "s3": 7.81,
+  "s4": 5.47,
+  "s5": 9.69
+ },
  "stretches": {
   "s1": [
    0,
    256,
    257,
-   "21-41"
+   "6-8"
   ],
   "s2": [
    257,
    519,
    263,
-   "25-49"
+   "6-9"
   ],
   "s3": [
    520,
    638,
    119,
-   "45-90"
+   "6-11"
   ],
   "s4": [
    639,
    942,
    304,
-   "18-37"
+   "5-7"
   ],
   "s5": [
    943,
    1021,
    79,
-   "38-76"
+   "10-16"
   ]
  },
+ "est_s_per_frame_4090": "5-9 (apron, x-ray), 10-16 (cabin) + about 1 s lines pass",
  "total_frames": 1022,
- "total_hours_4090": "7.2-14.3",
+ "total_hours_4090": "1.5-2.7",
+ "previous_estimate_hours": "7.2-14.3",
  "packages_GB": 1.2,
- "cpu_pack_test": "1 frame per package at PCT 10 SPP 8: final written (5 s each); s4 f850 checked at PCT 25: cards, dusk, props OK"
+ "pack_test_2026-11-22": "all 5 packages: 1 key frame at PCT 25 SPP 8 on CPU, finals looked at (look/film/pkg_test/sheet.jpg): cards, props, salt stream, snow, cabin OK"
 }

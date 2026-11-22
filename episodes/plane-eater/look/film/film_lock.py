@@ -64,6 +64,19 @@ bpy.data.batch_remove(drop)
 print('REPLACED', replaced[:20])
 print('LOCKIDS', sum(1 for o in kept if 'lock_id' in o.keys()), [ (o.name, o.get('lock_id')) for o in new if o.name.startswith(('s1_bite','s1_cut'))][:4] if False else '')
 print('KEPT', len(kept), sorted({root_of(o).name for o in kept})[:40], flush=True)
+# pieces the kit had hidden when the lock was exported (not in the glb) are rebuilt here and keyed by the node dump (stretches.json 'rebuild')
+for lid, spec in CFG.get('rebuild', {}).items():
+    if 'part' in spec:
+        cn, rx = spec['part'].split('/'); e_, co_ = PL.prop(sc, cn, (0, 0, 0))
+        for o in list(co_.all_objects):
+            if not o.name.startswith(rx): bpy.data.objects.remove(o)
+        ob = e_; ob['lock_id'] = int(lid); kept.append(ob); kept.extend(co_.all_objects)
+    else:
+        bx = spec['box']; me = bpy.data.meshes.new('rb_' + lid); hx, hy, hz = bx[0] / 2, bx[1] / 2, bx[2] / 2
+        me.from_pydata([(x, y, z) for x in (-hx, hx) for y in (-hy, hy) for z in (-hz, hz)], [], [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)])
+        m_ = bpy.data.materials.new('rb_' + lid); m_.use_nodes = True; bb = m_.node_tree.nodes['Principled BSDF']; bb.inputs['Base Color'].default_value = PL.lin(spec['col'])
+        me.materials.append(m_); ob = bpy.data.objects.new(spec.get('name', 'rb_' + lid), me); sc.collection.objects.link(ob); ob['lock_id'] = int(lid); kept.append(ob)
+    print('REBUILT', lid, ob.name)
 # the lock glb carries colours only (no texture maps): kept pieces that come from a props-hero or set .blend take that file's own materials
 # again by object name (the Cessna paint with the navy stripe and F-MIAM, the glass, the scale dial, the bites ...)
 MATSRC = [os.path.join(EP, 'props', 'out', f) for f in ('cessna150.blend', 'cessna150_sliced.blend', 'cessna150_wingoff.blend', 'props2.blend')]
@@ -132,9 +145,14 @@ for ad in (cam.animation_data, cam.data.animation_data):
             for k in fc.keyframe_points: k.interpolation = 'LINEAR'
 cam.data.dof.use_dof = False                                                         # characters never blur; DOF is a later per-shot pass
 CARDS = {}
+OFF = CFG.get('card_offset', {})
 for who in LJ['cards']:
     k = L2.card(sc, LOCK, who, FR, self_lit=1.0, emit=2 ** (-EX)); o = k['object']; CARDS[who] = k
     o.pass_index = 1; o.visible_diffuse = False; o.visible_shadow = False; o.visible_glossy = False; PL.CAST.append(o)
+    if who in OFF and o.animation_data and o.animation_data.action:              # a reframe the lead asked for (S5: the owner a little toward the aisle, clear of Michel's head)
+        for fc in FL._fcurves(o.animation_data.action):
+            if fc.data_path == 'location':
+                for kp in fc.keyframe_points: kp.co[1] += OFF[who][fc.array_index]
     nt = k['material'].node_tree; nt.nodes['seq'].image.filepath = os.path.join(LOCK, 'cards', who, 's0001.png')
     sh = o.copy(); sh.name = 'SHADOWCARD_' + who; sc.collection.objects.link(sh)
     if o.animation_data and o.animation_data.action:
@@ -192,11 +210,11 @@ for (who, obj), rows in groups.items():
         r = byf.get(f)
         if r is None:
             e.scale = (1e-4,) * 3; e.keyframe_insert('scale', frame=f); fs_.hide_render = True; fs_.keyframe_insert('hide_render', frame=f); continue
-        g, t = Vector(r['grip']), Vector(r['tip']); d = t - g; s = max(d.length / max(tip.length, 1e-4), .2)
+        g, t = Vector(r['grip']) + Vector(OFF.get(who, (0, 0, 0))), Vector(r['tip']) + Vector(OFF.get(who, (0, 0, 0))); d = t - g; s = max(d.length / max(tip.length, 1e-4), .2)
         q = tip.normalized().rotation_difference(d.normalized()); e.location = g; e.rotation_quaternion = q; e.scale = (s, s, s)
         for p_ in ('location', 'rotation_quaternion', 'scale'): e.keyframe_insert(p_, frame=f)
         fi = (r.get('fists') or [{}])[0]; camp = Vector(next(c['pos'] for c in FR if c['f'] == f))
-        at = Vector(fi.get('at', r['grip'])); fs_.location = at + (camp - at).normalized() * .02; rr = fi.get('r', .028); fs_.scale = (rr, rr, rr)
+        at = Vector(fi.get('at', r['grip'])) + Vector(OFF.get(who, (0, 0, 0))); fs_.location = at + (camp - at).normalized() * .02; rr = fi.get('r', .028); fs_.scale = (rr, rr, rr)
         fs_.hide_render = bool(fi.get('far', False)); fs_.keyframe_insert('location', frame=f); fs_.keyframe_insert('scale', frame=f); fs_.keyframe_insert('hide_render', frame=f)
     for ob in (e, fs_):
         if ob.animation_data and ob.animation_data.action:
@@ -209,7 +227,9 @@ print('HELD', {f'{w}:{o}': len(v) for (w, o), v in groups.items()})
 import film_fixes as FX
 KX = dict(KEPT={o.name for o in kept if o.name in bpy.data.objects}, PROPS=PROPS, CARDS=CARDS, FR=FR, EX=EX, TO_SUN=TO_SUN, LOCK=LOCK, EP=EP, LOOK=LOOK)
 if MODE == 'hats':
-    os.makedirs(os.path.join(HERE, 'fix_' + ST), exist_ok=True); FX.hats(sc, CFG, KX, os.path.join(HERE, 'fix_' + ST, 'hats.json')); sys.exit(0)
+    os.makedirs(os.path.join(HERE, 'fix_' + ST), exist_ok=True)
+    if 'hook_cam' in CFG.get('fix', []): FX.hook_cam(sc, CFG, KX)
+    FX.hats(sc, CFG, KX, os.path.join(HERE, 'fix_' + ST, 'hats.json')); sys.exit(0)
 FX.apply(sc, CFG, KX)
 
 for n in filter(None, os.environ.get('DBG_HIDE', '').split(',')):          # debug: hide named objects and their children
@@ -239,6 +259,8 @@ if MODE == 'info':
     for f in [int(x) for x in (A[2].split(',') if len(A) > 2 else [str(FR[0]['f'])])]:
         sc.frame_set(f); print('JUG', f, [(o.name, o.hide_render, [round(x, 2) for x in o.matrix_world.translation], [round(x, 2) for x in o.matrix_world.to_scale()]) for o in sc.objects if o.name.split('.')[0] in ('Scene', 'jug_body', 'glass_body', 'scale_body')][:12])
         print('HIDE', f, [(o.name, o.hide_render, o.visible_get()) for o in sc.objects if o.name.startswith('Card_michel')], [(m.name, m.node_tree.nodes['seq'].image.name, m.node_tree.nodes['seq'].image_user.frame_current if hasattr(m.node_tree.nodes['seq'].image_user,'frame_current') else '', m.node_tree.nodes['seq'].image_user.frame_offset) for m in bpy.data.materials if m.name.startswith('Card_michel')])
+        print('HOOKSCR', f, 'tip', PL.screen(sc, (5.09, -1.15, 2.0)), 'root', PL.screen(sc, (1.0, -1.1, 1.9)), 'michel_head', PL.screen(sc, CARDS['michel']['object'].matrix_world.translation + Vector((0, 0, 1.8))) if 'michel' in CARDS else '', 'shaker', PL.screen(sc, PROPS[('michel', 'salt_shaker')][0].matrix_world.translation) if ('michel', 'salt_shaker') in PROPS else '')
+        g0 = bpy.data.objects.get('salt_fall_00'); print('SALT0', f, g0 and ([round(x, 3) for x in g0.matrix_world.translation], g0.hide_render, [round(x, 3) for x in g0.matrix_world.to_scale()]), 'shaker', [round(x, 3) for x in PROPS[('michel', 'salt_shaker')][0].matrix_world.translation] if ('michel', 'salt_shaker') in PROPS else '')
         print('PROPSCALE', f, {f'{w}:{o}': [round(v[0].matrix_world.to_scale().x, 2), v[0].hide_render] for (w, o), v in PROPS.items()})
         print('INFO_F', f, json.dumps({w: PL.screen(sc, k['object'].matrix_world.translation) for w, k in CARDS.items()}),
                                json.dumps({f'{w}:{o}': PL.screen(sc, v[0].matrix_world.translation) for (w, o), v in PROPS.items()}))
@@ -263,10 +285,12 @@ elif MODE == 'package':
     for lib in list(bpy.data.libraries): bpy.data.libraries.remove(lib)
     sc.render.filepath = '//out/f_####'
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(od, 'scene.blend'), compress=True, relative_remap=True)
-    json.dump(dict(stretch=ST, place=PLACE, frames=CFG['window'], n=CFG['window'][1] - CFG['window'][0] + 1, keys=CFG.get('keys', []), grade=CFG.get('grade', ['DAY', .5]), res=[1080, 1920], fps=sc.render.fps), open(os.path.join(od, 'frames.json'), 'w'), indent=1)
+    json.dump(dict(stretch=ST, place=PLACE, frames=CFG['window'], n=CFG['window'][1] - CFG['window'][0] + 1, keys=CFG.get('keys', []), grade=CFG.get('grade', ['DAY', .5]), grade_ranges=CFG.get('grade_ranges', []), sat_kmax=CFG.get('sat_kmax', 2.4), res=[1080, 1920], fps=sc.render.fps), open(os.path.join(od, 'frames.json'), 'w'), indent=1)
     KIT = os.path.join(HERE, 'runpod_kit'); YC = os.path.join(ROOT, 'episodes', 'yellow-fire-trucks', 'cine')
     for src in (os.path.join(KIT, 'job_film.py'), os.path.join(KIT, 'render.sh'), os.path.join(YC, 'finish_key.py'), os.path.join(YC, 'rick_targets.json'),
                 os.path.join(ROOT, 'tools', 'grade_rick.py'), os.path.join(ROOT, 'tools', 'measure', 'rick_grade_study.py'),
-                os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'composite.py'), os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'lines_key.py')):
+                os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'composite.py'), os.path.join(ROOT, 'templates', 'blender_look', 'rick_outline', 'lines_key.py'),
+                os.path.join(HERE, 'sat_fit.py'), os.path.join(HERE, 'fx_layer.py')):
         shutil.copy2(src, od)
+    fxj = os.path.join(HERE, 'fx', ST + '_fx.json'); json.dump(json.load(open(fxj)) if os.path.exists(fxj) else {}, open(os.path.join(od, 'fx.json'), 'w'))
     print('PACKAGE', od)

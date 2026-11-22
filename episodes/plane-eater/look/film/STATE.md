@@ -23,3 +23,12 @@
 ## Packages (2026-11-22): runpod/s1..s5 (1.2 GB: scene.blend + seq/ drawings + job_film.py, render.sh, finish tools). Packing test: 1 key frame
 per package, CPU PCT 10 SPP 8, final written; s4 f850 at PCT 25 looked at (dusk, cards, props OK). Sequence paths fixed (fix_seq_paths.py).
 Estimate runpod/estimate.json: 1022 frames, 18-90 s/frame on a 4090 (not measured), 7-14 h. Measure 3 frames on the pod first.
+## Round 3 (lead review, 2026-11-22)
+- S1 hook_cam f0-58 low push SE of the trunk at 2.4 m (wing tip big, F-MIAM tail, MONSIEUR MANGETOUT trunk), eased into the kit camera f58-72;
+  drawings re-posed for it; shaker on the lens ray at 2.24 m over the tip, 140-grain stream (keys s1 f0/20/60). Lunch! f121-123 focus field + lines
+  (fx/s1_fx.json -> fx_layer.py under the cards). Saw cut line + bite rebuilt (stretches 'rebuild', keyed by the node dump).
+- Colour: sat_fit.py after the grade (world only, sky and neutrals kept; per-stretch cap, S1 1.5): day keys sat .26-.38 at mean .48; dusk .40; interiors .25-.35.
+- S4 snowflakes (260 keyed in front of the lens) + sun swing; S5 owner card +0.2 m y (both heads read at 969; partly behind the arm at 1001).
+- Speed: job_film 720x1280 + upscale, adaptive .1 / 48 spp, 4 bounces, simplify 2K, camera culling, persistent data: CPU 0.19-0.21x (s3 0.12x).
+  Estimate 5-9 s/frame (s5 10-16) on a 4090, 1.5-2.7 h for 1022 frames (runpod/estimate.json). All 5 packages re-tested and looked at (pkg_test/sheet.jpg).
+- Still weak: S1 floor dapple reads blue/orange after the grade; S5 f1001 owner half hidden; S3 world sat .52/.75; keys are 540 previews.
