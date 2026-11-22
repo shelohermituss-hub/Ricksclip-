@@ -16,12 +16,18 @@ export async function build(THREE, scene, film, ctx) {
   function place(f) {
     for (const h of HELD) { const o = B.mover(h.obj), r = R0[h.obj]; if (!o || !r) continue;
       if (!h.who) { const d = h.drift, k = Math.max(0, f - d.f) / 30; o.position.copy(r.p).add(V(d.v.map(x => x * k))); o.quaternion.copy(r.q).multiply(Q(d.spin.map(x => x * k))); continue; }
-      const tf = h.toss ? h.toss.f : 1e9, fh = Math.min(f, tf), p = handAt(h, fh); if (!p) continue;
-      const off = h.off || [0, 0, 0], base = V([p[0] + off[0], p[1] + off[1] - .06, p[2] + off[2]]);   // 6 cm toward the lens side (-y): in front of the card
-      o.position.copy(base); o.quaternion.copy(r.q).multiply(Q(h.spin || [0, 0, 0]));
-      if (f > tf) { const k = (f - tf) / 30, ease = k < .2 ? k * k / .4 : k - .1; o.position.add(V(h.toss.v.map(x => x * ease))); o.quaternion.multiply(Q(h.toss.spin.map(x => x * ease))); }
+      const tf = h.toss ? h.toss.f : 1e9, p = handAt(h, Math.min(f, tf)); if (!p) continue;
+      const off = h.off || [0, 0, 0], at = q => V([q[0] + off[0], q[1] + off[1] - .06, q[2] + off[2]]);   // 6 cm toward the lens side (-y): in front of the card
+      o.position.copy(at(p)); o.quaternion.copy(r.q).multiply(Q(h.spin || [0, 0, 0]));
+      if (f > tf) {   // round 2: free drift starts with the hand's own velocity at the release (no jump), plus the toss push eased in, and keeps turning
+        const p0 = handAt(h, tf - 1) || p, vh = [0, 1, 2].map(i => (p[i] - p0[i]) * 30 * (h.toss.carry ?? 1)), k = (f - tf) / 30;
+        const kh = (1 - Math.exp(-k * 2.5)) / 2.5, kt = k < .25 ? k * k / .5 : k - .125;        // hand speed fades (weightless drag), the push eases in over 0.25 s
+        o.position.add(V([0, 1, 2].map(i => vh[i] * kh + h.toss.v[i] * kt))); o.quaternion.multiply(Q(h.toss.spin.map(x => x * kt)));
+      }
     }
   }
-  function update(f, t, R) { B.update(f, t); place(f); }
+  // round 2: the monitor placeholder breathes a little (emission +-amp, a slow pulse) so the frames it fills are not held; the lead feeds the real picture later
+  const ML = ctx.place && ctx.place.monitor_live, mon = B.mover('cabin_monitor_pic'), m0 = mon && mon.material ? mon.material.emissiveIntensity : 1;
+  function update(f, t, R) { B.update(f, t); place(f); if (ML && mon && mon.material) mon.material.emissiveIntensity = m0 * (1 + ML.amp * Math.sin(2 * Math.PI * f / ML.period)); }
   return { ...B, update };
 }

@@ -390,41 +390,43 @@ for a in (-.7, -.35, 0, .35, .7):
 obj('radio_lower_rivets', bm, 'rivet_pale', smooth=True)
 UPM = MF(R(0, .873, .826), (1, 0, 0), (0, .6428, .766), (0, -.766, .6428))   # sloped upper panel, 50 deg back: local X along, Y up the slope, Z out
 def U(a, v, n=0.): return UPM @ Vector((a, v, n))
-bm = B(); abox(bm, 1.75, .85, .06, UPM, bev=.015); obj('radio_upper_panel', bm, 'panel_up')
+bm = B(); abox(bm, 2.0, 1.05, .06, UPM, bev=.015); obj('radio_upper_panel', bm, 'panel_up')   # round 6: wider, taller panel (f790 fit)
 def upic(name, w, h, a, v, png, es=1.):
     return pic(name, w, h, UPM @ Matrix.Translation((a, v, .045)), png, es=es, alpha=False)
-mfo = upic('mfd_on', .46, .34, -.02, .1, 'mfd_on.png', 1.4); mff = upic('mfd_off', .46, .34, -.02, .1, 'mfd_off.png', 1.4)
+MA, MV = -.08, .14                                                  # round 6 (f790 fit): MFD centre on the panel
+mfo = upic('mfd_on', .46, .34, MA, MV, 'mfd_on.png', 1.4); mff = upic('mfd_off', .46, .34, MA, MV, 'mfd_off.png', 1.4)
 MOVERS['mfd_on'] = {'state': 'comm on'}; MOVERS['mfd_off'] = {'state': 'comm off'}
-bm = B(); arring(bm, .46, .34, .02, .05, .04, UPM @ Matrix.Translation((-.02, .1, .03)), lip=.01); obj('mfd_bezel', bm, 'bezel')
+bm = B(); arring(bm, .46, .34, .02, .05, .04, UPM @ Matrix.Translation((MA, MV, .03)), lip=.01); obj('mfd_bezel', bm, 'bezel')
 bm = B()
 for s in (1, -1):
-    for k in range(5): abox(bm, .045, .045, .03, UPM @ Matrix.Translation((-.02 + s * .29, .1 - .14 + k * .07, .04)), bev=.005)
-obj('mfd_keys', bm, 'bezel'); upic('sband_display', .3, .25, .58, .12, 'sband.png', 1.3)
+    for k in range(5): abox(bm, .045, .045, .03, UPM @ Matrix.Translation((MA + s * .29, MV - .14 + k * .07, .04)), bev=.005)
+obj('mfd_keys', bm, 'bezel'); upic('sband_display', .3, .25, .78, .2, 'sband.png', 1.3)
 bd, bm_ = B(), B()
-for a in (-.72, -.45, .38, .82):
-    alathe(bd, [(.11, 0), (.11, .03), (.09, .05), (0, .05)], 20, UPM @ Matrix.Translation((a, .2 if abs(a) > .6 else .05, .03)))
-    abox(bm_, .012, .085, .01, UPM @ Matrix.Translation((a, (.2 if abs(a) > .6 else .05) + .04, .085)) @ Matrix.Rotation(rnd.uniform(-.8, .8), 4, 'Z'), bev=0)
+DIALS = ((-.7, .38), (-.6, -.05), (.3, .3), (.5, -.02))             # round 6 (f790 fit): 2 left of the MFD (high, low), 2 right (high near it, low further out)
+for a, v in DIALS:
+    alathe(bd, [(.11, 0), (.11, .03), (.09, .05), (0, .05)], 20, UPM @ Matrix.Translation((a, v, .03)))
+    abox(bm_, .012, .085, .01, UPM @ Matrix.Translation((a, v + .04, .085)) @ Matrix.Rotation(rnd.uniform(-.8, .8), 4, 'Z'), bev=0)
 obj('radio_dials', bd, 'knob', smooth=True); obj('radio_dial_marks', bm_, 'dial_mark')
 bt, bgd, bl_ = B(), B(), B()
 for k in range(9):
     a = -.62 + k * .15; abox(bt, .07, .07, .03, UPM @ Matrix.Translation((a, -.26, .04)), bev=.005); acyl(bt, .008, .07, UPM @ Matrix.Translation((a, -.26, .08)), seg=6)
     if k in (2, 7): abox(bgd, .08, .09, .06, UPM @ Matrix.Translation((a, -.25, .08)) @ Matrix.Rotation(.5, 4, 'X'), bev=.008)
     abox(bl_, .08, .012, .004, UPM @ Matrix.Translation((a, -.35, .032)), bev=0)
-for a in (-.72, -.45, .38, .82): abox(bl_, .1, .012, .004, UPM @ Matrix.Translation((a, -.06 if abs(a) > .6 else -.1, .032)), bev=0)
+for a, v in DIALS: abox(bl_, .1, .012, .004, UPM @ Matrix.Translation((a, v - .15, .032)), bev=0)
 obj('radio_toggles', bt, 'black'); obj('radio_toggle_guards', bgd, 'toggle_guard'); obj('radio_dash_labels', bl_, 'dash_label')
 bm = B(); abox(bm, .3, .06, .06, UPM @ Matrix.Translation((.84, .43, .03)), bev=.01); obj('juice_box_brow_base', bm, 'panel_up')
 bm = B(); abox(bm, .1, .07, .16, Matrix.Translation(U(.84, .43, .12)), bev=.008); obj('juice_box', bm, 'juice'); bm = B(); abeam(bm, U(.86, .43, .2), U(.88, .43, .3), .006); obj('juice_straw', bm, 'juice_red')
 bm = B(); abeam(bm, R(.82, .1, .02), R(.86, .5, .35), .02, 8); obj('glow_rod', bm, 'glow_rod')
 # the radio set: wedge box, sloped face toward the cockpit (-Y) and up; face picture, display digits (one plane per state), lamp, grille, 2 knobs
-RD = R(-.25, .3, 0); RSM = Matrix.Translation(RD)
+RD = R(-.25, .3, 0); RYAW = Matrix.Rotation(math.radians(20), 4, 'Z'); RSM = Matrix.Translation(RD) @ RYAW   # round 6 (f790 fit): radio turned 20 deg toward the cockpit
 bm = B(); vs = [(-.27, -.27, 0), (.27, -.27, 0), (.27, .2, 0), (-.27, .2, 0), (-.27, -.12, .28), (.27, -.12, .28), (.27, .2, .36), (-.27, .2, .36)]   # round 6: taller face (f790 fit)
 V_ = [bm.verts.new(RSM @ Vector(v)) for v in vs]
 for f in ((0, 1, 2, 3), (4, 7, 6, 5), (0, 4, 5, 1), (1, 5, 6, 2), (2, 6, 7, 3), (3, 7, 4, 0)): bm.faces.new([V_[i] for i in f])
 bmesh.ops.bevel(bm, geom=bm.edges[:], offset=.01, segments=2, affect='EDGES'); obj('radio_body', bm, 'radio_body')
-FA = Vector((0, .15, .28)).normalized()                     # slope direction (up the face)
-FN = Vector((1, 0, 0)).cross(FA)
-FC = RD + Vector((0, -.195, .14))
-FM_ = MF(FC + FN * .012, (1, 0, 0), FA, FN)
+FA = RYAW.to_3x3() @ Vector((0, .15, .28)).normalized()                     # slope direction (up the face)
+XR = RYAW.to_3x3() @ Vector((1, 0, 0)); FN = XR.cross(FA)
+FC = RD + RYAW.to_3x3() @ Vector((0, -.195, .14))
+FM_ = MF(FC + FN * .012, XR, FA, FN)
 bm = B(); arring(bm, .5, .3, .01, .012, .01, FM_, lip=.003); obj('radio_face_edge', bm, 'radio_edge')
 pic('radio_face', .5, .3, FM_ @ Matrix.Translation((0, 0, .003)), 'radio_face.png', es=1.0)
 for k in range(4):
@@ -535,7 +537,7 @@ def light(name, loc, col, watts, radius=.1, kind='POINT', rot=None):
 light('sun_key', (0, 0, 50), (1, 1, 1), 4.5, 1.0, 'SUN'); light('sun_fill', (0, 0, 40), (.35, .45, 1.), .25, 10., 'SUN')
 for k, p in enumerate(ANCH['lamps']): light('lamp_light_%d' % k, (p[0], p[1], p[2] - .25), (1., .72, .4), 60, .08)
 light('ck_fill', (23.6, 0, .6), (.5, .55, 1.), 25, .6); light('comm_light', tuple(Vector(ANCH['comm_lamp']) + Vector((0, -.1, .08))), (1., .12, .08), 0, .05)
-light('mfd_light', tuple(U(-.02, .1, .35)), (1., .2, .2), 0, .1); light('room_light_a', (WIN_X[0], .3, 1.4), (1., .95, .88), 120, .4); light('room_light_b', (WIN_X[PORTS['porthole_b']], HW - .8, 1.4), (1., .95, .88), 120, .4)
+light('mfd_light', tuple(U(MA, MV, .35)), (1., .2, .2), 0, .1); light('room_light_a', (WIN_X[0], .3, 1.4), (1., .95, .88), 120, .4); light('room_light_b', (WIN_X[PORTS['porthole_b']], HW - .8, 1.4), (1., .95, .88), 120, .4)
 light('flame_light', (FLX - 3, 0, 0), (.7, .55, 1.), 0, 2.)
 ww = light('wall_wash', (XB + 1.3, 0, HW - .35), (1., .74, .45), 0, .15, 'SPOT', rot=(0, -62, 0)); ww.data.spot_size = math.radians(95); ww.data.spot_blend = .6
 root = bpy.data.objects.new('ship_root', None); SET.objects.link(root); MOVERS['ship_root'] = {'loc': [0, 0, 0], 'rot': [0, 0, 0], 'state': 'ship [x,y,z,rx,ry,rz]'}

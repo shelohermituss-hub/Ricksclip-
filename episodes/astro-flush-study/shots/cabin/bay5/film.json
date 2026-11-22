@@ -95,12 +95,12 @@
       "sway": 0.5
      },
      {
-      "f": 462,
+      "f": 452,
       "bag_new_guy": "full",
-      "sway": -0.2
+      "sway": 0.2
      },
      {
-      "f": 463,
+      "f": 453,
       "bag_new_guy": "empty"
      },
      {
@@ -208,87 +208,85 @@
    "place": "cabin",
    "stations": [
     {
+     "at": 0,
      "pos": [
-      -12.108,
-      -4.662,
-      3.509
+      -12.258,
+      -4.612,
+      3.499
      ],
      "aim": [
-      -12.959,
+      -13.459,
       0.425,
       2.195
      ],
-     "lens": 31.18,
-     "roll": -2.5,
-     "at": 0,
+     "lens": 31.26,
+     "roll": -2.6,
      "hold": 0.7,
      "creep": 0,
      "framing": "W",
-     "purpose": "pre-roll (never rendered)"
+     "purpose": "pre-roll (never rendered); the travel leaves at f399"
     },
     {
+     "at": 411,
      "pos": [
-      -12.108,
-      -4.662,
-      3.509
+      -12.058,
+      -4.612,
+      3.499
      ],
      "aim": [
-      -12.959,
+      -12.859,
       0.425,
       2.195
      ],
-     "lens": 31.18,
-     "roll": -2.5,
-     "at": 411,
+     "lens": 31.26,
+     "roll": -2.2,
      "hold": 0,
-     "min_hold": 0,
-     "creep": 0,
-     "travel": 0.1,
+     "pin": true,
      "framing": "W",
-     "purpose": "f411 first ghost: already panning right"
+     "purpose": "pinned pass f411 (first ghost): already panning right"
     },
     {
+     "at": 430,
      "pos": [
-      -11.9578,
-      -2.891,
-      1.7184
+      -11.758,
+      -4.412,
+      3.459
      ],
      "aim": [
-      -10.4694,
-      1.7822,
-      2.2679
+      -11.859,
+      0.425,
+      2.195
      ],
-     "lens": 31.18,
-     "roll": 2.0,
-     "at": 452,
-     "travel": 1.3666666666666667,
-     "via": [
-      [
-       -11.758,
-       -4.412,
-       3.459
-      ]
-     ],
-     "aim_via": [
-      [
-       -11.859,
-       0.425,
-       2.195
-      ]
-     ],
-     "hold": 0.26666666666666666,
-     "creep": 0,
-     "drift": [
-      -0.0832,
-      0.6338,
-      -0.7253
-     ],
-     "drift_aim": 1,
-     "subject": "newguy",
-     "framing": "M",
-     "purpose": "pan right + push in to commander + new guy, near rest ('asleep.'), drifts into cam f460 (fitted)"
+     "lens": 31.26,
+     "roll": -0.97,
+     "hold": 0,
+     "pin": true,
+     "subject": "commander",
+     "framing": "W",
+     "purpose": "pinned pass f430 (fitted): three bags"
     },
     {
+     "at": 460,
+     "pos": [
+      -11.98,
+      -2.722,
+      1.525
+     ],
+     "aim": [
+      -10.315,
+      1.933,
+      2.276
+     ],
+     "lens": 31.18,
+     "roll": 2.5,
+     "hold": 0,
+     "pin": true,
+     "subject": "newguy",
+     "framing": "M",
+     "purpose": "pinned pass f460 (fitted): pan right + push in to commander + new guy"
+    },
+    {
+     "at": 490,
      "pos": [
       -12.904,
       -3.237,
@@ -301,19 +299,32 @@
      ],
      "lens": 29.9,
      "roll": 4.09,
-     "at": 490,
-     "travel": 1.0,
-     "hold": 0.3333333333333333,
-     "creep": 0,
-     "drift": [
-      -0.231,
-      -0.1288,
-      0.282
-     ],
-     "drift_aim": 1,
+     "hold": 0,
+     "pin": true,
      "subject": "newguy",
      "framing": "M",
-     "purpose": "pans right with him and pulls back to the door (cam f490 fitted), on through the dissolve"
+     "purpose": "pinned pass f490 (fitted): pans right with him and pulls back to the door"
+    },
+    {
+     "at": 499,
+     "pos": [
+      -13.0426,
+      -3.3142,
+      2.8222
+     ],
+     "aim": [
+      -9.7776,
+      0.2907,
+      1.6652
+     ],
+     "lens": 29.9,
+     "roll": 4.09,
+     "travel": 3.3333,
+     "hold": 0.5,
+     "creep": 0,
+     "subject": "newguy",
+     "framing": "M",
+     "purpose": "eased landing through the dissolve f495-499"
     }
    ]
   }
@@ -334,25 +345,25 @@
   "commander": [
    [
     0,
-    1.0,
-    1.0
+    0.95,
+    0.95
    ],
    [
     900,
-    1.0,
-    1.0
+    0.95,
+    0.95
    ]
   ],
   "newguy": [
    [
     0,
-    0.91,
-    0.91
+    0.92,
+    0.92
    ],
    [
     900,
-    0.91,
-    0.91
+    0.92,
+    0.92
    ]
   ]
  },
@@ -361,81 +372,83 @@
    "who": "navigator",
    "at": 0,
    "pos": [
-    -13.566,
+    -13.65,
     1.0,
-    1.24
+    1.191
    ],
    "pose": "m:../../ep_cab/nav5",
    "look": [
-    -13.566,
+    -13.65,
     -5.0,
     1.4
    ],
-   "note": "asleep in the teal bag"
+   "note": "asleep, head on the teal bag's head anchor"
   },
   {
    "who": "commander",
    "at": 0,
    "pos": [
-    -11.948,
+    -11.95,
     1.0,
-    0.944
+    0.933
    ],
    "pose": "m:../../ep_cab/cmd5",
    "look": [
-    -11.948,
+    -11.95,
     -5.0,
     1.4
    ],
-   "note": "asleep in the blue bag, mouth open"
+   "note": "asleep, head on the blue bag's head anchor, mouth open"
   },
   {
    "who": "newguy",
    "at": 0,
    "pos": [
-    -10.586,
+    -10.55,
     1.0,
-    0.956
+    1.023
    ],
    "pose": "m:../../ep_cab/ng5",
    "look": [
-    -10.586,
+    -10.55,
     -5.0,
     1.4
    ],
-   "note": "asleep in the green bag"
+   "note": "asleep, head on the green bag's head anchor"
   },
   {
    "who": "newguy",
-   "at": 457,
+   "at": 446,
    "pos": [
     -10.741,
     0.75,
-    1.309
+    1.295
    ],
-   "move_s": 0.4,
+   "move_s": 0.55,
+   "ease": "inout",
    "look": [
     -10.741,
     -5.25,
     1.4
    ],
-   "note": "slides up out of the green bag f457-469, eased, body straight"
+   "note": "slides up and out of the green bag f446-462, eased both ends, body straight"
   },
   {
    "who": "newguy",
-   "at": 474,
+   "at": 472,
    "pos": [
     -10.358,
     -0.3,
-    0.758
+    0.744
    ],
-   "move_s": 0.65,
+   "move_s": 0.6,
+   "ease": "inout",
    "look": [
-    -10.358,
-    -6.3,
+    -9.85,
+    -1.15,
     1.4
    ],
-   "note": "drifts right to the back door"
+   "note": "floats right to the back door f472-490, eased; turned to the door (3/4)"
   }
  ]
 }
