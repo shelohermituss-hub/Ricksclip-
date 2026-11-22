@@ -153,7 +153,7 @@ def ring_frame(name, w, h, r, t, d, M, m, bolts=14, bolt_m='rivet', bolt_r=.022)
 
 # ================================================================== A. THE ROOM
 X0, X1, Y0, Y1, WH, CH = -2., 2., -1.7, 3.9, 3.3, 4.0; TILE = .4
-WIN = dict(y=2.5, z=2.38, w=1.85, h=1.55, r=.30, t=.19)        # big window, right wall (measured on f5: 63% of the frame width)
+WIN = dict(y=2.85, z=2.38, w=1.6, h=1.55, r=.30, t=.19)        # big window, right wall (f5: centre x 45%, toilet right of its centre; round 1 moved y 2.5 -> 2.85)
 PORT = dict(y=2.85, z=1.25, w=1.1, h=1.0, r=.30, t=.14)        # porthole, left wall (shot 1 pulls back out through it, f30-41)
 DOOR = dict(x=-.65, z=1.01, w=.88, h=1.86, r=.30, t=.11)       # door, back wall
 SHELF_Z = 1.30
@@ -220,13 +220,13 @@ box('kid_drawing_frame', (.03, .26, .31), (X1 - .1, 1.45, SHELF_Z + .16), mat('l
 pic('kid_drawing', .21, .26, (X1 - .118, 1.45, SHELF_Z + .16), (90, 0, -90), 'kid_drawing.png')
 bm = B(); alathe(bm, [(.035, -.08), (.095, -.08), (.095, .08), (.035, .08)], 18, close=True); obj('shelf_roll', bm, mat('paper'), (X1 - .17, 2.15, SHELF_Z + .08), smooth=True)
 box('paper_dispenser', (.1, .34, .22), (X1 - .09, 3.3, .78), mat('paper'), bev=.02)
-box('speaker', (.16, .19, .3), (X1 - .11, .95, 2.3), mat('speaker', rough=.5), bev=.02)
+box('speaker', (.16, .19, .3), (X1 - .11, 1.55, 2.45), mat('speaker', rough=.5), bev=.02)
 def handle(name, loc, n, h=1.4):
     bm = B(); acyl(bm, .024, h, MT((n[0] * .09, n[1] * .09, 0)), 10); obj(name, bm, mat('handle_orange'), loc, smooth=True)
     bm = B()
     for s in (1, -1): abox(bm, .1 if n[0] else .05, .1 if n[1] else .05, .05, MT((n[0] * .05, n[1] * .05, s * (h / 2 - .08))), bev=.008)
     obj(name + '_standoffs', bm, 'peg_black', loc)
-handle('handle_window', (X1 - .03, 1.22, 2.3), (-1, 0, 0)); handle('handle_corner', (X1 - .03, 3.72, 2.3), (-1, 0, 0)); handle('handle_left_wall', (X0 + .03, .85, 2.2), (1, 0, 0), 1.1)
+handle('handle_window', (X1 - .03, 1.85, 2.3), (-1, 0, 0)); handle('handle_corner', (X1 - .03, 3.72, 2.3), (-1, 0, 0)); handle('handle_left_wall', (X0 + .03, .85, 2.2), (1, 0, 0), 1.1)
 bm = B()
 for y in (1.95, 3.45): abox(bm, .16, .12, .1, MT((X1 - .1, y, .04), (0, 25, 0)), bev=.01)
 obj('floor_wedges', bm, mat('wedge', rough=.6))
@@ -251,31 +251,31 @@ bm = B(); alathe(bm, [(.20, -.15, 0, .15), (.20, -.10, 0, .15), (.15, .05, .02, 
 part('toilet_base', bm, PORC, (TX, TY, .15), ex=(EXX, TY, .50))
 bm = B(); alathe(bm, [(.17, -.14, 0, .14), (.25, -.03, -.02, .21), (.285, .07, -.02, .245), (.29, .13, -.02, .25), (.235, .13, -.02, .195), (.19, .0, -.02, .15), (.08, -.08, -.02, .07)], 32)
 abox(bm, .22, .44, .12, MT((.3, 0, .07)), bev=.03)
-part('toilet_bowl', bm, PORC, (TX, TY, .44), ex=(EXX, TY, 1.30), exrot=(0, -8, 0))
+part('toilet_bowl', bm, PORC, (TX, TY, .44), ex=(EXX, TY, 1.25), exrot=(0, -8, 0))
 bm = B(); alathe(bm, [(.30, 0, 0, .26), (.30, .028, 0, .26), (.215, .028, 0, .175), (.215, 0, 0, .175)], 32, close=True)
-part('toilet_seat', bm, PORC, (TX - .02, TY, .575), ex=(EXX, TY, 1.95), exrot=(0, -10, 0))
+part('toilet_seat', bm, PORC, (TX - .02, TY, .575), ex=(EXX, TY, 1.72), exrot=(0, -10, 0))
 bm = B(); alathe(bm, [(.29, 0, -.29, .25), (.30, .012, -.29, .26), (.29, .03, -.29, .25)], 32)
-part('toilet_lid', bm, PORC, (TX + .27, TY, .61), (0, 97, 0), ex=(EXX + .25, TY, 2.38), exrot=(0, 8, 0))
-bm = B(); abox(bm, .26, .56, .42, bev=.035); part('toilet_tank', bm, PORC, (TX + .45, TY, .72), ex=(EXX + .28, TY, 3.0), exrot=(0, -14, 0), smooth=False)
-bm = B(); abox(bm, .30, .60, .06, bev=.02); part('toilet_tank_lid', bm, PORC, (TX + .45, TY, .96), ex=(EXX + .22, TY, 3.42), exrot=(0, -20, 0), smooth=False)
+part('toilet_lid', bm, PORC, (TX + .27, TY, .61), (0, 97, 0), ex=(EXX + .2, TY, 2.05), exrot=(0, 8, 0))
+bm = B(); abox(bm, .26, .56, .42, bev=.035); part('toilet_tank', bm, PORC, (TX + .45, TY, .72), ex=(EXX + .22, TY, 2.45), exrot=(0, -14, 0), smooth=False)
+bm = B(); abox(bm, .30, .60, .06, bev=.02); part('toilet_tank_lid', bm, PORC, (TX + .45, TY, .96), ex=(EXX + .18, TY, 2.78), exrot=(0, -20, 0), smooth=False)
 bm = B(); acyl(bm, .013, .26, MT((0, .13, 0), (90, 0, 0)), 10); alathe(bm, [(.022, 0), (.022, .03)], 10, MT((0, .0, 0), (-90, 0, 0)))
-part('toilet_flush_lever', bm, CHROME, (TX + .34, TY + .28, .86), (0, 0, -12), ex=(EXX + .1, TY + .62, 3.05), exrot=(0, 0, -30))
-bm = B(); alathe(bm, [(.045, 0), (.045, .012), (.03, .02)], 16); part('toilet_flush_button', bm, CHROME, (TX + .45, TY, .99), ex=(EXX + .2, TY, 3.72))
+part('toilet_flush_lever', bm, CHROME, (TX + .34, TY + .28, .86), (0, 0, -12), ex=(EXX + .05, TY + .5, 2.5), exrot=(0, 0, -30))
+bm = B(); alathe(bm, [(.045, 0), (.045, .012), (.03, .02)], 16); part('toilet_flush_button', bm, CHROME, (TX + .45, TY, .99), ex=(EXX + .16, TY, 2.98))
 for s in (1, -1):
-    bm = B(); acyl(bm, .02, .04, None, 10); part('toilet_hinge_peg_%s' % ('l' if s > 0 else 'r'), bm, mat('peg_black'), (TX + .25, TY + s * .1, .6), ex=(EXX + .3, TY + s * .1, 2.16))
-bm = B(); alathe(bm, [(.19, 0), (.19, .02), (.09, .02), (.09, 0)], 24, close=True); part('toilet_flange', bm, mat('flange', rough=.5), (TX, TY, .012), ex=(EXX, TY, .12))
-bm = B(); alathe(bm, [(.15, 0), (.15, .025), (.10, .025), (.10, 0)], 24, close=True); part('toilet_gasket', bm, mat('paper'), (TX, TY, .016), ex=(EXX, TY, .27))
+    bm = B(); acyl(bm, .02, .04, None, 10); part('toilet_hinge_peg_%s' % ('l' if s > 0 else 'r'), bm, mat('peg_black'), (TX + .25, TY + s * .1, .6), ex=(EXX + .26, TY + s * .1, 1.9))
+bm = B(); alathe(bm, [(.19, 0), (.19, .02), (.09, .02), (.09, 0)], 24, close=True); part('toilet_flange', bm, mat('flange', rough=.5), (TX, TY, -.035), ex=(EXX, TY, .12))
+bm = B(); alathe(bm, [(.15, 0), (.15, .025), (.10, .025), (.10, 0)], 24, close=True); part('toilet_gasket', bm, mat('paper'), (TX, TY, -.03), ex=(EXX, TY, .27))
 for k, (dx, dy, ex) in enumerate(((0, .17, (EXX - .45, TY + .4, .22)), (0, -.17, (EXX - .5, TY - .35, .3)), (.4, .18, (EXX + .5, TY + .45, .45)), (.4, -.18, (EXX + .55, TY - .4, .2)))):
     bm = B(); acyl(bm, .012, .07, None, 8); alathe(bm, [(.024, .035), (.024, .05)], 6)
     part('toilet_bolt_%d' % (k + 1), bm, CHROME, (TX + dx, TY + dy, .03 if k < 2 else .5), ex=ex, exrot=(40 + k * 30, 25 * k, 0))
-for k, z in enumerate((.86, 1.62, 2.16, 2.68)):      # the white rings between the exploded parts: scale 0 at rest, 1 exploded
+for k, z in enumerate((.8, 1.5, 1.9, 2.3)):      # the white rings between the exploded parts: scale 0 at rest, 1 exploded
     bm = B(); alathe(bm, [(.30, -.008), (.30, .008), (.27, .008), (.27, -.008)], 32, close=True, ey=.85)
     part('explode_ring_%d' % (k + 1), bm, mat('glow_ring', emit=PAL['glow_ring'], es=0.), (EXX, TY, .4), ex=(EXX, TY, z), scale=(.01, 1.))
 # floating paper roll (shot 1) + the ribbon that arcs into the bowl (f14-22) + the hose cuff at the toilet foot
 bm = B(); alathe(bm, [(.04, -.085), (.10, -.085), (.10, .085), (.04, .085)], 20, close=True); abox(bm, .004, .2, .168, MT((.1, .1, 0), (0, 0, 14)), bev=0)
-obj('paper_roll_float', bm, mat('paper'), (1.3, 1.92, 1.05), (72, 12, 20), smooth=True, mover={})
+obj('paper_roll_float', bm, mat('paper'), (1.3, 2.28, 1.0), (72, 12, 20), smooth=True, mover={})
 bm = B(); acyl(bm, .042, .172, None, 14); o = obj('paper_roll_core', bm, mat('roll_core'), smooth=True); o.parent = bpy.data.objects['paper_roll_float']
-rib = crom([(1.3, 1.95, 1.08), (1.22, 2.15, 1.3), (1.2, 2.38, 1.15), (1.28, 2.55, .75), (1.3, 2.6, .5)], 8); bm = B()
+rib = crom([(1.3, 2.28, 1.03), (1.22, 2.3, 1.3), (1.2, 2.38, 1.15), (1.28, 2.55, .75), (1.3, 2.6, .5)], 8); bm = B()
 for a, b in zip(rib, rib[1:]):
     vs = [bm.verts.new(p + Vector((s * .08, 0, 0))) for p, s in ((a, -1), (a, 1), (b, 1), (b, -1))]; bm.faces.new(vs)
 bmesh.ops.remove_doubles(bm, verts=bm.verts[:], dist=.0005); obj('paper_ribbon', bm, mat('paper'), smooth=True, mover={})
@@ -351,8 +351,9 @@ while y < TB1 - .01:
     y += L; k += 1
 obj('tube_wall_a', ba, mat('tube_a', rough=.35), smooth=True); obj('tube_wall_b', bb_, mat('tube_b', rough=.35), smooth=True); obj('tube_rings_light', blt, mat('tube_light', rough=.4), smooth=True)
 bm = B(); alathe(bm, [(TR, TB1), (.36, TB1 + .25), (.2, TB1 + .3)], 40, MTB, caps=False); obj('tube_end_cone', bm, mat('tube_b'), smooth=True)
+bm = B(); acyl(bm, TR + .02, .04, MTB @ Matrix.Translation((0, 0, TB0 - .02)), 40); obj('tube_cap', bm, mat('tube_b'))     # closes the entry end: no world light in the tube
 bm = B(); alathe(bm, [(.23, TB1 + .26), (.23, TB1 + .22), (.16, TB1 + .22), (.16, TB1 + .3)], 32, MTB, close=True); obj('tube_core_ring', bm, mat('nozzle_ring'), smooth=True)
-bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=20, v_segments=12, radius=.13); obj('tube_core', bm, mat('tube_core', emit=PAL['tube_core'], es=10.), (0, TB1 + .3, 0), smooth=True, mover={})
+bm = B(); bmesh.ops.create_uvsphere(bm, u_segments=20, v_segments=12, radius=.13); obj('tube_core', bm, mat('tube_core', emit=PAL['tube_core'], es=5.), (0, TB1 + .3, 0), smooth=True, mover={})
 
 # ================================================================== STAND-IN CARDS (excluded from the GLB) and LIGHTS
 def standin(name, col, h, loc, rz):
@@ -364,22 +365,22 @@ def standin(name, col, h, loc, rz):
         if f.center.z > h - .63: f.material_index = 1
     return o
 STANDINS = {'standin_newguy_s1': [1], 'standin_newguy_s6': [6], 'standin_newguy_s12': [12], 'standin_commander_s12': [12]}
-standin('standin_newguy_s1', PAL['standin_newguy'], 1.70, (1.0, 3.55, 0), -90); standin('standin_newguy_s6', PAL['standin_newguy'], 1.70, (1.1, 3.35, 0), -90)
+standin('standin_newguy_s1', PAL['standin_newguy'], 1.70, (1.15, 3.25, 0), -90); standin('standin_newguy_s6', PAL['standin_newguy'], 1.70, (1.45, 3.15, 0), -90)
 standin('standin_newguy_s12', PAL['standin_newguy'], 1.70, (.3, 3.2, 0), 0); standin('standin_commander_s12', PAL['standin_commander'], 1.76, (DOOR['x'], Y1 - .05, .08), 0)
 def light(name, loc, col, watts, radius=.1, kind='POINT'):
     d = bpy.data.lights.new(name, kind); d.color = col; d.energy = watts; d.shadow_soft_size = radius; o = bpy.data.objects.new(name, d); o.location = loc; LIGHTS.objects.link(o); return o
 light('key_day', (-1.3, 3.2, 3.1), (1., .97, .92), 2600, .35); light('fill_day', (-1.2, .2, 1.6), (.55, .62, 1.), 500, .8); light('warm_top', (1.5, 2.5, 3.2), (1., .78, .62), 90, .1)
 light('night_fill', (-.6, 2.6, 2.6), (.12, .16, 1.), 420, .8)
-light('key_wide', (1.55, 3.3, 3.1), (1., .98, .95), 3800, .04); light('fill_wide', (-1.2, -.8, 2.2), (.6, .68, 1.), 380, .8); light('door_light', (DOOR['x'], 4.6, 1.9), (.8, .88, 1.), 160, .2)
+light('key_wide', (1.55, 3.3, 3.1), (1., .98, .95), 3800, .04, 'SPOT'); _k = bpy.data.objects['key_wide']; _k.rotation_euler = (Vector((-.3, 1.2, 0)) - _k.location).to_track_quat('-Z', 'Y').to_euler(); _k.data.spot_size = math.radians(120); _k.data.spot_blend = .25; light('fill_wide', (-1.2, -.8, 2.2), (.6, .68, 1.), 380, .8); light('door_light', (DOOR['x'], 4.6, 1.9), (.8, .88, 1.), 160, .2)
 light('toilet_glow_light', (TX - .1, TY, .75), (.75, .88, 1.), 0, .25); light('pulse_light', tuple(path[0]), (.6, 1., 1.), 0, .05)
-light('bay_fill', (0, 2.8, -.5), (.5, .8, 1.), 25, .5); light('tube_core_light', (0, TB1 - .25, 0), (.6, .95, 1.), 14, .1)
+light('bay_fill', (0, 2.8, -.5), (.5, .8, 1.), 8, .5); light('tube_core_light', (0, TB1 - .25, 0), (.6, .95, 1.), 1.5, .1)
 w = bpy.data.worlds.new('toilet_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
 for n, p in (('toilet', (TX, TY, 0)), ('toilet_bowl_centre', (TX - .02, TY, .57)), ('flush_lever', (TX + .34, TY + .5, .86)), ('window', (X1, WIN['y'], WIN['z'])), ('porthole', (X0, PORT['y'], PORT['z'])),
              ('door', (DOOR['x'], Y1, .08)), ('poster', (-1.42, Y1, 1.62)), ('hose_port', (-1.74, .95, .15)), ('hatch', (X0 + .2, 1.55, .2)), ('flange', FL), ('sign_waste_vent', (X1 - .262, 1.5, -.42)),
-             ('nozzle', (NZ[0] + .14, NZ[1], NZ[2])), ('tube_in', (0, TB0, 0)), ('tube_core', (0, TB1 + .3, 0)), ('newguy_s1', (1.0, 3.55, 0)), ('newguy_s6', (1.1, 3.35, 0)), ('newguy_s12', (.3, 3.2, 0)),
-             ('commander_s12', (DOOR['x'], Y1 - .05, .08)), ('paper_roll', (1.3, 1.92, 1.05)), ('shelf_top', (X1 - .17, 2.0, SHELF_Z))): ANCH[n] = [round(v, 4) for v in p]
+             ('nozzle', (NZ[0] + .14, NZ[1], NZ[2])), ('tube_in', (0, TB0, 0)), ('tube_core', (0, TB1 + .3, 0)), ('newguy_s1', (1.15, 3.25, 0)), ('newguy_s6', (1.45, 3.15, 0)), ('newguy_s12', (.3, 3.2, 0)),
+             ('commander_s12', (DOOR['x'], Y1 - .05, .08)), ('paper_roll', (1.3, 2.28, 1.0)), ('shelf_top', (X1 - .17, 2.0, SHELF_Z))): ANCH[n] = [round(v, 4) for v in p]
 VARIANTS = {'plant_pot': ['day'], 'plant_leaves': ['day'], 'cup': ['night', 'wide'], 'toothbrush': ['night', 'wide'], 'kid_drawing_frame': ['wide'], 'kid_drawing': ['wide'], 'shelf_roll': ['wide'],
             'towel': ['wide'], 'towel_stripes': ['wide'], 'towel_rail': ['wide'], 'paper_dispenser': ['night', 'wide'], 'poster_flush': ['wide'], 'hose': ['wide'], 'hose_ribs': ['wide'], 'hose_cuff': ['wide']}
 import toilet_api as api

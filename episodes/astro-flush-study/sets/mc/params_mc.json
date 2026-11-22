@@ -1,0 +1,337 @@
+{
+ "_doc": "mission control (LOOK_INVENTORY C). One hex per surface (C1 palette, lit side), sizes = inventory est. x 1.55, Blender metres Z up. Front wall y=0 (screen), room toward -y, x right.",
+ "palette": {
+  "side_wall": "#383a62",
+  "soffit": "#000321",
+  "bulkhead": "#161928",
+  "cove_strip": "#d1ffff",
+  "ceiling": "#3c4784",
+  "ceiling_grid": "#8e9ae0",
+  "downlight": "#ffffff",
+  "carpet": "#5e66a3",
+  "carpet_speck": "#9fa7df",
+  "bezel": "#161928",
+  "clock_housing": "#161928",
+  "desk_top": "#fffdff",
+  "desk_front": "#2e2d3f",
+  "desk_panel": "#3c3f51",
+  "desk_panel_frame": "#585b77",
+  "desk_band": "#383645",
+  "keyboard": "#23232f",
+  "monitor_base": "#2b2c3a",
+  "cyan_line": "#6ff0ff",
+  "mug": "#ffffff",
+  "mug_band": "#3f7fe0",
+  "floor_ring_disc": "#06060a",
+  "floor_ring": "#ece963",
+  "pedestal_pole": "#29325d",
+  "button_box": "#fffdff",
+  "go_dome": "#8dffcd",
+  "nogo_cover": "#feff7f",
+  "nogo_dome": "#f9bcac",
+  "bin": "#515267",
+  "paper": "#ffffff",
+  "book_white": "#f7f6fa",
+  "book_red": "#d8606d",
+  "book_yellow": "#f9eb59",
+  "book_blue": "#6cb0ed",
+  "side_monitor_frame": "#1a1c2c"
+ },
+ "moods": {
+  "_doc": "room light per screen state: colour of the fill lights and the screen spill light (watts), world colour. Targets: ceiling #3c4784 blue, #4e386c red-violet, #5f4b5f pink (shot 10).",
+  "blue": {
+   "fill": "#b8bfee",
+   "fill_w": 2200,
+   "spill": "#6f86ff",
+   "spill_w": 700,
+   "world": "#3a428a",
+   "world_s": 0.55
+  },
+  "teal": {
+   "fill": "#b4dcea",
+   "fill_w": 2100,
+   "spill": "#4dffc0",
+   "spill_w": 900,
+   "world": "#2f5a7a",
+   "world_s": 0.55
+  },
+  "red-violet": {
+   "fill": "#bea8e0",
+   "fill_w": 2000,
+   "spill": "#ff2a50",
+   "spill_w": 650,
+   "world": "#5a3378",
+   "world_s": 0.55
+  },
+  "pink": {
+   "fill": "#d4bce0",
+   "fill_w": 2200,
+   "spill": "#ff4a7a",
+   "spill_w": 700,
+   "world": "#5a3e70",
+   "world_s": 0.55
+  }
+ },
+ "screens": {
+  "_doc": "state -> picture; frames of the reference (exact where the frame-difference spike marks them)",
+  "map": {
+   "png": "mc_screen_map.png",
+   "f": [
+    120,
+    186
+   ]
+  },
+  "ring": {
+   "png": "mc_screen_ring.png",
+   "f": [
+    187,
+    191
+   ]
+  },
+  "3": {
+   "png": "mc_screen_3.png",
+   "f": [
+    192,
+    202
+   ]
+  },
+  "2": {
+   "png": "mc_screen_2.png",
+   "f": [
+    203,
+    212
+   ]
+  },
+  "1": {
+   "png": "mc_screen_1.png",
+   "f": [
+    213,
+    223
+   ]
+  },
+  "go": {
+   "png": "mc_screen_go.png",
+   "f": [
+    224,
+    263
+   ]
+  },
+  "alarm": {
+   "png": "mc_screen_alarm.png",
+   "f": [
+    264,
+    273
+   ]
+  },
+  "noflush": {
+   "png": "mc_screen_noflush.png",
+   "f": [
+    274,
+    283
+   ]
+  },
+  "offcourse": {
+   "png": "mc_screen_offcourse.png",
+   "f": [
+    803,
+    866
+   ]
+  }
+ },
+ "cams": {
+  "f140": {
+   "loc": [
+    -2.6,
+    -13.2,
+    1.35
+   ],
+   "look": [
+    -2.9,
+    0,
+    5.6
+   ],
+   "vfov": 62,
+   "roll": 3
+  },
+  "f180": {
+   "loc": [
+    0.6,
+    -18.1,
+    1.45
+   ],
+   "look": [
+    0.2,
+    0,
+    3.18
+   ],
+   "vfov": 40,
+   "roll": 0
+  },
+  "f200": {
+   "loc": [
+    0.6,
+    -17.8,
+    1.45
+   ],
+   "look": [
+    0.2,
+    0,
+    3.18
+   ],
+   "vfov": 40,
+   "roll": 0
+  },
+  "f235": {
+   "loc": [
+    0.6,
+    -17.4,
+    1.45
+   ],
+   "look": [
+    0.2,
+    0,
+    3.18
+   ],
+   "vfov": 40,
+   "roll": 0
+  },
+  "f270": {
+   "loc": [
+    0.6,
+    -16.9,
+    1.45
+   ],
+   "look": [
+    0.2,
+    0,
+    3.18
+   ],
+   "vfov": 40,
+   "roll": 0
+  },
+  "f283": {
+   "loc": [
+    0.6,
+    -17.2,
+    1.45
+   ],
+   "look": [
+    0.2,
+    0,
+    3.18
+   ],
+   "vfov": 40,
+   "roll": 0
+  },
+  "f820": {
+   "loc": [
+    0.85,
+    -15.1,
+    1.25
+   ],
+   "look": [
+    0.5,
+    0,
+    3.3
+   ],
+   "vfov": 38,
+   "roll": 0
+  },
+  "f860": {
+   "loc": [
+    0.85,
+    -14.2,
+    1.25
+   ],
+   "look": [
+    0.5,
+    0,
+    3.4
+   ],
+   "vfov": 38,
+   "roll": 0
+  }
+ },
+ "cam_monitor": "f283",
+ "proofs": {
+  "f140": {
+   "screen": "map",
+   "mood": "blue",
+   "clock": 0,
+   "shot": 3,
+   "director": 0,
+   "bin": 1,
+   "nogo_box": 0
+  },
+  "f180": {
+   "screen": "map",
+   "mood": "blue",
+   "clock": 2,
+   "shot": 3,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1
+  },
+  "f200": {
+   "screen": "3",
+   "mood": "blue",
+   "clock": 2,
+   "shot": 3,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1
+  },
+  "f235": {
+   "screen": "go",
+   "mood": "teal",
+   "clock": 3,
+   "shot": 3,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1
+  },
+  "f270": {
+   "screen": "alarm",
+   "mood": "red-violet",
+   "clock": 5,
+   "shot": 3,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1,
+   "press": 1,
+   "cover": 1
+  },
+  "f283": {
+   "screen": "noflush",
+   "mood": "red-violet",
+   "clock": 5,
+   "shot": 3,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1,
+   "cover": 1
+  },
+  "f820": {
+   "screen": "offcourse",
+   "off": 4,
+   "mood": "pink",
+   "clock": 7,
+   "shot": 10,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1,
+   "cover": 1
+  },
+  "f860": {
+   "screen": "offcourse",
+   "off": 8,
+   "mood": "pink",
+   "clock": 8,
+   "shot": 10,
+   "director": 1,
+   "bin": 0,
+   "nogo_box": 1,
+   "cover": 1
+  }
+ }
+}
