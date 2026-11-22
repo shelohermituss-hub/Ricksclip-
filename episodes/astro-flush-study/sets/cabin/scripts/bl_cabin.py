@@ -157,11 +157,11 @@ def dots(name, x0, x1, y0, y1, z, pitch, r, h, m):
 
 # ================================================================== D. SHIP CABIN, DAY (back wall y WY, floor z 0, camera on -y)
 WY, CX0, CX1, CTOP = 1.5, -3.2, 3.2, 5.9
-RAIL_Z, QUILT_TOP = 1.30, 1.27          # teal rail band 1.27-1.41 (inventory 1.0 m x 1.55; frame f330: 1.54 m above the floor at the wall, rail centre)
-MON = dict(x=0., z=3.65, w=1.40, h=2.40)       # monitor outer frame (f330: 190 px of 540 wide, y 35-365 of 960 with the camera at 6.1 m)
+RAIL_Z, QUILT_TOP = 1.47, 1.44          # teal rail band 1.27-1.41 (inventory 1.0 m x 1.55; frame f330: 1.54 m above the floor at the wall, rail centre)
+MON = dict(x=0., z=3.60, w=1.40, h=2.50)       # monitor outer frame (f330: 190 px of 540 wide, y 35-365 of 960 with the camera at 6.1 m)
 PICW, PICH = 1.26, 2.24                          # cabin_monitor_pic = 9:16 portrait
-HATCH = dict(x=1.95, z=1.58, w=.92, h=2.30, r=.42, t=.16)   # rounded-top hatch at the right edge of the back wall (f330 x 430-540 px)
-UP0 = 1.45
+HATCH = dict(x=1.95, z=1.68, w=.92, h=2.30, r=.42, t=.16)   # rounded-top hatch at the right edge of the back wall (f330 x 430-540 px)
+UP0 = RAIL_Z + .15
 panels('cabin_wall_upper', (CX1, WY, UP0), (-1, 0, 0), (0, 0, 1), CX1 - CX0, CTOP - UP0, [], pw=.85, ph=.62)
 # quilted lower wall: diagonal diamond grid, each diamond padded (light centre, dark groove), a small button at the crossings
 QS = .19; bq, bbut = B(), B()
@@ -201,12 +201,12 @@ box('cabin_monitor_frame', (MON['w'], .09, MON['h']), (MON['x'], MY, MON['z']), 
 bm = B(); abox(bm, .16, .1, .08, MT((0, 0, 0)), bev=.012); acyl(bm, .025, .03, MT((0, -.06, 0), (90, 0, 0)), 12); obj('cabin_monitor_cam', bm, mat('screen_frame'), (MON['x'], MY - .01, MON['z'] + MON['h'] / 2 + .05), smooth=False)
 PIC_Y = MY - .046
 pic('cabin_monitor_pic', PICW, PICH, (MON['x'], PIC_Y, MON['z'] + .02), (90, 0, 0), 'monitor_placeholder.png', emit=True, mover={})
-box('cabin_monitor_label_plate', (.95, .03, .13), (MON['x'], WY - .02, MON['z'] - MON['h'] / 2 - .1), mat('label_plate'), bev=.008)
-pic('cabin_monitor_label', .92, .11, (MON['x'], WY - .036, MON['z'] - MON['h'] / 2 - .1), (90, 0, 0), 'label_link.png')
+box('cabin_monitor_label_plate', (.95, .03, .13), (MON['x'] - .1, MY - .06, MON['z'] - MON['h'] / 2 - .03), mat('label_plate'), bev=.008)
+pic('cabin_monitor_label', .92, .11, (MON['x'] - .1, MY - .076, MON['z'] - MON['h'] / 2 - .03), (90, 0, 0), 'label_link.png')
 bm = B(); acyl(bm, .014, .01, MT((0, 0, 0), (90, 0, 0)), 10); obj('cabin_monitor_led', bm, mat('led_green', emit=PAL['led_green'], es=4.), (MON['x'] + MON['w'] / 2 - .07, PIC_Y - .002, MON['z'] - MON['h'] / 2 + .045))
 # HEAD sign right of the monitor, above the hatch
-box('cabin_head_sign_back', (.52, .025, .68), (1.58, WY - .045, 3.46), mat('head_gold', rough=.5), bev=.006)
-pic('cabin_head_sign', .48, .64, (1.58, WY - .059, 3.46), (90, 0, 0), 'sign_head.png')
+box('cabin_head_sign_back', (.52, .025, .68), (1.58, WY - .045, 3.35), mat('head_gold', rough=.5), bev=.006)
+pic('cabin_head_sign', .48, .64, (1.58, WY - .059, 3.35), (90, 0, 0), 'sign_head.png')
 # hatch door (right): thick dark frame, teal leaf with a cyan sheen, round porthole with a bolted ring, long brown lever
 MH = MF((HATCH['x'], WY - .1, HATCH['z']), (1, 0, 0), (0, 0, 1), (0, -1, 0))
 bm = B(); arring(bm, HATCH['w'], HATCH['h'], HATCH['r'], HATCH['t'], .2, MH, lip=.04); obj('cabin_hatch_frame', bm, mat('hatch_frame', rough=.4), smooth=True)
@@ -224,7 +224,7 @@ def duffel(name, col, loc, L=.70, R=.23):
     o = multi(name, [(body, mat(col, rough=.9)), (st, mat('strap_grey'))], loc, smooth=True)
     pic(name + '_label', .17, .11, (loc[0], loc[1] - R * .86 - .008, loc[2] + .03), (90, 0, 0), 'bag_label.png')
     return o
-duffel('cabin_bag_blue', 'bag_blue', (-1.43, WY - .22, 4.49)); duffel('cabin_bag_orange', 'bag_orange', (.88, WY - .24, 4.52)); duffel('cabin_bag_red', 'bag_red', (-2.35, WY - .22, 4.15))
+duffel('cabin_bag_blue', 'bag_blue', (-1.43, WY - .22, 4.32)); duffel('cabin_bag_orange', 'bag_orange', (.88, WY - .24, 4.32)); duffel('cabin_bag_red', 'bag_red', (-2.35, WY - .22, 4.0))
 # galley table (left edge): black round top on one pole and disc foot, red bottle, yellow block, tray; grey box on a shelf; drawer block with 4 labels
 GX, GY = -1.6, .95
 bm = B(); acyl(bm, .45, .05, MT((0, 0, 1.24)), 32); acyl(bm, .035, 1.2, MT((0, 0, .62)), 12); acyl(bm, .26, .03, MT((0, 0, .015)), 24); obj('cabin_table', bm, mat('table_black', rough=.4), (GX, GY, 0), smooth=True)
@@ -250,9 +250,9 @@ multi('pencil', [(pn, mat('pencil', rough=.6)), (pt, mat('table_brown'))], (1.12
 
 # ================================================================== E. SLEEP BAY, NIGHT (bag wall y BY facing -y, end wall x EX facing -x, door to the toilet room)
 BX, BY, VH = -12., 1.2, 3.3                    # VH: the side wall goes straight up to 2.5 m, then leans in (slanted roof with 2 skylights)
-XL, EX = BX - 3.1, BX + 2.5                    # the bag wall runs x XL..EX, and EX is the corner with the end wall
-BAGS = {'bag_navigator': (BX - 1.65, 'bag_teal'), 'bag_commander': (BX - .05, 'bag_blue_sleep'), 'bag_new_guy': (BX + 1.55, 'bag_green')}
-PORTS = [BX - .85, BX + .75]; PW_, PH_, PZ = .70, 1.08, 1.55
+XL, EX = BX - 3.1, BX + 2.15                    # the bag wall runs x XL..EX, and EX is the corner with the end wall
+BAGS = {'bag_navigator': (BX - 1.65, 'bag_teal'), 'bag_commander': (BX + .05, 'bag_blue_sleep'), 'bag_new_guy': (BX + 1.45, 'bag_green')}
+PORTS = [BX - .85, BX + .85]; PW_, PH_, PZ = .70, 1.08, 1.55
 SKY = [BX - .85, BX + .75]; SKW, SKH, SKV = .78, 1.24, 1.25
 SL = Vector((0, -math.sqrt(.5), math.sqrt(.5))); SLEN = 2.4
 def hole_x(xc, w, zc, h): return (EX - xc - w / 2, EX - xc + w / 2, zc - h / 2, zc + h / 2)
@@ -305,12 +305,12 @@ alathe(fl, [(R * .9, -BAGH + .1), (R, -BAGH + .45), (R * .95, -.6)], 16, MT((-.1
 multi('bag_new_guy_open', [(b, mat('bag_green_lining', rough=.8)), (c_, mat('bag_green_collar')), (h, mat('headrest')), (s, mat('strap_black')), (fl, mat('bag_green'))],
       (BAGS['bag_new_guy'][0], BY - .06, RZ + .02), smooth=True, mover={'sway_deg': 2.5})
 # kid drawing "MY DAD" taped above the commander's bag
-pic('bay_kid_drawing', .39, .31, (BX + .6, BY - .045, RZ + .32), (90, 0, 3), 'kid_drawing_dad.png')
+pic('bay_kid_drawing', .39, .31, (BX + .55, BY - .045, RZ - .1), (90, 0, 3), 'kid_drawing_dad.png')
 bm = B()
 for dx, dz in ((-.17, .13), (.17, .13)): abox(bm, .08, .004, .03, MT((dx, -.002, dz), (0, 30 if dx < 0 else -30, 0)), bev=0)
-obj('bay_kid_drawing_tape', bm, mat('paper', rough=.9), (BX + .6, BY - .05, RZ + .32))
+obj('bay_kid_drawing_tape', bm, mat('paper', rough=.9), (BX + .55, BY - .05, RZ - .1))
 # end wall (smooth blue, vertical panel lines) with the rounded doorway, chrome grab bar left of it, chrome rail + black sign plate above
-DOOR = dict(y=-.8, z=1.2, w=1.08, h=2.3, r=.32, t=.13)
+DOOR = dict(y=-1.15, z=1.2, w=1.08, h=2.3, r=.32, t=.13)
 panels('bay_end', (EX, -3.6, 0), (0, 1, 0), (0, 0, 1), BY + 3.6, TOPZ + .1, [(DOOR['y'] + 3.6 - DOOR['w'] / 2 - .02, DOOR['y'] + 3.6 + DOOR['w'] / 2 + .02, DOOR['z'] - DOOR['h'] / 2, DOOR['z'] + DOOR['h'] / 2)],
        pw=.62, ph=TOPZ + .2, cols=('end_wall', 'end_wall'), rivets=None, seam='door_frame_dark', thick=.3, g=.008, pd=.02)
 for m in ('end_wall',): bpy.data.materials[m].node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = .35
@@ -318,14 +318,14 @@ MD = MF((EX - .02, DOOR['y'], DOOR['z']), (0, 1, 0), (0, 0, 1), (1, 0, 0))
 bm = B(); arring(bm, DOOR['w'], DOOR['h'], DOOR['r'], DOOR['t'], .36, MD, lip=.04); obj('bay_door_frame', bm, mat('door_frame_dark', rough=.35), smooth=True)
 bm = B(); arrplate(bm, DOOR['w'] + .04, DOOR['h'] + .04, DOOR['r'], .04, MF((0, 0, 0), (0, 1, 0), (0, 0, 1), (1, 0, 0)))
 obj('bay_door', bm, mat('end_wall'), (EX + .12, DOOR['y'], DOOR['z']), mover={'open': {'loc': [EX + .12, DOOR['y'] - 1.25, DOOR['z']], 'rot': [0, 0, 0]}})
-bm = B(); acyl(bm, .02, 1.5, MT((0, 0, 0)), 10)
-for s in (1, -1): abox(bm, .1, .04, .04, MT((.05, 0, s * .7)), bev=.008)
-obj('bay_grab_bar', bm, mat('chrome'), (EX - .1, DOOR['y'] + DOOR['w'] / 2 + .32, 1.25), smooth=True)
-bm = B(); acyl(bm, .016, 1.4, MT((0, 0, 0), (90, 0, 0)), 10)
-for s in (1, -1): abox(bm, .1, .04, .04, MT((.05, s * .62, 0)), bev=.008)
-obj('bay_door_rail', bm, mat('chrome'), (EX - .1, DOOR['y'], DOOR['z'] + DOOR['h'] / 2 + .28), smooth=True)
-box('bay_door_sign', (.03, .5, .13), (EX - .02, DOOR['y'], DOOR['z'] + DOOR['h'] / 2 + .45), mat('sign_black', rough=.4), bev=.006)
-pic('bay_door_sign_text', .48, .12, (EX - .037, DOOR['y'], DOOR['z'] + DOOR['h'] / 2 + .45), (90, 0, -90), 'sign_bay_door.png')
+bm = B(); acyl(bm, .02, 1.9, MT((0, 0, 0)), 10)
+for s in (1, -1): abox(bm, .1, .04, .04, MT((.05, 0, s * .9)), bev=.008)
+obj('bay_grab_bar', bm, mat('chrome'), (EX - .1, DOOR['y'] + DOOR['w'] / 2 + .17, 1.2), smooth=True)
+bm = B(); acyl(bm, .016, .8, MT((0, 0, 0), (90, 0, 0)), 10)
+for s in (1, -1): abox(bm, .1, .04, .04, MT((.05, s * .34, 0)), bev=.008)
+obj('bay_door_rail', bm, mat('chrome'), (EX - .1, DOOR['y'] + .2, DOOR['z'] + DOOR['h'] / 2 + .28), smooth=True)
+box('bay_door_sign', (.03, .5, .13), (EX - .02, DOOR['y'] - .05, DOOR['z'] + DOOR['h'] / 2 + .45), mat('sign_black', rough=.4), bev=.006)
+pic('bay_door_sign_text', .48, .12, (EX - .037, DOOR['y'] - .05, DOOR['z'] + DOOR['h'] / 2 + .45), (90, 0, -90), 'sign_bay_door.png')
 box('bay_corner_post', (.16, .16, TOPZ), (EX - .06, BY - .06, TOPZ / 2), mat('door_frame_dark', rough=.4), bev=.03)
 # floor: dark perforated grate + one flush round floor light near the door
 box('bay_floor', (EX - XL + 1, 6, .1), ((EX + XL) / 2, BY - 3, -.05), mat('bay_floor', rough=.5), bev=0)
@@ -395,7 +395,7 @@ light('toilet_room_lamp', (EX + 1.4, DOOR['y'] - .2, 2.6), (.7, .85, 1.), 0, .3)
 w = bpy.data.worlds.new('cabin_world'); w.use_nodes = True; SC.world = w
 
 # ================================================================== META, RENDER SETTINGS, SAVE, GLB
-ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['z'] + .02], 'head_sign': [1.58, WY, 3.46], 'hatch': [HATCH['x'], WY - .1, HATCH['z']],
+ANCH.update({'cabin_wall_centre': [0, WY, 0], 'monitor': [MON['x'], PIC_Y, MON['z'] + .02], 'head_sign': [1.58, WY, 3.35], 'hatch': [HATCH['x'], WY - .1, HATCH['z']],
              'galley_table': [GX, GY, 1.24], 'commander_s4': [-1.05, .7, .75], 'newguy_s4': [0, .7, .5], 'navigator_s4': [1.22, .7, .85], 'newguy_s4_f300': [0, .1, .3],
              'bay_wall_centre': [BX, BY, 0], 'bag_navigator': [BAGS['bag_navigator'][0], BY - .06, RZ + .02], 'bag_commander': [BAGS['bag_commander'][0], BY - .06, RZ + .02],
              'bag_new_guy': [BAGS['bag_new_guy'][0], BY - .06, RZ + .02], 'bay_door': [EX, DOOR['y'], 0], 'bay_floor_light': [EX - .55, DOOR['y'] + .1, 0],

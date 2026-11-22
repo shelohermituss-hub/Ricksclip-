@@ -490,8 +490,7 @@
    ],
    "vfov": 45.0,
    "roll": 9.48,
-   "fit_rms_px": 24.9,
-   "note": "fit with the fans on +-Y booms; the fans are now on +-Z booms (f40, f70), which flips this fit below the ship"
+   "fit_rms_px": 24.9
   }
  },
  "proofs": {
@@ -509,7 +508,7 @@
     -0.2,
     0.9
    ],
-   "fan": 0
+   "fan": 90
   },
   "f70": {
    "light": "space",
@@ -538,7 +537,8 @@
     0,
     -14,
     -50
-   ]
+   ],
+   "fan": 0
   },
   "f600": {
    "light": "warm",
@@ -622,7 +622,7 @@
     3000,
     1.4
    ],
-   "fan": 0,
+   "fan": 49,
    "sky_rot": 250
   }
  },

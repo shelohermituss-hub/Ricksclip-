@@ -248,7 +248,7 @@ for tx in (-4.6, -8.8):
     obj('gold_tank_%d' % (tx < -6), bm, 'gold', (tx, 0, 0))
 for s in (1, -1):                                                  # round solar fans on booms (movers: they can turn about the boom)
     nm = 'solar_fan_' + ('p' if s > 0 else 'n'); cy = s * 10.0
-    cyl('solar_boom_' + ('p' if s > 0 else 'n'), .07, 4.6, (-1.4, 0, s * 3.6), 'truss')   # round 3: booms up and down (f40, f70)
+    cyl('solar_boom_' + ('p' if s > 0 else 'n'), .07, 4.6, (-1.4, s * 3.6, 0), 'truss', rot=(90, 0, 0))   # booms to the sides (f990 fit); up/down booms put both fans in f40
     bf, bsp = B(), B(); R = 4.2; nseg = 12   # round 3: dia 8.4 m, measured on f990 (2.2x the hull width)
     for k in range(nseg):
         a0, a1 = k * 2 * math.pi / nseg, (k + 1) * 2 * math.pi / nseg; vs = [(0, 0, 0)] + [(R * math.cos(a0 + (a1 - a0) * q / 4), R * math.sin(a0 + (a1 - a0) * q / 4), 0) for q in range(5)]
@@ -256,7 +256,7 @@ for s in (1, -1):                                                  # round solar
         for rr in (1.0, 1.8): abeam(bsp, (rr * math.cos(a0), rr * math.sin(a0), .035), (rr * math.cos(a1), rr * math.sin(a1), .035), .008)
     for k in range(48): a = k * 2 * math.pi / 48; abeam(bsp, (R * math.cos(a), R * math.sin(a), .02), (R * math.cos(a + math.pi / 24), R * math.sin(a + math.pi / 24), .02), .04)
     acyl(bsp, .3, .2, MT((0, 0, .05)))
-    obj(nm, bf, 'solar_fan', (-1.4, 0, cy), (90, 0, 0), mover={'axis': 'boom_z'}); obj(nm + '_spokes', bsp, 'solar_spoke', (-1.4, 0, cy), (90, 0, 0), mover={'follows': nm})
+    obj(nm, bf, 'solar_fan', (-1.4, cy, 0), (0, 0, 0), mover={'axis': 'boom_y'}); obj(nm + '_spokes', bsp, 'solar_spoke', (-1.4, cy, 0), mover={'follows': nm})
 for s in (1, -1):                                                  # rectangular arrays with the V notch at the outer edge, fine vertical lines
     bp, bl_ = B(), B(); x0, x1, y0, y1 = -9.9, -3.7, s * 1.0, s * 4.9; yn = y1 - s * .9
     apoly(bp, [(x0, y0, 0), (x1, y0, 0), (x1, y1, 0), ((x0 + x1) / 2, yn, 0), (x0, y1, 0)], .05)
