@@ -15,10 +15,13 @@ export const W = { x: 519, rayed: 528, him: 537, and: 541, found: 550, a: 556, s
 function drLean(t, ch, view = '34') { const f = F(t) + A0;
   const ant = snap(f - (W.rayed - 3), 3) - snap(f - W.rayed, 4), lean = snap(f - W.rayed, 12), jolt = snap(f - W.found, 5) - .5 * snap(f - W.found - 6, 10);
   const gl = snap(f - W.and, 6);
-  const rot = -2 * ant + 7 * lean - 4 * jolt, head = 6 * lean - 3 * jolt + ring(f, W.found, 4, 10);
+  // f628-638 DOUBLE TAKE (row 23 start, the camera has come back out of the film): he looks away (head -10, snap 4), then SNAPS back to the film
+  // (head +9, body jolts back, dip 6) on f634, glasses fly up his nose (far hand back to the nose)
+  const away = snap(f - 628, 4) - snap(f - 633, 3), snapB = snap(f - 633, 3), dt = snapB - .6 * snap(f - 637, 8);
+  const rot = -2 * ant + 7 * lean - 4 * jolt - 6 * dt, head = 6 * lean - 3 * jolt + ring(f, W.found, 4, 10) - 10 * away + 3 * dt + ring(f, 634, 5, 10);
   const far = { f: .35 + (.42 - .35) * gl, d: .78 - 1.38 * gl, bow: .45, over: gl > .5 };           // belly -> the nose (glasses down)
-  const near = { f: .92, d: -.32 + .05 * lean, bow: .3 };                                               // up on the film clip bar
-  return { view, dir: 1, x: 0, y: dip(f, W.found, 4, 5), rot, head, feet: [{ x: -26, lift: 0 }, { x: 24, lift: 0 }], farArmFront: gl > .5,
+  const near = { f: .98, d: -.42 + .05 * lean + .5 * dt, bow: .3 };                                               // up on the film clip bar
+  return { view, dir: 1, x: 0, y: dip(f, W.found, 4, 5) + dip(f, 634, 6, 5), rot, head, feet: [{ x: -26, lift: 0 }, { x: 24, lift: 0 }], farArmFront: gl > .5,
     hands: [far, near], held: [] }; }
 
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });

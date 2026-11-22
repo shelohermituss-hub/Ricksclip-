@@ -70,7 +70,7 @@
    "contact": {
     "knee_off_spot_px": 0,
     "planted_foot_slide_px": 0,
-    "arm_over_reach_px": 77.81,
+    "arm_over_reach_px": 0,
     "leg_stretch_px": 0,
     "off_built_ground_px": 0
    },

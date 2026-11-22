@@ -14,7 +14,7 @@ const PDIR = new URL('../props/out/', import.meta.url).href;
 const SN = [0, .05, .16, .31, .48, .66, .79, .88, .93, .96, .98, .99, 1];
 const snap = (f, n = 12) => { if (f <= 0) return 0; const u = f * 12 / n; if (u >= 12) return 1; const i = Math.floor(u); return SN[i] + (SN[i + 1] - SN[i]) * (u - i); };
 // story positions (plan metres, Z up), shared with make_film.py (keep in step)
-export const S1 = { trunk: [5.5, -1.3, 0.03], cutX: 4.80, plateXY: [4.88, -1.12], LUNCH: 121, CUT: 173, PICK: 214, BITES: 235 };
+export const S1 = { trunk: [5.35, -1.3, 0.03], cutX: 4.80, plateXY: [5.98, -1.62], tableTop: 1.5, LUNCH: 121, CUT: 173, PICK: 214, BITES: 235 };
 let CESSNA = null;
 function softTex(THREE) { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.45, 'rgba(255,255,255,.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
@@ -73,22 +73,28 @@ export async function build(THREE, scene, film, ctx) {
   const T = buildTrunk(THREE); T.group.position.copy(V(S1.trunk)); T.group.rotation.y = .12; scene.add(T.group);   // the painted front turns to the east-south-east (the hook lens)
   // the plate stands ON the wing top beside the cut (the wing is his table): ray-cast the top surface under it
   const plate = GLB.plate.scene.clone(true); plate.name = 's1_plate'; plate.traverse(o => { if (o.isMesh) o.castShadow = o.receiveShadow = true; });
-  rc.set(V([S1.plateXY[0], S1.plateXY[1], 4]), new THREE.Vector3(0, -1, 0)); const ph = wing ? rc.intersectObject(wing, true) : [];
-  const plateP = V([S1.plateXY[0], S1.plateXY[1], ph[0] ? ph[0].point.y + .004 : 2.0]); plate.position.copy(plateP); scene.add(plate);
+  // fix round (lead): the plate stands on a small pedestal side table at Michel's chest (he is on the trunk): brass column, round marble top, tripod foot
+  const tbl = new THREE.Group(); tbl.name = 's1_side_table'; const brassM = new THREE.MeshStandardMaterial({ color: '#c99a45', metalness: .9, roughness: .3 }), marble = new THREE.MeshStandardMaterial({ color: '#efe9df', roughness: .25 });
+  const tt = S1.tableTop, addT = (g, m, y) => { const o = new THREE.Mesh(g, m); o.position.y = y; o.castShadow = o.receiveShadow = true; tbl.add(o); return o; };
+  addT(new THREE.CylinderGeometry(.2, .2, .035, 40), marble, tt - .0175); addT(new THREE.TorusGeometry(.2, .008, 8, 40), brassM, tt - .02).rotation.x = Math.PI / 2;
+  addT(new THREE.CylinderGeometry(.022, .03, tt - .12, 16), brassM, (tt - .12) / 2 + .1); addT(new THREE.SphereGeometry(.04, 16, 12), brassM, tt * .55);
+  for (let k = 0; k < 3; k++) { const leg = new THREE.Mesh(new THREE.BoxGeometry(.03, .025, .26), brassM); leg.position.set(Math.sin(k * 2.094) * .12, .05, Math.cos(k * 2.094) * .12); leg.rotation.y = k * 2.094; leg.castShadow = true; tbl.add(leg); }
+  tbl.position.copy(V([S1.plateXY[0], S1.plateXY[1], .03])); scene.add(tbl);
+  const plateP = V([S1.plateXY[0], S1.plateXY[1], .03 + tt + .002]); plate.position.copy(plateP); scene.add(plate);
   // ---- the bite (navy stripe one) + the cut line
   const biteG = new THREE.Group(); biteG.name = 's1_bite'; const bs = GLB.metal_bites.scene; bs.updateMatrixWorld(true); const b0 = bs.getObjectByName('bite_2');
   const off = b0 ? b0.getWorldPosition(new THREE.Vector3()) : new THREE.Vector3();
   bs.traverse(o => { if (o.isMesh && /bite_2/.test(o.name + (o.parent ? o.parent.name : ''))) { const m = o.clone(); m.applyMatrix4(o.matrixWorld); m.position.sub(off); m.castShadow = true; biteG.add(m); } });
   if (!biteG.children.length) biteG.add(new THREE.Mesh(new THREE.BoxGeometry(.035, .0015, .035), new THREE.MeshStandardMaterial({ color: '#f3f4f1', metalness: .6, roughness: .3 })));
-  biteG.scale.setScalar(1.6); scene.add(biteG);   // 3-4 cm square, x1.6 so it reads at phone size (still "tiny" beside his fist)
+  biteG.scale.setScalar(2.2); scene.add(biteG);   // 3-4 cm square, x1.6 so it reads at phone size (still "tiny" beside his fist)
   const cutMat = new THREE.MeshBasicMaterial({ color: '#2a1830' }), cutUnder = new THREE.Mesh(new THREE.BoxGeometry(.012, .006, 1), cutMat); cutUnder.name = 's1_cut_line'; scene.add(cutUnder);
   const le = sec[0] || [-1.85, 1.78, 1.92], te = sec[sec.length - 1] || [-.3, 1.8, 1.9], cutFace = new THREE.Mesh(new THREE.BoxGeometry(.012, 1, .012), cutMat); scene.add(cutFace);
   const cutAt = u => { const L = (te[0] - le[0]) * u; cutUnder.scale.z = Math.max(.001, L); const mid = le[0] + L / 2; cutUnder.position.copy(V([S1.cutX, mid, Math.min(le[1], te[1]) - .002])); cutUnder.visible = u > 0;
     cutFace.scale.y = Math.max(.001, (le[2] - le[1]) * Math.min(1, u * 4)); cutFace.position.copy(V([S1.cutX, le[0] - .004, le[1] + (le[2] - le[1]) * Math.min(1, u * 4) / 2])); cutFace.visible = u > 0; };
   // ---- salt grains (seeded), saw dust
-  const soft = softTex(THREE), NG = 60, grains = [];
-  for (let i = 0; i < NG; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#ffffff', transparent: true, depthWrite: false, opacity: 0, fog: false })); m.renderOrder = 6; scene.add(m); grains.push(m); }
-  const dust = []; for (let i = 0; i < 18; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#dfe4ea', transparent: true, depthWrite: false, opacity: 0 })); m.renderOrder = 5; scene.add(m); dust.push(m); }
+  const soft = softTex(THREE), NG = 110, grains = [];
+  for (let i = 0; i < NG; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#fffbe8', transparent: true, depthWrite: false, opacity: 0, fog: false, toneMapped: false, blending: THREE.AdditiveBlending })); m.renderOrder = 6; scene.add(m); grains.push(m); }
+  const dust = []; for (let i = 0; i < 18; i++) { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: soft, color: '#e8edf2', transparent: true, depthWrite: false, opacity: 0, toneMapped: false })); m.renderOrder = 5; scene.add(m); dust.push(m); }
   const rnd = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
   const impA = impactTex(THREE, '#f7f2ea', '#d62828'), impB = impactTex(THREE, '#d62828', '#f7f2ea');
   const imp = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: impA, toneMapped: false, fog: false })); imp.visible = false; imp.renderOrder = -1; imp.userData.noExport = true; scene.add(imp);
@@ -98,15 +104,15 @@ export async function build(THREE, scene, film, ctx) {
     A.update && A.update(f, t * (f > 112 && f < 121 ? .35 : 1));   // POWER 1 anticipation: the dust motes slow down (row 4)
     // salt: grains leave the inverted shaker cap while it shakes (f0-60), fall onto the wing top, one small bounce, fade
     const sh = capOf('pe_salt_shaker'); let cap = null; if (sh) cap = sh.localToWorld(new THREE.Vector3(0, .075, 0));
-    grains.forEach((m, i) => { const life = 16, age = ((f + i * 2.37) % life), born = f - age; const on = cap && born >= 0 && born <= 60;
+    grains.forEach((m, i) => { const life = 16, age = ((f + i * 1.31) % life), born = f - age; const on = cap && born >= 0 && born <= 60;
       if (!on) { m.material.opacity = 0; return; }
-      const fall = Math.min(age, 9), x0 = cap.x + (rnd(i, 1) - .5) * .05, z0 = cap.z + (rnd(i, 2) - .5) * .05, yTop = wingTopAt(-(z0)) + .004;
+      const fall = Math.min(age, 9), x0 = cap.x + (rnd(i, 1) - .5) * .035, z0 = cap.z + (rnd(i, 2) - .5) * .035, yTop = wingTopAt(-(z0)) + .004;
       let y = cap.y - 4.9 * (fall / 30) ** 2 - .4 * fall / 30; if (y < yTop) y = yTop + (age > 9 ? .02 * Math.max(0, Math.sin(Math.PI * (age - 9) / 4)) : 0);
-      m.position.set(x0 + (age > 9 ? (rnd(i, 3) - .5) * .03 * (age - 9) / 7 : 0), y, z0); m.scale.setScalar(.011 + .006 * rnd(i, 4)); m.material.opacity = .95 * (1 - Math.max(0, age - 11) / 5); });
+      m.position.set(x0 + (age > 9 ? (rnd(i, 3) - .5) * .03 * (age - 9) / 7 : 0), y, z0); m.scale.setScalar(.022 + .012 * rnd(i, 4)); m.material.opacity = 1 - Math.max(0, age - 11) / 5; });
     // the cut (rows 7-8): the line grows with the strokes f173-200, then stays; silver dust while sawing (no sparks)
     const cu = Math.max(0, Math.min(1, (f - S1.CUT) / 27)); cutAt(cu);
     dust.forEach((m, i) => { const a = ((f - S1.CUT + i * 1.6) % 14) / 14, on = f >= S1.CUT && f < 203; const b = V([S1.cutX, le[0] - .02, le[1] + .02]);
-      m.position.set(b.x + (rnd(i, 5) - .5) * .12 * a, b.y - .25 * a * a + .03, b.z - .05 * a); m.scale.setScalar(.02 + .05 * a); m.material.opacity = on ? .55 * (1 - a) : 0; });
+      m.position.set(b.x + (rnd(i, 5) - .5) * .12 * a, b.y - .25 * a * a + .03, b.z - .05 * a); m.scale.setScalar(.03 + .08 * a); m.material.opacity = on ? .8 * (1 - a) : 0; });
     // the bite: at the cut corner until the tongs take it (f212), in the tongs to the plate (f235), then on the plate (small clink hop)
     const tg = capOf('pe_sugar_tongs'); const onPlate = plate.position.clone().add(new THREE.Vector3(0, .016, 0));
     if (f < 200) biteG.visible = false; else { biteG.visible = true;
@@ -115,7 +121,7 @@ export async function build(THREE, scene, film, ctx) {
       else { const k = f - S1.BITES, hop = k >= 0 && k < 6 ? .012 * Math.sin(Math.PI * k / 6) : 0; biteG.position.copy(onPlate).add(new THREE.Vector3(0, hop, 0)); biteG.rotation.set(0, .4, 0); } }
     // POWER 1 impact frame: f121 light field with red lines, f122-123 red field with light lines, behind Michel, facing the lens
     const E = f - S1.LUNCH; imp.visible = !!(R && R.camera) && E >= 0 && E < 3;
-    if (imp.visible) { const cam = R.camera, head = V([5.5, -1.3, 2.1]), d = cam.position.distanceTo(head) + .6, fov = cam.fov * Math.PI / 180, h = 2 * d * Math.tan(fov / 2) * 1.15;
+    if (imp.visible) { const cam = R.camera, head = V([5.35, -1.3, 2.1]), d = cam.position.distanceTo(head) + .6, fov = cam.fov * Math.PI / 180, h = 2 * d * Math.tan(fov / 2) * 1.15;
       imp.material.map = E === 0 ? impA : impB; imp.material.needsUpdate = true; const fw = new THREE.Vector3(); cam.getWorldDirection(fw);
       imp.position.copy(cam.position).addScaledVector(fw, d); imp.quaternion.copy(cam.quaternion); imp.scale.set(h * cam.aspect, h, 1); }
   }

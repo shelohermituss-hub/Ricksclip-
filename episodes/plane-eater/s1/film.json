@@ -127,9 +127,9 @@
   },
   "plate": {
    "pos": [
-    4.88,
-    -1.12,
-    2.02
+    5.98,
+    -1.62,
+    1.52
    ],
    "kind": "the plate with the first bite"
   }
@@ -139,20 +139,26 @@
    "who": "michel",
    "at": 0,
    "pos": [
-    5.5,
+    5.35,
     -1.3,
     0.48
    ],
    "view": "34",
    "dir": 1,
    "pose": "m:../../ep_s1/mi_hook",
-   "face": "k:proud",
+   "face": "k:glanceCam",
    "look": [
     5.06,
     -1.25,
     2.0
    ],
    "note": "row 1 FRAME 0: salts the wing tip like a steak, fork up"
+  },
+  {
+   "who": "michel",
+   "at": 40,
+   "face": "k:proud",
+   "note": "row 1: back to the wing"
   },
   {
    "who": "michel",
@@ -223,9 +229,9 @@
    "who": "michel",
    "at": 226,
    "look": [
-    4.88,
-    -1.12,
-    2.02
+    5.98,
+    -1.62,
+    1.52
    ],
    "note": "row 9: carries the bite to the plate"
   },
@@ -379,7 +385,7 @@
      100
     ]
    ],
-   "scale": 1.25
+   "scale": 2.2
   },
   {
    "who": "michel",
@@ -429,6 +435,7 @@
    "f0": 151,
    "f1": 204,
    "angle": -4,
+   "scale": 1.4,
    "tip_at": [
     {
      "f0": 156,
@@ -586,7 +593,7 @@
    "tip": "tip",
    "when": "always",
    "f0": 205,
-   "scale": 1.3,
+   "scale": 1.8,
    "angle": 35,
    "tip_at": [
     {
@@ -603,15 +610,15 @@
      ]
     },
     {
-     "f0": 218,
+     "f0": 226,
      "f1": 256,
      "at": [
-      4.88,
-      -1.12,
-      2.05
+      5.98,
+      -1.62,
+      1.55
      ],
      "ramp": [
-      17,
+      10,
       0
      ]
     }
@@ -706,19 +713,19 @@
     {
      "at": 0,
      "pos": [
-      6.15,
-      -3.55,
-      2.08
+      5.25,
+      -3.35,
+      2.75
      ],
      "aim": [
-      5.3,
-      -1.3,
-      1.95
+      5.05,
+      -1.35,
+      1.75
      ],
-     "lens": 22,
+     "lens": 24,
      "subject": "michel",
      "framing": "M",
-     "purpose": "ROWS 1-2 FRAME 0 (HOOK, M00 living rest + M01 creep): side view at his eye level, in sun: Michel big on his MONSIEUR MANGETOUT trunk at the END of the wing, salting the white wing tip beside his face like a steak; the sunlit leading edge runs away to the left",
+     "purpose": "ROWS 1-2 FRAME 0 (HOOK, M00 living rest + M01 creep). WAIVER (lead 2026-11-22, frame 0 + hook only): lens 2.75 m, looking DOWN on the sunlit white/navy wing top (the joke is the wing top), Michel looks UP at the lens so his face reads: Michel big on his MONSIEUR MANGETOUT trunk at the END of the wing, salting the white wing tip beside his face like a steak; the sunlit leading edge runs away to the left",
      "hold": 1.3,
      "creep": 0.0028,
      "shows": [
@@ -770,22 +777,22 @@
      ]
     },
     {
-     "at": 178,
+     "at": 182,
      "pos": [
-      6.2,
-      -3.6,
-      1.75
+      6.05,
+      -3.05,
+      2.05
      ],
      "aim": [
-      5.25,
-      -1.4,
-      1.7
+      5.05,
+      -1.5,
+      1.98
      ],
-     "lens": 22,
+     "lens": 32,
      "subject": "michel",
-     "framing": "M",
-     "purpose": "ROWS 6-7 via (M04 pull back from the trunk front + M10 face -> hand -> blade): MONSIEUR MANGETOUT on the trunk under his feet, the saw at the wing tip, silver dust",
-     "hold": 0.0,
+     "framing": "C",
+     "purpose": "ROWS 6-8 CLOSE rest (M10 face -> hand -> blade): the hacksaw on the cut line at the wing tip, aluminium dust, his tongue in the corner; the owner jolts in the back",
+     "hold": 0.4,
      "creep": 0.0028,
      "shows": [
       "trunk",
@@ -793,44 +800,21 @@
      ]
     },
     {
-     "at": 205,
-     "pos": [
-      7.5,
-      -3.6,
-      2.35
-     ],
-     "aim": [
-      1.3,
-      -0.4,
-      1.2
-     ],
-     "lens": 16,
-     "subject": "michel",
-     "framing": "P",
-     "purpose": "ROW 8 via (M05 pull back): the whole plane with the neat cut at the wing tip, the owner by the nose jolting and polishing faster",
-     "hold": 0.0,
-     "creep": 0.0028,
-     "shows": [
-      "plane",
-      "owner"
-     ]
-    },
-    {
      "at": 238,
      "pos": [
-      5.75,
-      -3.45,
-      2.18
+      6.75,
+      -3.05,
+      1.9
      ],
      "aim": [
-      5.15,
-      -1.2,
-      1.93
+      5.9,
+      -1.55,
+      1.58
      ],
-     "lens": 26,
+     "lens": 36,
      "subject": "michel",
-     "framing": "M",
-     "purpose": "ROW 9 (M02 push in to land on the plate): the tongs set ONE tiny square on the white plate on the wing top, his proud nod above it",
+     "framing": "C",
+     "purpose": "ROW 9 CLOSE (M02 push in to land on the plate): the tongs set ONE tiny square on the white plate on the side table, his proud nod above it",
      "hold": 0.6,
      "creep": 0.0028,
      "shows": [

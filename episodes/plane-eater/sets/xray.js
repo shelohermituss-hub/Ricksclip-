@@ -26,12 +26,17 @@ export async function build(THREE, scene, film, ctx) {
     if (/stomach_glass/.test(m.name)) { m.transparent = true; m.opacity = .28; m.depthWrite = false; m.side = THREE.DoubleSide; }
   });
   const base = new Map(glow.map(m => [m, m.emissiveIntensity]));
+  // S3 fix round 2026-11-22: "tone": { lining, backdrop, bands } scales the self-glow of the X-ray world so it reads rich #2f6fb3 blue, not washed white;
+  // the lining then takes the light and its cushions shade (quilted, not flat). "tone" missing = as built.
+  if (P.tone) for (const m of glow) { const k = /xw_lining/.test(m.name) ? P.tone.lining : /xw_backdrop/.test(m.name) ? P.tone.backdrop : /xw_band/.test(m.name) ? P.tone.bands : null;
+    if (k != null) { base.set(m, base.get(m) * k); if (/xw_lining/.test(m.name) && P.tone.lining_color) { m.color.set(P.tone.lining_color); m.roughness = .45; } if (/xw_backdrop/.test(m.name) && P.tone.backdrop_color) m.emissive.set(P.tone.backdrop_color); } }
   // light: window sun + troffer + the box glow in the clinic; the X-ray world is self-lit with a cyan key
   const sun = new THREE.DirectionalLight('#f2f6ff', 2.4); sun.position.copy(V([-5, .9, 4])); sun.target.position.copy(V([0, 1, 0])); sun.castShadow = true; scene.add(sun, sun.target);
   const box = new THREE.PointLight('#bff4ff', 3, 4, 2); box.position.copy(V([ANCHORS.lightbox[0], ANCHORS.lightbox[1] - .3, ANCHORS.lightbox[2]])); scene.add(box);
   const tro = new THREE.PointLight('#f4fbff', 4, 6, 2); tro.position.copy(V([-.1, .9, 2.5])); scene.add(tro);
   const xk = new THREE.PointLight('#d8fbff', 30, 12, 2); xk.position.copy(V([META.X0[0] - 1.5, META.X0[1] - 2.5, META.X0[2] + 2.2])); scene.add(xk);
   scene.add(new THREE.HemisphereLight('#dfe9f7', '#a9c4bd', 1.1));
+  if (P.tone && P.tone.key != null) xk.intensity *= P.tone.key;
   const S = { puff: P.puff ?? 0, ride: P.ride ?? null, flicker: P.flicker ?? 0 }, tmp = new THREE.Vector3();
   function along(path, u) { const n = path.length - 1, f = Math.min(Math.max(u, 0), 1) * n, i = Math.min(Math.floor(f), n - 1), k = f - i; return V(path[i]).lerp(V(path[i + 1]), k); }
   function setState(s = {}) {

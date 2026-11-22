@@ -22,7 +22,7 @@ export const W = { guy: 54, looked: 62, airplane: 76, thought: 98, lunch: 121, m
 //   f160-203 tiny careful strokes every 8 f (push snap 4, pull snap 4), the body rocks 1.5 deg with them; f203 done, a satisfied breath (y -4, snap 8)
 //   f205-213 the near fist (now the sugar tongs) reaches up to the cut corner; f214 "tiny" pinches; f222-235 carries down to the plate; f235 "bites":
 //            proud nod (head 6, snap 5, back snap 8); the far fist back to his hip f206; DEAD STILL from f246
-function miHook(t, ch, view = '34') { const f = F(t), S = ch.sh[1], L = ch.armL, Wd = ch.handX;
+function miHook(t, ch, view = 'front') { const f = F(t), S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   let sh = 0; for (let k = 0; k < 10; k++) { const s = 2 + k * 6; if (s > 56) break; sh += snap(f - s, 3) - snap(f - s - 3, 3); }
   const stopSalt = snap(f - W.looked, 10), chin = snap(f - W.thought, 10) - snap(f - W.lunch, 5), ant = snap(f - 113, 8) - snap(f - W.lunch, 3);
   const collar = snap(f - W.lunch, 5) - snap(f - 128, 6), tug = snap(f - 125, 4) - snap(f - 129, 4);
@@ -32,23 +32,24 @@ function miHook(t, ch, view = '34') { const f = F(t), S = ch.sh[1], L = ch.armL,
   const rot = 3 * sh * (1 - stopSalt) + 1.5 * st * sawUp - 2 * ant + 2 * snap(f - 150, 10) - 2 * snap(f - 206, 10);
   const y = -6 * (snap(f - W.guy, 5) - snap(f - W.guy - 6, 6)) + 6 * ant + dip(f, W.lunch, 8, 4) - 4 * (snap(f - 202, 8) - snap(f - 214, 8)) + dip(f, W.bites - 1, 5, 4);
   const head = -4 * (snap(f - W.looked, 8)) + 4 * snap(f - W.looked, 8) * 0 + 4 * chin - 3 * ant + 6 * (snap(f - W.bites + 1, 5) - snap(f - W.bites - 4, 8)) + ring(f, W.lunch + 3, 3, 9);
+  // fix round: 'hi' is inside the arm's reach (motion gate arm_over_reach)
   // far fist (L): shaker high over the wing -> chest -> collar -> hip -> steadies the wing -> hip
-  const hi = { wx: Wd * .3 + .95 * L, wy: S - .72 * L + .05 * L * sh }, chest = { wx: Wd * .2 + .25 * L, wy: S + .35 * L }, hip = { wx: -Wd * .7, wy: ch.hipY - 18 };
+  const hi = { wx: Wd * .3 + .5 * L, wy: S - .55 * L + .05 * L * sh }, chest = { wx: Wd * .2 + .25 * L, wy: S + .35 * L }, hip = { wx: -Wd * .7, wy: ch.hipY - 18 };
   const mix = (a, b, u) => ({ wx: a.wx + (b.wx - a.wx) * u, wy: a.wy + (b.wy - a.wy) * u });
   let h0 = mix(hi, chest, stopSalt); h0 = mix(h0, { wx: -Wd * .12, wy: S + .02 * L + .1 * L * tug }, collar); h0 = mix(h0, hip, snap(f - 130, 10) * (1 - steady));
   h0 = mix(h0, { wx: Wd * .3 + .55 * L, wy: S - .78 * L }, steady);
   // near fist (R): fork up at the shoulder -> chin -> collar -> fork up -> saw at the cut (strokes) -> tongs: cut corner -> plate
   const baton = { wx: Wd * .55 + .2 * L, wy: S - .05 * L };
   let h1 = mix(baton, { wx: Wd * .15 + .12 * L, wy: S - .22 * L }, chin); h1 = mix(h1, { wx: Wd * .12, wy: S + .02 * L + .1 * L * tug }, collar);
-  const saw = { wx: Wd * .3 + .8 * L + .06 * L * st, wy: S - .66 * L }; h1 = mix(h1, saw, sawUp);
-  h1 = mix(h1, { wx: Wd * .3 + .8 * L, wy: S - .7 * L }, tongUp * (1 - tongDown)); h1 = mix(h1, { wx: Wd * .3 + .74 * L, wy: S - .6 * L }, tongDown);   // the plate is on the wing top just beside the cut
+  const saw = { wx: Wd * .3 + .6 * L + .06 * L * st, wy: S - .66 * L }; h1 = mix(h1, saw, sawUp);
+  h1 = mix(h1, { wx: Wd * .3 + .6 * L, wy: S - .62 * L }, tongUp * (1 - tongDown)); h1 = mix(h1, { wx: Wd * .3 + .6 * L, wy: S + .12 * L }, tongDown);   // fix round: the plate is on the side table at his chest
   return { view, dir: 1, x: 0, y, rot, head, feet: [{ x: -26, lift: 0 }, { x: 26, lift: 0 }], farArmFront: false,
     hands: [{ ...h0, bow: .4 }, { ...h1, bow: .35, over: true }], held: [] }; }
 
 // ---- OWNER m:ow_polish (3/4, far back at the propeller): the rag fist polishes the blade in small circles (4 stops a turn, each a 7 f snap, never a sine);
 //   the other fist steadies the blade. f185 "whole": he sees the cut: a jolt (dip 7, head back 6), then polishes TWICE as fast (4 f snaps) in denial.
 const RING = [[0, 0], [1, -.6], [0, -1.1], [-1, -.5]];
-function owPolish(t, ch, view = '34') { const f = F(t), S = ch.sh[1], L = ch.armL, Wd = ch.handX;
+function owPolish(t, ch, view = 'front') { const f = F(t), S = ch.sh[1], L = ch.armL, Wd = ch.handX;
   const fast = f >= 190, per = fast ? 4 : 7, f0 = fast ? 190 : 0, k = Math.floor((f - f0) / per), u = snap((f - f0) - k * per, per);
   const a = RING[((k % 4) + 4) % 4], b = RING[(((k + 1) % 4) + 4) % 4], r = fast ? 14 : 10;
   const cx = Wd * .4 + .55 * L, cy = S + .1 * L;
@@ -60,7 +61,8 @@ function owPolish(t, ch, view = '34') { const f = F(t), S = ch.sh[1], L = ch.arm
 const sty = (key, fn, blurb) => ({ key, name: key, blurb, pose: fn });
 const STY = [sty('mi_hook', miHook, 'salts the wing tip, looks along the plane, thinks, LUNCH napkin snap, saws the tip, tongs the first bite to the plate'),
   sty('ow_polish', owPolish, 'polishes the propeller in circles, jolt on "whole", polishes faster')];
-// camera-safe (LECONS 2026-11-22, S3): puppets.mjs draws `default` for side views and `front` for front / 3-4: one pose function, two drawings
+// camera-safe (LECONS 2026-11-22, S3): puppets.mjs draws `default` for side views and `front` for front / 3-4; the front style returns view 'front'
+// (the kit turns a front drawing to 3/4 or back itself, camsafeView), so a front ask on "Lunch!" is no VIEW_MISMATCH
 const STY_SIDE = [sty('mi_hook', (t, ch) => miHook(t, ch, 'side'), 'side drawing'), sty('ow_polish', (t, ch) => owPolish(t, ch, 'side'), 'side drawing')];
 export default { title: 'PLANE-EATER S1: episode moves (side)', dur: N / 30, styles: STY_SIDE };
 export const front = { title: 'PLANE-EATER S1: episode moves', dur: N / 30, styles: STY };

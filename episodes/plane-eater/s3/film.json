@@ -57,7 +57,7 @@
  "post": {
   "dof": 0.0,
   "dust": 0.3,
-  "bloom": 0.5,
+  "bloom": 0.35,
   "vignette": 0
  },
  "places": {
@@ -106,7 +106,15 @@
       "puff": 1,
       "ride": 1
      }
-    ]
+    ],
+    "tone": {
+     "lining": 0.35,
+     "backdrop": 0.6,
+     "bands": 0.8,
+     "key": 0.5,
+     "lining_color": "#4a86c8",
+     "backdrop_color": "#2f6fb3"
+    }
    },
    "kit3d": {
     "envGround": "#a9c4bd"
@@ -144,8 +152,8 @@
    "who": "doctor",
    "at": 519,
    "pos": [
-    -0.22,
-    1.3,
+    -0.25,
+    1.62,
     0.0
    ],
    "view": "34",
@@ -157,7 +165,7 @@
     2.085,
     1.47
    ],
-   "note": "row 19 \"x -RAYED\": hand on the clip bar, the box flickers, he leans in"
+   "note": "row 19 \"x -RAYED\": hand up on the film clip, the box flickers, he leans in (over-the-shoulder)"
   },
   {
    "who": "doctor",
@@ -190,13 +198,36 @@
     2.085,
     1.47
    ],
-   "note": "row 20 \"stomach\": eyes wide as the camera goes into the film"
+   "note": "row 20 \"stomach\": eyes wide as the camera goes past his shoulder into the film"
   },
   {
    "who": "doctor",
-   "at": 563,
+   "at": 567,
    "visible": false,
-   "note": "the camera is inside the film from here (he is behind the lens); row 23 (next stretch) brings him back on the double take"
+   "note": "the lens has passed his shoulder into the film"
+  },
+  {
+   "who": "doctor",
+   "at": 620,
+   "visible": true,
+   "face": "k:shocked",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "back out of the film: he is where he stood"
+  },
+  {
+   "who": "doctor",
+   "at": 633,
+   "face": "k:peJawDrop",
+   "look": [
+    0.11,
+    2.085,
+    1.47
+   ],
+   "note": "row 23 start: the DOUBLE TAKE snaps back to the film, jaw drop"
   }
  ],
  "kicks": [
@@ -249,11 +280,6 @@
  ],
  "moods": [
   {
-   "at": 573,
-   "look": "cold_blue",
-   "note": "row 20: the cut into the X-ray world rides a cyan-blue wash"
-  },
-  {
    "at": 592,
    "look": "flash_white",
    "note": "row 21 POWER 2 cyan-white flash on THICK"
@@ -267,41 +293,41 @@
     {
      "at": 519,
      "pos": [
-      1.05,
-      -0.95,
-      1.38
+      0.62,
+      0.42,
+      1.58
      ],
      "aim": [
-      -0.22,
-      1.7,
-      1.18
+      -0.02,
+      2.05,
+      1.36
      ],
-     "lens": 18,
+     "lens": 20,
      "subject": "doctor",
      "framing": "W",
-     "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, M00 living rest then M02 push in): the doctor in 3/4 at the left leaning in to the glowing film, his hand on the clip bar; the film with the tiny bite-Cessna big at the right; the box flickers twice",
-     "hold": 0.7,
+     "purpose": "ROW 19 \"x -RAYED\" (ACT + SIGNATURE, over the shoulder, M00 living rest): the doctor at the left, hand up on the clip bar, leaning in; the glowing film with the tiny bite-Cessna big beyond his shoulder; the box flickers twice",
+     "hold": 0.6,
      "creep": 0.0028,
      "shows": [
       "film"
      ]
     },
     {
-     "at": 558,
+     "at": 552,
      "pos": [
-      0.32,
-      0.45,
-      1.5
+      0.4,
+      0.92,
+      1.56
      ],
      "aim": [
-      -0.16,
-      2.05,
-      1.38
+      0.04,
+      2.08,
+      1.42
      ],
      "lens": 22,
-     "subject": "doctor",
+     "subject": "film",
      "framing": "M",
-     "purpose": "ROW 19 \"found a\" (push in over the doctor's shoulder): the film fills most of the frame, the Cessna of square bites and F-MIAM readable, his glasses and clip hand at the left edge",
+     "purpose": "ROW 19 \"found\" (M02 push in over his shoulder): his shoulder and glasses at the left edge, the film fills most of the frame, F-MIAM readable",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
@@ -311,8 +337,8 @@
     {
      "at": 573,
      "pos": [
-      0.11,
-      1.8,
+      0.13,
+      1.76,
       1.47
      ],
      "aim": [
@@ -320,10 +346,10 @@
       2.2,
       1.47
      ],
-     "lens": 26,
+     "lens": 24,
      "subject": "film",
      "framing": "C",
-     "purpose": "ROW 20 \"STOMACH\" (M07 fly into the object): the film fills the lens, the cut into the X-ray world sits on the film grain",
+     "purpose": "ROW 20 \"STOMACH\" (M07 fly into the object): the film fills the lens",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
@@ -337,21 +363,21 @@
    "place": "xray",
    "stations": [
     {
-     "at": 574,
+     "at": 566,
      "pos": [
-      28.55,
-      -3.75,
-      1.05
+      29.05,
+      -2.85,
+      -0.45
      ],
      "aim": [
       30.55,
       -0.25,
-      -1.75
+      -2.25
      ],
      "lens": 20,
      "subject": "lining",
      "framing": "W",
-     "purpose": "ROW 20 \"STOMACH lining\" (IMPOSSIBLE VIEW, M07 continued, eased): we come out of the film into the cartoon X-ray world: cyan ribs and spine as bands on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining",
+     "purpose": "ROW 20 \"STOMACH lining\" (IMPOSSIBLE VIEW, M07 continued, eased; dissolve target B): out of the film into the cartoon X-ray world: cyan ribs and spine on mid-blue, the bean stomach, the tiny Cessna parked at the top of the lining",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
@@ -360,7 +386,7 @@
      ]
     },
     {
-     "at": 592,
+     "at": 594,
      "pos": [
       30.2,
       -1.25,
@@ -374,15 +400,15 @@
      "lens": 22,
      "subject": "lining",
      "framing": "C",
-     "purpose": "ROW 21 \"so THICK\" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, cyan-white flash, then steady glow",
-     "hold": 0.5,
+     "purpose": "ROW 21 \"so THICK\" (POWER 2 + EXTREME 1, M02 push in to land): the lining PUFFS into a quilted mattress with runway dashes, flash, then steady glow",
+     "hold": 0.35,
      "creep": 0.0028,
      "shows": [
       "lining"
      ]
     },
     {
-     "at": 622,
+     "at": 620,
      "pos": [
       29.25,
       -2.15,
@@ -396,33 +422,58 @@
      "lens": 24,
      "subject": "mini",
      "framing": "C",
-     "purpose": "ROW 22 \"SLID\" (SIGNATURE peak, M14 ride with the moving thing): the bite-Cessna at the lens, navy stripe, propeller humming, it starts down the runway",
+     "purpose": "ROW 22 \"SLID\" (SIGNATURE peak, M14 ride): the bite-Cessna, navy stripe, propeller humming, starts down the runway",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
       "mini"
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "out",
+   "place": "xray",
+   "stations": [
     {
-     "at": 638,
+     "at": 633,
      "pos": [
-      29.7,
-      -1.95,
-      -1.5
+      0.12,
+      1.8,
+      1.47
      ],
      "aim": [
-      29.65,
-      -0.2,
-      -2.5
+      0.11,
+      2.2,
+      1.47
      ],
      "lens": 24,
-     "subject": "mini",
+     "subject": "film",
      "framing": "C",
-     "purpose": "ROW 22 \"through\" (M14 ride, the camera rides with it): the plane slides along the oily lining, the sparkle trail behind it; the ride continues into the next stretch",
+     "purpose": "back out of the film (dissolve target C): the film fills the lens again",
+     "hold": 0.0,
+     "creep": 0.0028
+    },
+    {
+     "at": 640,
+     "pos": [
+      0.52,
+      1.3,
+      1.47
+     ],
+     "aim": [
+      -0.16,
+      1.86,
+      1.38
+     ],
+     "lens": 20,
+     "subject": "doctor",
+     "framing": "M",
+     "purpose": "ROW 22-23 (M04 pull back): the Doctor beside his film, the DOUBLE TAKE on f633-638, jaw drop; the film with the tiny plane at the right",
      "hold": 0.0,
      "creep": 0.0028,
      "shows": [
-      "mini"
+      "film"
      ]
     }
    ]
