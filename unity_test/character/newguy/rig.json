@@ -1,0 +1,74 @@
+{
+ "who": "newguy",
+ "card_px": [
+  800,
+  1500
+ ],
+ "CX": 400,
+ "ground_y_px": 1440,
+ "height_m": 1.7,
+ "metres_per_px": 0.00179,
+ "char_height_px": 949.9,
+ "head_px": 324,
+ "ink": "#2a1a1f",
+ "limb_line_px": 19,
+ "hand_radius_px": 26,
+ "joints_card_px_note": "card pixels, x from the card centre line (CX 400), y down from the top; front view, dir 1 (facing screen right in side views)",
+ "chOf": {
+  "form": "cast",
+  "bodyTop": 333,
+  "bodyBot": 695,
+  "ground": 1010,
+  "K": 1.62,
+  "hipY": 665,
+  "legL": 338.7816405887427,
+  "sh": [
+   104.73513093586007,
+   372.8351712827988
+  ],
+  "armL": 256.2296634618248,
+  "handX": 179.36,
+  "hy": 206.64,
+  "hipW": 20.28
+ },
+ "faces": [
+  "standard",
+  "k:smug",
+  "k:nervousSmile",
+  "k:nervous",
+  "k:happy",
+  "k:surprised"
+ ],
+ "views": [
+  "front",
+  "34",
+  "side"
+ ],
+ "joints_card_px": {
+  "note": "card px (x right from the card left edge, y down); drawing y + 430 = card y (the kit draws the rig 430 px lower on the card)",
+  "ground_y": 1440,
+  "hips": [
+   [
+    363.72,
+    1095
+   ],
+   [
+    436.28,
+    1095
+   ]
+  ],
+  "shoulders": [
+   [
+    295.26486906413993,
+    802.8351712827988
+   ],
+   [
+    504.73513093586007,
+    802.8351712827988
+   ]
+  ],
+  "leg_length_px": 338.8,
+  "arm_length_px": 256.2,
+  "head_centre_y": 636.6
+ }
+}

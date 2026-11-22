@@ -1,0 +1,1729 @@
+{
+ "place": "ship",
+ "units": "Blender metres, Z up; ship axis X, nose +X, porthole side +Y; everything ship = child of ship_root",
+ "hull": {
+  "body_x": [
+   0,
+   21.5
+  ],
+  "nose_x": [
+   21.5,
+   26.4
+  ],
+  "half_width": 2.33,
+  "windows_x": [
+   1.25,
+   3.3,
+   4.75,
+   6.199999999999999,
+   7.6499999999999995,
+   9.1,
+   10.55,
+   12.0,
+   13.45,
+   14.899999999999999
+  ],
+  "window_z": -0.15,
+  "portholes": {
+   "porthole_a": 1.25,
+   "porthole_b": 4.75
+  }
+ },
+ "anchors": {
+  "porthole_a": [
+   1.25,
+   2.48,
+   -0.15
+  ],
+  "porthole_a_card": [
+   1.15,
+   1.63,
+   -1.2
+  ],
+  "porthole_b": [
+   4.75,
+   2.48,
+   -0.15
+  ],
+  "porthole_b_card": [
+   4.65,
+   1.63,
+   -1.2
+  ],
+  "flame_origin": [
+   -17.3,
+   0.0,
+   0.0
+  ],
+  "nozzle": [
+   -15.4,
+   0.0,
+   0.0
+  ],
+  "lamps": [
+   [
+    23.4,
+    -0.55,
+    1.3
+   ],
+   [
+    23.4,
+    0.55,
+    1.3
+   ]
+  ],
+  "star_map": [
+   26.0223,
+   0.0,
+   0.75
+  ],
+  "comm_lamp": [
+   23.3978,
+   0.9748,
+   -0.0426
+  ],
+  "radio": [
+   23.15,
+   1.1,
+   -0.3
+  ],
+  "navigator_s7": [
+   23.9,
+   0.0,
+   -0.46
+  ],
+  "newguy_s2": [
+   1.2,
+   1.83,
+   -1.2
+  ],
+  "newguy_s11": [
+   4.793,
+   -0.708,
+   -1.64
+  ],
+  "cockpit_centre": [
+   23.6,
+   0.0,
+   0.0
+  ],
+  "collar": [
+   -1.2,
+   0.0,
+   0.0
+  ],
+  "lodestar": [
+   8.6,
+   2.395,
+   0.62
+  ],
+  "bow_tip": [
+   26.4,
+   0.0,
+   0.25
+  ],
+  "tail_end": [
+   -15.4,
+   0.0,
+   0.0
+  ]
+ },
+ "cams": {
+  "f40": {
+   "loc": [
+    -7.697,
+    27.59,
+    -3.125
+   ],
+   "look": [
+    -4.439,
+    18.2,
+    -2.019
+   ],
+   "vfov": 45.0,
+   "roll": -1.13,
+   "fit_rms_px": 14.1
+  },
+  "f70": {
+   "loc": [
+    -65.13,
+    49.434,
+    -13.846
+   ],
+   "look": [
+    -56.966,
+    43.789,
+    -12.626
+   ],
+   "vfov": 45.0,
+   "roll": 9.2,
+   "fit_rms_px": 11.2
+  },
+  "f110": {
+   "loc": [
+    8,
+    190,
+    -8
+   ],
+   "look": [
+    0,
+    0,
+    0
+   ],
+   "vfov": 40
+  },
+  "f600": {
+   "loc": [
+    28.389,
+    0.209,
+    1.629
+   ],
+   "look": [
+    18.546,
+    -0.075,
+    -0.113
+   ],
+   "vfov": 45.0,
+   "roll": 0.42,
+   "fit_rms_px": 10.9
+  },
+  "f680": {
+   "loc": [
+    31.498,
+    2.494,
+    2.646
+   ],
+   "look": [
+    22.6,
+    0.3,
+    -0.1
+   ],
+   "vfov": 40.0,
+   "roll": -12.0,
+   "fit": "round 8: the stager s kit by-eye cam (42 % closer than round 7); kit roll 12 = Blender roll -12 (film.js turns the picture the other way)"
+  },
+  "f740": {
+   "loc": [
+    23.55,
+    0,
+    0.48
+   ],
+   "look": [
+    26.3,
+    0,
+    0.48
+   ],
+   "vfov": 42
+  },
+  "f790": {
+   "loc": [
+    23.177,
+    0.396,
+    0.278
+   ],
+   "look": [
+    23.682,
+    10.048,
+    -2.289
+   ],
+   "vfov": 90.0,
+   "roll": -1.55,
+   "fit_rms_px": 18.3
+  },
+  "f880": {
+   "loc": [
+    4.666,
+    8.428,
+    0.006
+   ],
+   "look": [
+    4.81,
+    -1.568,
+    -0.258
+   ],
+   "vfov": 20.0,
+   "roll": -0.1,
+   "fit_rms_px": 6.5
+  },
+  "f990": {
+   "loc": [
+    51.765,
+    37.866,
+    -48.449
+   ],
+   "look": [
+    45.784,
+    32.885,
+    -42.17
+   ],
+   "vfov": 45.0,
+   "roll": 189.15,
+   "fit_rms_px": 25.8
+  },
+  "f990_ny": {
+   "loc": [
+    51.183,
+    -38.29,
+    50.278
+   ],
+   "look": [
+    45.303,
+    -33.276,
+    43.931
+   ],
+   "vfov": 45.0,
+   "roll": 9.48,
+   "fit_rms_px": 24.9,
+   "note": "round 7 fit on the -Y side (kept for reference; round 8 f990 is on the porthole side)"
+  },
+  "f680_r7": {
+   "loc": [
+    36.0,
+    4.6,
+    2.8
+   ],
+   "look": [
+    22.2,
+    0.3,
+    -0.1
+   ],
+   "vfov": 34,
+   "roll": 30,
+   "fit": "by eye round 7; the 6-point fit stays at 34 px (fits.f680)"
+  }
+ },
+ "ship_poses": {
+  "rest": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "shot2_f110_away": [
+   0,
+   0,
+   0,
+   0,
+   -14,
+   -50
+  ]
+ },
+ "kit_pictures": {
+  "earth": "earth_kit.jpg",
+  "sky_dome": "stars_kit.jpg"
+ },
+ "proofs": {
+  "f40": {
+   "light": "space",
+   "shot": 2,
+   "earth_screen": [
+    0.3,
+    -2.2,
+    3000,
+    40
+   ],
+   "sun_dir": [
+    0.3,
+    -0.2,
+    0.9
+   ],
+   "fan": 0,
+   "earth_glare": [
+    0.3,
+    -0.78,
+    0.08,
+    2.2
+   ],
+   "earth_rot": [
+    101.2,
+    267.1,
+    314.1
+   ],
+   "fans": 0
+  },
+  "f70": {
+   "light": "space",
+   "shot": 0,
+   "earth_screen": [
+    -0.2,
+    -1.45,
+    3000,
+    35
+   ],
+   "earth_glare": [
+    0.6,
+    -0.72,
+    0.08,
+    2.2
+   ],
+   "earth_rot": [
+    101.2,
+    267.1,
+    314.1
+   ],
+   "fans": 0
+  },
+  "f110": {
+   "light": "space",
+   "shot": 0,
+   "flame": 1,
+   "earth_screen": [
+    1.5,
+    -2.3,
+    3000,
+    30
+   ],
+   "ship": [
+    0,
+    0,
+    0,
+    0,
+    -14,
+    -50
+   ],
+   "fan": 0,
+   "earth_rot": [
+    101.2,
+    267.1,
+    314.1
+   ],
+   "fans": 0
+  },
+  "f600": {
+   "light": "warm",
+   "shot": 7,
+   "glitter_ck": 0.67,
+   "earth_screen": [
+    5,
+    5,
+    3000,
+    1
+   ],
+   "wash": 0.001
+  },
+  "f680": {
+   "light": "warm",
+   "shot": 7,
+   "glitter_ck": 1,
+   "earth_screen": [
+    5,
+    5,
+    3000,
+    1
+   ],
+   "sun_dir": [
+    0.5,
+    0.5,
+    0.7
+   ],
+   "sun_k": 3
+  },
+  "f740": {
+   "light": "map",
+   "shot": 8,
+   "starmap": 1,
+   "earth_screen": [
+    5,
+    5,
+    3000,
+    1
+   ]
+  },
+  "f790": {
+   "light": "radio",
+   "shot": 9,
+   "comm": 1,
+   "digits": 1,
+   "earth_screen": [
+    5,
+    5,
+    3000,
+    1
+   ]
+  },
+  "f880": {
+   "light": "space",
+   "shot": 11,
+   "sun_dir": [
+    0.2,
+    0.35,
+    0.9
+   ],
+   "earth_screen": [
+    5,
+    5,
+    3000,
+    1
+   ],
+   "sun_k": 1.5
+  },
+  "f990": {
+   "light": "space",
+   "shot": 0,
+   "glitter": 1,
+   "sun_dir": [
+    0.45,
+    0.5,
+    -0.55
+   ],
+   "earth_emit": 1.0,
+   "earth_screen": [
+    0.41,
+    0.48,
+    3000,
+    1.4
+   ],
+   "fan": -44,
+   "sky_rot": 250,
+   "earth_term": [
+    -0.6,
+    0.6,
+    1.0
+   ]
+  }
+ },
+ "movers": {
+  "wrench": {
+   "loc": [
+    12.4,
+    3.43,
+    -1.75
+   ],
+   "rot": [
+    20,
+    10,
+    35
+   ],
+   "drift": [
+    0.15,
+    0.05,
+    0.03,
+    25
+   ]
+  },
+  "solar_fan_p": {
+   "loc": [
+    -1.4,
+    10.0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "axis": "boom_y"
+  },
+  "solar_fan_p_spokes": {
+   "loc": [
+    -1.4,
+    10.0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "follows": "solar_fan_p"
+  },
+  "solar_fan_n": {
+   "loc": [
+    -1.4,
+    -10.0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "axis": "boom_y"
+  },
+  "solar_fan_n_spokes": {
+   "loc": [
+    -1.4,
+    -10.0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "follows": "solar_fan_n"
+  },
+  "nozzle_glow": {
+   "loc": [
+    -15.4,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "preglow 0-1"
+  },
+  "flame_core": {
+   "loc": [
+    -17.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "flame 0-1 scales x (length) and y,z (width)"
+  },
+  "flame_mid": {
+   "loc": [
+    -17.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "flame 0-1 scales x (length) and y,z (width)"
+  },
+  "flame_outer": {
+   "loc": [
+    -17.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "flame 0-1 scales x (length) and y,z (width)"
+  },
+  "flame_halo": {
+   "loc": [
+    -17.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "flame 0-1 scales x (length) and y,z (width)"
+  },
+  "flame_glow": {
+   "loc": [
+    -17.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "flame 0-1 scales x (length) and y,z (width)"
+  },
+  "glitter_trail_0": {
+   "loc": [
+    -19.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_trail_1": {
+   "loc": [
+    -19.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_trail_2": {
+   "loc": [
+    -19.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_trail_3": {
+   "loc": [
+    -19.3,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_collar": {
+   "loc": [
+    -1.5,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_cockpit_0": {
+   "loc": [
+    26.4,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter_ck 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_cockpit_1": {
+   "loc": [
+    26.4,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter_ck 0-1 (per-sparkle phase) + twinkle"
+  },
+  "glitter_cockpit_2": {
+   "loc": [
+    26.4,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "glitter_ck 0-1 (per-sparkle phase) + twinkle"
+  },
+  "hanging_toy": {
+   "loc": [
+    23.4,
+    -0.65,
+    0.5
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "swing": "about the string top"
+  },
+  "float_cup": {
+   "loc": [
+    23.55,
+    0.35,
+    0.1
+   ],
+   "rot": [
+    10,
+    20,
+    0
+   ],
+   "drift": "kit floats it"
+  },
+  "float_book": {
+   "loc": [
+    23.8,
+    -1.1,
+    0.9
+   ],
+   "rot": [
+    30,
+    15,
+    40
+   ],
+   "drift": "kit floats it"
+  },
+  "float_pencil": {
+   "loc": [
+    22.3,
+    -1.6,
+    1.5
+   ],
+   "rot": [
+    0,
+    30,
+    60
+   ],
+   "drift": "kit floats it"
+  },
+  "float_juice": {
+   "loc": [
+    23.3,
+    -0.7,
+    1.5
+   ],
+   "rot": [
+    20,
+    -15,
+    10
+   ],
+   "drift": "kit floats it"
+  },
+  "star_map_sheet": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "starmap 0-1"
+  },
+  "star_map_tape": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "follows": "star_map_sheet"
+  },
+  "mfd_on": {
+   "state": "comm on"
+  },
+  "mfd_off": {
+   "state": "comm off"
+  },
+  "radio_digits_0": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "digits 0"
+  },
+  "radio_digits_1": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "digits 1"
+  },
+  "radio_digits_2": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "digits 2"
+  },
+  "radio_digits_3": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "digits 3"
+  },
+  "comm_lamp_on": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "comm"
+  },
+  "comm_lamp_off": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "comm"
+  },
+  "earth": {
+   "loc": [
+    0,
+    -3000,
+    -2600
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "earth [x,y,z,R] per shot",
+   "scale": 1500
+  },
+  "ship_root": {
+   "loc": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "state": "ship [x,y,z,rx,ry,rz]"
+  }
+ },
+ "standins": {
+  "standin_newguy_s2": [
+   2
+  ],
+  "standin_newguy_s11": [
+   11
+  ],
+  "standin_navigator_s7": [
+   7
+  ]
+ },
+ "state_default": {
+  "light": "space",
+  "sun_dir": null,
+  "flame": 0,
+  "preglow": 0,
+  "glitter": 0,
+  "glitter_ck": 0,
+  "comm": 0,
+  "digits": 0,
+  "starmap": 0,
+  "shot": 0,
+  "ship": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "earth": [
+   0,
+   -3000,
+   -2600,
+   1500
+  ],
+  "earth_emit": 1.0,
+  "fan": 0,
+  "sun_k": 1.0,
+  "sky_rot": 0,
+  "wash": 0,
+  "earth_glare": [
+   0.5,
+   -0.7,
+   0.3,
+   0.0
+  ],
+  "earth_rot": [
+   75,
+   0,
+   30
+  ],
+  "earth_term": [
+   -0.6,
+   0.6,
+   0.0
+  ],
+  "fans": 1,
+  "twinkle": 0.0,
+  "radio_desk": 1,
+  "flame_w": 1.5
+ },
+ "light_kinds": {
+  "space": {
+   "sun": [
+    [
+     0.2,
+     0.5,
+     0.85
+    ],
+    [
+     1.0,
+     1.0,
+     1.0
+    ],
+    3.0
+   ],
+   "fill": 0.25,
+   "lamps": 60,
+   "ck_fill": 20,
+   "rooms": 120
+  },
+  "warm": {
+   "sun": [
+    [
+     0.45,
+     -0.6,
+     0.65
+    ],
+    [
+     1.0,
+     0.78,
+     0.6
+    ],
+    3.2
+   ],
+   "fill": 0.2,
+   "lamps": 110,
+   "ck_fill": 60,
+   "rooms": 120
+  },
+  "map": {
+   "sun": [
+    [
+     0.45,
+     -0.6,
+     0.65
+    ],
+    [
+     1.0,
+     0.78,
+     0.6
+    ],
+    0.6
+   ],
+   "fill": 0.05,
+   "lamps": 8,
+   "ck_fill": 0,
+   "rooms": 0
+  },
+  "radio": {
+   "sun": [
+    [
+     0.45,
+     -0.6,
+     0.65
+    ],
+    [
+     1.0,
+     0.78,
+     0.6
+    ],
+    0.0
+   ],
+   "fill": 0.0,
+   "lamps": 3,
+   "ck_fill": 14,
+   "rooms": 0
+  }
+ },
+ "lamp_emit": {
+  "space": 1.0,
+  "warm": 0.5,
+  "map": 0.05,
+  "radio": 0.3
+ },
+ "wash": {
+  "warm": 140.0,
+  "space": 60.0
+ },
+ "groups": {
+  "radio_station": [
+   "comm_lamp_off",
+   "comm_lamp_on",
+   "glow_rod",
+   "juice_box",
+   "juice_box_brow_base",
+   "juice_straw",
+   "lever_block_0",
+   "lever_block_1",
+   "lever_cap_0_0",
+   "lever_cap_0_1",
+   "lever_cap_1_0",
+   "lever_cap_1_1",
+   "lever_grip_0",
+   "lever_grip_1",
+   "lever_stem_0",
+   "lever_stem_1",
+   "mfd_bezel",
+   "mfd_keys",
+   "mfd_off",
+   "mfd_on",
+   "mic",
+   "mic_stand",
+   "radio_body",
+   "radio_dash_labels",
+   "radio_desk",
+   "radio_desk_front",
+   "radio_dial_marks",
+   "radio_dials",
+   "radio_digits_0",
+   "radio_digits_1",
+   "radio_digits_2",
+   "radio_digits_3",
+   "radio_face",
+   "radio_face_edge",
+   "radio_grille",
+   "radio_knob_freq",
+   "radio_knob_vol",
+   "radio_lower_panel",
+   "radio_lower_rivets",
+   "radio_toggle_guards",
+   "radio_toggles",
+   "radio_upper_panel",
+   "sband_display"
+  ]
+ },
+ "lights": {
+  "lamp_light_0": {
+   "loc": [
+    23.4,
+    -0.55,
+    1.05
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.72,
+    0.4
+   ],
+   "radius": 0.08,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "lamp_light_1": {
+   "loc": [
+    23.4,
+    0.55,
+    1.05
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.72,
+    0.4
+   ],
+   "radius": 0.08,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "ck_fill": {
+   "loc": [
+    23.6,
+    0.0,
+    0.6
+   ],
+   "type": "POINT",
+   "color": [
+    0.5,
+    0.55,
+    1.0
+   ],
+   "radius": 0.6,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "comm_light": {
+   "loc": [
+    23.3978,
+    0.8748,
+    0.0374
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.12,
+    0.08
+   ],
+   "radius": 0.05,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "mfd_light": {
+   "loc": [
+    23.32,
+    1.4949,
+    0.8582
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.2,
+    0.2
+   ],
+   "radius": 0.1,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "room_light_a": {
+   "loc": [
+    1.25,
+    0.3,
+    1.4
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.95,
+    0.88
+   ],
+   "radius": 0.4,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "room_light_b": {
+   "loc": [
+    4.75,
+    1.53,
+    1.4
+   ],
+   "type": "POINT",
+   "color": [
+    1.0,
+    0.95,
+    0.88
+   ],
+   "radius": 0.4,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "flame_light": {
+   "loc": [
+    -20.3,
+    0.0,
+    0.0
+   ],
+   "type": "POINT",
+   "color": [
+    0.7,
+    0.55,
+    1.0
+   ],
+   "radius": 2.0,
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "spot": null
+  },
+  "wall_wash": {
+   "loc": [
+    22.8,
+    0.0,
+    1.98
+   ],
+   "type": "SPOT",
+   "color": [
+    1.0,
+    0.74,
+    0.45
+   ],
+   "radius": 0.15,
+   "dir": [
+    0.8829,
+    0.0,
+    -0.4695
+   ],
+   "spot": [
+    1.6581,
+    0.6
+   ]
+  }
+ },
+ "frames": {
+  "shot2": [
+   36,
+   119
+  ],
+  "ship_turns": 75,
+  "preglow": [
+   84,
+   94
+  ],
+  "flame_on": [
+   96,
+   100
+  ],
+  "flame_full": [
+   100,
+   118
+  ],
+  "shot7": [
+   538,
+   705
+  ],
+  "glitter_ck_on": [
+   585,
+   660
+  ],
+  "lens_star": [
+   690,
+   704
+  ],
+  "shot8": [
+   713,
+   762
+  ],
+  "starmap_in": 709,
+  "shot9": [
+   771,
+   802
+  ],
+  "comm_incoming": 772,
+  "digits_scramble": [
+   769,
+   800
+  ],
+  "shot11": [
+   867,
+   997
+  ],
+  "newguy_leaves_porthole": [
+   876,
+   884
+  ],
+  "glitter_trail": [
+   950,
+   998
+  ]
+ },
+ "palette": {
+  "hull_core": {
+   "hex": "#0d101a",
+   "rough": 0.9
+  },
+  "hull_side": {
+   "hex": "#2e323d",
+   "rough": 0.85
+  },
+  "hull_top": {
+   "hex": "#9d9fa9",
+   "rough": 0.55
+  },
+  "hull_belly": {
+   "hex": "#303d57",
+   "rough": 0.85
+  },
+  "rivet": {
+   "hex": "#14161d",
+   "rough": 0.7
+  },
+  "scuff": {
+   "hex": "#454a58",
+   "rough": 0.85
+  },
+  "stripe": {
+   "hex": "#e67817",
+   "rough": 0.7
+  },
+  "sill": {
+   "hex": "#a4a6b4",
+   "rough": 0.6
+  },
+  "port_ring": {
+   "hex": "#8c9194",
+   "rough": 0.6
+  },
+  "port_bevel": {
+   "hex": "#516082",
+   "rough": 0.6
+  },
+  "bolt_white": {
+   "hex": "#f2f4f8",
+   "rough": 0.5
+  },
+  "win_glow": {
+   "hex": "#edc57f",
+   "rough": 0.6,
+   "emit": 1.6
+  },
+  "roof_dash": {
+   "hex": "#f1e126",
+   "rough": 0.6,
+   "emit": 0.4
+  },
+  "hazard_y": {
+   "hex": "#f1c81e",
+   "rough": 0.6
+  },
+  "black": {
+   "hex": "#050508",
+   "rough": 0.5
+  },
+  "gold": {
+   "hex": "#c2a832",
+   "rough": 0.35,
+   "metal": 0.6
+  },
+  "truss": {
+   "hex": "#dfe3ea",
+   "rough": 0.6
+  },
+  "solar_fan": {
+   "hex": "#7ea1d5",
+   "rough": 0.5
+  },
+  "solar_spoke": {
+   "hex": "#1a2440",
+   "rough": 0.6
+  },
+  "solar_rect": {
+   "hex": "#3b3e47",
+   "rough": 0.6
+  },
+  "solar_line": {
+   "hex": "#6a6f7d",
+   "rough": 0.6
+  },
+  "engine": {
+   "hex": "#23262f",
+   "rough": 0.7
+  },
+  "nozzle_glow": {
+   "hex": "#200400",
+   "rough": 0.6,
+   "emit": 0.0,
+   "ehex": "#ff3a10"
+  },
+  "glitter": {
+   "hex": "#ffffff",
+   "rough": 0.5,
+   "emit": 14.0
+  },
+  "stub_wall": {
+   "hex": "#d4d0c6",
+   "rough": 0.8,
+   "emit": 0.55
+  },
+  "stub_floor": {
+   "hex": "#0b0b10",
+   "rough": 0.6
+  },
+  "stub_rail": {
+   "hex": "#c8281e",
+   "rough": 0.6,
+   "emit": 0.5
+  },
+  "stub_window": {
+   "hex": "#2a1848",
+   "rough": 0.4,
+   "emit": 0.3
+  },
+  "glass": {
+   "hex": "#22202f",
+   "rough": 0.03,
+   "alpha": 0.1,
+   "spec": 0.5
+  },
+  "canopy_bar": {
+   "hex": "#293056",
+   "rough": 0.4,
+   "spec": 0.5
+  },
+  "ck_slat": {
+   "hex": "#403f46",
+   "rough": 0.85,
+   "note": "round 8 (was #5a5056: beige zebra under the warm lamps)"
+  },
+  "ck_wall": {
+   "hex": "#34343a",
+   "rough": 0.9,
+   "note": "round 8: dark grey, low contrast with the slats (his f600)"
+  },
+  "ck_roof": {
+   "hex": "#171624",
+   "rough": 0.85
+  },
+  "ck_floor": {
+   "hex": "#121226",
+   "rough": 0.85
+  },
+  "seat": {
+   "hex": "#1b223f",
+   "rough": 0.9
+  },
+  "seat_stripe": {
+   "hex": "#a44d2c",
+   "rough": 0.9,
+   "emit": 0.25
+  },
+  "nav_chair": {
+   "hex": "#0f1534",
+   "rough": 0.9
+  },
+  "red_half": {
+   "hex": "#6f091d",
+   "rough": 0.8
+  },
+  "blue_box": {
+   "hex": "#141a56",
+   "rough": 0.7
+  },
+  "lamp_rod": {
+   "hex": "#08080c",
+   "rough": 0.5
+  },
+  "lamp_tube": {
+   "hex": "#141418",
+   "rough": 0.5,
+   "note": "round 8: dark rod end, no glow"
+  },
+  "lamp_tip": {
+   "hex": "#ffa050",
+   "rough": 0.5,
+   "emit": 14.0,
+   "ehex": "#ff7a1a",
+   "note": "round 8: small orange glowing end"
+  },
+  "console": {
+   "hex": "#36313f",
+   "rough": 0.8
+  },
+  "lt_cyan": {
+   "hex": "#baced5",
+   "rough": 0.5,
+   "emit": 4.0,
+   "ehex": "#c8fffd"
+  },
+  "lt_amber": {
+   "hex": "#d8ae60",
+   "rough": 0.5,
+   "emit": 4.0
+  },
+  "lt_pink": {
+   "hex": "#f08ab0",
+   "rough": 0.5,
+   "emit": 4.0
+  },
+  "lt_white": {
+   "hex": "#ffffff",
+   "rough": 0.5,
+   "emit": 4.0
+  },
+  "lt_red": {
+   "hex": "#f03a3a",
+   "rough": 0.5,
+   "emit": 5.0
+  },
+  "toy_white": {
+   "hex": "#f4f3ef",
+   "rough": 0.6,
+   "emit": 0.3
+  },
+  "juice": {
+   "hex": "#3f8f5a",
+   "rough": 0.6
+  },
+  "juice_red": {
+   "hex": "#c8281e",
+   "rough": 0.6
+  },
+  "tape": {
+   "hex": "#b6aca5",
+   "rough": 0.8,
+   "emit": 0.5
+  },
+  "panel_up": {
+   "hex": "#343233",
+   "rough": 0.75
+  },
+  "panel_low": {
+   "hex": "#1c1a1f",
+   "rough": 0.75
+  },
+  "rivet_pale": {
+   "hex": "#b9b4b8",
+   "rough": 0.5
+  },
+  "radio_body": {
+   "hex": "#2a1519",
+   "rough": 0.7
+  },
+  "radio_edge": {
+   "hex": "#9a7a84",
+   "rough": 0.6
+  },
+  "desk": {
+   "hex": "#2e161c",
+   "rough": 0.75
+  },
+  "knob": {
+   "hex": "#000000",
+   "rough": 0.12,
+   "spec": 0.8
+  },
+  "toggle_guard": {
+   "hex": "#b60004",
+   "rough": 0.5,
+   "emit": 0.6
+  },
+  "lever_cap": {
+   "hex": "#fdb23a",
+   "rough": 0.5,
+   "emit": 0.8
+  },
+  "lever_stem": {
+   "hex": "#b60004",
+   "rough": 0.5,
+   "emit": 5.0,
+   "ehex": "#ff2a20"
+  },
+  "lever_block": {
+   "hex": "#6b6870",
+   "rough": 0.7
+  },
+  "dash_label": {
+   "hex": "#dce7ef",
+   "rough": 0.5,
+   "emit": 1.2
+  },
+  "dial_mark": {
+   "hex": "#ffd060",
+   "rough": 0.5,
+   "emit": 6.0
+  },
+  "bezel": {
+   "hex": "#70727a",
+   "rough": 0.6
+  },
+  "display_bg": {
+   "hex": "#5a2903",
+   "rough": 0.5,
+   "emit": 0.4
+  },
+  "comm_lamp_on": {
+   "hex": "#feff7f",
+   "rough": 0.4,
+   "emit": 12.0
+  },
+  "comm_lamp_off": {
+   "hex": "#4a1010",
+   "rough": 0.4
+  },
+  "glow_rod": {
+   "hex": "#ffb050",
+   "rough": 0.5,
+   "emit": 8.0
+  },
+  "mic": {
+   "hex": "#1a1a20",
+   "rough": 0.5
+  },
+  "wrench": {
+   "hex": "#aab0ba",
+   "rough": 0.3,
+   "metal": 0.7
+  },
+  "sd_newguy": {
+   "hex": "#f8d136",
+   "rough": 0.8,
+   "emit": 0.5
+  },
+  "sd_navigator": {
+   "hex": "#8e5bdc",
+   "rough": 0.8,
+   "emit": 0.3
+  },
+  "sd_head": {
+   "hex": "#f4f3ef",
+   "rough": 0.8,
+   "emit": 0.4
+  },
+  "nose_roof": {
+   "hex": "#6e625c",
+   "rough": 0.7
+  }
+ }
+}
